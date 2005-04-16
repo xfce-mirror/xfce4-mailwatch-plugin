@@ -96,7 +96,7 @@ mailwatch_create(Control *c)
     
     mwp->button = gtk_button_new();
     gtk_widget_show(mwp->button);
-    gtk_container_add(GTK_CONTAINER(cc->base), mwp->button);
+    gtk_container_add(GTK_CONTAINER(c->base), mwp->button);
     
     mwp->image = xfce_scaled_image_new();
     gtk_widget_show(mwp->image);
@@ -149,7 +149,7 @@ mailwatch_free(Control *c)
     if(mwp->pix_newmail)
         g_object_unref(G_OBJECT(mwp->pix_newmail));
     
-    gtk_object_sink(GTK_OBJECT(mwp>tooltips));
+    gtk_object_sink(GTK_OBJECT(mwp->tooltip));
     
     g_free(mwp);
     c->data = NULL;
@@ -178,12 +178,12 @@ mailwatch_set_size(Control *c, gint size)
     mwp->pix_normal = xfce_themed_icon_load("xfce-nomail", icon_size[size]);
     mwp->pix_newmail = xfce_themed_icon_load("xfce-newmail", icon_size[size]);
     
-    if(xfce_mailwatch_get_new_messages(mwp->mailwatch) == 0) {
+    if(!mwp->newmail_icon_visible) {
         if(mwp->pix_normal)
             xfce_scaled_image_set_from_pixbuf(XFCE_SCALED_IMAGE(mwp->image),
                     mwp->pix_normal);
     } else {
-        if(plugin->pix_newmail)
+        if(mwp->pix_newmail)
             xfce_scaled_image_set_from_pixbuf(XFCE_SCALED_IMAGE(mwp->image),
                     mwp->pix_newmail);
     }

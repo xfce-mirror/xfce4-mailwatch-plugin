@@ -42,14 +42,14 @@ XfceMailwatchMailboxType *builtin_mailbox_types[] = {
 
 /* private */
 
-static XfceMailwatchMailboxType **
+static GList *
 mailwatch_load_mailbox_types()
 {
     GList *mailbox_types = NULL;
     gint i;
     
     for(i = 0; builtin_mailbox_types[i]; i++)
-        mailbox_types = g_list_prepend(mailox_types, builtin_mailbox_types[i]);
+        mailbox_types = g_list_prepend(mailbox_types, builtin_mailbox_types[i]);
     mailbox_types = g_list_reverse(mailbox_types);
     
     return mailbox_types;
@@ -77,9 +77,10 @@ xfce_mailwatch_destroy(XfceMailwatch *mailwatch)
 {
     g_return_if_fail(mailwatch);
     
+    /* TODO: free mailwatch->mailboxes */
     g_list_free(mailwatch->mailbox_types);
-    g_free(mailbox->config_file);
-    g_free(mailbox);
+    g_free(mailwatch->config_file);
+    g_free(mailwatch);
 }
 
 void
@@ -104,6 +105,8 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch)
 {
     g_return_val_if_fail(mailwatch, FALSE);
     g_return_val_if_fail(mailwatch->config_file, FALSE);
+    
+    return FALSE;
 }
 
 gboolean
@@ -111,6 +114,8 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
 {
     g_return_val_if_fail(mailwatch, FALSE);
     g_return_val_if_fail(mailwatch->config_file, FALSE);
+    
+    return FALSE;
 }
 
 guint
