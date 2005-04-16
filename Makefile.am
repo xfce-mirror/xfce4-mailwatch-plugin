@@ -1,0 +1,4 @@
+SUBDIRS = \
+	panel-plugin \
+	po
+
