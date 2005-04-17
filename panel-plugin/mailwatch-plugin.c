@@ -110,16 +110,10 @@ static void
 mailwatch_read_config(Control *c, xmlNodePtr node)
 {
     XfceMailwatchPlugin *mwp = c->data;
-    gchar *cfgfile;
-    
-    cfgfile = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
-            "xfce4/panel/mailwatch/mailwatch.rc", TRUE);
-    if(cfgfile) {
-        xfce_mailwatch_set_config_file(mwp->mailwatch, cfgfile);
-        g_free(cfgfile);
-        
-        xfce_mailwatch_load_config(mwp->mailwatch);
-    }
+
+    xfce_mailwatch_set_config_file(mwp->mailwatch,
+            "xfce4/panel/mailwatch/mailwatch.rc");
+    xfce_mailwatch_load_config(mwp->mailwatch);
     
     mwp->check_timeout_id = g_timeout_add(xfce_mailwatch_get_timeout(mwp->mailwatch),
             (GSourceFunc)mailwatch_check_timeout, mwp);

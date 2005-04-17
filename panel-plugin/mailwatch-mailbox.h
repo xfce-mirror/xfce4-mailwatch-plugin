@@ -38,7 +38,8 @@ typedef struct _XfceMailwatchMailboxType XfceMailwatchMailboxType;
 
 /**
  * XfceMailwatchParam
- * @key: A key with which to identify the configuration data.
+ * @key: A key with which to identify the configuration data.  All keys
+ *       beginning with the string "mailwatch-" are reserved for internal use.
  * @value: A string representation of the configuration data.
  **/
 typedef struct
@@ -92,7 +93,8 @@ typedef GtkContainer *(*GetSetupPageFunc)(XfceMailwatchMailbox *mailbox);
  * @params: A #GList of #XfceMailwatchParam<!-- -->s.
  *
  * The #XfceMailwatchMailbox instance should take @params and use them to
- * configure @mailbox to be able to check mail.
+ * configure @mailbox to be able to check mail.  The caller will take care of
+ * freeing the list and parameters.
  **/
 typedef void (*RestoreParamListFunc)(XfceMailwatchMailbox *mailbox, GList *params);
 
@@ -101,7 +103,8 @@ typedef void (*RestoreParamListFunc)(XfceMailwatchMailbox *mailbox, GList *param
  * @mailbox: The #XfceMailwatchMailbox instance.
  *
  * Should return a #GList of #XfceMailwatchParam<!-- -->s describing the
- * configuration of @mailbox.
+ * configuration of @mailbox.  The list itself, and each parameter and their
+ * @key<!-- -->s and @value<!-- -->s will be freed by the caller.
  *
  * Returns: A #Glist of #XfceMailwatchParam<!-- -->s.
  **/ 
