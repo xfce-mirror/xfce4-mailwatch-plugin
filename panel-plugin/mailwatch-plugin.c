@@ -53,7 +53,7 @@ static gboolean
 mailwatch_check_timeout(gpointer user_data)
 {
     XfceMailwatchPlugin *mwp = user_data;
-    gint new_messages;
+    guint new_messages;
     
     new_messages = xfce_mailwatch_get_new_messages(mwp->mailwatch);
     if(new_messages == 0 && mwp->newmail_icon_visible) {
@@ -61,7 +61,7 @@ mailwatch_check_timeout(gpointer user_data)
                 mwp->pix_normal);
         gtk_tooltips_set_tip(mwp->tooltip, mwp->button, _("No new mail"), NULL);
         mwp->newmail_icon_visible = FALSE;
-    } else if(!mwp->newmail_icon_visible) {
+    } else if(new_messages > 0 && !mwp->newmail_icon_visible) {
         xfce_scaled_image_set_from_pixbuf(XFCE_SCALED_IMAGE(mwp->image),
                 mwp->pix_newmail);
         if(new_messages == 1) {
@@ -95,6 +95,7 @@ mailwatch_create(Control *c)
     mwp->tooltip = gtk_tooltips_new();
     
     mwp->button = gtk_button_new();
+    gtk_button_set_relief(GTK_BUTTON(mwp->button), GTK_RELIEF_NONE);
     gtk_widget_show(mwp->button);
     gtk_container_add(GTK_CONTAINER(c->base), mwp->button);
     

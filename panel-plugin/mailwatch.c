@@ -24,7 +24,7 @@
 
 #include "mailwatch.h"
 
-#define DEFAULT_TIMEOUT 10000
+#define DEFAULT_TIMEOUT (10000*60)
 
 struct _XfceMailwatch
 {

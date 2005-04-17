@@ -20,8 +20,7 @@
 #define __MAILWATCH_MAILBOX_H__
 
 #include <glib.h>
-
-#include "mailwatch-parameters.h"
+#include <gtk/gtkcontainer.h>
 
 G_BEGIN_DECLS
 
@@ -37,24 +36,105 @@ xfce_mailwatch_mailbox_get_type()\
 struct _XfceMailwatch;
 typedef struct _XfceMailwatchMailboxType XfceMailwatchMailboxType;
 
+/**
+ * XfceMailwatchParam
+ * @key: A key with which to identify the configuration data.
+ * @value: A string representation of the configuration data.
+ **/
+typedef struct
+{
+    gchar *key;
+    gchar *value;
+} XfceMailwatchParam;
+
+/**
+ * XfceMailwatchMailbox:
+ * @type: A pointer to a #XfceMailwatchMailboxType struct providing functions
+ *        to manipulate this particular type of mailbox.
+ *
+ * Implementations of various mailboxes/mail protocols should "subclass" this
+ * struct by creating a private struct and including this struct as the first
+ * member.  Instances of this private struct should be cast to/from
+ * #XfceMailwatchMailbox.
+ **/
 typedef struct
 {
     XfceMailwatchMailboxType *type;
 } XfceMailwatchMailbox;
 
-typedef XfceMailwatchMailbox *(*NewMailboxFunc)(struct _XfceMailwatch *);
-typedef XfceMailwatchParam **(*GetParamsFunc)(XfceMailwatchMailbox *);
-typedef gboolean (*SetParamsFunc)(XfceMailwatchMailbox *, XfceMailwatchParam **, GError **);
-typedef void (*FreeMailboxFunc)(XfceMailwatchMailbox *);
+/**
+ * NewMailboxFunc:
+ * @mailwatch: The #XfceMailwatch instance.
+ *
+ * Should return a new unconfigured #XfceMailwatchMailbox instance, which should
+ * internally keep track of the #mailwatch passed to it.
+ *
+ * Returns: A #XfceMailwatchMailbox instance.
+ **/
+typedef XfceMailwatchMailbox *(*NewMailboxFunc)(struct _XfceMailwatch *mailwatch);
+    
+/**
+ * GetSetupPageFunc:
+ * @mailbox: The #XfceMailwatchMailbox instance.
+ *
+ * Should return a #GtkContainer, preferably a #GtkVBox or #GtkHBox, and
+ * definitely not a #GtkWindow.  This container should have the UI for
+ * configuring this instance of #XfceMailwatchMailbox.
+ *
+ * Returns: A #GtkContainer.
+ **/
+typedef GtkContainer *(*GetSetupPageFunc)(XfceMailwatchMailbox *mailbox);
 
+/**
+ * RestoreParamListFunc:
+ * @mailbox: The #XfceMailwatchMailbox instance to which the configuration data
+ *           belongs.
+ * @params: A #GList of #XfceMailwatchParam<!-- -->s.
+ *
+ * The #XfceMailwatchMailbox instance should take @params and use them to
+ * configure @mailbox to be able to check mail.
+ **/
+typedef void (*RestoreParamListFunc)(XfceMailwatchMailbox *mailbox, GList *params);
+
+/**
+ * SaveParamListFunc:
+ * @mailbox: The #XfceMailwatchMailbox instance.
+ *
+ * Should return a #GList of #XfceMailwatchParam<!-- -->s describing the
+ * configuration of @mailbox.
+ *
+ * Returns: A #Glist of #XfceMailwatchParam<!-- -->s.
+ **/ 
+typedef GList *(*SaveParamListFunc)(XfceMailwatchMailbox *mailbox);
+
+/**
+ * FreeMailboxFunc:
+ * @mailbox: The #XfceMailwatchMailbox instance being freed.
+ *
+ * Should release all memory associated with the specified @mailbox.
+ **/
+typedef void (*FreeMailboxFunc)(XfceMailwatchMailbox *mailbox);
+
+/**
+ * XfceMailwatchMailboxType:
+ * @name: A short name for the mailbox type, e.g., "IMAP".
+ * @description: A longer description of the mailbox type.
+ * @new_mailbox_func: A pointer to a function of type #NewMailboxFunc.
+ * @get_setup_page_func: A pointer to a function of type #GetSetupPageFunc.
+ * @restore_param_list_func: A pointer to a function of type
+ *                           #RestoreParamListFunc.
+ * @save_param_list_func: A pointer to a function of type #SaveParamListFunc.
+ * @free_mailbox_func: A pointer to a function of type #FreeMailboxFunc.
+ **/
 struct _XfceMailwatchMailboxType
 {
     gchar *name;
     gchar *description;
 
 	NewMailboxFunc new_mailbox_func;
-	GetParamsFunc get_params_func;
-	SetParamsFunc set_params_func;
+	GetSetupPageFunc get_setup_page_func;
+    RestoreParamListFunc restore_param_list_func;
+    SaveParamListFunc save_param_list_func;
     FreeMailboxFunc free_mailbox_func;
 };
 

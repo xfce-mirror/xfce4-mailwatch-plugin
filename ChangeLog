@@ -1,0 +1,38 @@
+2005-04-16 06:03  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-plugin.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c: ok, so now
+	  it compiles. still doesn't do anything.
+
+2005-04-16 05:56  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/ChangeLog,
+	  xfce4-mailwatch-plugin/trunk/NEWS,
+	  xfce4-mailwatch-plugin/trunk/po/Makefile.in.in: "automake annoys
+	  me", and "oops, how did that get there"
+
+2005-04-16 05:39  kelnos
+
+	* xfce4-mailwatch-plugin, xfce4-mailwatch-plugin/trunk,
+	  xfce4-mailwatch-plugin/trunk/AUTHORS,
+	  xfce4-mailwatch-plugin/trunk/COPYING,
+	  xfce4-mailwatch-plugin/trunk/INSTALL,
+	  xfce4-mailwatch-plugin/trunk/Makefile.am,
+	  xfce4-mailwatch-plugin/trunk/README,
+	  xfce4-mailwatch-plugin/trunk/autogen.sh,
+	  xfce4-mailwatch-plugin/trunk/configure.ac,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/Makefile.am,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox.h,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-parameters.h,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-plugin.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.h,
+	  xfce4-mailwatch-plugin/trunk/po,
+	  xfce4-mailwatch-plugin/trunk/po/Makefile.in.in,
+	  xfce4-mailwatch-plugin/trunk/po/POTFILES.in: this code totally
+	  doesn't do anything yet. it probably doesn't even compile. but
+	  it's a start, and putting it up in svn means i have to follow
+	  through with it. the architecture isn't completely fleshed out;
+	  i'm prototyping as i go along. comments welcome.
+
