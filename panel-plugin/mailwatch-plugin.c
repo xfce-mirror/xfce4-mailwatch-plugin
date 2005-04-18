@@ -128,6 +128,17 @@ mailwatch_write_config(Control *c, xmlNodePtr node)
 }
 
 static void
+mailwatch_create_options(Control *c, GtkContainer *con, GtkWidget *done)
+{
+    XfceMailwatchPlugin *mwp = c->data;
+    GtkContainer *cfg_page;
+    
+    cfg_page = xfce_mailwatch_get_configuration_page(mwp->mailwatch);
+    if(cfg_page)
+        gtk_container_add(con, GTK_WIDGET(cfg_page));
+}
+
+static void
 mailwatch_free(Control *c)
 {
     XfceMailwatchPlugin *mwp = c->data;
@@ -190,11 +201,14 @@ G_MODULE_EXPORT void
 xfce_control_class_init(ControlClass *cc)
 {
     cc->name = "xfce-mailwatch";
+    
+    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     cc->caption = _("Mail Watcher");
+    
     cc->create_control = mailwatch_create;
     cc->read_config = mailwatch_read_config;
     cc->write_config = mailwatch_write_config;
-    cc->create_options = NULL;  /* FIXME: implement this */
+    cc->create_options = mailwatch_create_options;
     cc->free = mailwatch_free;
     cc->attach_callback = mailwatch_attach_callback;
     cc->set_size = mailwatch_set_size;

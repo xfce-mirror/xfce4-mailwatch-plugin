@@ -29,12 +29,18 @@
 #endif
 
 #include <glib.h>
+#include <gtk/gtk.h>
 
 #include <libxfce4util/libxfce4util.h>
 
 #include "mailwatch.h"
 
 #define DEFAULT_TIMEOUT (10000*60)
+#define BORDER          8
+
+#if !GTK_CHECK_VERSION(2, 6, 0)
+#define GTK_STOCK_EDIT GTK_STOCK_PROPERTIES
+#endif
 
 typedef struct
 {
@@ -52,7 +58,7 @@ struct _XfceMailwatch
     GList *mailboxes;      /* XfceMailwatchMailboxData * */
     
     GMutex *mailboxes_mx;
-};   
+};
 
 XfceMailwatchMailboxType *builtin_mailbox_types[] = {
     NULL
@@ -85,7 +91,8 @@ xfce_mailwatch_new()
     if(!g_thread_supported())
         g_thread_init(NULL);
     if(!g_thread_supported()) {
-        g_critical(_("xfce4-mailwatch-plugin: Unable to initialise GThread support!"));
+        xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
+        g_critical(_("xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."));
         return NULL;
     }
     
@@ -387,4 +394,96 @@ xfce_mailwatch_signal_new_messages(XfceMailwatch *mailwatch,
     
     /* and we're done, unlock */
     g_mutex_unlock(mailwatch->mailboxes_mx);
+}
+
+GtkContainer *
+xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
+{
+    GtkWidget *tophbox, *vbox, *hbox, *sw, *treeview, *btn, *lbl, *sbtn;
+    GtkListStore *ls;
+    GList *l;
+    GtkTreeIter itr;
+    GtkTreeViewColumn *col;
+    GtkCellRenderer *render;
+    
+    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
+    
+    tophbox = gtk_hbox_new(FALSE, BORDER/2);
+    gtk_widget_show(tophbox);
+    
+    vbox = gtk_vbox_new(FALSE, BORDER/2);
+    gtk_widget_show(vbox);
+    gtk_box_pack_start(GTK_BOX(tophbox), vbox, TRUE, TRUE, 0);
+    
+    lbl = gtk_label_new_with_mnemonic(_("_Configured Mailboxes:"));
+    gtk_widget_show(lbl);
+    gtk_box_pack_start(GTK_BOX(vbox), lbl, FALSE, FALSE, 0);
+    
+    sw = gtk_scrolled_window_new(NULL, NULL);
+    gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(sw),
+            GTK_SHADOW_ETCHED_IN);
+    gtk_widget_show(sw);
+    gtk_box_pack_start(GTK_BOX(vbox), sw, TRUE, TRUE, 0);
+    
+    /* time to make the doughnuts */
+    g_mutex_lock(mailwatch->mailboxes_mx);
+    
+    ls = gtk_list_store_new(1, G_TYPE_STRING);
+    for(l = mailwatch->mailboxes; l; l = l->next) {
+        XfceMailwatchMailboxData *mdata = l->data;
+        
+        gtk_list_store_append(ls, &itr);
+        gtk_list_store_set(ls, &itr, 0, mdata->mailbox_name, -1);
+    }
+    
+    /* yum.  they're done. */
+    g_mutex_unlock(mailwatch->mailboxes_mx);
+    
+    treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(ls));
+    
+    render = gtk_cell_renderer_text_new();
+    col = gtk_tree_view_column_new_with_attributes("mailbox-name", render,
+            "text", 0, NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW(treeview), col);
+    
+    gtk_widget_show(treeview);
+    gtk_container_add(GTK_CONTAINER(sw), treeview);
+    
+    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    gtk_widget_show(hbox);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+    
+    lbl = gtk_label_new_with_mnemonic(_("_Check for new messages every"));
+    gtk_widget_show(lbl);
+    gtk_box_pack_start(GTK_BOX(vbox), lbl, FALSE, FALSE, 0);
+    
+    sbtn = gtk_spin_button_new_with_range(0.0, 1440.0, 1.0);
+    gtk_spin_button_set_numeric(GTK_SPIN_BUTTON(sbtn), TRUE);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(sbtn), TRUE);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(sbtn), mailwatch->watch_timeout);
+    gtk_widget_show(sbtn);
+    gtk_box_pack_start(GTK_BOX(hbox), sbtn, FALSE, FALSE, 0);
+    gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), sbtn);
+    
+    lbl = gtk_label_new(_("message(s)."));
+    gtk_widget_show(lbl);
+    gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
+    
+    vbox = gtk_vbox_new(FALSE, BORDER/2);
+    gtk_widget_show(vbox);
+    gtk_box_pack_start(GTK_BOX(tophbox), vbox, FALSE, FALSE, 0);
+    
+    btn = gtk_button_new_from_stock(GTK_STOCK_ADD);
+    gtk_widget_show(btn);
+    gtk_box_pack_start(GTK_BOX(vbox), btn, FALSE, FALSE, 0);
+    
+    btn = gtk_button_new_from_stock(GTK_STOCK_EDIT);
+    gtk_widget_show(btn);
+    gtk_box_pack_start(GTK_BOX(vbox), btn, FALSE, FALSE, 0);
+    
+    btn = gtk_button_new_from_stock(GTK_STOCK_REMOVE);
+    gtk_widget_show(btn);
+    gtk_box_pack_start(GTK_BOX(vbox), btn, FALSE, FALSE, 0);
+    
+    return GTK_CONTAINER(tophbox);
 }
