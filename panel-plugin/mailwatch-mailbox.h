@@ -66,14 +66,35 @@ typedef struct
 /**
  * NewMailboxFunc:
  * @mailwatch: The #XfceMailwatch instance.
+ * @type: The #XfceMailwatchMailboxType being created.
  *
  * Should return a new unconfigured #XfceMailwatchMailbox instance, which should
  * internally keep track of the #mailwatch passed to it.
  *
  * Returns: A #XfceMailwatchMailbox instance.
  **/
-typedef XfceMailwatchMailbox *(*NewMailboxFunc)(struct _XfceMailwatch *mailwatch);
-    
+typedef XfceMailwatchMailbox *(*NewMailboxFunc)(struct _XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type);
+
+/**
+ * SetActivatedFunc:
+ * @mailbox: The #XfceMailwatchMailbox instance.
+ * @activated: Whether or not @mailbox should be actively checking for new mail.
+ *
+ * Temporarily disables or reenables a particular mailbox, without freeing any
+ * memory or clearing any settings.
+ **/
+typedef void (*SetActivatedFunc)(XfceMailwatchMailbox *mailbox, gboolean activated);
+
+/**
+ * TimeoutChangedCallback:
+ * @mailbox: The #XfceMailwatchMailbox instance.
+ *
+ * A callback that the #XfceMailwatch instance can call when the user changes
+ * the watch timeout.  The @mailbox should update its internal timer
+ * accordingly.
+ **/
+typedef void (*TimeoutChangedCallback)(XfceMailwatchMailbox *mailbos);
+
 /**
  * GetSetupPageFunc:
  * @mailbox: The #XfceMailwatchMailbox instance.
@@ -135,6 +156,8 @@ struct _XfceMailwatchMailboxType
     gchar *description;
 
 	NewMailboxFunc new_mailbox_func;
+    SetActivatedFunc set_activated_func;
+    TimeoutChangedCallback timeout_changed_callback;
 	GetSetupPageFunc get_setup_page_func;
     RestoreParamListFunc restore_param_list_func;
     SaveParamListFunc save_param_list_func;

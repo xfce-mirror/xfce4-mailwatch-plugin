@@ -40,7 +40,7 @@ gboolean xfce_mailwatch_save_config    (XfceMailwatch *mailwatch);
 
 guint xfce_mailwatch_get_timeout       (XfceMailwatch *mailwatch);
 void xfce_mailwatch_set_timeout        (XfceMailwatch *mailwatch,
-                                        guint msecs);
+                                        guint seconds);
 
 guint xfce_mailwatch_get_new_messages  (XfceMailwatch *mailwatch);
 
