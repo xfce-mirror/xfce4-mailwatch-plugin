@@ -110,10 +110,24 @@ static void
 mailwatch_read_config(Control *c, xmlNodePtr node)
 {
     XfceMailwatchPlugin *mwp = c->data;
-
-    xfce_mailwatch_set_config_file(mwp->mailwatch,
-            "xfce4/panel/mailwatch/mailwatch.rc");
+    xmlChar *value;
+    gchar *cfgfile;
+    
+    value = xmlGetProp(node, (const xmlChar *)"cfgfile_suffix");
+    if(!value) {
+        GTimeVal gtv = { 0, 0 };
+        
+        g_get_current_time(&gtv);
+        cfgfile = g_strdup_printf("xfce4/panel/mailwatch/mailwatch.%ld.%ld.rc",
+                gtv.tv_sec, gtv.tv_usec);
+    } else {
+        cfgfile = g_strdup_printf("xfce4/panel/mailwatch/mailwatch.%s.rc", value);
+        xmlFree(value);
+    }
+    
+    xfce_mailwatch_set_config_file(mwp->mailwatch, cfgfile);
     xfce_mailwatch_load_config(mwp->mailwatch);
+    g_free(cfgfile);
     
     mwp->check_timeout_id = g_timeout_add(xfce_mailwatch_get_timeout(mwp->mailwatch),
             (GSourceFunc)mailwatch_check_timeout, mwp);
@@ -123,8 +137,20 @@ static void
 mailwatch_write_config(Control *c, xmlNodePtr node)
 {
     XfceMailwatchPlugin *mwp = c->data;
+    const gchar *cfgfile = xfce_mailwatch_get_config_file(mwp->mailwatch);
+    gchar *p, *cfgfile_suffix;
     
     xfce_mailwatch_save_config(mwp->mailwatch);
+    
+    p = g_strrstr(cfgfile, ".rc");
+    if(!p || p - cfgfile <= 32 || strlen(cfgfile+32) <= 3) {
+        g_critical("xfce4-mailwatch-plugin: config file length is not as expected");
+        return;
+    }
+    
+    cfgfile_suffix = g_strndup(cfgfile+32, strlen(cfgfile+32)-3);
+    xmlSetProp(node, (const xmlChar *)"cfgfile_suffix", cfgfile_suffix);
+    g_free(cfgfile_suffix);
 }
 
 static void
@@ -213,9 +239,6 @@ xfce_control_class_init(ControlClass *cc)
     cc->attach_callback = mailwatch_attach_callback;
     cc->set_size = mailwatch_set_size;
     cc->set_orientation = NULL;
-    
-    /* FIXME: make it so we don't need this? */
-    control_class_set_unique(cc, TRUE);
 }
 
 
