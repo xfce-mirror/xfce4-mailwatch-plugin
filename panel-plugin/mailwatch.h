@@ -26,6 +26,7 @@
 G_BEGIN_DECLS
 
 typedef struct _XfceMailwatch XfceMailwatch;
+typedef void (*XMTimeoutChangedCallback)(XfceMailwatch *mailwatch, guint timeout, gpointer user_data);
 
 XfceMailwatch *xfce_mailwatch_new      ();
 void xfce_mailwatch_destroy            (XfceMailwatch *mailwatch);
@@ -46,6 +47,14 @@ guint xfce_mailwatch_get_new_messages  (XfceMailwatch *mailwatch);
 
 GtkContainer *xfce_mailwatch_get_configuration_page
                                        (XfceMailwatch *mailwatch);
+
+void xfce_mailwatch_hook_timeout_change(XfceMailwatch *mailwatch,
+                                        XMTimeoutChangedCallback callback,
+                                        gpointer user_data);
+void xfce_mailwatch_unhook_timeout_change
+                                       (XfceMailwatch *mailwatch,
+                                        XMTimeoutChangedCallback callback,
+                                        gpointer user_data);
 
 /*< only used by XfceMailwatchMailboxType implementations >*/
 void xfce_mailwatch_signal_new_messages(XfceMailwatch *mailwatch,

@@ -79,6 +79,18 @@ mailwatch_check_timeout(gpointer user_data)
     return TRUE;
 }
 
+static void
+mailwatch_timeout_changed_cb(XfceMailwatch *mailwatch, guint timeout,
+        gpointer user_data)
+{
+    XfceMailwatchPlugin *mwp = user_data;
+    
+    if(mwp->check_timeout_id)
+        g_source_remove(mwp->check_timeout_id);
+    mwp->check_timeout_id = g_timeout_add(timeout,
+            (GSourceFunc)mailwatch_check_timeout, mwp);
+}
+
 
 /*
  * xfce4-panel functions
@@ -129,6 +141,8 @@ mailwatch_read_config(Control *c, xmlNodePtr node)
     xfce_mailwatch_load_config(mwp->mailwatch);
     g_free(cfgfile);
     
+    xfce_mailwatch_hook_timeout_change(mwp->mailwatch,
+            mailwatch_timeout_changed_cb, mwp);
     mwp->check_timeout_id = g_timeout_add(xfce_mailwatch_get_timeout(mwp->mailwatch),
             (GSourceFunc)mailwatch_check_timeout, mwp);
 }

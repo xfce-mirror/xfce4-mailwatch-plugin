@@ -60,6 +60,9 @@ struct _XfceMailwatch
     
     GMutex *mailboxes_mx;
     
+    GList *tc_callbacks;
+    GList *tc_data;
+    
     /* config GUI */
     GtkWidget *config_treeview;
 };
@@ -345,9 +348,21 @@ xfce_mailwatch_get_timeout(XfceMailwatch *mailwatch)
 void
 xfce_mailwatch_set_timeout(XfceMailwatch *mailwatch, guint seconds)
 {
+    GList *cl, *dl;
+    
     g_return_if_fail(mailwatch);
     
     mailwatch->watch_timeout = seconds;
+    
+    for(cl = mailwatch->tc_callbacks, dl = mailwatch->tc_data;
+        cl && dl;
+        cl = cl->next, dl = dl->next)
+    {
+        XMTimeoutChangedCallback callback = cl->data;
+        gpointer user_data = dl->data;
+        
+        callback(mailwatch, mailwatch->watch_timeout, user_data);
+    }
 }
 
 guint
@@ -658,7 +673,7 @@ config_timeout_spinbutton_changed_cb(GtkSpinButton *sb, GdkEventFocus *evt,
     gint value = gtk_spin_button_get_value_as_int(sb) * 60;
     
     if(value != mailwatch->watch_timeout) {
-        GList *l;
+        GList *l, *cl, *dl;
         
         mailwatch->watch_timeout = value;
         
@@ -672,6 +687,16 @@ config_timeout_spinbutton_changed_cb(GtkSpinButton *sb, GdkEventFocus *evt,
         
         /* and i'm spent */
         g_mutex_unlock(mailwatch->mailboxes_mx);
+        
+        for(cl = mailwatch->tc_callbacks, dl = mailwatch->tc_data;
+            cl && dl;
+            cl = cl->next, dl = dl->next)
+        {
+            XMTimeoutChangedCallback callback = cl->data;
+            gpointer user_data = dl->data;
+            
+            callback(mailwatch, mailwatch->watch_timeout, user_data);
+        }
     }
     
     return FALSE;
@@ -801,4 +826,32 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
     gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
     
     return GTK_CONTAINER(topvbox);
+}
+
+void
+xfce_mailwatch_hook_timeout_change(XfceMailwatch *mailwatch,
+        XMTimeoutChangedCallback callback, gpointer user_data)
+{
+    g_return_if_fail(mailwatch && callback);
+    
+    mailwatch->tc_callbacks = g_list_append(mailwatch->tc_callbacks, callback);
+    mailwatch->tc_data = g_list_append(mailwatch->tc_data, user_data);
+}
+
+void
+xfce_mailwatch_unhook_timeout_change(XfceMailwatch *mailwatch,
+        XMTimeoutChangedCallback callback, gpointer user_data)
+{
+    GList *cl, *dl;
+    g_return_if_fail(mailwatch && callback);
+    
+    for(cl = mailwatch->tc_callbacks, dl = mailwatch->tc_data;
+        cl && dl;
+        cl = cl->next, dl = dl->next)
+    {
+        XMTimeoutChangedCallback callback = cl->data;
+        gpointer user_data = dl->data;
+        
+        callback(mailwatch, mailwatch->watch_timeout, user_data);
+    }
 }
