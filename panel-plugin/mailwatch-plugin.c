@@ -154,6 +154,9 @@ mailwatch_write_config(Control *c, xmlNodePtr node)
     const gchar *cfgfile = xfce_mailwatch_get_config_file(mwp->mailwatch);
     gchar *p, *cfgfile_suffix;
     
+    if(!cfgfile)
+        return;
+    
     xfce_mailwatch_save_config(mwp->mailwatch);
     
     p = g_strrstr(cfgfile, ".rc");
