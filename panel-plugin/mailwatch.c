@@ -431,7 +431,7 @@ config_run_addedit_window(const gchar *title, GtkWindow *parent,
         gchar **new_mailbox_name)
 {
     GtkContainer *cfg_box;
-    GtkWidget *dlg, *hbox, *lbl, *entry;
+    GtkWidget *dlg, *topvbox, *hbox, *lbl, *entry;
     gboolean ret = FALSE;
     
     g_return_val_if_fail(title && mailbox && new_mailbox_name, FALSE);
@@ -449,9 +449,14 @@ config_run_addedit_window(const gchar *title, GtkWindow *parent,
             GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, GTK_STOCK_OK,
             GTK_RESPONSE_ACCEPT, NULL);
     
+    topvbox = gtk_vbox_new(FALSE, BORDER/2);
+    gtk_container_set_border_width(GTK_CONTAINER(topvbox), BORDER);
+    gtk_widget_show(topvbox);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), topvbox, TRUE, TRUE, 0);
+    
     hbox = gtk_hbox_new(FALSE, BORDER/2);
     gtk_widget_show(hbox);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), hbox, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(topvbox), hbox, FALSE, FALSE, 0);
     
     lbl = gtk_label_new_with_mnemonic(_("Mailbox _Name"));
     gtk_widget_show(lbl);
@@ -463,8 +468,7 @@ config_run_addedit_window(const gchar *title, GtkWindow *parent,
     gtk_widget_show(entry);
     gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
     
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), GTK_WIDGET(cfg_box),
-            TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(topvbox), GTK_WIDGET(cfg_box), TRUE, TRUE, 0);
     
     for(;;) {
         if(gtk_dialog_run(GTK_DIALOG(dlg)) == GTK_RESPONSE_ACCEPT) {
