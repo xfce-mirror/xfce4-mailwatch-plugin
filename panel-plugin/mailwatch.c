@@ -65,6 +65,7 @@ struct _XfceMailwatch
     
     /* config GUI */
     GtkWidget *config_treeview;
+    GtkWidget *mbox_types_lbl;
 };
 
 XfceMailwatchMailboxType *builtin_mailbox_types[] = {
@@ -532,6 +533,23 @@ config_compare_mailbox_data(gconstpointer a, gconstpointer b)
     return g_utf8_collate(xa->mailbox_name, xb->mailbox_name);
 }
 
+static void
+config_ask_combo_changed_cb(GtkComboBox *cb, gpointer user_data)
+{
+    XfceMailwatch *mailwatch = user_data;
+    gint active_index = gtk_combo_box_get_active(cb);
+    GtkRequisition req;
+    
+    if(active_index >= g_list_length(mailwatch->mailbox_types))
+        return;
+    
+    gtk_label_set_text(GTK_LABEL(mailwatch->mbox_types_lbl),
+            _(g_list_nth_data(mailwatch->mailbox_types, active_index)));
+    gtk_widget_set_size_request(mailwatch->mbox_types_lbl, -1, -1);
+    gtk_widget_size_request(mailwatch->mbox_types_lbl, &req);
+}
+    
+
 static XfceMailwatchMailboxType *
 config_ask_new_mailbox_type(XfceMailwatch *mailwatch, GtkWindow *parent)
 {
@@ -557,16 +575,18 @@ config_ask_new_mailbox_type(XfceMailwatch *mailwatch, GtkWindow *parent)
     combo = gtk_combo_box_new_text();
     for(l = mailwatch->mailbox_types; l; l = l->next) {
         XfceMailwatchMailboxType *mtype = l->data;
-        gtk_combo_box_append_text(GTK_COMBO_BOX(combo), mtype->name);
+        gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _(mtype->name));
     }
     gtk_widget_show(combo);
     gtk_box_pack_start(GTK_BOX(topvbox), combo, FALSE, FALSE, 0);
+    g_signal_connect(G_OBJECT(combo), "changed",
+            G_CALLBACK(config_ask_combo_changed_cb), mailwatch);
     
     if(mailwatch->mailbox_types) {
         XfceMailwatchMailboxType *mtype = mailwatch->mailbox_types->data;
-        lbl = gtk_label_new(mtype->description);
+        mailwatch->mbox_types_lbl = lbl = gtk_label_new(_(mtype->description));
     } else
-        lbl = gtk_label_new("");
+        mailwatch->mbox_types_lbl = lbl = gtk_label_new("");
     gtk_label_set_line_wrap(GTK_LABEL(lbl), TRUE);
     gtk_misc_set_alignment(GTK_MISC(lbl), 0.0, 0.5);
     gtk_widget_show(lbl);
