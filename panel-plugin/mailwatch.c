@@ -70,9 +70,11 @@ struct _XfceMailwatch
 
 /* fwd decl from other modules... */
 extern XfceMailwatchMailboxType builtin_mailbox_type_imap;
+extern XfceMailwatchMailboxType builtin_mailbox_type_maildir;
 
 XfceMailwatchMailboxType *builtin_mailbox_types[] = {
     &builtin_mailbox_type_imap,
+    &builtin_mailbox_type_maildir,
     NULL
 };
 #define N_BUILTIN_MAILBOX_TYPES (sizeof(builtin_mailbox_types)/sizeof(builtin_mailbox_types[0]))
@@ -561,13 +563,18 @@ config_ask_combo_changed_cb(GtkComboBox *cb, gpointer user_data)
 {
     XfceMailwatch *mailwatch = user_data;
     gint active_index = gtk_combo_box_get_active(cb);
+    XfceMailwatchMailboxType *mbox_type;
     GtkRequisition req;
     
     if(active_index >= g_list_length(mailwatch->mailbox_types))
         return;
     
+    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
+    
+    mbox_type = g_list_nth_data(mailwatch->mailbox_types, active_index);
+    
     gtk_label_set_text(GTK_LABEL(mailwatch->mbox_types_lbl),
-            _(g_list_nth_data(mailwatch->mailbox_types, active_index)));
+            _(mbox_type->description));
     gtk_widget_set_size_request(mailwatch->mbox_types_lbl, -1, -1);
     gtk_widget_size_request(mailwatch->mbox_types_lbl, &req);
 }
@@ -635,6 +642,8 @@ config_add_btn_clicked_cb(GtkWidget *w, XfceMailwatch *mailwatch)
     gchar *new_mailbox_name = NULL;
     GtkWindow *parent = GTK_WINDOW(gtk_widget_get_toplevel(w));
     
+    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
+    
     mailbox_type = config_ask_new_mailbox_type(mailwatch, parent);
     if(!mailbox_type)
         return;
@@ -679,6 +688,7 @@ config_edit_btn_clicked_cb(GtkWidget *w, XfceMailwatch *mailwatch)
 {
     GtkTreeSelection *sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(mailwatch->config_treeview));
     
+    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     config_do_edit_window(sel, GTK_WINDOW(gtk_widget_get_toplevel(GTK_WIDGET(w))));
 }
 
@@ -699,6 +709,8 @@ config_remove_btn_clicked_cb(GtkWidget *w, XfceMailwatch *mailwatch)
     gtk_tree_model_get(model, &itr, 1, &mailbox, -1);
     if(!mailbox)
         return;
+    
+    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     
     parent = GTK_WINDOW(gtk_widget_get_toplevel(mailwatch->config_treeview));
     resp = xfce_message_dialog(parent, _("Remove Mailbox"),
