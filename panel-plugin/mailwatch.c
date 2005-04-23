@@ -445,9 +445,17 @@ config_run_addedit_window(const gchar *title, GtkWindow *parent,
         return TRUE;
     }
     
-    dlg = gtk_dialog_new_with_buttons(title, parent, GTK_DIALOG_NO_SEPARATOR,
-            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, GTK_STOCK_OK,
-            GTK_RESPONSE_ACCEPT, NULL);
+    if(!mailbox_name) {
+        /* add window */
+        dlg = gtk_dialog_new_with_buttons(title, parent,
+                GTK_DIALOG_NO_SEPARATOR, GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                GTK_STOCK_OK, GTK_RESPONSE_ACCEPT, NULL);
+    } else {
+        /* edit window */
+        dlg = gtk_dialog_new_with_buttons(title, parent,
+                GTK_DIALOG_NO_SEPARATOR, GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT,
+                NULL);
+    }
     
     topvbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_container_set_border_width(GTK_CONTAINER(topvbox), BORDER);
@@ -458,7 +466,7 @@ config_run_addedit_window(const gchar *title, GtkWindow *parent,
     gtk_widget_show(hbox);
     gtk_box_pack_start(GTK_BOX(topvbox), hbox, FALSE, FALSE, 0);
     
-    lbl = gtk_label_new_with_mnemonic(_("Mailbox _Name"));
+    lbl = gtk_label_new_with_mnemonic(_("Mailbox _Name:"));
     gtk_widget_show(lbl);
     gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
     
