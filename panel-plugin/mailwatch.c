@@ -663,6 +663,55 @@ config_edit_btn_clicked_cb(GtkWidget *w, XfceMailwatch *mailwatch)
     config_do_edit_window(sel, GTK_WINDOW(gtk_widget_get_toplevel(GTK_WIDGET(w))));
 }
 
+static void
+config_remove_btn_clicked_cb(GtkWidget *w, XfceMailwatch *mailwatch)
+{
+    GtkTreeSelection *sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(mailwatch->config_treeview));
+    GtkTreeModel *model = NULL;
+    GtkTreeIter itr;
+    XfceMailwatchMailbox *mailbox = NULL;
+    GtkWindow *parent;
+    gint resp;
+    GList *l;
+    
+    if(!gtk_tree_selection_get_selected(sel, &model, &itr))
+        return;
+    
+    gtk_tree_model_get(model, &itr, 1, &mailbox, -1);
+    if(!mailbox)
+        return;
+    
+    parent = GTK_WINDOW(gtk_widget_get_toplevel(mailwatch->config_treeview));
+    resp = xfce_message_dialog(parent, _("Remove Mailbox"),
+            GTK_STOCK_DIALOG_QUESTION, _("Are you sure?"),
+            _("Removing a mailbox will discard all settings, and cannot be undone."),
+            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, GTK_STOCK_REMOVE,
+            GTK_RESPONSE_ACCEPT, NULL);
+    if(resp != GTK_RESPONSE_ACCEPT)
+        return;
+    
+    gtk_list_store_remove(GTK_LIST_STORE(model), &itr);
+    
+    /* batter up! */
+    g_mutex_lock(mailwatch->mailboxes_mx);
+    
+    for(l = mailwatch->mailboxes; l; l = l->next) {
+        XfceMailwatchMailboxData *mdata = l->data;
+        
+        if(mdata->mailbox == mailbox) {
+            mailwatch->mailboxes = g_list_remove(mailwatch->mailboxes, mdata);
+            g_free(mdata->mailbox_name);
+            g_free(mdata);
+            break;
+        }
+    }
+    
+    /* you're out! */
+    g_mutex_unlock(mailwatch->mailboxes_mx);
+    
+    mailbox->type->free_mailbox_func(mailbox);
+}
+
 static gboolean
 config_treeview_button_press_cb(GtkTreeView *treeview, GdkEventButton *evt,
         XfceMailwatch *mailwatch)
@@ -774,11 +823,6 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
                 -1);
     }
     
-#if 0  /* for testing */
-    gtk_list_store_append(ls, &itr);
-    gtk_list_store_set(ls, &itr, 0, "test name", -1);
-#endif
-    
     /* yum.  they're done. */
     g_mutex_unlock(mailwatch->mailboxes_mx);
     
@@ -826,6 +870,8 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
     gtk_box_pack_start(GTK_BOX(vbox), btn, FALSE, FALSE, 0);
     g_signal_connect_after(G_OBJECT(treeview), "button-release-event",
             G_CALLBACK(config_set_button_sensitive), btn);
+    g_signal_connect(G_OBJECT(btn), "clicked",
+            G_CALLBACK(config_remove_btn_clicked_cb), mailwatch);
     
     hbox = gtk_hbox_new(FALSE, BORDER/2);
     gtk_widget_set_sensitive(btn, FALSE);
