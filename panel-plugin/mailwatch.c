@@ -113,25 +113,32 @@ xfce_mailwatch_new()
 void
 xfce_mailwatch_destroy(XfceMailwatch *mailwatch)
 {
-    GList *l;
+    GList *stuff_to_free, *l;
     
     g_return_if_fail(mailwatch);
     
     /* lock it, bitch! */
     g_mutex_lock(mailwatch->mailboxes_mx);
     
-    for(l = mailwatch->mailboxes; l; l = l->next) {
+    /* just clear out the mailbox list.  we have to call free_mailbox_func for
+     * each mailbox outside the mailboxes_mx lock so we don't cause deadlocks */
+    stuff_to_free = mailwatch->mailboxes;
+    mailwatch->mailboxes = NULL;
+    
+    /* we are SO done. */
+    g_mutex_unlock(mailwatch->mailboxes_mx);
+    
+    for(l = stuff_to_free; l; l = l->next) {
         XfceMailwatchMailboxData *mdata = l->data;
         
         mdata->mailbox->type->free_mailbox_func(mdata->mailbox);
         g_free(mdata->mailbox_name);
         g_free(mdata);
     }
-    if(mailwatch->mailboxes)
-        g_list_free(mailwatch->mailboxes);
+    if(stuff_to_free)
+        g_list_free(stuff_to_free);
     
-    /* we are SO done. */
-    g_mutex_unlock(mailwatch->mailboxes_mx);
+    /* really.  SO SO done. */
     g_mutex_free(mailwatch->mailboxes_mx);
     
     g_list_free(mailwatch->mailbox_types);
