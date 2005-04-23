@@ -13,6 +13,7 @@ if HAVE_CYGWIN
 endif
 
 libmailwatch_la_SOURCES = \
+	mailwatch-mailbox-imap.c \
 	mailwatch-mailbox.h \
 	mailwatch-plugin.c \
 	mailwatch.c \

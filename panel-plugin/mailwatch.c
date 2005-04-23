@@ -68,7 +68,11 @@ struct _XfceMailwatch
     GtkWidget *mbox_types_lbl;
 };
 
+/* fwd decl from other modules... */
+extern XfceMailwatchMailboxType builtin_mailbox_type_imap;
+
 XfceMailwatchMailboxType *builtin_mailbox_types[] = {
+    &builtin_mailbox_type_imap,
     NULL
 };
 #define N_BUILTIN_MAILBOX_TYPES (sizeof(builtin_mailbox_types)/sizeof(builtin_mailbox_types[0]))
@@ -559,7 +563,7 @@ config_ask_new_mailbox_type(XfceMailwatch *mailwatch, GtkWindow *parent)
     
     dlg = gtk_dialog_new_with_buttons(_("Select Mailbox Type"), parent,
             GTK_DIALOG_NO_SEPARATOR, GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-            GTK_STOCK_OK, GTK_RESPONSE_OK, NULL);
+            GTK_STOCK_OK, GTK_RESPONSE_ACCEPT, NULL);
     
     topvbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_container_set_border_width(GTK_CONTAINER(topvbox), BORDER);
@@ -577,6 +581,7 @@ config_ask_new_mailbox_type(XfceMailwatch *mailwatch, GtkWindow *parent)
         XfceMailwatchMailboxType *mtype = l->data;
         gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _(mtype->name));
     }
+    gtk_combo_box_set_active(GTK_COMBO_BOX(combo), 0);
     gtk_widget_show(combo);
     gtk_box_pack_start(GTK_BOX(topvbox), combo, FALSE, FALSE, 0);
     g_signal_connect(G_OBJECT(combo), "changed",
@@ -588,7 +593,7 @@ config_ask_new_mailbox_type(XfceMailwatch *mailwatch, GtkWindow *parent)
     } else
         mailwatch->mbox_types_lbl = lbl = gtk_label_new("");
     gtk_label_set_line_wrap(GTK_LABEL(lbl), TRUE);
-    gtk_misc_set_alignment(GTK_MISC(lbl), 0.0, 0.5);
+    gtk_misc_set_alignment(GTK_MISC(lbl), 0.5, 0.0);
     gtk_widget_show(lbl);
     gtk_box_pack_start(GTK_BOX(topvbox), lbl, TRUE, TRUE, 0);
     
