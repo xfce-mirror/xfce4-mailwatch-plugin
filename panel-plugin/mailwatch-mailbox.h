@@ -93,7 +93,7 @@ typedef void (*SetActivatedFunc)(XfceMailwatchMailbox *mailbox, gboolean activat
  * the watch timeout.  The @mailbox should update its internal timer
  * accordingly.
  **/
-typedef void (*TimeoutChangedCallback)(XfceMailwatchMailbox *mailbos);
+typedef void (*TimeoutChangedCallback)(XfceMailwatchMailbox *mailbox);
 
 /**
  * GetSetupPageFunc:
