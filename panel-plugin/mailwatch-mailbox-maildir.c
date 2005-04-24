@@ -33,29 +33,36 @@
 #include <dirent.h>
 
 #include <libxfce4util/libxfce4util.h>
+#include <libxfcegui4/libxfcegui4.h>
 
 #include "mailwatch.h"
+
+#define XFCE_MAILWATCH_MAILDIR_MAILBOX( p ) ( (XfceMailwatchMaildirMailbox *) p )
+#define BORDER                              ( 8 )
 
 typedef struct {
     XfceMailwatchMailbox    xfce_mailwatch_mailbox;
 
-    struct _XfceMailwatch   *mailwatch;
-    
+    XfceMailwatch           *mailwatch;
+
     gchar                   *path;
     gboolean                active;
     guint                   timeout_id;
-} MaildirMailbox;
+    GtkWidget               *path_entry;
+} XfceMailwatchMaildirMailbox;
 
-static gboolean maildir_check_mail( gpointer data ) {
-    MaildirMailbox  *maildir = (MaildirMailbox *) data;
-    DIR             *dir;
-    struct dirent   *dent;
-    gchar           *path;
-    int             count_new = 0;
+static gboolean
+maildir_check_mail( gpointer data )
+{
+    XfceMailwatchMaildirMailbox *maildir = XFCE_MAILWATCH_MAILDIR_MAILBOX( data );
+    DIR                         *dir;
+    struct dirent               *dent;
+    gchar                       *path;
+    int                         count_new = 0;
 
-    g_message( "maildir_check_mail()" );
+    g_return_val_if_fail( maildir->path, TRUE );
 
-    g_return_val_if_fail( maildir->active && maildir->path, TRUE );
+    if ( !maildir->active ) return ( TRUE );
     
     path = g_build_filename( maildir->path, "new", NULL );
     if ( path ) {
@@ -71,18 +78,16 @@ static gboolean maildir_check_mail( gpointer data ) {
         g_free( path );
     }
 
-    g_message( "maildir_check_mail(): %d new messages", count_new );
-    /* Is this REALLY the proper way??? */
     xfce_mailwatch_signal_new_messages( maildir->mailwatch, (XfceMailwatchMailbox *) maildir, count_new );
 
     return ( TRUE );
 }
 
-static void maildir_free( XfceMailwatchMailbox *mailbox ) {
-    MaildirMailbox      *maildir = (MaildirMailbox *) mailbox;
+static void
+maildir_free( XfceMailwatchMailbox *mailbox )
+{
+    XfceMailwatchMaildirMailbox     *maildir = XFCE_MAILWATCH_MAILDIR_MAILBOX( mailbox );
 
-    g_message( "maildir_free()" );
-    
     if ( maildir->timeout_id ) {
         g_source_remove( maildir->timeout_id );
     }
@@ -92,26 +97,27 @@ static void maildir_free( XfceMailwatchMailbox *mailbox ) {
     g_free( maildir );
 }
 
-static GList *maildir_save_param_list( XfceMailwatchMailbox *mailbox ) {
-    MaildirMailbox      *maildir = (MaildirMailbox *) mailbox;
-    XfceMailwatchParam  *param;
-    GList               *param_list = NULL;
-    g_message( "maildir_save_param_list()" );
+static GList *
+maildir_save_param_list( XfceMailwatchMailbox *mailbox )
+{
+    XfceMailwatchMaildirMailbox *maildir = XFCE_MAILWATCH_MAILDIR_MAILBOX( mailbox );
+    XfceMailwatchParam          *param;
+    GList                       *param_list = NULL;
 
     param = g_new( XfceMailwatchParam, 1 );
     param->key      = g_strdup( "path" );
-    param->value    = g_strdup( maildir->path );
+    param->value    = g_strdup( ( maildir->path ) ? maildir->path : "" );
     param_list = g_list_append( param_list, param );
 
     return ( param_list );
 }
 
-static void maildir_restore_param_list( XfceMailwatchMailbox *mailbox, GList *params ) {
-    MaildirMailbox  *maildir = (MaildirMailbox *) mailbox;
-    GList           *li;
+static void
+maildir_restore_param_list( XfceMailwatchMailbox *mailbox, GList *params )
+{
+    XfceMailwatchMaildirMailbox *maildir = XFCE_MAILWATCH_MAILDIR_MAILBOX( mailbox );
+    GList                       *li;
     
-    g_message( "maildir_restore_param_list()" );
-
     for ( li = g_list_first( params ); li != NULL; li = g_list_next( li ) ) {
         XfceMailwatchParam  *param = (XfceMailwatchParam *) li->data;
 
@@ -124,11 +130,10 @@ static void maildir_restore_param_list( XfceMailwatchMailbox *mailbox, GList *pa
     }
 }
 
-static gboolean maildir_path_entry_changed_cb( GtkWidget *widget,
-        GdkEventFocus *event, MaildirMailbox *maildir ) {
+static gboolean
+maildir_path_entry_changed_cb( GtkWidget *widget, XfceMailwatchMaildirMailbox *maildir )
+{
     const gchar     *text;
-
-    g_message( "maildir_path_entry_changed_cb()" );
 
     if ( maildir->path ) {
         g_free( maildir->path );
@@ -145,77 +150,117 @@ static gboolean maildir_path_entry_changed_cb( GtkWidget *widget,
     return ( FALSE );
 }
 
-static GtkContainer *maildir_get_setup_page( XfceMailwatchMailbox *mailbox ) {
-    MaildirMailbox  *maildir = (MaildirMailbox *) mailbox;
-    GtkWidget       *vbox;
-    GtkWidget       *entry;
-    GtkWidget       *label;
+static void
+maildir_browse_button_clicked_cb( GtkWidget *widget,
+        XfceMailwatchMaildirMailbox *maildir )
+{
+    GtkWidget       *chooser;
+    gint            result;
+    GtkWidget       *parent;
 
-    g_message( "maildir_get_setup_page()" );
+    parent = GTK_WIDGET( gtk_widget_get_parent_window( widget ) );
 
     xfce_textdomain( GETTEXT_PACKAGE, LOCALEDIR, "UTF-8" );
 
-    vbox = gtk_vbox_new( FALSE, 8 );
-    gtk_container_set_border_width( GTK_CONTAINER( vbox ), 8 );
-    gtk_widget_show( vbox );
+    chooser = xfce_file_chooser_new( _( "Select Maildir Folder" ),
+            GTK_WINDOW(parent),
+            XFCE_FILE_CHOOSER_ACTION_SELECT_FOLDER,
+            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+            GTK_STOCK_OPEN, GTK_RESPONSE_OK,
+            NULL );
+    if ( maildir->path ) {
+        xfce_file_chooser_set_current_folder( XFCE_FILE_CHOOSER( chooser ), maildir->path );
+    }
+    
+    result = gtk_dialog_run( GTK_DIALOG( chooser ) );
+    if ( result == GTK_RESPONSE_OK ) {
+        gchar       *path = xfce_file_chooser_get_current_folder( XFCE_FILE_CHOOSER( chooser ) );
+        
+        gtk_entry_set_text( GTK_ENTRY( maildir->path_entry ), ( path ) ? path : "" );
+        g_free( path );
+    }
 
-    label = gtk_label_new( _( "Enter maildir path:" ) );
-    gtk_widget_show( label );
-    gtk_box_pack_start( GTK_BOX( vbox ), label, FALSE, FALSE, 0 );
-
-    entry = gtk_entry_new();
-    gtk_entry_set_text( GTK_ENTRY( entry ), maildir->path );
-    gtk_widget_show( entry );
-    gtk_box_pack_start( GTK_BOX( vbox ), entry, FALSE, FALSE, 0 );
-
-    g_signal_connect( G_OBJECT( entry ), "focus-out-event",
-            G_CALLBACK( maildir_path_entry_changed_cb ), mailbox );
-
-    return ( GTK_CONTAINER( vbox ) );
+    gtk_widget_destroy( chooser );
 }
 
-static void maildir_timeout_changed_cb( XfceMailwatchMailbox *mailbox ) {
-    MaildirMailbox      *maildir = (MaildirMailbox *) mailbox;
-    guint               timeout;
-    
-    g_message( "maildir_timeout_changed_cb()" );
+static GtkContainer *
+maildir_get_setup_page( XfceMailwatchMailbox *mailbox )
+{
+    XfceMailwatchMaildirMailbox *maildir = XFCE_MAILWATCH_MAILDIR_MAILBOX( mailbox );
+    GtkWidget                   *hbox;
+    GtkWidget                   *label;
+    GtkWidget                   *button, *image;
 
+    xfce_textdomain( GETTEXT_PACKAGE, LOCALEDIR, "UTF-8" );
+
+    hbox = gtk_hbox_new( FALSE, BORDER );
+    gtk_widget_show( hbox );
+
+    label = gtk_label_new( _( "Maildir Path:" ) );
+    gtk_widget_show( label );
+    gtk_box_pack_start( GTK_BOX( hbox ), label, FALSE, FALSE, 0 );
+
+    maildir->path_entry = gtk_entry_new();
+    if ( maildir->path ) {
+        gtk_entry_set_text( GTK_ENTRY( maildir->path_entry ), maildir->path );
+    }
+    gtk_widget_show( maildir->path_entry );
+    gtk_box_pack_start( GTK_BOX( hbox ), maildir->path_entry, FALSE, FALSE, 0 );
+
+    g_signal_connect( G_OBJECT( maildir->path_entry ), "changed",
+            G_CALLBACK( maildir_path_entry_changed_cb ), maildir );
+
+    button = gtk_button_new();
+    gtk_widget_show( button );
+
+    image = gtk_image_new_from_stock( GTK_STOCK_OPEN, GTK_ICON_SIZE_LARGE_TOOLBAR );
+    gtk_widget_show( image );
+
+    gtk_container_add( GTK_CONTAINER( button ), image );
+    gtk_box_pack_start( GTK_BOX( hbox ), button, FALSE, FALSE, 0 );
+
+    g_signal_connect( G_OBJECT( button ), "clicked",
+            G_CALLBACK( maildir_browse_button_clicked_cb ), maildir );
+
+    return ( GTK_CONTAINER( hbox ) );
+}
+
+static void
+maildir_timeout_changed_cb( XfceMailwatchMailbox *mailbox )
+{
+    XfceMailwatchMaildirMailbox *maildir = XFCE_MAILWATCH_MAILDIR_MAILBOX( mailbox );
+    guint                       timeout;
+    
     if ( maildir->timeout_id ) {
         g_source_remove( maildir->timeout_id );
     }
-
     timeout = xfce_mailwatch_get_timeout( maildir->mailwatch );
-    
-    /* Is it *really* intended here to call xfce_mailwatch_get_timeout()??? */
     maildir->timeout_id = g_timeout_add( timeout * 1000, maildir_check_mail, maildir );
 }
 
-static void maildir_set_activated( XfceMailwatchMailbox *mailbox, gboolean activated ) {
-    MaildirMailbox      *maildir = (MaildirMailbox *) mailbox;
-    guint               timeout;
-
-    g_message( "maildir_set_activated()" );
+static void
+maildir_set_activated( XfceMailwatchMailbox *mailbox, gboolean activated )
+{
+    XfceMailwatchMaildirMailbox *maildir = XFCE_MAILWATCH_MAILDIR_MAILBOX( mailbox );
+    guint                       timeout;
 
     maildir->active = activated;
 
-    if ( activated == TRUE ) {
+    if ( activated ) {
         if ( maildir->timeout_id ) {
             g_source_remove( maildir->timeout_id );
         }
         timeout = xfce_mailwatch_get_timeout( maildir->mailwatch );
-
         maildir->timeout_id = g_timeout_add( timeout * 1000, maildir_check_mail, maildir );
     }
 }
 
-static XfceMailwatchMailbox *maildir_new( struct _XfceMailwatch *mailwatch,
-        XfceMailwatchMailboxType *type )
+static XfceMailwatchMailbox *
+maildir_new( XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type )
 {
-    MaildirMailbox      *mailbox = NULL;
+    XfceMailwatchMaildirMailbox *mailbox = NULL;
 
-    g_message( "maildir_new()" );
-
-    mailbox = g_new0( MaildirMailbox, 1 );
+    mailbox = g_new0( XfceMailwatchMaildirMailbox, 1 );
     
     mailbox->mailwatch      = mailwatch;
     mailbox->path           = NULL;

@@ -517,24 +517,25 @@ config_do_edit_window(GtkTreeSelection *sel, GtkWindow *parent)
     
     if(gtk_tree_selection_get_selected(sel, &model, &itr)) {
         gchar *mailbox_name = NULL, *win_title = NULL, *new_mailbox_name = NULL;
-        XfceMailwatchMailbox *mailbox = NULL;
+        XfceMailwatchMailboxData *mdata = NULL;
         
         gtk_tree_model_get(model, &itr,
                 0, &mailbox_name,
-                1, &mailbox,
+                1, &mdata,
                 -1);
         
         /* pause the mailbox */
-        mailbox->type->set_activated_func(mailbox, FALSE);
+        mdata->mailbox->type->set_activated_func(mdata->mailbox, FALSE);
         
         win_title = g_strdup_printf(_("Edit Mailbox: %s"), mailbox_name);
         if(config_run_addedit_window(win_title, parent,
-                mailbox_name, mailbox, &new_mailbox_name))
+                mailbox_name, mdata->mailbox, &new_mailbox_name))
         {
             if(new_mailbox_name) {
                 gtk_list_store_set(GTK_LIST_STORE(model), &itr,
                         0, new_mailbox_name, -1);
-                g_free(new_mailbox_name);
+                g_free(mdata->mailbox_name);
+                mdata->mailbox_name = new_mailbox_name;
             }
             
             ret = TRUE;
@@ -543,7 +544,7 @@ config_do_edit_window(GtkTreeSelection *sel, GtkWindow *parent)
         g_free(mailbox_name);
         
         /* and unpause */
-        mailbox->type->set_activated_func(mailbox, TRUE);
+        mdata->mailbox->type->set_activated_func(mdata->mailbox, TRUE);
     }
     
     return ret;
@@ -677,7 +678,7 @@ config_add_btn_clicked_cb(GtkWidget *w, XfceMailwatch *mailwatch)
         gtk_list_store_append(GTK_LIST_STORE(model), &itr);
         gtk_list_store_set(GTK_LIST_STORE(model), &itr,
                 0, new_mailbox_name,
-                1, new_mailbox,
+                1, mdata,
                 -1);
     } else
         mailbox_type->free_mailbox_func(new_mailbox);
@@ -850,7 +851,7 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
         gtk_list_store_append(ls, &itr);
         gtk_list_store_set(ls, &itr,
                 0, mdata->mailbox_name,
-                1, mdata->mailbox,
+                1, mdata,
                 -1);
     }
     
