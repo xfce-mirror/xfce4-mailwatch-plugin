@@ -158,7 +158,7 @@ maildir_browse_button_clicked_cb( GtkWidget *widget,
     gint            result;
     GtkWidget       *parent;
 
-    parent = GTK_WIDGET( gtk_widget_get_parent_window( widget ) );
+    parent = gtk_widget_get_toplevel( widget );
 
     xfce_textdomain( GETTEXT_PACKAGE, LOCALEDIR, "UTF-8" );
 
@@ -169,7 +169,7 @@ maildir_browse_button_clicked_cb( GtkWidget *widget,
             GTK_STOCK_OPEN, GTK_RESPONSE_OK,
             NULL );
     if ( maildir->path ) {
-        xfce_file_chooser_set_current_folder( XFCE_FILE_CHOOSER( chooser ), maildir->path );
+        xfce_file_chooser_set_filename( XFCE_FILE_CHOOSER( chooser ), maildir->path );
     }
     
     result = gtk_dialog_run( GTK_DIALOG( chooser ) );

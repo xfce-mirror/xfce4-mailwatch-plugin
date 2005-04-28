@@ -15,6 +15,7 @@ endif
 libmailwatch_la_SOURCES = \
 	mailwatch-mailbox-imap.c \
 	mailwatch-mailbox-maildir.c \
+	mailwatch-mailbox-mbox.c \
 	mailwatch-mailbox.h \
 	mailwatch-plugin.c \
 	mailwatch.c \

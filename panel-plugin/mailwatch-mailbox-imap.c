@@ -20,6 +20,24 @@
 #include <config.h>
 #endif
 
+#include <stdio.h>
+
+#ifdef HAVE_UNISTD_H
+#include <unistd.h>
+#endif
+
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
+
+#ifdef HAVE_SYS_TYPES_H
+#include <sys/types.h>
+#endif
+
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+
 #include <glib.h>
 #include <gtk/gtk.h>
 
@@ -29,7 +47,7 @@
 
 #define BORDER 8
 
-#define MAILWATCH_IMAP_MAILBOX(ptr) ((XfceMailwatchIMAPMailbox *)ptr)
+#define XFCE_MAILWATCH_IMAP_MAILBOX(ptr) ((XfceMailwatchIMAPMailbox *)ptr)
 
 #define IMAP_CMD_START   GINT_TO_POINTER(1)
 #define IMAP_CMD_PAUSE   GINT_TO_POINTER(2)
@@ -45,7 +63,7 @@ typedef struct
     gchar *host;
     gchar *username;
     gchar *password;
-    gboolean use_imaps;
+    gboolean use_ssl;
     GList *mailboxes_to_check;
     
     GThread *th;
@@ -55,12 +73,122 @@ typedef struct
 } XfceMailwatchIMAPMailbox;
 
 
+static gboolean
+imap_get_sockaddr(const gchar *host, const gchar *service,
+        struct sockaddr_in *addr)
+{
+    struct addrinfo hints = { 0, PF_INET, SOCK_STREAM, IPPROTO_TCP,
+            sizeof(struct sockaddr_in), NULL, NULL, NULL };
+    struct addrinfo *res = NULL;
+        
+    g_return_val_if_fail(host && service && addr, FALSE);
+    
+    if(getaddrinfo(host, service, &hints, &res))
+        return FALSE;
+    
+    if(res->ai_addrlen != sizeof(struct sockaddr_in)) {
+        freeaddrinfo(res);
+        return FALSE;
+    }
+    
+    memcpy(&addr, res->ai_addr, sizeof(struct sockaddr_in));
+    freeaddrinfo(res);
+    
+    return TRUE;
+}
+
+/*
+static gboolean
+imap_do_command(gint sockfd, const gchar *command, gchar **reply,
+        gboolean use_ssl)
+{
+    gchar *final_command = NULL;
+    
+    g_return_val_if_fail(sockfd >= 0 && command, FALSE);
+    
+    
+    
+}
+*/
+
+static gboolean
+imap_auth_plain(gint sockfd, const gchar *username, const gchar *password)
+{
+    return FALSE;
+}
+
+static gboolean
+imap_auth_ssl(gint sockfd, const gchar *username, const gchar *password)
+{
+    return FALSE;
+}
+
+static gint
+imap_connect_starttls(const gchar *host, const gchar *username,
+        const gchar *password)
+{
+    gint sockfd;
+    struct sockaddr_in addr;
+    
+    if(!imap_get_sockaddr(host, "imap", &addr))
+        return -1;
+    
+    sockfd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
+    if(sockfd < 0)
+        return -1;
+    
+    if(connect(sockfd, (struct sockaddr *)&addr, sizeof(struct sockaddr_in))) {
+        close(sockfd);
+        return -1;
+    }
+    
+    /* FIXME: do some stuff */
+    
+    return sockfd;
+}
+
+static gint
+imap_connect(const gchar *host, const gchar *username, const gchar *password,
+        gboolean use_ssl)
+{
+    gint sockfd;
+    struct sockaddr_in addr;
+    gboolean ret;
+    
+    if(!imap_get_sockaddr(host, use_ssl ? "imaps" : "imap", &addr))
+        return -1;
+    
+    sockfd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
+    if(sockfd < 0)
+        return -1;
+    
+    if(connect(sockfd, (struct sockaddr *)&addr, sizeof(struct sockaddr_in))) {
+        close(sockfd);
+        if(use_ssl)
+            return imap_connect_starttls(host, username, password);
+        return -1;
+    }
+    
+    if(use_ssl)
+        ret = imap_auth_ssl(sockfd, username, password);
+    else
+        ret = imap_auth_plain(sockfd, username, password);
+    
+    if(!ret) {
+        close(sockfd);
+        return -1;
+    }
+    
+    return sockfd;
+}
+
 static void
 imap_check_mail(XfceMailwatchIMAPMailbox *imailbox)
 {
 #define BUFSIZE 1024
     gchar host[BUFSIZE], username[BUFSIZE], password[BUFSIZE];
-    gboolean use_imaps;
+    gboolean use_ssl;
+    gint sockfd;
     
     g_mutex_lock(imailbox->config_mx);
     
@@ -72,9 +200,15 @@ imap_check_mail(XfceMailwatchIMAPMailbox *imailbox)
     g_strlcpy(host, imailbox->host, BUFSIZE);
     g_strlcpy(username, imailbox->username, BUFSIZE);
     g_strlcpy(password, imailbox->password, BUFSIZE);
-    use_imaps = imailbox->use_imaps;
+    use_ssl = imailbox->use_ssl;
     
     g_mutex_unlock(imailbox->config_mx);
+    
+    sockfd = imap_connect(host, username, password, use_ssl);
+    if(sockfd < 0) {
+        DBG("failed to connect to imap server");
+        return;
+    }
     
     
     
@@ -151,7 +285,7 @@ imap_mailbox_new(XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type)
 static void
 imap_set_activated(XfceMailwatchMailbox *mailbox, gboolean activated)
 {
-    XfceMailwatchIMAPMailbox *imailbox = MAILWATCH_IMAP_MAILBOX(mailbox);
+    XfceMailwatchIMAPMailbox *imailbox = XFCE_MAILWATCH_IMAP_MAILBOX(mailbox);
     
     g_async_queue_push(imailbox->aqueue, activated ? IMAP_CMD_START : IMAP_CMD_PAUSE);
 }
@@ -159,7 +293,7 @@ imap_set_activated(XfceMailwatchMailbox *mailbox, gboolean activated)
 static void
 imap_timeout_changed_cb(XfceMailwatchMailbox *mailbox)
 {
-    XfceMailwatchIMAPMailbox *imailbox = MAILWATCH_IMAP_MAILBOX(mailbox);
+    XfceMailwatchIMAPMailbox *imailbox = XFCE_MAILWATCH_IMAP_MAILBOX(mailbox);
     
     g_async_queue_push(imailbox->aqueue, IMAP_CMD_TIMEOUT);
     g_async_queue_push(imailbox->aqueue,
@@ -169,7 +303,7 @@ imap_timeout_changed_cb(XfceMailwatchMailbox *mailbox)
 static GtkContainer *
 imap_get_setup_page(XfceMailwatchMailbox *mailbox)
 {
-    XfceMailwatchIMAPMailbox *imailbox = MAILWATCH_IMAP_MAILBOX(mailbox);
+    XfceMailwatchIMAPMailbox *imailbox = XFCE_MAILWATCH_IMAP_MAILBOX(mailbox);
     GtkWidget *topvbox, *hbox, *lbl, *entry, *chk;
     GtkSizeGroup *sg;
     
@@ -231,7 +365,7 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
     gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), entry);
     
     chk = gtk_check_button_new_with_mnemonic(_("Connect using _SSL (IMAPS)"));
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(chk), imailbox->use_imaps);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(chk), imailbox->use_ssl);
     gtk_widget_show(chk);
     gtk_box_pack_start(GTK_BOX(topvbox), chk, FALSE, FALSE, 0);
     
@@ -255,7 +389,7 @@ imap_save_param_list(XfceMailwatchMailbox *mailbox)
 static void 
 imap_mailbox_free(XfceMailwatchMailbox *mailbox)
 {
-    XfceMailwatchIMAPMailbox *imailbox = MAILWATCH_IMAP_MAILBOX(mailbox);
+    XfceMailwatchIMAPMailbox *imailbox = XFCE_MAILWATCH_IMAP_MAILBOX(mailbox);
     
     g_async_queue_push(imailbox->aqueue, IMAP_CMD_QUIT);
     g_thread_join(imailbox->th);

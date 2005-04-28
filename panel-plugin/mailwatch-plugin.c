@@ -40,6 +40,7 @@ typedef struct
     GtkWidget *image;
     
     gboolean newmail_icon_visible;
+    guint new_messages;
     GdkPixbuf *pix_normal;
     GdkPixbuf *pix_newmail;
     
@@ -61,21 +62,27 @@ mailwatch_check_timeout(gpointer user_data)
                 mwp->pix_normal);
         gtk_tooltips_set_tip(mwp->tooltip, mwp->button, _("No new mail"), NULL);
         mwp->newmail_icon_visible = FALSE;
-    } else if(new_messages > 0 && !mwp->newmail_icon_visible) {
-        xfce_scaled_image_set_from_pixbuf(XFCE_SCALED_IMAGE(mwp->image),
-                mwp->pix_newmail);
-        if(new_messages == 1) {
-            gtk_tooltips_set_tip(mwp->tooltip, mwp->button,
-                    _("You have 1 new message"), NULL);
-        } else {
-            gchar *str = g_strdup_printf(_("You have %d new messages"),
-                    new_messages);
-            gtk_tooltips_set_tip(mwp->tooltip, mwp->button, str, NULL);
-            g_free(str);
+        mwp->new_messages = 0;
+    } else if(new_messages > 0) {
+        if (!mwp->newmail_icon_visible) {
+            xfce_scaled_image_set_from_pixbuf(XFCE_SCALED_IMAGE(mwp->image),
+                    mwp->pix_newmail);
+            mwp->newmail_icon_visible = TRUE;
         }
-        mwp->newmail_icon_visible = TRUE;
+        if ( new_messages != mwp->new_messages ) {
+            if(new_messages == 1) {
+                gtk_tooltips_set_tip(mwp->tooltip, mwp->button,
+                        _("You have 1 new message"), NULL);
+            } else {
+                gchar *str = g_strdup_printf(_("You have %d new messages"),
+                        new_messages);
+                gtk_tooltips_set_tip(mwp->tooltip, mwp->button, str, NULL);
+                g_free(str);
+            }
+            mwp->new_messages = new_messages;
+        }
     }
-    
+
     return TRUE;
 }
 
@@ -87,7 +94,7 @@ mailwatch_timeout_changed_cb(XfceMailwatch *mailwatch, guint timeout,
     
     if(mwp->check_timeout_id)
         g_source_remove(mwp->check_timeout_id);
-    mwp->check_timeout_id = g_timeout_add(timeout,
+    mwp->check_timeout_id = g_timeout_add(timeout * 1000,
             (GSourceFunc)mailwatch_check_timeout, mwp);
 }
 
@@ -115,6 +122,8 @@ mailwatch_create(Control *c)
     gtk_widget_show(mwp->image);
     gtk_container_add(GTK_CONTAINER(mwp->button), mwp->image);
     
+    xfce_mailwatch_hook_timeout_change(mwp->mailwatch,
+            mailwatch_timeout_changed_cb, mwp);
     return TRUE;
 }
 
@@ -141,8 +150,6 @@ mailwatch_read_config(Control *c, xmlNodePtr node)
     xfce_mailwatch_load_config(mwp->mailwatch);
     g_free(cfgfile);
     
-    xfce_mailwatch_hook_timeout_change(mwp->mailwatch,
-            mailwatch_timeout_changed_cb, mwp);
     mwp->check_timeout_id = g_timeout_add(xfce_mailwatch_get_timeout(mwp->mailwatch),
             (GSourceFunc)mailwatch_check_timeout, mwp);
 }
