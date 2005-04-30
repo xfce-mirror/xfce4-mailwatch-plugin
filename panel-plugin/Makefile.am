@@ -24,9 +24,11 @@ libmailwatch_la_SOURCES = \
 libmailwatch_la_CFLAGS = \
 	@GTHREAD_CFLAGS@ \
 	@XFCE4_PANEL_CFLAGS@ \
+	@GNUTLS_CFLAGS@ \
 	-DDATADIR=\"$(datadir)\" \
 	-DLOCALEDIR=\"$(localedir)\"
 
 libmailwatch_la_LIBADD = \
 	@GTHREAD_LIBS@ \
-	@XFCE4_PANEL_LIBS@
+	@XFCE4_PANEL_LIBS@ \
+	@GNUTLS_LIBS@

@@ -48,6 +48,9 @@ XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.2.0])
 XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.2.0])
 XDT_XFCE_PANEL_PLUGIN([XFCE4_PANEL], [4.2.0])
 
+dnl gnutls is required for now, but i should probably make it optional
+XDT_CHECK_PACKAGE([GNUTLS], [gnutls], [1.2.0])
+
 dnl check for debugging support
 BM_DEBUG_SUPPORT
 

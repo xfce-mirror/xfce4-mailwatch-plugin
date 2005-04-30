@@ -54,6 +54,10 @@
 #include <sys/select.h>
 #endif
 
+#ifdef HAVE_SYS_WAIT_H
+#include <sys/wait.h>
+#endif
+
 #ifndef MSG_NOSIGNAL
 #define MSG_NOSIGNAL 0
 #endif
@@ -63,9 +67,34 @@
 
 #include <libxfce4util/libxfce4util.h>
 
+#include <gnutls/gnutls.h>
+#include <gcrypt.h>
+/* stuff to support gthreads */
+static int my_g_mutex_init(void **priv);
+static int my_g_mutex_destroy(void **priv);
+static int my_g_mutex_lock(void **priv);
+static int my_g_mutex_unlock(void **priv);
+static struct gcry_thread_cbs gcry_threads_gthread = {
+    GCRY_THREAD_OPTION_USER,
+    NULL,
+    my_g_mutex_init,
+    my_g_mutex_destroy,
+    my_g_mutex_lock,
+    my_g_mutex_unlock,
+    read,
+    write,
+    select,
+    waitpid,
+    accept,
+    (int (*)(int, _GCRY_PTH_SOCKADDR *, _GCRY_PTH_SOCKLEN_T))connect,
+    sendmsg,
+    recvmsg
+};
+
 #include "mailwatch.h"
 
 #define BORDER 8
+#define GNUTLS_CA_FILE   "ca.pem"
 
 #define XFCE_MAILWATCH_IMAP_MAILBOX(ptr) ((XfceMailwatchIMAPMailbox *)ptr)
 
@@ -96,6 +125,11 @@ typedef struct
     guint imap_tag;
     gboolean requiring_ssl;
     gboolean using_ssl;
+    
+    /* secure this, dude */
+    gboolean gnutls_inited;
+    gnutls_session_t gt_session;
+    gnutls_certificate_credentials_t gt_creds;
 } XfceMailwatchIMAPMailbox;
 
 typedef enum
@@ -105,25 +139,71 @@ typedef enum
     IMAP_NO_STARTTLS_SUPPORT = -2
 } IMAPResult;
 
+/*
+ * gthread -> gcrypt support wrappers
+ */
+static int
+my_g_mutex_init(void **priv)
+{
+    GMutex **gmx = (GMutex **)priv;
+    
+    *gmx = g_mutex_new();
+    if(!*gmx)
+        return -1;
+    return 0;
+}
+
+static int
+my_g_mutex_destroy(void **priv)
+{
+    GMutex **gmx = (GMutex **)priv;
+    
+    g_mutex_free(*gmx);
+    return 0;
+}
+
+static int
+my_g_mutex_lock(void **priv)
+{
+    GMutex **gmx = (GMutex **)priv;
+    
+    g_mutex_lock(*gmx);
+    return 0;
+}
+
+static int
+my_g_mutex_unlock(void **priv)
+{
+    GMutex **gmx = (GMutex **)priv;
+    
+    g_mutex_unlock(*gmx);
+    return 0;
+}
+
+/***/
 
 static gssize
 imap_send(XfceMailwatchIMAPMailbox *imailbox, const gchar *buf)
 {
-    gint bout, ssl_length = 0;
-    gchar *ssl_wrapping = NULL;
+    gint bout = 0;
     
-    /* FIXME: ssl stuff */
     if(imailbox->using_ssl) {
+        gint ret = 0, totallen = strlen(buf);
+        gint bytesleft = totallen;
         
-    }
-    
-    bout = send(imailbox->sockfd, ssl_wrapping ? ssl_wrapping : buf,
-            ssl_wrapping ? ssl_length : strlen(buf), MSG_NOSIGNAL);
-    if(ssl_wrapping) {
-        if(bout > 0)
-            bout -= ssl_length - strlen(buf);
-        g_free(ssl_wrapping);
-    }
+        while(bytesleft > 0) {
+            ret = gnutls_record_send(imailbox->gt_session,
+                    buf+totallen-bytesleft, bytesleft);
+            if(ret < 0 && ret != GNUTLS_E_INTERRUPTED && ret != GNUTLS_E_AGAIN) {
+                bout = -1;
+                break;
+            } else if(ret > 0) {
+                bout += ret;
+                bytesleft -= ret;
+            }
+        }
+    } else
+        bout = send(imailbox->sockfd, buf, strlen(buf), MSG_NOSIGNAL);
     
     return bout;
 }
@@ -134,32 +214,34 @@ imap_recv(XfceMailwatchIMAPMailbox *imailbox, gchar *buf, gsize len)
     fd_set rfd;
     struct timeval tv;
     gint ret, bin;
-    gchar *ssl_unwrapped = NULL;
     
-    FD_ZERO(&rfd);
-    FD_SET(imailbox->sockfd, &rfd);
-    tv.tv_sec = 45;
-    tv.tv_usec = 0;
-    
-    ret = select(FD_SETSIZE, &rfd, NULL, NULL, &tv);
-    if(ret < 0)
-        return -1;
-    
-    if(!FD_ISSET(imailbox->sockfd, &rfd))
-        return 0;
-    
-    bin = recv(imailbox->sockfd, buf, len, MSG_NOSIGNAL);
-    if(bin < 0)
-        return bin;
-    
-    /* FIXME: do SSL stuff */
-    ssl_unwrapped = NULL;
     if(imailbox->using_ssl) {
+        do {
+            ret = gnutls_record_recv(imailbox->gt_session, buf, len);
+        } while(ret == GNUTLS_E_INTERRUPTED || ret == GNUTLS_E_AGAIN);
         
+        if(ret < 0)
+            bin = -1;
+        else
+            bin = ret;
+    } else {
+        FD_ZERO(&rfd);
+        FD_SET(imailbox->sockfd, &rfd);
+        tv.tv_sec = 45;
+        tv.tv_usec = 0;
+        
+        ret = select(FD_SETSIZE, &rfd, NULL, NULL, &tv);
+        if(ret < 0)
+            return -1;
+        
+        if(!FD_ISSET(imailbox->sockfd, &rfd))
+            return 0;
+        
+        bin = recv(imailbox->sockfd, buf, len, MSG_NOSIGNAL);
     }
-    /* TODO: adjust bin for SSL wrapper */
     
-    buf[bin] = 0;
+    if(bin >= 0)
+        buf[bin] = 0;
     
     return bin;
 }
@@ -217,7 +299,7 @@ imap_auth_plain(XfceMailwatchIMAPMailbox *imailbox, const gchar *username,
         goto cleanuperr;
     
     if(strstr(buf, " LOGINDISABLED")) {
-        g_warning(_("IMAP SSL is not enabled, and the IMAP server does not support plaintext logins."));
+        g_warning(_("Secure IMAP is not available, and the IMAP server does not support plaintext logins."));
         goto cleanuperr;
     }
     
@@ -250,16 +332,51 @@ imap_auth_plain(XfceMailwatchIMAPMailbox *imailbox, const gchar *username,
 static gboolean
 imap_negotiate_ssl(XfceMailwatchIMAPMailbox *imailbox, const gchar *host)
 {
-    return FALSE;
+    gint gt_ret;
+    const int cert_type_prio[2] = { GNUTLS_CRT_X509, 0 };
+    
+    /* init */
+    gcry_control(GCRYCTL_SET_THREAD_CBS, &gcry_threads_gthread);
+    gnutls_global_init();
+    imailbox->gnutls_inited = TRUE;
+    
+    /* init the x509 cert */
+    gnutls_certificate_allocate_credentials(&imailbox->gt_creds);
+    gnutls_certificate_set_x509_trust_file(imailbox->gt_creds, GNUTLS_CA_FILE,
+            GNUTLS_X509_FMT_PEM);
+    
+    /* init the session and set it up */
+    gnutls_init(&imailbox->gt_session, GNUTLS_CLIENT);
+    gnutls_set_default_priority(imailbox->gt_session);
+    gnutls_certificate_type_set_priority(imailbox->gt_session, cert_type_prio);
+    gnutls_credentials_set(imailbox->gt_session, GNUTLS_CRD_CERTIFICATE,
+            imailbox->gt_creds);
+    gnutls_transport_set_ptr(imailbox->gt_session,
+            (gnutls_transport_ptr_t)imailbox->sockfd);
+    
+    /* just do it */
+    gt_ret = gnutls_handshake(imailbox->gt_session);
+    if(gt_ret < 0) {
+        g_critical("TLS handshake failed: %s", gnutls_strerror(gt_ret));
+        
+        shutdown(imailbox->sockfd, SHUT_RDWR);
+        close(imailbox->sockfd);
+        imailbox->sockfd = -1;
+        
+        return FALSE;
+    } else
+        g_message("TLS handshake succeeded!");
+    
+    return TRUE;
 }
 
 static IMAPResult
 imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
         const gchar *username, const gchar *password)
 {
-#define BUFSIZE 8192
+#define BUFSIZE 8191
     gint bin;
-    gchar buf[BUFSIZE];
+    gchar buf[BUFSIZE+1];
     
     /* turn off SSL, because obviously we haven't negotiated it yet. */
     imailbox->using_ssl = FALSE;
@@ -340,7 +457,7 @@ imap_authenticate(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
     
     /* first try STARTTLS.  if that fails, try connecting on the imaps port.
      * if that fails, and we're requiring SSL, bail.  otherwise, try
-     * plaintext (yuck). */
+     * plaintext (yuck), but only if the user allows it. */
     res = imap_do_starttls(imailbox, host, username, password);
     if(res == IMAP_FAILED)
         return FALSE;
@@ -369,9 +486,9 @@ static guint
 imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
         const gchar *mailbox_name)
 {
-#define BUFSIZE 8192
+#define BUFSIZE 8191
     gint new_messages = 0;
-    gchar buf[BUFSIZE], *p;
+    gchar buf[BUFSIZE+1], *p;
     
     /* ask the server to look at the mailbox */
     g_snprintf(buf, BUFSIZE, "%05d EXAMINE %s\r\n", ++imailbox->imap_tag,
@@ -449,6 +566,13 @@ imap_check_mail(XfceMailwatchIMAPMailbox *imailbox)
         g_list_foreach(mailboxes_to_check, (GFunc)g_free, NULL);
         g_list_free(mailboxes_to_check);
     }
+    
+    if(imailbox->gnutls_inited) {
+        gnutls_deinit(imailbox->gt_session);
+        gnutls_certificate_free_credentials(imailbox->gt_creds);
+        gnutls_global_deinit();
+    }
+    
 #undef BUFSIZE
 }
 
@@ -506,6 +630,7 @@ imap_mailbox_new(XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type)
     XfceMailwatchIMAPMailbox *imailbox = g_new0(XfceMailwatchIMAPMailbox, 1);
     imailbox->mailbox.type = type;
     imailbox->mailwatch = mailwatch;
+    imailbox->require_ssl = TRUE;
     imailbox->config_mx = g_mutex_new();
     /* init the queue */
     imailbox->aqueue = g_async_queue_new();
@@ -537,6 +662,83 @@ imap_timeout_changed_cb(XfceMailwatchMailbox *mailbox)
             GUINT_TO_POINTER(xfce_mailwatch_get_timeout(imailbox->mailwatch)));
 }
 
+static gboolean
+imap_host_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
+        gpointer user_data)
+{
+    XfceMailwatchIMAPMailbox *imailbox = user_data;
+    gchar *str;
+    
+    str = gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1);
+    
+    g_mutex_lock(imailbox->config_mx);
+    
+    g_free(imailbox->host);
+    if(!str || !*str) {
+        imailbox->host = NULL;
+        g_free(str);
+    } else
+        imailbox->host = str;
+    
+    g_mutex_unlock(imailbox->config_mx);
+    
+    return FALSE;
+}
+
+static gboolean
+imap_username_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
+        gpointer user_data)
+{
+    XfceMailwatchIMAPMailbox *imailbox = user_data;
+    gchar *str;
+    
+    str = gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1);
+    
+    g_mutex_lock(imailbox->config_mx);
+    
+    g_free(imailbox->username);
+    if(!str || !*str) {
+        imailbox->username = NULL;
+        g_free(str);
+    } else
+        imailbox->username = str;
+    
+    g_mutex_unlock(imailbox->config_mx);
+    
+    return FALSE;
+}
+
+static gboolean
+imap_password_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
+        gpointer user_data)
+{
+    XfceMailwatchIMAPMailbox *imailbox = user_data;
+    gchar *str;
+    
+    str = gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1);
+    
+    g_mutex_lock(imailbox->config_mx);
+    
+    g_free(imailbox->password);
+    if(!str || !*str) {
+        imailbox->password = NULL;
+        g_free(str);
+    } else
+        imailbox->password = str;
+    
+    g_mutex_unlock(imailbox->config_mx);
+    
+    return FALSE;
+}
+
+static void
+imap_require_secure_chk_cb(GtkToggleButton *tb, gpointer user_data)
+{
+    XfceMailwatchIMAPMailbox *imailbox = user_data;
+    
+    imailbox->require_ssl = gtk_toggle_button_get_active(tb);
+}
+
 static GtkContainer *
 imap_get_setup_page(XfceMailwatchMailbox *mailbox)
 {
@@ -564,6 +766,8 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
         gtk_entry_set_text(GTK_ENTRY(entry), imailbox->host);
     gtk_widget_show(entry);
     gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
+    g_signal_connect(G_OBJECT(entry), "focus-out-event",
+            G_CALLBACK(imap_host_entry_focus_out_cb), imailbox);
     gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), entry);
     
     hbox = gtk_hbox_new(FALSE, BORDER/2);
@@ -581,6 +785,8 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
         gtk_entry_set_text(GTK_ENTRY(entry), imailbox->username);
     gtk_widget_show(entry);
     gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
+    g_signal_connect(G_OBJECT(entry), "focus-out-event",
+            G_CALLBACK(imap_username_entry_focus_out_cb), imailbox);
     gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), entry);
     
     hbox = gtk_hbox_new(FALSE, BORDER/2);
@@ -599,12 +805,16 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
         gtk_entry_set_text(GTK_ENTRY(entry), imailbox->password);
     gtk_widget_show(entry);
     gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
+    g_signal_connect(G_OBJECT(entry), "focus-out-event",
+            G_CALLBACK(imap_password_entry_focus_out_cb), imailbox);
     gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), entry);
     
     chk = gtk_check_button_new_with_mnemonic(_("_Require secure connection"));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(chk), imailbox->require_ssl);
     gtk_widget_show(chk);
     gtk_box_pack_start(GTK_BOX(topvbox), chk, FALSE, FALSE, 0);
+    g_signal_connect(G_OBJECT(chk), "toggled",
+            G_CALLBACK(imap_require_secure_chk_cb), imailbox);
     
     return GTK_CONTAINER(topvbox);
 }
