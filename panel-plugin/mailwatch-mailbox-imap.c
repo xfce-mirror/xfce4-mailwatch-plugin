@@ -195,6 +195,7 @@ imap_send(XfceMailwatchIMAPMailbox *imailbox, const gchar *buf)
             ret = gnutls_record_send(imailbox->gt_session,
                     buf+totallen-bytesleft, bytesleft);
             if(ret < 0 && ret != GNUTLS_E_INTERRUPTED && ret != GNUTLS_E_AGAIN) {
+                DBG("gnutls_record_send() failed (%d): %s", ret, gnutls_strerror(ret));
                 bout = -1;
                 break;
             } else if(ret > 0) {
@@ -264,7 +265,9 @@ imap_get_sockaddr(const gchar *host, const gchar *service,
     struct addrinfo hints = { 0, PF_INET, SOCK_STREAM, IPPROTO_TCP,
             sizeof(struct sockaddr_in), NULL, NULL, NULL };
     struct addrinfo *res = NULL;
-        
+    
+    TRACE("entering (%s, %s, %p)", host, service, addr);
+    
     g_return_val_if_fail(host && service && addr, FALSE);
     
     if(getaddrinfo(host, service, &hints, &res))
@@ -275,7 +278,7 @@ imap_get_sockaddr(const gchar *host, const gchar *service,
         return FALSE;
     }
     
-    memcpy(&addr, res->ai_addr, sizeof(struct sockaddr_in));
+    memcpy(addr, res->ai_addr, sizeof(struct sockaddr_in));
     freeaddrinfo(res);
     
     return TRUE;
@@ -289,12 +292,16 @@ imap_auth_plain(XfceMailwatchIMAPMailbox *imailbox, const gchar *username,
     gint bin, bout;
     gchar buf[BUFSIZE+1];
     
+    TRACE("entering");
+    
     /* check capabilities */
     g_snprintf(buf, BUFSIZE, "%05d CAPABILITY\r\n", ++imailbox->imap_tag);
     bout = imap_send(imailbox, buf);
+    DBG("sent CAPABILITY (%d)", bout);
     if(bout != strlen(buf))
         goto cleanuperr;
     bin = imap_recv(imailbox, buf, BUFSIZE);
+    DBG("response from CAPABILITY (%d): %s", bin, bin>0?buf:"(nada)");
     if(bin <= 0)
         goto cleanuperr;
     
@@ -307,15 +314,20 @@ imap_auth_plain(XfceMailwatchIMAPMailbox *imailbox, const gchar *username,
     g_snprintf(buf, BUFSIZE, "%05d LOGIN \"%s\" \"%s\"\r\n",
             ++imailbox->imap_tag, username, password);
     bout = imap_send(imailbox, buf);
+    DBG("sent login (%d)", bout);
     if(bout != strlen(buf))
         goto cleanuperr;
     
     /* and see if we actually got auth-ed */
     bin = imap_recv(imailbox, buf, BUFSIZE);
+    DBG("response from login (%d): %s", bin, bin>0?buf:"(nada)");
     if(bin <= 0)
         goto cleanuperr;
+    DBG("strstr() returns %p", strstr(buf, "OK LOGIN"));
     if(!strstr(buf, "OK LOGIN"))
         goto cleanuperr;
+    
+    TRACE("leaving (success)");
     
     return TRUE;
     
@@ -334,6 +346,8 @@ imap_negotiate_ssl(XfceMailwatchIMAPMailbox *imailbox, const gchar *host)
 {
     gint gt_ret;
     const int cert_type_prio[2] = { GNUTLS_CRT_X509, 0 };
+    
+    TRACE("entering");
     
     /* init */
     gcry_control(GCRYCTL_SET_THREAD_CBS, &gcry_threads_gthread);
@@ -375,18 +389,27 @@ imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
         const gchar *username, const gchar *password)
 {
 #define BUFSIZE 8191
+    IMAPResult res = IMAP_FAILED;
     gint bin;
     gchar buf[BUFSIZE+1];
+    
+    TRACE("entering");
     
     /* turn off SSL, because obviously we haven't negotiated it yet. */
     imailbox->using_ssl = FALSE;
     
     g_snprintf(buf, BUFSIZE, "%05d CAPABILITY\r\n", ++imailbox->imap_tag);
-    bin = imap_send(imailbox, buf);
+    if(imap_send(imailbox, buf) != strlen(buf))
+        goto cleanuperr;
+    
+    bin = imap_recv(imailbox, buf, BUFSIZE);
+    DBG("checking for STARTTLS caps (%d): %s", bin, bin>0?buf:"(nada)");
     if(bin <= 0)
         goto cleanuperr;
-    if(!strstr(buf, " STARTTLS"))
+    if(!strstr(buf, " STARTTLS")) {
+        res = IMAP_NO_STARTTLS_SUPPORT;
         goto cleanuperr;
+    }
     
     g_snprintf(buf, BUFSIZE, "%05d STARTTLS\r\n", ++imailbox->imap_tag);
     if(imap_send(imailbox, buf) != strlen(buf))
@@ -400,7 +423,7 @@ imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
     /* now that we've negotiated SSL, reenable using_ssl */
     imailbox->using_ssl = TRUE;
     
-    return TRUE;
+    return IMAP_SUCCEEDED;
     
     cleanuperr:
     
@@ -408,7 +431,7 @@ imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
     close(imailbox->sockfd);
     imailbox->sockfd = -1;
     
-    return FALSE;
+    return res;
 #undef BUFSIZE
 }
 
@@ -419,21 +442,29 @@ imap_connect(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
     struct sockaddr_in addr;
     gchar buf[1024];
     
-    if(!imap_get_sockaddr(host, service, &addr))
+    TRACE("entering (%s)", service);
+    
+    if(!imap_get_sockaddr(host, service, &addr)) {
+        DBG("failed to get sockaddr");
         return FALSE;
+    }
     
     imailbox->sockfd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
-    if(imailbox->sockfd < 0)
+    if(imailbox->sockfd < 0) {
+        DBG("failed to open socket");
         return FALSE;
+    }
     
     if(connect(imailbox->sockfd, (struct sockaddr *)&addr, sizeof(struct sockaddr_in))) {
+        DBG("failed to connect");
         close(imailbox->sockfd);
         imailbox->sockfd = -1;
         return FALSE;
     }
     
     /* discard opening banner, but only if on the normal imap port */
-    if(!strcmp(service, "imap") && imap_recv(imailbox, buf, 1024) < 0) {
+    if(!strcmp(service, "imap") && imap_recv(imailbox, buf, 1023) < 0) {
+        DBG("failed to get banner");
         shutdown(imailbox->sockfd, SHUT_RDWR);
         close(imailbox->sockfd);
         imailbox->sockfd = -1;
@@ -448,17 +479,25 @@ imap_authenticate(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
         const gchar *username, const gchar *password)
 {
     IMAPResult res;
+    gboolean need_to_trash_banner = FALSE;
+    gchar buf[1024];
     
-    /* SSL is good.  we like SSL. */
-    imailbox->using_ssl = TRUE;
+    TRACE("entering");
+    
+    /* turn this off for connecting */
+    imailbox->using_ssl = FALSE;
     
     if(!imap_connect(imailbox, host, "imap"))
         return FALSE;
+    
+    /* but otherwise we really love SSL. */
+    imailbox->using_ssl = TRUE;
     
     /* first try STARTTLS.  if that fails, try connecting on the imaps port.
      * if that fails, and we're requiring SSL, bail.  otherwise, try
      * plaintext (yuck), but only if the user allows it. */
     res = imap_do_starttls(imailbox, host, username, password);
+    DBG("res is %d", res);
     if(res == IMAP_FAILED)
         return FALSE;
     else if(res == IMAP_NO_STARTTLS_SUPPORT) {
@@ -471,15 +510,30 @@ imap_authenticate(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
                 else
                     imailbox->using_ssl = FALSE;
             }
-        } else
+        } else {
             imailbox->using_ssl = TRUE;
+            need_to_trash_banner = TRUE;
+        }
     }
+    
+    DBG("using_ssl is %s", imailbox->using_ssl?"TRUE":"FALSE");
     
     if(imailbox->using_ssl && !imap_negotiate_ssl(imailbox, host))
         return FALSE;
     
+    /* discard opening banner, in this case it happens after TLS negotiation */
+    if(need_to_trash_banner && imap_recv(imailbox, buf, 1023) < 0) {
+        DBG("failed to get banner");
+        shutdown(imailbox->sockfd, SHUT_RDWR);
+        close(imailbox->sockfd);
+        imailbox->sockfd = -1;
+        return FALSE;
+    }
+    
     if(!imap_auth_plain(imailbox, username, password))
         return FALSE;
+    
+    return TRUE;
 }
 
 static guint
@@ -822,15 +876,91 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
 static void
 imap_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
 {
+    XfceMailwatchIMAPMailbox *imailbox = XFCE_MAILWATCH_IMAP_MAILBOX(mailbox);
+    GList *l;
+    gint n_newmail_boxes = -1;
     
+    g_mutex_lock(imailbox->config_mx);
+    
+    for(l = params; l; l = l->next) {
+        XfceMailwatchParam *param = l->data;
+        
+        if(!strcmp(param->key, "host"))
+            imailbox->host = g_strdup(param->value);
+        else if(!strcmp(param->key, "username"))
+            imailbox->username = g_strdup(param->value);
+        else if(!strcmp(param->key, "password"))
+            imailbox->password = g_strdup(param->value);
+        else if(!strcmp(param->key, "require_ssl"))
+            imailbox->require_ssl = *(param->value) == '0' ? FALSE : TRUE;
+        else if(!strcmp(param->key, "n_newmail_boxes"))
+            n_newmail_boxes = atoi(param->value);
+    }
+    
+    for(l = params; l; l = l->next) {
+        XfceMailwatchParam *param = l->data;
+        
+        if(!strncmp(param->key, "newmail_box_", 12)) {
+            imailbox->mailboxes_to_check =
+                    g_list_prepend(imailbox->mailboxes_to_check,
+                            g_strdup(param->value));
+        }
+    }
+    imailbox->mailboxes_to_check = g_list_reverse(imailbox->mailboxes_to_check);
+    
+    g_mutex_unlock(imailbox->config_mx);
 }
 
 static GList *
 imap_save_param_list(XfceMailwatchMailbox *mailbox)
 {
+    XfceMailwatchIMAPMailbox *imailbox = XFCE_MAILWATCH_IMAP_MAILBOX(mailbox);
     GList *params = NULL;
+    XfceMailwatchParam *param;
+    gchar buf[128];
+    gint i;
     
-    return params;
+    g_mutex_lock(imailbox->config_mx);
+    
+    param = g_new(XfceMailwatchParam, 1);
+    param->key = g_strdup("host");
+    param->value = g_strdup(imailbox->host);
+    params = g_list_prepend(params, param);
+    
+    param = g_new(XfceMailwatchParam, 1);
+    param->key = g_strdup("username");
+    param->value = g_strdup(imailbox->username);
+    params = g_list_prepend(params, param);
+    
+    /* FIXME: probably would be nice to obscure this somewhat to deter casual
+     * accidental exposure */
+    param = g_new(XfceMailwatchParam, 1);
+    param->key = g_strdup("password");
+    param->value = g_strdup(imailbox->password);
+    params = g_list_prepend(params, param);
+    
+    param = g_new(XfceMailwatchParam, 1);
+    param->key = g_strdup("require_ssl");
+    param->value = g_strdup(imailbox->require_ssl ? "1" : "0");
+    params = g_list_prepend(params, param);
+    
+    param = g_new(XfceMailwatchParam, 1);
+    param->key = g_strdup("n_newmail_boxes");
+    g_snprintf(buf, 128, "%d", g_list_length(imailbox->mailboxes_to_check));
+    param->value = g_strdup(buf);
+    params = g_list_prepend(params, param);
+    
+    for(i = 0; i < g_list_length(imailbox->mailboxes_to_check); i++) {
+        param = g_new(XfceMailwatchParam, 1);
+        g_snprintf(buf, 128, "newmail_box_%d", i);
+        param->key = g_strdup(buf);
+        param->value = g_strdup(g_list_nth_data(imailbox->mailboxes_to_check, i));
+        params = g_list_prepend(params, param);
+    }
+    
+    g_mutex_unlock(imailbox->config_mx);
+    
+    return g_list_reverse(params);
 }
 
 static void 
