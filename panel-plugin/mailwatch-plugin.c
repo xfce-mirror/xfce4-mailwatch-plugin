@@ -64,12 +64,12 @@ mailwatch_check_timeout(gpointer user_data)
         mwp->newmail_icon_visible = FALSE;
         mwp->new_messages = 0;
     } else if(new_messages > 0) {
-        if (!mwp->newmail_icon_visible) {
+        if(!mwp->newmail_icon_visible) {
             xfce_scaled_image_set_from_pixbuf(XFCE_SCALED_IMAGE(mwp->image),
                     mwp->pix_newmail);
             mwp->newmail_icon_visible = TRUE;
         }
-        if ( new_messages != mwp->new_messages ) {
+        if(new_messages != mwp->new_messages) {
             if(new_messages == 1) {
                 gtk_tooltips_set_tip(mwp->tooltip, mwp->button,
                         _("You have 1 new message"), NULL);

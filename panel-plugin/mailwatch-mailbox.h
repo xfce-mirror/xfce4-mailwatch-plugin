@@ -63,6 +63,8 @@ typedef struct
     XfceMailwatchMailboxType *type;
 } XfceMailwatchMailbox;
 
+#define XFCE_MAILWATCH_MAILBOX(ptr) ((XfceMailwatchMailbox *)ptr)
+
 /**
  * NewMailboxFunc:
  * @mailwatch: The #XfceMailwatch instance.
