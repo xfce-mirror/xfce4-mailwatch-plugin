@@ -701,6 +701,7 @@ config_remove_btn_clicked_cb(GtkWidget *w, XfceMailwatch *mailwatch)
     GtkTreeSelection *sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(mailwatch->config_treeview));
     GtkTreeModel *model = NULL;
     GtkTreeIter itr;
+    XfceMailwatchMailboxData *mailbox_data = NULL;
     XfceMailwatchMailbox *mailbox = NULL;
     GtkWindow *parent;
     gint resp;
@@ -709,9 +710,10 @@ config_remove_btn_clicked_cb(GtkWidget *w, XfceMailwatch *mailwatch)
     if(!gtk_tree_selection_get_selected(sel, &model, &itr))
         return;
     
-    gtk_tree_model_get(model, &itr, 1, &mailbox, -1);
-    if(!mailbox)
+    gtk_tree_model_get(model, &itr, 1, &mailbox_data, -1);
+    if(!mailbox_data)
         return;
+    mailbox = mailbox_data->mailbox;
     
     xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     
