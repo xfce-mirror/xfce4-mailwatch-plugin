@@ -257,7 +257,7 @@ mailwatch_create_options(Control *c, GtkContainer *con, GtkWidget *done)
     
     cfg_page = xfce_mailwatch_get_configuration_page(mwp->mailwatch);
     if(cfg_page)
-        gtk_box_pack_start(GTK_BOX(vbox), GTK_WIDGET(cfg_page), FALSE, FALSE, 0);
+        gtk_box_pack_start(GTK_BOX(vbox), GTK_WIDGET(cfg_page), TRUE, TRUE, 0);
     
     hbox = gtk_hbox_new(FALSE, BORDER/2);
     gtk_widget_show(hbox);
