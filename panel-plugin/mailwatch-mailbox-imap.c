@@ -307,6 +307,7 @@ imap_auth_plain(XfceMailwatchIMAPMailbox *imailbox, const gchar *username,
         goto cleanuperr;
     
     if(strstr(buf, " LOGINDISABLED")) {
+        xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
         g_warning(_("Secure IMAP is not available, and the IMAP server does not support plaintext logins."));
         goto cleanuperr;
     }
@@ -808,6 +809,8 @@ imap_config_add_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     GtkWindow *toplevel;
     GtkWidget *dlg, *hbox, *lbl, *entry;
     
+    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
+    
     toplevel = GTK_WINDOW(gtk_widget_get_toplevel(w));
     dlg = gtk_dialog_new_with_buttons(_("Add Mailbox"), toplevel,
             GTK_DIALOG_NO_SEPARATOR|GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -931,6 +934,8 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
     GtkCellRenderer *render;
     GtkTreeViewColumn *col;
     GtkTreeSelection *sel;
+    
+    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     
     topvbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_widget_show(topvbox);

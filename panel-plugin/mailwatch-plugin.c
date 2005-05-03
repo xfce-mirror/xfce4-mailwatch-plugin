@@ -49,6 +49,7 @@ typedef struct
     GtkTooltips *tooltip;
     
     gchar *click_command;
+    gchar *new_messages_command;
 } XfceMailwatchPlugin;
 
 
@@ -81,6 +82,9 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, guint new_messages,
                 g_free(str);
             }
             mwp->new_messages = new_messages;
+            
+            if(mwp->new_messages_command)
+                xfce_exec(mwp->new_messages_command, FALSE, FALSE, NULL);
         }
     }
 }
@@ -154,6 +158,12 @@ mailwatch_read_config(Control *c, xmlNodePtr node)
         xmlFree(value);
     }
     
+    value = xmlGetProp(node, (const xmlChar *)"new_messages_command");
+    if(value) {
+        mwp->new_messages_command = g_strdup(value);
+        xmlFree(value);
+    }
+    
     value = xmlGetProp(node, (const xmlChar *)"cfgfile_suffix");
     if(!value) {
         GTimeVal gtv = { 0, 0 };
@@ -181,7 +191,10 @@ mailwatch_write_config(Control *c, xmlNodePtr node)
     
     DBG("entering(%p, %p) (%s)",c, node, cfgfile?cfgfile:"[nil]");
     
-    xmlSetProp(node, (const xmlChar *)"click_command", mwp->click_command?mwp->click_command:"");
+    xmlSetProp(node, (const xmlChar *)"click_command",
+            mwp->click_command?mwp->click_command:"");
+    xmlSetProp(node, (const xmlChar *)"new_messages_command",
+            mwp->new_messages_command?mwp->new_messages_command:"");
     
     if(!cfgfile)
         return;
@@ -214,12 +227,29 @@ mailwatch_click_command_focusout_cb(GtkWidget *w, GdkEventFocus *evt,
     return FALSE;
 }
 
+static gboolean
+mailwatch_newmsg_command_focusout_cb(GtkWidget *w, GdkEventFocus *evt,
+        gpointer user_data)
+{
+    XfceMailwatchPlugin *mwp = user_data;
+    gchar *command;
+    
+    g_free(mwp->new_messages_command);
+    
+    command = gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1);
+    mwp->new_messages_command = g_strdup(command?command:"");
+    
+    return FALSE;
+}
+
 static void
 mailwatch_create_options(Control *c, GtkContainer *con, GtkWidget *done)
 {
     XfceMailwatchPlugin *mwp = c->data;
     GtkWidget *vbox, *hbox, *lbl, *entry;
     GtkContainer *cfg_page;
+    
+    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     
     vbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_widget_show(vbox);
@@ -242,8 +272,26 @@ mailwatch_create_options(Control *c, GtkContainer *con, GtkWidget *done)
         gtk_entry_set_text(GTK_ENTRY(entry), mwp->click_command);
     gtk_widget_show(entry);
     gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
+    gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), entry);
     g_signal_connect(G_OBJECT(entry), "focus-out-event",
             G_CALLBACK(mailwatch_click_command_focusout_cb), mwp);
+    
+    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    gtk_widget_show(hbox);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+    
+    lbl = gtk_label_new_with_mnemonic(_("_Run on new messages:"));
+    gtk_widget_show(lbl);
+    gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
+    
+    entry = gtk_entry_new();
+    if(mwp->new_messages_command)
+        gtk_entry_set_text(GTK_ENTRY(entry), mwp->new_messages_command);
+    gtk_widget_show(entry);
+    gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
+    gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), entry);
+    g_signal_connect(G_OBJECT(entry), "focus-out-event",
+            G_CALLBACK(mailwatch_newmsg_command_focusout_cb), mwp);
 }
 
 static void

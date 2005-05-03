@@ -28,6 +28,14 @@
 #include <string.h>
 #endif
 
+#ifdef HAVE_SYS_TYPES_H
+#include <sys/types.h>
+#endif
+
+#ifdef HAVE_SYS_STAT_H
+#include <sys/stat.h>
+#endif
+
 #include <glib.h>
 #include <gtk/gtk.h>
 
@@ -281,6 +289,8 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
     g_return_val_if_fail(mailwatch, FALSE);
     g_return_val_if_fail(mailwatch->config_file, FALSE);
     
+    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
+    
     config_file = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
             mailwatch->config_file, TRUE);
     if(!config_file)
@@ -291,6 +301,7 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
     
     rcfile = xfce_rc_simple_open(config_file_new, FALSE);
     if(!rcfile) {
+        g_critical(_("Unable to write config file '%s'"), config_file_new);
         g_free(config_file);
         g_free(config_file_new);
         return FALSE;
@@ -342,10 +353,16 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
     xfce_rc_close(rcfile);
     
     if(rename(config_file_new, config_file)) {
+        g_critical(_("Unable to write config file '%s'"), config_file);
+        unlink(config_file_new);
         g_free(config_file);
         g_free(config_file_new);
         return FALSE;
     }
+    
+    /* protect the file in case it has passwords in it */
+    if(chmod(config_file_new, 0600))
+        g_critical(_("Unable to set permissions on config file '%s'.  If this file contains passwords or other sensitive information, it may be readable by others on your system"), config_file);
     
     g_free(config_file);
     g_free(config_file_new);
@@ -470,6 +487,8 @@ config_run_addedit_window(const gchar *title, GtkWindow *parent,
     
     g_return_val_if_fail(title && mailbox && new_mailbox_name, FALSE);
     
+    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
+    
     cfg_box = mailbox->type->get_setup_page_func(mailbox);
     if(!cfg_box) {
         xfce_message_dialog(parent, _("Mailwatch"),
@@ -547,6 +566,8 @@ config_do_edit_window(GtkTreeSelection *sel, GtkWindow *parent)
     GtkTreeIter itr;
     gboolean ret = FALSE;
     
+    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
+    
     if(gtk_tree_selection_get_selected(sel, &model, &itr)) {
         gchar *mailbox_name = NULL, *win_title = NULL, *new_mailbox_name = NULL;
         XfceMailwatchMailboxData *mdata = NULL;
@@ -619,6 +640,8 @@ config_ask_new_mailbox_type(XfceMailwatch *mailwatch, GtkWindow *parent)
     XfceMailwatchMailboxType *new_mtype = NULL;
     GtkWidget *dlg, *topvbox, *lbl, *combo;
     GList *l;
+    
+    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     
     dlg = gtk_dialog_new_with_buttons(_("Select Mailbox Type"), parent,
             GTK_DIALOG_NO_SEPARATOR, GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
