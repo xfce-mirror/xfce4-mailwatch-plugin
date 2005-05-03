@@ -840,6 +840,15 @@ imap_config_add_btn_clicked_cb(GtkWidget *w, gpointer user_data)
             continue;
         }
         
+        if(!g_ascii_strcasecmp(name, "inbox")) {
+            g_free(name);
+            xfce_message_dialog(GTK_WINDOW(dlg), _("IMAP"),
+                        GTK_STOCK_DIALOG_INFO, _("Adding INBOX is unnecessary."),
+                        _("XfceMailcheck will automatically check your Inbox; there is no need to explicitly add it to the list."),
+                        GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
+            break;
+        }
+        
         gtk_list_store_append(ls, &itr);
         gtk_list_store_set(ls, &itr, 0, name, -1);
         
