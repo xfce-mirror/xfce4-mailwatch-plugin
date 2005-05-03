@@ -66,6 +66,7 @@
 #include <gtk/gtk.h>
 
 #include <libxfce4util/libxfce4util.h>
+#include <libxfcegui4/libxfcegui4.h>
 
 #include <gnutls/gnutls.h>
 #include <gcrypt.h>
@@ -570,6 +571,8 @@ imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
     if(new_messages < 0)
         new_messages = 0;
     
+    DBG("new message count in mailbox '%s' is %d", mailbox_name, new_messages);
+    
     return (guint)new_messages;
 #undef BUFSIZE
 }
@@ -793,21 +796,144 @@ imap_require_secure_chk_cb(GtkToggleButton *tb, gpointer user_data)
     imailbox->require_ssl = gtk_toggle_button_get_active(tb);
 }
 
+static void
+imap_config_add_btn_clicked_cb(GtkWidget *w, gpointer user_data)
+{
+    XfceMailwatchIMAPMailbox *imailbox = user_data;
+    GtkWindow *toplevel;
+    GtkWidget *dlg, *hbox, *lbl, *entry;
+    
+    toplevel = GTK_WINDOW(gtk_widget_get_toplevel(w));
+    dlg = gtk_dialog_new_with_buttons(_("Add Mailbox"), toplevel,
+            GTK_DIALOG_NO_SEPARATOR|GTK_DIALOG_DESTROY_WITH_PARENT,
+            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, GTK_STOCK_ADD,
+            GTK_RESPONSE_ACCEPT, NULL);
+    
+    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    gtk_container_set_border_width(GTK_CONTAINER(hbox), BORDER/2);
+    gtk_widget_show(hbox);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), hbox, FALSE, FALSE, 0);
+    
+    lbl = gtk_label_new_with_mnemonic(_("Mailbox _name:"));
+    gtk_widget_show(lbl);
+    gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
+    
+    entry = gtk_entry_new();
+    gtk_widget_show(entry);
+    gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
+    gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), entry);
+    
+    while(gtk_dialog_run(GTK_DIALOG(dlg)) == GTK_RESPONSE_ACCEPT) {
+        GtkWidget *treeview = g_object_get_data(G_OBJECT(w),
+                "mailwatch-treeview");
+        GtkListStore *ls = GTK_LIST_STORE(gtk_tree_view_get_model(GTK_TREE_VIEW(treeview)));
+        GtkTreeIter itr;
+        gchar *name;
+        
+        name = gtk_editable_get_chars(GTK_EDITABLE(entry), 0, -1);
+        if(!name || !*name) {
+            g_free(name);
+            xfce_message_dialog(GTK_WINDOW(dlg), _("IMAP"),
+                        GTK_STOCK_DIALOG_ERROR, _("Mailbox name required."),
+                        _("Please enter the name of a mailbox that receives new mail."),
+                        GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
+            continue;
+        }
+        
+        gtk_list_store_append(ls, &itr);
+        gtk_list_store_set(ls, &itr, 0, name, -1);
+        
+        g_mutex_lock(imailbox->config_mx);
+        imailbox->mailboxes_to_check = g_list_append(imailbox->mailboxes_to_check, name);
+        g_mutex_unlock(imailbox->config_mx);
+        
+        break;
+    }
+    
+    gtk_widget_destroy(dlg);
+}
+static void
+imap_config_remove_btn_clicked_cb(GtkWidget *w, gpointer user_data)
+{
+    XfceMailwatchIMAPMailbox *imailbox = user_data;
+    GtkWidget *treeview = g_object_get_data(G_OBJECT(w), "mailwatch-treeview");
+    GtkTreeSelection *sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview));
+    GList *selected, *l, *lmbox;
+    GtkTreeModel *model = NULL;
+    GtkTreeIter itr;
+    gchar *name = NULL;
+    
+    selected = gtk_tree_selection_get_selected_rows(sel, &model);
+    if(!selected)
+        return;
+    
+    g_mutex_lock(imailbox->config_mx);
+    
+    for(l = selected; l; l = l->next) {
+        GtkTreePath *path = l->data;
+        
+        if(gtk_tree_model_get_iter(model, &itr, path)) {
+            gtk_tree_model_get(model, &itr, 0, &name, -1);
+            gtk_list_store_remove(GTK_LIST_STORE(model), &itr);
+            
+            if((lmbox = g_list_find_custom(imailbox->mailboxes_to_check, name,
+                    (GCompareFunc)strcmp)))
+            {
+                g_free(lmbox->data);
+                imailbox->mailboxes_to_check =
+                        g_list_delete_link(imailbox->mailboxes_to_check, lmbox);
+            }
+            g_free(name);
+        }
+    }
+    
+    g_mutex_unlock(imailbox->config_mx);
+}
+
+static gboolean
+imap_config_set_button_sensitive(GtkTreeView *treeview, GdkEventButton *evt, 
+        GtkWidget *w)
+{
+    GtkTreeSelection *sel = gtk_tree_view_get_selection(treeview);
+    
+    if(gtk_tree_selection_count_selected_rows(sel) > 0)
+        gtk_widget_set_sensitive(w, TRUE);
+    else
+        gtk_widget_set_sensitive(w, FALSE);
+    
+    return FALSE;
+}
+
 static GtkContainer *
 imap_get_setup_page(XfceMailwatchMailbox *mailbox)
 {
     XfceMailwatchIMAPMailbox *imailbox = XFCE_MAILWATCH_IMAP_MAILBOX(mailbox);
-    GtkWidget *topvbox, *hbox, *lbl, *entry, *chk;
+    GtkWidget *topvbox, *vbox, *hbox, *frame, *lbl, *entry, *chk, *sw,
+            *treeview, *btn;
     GtkSizeGroup *sg;
+    GtkListStore *ls;
+    GtkTreeIter itr;
+    GList *l;
+    GtkCellRenderer *render;
+    GtkTreeViewColumn *col;
+    GtkTreeSelection *sel;
     
     topvbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_widget_show(topvbox);
     
+    frame = xfce_framebox_new(_("IMAP Server"), TRUE);
+    gtk_widget_show(frame);
+    gtk_box_pack_start(GTK_BOX(topvbox), frame, FALSE, FALSE, 0);
+    
     sg = gtk_size_group_new(GTK_SIZE_GROUP_HORIZONTAL);
+    
+    vbox = gtk_vbox_new(FALSE, BORDER/2);
+    gtk_widget_show(vbox);
+    xfce_framebox_add(XFCE_FRAMEBOX(frame), vbox);
     
     hbox = gtk_hbox_new(FALSE, BORDER/2);
     gtk_widget_show(hbox);
-    gtk_box_pack_start(GTK_BOX(topvbox), hbox, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
     
     lbl = gtk_label_new_with_mnemonic(_("_Mail server:"));
     gtk_misc_set_alignment(GTK_MISC(lbl), 0.0, 0.5);
@@ -826,7 +952,7 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
     
     hbox = gtk_hbox_new(FALSE, BORDER/2);
     gtk_widget_show(hbox);
-    gtk_box_pack_start(GTK_BOX(topvbox), hbox, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
     
     lbl = gtk_label_new_with_mnemonic(_("_Username:"));
     gtk_misc_set_alignment(GTK_MISC(lbl), 0.0, 0.5);
@@ -845,7 +971,7 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
     
     hbox = gtk_hbox_new(FALSE, BORDER/2);
     gtk_widget_show(hbox);
-    gtk_box_pack_start(GTK_BOX(topvbox), hbox, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
     
     lbl = gtk_label_new_with_mnemonic(_("_Password:"));
     gtk_misc_set_alignment(GTK_MISC(lbl), 0.0, 0.5);
@@ -866,9 +992,69 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
     chk = gtk_check_button_new_with_mnemonic(_("_Require secure connection"));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(chk), imailbox->require_ssl);
     gtk_widget_show(chk);
-    gtk_box_pack_start(GTK_BOX(topvbox), chk, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(vbox), chk, FALSE, FALSE, 0);
     g_signal_connect(G_OBJECT(chk), "toggled",
             G_CALLBACK(imap_require_secure_chk_cb), imailbox);
+    
+    frame = xfce_framebox_new(_("Mailboxes"), TRUE);
+    gtk_widget_show(frame);
+    gtk_box_pack_start(GTK_BOX(topvbox), frame, TRUE, TRUE, 0);
+    
+    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    gtk_widget_show(hbox);
+    xfce_framebox_add(XFCE_FRAMEBOX(frame), hbox);
+    
+    sw = gtk_scrolled_window_new(NULL, NULL);
+    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw), GTK_POLICY_NEVER,
+            GTK_POLICY_AUTOMATIC);
+    gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(sw),
+            GTK_SHADOW_ETCHED_IN);
+    gtk_widget_show(sw);
+    gtk_box_pack_start(GTK_BOX(hbox), sw, TRUE, TRUE, 0);
+    
+    ls = gtk_list_store_new(1, G_TYPE_STRING);
+    for(l = imailbox->mailboxes_to_check; l; l = l->next) {
+        gtk_list_store_append(ls, &itr);
+        gtk_list_store_set(ls, &itr, 0, l->data, -1);
+    }
+    
+    treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(ls));
+    gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(treeview), FALSE);
+    gtk_widget_add_events(treeview, GDK_BUTTON_PRESS|GDK_BUTTON_RELEASE);
+    
+    render = gtk_cell_renderer_text_new();
+    col = gtk_tree_view_column_new_with_attributes("mailbox-name", render,
+            "text", 0, NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW(treeview), col);
+    
+    gtk_widget_show(treeview);
+    gtk_container_add(GTK_CONTAINER(sw), treeview);
+    gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), treeview);
+    
+    sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview));
+    gtk_tree_selection_set_mode(sel, GTK_SELECTION_MULTIPLE);
+    gtk_tree_selection_unselect_all(sel);
+    
+    vbox = gtk_vbox_new(FALSE, BORDER/2);
+    gtk_widget_show(vbox);
+    gtk_box_pack_start(GTK_BOX(hbox), vbox, FALSE, FALSE, 0);
+    
+    btn = gtk_button_new_from_stock(GTK_STOCK_ADD);
+    gtk_widget_show(btn);
+    gtk_box_pack_start(GTK_BOX(vbox), btn, FALSE, FALSE, 0);
+    g_object_set_data(G_OBJECT(btn), "mailwatch-treeview", treeview);
+    g_signal_connect(G_OBJECT(btn), "clicked",
+            G_CALLBACK(imap_config_add_btn_clicked_cb), imailbox);
+    
+    btn = gtk_button_new_from_stock(GTK_STOCK_REMOVE);
+    gtk_widget_set_sensitive(btn, FALSE);
+    gtk_widget_show(btn);
+    gtk_box_pack_start(GTK_BOX(vbox), btn, FALSE, FALSE, 0);
+    g_object_set_data(G_OBJECT(btn), "mailwatch-treeview", treeview);
+    g_signal_connect_after(G_OBJECT(treeview), "button-release-event",
+            G_CALLBACK(imap_config_set_button_sensitive), btn);
+    g_signal_connect(G_OBJECT(btn), "clicked",
+            G_CALLBACK(imap_config_remove_btn_clicked_cb), imailbox);
     
     return GTK_CONTAINER(topvbox);
 }
@@ -884,6 +1070,8 @@ imap_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
     
     for(l = params; l; l = l->next) {
         XfceMailwatchParam *param = l->data;
+        
+        DBG("restoring param: '%s'='%s'", param->key, param->value);
         
         if(!strcmp(param->key, "host"))
             imailbox->host = g_strdup(param->value);
