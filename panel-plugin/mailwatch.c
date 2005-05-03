@@ -918,7 +918,7 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
     gtk_widget_show(lbl);
     gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
     
-    sbtn = gtk_spin_button_new_with_range(0.0, 1440.0, 1.0);
+    sbtn = gtk_spin_button_new_with_range(1.0, 1440.0, 1.0);
     gtk_spin_button_set_numeric(GTK_SPIN_BUTTON(sbtn), TRUE);
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(sbtn), FALSE);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(sbtn), mailwatch->watch_timeout/60);
