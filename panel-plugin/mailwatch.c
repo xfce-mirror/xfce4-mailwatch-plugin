@@ -361,8 +361,8 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
     }
     
     /* protect the file in case it has passwords in it */
-    if(chmod(config_file_new, 0600))
-        g_critical(_("Unable to set permissions on config file '%s'.  If this file contains passwords or other sensitive information, it may be readable by others on your system"), config_file);
+    if(chmod(config_file, 0600))
+        g_critical(_("Unable to set permissions on config file '%s'.  If this file contains passwords or other sensitive information, it may be readable by others on your system."), config_file);
     
     g_free(config_file);
     g_free(config_file_new);
