@@ -545,29 +545,31 @@ imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
     gint new_messages = 0;
     gchar buf[BUFSIZE+1], *p;
     
+    TRACE("entering, folder %s", mailbox_name);
+    
     /* ask the server to look at the mailbox */
     g_snprintf(buf, BUFSIZE, "%05d EXAMINE %s\r\n", ++imailbox->imap_tag,
             mailbox_name);
     if(imap_send(imailbox, buf) != strlen(buf))
         return 0;
+    DBG("  successfully sent cmd '%s'", buf);
     
     /* grab the response; there should be a line like "* # RECENT" */
     if(imap_recv(imailbox, buf, BUFSIZE) < 0)
         return 0;
+    DBG("  successfully got reply '%s'", buf);
     
-    if(!(p=strstr(buf, " RECENT")))
-        return 0;
-    p--;
-    if(p < buf+1 || *p != ' ')
+    if(!(p=strstr(buf, " RECENT")) || p == buf)
         return 0;
     *p = 0;
-    p--;
+    DBG("  found 'RECENT' text");
     
-    while(p >= buf && *p != ' ')
+    while(p > buf && *p != ' ')
         p--;
     p++;
+    DBG(" moved pointer to beginning of number '%s'", p);
     
-    new_messages = atoi(p+1);
+    new_messages = atoi(p);
     if(new_messages < 0)
         new_messages = 0;
     
@@ -609,8 +611,11 @@ imap_check_mail(XfceMailwatchIMAPMailbox *imailbox)
     }
     
     new_messages = imap_check_mailbox(imailbox, "INBOX");
-    for(l = mailboxes_to_check; l; l = l->next)
+    DBG("checked inbox, %d new messages", new_messages);
+    for(l = mailboxes_to_check; l; l = l->next) {
         new_messages += imap_check_mailbox(imailbox, l->data);
+        DBG("checked mail folder %s, total is now %d new messages", (gchar *)l->data, new_messages);
+    }
     
     xfce_mailwatch_signal_new_messages(imailbox->mailwatch,
             XFCE_MAILWATCH_MAILBOX(imailbox), new_messages);
