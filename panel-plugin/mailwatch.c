@@ -189,8 +189,6 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch)
             DEFAULT_TIMEOUT);
     nmailboxes = xfce_rc_read_int_entry(rcfile, "nmailboxes", 0);
     
-    DBG("nmailboxes = %d", nmailboxes);
-    
     /* lock mutex - doesn't matter yet, but once we start creating mailboxes,
      * it will. */
     g_mutex_lock(mailwatch->mailboxes_mx);
@@ -204,7 +202,6 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch)
         
         g_snprintf(buf, 32, "mailbox_name%d", i);
         mailbox_name = xfce_rc_read_entry(rcfile, buf, NULL);
-        DBG("first mailbox is '%s'", mailbox_name);
         if(!mailbox_name)
             continue;
         
@@ -241,25 +238,17 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch)
         
         for(j = 0; cfg_entries[j]; j++) {
             XfceMailwatchParam *param;
-            gchar **keyvalue = g_strsplit(cfg_entries[j], "=", 2);
+            const gchar *value;
             
-            if(!keyvalue)
-                continue;
-            if(!keyvalue[0] || !keyvalue[1]) {
-                g_strfreev(keyvalue);
-                continue;
-            }
-            
-            DBG("got key='%s', value='%s'", keyvalue[0], keyvalue[1]);
+            value = xfce_rc_read_entry(rcfile, cfg_entries[j], NULL);
             
             param = g_new(XfceMailwatchParam, 1);
-            param->key = keyvalue[0];
-            param->value = keyvalue[1];
-            g_free(keyvalue);  /* yes, not using g_strfreev() is correct */
+            param->key = cfg_entries[j];
+            param->value = g_strdup(value);
             
             config_params = g_list_append(config_params, param);
         }
-        g_strfreev(cfg_entries);
+        g_free(cfg_entries);  /* yes, not using g_strfreev() is correct */
         
         mailbox->type->restore_param_list_func(mailbox, config_params);
         mailbox->type->set_activated_func(mailbox, TRUE);
@@ -336,7 +325,9 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
         for(m = config_data; m; m = m->next) {
             XfceMailwatchParam *param = m->data;
             
-            xfce_rc_write_entry(rcfile, param->key, param->value);
+            if(param->key)
+                xfce_rc_write_entry(rcfile, param->key,
+                        param->value?param->value:"");
             g_free(param->key);
             g_free(param->value);
             g_free(param);

@@ -1071,8 +1071,6 @@ imap_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
     for(l = params; l; l = l->next) {
         XfceMailwatchParam *param = l->data;
         
-        DBG("restoring param: '%s'='%s'", param->key, param->value);
-        
         if(!strcmp(param->key, "host"))
             imailbox->host = g_strdup(param->value);
         else if(!strcmp(param->key, "username"))

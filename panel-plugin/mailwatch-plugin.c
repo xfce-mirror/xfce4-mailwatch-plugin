@@ -134,6 +134,8 @@ mailwatch_read_config(Control *c, xmlNodePtr node)
     xmlChar *value;
     gchar *cfgfile;
     
+    DBG("entering");
+    
     value = xmlGetProp(node, (const xmlChar *)"cfgfile_suffix");
     if(!value) {
         GTimeVal gtv = { 0, 0 };
@@ -147,6 +149,7 @@ mailwatch_read_config(Control *c, xmlNodePtr node)
     }
     
     xfce_mailwatch_set_config_file(mwp->mailwatch, cfgfile);
+    DBG("cfgfile = %s", cfgfile);
     xfce_mailwatch_load_config(mwp->mailwatch);
     g_free(cfgfile);
     
@@ -160,6 +163,8 @@ mailwatch_write_config(Control *c, xmlNodePtr node)
     XfceMailwatchPlugin *mwp = c->data;
     const gchar *cfgfile = xfce_mailwatch_get_config_file(mwp->mailwatch);
     gchar *p, *cfgfile_suffix;
+    
+    DBG("entering(%p, %p) (%s)",c, node, cfgfile?cfgfile:"[nil]");
     
     if(!cfgfile)
         return;
