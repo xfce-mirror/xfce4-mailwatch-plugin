@@ -60,8 +60,8 @@ struct _XfceMailwatch
     
     GMutex *mailboxes_mx;
     
-    GList *tc_callbacks;
-    GList *tc_data;
+    GList *xm_callbacks[XFCE_MAILWATCH_SIGNAL_NEW_MESSAGE_COUNT_CHANGED+1];
+    GList *xm_data[XFCE_MAILWATCH_SIGNAL_NEW_MESSAGE_COUNT_CHANGED+1];
     
     /* config GUI */
     GtkWidget *config_treeview;
@@ -370,11 +370,12 @@ xfce_mailwatch_set_timeout(XfceMailwatch *mailwatch, guint seconds)
     
     mailwatch->watch_timeout = seconds;
     
-    for(cl = mailwatch->tc_callbacks, dl = mailwatch->tc_data;
+    for(cl = mailwatch->xm_callbacks[XFCE_MAILWATCH_SIGNAL_TIMEOUT_CHANGED],
+                dl = mailwatch->xm_data[XFCE_MAILWATCH_SIGNAL_TIMEOUT_CHANGED];
         cl && dl;
         cl = cl->next, dl = dl->next)
     {
-        XMTimeoutChangedCallback callback = cl->data;
+        XMCallback callback = cl->data;
         gpointer user_data = dl->data;
         
         callback(mailwatch, mailwatch->watch_timeout, user_data);
@@ -404,11 +405,34 @@ xfce_mailwatch_get_new_messages(XfceMailwatch *mailwatch)
     return num_new_messages;
 }
 
+static gboolean
+mailwatch_signal_new_messages_idled(gpointer data)
+{
+    XfceMailwatch *mailwatch = data;
+    GList *cl, *dl;
+    guint new_messages = xfce_mailwatch_get_new_messages(mailwatch);
+    
+    for(cl = mailwatch->xm_callbacks[XFCE_MAILWATCH_SIGNAL_NEW_MESSAGE_COUNT_CHANGED],
+                dl = mailwatch->xm_data[XFCE_MAILWATCH_SIGNAL_NEW_MESSAGE_COUNT_CHANGED];
+        cl && dl;
+        cl = cl->next, dl = dl->next)
+    {
+        XMCallback callback = cl->data;
+        gpointer user_data = dl->data;
+        
+        if(callback)
+            callback(mailwatch, new_messages, user_data);
+    }
+    
+    return FALSE;
+}
+
 void
 xfce_mailwatch_signal_new_messages(XfceMailwatch *mailwatch,
         XfceMailwatchMailbox *mailbox, guint num_new_messages)
 {
     GList *l;
+    gboolean do_signal = FALSE;
     
     g_return_if_fail(mailwatch && mailbox);
     
@@ -420,13 +444,19 @@ xfce_mailwatch_signal_new_messages(XfceMailwatch *mailwatch,
         XfceMailwatchMailboxData *mdata = l->data;
         
         if(mdata->mailbox == mailbox) {
-            mdata->num_new_messages = num_new_messages;
+            if(mdata->num_new_messages != num_new_messages) {
+                mdata->num_new_messages = num_new_messages;
+                do_signal = TRUE;
+            }
             break;
         }
     }
     
     /* and we're done, unlock */
     g_mutex_unlock(mailwatch->mailboxes_mx);
+    
+    if(do_signal)
+        g_idle_add(mailwatch_signal_new_messages_idled, mailwatch);
 }
 
 static gboolean
@@ -798,14 +828,16 @@ config_timeout_spinbutton_changed_cb(GtkSpinButton *sb, GdkEventFocus *evt,
         /* and i'm spent */
         g_mutex_unlock(mailwatch->mailboxes_mx);
         
-        for(cl = mailwatch->tc_callbacks, dl = mailwatch->tc_data;
+        for(cl = mailwatch->xm_callbacks[XFCE_MAILWATCH_SIGNAL_TIMEOUT_CHANGED],
+                    dl = mailwatch->xm_data[XFCE_MAILWATCH_SIGNAL_TIMEOUT_CHANGED];
             cl && dl;
             cl = cl->next, dl = dl->next)
         {
-            XMTimeoutChangedCallback callback = cl->data;
+            XMCallback callback = cl->data;
             gpointer user_data = dl->data;
             
-            callback(mailwatch, mailwatch->watch_timeout, user_data);
+            if(callback)
+                callback(mailwatch, mailwatch->watch_timeout, user_data);
         }
     }
     
@@ -936,29 +968,38 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
 }
 
 void
-xfce_mailwatch_hook_timeout_change(XfceMailwatch *mailwatch,
-        XMTimeoutChangedCallback callback, gpointer user_data)
+xfce_mailwatch_signal_connect(XfceMailwatch *mailwatch,
+        XfceMailwatchSignal signal, XMCallback callback, gpointer user_data)
 {
-    g_return_if_fail(mailwatch && callback);
+    g_return_if_fail(mailwatch && callback
+            && signal <= XFCE_MAILWATCH_SIGNAL_NEW_MESSAGE_COUNT_CHANGED);
     
-    mailwatch->tc_callbacks = g_list_append(mailwatch->tc_callbacks, callback);
-    mailwatch->tc_data = g_list_append(mailwatch->tc_data, user_data);
+    mailwatch->xm_callbacks[signal] =
+            g_list_append(mailwatch->xm_callbacks[signal], callback);
+    mailwatch->xm_data[signal] = g_list_append(mailwatch->xm_data[signal],
+            user_data);
 }
 
 void
-xfce_mailwatch_unhook_timeout_change(XfceMailwatch *mailwatch,
-        XMTimeoutChangedCallback callback, gpointer user_data)
+xfce_mailwatch_signal_disconnect(XfceMailwatch *mailwatch,
+        XfceMailwatchSignal signal, XMCallback callback, gpointer user_data)
 {
     GList *cl, *dl;
-    g_return_if_fail(mailwatch && callback);
+    g_return_if_fail(mailwatch && callback
+            && signal <= XFCE_MAILWATCH_SIGNAL_NEW_MESSAGE_COUNT_CHANGED);
     
-    for(cl = mailwatch->tc_callbacks, dl = mailwatch->tc_data;
+    for(cl = mailwatch->xm_callbacks[signal], dl = mailwatch->xm_data[signal];
         cl && dl;
         cl = cl->next, dl = dl->next)
     {
-        XMTimeoutChangedCallback callback = cl->data;
-        gpointer user_data = dl->data;
+        XMCallback a_callback = cl->data;
         
-        callback(mailwatch, mailwatch->watch_timeout, user_data);
+        if(callback == a_callback) {
+            mailwatch->xm_callbacks[signal] =
+                    g_list_delete_link(mailwatch->xm_callbacks[signal], cl);
+            mailwatch->xm_data[signal] =
+                    g_list_delete_link(mailwatch->xm_data[signal], dl);
+            break;
+        }
     }
 }

@@ -32,6 +32,8 @@
 #include "mailwatch.h"
 #include "mailwatch-mailbox.h"
 
+#define BORDER 8
+
 typedef struct
 {
     XfceMailwatch *mailwatch;
@@ -46,17 +48,16 @@ typedef struct
     
     GtkTooltips *tooltip;
     
-    guint check_timeout_id;
+    gchar *click_command;
 } XfceMailwatchPlugin;
 
 
-static gboolean
-mailwatch_check_timeout(gpointer user_data)
+static void
+mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, guint new_messages,
+        gpointer user_data)
 {
     XfceMailwatchPlugin *mwp = user_data;
-    guint new_messages;
     
-    new_messages = xfce_mailwatch_get_new_messages(mwp->mailwatch);
     if(new_messages == 0 && mwp->newmail_icon_visible) {
         xfce_scaled_image_set_from_pixbuf(XFCE_SCALED_IMAGE(mwp->image),
                 mwp->pix_normal);
@@ -82,20 +83,26 @@ mailwatch_check_timeout(gpointer user_data)
             mwp->new_messages = new_messages;
         }
     }
-
-    return TRUE;
 }
 
-static void
-mailwatch_timeout_changed_cb(XfceMailwatch *mailwatch, guint timeout,
+static gboolean
+mailwatch_button_release_cb(GtkWidget *w, GdkEventButton *evt,
         gpointer user_data)
 {
     XfceMailwatchPlugin *mwp = user_data;
     
-    if(mwp->check_timeout_id)
-        g_source_remove(mwp->check_timeout_id);
-    mwp->check_timeout_id = g_timeout_add(timeout * 1000,
-            (GSourceFunc)mailwatch_check_timeout, mwp);
+    switch(evt->button) {
+        case 1:  /* left */
+            if(mwp->click_command && *mwp->click_command)
+                xfce_exec(mwp->click_command, FALSE, FALSE, NULL);
+            break;
+        
+        case 2:  /* middle */
+            /* do something else */
+            break;
+    }
+    
+    return FALSE;
 }
 
 
@@ -117,13 +124,18 @@ mailwatch_create(Control *c)
     gtk_button_set_relief(GTK_BUTTON(mwp->button), GTK_RELIEF_NONE);
     gtk_widget_show(mwp->button);
     gtk_container_add(GTK_CONTAINER(c->base), mwp->button);
+    g_signal_connect(mwp->button, "button-release-event",
+            G_CALLBACK(mailwatch_button_release_cb), mwp);
+    gtk_tooltips_set_tip(mwp->tooltip, mwp->button, _("No new mail"), NULL);
     
     mwp->image = xfce_scaled_image_new();
     gtk_widget_show(mwp->image);
     gtk_container_add(GTK_CONTAINER(mwp->button), mwp->image);
     
-    xfce_mailwatch_hook_timeout_change(mwp->mailwatch,
-            mailwatch_timeout_changed_cb, mwp);
+    xfce_mailwatch_signal_connect(mwp->mailwatch,
+            XFCE_MAILWATCH_SIGNAL_NEW_MESSAGE_COUNT_CHANGED,
+            mailwatch_new_messages_changed_cb, mwp);
+    
     return TRUE;
 }
 
@@ -135,6 +147,12 @@ mailwatch_read_config(Control *c, xmlNodePtr node)
     gchar *cfgfile;
     
     DBG("entering");
+    
+    value = xmlGetProp(node, (const xmlChar *)"click_command");
+    if(value) {
+        mwp->click_command = g_strdup(value);
+        xmlFree(value);
+    }
     
     value = xmlGetProp(node, (const xmlChar *)"cfgfile_suffix");
     if(!value) {
@@ -152,9 +170,6 @@ mailwatch_read_config(Control *c, xmlNodePtr node)
     DBG("cfgfile = %s", cfgfile);
     xfce_mailwatch_load_config(mwp->mailwatch);
     g_free(cfgfile);
-    
-    mwp->check_timeout_id = g_timeout_add(xfce_mailwatch_get_timeout(mwp->mailwatch),
-            (GSourceFunc)mailwatch_check_timeout, mwp);
 }
 
 static void
@@ -165,6 +180,8 @@ mailwatch_write_config(Control *c, xmlNodePtr node)
     gchar *p, *cfgfile_suffix;
     
     DBG("entering(%p, %p) (%s)",c, node, cfgfile?cfgfile:"[nil]");
+    
+    xmlSetProp(node, (const xmlChar *)"click_command", mwp->click_command?mwp->click_command:"");
     
     if(!cfgfile)
         return;
@@ -182,26 +199,57 @@ mailwatch_write_config(Control *c, xmlNodePtr node)
     g_free(cfgfile_suffix);
 }
 
+static gboolean
+mailwatch_click_command_focusout_cb(GtkWidget *w, GdkEventFocus *evt,
+        gpointer user_data)
+{
+    XfceMailwatchPlugin *mwp = user_data;
+    gchar *command;
+    
+    g_free(mwp->click_command);
+    
+    command = gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1);
+    mwp->click_command = g_strdup(command?command:"");
+    
+    return FALSE;
+}
+
 static void
 mailwatch_create_options(Control *c, GtkContainer *con, GtkWidget *done)
 {
     XfceMailwatchPlugin *mwp = c->data;
+    GtkWidget *vbox, *hbox, *lbl, *entry;
     GtkContainer *cfg_page;
+    
+    vbox = gtk_vbox_new(FALSE, BORDER/2);
+    gtk_widget_show(vbox);
+    gtk_container_add(con, vbox);
     
     cfg_page = xfce_mailwatch_get_configuration_page(mwp->mailwatch);
     if(cfg_page)
-        gtk_container_add(con, GTK_WIDGET(cfg_page));
+        gtk_box_pack_start(GTK_BOX(vbox), GTK_WIDGET(cfg_page), FALSE, FALSE, 0);
+    
+    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    gtk_widget_show(hbox);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+    
+    lbl = gtk_label_new_with_mnemonic(_("_Run on click:"));
+    gtk_widget_show(lbl);
+    gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
+    
+    entry = gtk_entry_new();
+    if(mwp->click_command)
+        gtk_entry_set_text(GTK_ENTRY(entry), mwp->click_command);
+    gtk_widget_show(entry);
+    gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
+    g_signal_connect(G_OBJECT(entry), "focus-out-event",
+            G_CALLBACK(mailwatch_click_command_focusout_cb), mwp);
 }
 
 static void
 mailwatch_free(Control *c)
 {
     XfceMailwatchPlugin *mwp = c->data;
-    
-    if(mwp->check_timeout_id) {
-        g_source_remove(mwp->check_timeout_id);
-        mwp->check_timeout_id = 0;
-    }
     
     xfce_mailwatch_destroy(mwp->mailwatch);
     
