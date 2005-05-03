@@ -996,7 +996,7 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
     g_signal_connect(G_OBJECT(chk), "toggled",
             G_CALLBACK(imap_require_secure_chk_cb), imailbox);
     
-    frame = xfce_framebox_new(_("Mailboxes"), TRUE);
+    frame = xfce_framebox_new(_("New Mail Folders"), TRUE);
     gtk_widget_show(frame);
     gtk_box_pack_start(GTK_BOX(topvbox), frame, TRUE, TRUE, 0);
     
@@ -1170,6 +1170,7 @@ imap_mailbox_free(XfceMailwatchMailbox *mailbox)
 }
 
 XfceMailwatchMailboxType builtin_mailbox_type_imap = {
+    "imap",
     N_("Remote IMAP Mailbox"),
     N_("The IMAP plugin can connect to a remote mail server that supports the IMAP protocol, optionally using SSL for link protection."),
     

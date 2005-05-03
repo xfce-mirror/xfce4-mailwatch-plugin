@@ -143,6 +143,7 @@ typedef void (*FreeMailboxFunc)(XfceMailwatchMailbox *mailbox);
 
 /**
  * XfceMailwatchMailboxType:
+ * @id: A short string ID to identify the mailbox type in config files.
  * @name: A short name for the mailbox type, e.g., "IMAP".
  * @description: A longer description of the mailbox type.
  * @new_mailbox_func: A pointer to a function of type #NewMailboxFunc.
@@ -154,6 +155,7 @@ typedef void (*FreeMailboxFunc)(XfceMailwatchMailbox *mailbox);
  **/
 struct _XfceMailwatchMailboxType
 {
+    gchar *id;
     gchar *name;
     gchar *description;
 

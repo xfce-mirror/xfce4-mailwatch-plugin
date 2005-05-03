@@ -432,6 +432,7 @@ mbox_timeout_changed( XfceMailwatchMailbox *mailbox )
 }
 
 XfceMailwatchMailboxType    builtin_mailbox_type_mbox = {
+    "mbox",
     N_( "Local Mbox spool" ),
     N_( "Mbox plugin watches a local mbox-type mail spool for new messages." ),
     mbox_new,
