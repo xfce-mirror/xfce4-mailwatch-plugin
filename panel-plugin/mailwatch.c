@@ -189,12 +189,14 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch)
             DEFAULT_TIMEOUT);
     nmailboxes = xfce_rc_read_int_entry(rcfile, "nmailboxes", 0);
     
+    DBG("nmailboxes = %d", nmailboxes);
+    
     /* lock mutex - doesn't matter yet, but once we start creating mailboxes,
      * it will. */
     g_mutex_lock(mailwatch->mailboxes_mx);
     
     for(i = 0; i < nmailboxes; i++) {
-        const gchar *mailbox_type, *mailbox_name;
+        const gchar *mailbox_id, *mailbox_name;
         XfceMailwatchMailbox *mailbox = NULL;
         XfceMailwatchMailboxData *mdata;
         gchar **cfg_entries;
@@ -202,17 +204,22 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch)
         
         g_snprintf(buf, 32, "mailbox_name%d", i);
         mailbox_name = xfce_rc_read_entry(rcfile, buf, NULL);
+        DBG("first mailbox is '%s'", mailbox_name);
         if(!mailbox_name)
             continue;
         
         g_snprintf(buf, 32, "mailbox%d", i);
-        mailbox_type = xfce_rc_read_entry(rcfile, buf, NULL);
-        if(!mailbox_type)
+        mailbox_id = xfce_rc_read_entry(rcfile, buf, NULL);
+        if(!mailbox_id)
             continue;
+        
+        if(!xfce_rc_has_group(rcfile, buf))
+            continue;
+        xfce_rc_set_group(rcfile, buf);
         
         for(l = mailwatch->mailbox_types; l; l = l->next) {
             XfceMailwatchMailboxType *mtype = l->data;
-            if(!strcmp(mtype->name, mailbox_type)) {
+            if(!strcmp(mtype->id, mailbox_id)) {
                 mailbox = mtype->new_mailbox_func(mailwatch, mtype);
                 if(!mailbox->type)
                     mailbox->type = mtype;
@@ -242,6 +249,8 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch)
                 g_strfreev(keyvalue);
                 continue;
             }
+            
+            DBG("got key='%s', value='%s'", keyvalue[0], keyvalue[1]);
             
             param = g_new(XfceMailwatchParam, 1);
             param->key = keyvalue[0];
@@ -310,7 +319,7 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
         XfceMailwatchMailboxData *mdata = l->data;
         
         g_snprintf(buf, 32, "mailbox%d", i);
-        xfce_rc_write_entry(rcfile, buf, mdata->mailbox->type->name);
+        xfce_rc_write_entry(rcfile, buf, mdata->mailbox->type->id);
         g_snprintf(buf, 32, "mailbox_name%d", i);
         xfce_rc_write_entry(rcfile, buf, mdata->mailbox_name);
     }
