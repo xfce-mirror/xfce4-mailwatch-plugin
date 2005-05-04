@@ -1,2 +1,29 @@
-The Mailwatch plugin will be awesome.  For now, it doesn't do much.  In fact,
-it probably doesn't even compile.  Patience.
++------------------------+
+| Xfce4 Mailwatch Plugin |
++------------------------+
+
+The Xfce4 Mailwatch Plugin is a multi-protocol, multi-mailbox mail watcher.
+Currently, the protocols supported are:
+  * IMAP (SSL/TLS and cleartext)
+  * Mbox mail spool (local)
+  * Maildir mail spool (local)
+POP3 support is planned.
+
+Random list of features:
+  * Multiple folder checking support for IMAP.
+  * Independent check intervals for each mailbox (only implemented on IMAP).
+  * Threaded design; xfce4-panel UI should never freeze or block.
+  * Informative button tooltip that tells you the number of new messages in
+    each mailbox.
+  * Optionally run a command when new mail arrives, or when the panel button
+    is clicked.
+
+Currently, gnutls 1.2.0 or greater is required.  This requirement may be
+made optional in the future; however, lack of this library will force passwords
+to be sent in the clear, and is not recommended.  This plugin should work
+with any Xfce version from 4.2.0 onwards.
+
+Please use the Xfce general discussion list if you have problems:
+http://foo-projects.org/mailman/listinfo/xfce
+Development discussion (if any) takes place on the xfce4-dev list:
+http://foo-projects.org/mailman/listinfo/xfce4-dev
