@@ -1,3 +1,282 @@
+2005-05-04 20:48  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/README: useful readmes are... useful.
+
+2005-05-04 07:39  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-plugin.c: fix
+	  tooltip formatting
+
+2005-05-04 07:36  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-plugin.c: plug
+	  memleak, only put mailbox names in the tooltip if they have new
+	  messages
+
+2005-05-04 07:29  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-imap.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox.h: use
+	  SEARCH UNSEEN to find unread messages, rather than relying on ##
+	  RECENT on EXAMINE, as the latter is quite unreliable. there's
+	  something wrong when we have more than one IMAP mailbox present.
+	  i'm not sure what it is yet, though, and i need to sleep.
+
+2005-05-04 07:10  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-plugin.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.h: * fix a
+	  config reading issue that made it only read back one mailbox *
+	  make the tooltip more detailed * fix some keyboard mnemonics
+
+2005-05-04 05:14  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-imap.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-maildir.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-mbox.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox.h,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-plugin.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.h: * make
+	  middle-clicking on the plugin icon update the message count
+	  immediately * make it so each mailbox has its own update interval
+	  (only done for IMAP)
+
+2005-05-03 08:49  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c: fix chmod()
+	  on settings file
+
+2005-05-03 08:37  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-plugin.c:
+	  tweak box packing
+
+2005-05-03 08:25  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-imap.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-plugin.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c,
+	  xfce4-mailwatch-plugin/trunk/po/POTFILES.in: add 'run on new
+	  messages' command, update translatable stuff
+
+2005-05-03 08:05  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-plugin.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.h: do a little
+	  rearchitecting with pseudo-signals, add a 'run command on click'
+	  box for the applet
+
+2005-05-03 07:08  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-imap.c:
+	  imap works! needed to mess with the 'RECENT' response parsing code
+
+2005-05-03 06:47  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-imap.c:
+	  don't allow adding INBOX/inbox to the new mail folders list
+
+2005-05-03 06:44  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-imap.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-plugin.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c: remove some
+	  useless debugging, fix a possible crash when writing settings, fix
+	  buggy settings restore since i misinterpreted an API
+
+2005-05-03 06:33  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c: use
+	  type->id for the config file
+
+2005-05-03 06:30  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-imap.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-maildir.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-mbox.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox.h: add
+	  'type' field to XfceMailwatchMailboxType since using the 'name' as
+	  the cfg file identifier is somewhat awkward
+
+2005-05-03 06:28  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-imap.c:
+	  add UI for checking in different IMAP mail folders
+
+2005-05-03 05:51  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c: fix range
+	  on timeout spinbutton
+
+2005-04-30 10:45  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-imap.c:
+	  fix some crashes and some inconsistencies, add some debugging. it
+	  still doesn't completely work, but at least it can successfully
+	  log in via STARTTLS. crashes the panel on config load/save for
+	  some reason. need to look into this tomorrow.
+
+2005-04-30 09:28  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c: fix a crash
+	  bug on mailbox removal due to how Pasi changed the list store
+	  layout
+
+2005-04-30 08:50  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/Makefile.am,
+	  xfce4-mailwatch-plugin/trunk/configure.ac,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/Makefile.am,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-imap.c:
+	  ok, we now require gnutls 1.2.0 or later. hopefully i'll be able
+	  to make this optional later. in theory, IMAP checking should work,
+	  but of course i'm sure it doesn't because i haven't tested it yet.
+
+2005-04-30 07:09  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/configure.ac: er, yeah. need this
+	  stuff.
+
+2005-04-30 07:05  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-imap.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox.h,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-plugin.c: a
+	  lot of imap code that still really doesn't do much of anything.
+	  but at least it compiles.
+
+2005-04-28 06:28  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/Makefile.am,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-imap.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-maildir.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-mbox.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-plugin.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c: add some
+	  more stuff to IMAP that doesn't do anything yet, add mbox support
+	  from Pasi, also a bugfix from Pasi to fix the icon updating
+
+2005-04-24 07:17  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-maildir.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c: maildir
+	  plugin patch from Pasi, along with a fix for the plugin not saving
+	  mailbox name edits
+
+2005-04-23 11:16  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/AUTHORS,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/Makefile.am,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-maildir.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c: * add
+	  maildir protocol support from pasi orovuo * fix problem with
+	  displaying protocol descriptions in the 'add mailbox' dialog
+
+2005-04-23 10:39  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-imap.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c: some GUI
+	  work. still doesn't really do anything.
+
+2005-04-23 10:22  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-plugin.c: not
+	  sure why the panel calls write_config before read_config, but this
+	  should kill a couple warnings
+
+2005-04-23 10:22  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c: less
+	  ugliness
+
+2005-04-23 09:46  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c: avoid
+	  possible deadlock
+
+2005-04-23 09:39  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c: heh, make
+	  the remove button in the mailwatch plugin prefs actually do
+	  something
+
+2005-04-23 09:10  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/Makefile.am,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox-imap.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c: add imap
+	  plugin (doesn't do anything yet), minor fixes to mailwatch core
+
+2005-04-23 08:32  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c: change
+	  description label when the combo changes, and i18n-ise the text
+
+2005-04-23 06:25  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox.h: fix
+	  typo
+
+2005-04-21 09:31  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-plugin.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.h: provide a
+	  means for the plugin portion to be notified of changes in the
+	  watch timeout. i suppose it would be cleaner to use a GSignal, but
+	  that would mean making XfceMailwatch into a GObject, which can be
+	  messy with unloadable modules. it's easier and safer this way...
+
+2005-04-19 06:49  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-plugin.c:
+	  allow multiple mailwatch plugins per panel without overwriting
+	  configs (not really sure why you'd need that, but whatever).
+
+2005-04-19 06:31  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox.h,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.h: * add most
+	  of the configuration GUI, at least on the plugin side * change the
+	  interface slightly to make things a bit more sane
+
+2005-04-18 23:48  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-plugin.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.h: add
+	  configuration page to plugin. the buttons don't do anything yet,
+	  but it's a start.
+
+2005-04-17 13:21  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox.h,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-plugin.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c: whew. the
+	  main XfceMailwatch object/interface should be basically done,
+	  barring bugs. tinker with the interface slightly, but nothing
+	  major. it all compiles and maybe even works, though there's no way
+	  to test it without writing unit tests, and everyone should know by
+	  now that i'm far too lazy to do something so productive. sleep
+	  time.
+
+2005-04-17 11:21  kelnos
+
+	* xfce4-mailwatch-plugin/trunk/ChangeLog,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/Makefile.am,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-mailbox.h,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-parameters.h,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-plugin.c,
+	  xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch.c: changed the
+	  mailbox interface a bit so displaying configuration can be
+	  controlled better (otherwise we'd just have bad UI), and handling
+	  e.g. arrays of parameters isn't incredibly complex. also
+	  documented the interface.
+
 2005-04-16 06:03  kelnos
 
 	* xfce4-mailwatch-plugin/trunk/panel-plugin/mailwatch-plugin.c,
