@@ -103,6 +103,7 @@ static struct gcry_thread_cbs gcry_threads_gthread = {
 #define IMAP_CMD_PAUSE   GINT_TO_POINTER(2)
 #define IMAP_CMD_TIMEOUT GINT_TO_POINTER(3)
 #define IMAP_CMD_QUIT    GINT_TO_POINTER(4)
+#define IMAP_CMD_UPDATE  GINT_TO_POINTER(5)
 
 typedef struct
 {
@@ -110,6 +111,7 @@ typedef struct
     
     GMutex *config_mx;
     
+    guint timeout;
     gchar *host;
     gchar *username;
     gchar *password;
@@ -634,6 +636,7 @@ imap_check_mail(XfceMailwatchIMAPMailbox *imailbox)
         gnutls_deinit(imailbox->gt_session);
         gnutls_certificate_free_credentials(imailbox->gt_creds);
         gnutls_global_deinit();
+        imailbox->gnutls_inited = FALSE;
     }
     
 #undef BUFSIZE
@@ -670,7 +673,9 @@ imap_check_mail_th(gpointer user_data)
             }
         }
         
-        if(running && g_timer_elapsed(timer, &dummy) >= timeout-delta) {
+        if(running && (msg == IMAP_CMD_UPDATE
+                || g_timer_elapsed(timer, &dummy) >= timeout-delta))
+        {
             gdouble time_before, time_after;
             time_before = g_timer_elapsed(timer, &dummy);
             imap_check_mail(imailbox);
@@ -693,6 +698,7 @@ imap_mailbox_new(XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type)
     XfceMailwatchIMAPMailbox *imailbox = g_new0(XfceMailwatchIMAPMailbox, 1);
     imailbox->mailbox.type = type;
     imailbox->mailwatch = mailwatch;
+    imailbox->timeout = XFCE_MAILWATCH_DEFAULT_TIMEOUT;
     imailbox->require_ssl = TRUE;
     imailbox->config_mx = g_mutex_new();
     /* init the queue */
@@ -716,13 +722,11 @@ imap_set_activated(XfceMailwatchMailbox *mailbox, gboolean activated)
 }
 
 static void
-imap_timeout_changed_cb(XfceMailwatchMailbox *mailbox)
+imap_force_update_cb(XfceMailwatchMailbox *mailbox)
 {
     XfceMailwatchIMAPMailbox *imailbox = XFCE_MAILWATCH_IMAP_MAILBOX(mailbox);
     
-    g_async_queue_push(imailbox->aqueue, IMAP_CMD_TIMEOUT);
-    g_async_queue_push(imailbox->aqueue,
-            GUINT_TO_POINTER(xfce_mailwatch_get_timeout(imailbox->mailwatch)));
+    g_async_queue_push(imailbox->aqueue, IMAP_CMD_UPDATE);
 }
 
 static gboolean
@@ -921,12 +925,26 @@ imap_config_set_button_sensitive(GtkTreeView *treeview, GdkEventButton *evt,
     return FALSE;
 }
 
+static gboolean
+imap_config_timeout_spinbutton_changed_cb(GtkSpinButton *sb, GdkEventFocus *evt,
+        gpointer user_data)
+{
+    XfceMailwatchIMAPMailbox *imailbox = user_data;
+    gint value = gtk_spin_button_get_value_as_int(sb) * 60 * 1000;
+    
+    imailbox->timeout = value;
+    g_async_queue_push(imailbox->aqueue, IMAP_CMD_TIMEOUT);
+    g_async_queue_push(imailbox->aqueue, GUINT_TO_POINTER(value));
+    
+    return FALSE;
+}
+
 static GtkContainer *
 imap_get_setup_page(XfceMailwatchMailbox *mailbox)
 {
     XfceMailwatchIMAPMailbox *imailbox = XFCE_MAILWATCH_IMAP_MAILBOX(mailbox);
     GtkWidget *topvbox, *vbox, *hbox, *frame, *lbl, *entry, *chk, *sw,
-            *treeview, *btn;
+            *treeview, *btn, *sbtn;
     GtkSizeGroup *sg;
     GtkListStore *ls;
     GtkTreeIter itr;
@@ -1075,6 +1093,29 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
     g_signal_connect(G_OBJECT(btn), "clicked",
             G_CALLBACK(imap_config_remove_btn_clicked_cb), imailbox);
     
+    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    gtk_widget_set_sensitive(btn, FALSE);
+    gtk_widget_show(hbox);
+    gtk_box_pack_start(GTK_BOX(topvbox), hbox, FALSE, FALSE, 0);
+    
+    lbl = gtk_label_new_with_mnemonic(_("Check for _new messages every"));
+    gtk_widget_show(lbl);
+    gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
+    
+    sbtn = gtk_spin_button_new_with_range(1.0, 1440.0, 1.0);
+    gtk_spin_button_set_numeric(GTK_SPIN_BUTTON(sbtn), TRUE);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(sbtn), FALSE);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(sbtn), imailbox->timeout/60000);
+    gtk_widget_show(sbtn);
+    gtk_box_pack_start(GTK_BOX(hbox), sbtn, FALSE, FALSE, 0);
+    g_signal_connect(G_OBJECT(sbtn), "focus-out-event",
+            G_CALLBACK(imap_config_timeout_spinbutton_changed_cb), imailbox);
+    gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), sbtn);
+    
+    lbl = gtk_label_new(_("minute(s)."));
+    gtk_widget_show(lbl);
+    gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
+    
     return GTK_CONTAINER(topvbox);
 }
 
@@ -1098,7 +1139,12 @@ imap_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
             imailbox->password = g_strdup(param->value);
         else if(!strcmp(param->key, "require_ssl"))
             imailbox->require_ssl = *(param->value) == '0' ? FALSE : TRUE;
-        else if(!strcmp(param->key, "n_newmail_boxes"))
+        else if(!strcmp(param->key, "timeout")) {
+            imailbox->timeout = atoi(param->value);
+            g_async_queue_push(imailbox->aqueue, IMAP_CMD_TIMEOUT);
+            g_async_queue_push(imailbox->aqueue,
+                    GUINT_TO_POINTER(imailbox->timeout));
+        } else if(!strcmp(param->key, "n_newmail_boxes"))
             n_newmail_boxes = atoi(param->value);
     }
     
@@ -1122,7 +1168,6 @@ imap_save_param_list(XfceMailwatchMailbox *mailbox)
     XfceMailwatchIMAPMailbox *imailbox = XFCE_MAILWATCH_IMAP_MAILBOX(mailbox);
     GList *params = NULL;
     XfceMailwatchParam *param;
-    gchar buf[128];
     gint i;
     
     g_mutex_lock(imailbox->config_mx);
@@ -1150,15 +1195,18 @@ imap_save_param_list(XfceMailwatchMailbox *mailbox)
     params = g_list_prepend(params, param);
     
     param = g_new(XfceMailwatchParam, 1);
+    param->key = g_strdup("timeout");
+    param->value = g_strdup_printf("%d", imailbox->timeout);
+    params = g_list_prepend(params, param);
+    
+    param = g_new(XfceMailwatchParam, 1);
     param->key = g_strdup("n_newmail_boxes");
-    g_snprintf(buf, 128, "%d", g_list_length(imailbox->mailboxes_to_check));
-    param->value = g_strdup(buf);
+    param->value = g_strdup_printf("%d", g_list_length(imailbox->mailboxes_to_check));
     params = g_list_prepend(params, param);
     
     for(i = 0; i < g_list_length(imailbox->mailboxes_to_check); i++) {
         param = g_new(XfceMailwatchParam, 1);
-        g_snprintf(buf, 128, "newmail_box_%d", i);
-        param->key = g_strdup(buf);
+        param->key = g_strdup_printf("newmail_box_%d", i);
         param->value = g_strdup(g_list_nth_data(imailbox->mailboxes_to_check, i));
         params = g_list_prepend(params, param);
     }
@@ -1193,7 +1241,8 @@ XfceMailwatchMailboxType builtin_mailbox_type_imap = {
     
     imap_mailbox_new,
     imap_set_activated,
-    imap_timeout_changed_cb,
+    NULL,
+    imap_force_update_cb,
     imap_get_setup_page,
     imap_restore_param_list,
     imap_save_param_list,

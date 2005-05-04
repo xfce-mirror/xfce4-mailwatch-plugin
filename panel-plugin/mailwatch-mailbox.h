@@ -98,6 +98,17 @@ typedef void (*SetActivatedFunc)(XfceMailwatchMailbox *mailbox, gboolean activat
 typedef void (*TimeoutChangedCallback)(XfceMailwatchMailbox *mailbox);
 
 /**
+ * ForceUpdateCallback:
+ * @mailbox: The #XfceMailwatchMailbox instance.
+ *
+ * A callback that the #XfceMailwatch instance can call to request that @mailbox
+ * update its count of new messages immediately.  Since this call occurs in the
+ * main (UI) thread, @mailbox must NOT immediately check for new mail, but must
+ * signal its worker thread to do so.
+ **/
+typedef void (*ForceUpdateCallback)(XfceMailwatchMailbox *mailbox);
+
+/**
  * GetSetupPageFunc:
  * @mailbox: The #XfceMailwatchMailbox instance.
  *
@@ -162,6 +173,7 @@ struct _XfceMailwatchMailboxType
 	NewMailboxFunc new_mailbox_func;
     SetActivatedFunc set_activated_func;
     TimeoutChangedCallback timeout_changed_callback;
+    ForceUpdateCallback force_update_callback;
 	GetSetupPageFunc get_setup_page_func;
     RestoreParamListFunc restore_param_list_func;
     SaveParamListFunc save_param_list_func;

@@ -102,7 +102,7 @@ mailwatch_button_release_cb(GtkWidget *w, GdkEventButton *evt,
             break;
         
         case 2:  /* middle */
-            /* do something else */
+            xfce_mailwatch_force_update(mwp->mailwatch);
             break;
     }
     

@@ -44,7 +44,6 @@
 
 #include "mailwatch.h"
 
-#define DEFAULT_TIMEOUT (60*10)
 #define BORDER          8
 
 #if !GTK_CHECK_VERSION(2, 6, 0)
@@ -60,7 +59,6 @@ typedef struct
 
 struct _XfceMailwatch
 {
-    gint watch_timeout;
     gchar *config_file;
     
     GList *mailbox_types;  /* XfceMailwatchMailboxType * */
@@ -115,7 +113,6 @@ xfce_mailwatch_new()
         return NULL;
     }
     
-    mailwatch->watch_timeout = DEFAULT_TIMEOUT;
     mailwatch->mailbox_types = mailwatch_load_mailbox_types();
     mailwatch->mailboxes_mx = g_mutex_new();
     
@@ -193,8 +190,6 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch)
         return TRUE;  /* assume no config file exists yet? */
     
     xfce_rc_set_group(rcfile, "mailwatch");
-    mailwatch->watch_timeout = xfce_rc_read_int_entry(rcfile, "watch_timeout",
-            DEFAULT_TIMEOUT);
     nmailboxes = xfce_rc_read_int_entry(rcfile, "nmailboxes", 0);
     
     /* lock mutex - doesn't matter yet, but once we start creating mailboxes,
@@ -312,7 +307,6 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
     
     /* write out global config and index */
     xfce_rc_set_group(rcfile, "mailwatch");
-    xfce_rc_write_int_entry(rcfile, "watch_timeout", mailwatch->watch_timeout);
     xfce_rc_write_int_entry(rcfile, "nmailboxes",
             g_list_length(mailwatch->mailboxes));
     for(l = mailwatch->mailboxes, i = 0; l; l = l->next, i++) {
@@ -370,33 +364,20 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
     return TRUE;
 }
 
+/* DEPRECATED!  will be removed soon */
 guint
 xfce_mailwatch_get_timeout(XfceMailwatch *mailwatch)
 {
     g_return_val_if_fail(mailwatch, 0);
     
-    return mailwatch->watch_timeout;
+    return XFCE_MAILWATCH_DEFAULT_TIMEOUT;
 }
 
+/* DEPRECATED!  will be removed soon */
 void
 xfce_mailwatch_set_timeout(XfceMailwatch *mailwatch, guint seconds)
 {
-    GList *cl, *dl;
-    
-    g_return_if_fail(mailwatch);
-    
-    mailwatch->watch_timeout = seconds;
-    
-    for(cl = mailwatch->xm_callbacks[XFCE_MAILWATCH_SIGNAL_TIMEOUT_CHANGED],
-                dl = mailwatch->xm_data[XFCE_MAILWATCH_SIGNAL_TIMEOUT_CHANGED];
-        cl && dl;
-        cl = cl->next, dl = dl->next)
-    {
-        XMCallback callback = cl->data;
-        gpointer user_data = dl->data;
-        
-        callback(mailwatch, mailwatch->watch_timeout, user_data);
-    }
+
 }
 
 guint
@@ -420,6 +401,23 @@ xfce_mailwatch_get_new_messages(XfceMailwatch *mailwatch)
     g_mutex_unlock(mailwatch->mailboxes_mx);
     
     return num_new_messages;
+}
+
+void
+xfce_mailwatch_force_update(XfceMailwatch *mailwatch)
+{
+    GList *l;
+    
+    /* CLEAR! */
+    g_mutex_lock(mailwatch->mailboxes_mx);
+    
+    for(l = mailwatch->mailboxes; l; l = l->next) {
+        XfceMailwatchMailboxData *mdata = l->data;
+        mdata->mailbox->type->force_update_callback(mdata->mailbox);
+    }
+    
+    /* mmm, ten thousand volts */
+    g_mutex_unlock(mailwatch->mailboxes_mx);
 }
 
 static gboolean
@@ -829,48 +827,10 @@ config_set_button_sensitive(GtkTreeView *treeview, GdkEventButton *evt,
     return FALSE;
 }
 
-static gboolean
-config_timeout_spinbutton_changed_cb(GtkSpinButton *sb, GdkEventFocus *evt,
-        XfceMailwatch *mailwatch)
-{
-    gint value = gtk_spin_button_get_value_as_int(sb) * 60;
-    
-    if(value != mailwatch->watch_timeout) {
-        GList *l, *cl, *dl;
-        
-        mailwatch->watch_timeout = value;
-        
-        /* bring out the god machine! */
-        g_mutex_lock(mailwatch->mailboxes_mx);
-        
-        for(l = mailwatch->mailboxes; l; l = l->next) {
-            XfceMailwatchMailboxData *mdata = l->data;
-            mdata->mailbox->type->timeout_changed_callback(mdata->mailbox);
-        }
-        
-        /* and i'm spent */
-        g_mutex_unlock(mailwatch->mailboxes_mx);
-        
-        for(cl = mailwatch->xm_callbacks[XFCE_MAILWATCH_SIGNAL_TIMEOUT_CHANGED],
-                    dl = mailwatch->xm_data[XFCE_MAILWATCH_SIGNAL_TIMEOUT_CHANGED];
-            cl && dl;
-            cl = cl->next, dl = dl->next)
-        {
-            XMCallback callback = cl->data;
-            gpointer user_data = dl->data;
-            
-            if(callback)
-                callback(mailwatch, mailwatch->watch_timeout, user_data);
-        }
-    }
-    
-    return FALSE;
-}
-
 GtkContainer *
 xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
 {
-    GtkWidget *topvbox, *vbox, *hbox, *sw, *treeview, *btn, *lbl, *sbtn;
+    GtkWidget *topvbox, *vbox, *hbox, *sw, *treeview, *btn, *lbl;
     GtkListStore *ls;
     GList *l;
     GtkTreeIter itr;
@@ -963,29 +923,6 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
             G_CALLBACK(config_set_button_sensitive), btn);
     g_signal_connect(G_OBJECT(btn), "clicked",
             G_CALLBACK(config_remove_btn_clicked_cb), mailwatch);
-    
-    hbox = gtk_hbox_new(FALSE, BORDER/2);
-    gtk_widget_set_sensitive(btn, FALSE);
-    gtk_widget_show(hbox);
-    gtk_box_pack_start(GTK_BOX(topvbox), hbox, FALSE, FALSE, 0);
-    
-    lbl = gtk_label_new_with_mnemonic(_("Check for _new messages every"));
-    gtk_widget_show(lbl);
-    gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
-    
-    sbtn = gtk_spin_button_new_with_range(1.0, 1440.0, 1.0);
-    gtk_spin_button_set_numeric(GTK_SPIN_BUTTON(sbtn), TRUE);
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(sbtn), FALSE);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(sbtn), mailwatch->watch_timeout/60);
-    gtk_widget_show(sbtn);
-    gtk_box_pack_start(GTK_BOX(hbox), sbtn, FALSE, FALSE, 0);
-    g_signal_connect(G_OBJECT(sbtn), "focus-out-event",
-            G_CALLBACK(config_timeout_spinbutton_changed_cb), mailwatch);
-    gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), sbtn);
-    
-    lbl = gtk_label_new(_("minute(s)."));
-    gtk_widget_show(lbl);
-    gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
     
     return GTK_CONTAINER(topvbox);
 }

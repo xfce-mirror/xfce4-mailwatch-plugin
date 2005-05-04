@@ -25,6 +25,8 @@
 
 G_BEGIN_DECLS
 
+#define XFCE_MAILWATCH_DEFAULT_TIMEOUT (10*60*1000)
+
 typedef struct _XfceMailwatch XfceMailwatch;
 typedef void (*XMCallback)(XfceMailwatch *mailwatch, guint arg, gpointer user_data);
 
@@ -50,6 +52,8 @@ void xfce_mailwatch_set_timeout        (XfceMailwatch *mailwatch,
                                         guint seconds);
 
 guint xfce_mailwatch_get_new_messages  (XfceMailwatch *mailwatch);
+
+void xfce_mailwatch_force_update       (XfceMailwatch *mailwatch);
 
 GtkContainer *xfce_mailwatch_get_configuration_page
                                        (XfceMailwatch *mailwatch);

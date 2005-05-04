@@ -239,6 +239,12 @@ maildir_timeout_changed_cb( XfceMailwatchMailbox *mailbox )
 }
 
 static void
+maildir_force_update_cb( XfceMailwatchMailbox *mailbox )
+{
+    /* FIXME: implement me! */
+}
+
+static void
 maildir_set_activated( XfceMailwatchMailbox *mailbox, gboolean activated )
 {
     XfceMailwatchMaildirMailbox *maildir = XFCE_MAILWATCH_MAILDIR_MAILBOX( mailbox );
@@ -277,6 +283,7 @@ XfceMailwatchMailboxType    builtin_mailbox_type_maildir = {
     maildir_new,
     maildir_set_activated,
     maildir_timeout_changed_cb,
+    maildir_force_update_cb,
     maildir_get_setup_page,
     maildir_restore_param_list,
     maildir_save_param_list,

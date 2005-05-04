@@ -55,6 +55,7 @@
 #define MBOX_MSG_PAUSE                      GINT_TO_POINTER( 2 )
 #define MBOX_MSG_TIMEOUT                    GINT_TO_POINTER( 3 )
 #define MBOX_MSG_QUIT                       GINT_TO_POINTER( 4 )
+#define MBOX_MSG_UPDATE                     GINT_TO_POINTER( 5 )
 
 typedef struct {
     XfceMailwatchMailbox    xfce_mailwatch_mailbox;
@@ -211,7 +212,9 @@ mbox_check_mail_thread( gpointer data )
             }
         }
 
-        if ( active && g_timer_elapsed( timer, &wtf ) >= interval ) {
+        if ( active && ( msg == MBOX_MSG_UPDATE
+                || g_timer_elapsed( timer, &wtf ) >= interval ) )
+        {
             mbox_check_mail( mbox );
             g_timer_start( timer );
         }
@@ -431,6 +434,14 @@ mbox_timeout_changed( XfceMailwatchMailbox *mailbox )
             GUINT_TO_POINTER( xfce_mailwatch_get_timeout( mbox->mailwatch ) ) );
 }
 
+static void
+mbox_force_update( XfceMailwatchMailbox *mailbox )
+{
+    XfceMailwatchMboxMailbox    *mbox = XFCE_MAILWATCH_MBOX_MAILBOX( mailbox );
+
+    g_async_queue_push( mbox->queue, MBOX_MSG_UPDATE );
+}
+
 XfceMailwatchMailboxType    builtin_mailbox_type_mbox = {
     "mbox",
     N_( "Local Mbox spool" ),
@@ -438,6 +449,7 @@ XfceMailwatchMailboxType    builtin_mailbox_type_mbox = {
     mbox_new,
     mbox_activate,
     mbox_timeout_changed,
+    mbox_force_update,
     mbox_get_setup_page,
     mbox_restore_settings,
     mbox_save_settings,
