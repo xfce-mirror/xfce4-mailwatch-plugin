@@ -53,6 +53,11 @@ void xfce_mailwatch_set_timeout        (XfceMailwatch *mailwatch,
 
 guint xfce_mailwatch_get_new_messages  (XfceMailwatch *mailwatch);
 
+void xfce_mailwatch_get_new_message_breakdown
+                                       (XfceMailwatch *mailwatch,
+                                        gchar ***mailbox_names,
+                                        guint **new_message_counts);
+
 void xfce_mailwatch_force_update       (XfceMailwatch *mailwatch);
 
 GtkContainer *xfce_mailwatch_get_configuration_page

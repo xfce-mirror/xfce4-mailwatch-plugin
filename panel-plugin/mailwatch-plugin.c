@@ -72,16 +72,30 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, guint new_messages,
             mwp->newmail_icon_visible = TRUE;
         }
         if(new_messages != mwp->new_messages) {
-            if(new_messages == 1) {
-                gtk_tooltips_set_tip(mwp->tooltip, mwp->button,
-                        _("You have 1 new message"), NULL);
-            } else {
-                gchar *str = g_strdup_printf(_("You have %d new messages"),
+            GString *ttip_str = g_string_sized_new(32);
+            gchar **mailbox_names = NULL;
+            guint *new_message_counts = NULL;
+            gint i;
+            
+            if(new_messages == 1)
+                g_string_assign(ttip_str, _("You have 1 new message:\n"));
+            else {
+                gchar *str = g_strdup_printf(_("You have %d new messages:\n"),
                         new_messages);
-                gtk_tooltips_set_tip(mwp->tooltip, mwp->button, str, NULL);
+                g_string_assign(ttip_str, str);
                 g_free(str);
             }
             mwp->new_messages = new_messages;
+            
+            xfce_mailwatch_get_new_message_breakdown(mwp->mailwatch,
+                    &mailbox_names, &new_message_counts);
+            for(i = 0; mailbox_names[i]; i++) {
+                g_string_append_printf(ttip_str, "    %s: %d%s", mailbox_names[i],
+                        new_message_counts[i], mailbox_names[i+1] ? "\n" : "");
+            }
+            
+            gtk_tooltips_set_tip(mwp->tooltip, mwp->button, ttip_str->str, NULL);
+            g_string_free(ttip_str, TRUE);
             
             if(mwp->new_messages_command)
                 xfce_exec(mwp->new_messages_command, FALSE, FALSE, NULL);
@@ -280,7 +294,7 @@ mailwatch_create_options(Control *c, GtkContainer *con, GtkWidget *done)
     gtk_widget_show(hbox);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
     
-    lbl = gtk_label_new_with_mnemonic(_("_Run on new messages:"));
+    lbl = gtk_label_new_with_mnemonic(_("Run on _new messages:"));
     gtk_widget_show(lbl);
     gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
     

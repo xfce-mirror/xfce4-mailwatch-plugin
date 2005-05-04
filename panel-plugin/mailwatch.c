@@ -203,6 +203,8 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch)
         gchar **cfg_entries;
         GList *config_params = NULL;
         
+        xfce_rc_set_group(rcfile, "mailwatch");
+        
         g_snprintf(buf, 32, "mailbox_name%d", i);
         mailbox_name = xfce_rc_read_entry(rcfile, buf, NULL);
         if(!mailbox_name)
@@ -401,6 +403,36 @@ xfce_mailwatch_get_new_messages(XfceMailwatch *mailwatch)
     g_mutex_unlock(mailwatch->mailboxes_mx);
     
     return num_new_messages;
+}
+
+/**
+ * The caller should free @mailbox_names with g_strfreev(), and
+ * @new_message_counts with g_free().
+ **/
+void
+xfce_mailwatch_get_new_message_breakdown(XfceMailwatch *mailwatch,
+        gchar ***mailbox_names, guint **new_message_counts)
+{
+    GList *l;
+    gint i;
+    
+    g_return_if_fail(mailbox_names && new_message_counts);
+    
+    /* fire! */
+    g_mutex_lock(mailwatch->mailboxes_mx);
+    
+    *mailbox_names = g_new0(gchar *, g_list_length(mailwatch->mailboxes)+1);
+    *new_message_counts = g_new0(guint, g_list_length(mailwatch->mailboxes)+1);
+    
+    for(l = mailwatch->mailboxes, i = 0; l; l = l->next, i++) {
+        XfceMailwatchMailboxData *mdata = l->data;
+        
+        (*mailbox_names)[i] = g_strdup(mdata->mailbox_name);
+        (*new_message_counts)[i] = mdata->num_new_messages;
+    }
+    
+    /* direct hit, captain */
+    g_mutex_unlock(mailwatch->mailboxes_mx);
 }
 
 void
@@ -843,7 +875,7 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
     topvbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_widget_show(topvbox);
     
-    lbl = gtk_label_new_with_mnemonic(_("_Configured Mailboxes:"));
+    lbl = gtk_label_new_with_mnemonic(_("Configured _Mailboxes:"));
     gtk_misc_set_alignment(GTK_MISC(lbl), 0.0, 0.5);
     gtk_widget_show(lbl);
     gtk_box_pack_start(GTK_BOX(topvbox), lbl, FALSE, FALSE, 0);
