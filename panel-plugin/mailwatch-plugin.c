@@ -78,9 +78,9 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, guint new_messages,
             gint i;
             
             if(new_messages == 1)
-                g_string_assign(ttip_str, _("You have 1 new message:\n"));
+                g_string_assign(ttip_str, _("You have 1 new message:"));
             else {
-                gchar *str = g_strdup_printf(_("You have %d new messages:\n"),
+                gchar *str = g_strdup_printf(_("You have %d new messages:"),
                         new_messages);
                 g_string_assign(ttip_str, str);
                 g_free(str);
@@ -91,9 +91,8 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, guint new_messages,
                     &mailbox_names, &new_message_counts);
             for(i = 0; mailbox_names[i]; i++) {
                 if(new_message_counts[i] > 0) {
-                    g_string_append_printf(ttip_str, "    %s: %d%s",
-                            mailbox_names[i], new_message_counts[i],
-                            (mailbox_names[i+1] ? "\n" : ""));
+                    g_string_append_printf(ttip_str, "\n    %d in %s",
+                            new_message_counts[i], mailbox_names[i]);
                 }
             }
             
