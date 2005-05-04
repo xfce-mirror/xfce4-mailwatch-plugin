@@ -90,9 +90,15 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, guint new_messages,
             xfce_mailwatch_get_new_message_breakdown(mwp->mailwatch,
                     &mailbox_names, &new_message_counts);
             for(i = 0; mailbox_names[i]; i++) {
-                g_string_append_printf(ttip_str, "    %s: %d%s", mailbox_names[i],
-                        new_message_counts[i], mailbox_names[i+1] ? "\n" : "");
+                if(new_message_counts[i] > 0) {
+                    g_string_append_printf(ttip_str, "    %s: %d%s",
+                            mailbox_names[i], new_message_counts[i],
+                            (mailbox_names[i+1] ? "\n" : ""));
+                }
             }
+            
+            g_strfreev(mailbox_names);
+            g_free(new_message_counts);
             
             gtk_tooltips_set_tip(mwp->tooltip, mwp->button, ttip_str->str, NULL);
             g_string_free(ttip_str, TRUE);
