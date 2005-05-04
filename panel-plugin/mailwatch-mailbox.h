@@ -170,11 +170,11 @@ struct _XfceMailwatchMailboxType
     gchar *name;
     gchar *description;
 
-	NewMailboxFunc new_mailbox_func;
+    NewMailboxFunc new_mailbox_func;
     SetActivatedFunc set_activated_func;
-    TimeoutChangedCallback timeout_changed_callback;
+    TimeoutChangedCallback timeout_changed_callback;  /* will be removed; set to NULL */
     ForceUpdateCallback force_update_callback;
-	GetSetupPageFunc get_setup_page_func;
+    GetSetupPageFunc get_setup_page_func;
     RestoreParamListFunc restore_param_list_func;
     SaveParamListFunc save_param_list_func;
     FreeMailboxFunc free_mailbox_func;

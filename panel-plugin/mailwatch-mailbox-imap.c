@@ -261,6 +261,8 @@ imap_do_logout(XfceMailwatchIMAPMailbox *imailbox)
     imailbox->sockfd = -1;
 }
 
+#include <arpa/inet.h>
+
 static gboolean
 imap_get_sockaddr(const gchar *host, const gchar *service,
         struct sockaddr_in *addr)
@@ -283,6 +285,8 @@ imap_get_sockaddr(const gchar *host, const gchar *service,
     
     memcpy(addr, res->ai_addr, sizeof(struct sockaddr_in));
     freeaddrinfo(res);
+    
+    DBG("got address info: IP is %s, port %d", inet_ntoa(addr->sin_addr), ntohs(addr->sin_port));
     
     return TRUE;
 }
@@ -382,8 +386,9 @@ imap_negotiate_ssl(XfceMailwatchIMAPMailbox *imailbox, const gchar *host)
         imailbox->sockfd = -1;
         
         return FALSE;
-    } else
-        g_message("TLS handshake succeeded!");
+    } else {
+        DBG("TLS handshake succeeded");
+    }
     
     return TRUE;
 }
@@ -544,9 +549,9 @@ static guint
 imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
         const gchar *mailbox_name)
 {
-#define BUFSIZE 8191
+#define BUFSIZE 16383   /* yeah, this is probably overkill */
     gint new_messages = 0;
-    gchar buf[BUFSIZE+1], *p;
+    gchar buf[BUFSIZE+1], *p, *q, tmp[64];
     
     TRACE("entering, folder %s", mailbox_name);
     
@@ -557,11 +562,51 @@ imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
         return 0;
     DBG("  successfully sent cmd '%s'", buf);
     
-    /* grab the response; there should be a line like "* # RECENT" */
+    /* grab the response; it should end with "##### OK " */
     if(imap_recv(imailbox, buf, BUFSIZE) < 0)
+        return 0;
+    g_snprintf(tmp, 64, "%d OK ", imailbox->imap_tag);
+    if(!strstr(buf, tmp))
         return 0;
     DBG("  successfully got reply '%s'", buf);
     
+    /* send SEARCH command */
+    g_snprintf(buf, BUFSIZE, "%05d SEARCH UNSEEN\r\n", ++imailbox->imap_tag);
+    if(imap_send(imailbox, buf) != strlen(buf))
+        return 0;
+    DBG("  successfully sent cmd '%s'", buf);
+    
+    /* get response; it should have "* SEARCH" followed by a space-delimited
+     * list of unseen messages.  unfortunately, this means there's no upper
+     * bound on string length =p */
+    if(imap_recv(imailbox, buf, BUFSIZE) < 0)
+        return 0;
+    g_snprintf(tmp, 64, "%d OK SEARCH", imailbox->imap_tag);
+    if(!strstr(buf, tmp))
+        g_warning("Mailwatch: Uh-oh.  We didn't get the full response back!");
+    p = strstr(buf, "* SEARCH");
+    if(!p)
+        return 0;
+    DBG("  successfully got reply '%s'", buf);
+    
+    p += 8;
+    
+    /* find the end of the line */
+    q = strstr(p, "\r");
+    if(!q)
+        q = strstr(p, "\n");
+    if(!q)
+        return 0;
+    *q = 0;
+    DBG("  ok, we have a list of messages: '%s'", p);
+    
+    /* find each space in the string; that's a message */
+    while((p = strstr(p, " "))) {
+        new_messages++;
+        p++;
+    }
+    
+#if 0
     if(!(p=strstr(buf, " RECENT")) || p == buf)
         return 0;
     *p = 0;
@@ -575,6 +620,7 @@ imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
     new_messages = atoi(p);
     if(new_messages < 0)
         new_messages = 0;
+#endif
     
     DBG("new message count in mailbox '%s' is %d", mailbox_name, new_messages);
     
