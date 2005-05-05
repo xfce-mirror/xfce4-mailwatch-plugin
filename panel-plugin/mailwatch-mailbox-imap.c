@@ -58,6 +58,14 @@
 #include <sys/wait.h>
 #endif
 
+#ifdef HAVE_FCNTL_H
+#include <fcntl.h>
+#endif
+
+#ifdef HAVE_ERRNO_H
+#include <errno.h>
+#endif
+
 #ifndef MSG_NOSIGNAL
 #define MSG_NOSIGNAL 0
 #endif
@@ -94,8 +102,8 @@ static struct gcry_thread_cbs gcry_threads_gthread = {
 
 #include "mailwatch.h"
 
-#define BORDER 8
-#define GNUTLS_CA_FILE   "ca.pem"
+#define BORDER                   8
+#define GNUTLS_CA_FILE           "ca.pem"
 
 #define XFCE_MAILWATCH_IMAP_MAILBOX(ptr) ((XfceMailwatchIMAPMailbox *)ptr)
 
@@ -128,6 +136,12 @@ typedef struct
     guint imap_tag;
     gboolean requiring_ssl;
     gboolean using_ssl;
+    
+    /* some well-meaning admins erroneously ban port 143 and only allow 993,
+     * instead of requiring the use of STARTTLS on port 143.  we should keep
+     * track of this to save time. */
+    guint port143_failures;
+    glong last_143_check;
     
     /* secure this, dude */
     gboolean gnutls_inited;
@@ -261,8 +275,6 @@ imap_do_logout(XfceMailwatchIMAPMailbox *imailbox)
     imailbox->sockfd = -1;
 }
 
-#include <arpa/inet.h>
-
 static gboolean
 imap_get_sockaddr(const gchar *host, const gchar *service,
         struct sockaddr_in *addr)
@@ -285,8 +297,6 @@ imap_get_sockaddr(const gchar *host, const gchar *service,
     
     memcpy(addr, res->ai_addr, sizeof(struct sockaddr_in));
     freeaddrinfo(res);
-    
-    DBG("got address info: IP is %s, port %d", inet_ntoa(addr->sin_addr), ntohs(addr->sin_port));
     
     return TRUE;
 }
@@ -331,8 +341,8 @@ imap_auth_plain(XfceMailwatchIMAPMailbox *imailbox, const gchar *username,
     DBG("response from login (%d): %s", bin, bin>0?buf:"(nada)");
     if(bin <= 0)
         goto cleanuperr;
-    DBG("strstr() returns %p", strstr(buf, "OK LOGIN"));
-    if(!strstr(buf, "OK LOGIN"))
+    DBG("strstr() returns %p", strstr(buf, "OK"));
+    if(!strstr(buf, "OK"))
         goto cleanuperr;
     
     TRACE("leaving (success)");
@@ -464,12 +474,74 @@ imap_connect(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
         return FALSE;
     }
     
-    if(connect(imailbox->sockfd, (struct sockaddr *)&addr, sizeof(struct sockaddr_in))) {
-        DBG("failed to connect");
-        close(imailbox->sockfd);
-        imailbox->sockfd = -1;
-        return FALSE;
+    /* this next batch of crap is necessary because it seems like a failed
+     * connection (that is, one that isn't ECONNREFUSED) takes over 3 minutes
+     * to fail!  if the panel is trying to quit, that's just unacceptable.
+     */
+    
+    if(fcntl(imailbox->sockfd, F_SETFL, fcntl(imailbox->sockfd, F_GETFL) | O_NONBLOCK))
+        g_warning(_("Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."));
+    
+    if(connect(imailbox->sockfd, (struct sockaddr *)&addr,
+            sizeof(struct sockaddr_in)))
+    {
+        gboolean failed = TRUE;
+        
+        if(errno == EINPROGRESS) {
+            for(;;) {
+                fd_set wfd;
+                struct timeval tv = { 2, 0 };
+                int sock_err = 0;
+                socklen_t sock_err_len = sizeof(int);
+                gpointer msg;
+                
+                FD_ZERO(&wfd);
+                FD_SET(imailbox->sockfd, &wfd);
+                
+                DBG("checking for a connection...");
+                
+                /* wait until the connect attempt finishes */
+                if(select(FD_SETSIZE, NULL, &wfd, NULL, &tv) < 0)
+                    break;
+                
+                /* check to see if it finished, and, if so, if there was an
+                 * error, or if it completed successfully */
+                if(FD_ISSET(imailbox->sockfd, &wfd)) {
+                    if(!getsockopt(imailbox->sockfd, SOL_SOCKET, SO_ERROR,
+                                &sock_err, &sock_err_len)
+                            && !sock_err)
+                    {
+                        DBG("    connection succeeded");
+                        failed = FALSE;
+                    } else {
+                        DBG("    connection failed: sock_err is %d", sock_err);
+                    }
+                    break;
+                }
+                
+                /* check the main thread to see if we're supposed to quit */
+                msg = g_async_queue_try_pop(imailbox->aqueue);
+                if(msg) {
+                    /* put it back so imap_check_mail_th() can read it */
+                    g_async_queue_push(imailbox->aqueue, msg);
+                    if(msg == IMAP_CMD_QUIT) {
+                        failed = TRUE;
+                        break;
+                    }
+                }
+            }
+        }
+        
+        if(failed) {
+            DBG("failed to connect");
+            close(imailbox->sockfd);
+            imailbox->sockfd = -1;
+            return FALSE;
+        }
     }
+    
+    if(fcntl(imailbox->sockfd, F_SETFL, fcntl(imailbox->sockfd, F_GETFL) & ~(O_NONBLOCK)))
+        g_warning(_("Unable to return socket to blocking mode.  Data may not be retreived correctly."));
     
     /* discard opening banner, but only if on the normal imap port */
     if(!strcmp(service, "imap") && imap_recv(imailbox, buf, 1023) < 0) {
@@ -487,30 +559,53 @@ static gboolean
 imap_authenticate(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
         const gchar *username, const gchar *password)
 {
-    IMAPResult res;
+    IMAPResult res = IMAP_FAILED;
     gboolean need_to_trash_banner = FALSE;
     gchar buf[1024];
+    GTimeVal now;
     
     TRACE("entering");
     
-    /* turn this off for connecting */
-    imailbox->using_ssl = FALSE;
+    /* check the current time.  if it's been more than 4 hours since we last
+     * tried port 143 after failing a couple times, give it another shot now. */
+    g_get_current_time(&now);
+    if(imailbox->port143_failures && now.tv_sec-imailbox->last_143_check > (60*60*4))
+        imailbox->port143_failures = 0;
     
-    if(!imap_connect(imailbox, host, "imap"))
-        return FALSE;
+    if(imailbox->port143_failures < 3) {
+        /* first try STARTTLS.  if that fails, try connecting on the imaps port.
+         * if that fails, and we're requiring SSL, bail.  otherwise, try
+         * plaintext (yuck), but only if the user allows it. */
+        
+        /* turn this off for connecting */
+        imailbox->using_ssl = FALSE;
     
-    /* but otherwise we really love SSL. */
-    imailbox->using_ssl = TRUE;
+        if(imap_connect(imailbox, host, "imap")) {
+            res = imap_do_starttls(imailbox, host, username, password);
+            DBG("res is %d", res);
+        }
+        
+        /* but otherwise we really love SSL. */
+        imailbox->using_ssl = TRUE;
+        
+        if(res != IMAP_SUCCEEDED)
+            imailbox->port143_failures++;
+        
+        /* if we just failed, set the last failure to now.  if we failed
+         * because the server says there's no STARTTLS support, don't check
+         * again for another 5 days. */
+        if(res == IMAP_FAILED)
+            imailbox->last_143_check = now.tv_sec;
+        else if(res == IMAP_NO_STARTTLS_SUPPORT)
+            imailbox->last_143_check = now.tv_sec + (60*60*24*5);
+    }
     
-    /* first try STARTTLS.  if that fails, try connecting on the imaps port.
-     * if that fails, and we're requiring SSL, bail.  otherwise, try
-     * plaintext (yuck), but only if the user allows it. */
-    res = imap_do_starttls(imailbox, host, username, password);
-    DBG("res is %d", res);
-    if(res == IMAP_FAILED)
-        return FALSE;
-    else if(res == IMAP_NO_STARTTLS_SUPPORT) {
+    if(res != IMAP_SUCCEEDED) {
         if(!imap_connect(imailbox, host, "imaps")) {
+            /* this probably is a transient failure if 143 failed as well */
+            if(res == IMAP_FAILED)
+                imailbox->port143_failures = 0;
+            
             if(imailbox->requiring_ssl)
                 return FALSE;
             else {
@@ -605,22 +700,6 @@ imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
         new_messages++;
         p++;
     }
-    
-#if 0
-    if(!(p=strstr(buf, " RECENT")) || p == buf)
-        return 0;
-    *p = 0;
-    DBG("  found 'RECENT' text");
-    
-    while(p > buf && *p != ' ')
-        p--;
-    p++;
-    DBG(" moved pointer to beginning of number '%s'", p);
-    
-    new_messages = atoi(p);
-    if(new_messages < 0)
-        new_messages = 0;
-#endif
     
     DBG("new message count in mailbox '%s' is %d", mailbox_name, new_messages);
     
