@@ -692,48 +692,44 @@ static gpointer
 imap_check_mail_th(gpointer user_data)
 {
     XfceMailwatchIMAPMailbox *imailbox = user_data;
-    GTimer *timer = NULL;
     gboolean running = FALSE;
+    GTimeVal start, now;
     guint timeout = 0, delta = 0;
-    gulong dummy;
     
     g_async_queue_ref(imailbox->aqueue);
     
-    timer = g_timer_new();
+    g_get_current_time(&start);
     
     for(;;) {
         gpointer msg = g_async_queue_try_pop(imailbox->aqueue);
         
         if(msg) {
             if(msg == IMAP_CMD_START) {
-                g_timer_start(timer);
+                g_get_current_time(&start);;
                 running = TRUE;
             } else if(msg == IMAP_CMD_PAUSE)
                 running = FALSE;
             else if(msg == IMAP_CMD_TIMEOUT)
                 timeout = GPOINTER_TO_UINT(g_async_queue_pop(imailbox->aqueue));
             else if(msg == IMAP_CMD_QUIT) {
-                g_timer_destroy(timer);
                 g_async_queue_unref(imailbox->aqueue);
                 g_thread_exit(NULL);
             }
         }
         
+        g_get_current_time(&now);
+        
         if(running && (msg == IMAP_CMD_UPDATE
-                || g_timer_elapsed(timer, &dummy) >= timeout-delta))
+                || now.tv_sec - start.tv_sec >= timeout - delta))
         {
-            gdouble time_before, time_after;
-            time_before = g_timer_elapsed(timer, &dummy);
             imap_check_mail(imailbox);
-            time_after = g_timer_elapsed(timer, &dummy);
-            delta = (gint)(time_after - time_before);
-            g_timer_start(timer);
+            g_get_current_time(&start);
+            delta = (gint)start.tv_sec - now.tv_sec;
         } else
             g_usleep(250000);
     }
     
     /* NOTREACHED */
-    g_timer_destroy(timer);
     g_async_queue_unref(imailbox->aqueue);
     return NULL;
 }
@@ -976,7 +972,7 @@ imap_config_timeout_spinbutton_changed_cb(GtkSpinButton *sb, GdkEventFocus *evt,
         gpointer user_data)
 {
     XfceMailwatchIMAPMailbox *imailbox = user_data;
-    gint value = gtk_spin_button_get_value_as_int(sb) * 60 * 1000;
+    gint value = gtk_spin_button_get_value_as_int(sb) * 60;
     
     imailbox->timeout = value;
     g_async_queue_push(imailbox->aqueue, IMAP_CMD_TIMEOUT);
@@ -1151,7 +1147,7 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
     sbtn = gtk_spin_button_new_with_range(1.0, 1440.0, 1.0);
     gtk_spin_button_set_numeric(GTK_SPIN_BUTTON(sbtn), TRUE);
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(sbtn), FALSE);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(sbtn), imailbox->timeout/60000);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(sbtn), imailbox->timeout/60);
     gtk_widget_show(sbtn);
     gtk_box_pack_start(GTK_BOX(hbox), sbtn, FALSE, FALSE, 0);
     g_signal_connect(G_OBJECT(sbtn), "focus-out-event",
