@@ -558,6 +558,7 @@ config_run_addedit_window(const gchar *title, GtkWindow *parent,
         gtk_entry_set_text(GTK_ENTRY(entry), mailbox_name);
     gtk_widget_show(entry);
     gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
+    gtk_label_set_mnemonic_widget( GTK_LABEL( lbl ), entry );
     
     gtk_box_pack_start(GTK_BOX(topvbox), GTK_WIDGET(cfg_box), TRUE, TRUE, 0);
     
