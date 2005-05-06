@@ -78,7 +78,16 @@
 
 #include <gnutls/gnutls.h>
 #include <gcrypt.h>
-/* stuff to support gthreads */
+
+/* missing from 1.2.0? */
+#ifndef _GCRY_PTH_SOCKADDR
+#define _GCRY_PTH_SOCKADDR  struct sockaddr
+#endif
+#ifndef _GCRY_PTH_SOCKLEN_T
+#define _GCRY_PTH_SOCKLEN_T socklen_t
+#endif
+
+/* stuff to support 'gthreads' with gcrypt */
 static int my_g_mutex_init(void **priv);
 static int my_g_mutex_destroy(void **priv);
 static int my_g_mutex_lock(void **priv);
