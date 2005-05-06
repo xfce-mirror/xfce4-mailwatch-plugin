@@ -88,16 +88,6 @@ typedef XfceMailwatchMailbox *(*NewMailboxFunc)(struct _XfceMailwatch *mailwatch
 typedef void (*SetActivatedFunc)(XfceMailwatchMailbox *mailbox, gboolean activated);
 
 /**
- * TimeoutChangedCallback:
- * @mailbox: The #XfceMailwatchMailbox instance.
- *
- * A callback that the #XfceMailwatch instance can call when the user changes
- * the watch timeout.  The @mailbox should update its internal timer
- * accordingly.
- **/
-typedef void (*TimeoutChangedCallback)(XfceMailwatchMailbox *mailbox);
-
-/**
  * ForceUpdateCallback:
  * @mailbox: The #XfceMailwatchMailbox instance.
  *
@@ -172,7 +162,6 @@ struct _XfceMailwatchMailboxType
 
     NewMailboxFunc new_mailbox_func;
     SetActivatedFunc set_activated_func;
-    TimeoutChangedCallback timeout_changed_callback;  /* will be removed; set to NULL */
     ForceUpdateCallback force_update_callback;
     GetSetupPageFunc get_setup_page_func;
     RestoreParamListFunc restore_param_list_func;

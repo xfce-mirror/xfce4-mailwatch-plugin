@@ -473,7 +473,6 @@ XfceMailwatchMailboxType    builtin_mailbox_type_mbox = {
     N_( "Mbox plugin watches a local mbox-type mail spool for new messages." ),
     mbox_new,
     mbox_activate,
-    NULL,
     mbox_force_update,
     mbox_get_setup_page,
     mbox_restore_settings,

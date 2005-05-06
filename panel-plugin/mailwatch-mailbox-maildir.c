@@ -476,7 +476,6 @@ XfceMailwatchMailboxType    builtin_mailbox_type_maildir = {
     N_( "The Maildir plugin can watch a local maildir-style mail spool for new messages." ),
     maildir_new,
     maildir_set_activated,
-    NULL,
     maildir_force_update_cb,
     maildir_get_setup_page,
     maildir_restore_param_list,

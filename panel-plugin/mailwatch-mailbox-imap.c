@@ -1362,7 +1362,6 @@ XfceMailwatchMailboxType builtin_mailbox_type_imap = {
     
     imap_mailbox_new,
     imap_set_activated,
-    NULL,
     imap_force_update_cb,
     imap_get_setup_page,
     imap_restore_param_list,
