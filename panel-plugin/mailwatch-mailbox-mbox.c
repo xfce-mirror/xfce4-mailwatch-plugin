@@ -53,9 +53,8 @@
 
 #define MBOX_MSG_START                      GINT_TO_POINTER( 1 )
 #define MBOX_MSG_PAUSE                      GINT_TO_POINTER( 2 )
-#define MBOX_MSG_TIMEOUT                    GINT_TO_POINTER( 3 )
-#define MBOX_MSG_QUIT                       GINT_TO_POINTER( 4 )
-#define MBOX_MSG_UPDATE                     GINT_TO_POINTER( 5 )
+#define MBOX_MSG_QUIT                       GINT_TO_POINTER( 3 )
+#define MBOX_MSG_UPDATE                     GINT_TO_POINTER( 4 )
 
 typedef struct {
     XfceMailwatchMailbox    xfce_mailwatch_mailbox;
@@ -65,6 +64,7 @@ typedef struct {
     time_t                  ctime;
     size_t                  size;
     guint                   new_messages;
+    guint                   interval;
     
     GThread                 *thread;
     GAsyncQueue             *queue;
@@ -175,16 +175,10 @@ mbox_check_mail_thread( gpointer data )
 {
     XfceMailwatchMboxMailbox    *mbox = XFCE_MAILWATCH_MBOX_MAILBOX( data );
     gboolean                    active = FALSE;
-    GTimer                      *timer;
-    gint                        interval = 600;
-    gulong                      wtf;
     GTimeVal                    tv;
+    glong                       last_update = 0;
 
     g_async_queue_ref( mbox->queue );
-
-    /* TODO:
-     * Replace timer with GTimeVal? */
-    timer = g_timer_new();
 
     while ( TRUE ) {
         gpointer        msg;
@@ -197,26 +191,21 @@ mbox_check_mail_thread( gpointer data )
         if ( msg ) {
             if ( msg == MBOX_MSG_START ) {
                 active = TRUE;
-                g_timer_start( timer );
             }
             else if ( msg == MBOX_MSG_PAUSE ) {
                 active = FALSE;
             }
-            else if ( msg == MBOX_MSG_TIMEOUT ) {
-                interval = GPOINTER_TO_UINT( g_async_queue_pop( mbox->queue ) );
-            }
             else if ( msg == MBOX_MSG_QUIT ) {
-                g_timer_destroy( timer );
                 g_async_queue_unref( mbox->queue );
                 g_thread_exit( NULL );
             }
         }
 
         if ( active && ( msg == MBOX_MSG_UPDATE
-                || g_timer_elapsed( timer, &wtf ) >= interval ) )
+                || tv.tv_sec - last_update >= mbox->interval ) )
         {
             mbox_check_mail( mbox );
-            g_timer_start( timer );
+            last_update = tv.tv_sec;
         }
     }
 }
@@ -232,9 +221,7 @@ mbox_new( XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type )
 
     mbox->settings_mutex = g_mutex_new();
     mbox->queue = g_async_queue_new();
-    g_async_queue_push( mbox->queue, MBOX_MSG_TIMEOUT );
-    g_async_queue_push( mbox->queue,
-            GUINT_TO_POINTER( xfce_mailwatch_get_timeout( mailwatch ) ) );
+    mbox->interval = XFCE_MAILWATCH_DEFAULT_TIMEOUT / 1000;
     mbox->thread = g_thread_create( mbox_check_mail_thread, mbox, TRUE, NULL );
 
     return ( (XfceMailwatchMailbox *) mbox );
@@ -281,6 +268,11 @@ mbox_save_settings( XfceMailwatchMailbox *mailbox )
     param->value    = g_strdup_printf( "%u", mbox->size );
     settings = g_list_append( settings, param );
 
+    param = g_new( XfceMailwatchParam, 1 );
+    param->key      = g_strdup( "interval" );
+    param->value    = g_strdup_printf( "%u", mbox->interval );
+    settings = g_list_append( settings, param );
+
     g_mutex_unlock( mbox->settings_mutex );
 
     return ( settings );
@@ -308,6 +300,9 @@ mbox_restore_settings( XfceMailwatchMailbox *mailbox, GList *settings )
         }
         else if ( !strcmp( p->key, "size" ) ) {
             mbox->size = (size_t) atol( p->value );
+        }
+        else if ( !strcmp( p->key, "interval" ) ) {
+            mbox->interval = (guint) atol( p->value );
         }
     }
 
@@ -370,23 +365,37 @@ mbox_browse_button_clicked_cb( GtkWidget *button,
     }
     gtk_widget_destroy( chooser );
 }
+
+static void
+mbox_interval_changed_cb( GtkWidget *spinner, XfceMailwatchMboxMailbox *mbox ) {
+    mbox->interval = gtk_spin_button_get_value_as_int( GTK_SPIN_BUTTON( spinner ) ) * 60;
+}
     
 static GtkContainer *
 mbox_get_setup_page( XfceMailwatchMailbox *mailbox )
 {
     XfceMailwatchMboxMailbox    *mbox = XFCE_MAILWATCH_MBOX_MAILBOX( mailbox );
-    GtkWidget                   *hbox;
+    GtkWidget                   *vbox, *hbox;
     GtkWidget                   *label, *entry;
-    GtkWidget                   *button, *image;
+    GtkWidget                   *button, *image, *spinner;
+    GtkSizeGroup                *sg;
 
     xfce_textdomain( GETTEXT_PACKAGE, LOCALEDIR, "UTF-8" );
 
+    vbox = gtk_vbox_new( FALSE, BORDER / 2 );
+    gtk_widget_show( vbox );
+    
     hbox = gtk_hbox_new( FALSE, BORDER );
     gtk_widget_show( hbox );
+    gtk_box_pack_start( GTK_BOX( vbox ), hbox, FALSE, FALSE, 0 );
 
-    label = gtk_label_new( _( "Mbox Filename:" ) );
+    sg = gtk_size_group_new( GTK_SIZE_GROUP_HORIZONTAL );
+
+    label = gtk_label_new_with_mnemonic( _( "Mbox _Filename:" ) );
     gtk_widget_show( label );
     gtk_box_pack_start( GTK_BOX( hbox ), label, FALSE, FALSE, 0 );
+
+    gtk_size_group_add_widget( GTK_SIZE_GROUP( sg ), label );
 
     entry = gtk_entry_new();
     g_mutex_lock( mbox->settings_mutex );
@@ -396,6 +405,7 @@ mbox_get_setup_page( XfceMailwatchMailbox *mailbox )
     g_mutex_unlock( mbox->settings_mutex );
     gtk_widget_show( entry );
     gtk_box_pack_start( GTK_BOX( hbox ), entry, FALSE, FALSE, 0 );
+    gtk_label_set_mnemonic_widget( GTK_LABEL( label ), entry );
 
     g_signal_connect( G_OBJECT( entry ), "changed",
             G_CALLBACK( mbox_path_entry_changed_cb ), mbox );
@@ -413,7 +423,32 @@ mbox_get_setup_page( XfceMailwatchMailbox *mailbox )
     g_signal_connect( G_OBJECT( button ), "clicked",
             G_CALLBACK( mbox_browse_button_clicked_cb ), mbox );
 
-    return ( GTK_CONTAINER( hbox ) );
+    hbox = gtk_hbox_new( FALSE, BORDER );
+    gtk_widget_show( hbox );
+    gtk_box_pack_start( GTK_BOX( vbox ), hbox, FALSE, FALSE, 0 );
+
+    label = gtk_label_new_with_mnemonic( _( "_Interval:" ) );
+    gtk_widget_show( label );
+    gtk_misc_set_alignment( GTK_MISC( label ), 1, 0.5 );
+    gtk_box_pack_start( GTK_BOX( hbox ), label, FALSE, FALSE, 0 );
+
+    gtk_size_group_add_widget( GTK_SIZE_GROUP( sg ), label );
+
+    spinner = gtk_spin_button_new_with_range( 1.0, 1440.0, 1.0 );
+    gtk_spin_button_set_numeric( GTK_SPIN_BUTTON( spinner ), TRUE );
+    gtk_spin_button_set_wrap( GTK_SPIN_BUTTON( spinner ), FALSE );
+    gtk_spin_button_set_value( GTK_SPIN_BUTTON( spinner ), mbox->interval / 60 );
+    gtk_widget_show( spinner );
+    gtk_box_pack_start( GTK_BOX( hbox ), spinner, FALSE, FALSE, 0 );
+    g_signal_connect( G_OBJECT( spinner ), "value-changed",
+            G_CALLBACK( mbox_interval_changed_cb ), mbox );
+    gtk_label_set_mnemonic_widget( GTK_LABEL( label ), spinner );
+
+    label = gtk_label_new( _( "minute(s)." ) );
+    gtk_widget_show( label );
+    gtk_box_pack_start( GTK_BOX( hbox ), label, FALSE, FALSE, 0 );
+
+    return ( GTK_CONTAINER( vbox ) );
 }
 
 static void
@@ -422,16 +457,6 @@ mbox_activate( XfceMailwatchMailbox *mailbox, gboolean activated )
     XfceMailwatchMboxMailbox    *mbox = XFCE_MAILWATCH_MBOX_MAILBOX( mailbox );
 
     g_async_queue_push( mbox->queue, ( activated ) ? MBOX_MSG_START : MBOX_MSG_PAUSE );
-}
-
-static void
-mbox_timeout_changed( XfceMailwatchMailbox *mailbox )
-{
-    XfceMailwatchMboxMailbox    *mbox = XFCE_MAILWATCH_MBOX_MAILBOX( mailbox );
-
-    g_async_queue_push( mbox->queue, MBOX_MSG_TIMEOUT );
-    g_async_queue_push( mbox->queue,
-            GUINT_TO_POINTER( xfce_mailwatch_get_timeout( mbox->mailwatch ) ) );
 }
 
 static void
@@ -448,7 +473,7 @@ XfceMailwatchMailboxType    builtin_mailbox_type_mbox = {
     N_( "Mbox plugin watches a local mbox-type mail spool for new messages." ),
     mbox_new,
     mbox_activate,
-    mbox_timeout_changed,
+    NULL,
     mbox_force_update,
     mbox_get_setup_page,
     mbox_restore_settings,
