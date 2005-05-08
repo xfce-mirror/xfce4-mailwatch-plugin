@@ -18,6 +18,8 @@ libmailwatch_la_SOURCES = \
 	mailwatch-mailbox-mbox.c \
 	mailwatch-mailbox.h \
 	mailwatch-plugin.c \
+	mailwatch-utils.c \
+	mailwatch-utils.h \
 	mailwatch.c \
 	mailwatch.h
 
