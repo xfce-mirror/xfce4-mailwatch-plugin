@@ -135,17 +135,22 @@ mbox_check_mail( XfceMailwatchMboxMailbox *mbox )
                 }
             }
             else {
-                if ( !strncmp( p, "Status: ", 8 ) ) {
+                if ( *p == 0 ) {
+                    in_header = FALSE;
+
+                    if ( cur_new ) {
+                        num_new++;
+                    }
+                }
+                else if ( !strncmp( p, "Status: ", 8 ) ) {
                     gchar       *q = p + 8;
                     if ( strchr( q, 'R' ) || strchr( q, 'O' ) ) {
                         cur_new = FALSE;
                     }
                 }
-                else if ( *p == 0 ) {
-                    in_header = FALSE;
-
-                    if ( cur_new ) {
-                        num_new++;
+                else if ( !strncmp( p, "X-Mozilla-Status: ", 18 ) ) {
+                    if ( strncmp( p + 18, "0000", 4 ) ) {
+                        cur_new = FALSE;
                     }
                 }
             }
