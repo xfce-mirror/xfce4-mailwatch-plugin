@@ -1,2 +1,6 @@
-Brian Tarricone <bjt23@cornell.edu>
-Pasi Orovuo <pasi.ov@gmail.com>
+Code:
+    Brian Tarricone <bjt23@cornell.edu>  (core, plugin, IMAP)
+    Pasi Orovuo <pasi.ov@gmail.com>  (mbox, maildir, bugfixes)
+
+Translations:
+    Bernhard Walle <bernhard@bwalle.de>  (de)

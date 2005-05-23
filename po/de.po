@@ -1,0 +1,255 @@
+# translation of de.po to Deutsch
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+# Bernhard Walle <bernhard.walle@gmx.de>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: de\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-05-20 11:00-0700\n"
+"PO-Revision-Date: 2005-05-20 21:39+0200\n"
+"Last-Translator: Bernhard Walle <bernhard.walle@gmx.de>\n"
+"Language-Team: Deutsch <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.10\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:371
+msgid ""
+"Secure IMAP is not available, and the IMAP server does not support plaintext "
+"logins."
+msgstr ""
+"IMAP über eine verschlüsselte Verbindung ist nicht verfügbar und der Server "
+"unterstützt Plaintext-Logins nicht."
+
+#: panel-plugin/mailwatch-mailbox-imap.c:527
+msgid ""
+"Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
+"the panel may hang on close."
+msgstr ""
+"Sockets konnten nicht in den nicht-blockierenden Modus geschaltet werden. Bei "
+"Verbindungsprobleme kann es vorkommen, dass das Panel nicht beendet werden kann."
+
+#: panel-plugin/mailwatch-mailbox-imap.c:589
+msgid ""
+"Unable to return socket to blocking mode.  Data may not be retreived "
+"correctly."
+msgstr ""
+"Sockets konnten nicht in den blockierenden Modus zurückgeschaltet werden. Probleme "
+"beim Datenempfang können dadurch entstehen."
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1288
+msgid "Failed to get folder list"
+msgstr "Laden der Ordnerliste fehlgeschlagen"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1351
+#: panel-plugin/mailwatch-mailbox-imap.c:1675
+msgid "Please wait..."
+msgstr "Bitte warten..."
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1447
+msgid "Advanced IMAP Options"
+msgstr "Erweiterte IMAP-Optionen"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1461
+msgid "IMAP server _directory:"
+msgstr "IMAP-Server _Verzeichnis:"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1497
+msgid "IMAP Server"
+msgstr "IMAP-Server"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1511
+msgid "_Mail server:"
+msgstr "_Mailserver:"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1530
+msgid "_Username:"
+msgstr "_Benutzername:"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1549
+msgid "_Password:"
+msgstr "_Passwort:"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1565
+msgid "Require _secure connection"
+msgstr "_Sichere Verbindung erzwingen"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1572
+msgid "New Mail Folders"
+msgstr "Ordner für neue Mails"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1680
+msgid "_Advanced..."
+msgstr "_Erweitert..."
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1691
+msgid "Check for _new messages every"
+msgstr "Überprüfung nach _neuen Nachrichten im Intervall"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1705
+#: panel-plugin/mailwatch-mailbox-maildir.c:439
+#: panel-plugin/mailwatch-mailbox-mbox.c:452
+msgid "minute(s)."
+msgstr "Minuten"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1836
+msgid "Remote IMAP Mailbox"
+msgstr "Entfernte IMAP-Mailbox"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1837
+msgid ""
+"The IMAP plugin can connect to a remote mail server that supports the IMAP "
+"protocol, optionally using SSL for link protection."
+msgstr ""
+"Das IMAP-Plugin kann sich mit einem IMAP-Server verbinden, optional mit "
+"SSL-Verschlüsselung für mehr Sicherheit."
+
+#: panel-plugin/mailwatch-mailbox-maildir.c:334
+msgid "Select Maildir Folder"
+msgstr "Mailordner auswählen"
+
+#: panel-plugin/mailwatch-mailbox-maildir.c:387
+msgid "Maildir _Path:"
+msgstr "Maildir-_Pfad"
+
+#: panel-plugin/mailwatch-mailbox-maildir.c:423
+#: panel-plugin/mailwatch-mailbox-mbox.c:435
+msgid "_Interval:"
+msgstr "_Intervall:"
+
+#: panel-plugin/mailwatch-mailbox-maildir.c:475
+msgid "Local Maildir Spool"
+msgstr "Lokale Maildir-Mailbox"
+
+#: panel-plugin/mailwatch-mailbox-maildir.c:476
+msgid ""
+"The Maildir plugin can watch a local maildir-style mail spool for new "
+"messages."
+msgstr ""
+"Das Maildir-Plugin kann ein lokales Maildir-Verzeichnis (d. h. pro Nachricht "
+"eine Datei, pro Mailordner ein Verzeichnis) auf neue Nachrichten überwachen."
+
+#: panel-plugin/mailwatch-mailbox-mbox.c:350
+msgid "Select mbox file"
+msgstr "Mbox-Datei auswählen"
+
+#: panel-plugin/mailwatch-mailbox-mbox.c:399
+msgid "Mbox _Filename:"
+msgstr "Mbox-_Dateiname:"
+
+#: panel-plugin/mailwatch-mailbox-mbox.c:477
+msgid "Local Mbox spool"
+msgstr "Lokale Mbox-Mailbox"
+
+#: panel-plugin/mailwatch-mailbox-mbox.c:478
+msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
+msgstr ""
+"Das Mbox-Plugin überwacht eine lokale Mbox-Mailbox (d. h. pro Mailordner eine "
+"Datei, jede Nachricht mit \"From\" abgetrennt) auf neue Nachrichten."
+
+#: panel-plugin/mailwatch-plugin.c:65 panel-plugin/mailwatch-plugin.c:152
+msgid "No new mail"
+msgstr "Keine neuen Nachrichten"
+
+#: panel-plugin/mailwatch-plugin.c:81
+msgid "You have 1 new message:"
+msgstr "Sie haben eine neue Nachricht:"
+
+#: panel-plugin/mailwatch-plugin.c:83
+#, c-format
+msgid "You have %d new messages:"
+msgstr "Sie haben %d neue Nachrichten:"
+
+#: panel-plugin/mailwatch-plugin.c:285
+msgid "_Run on click:"
+msgstr "_Ausführen bei Klick:"
+
+#: panel-plugin/mailwatch-plugin.c:302
+msgid "Run on _new messages:"
+msgstr "Ausführen bei _neuen Nachrichten:"
+
+#: panel-plugin/mailwatch-plugin.c:376
+msgid "Mail Watcher"
+msgstr "Mailüberwachung"
+
+#: panel-plugin/mailwatch.c:112
+msgid ""
+"xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
+"likely a problem with your GLib install."
+msgstr ""
+"xfce4-mailwatch-plugin: Initialisierung der GThread-Unterstützung fehlgeschlagen. "
+"Dies ist möglicherweise ein Problem mit Ihrer GLib-Installation."
+
+#: panel-plugin/mailwatch.c:301 panel-plugin/mailwatch.c:352
+#, c-format
+msgid "Unable to write config file '%s'"
+msgstr "Fehler beim Schreiben der Konfigurationsdatei '%s'"
+
+#: panel-plugin/mailwatch.c:361
+#, c-format
+msgid ""
+"Unable to set permissions on config file '%s'.  If this file contains "
+"passwords or other sensitive information, it may be readable by others on "
+"your system."
+msgstr ""
+"Fehler beim Setzen der Zugriffsrechte für die Konfigurationsdatei '%s'. Wenn die Datei "
+"Passwörter oder andere sensible Informationen beinhaltet, ist sie nun möglicherweise "
+"von anderen Benutzern auf Ihrem System lesbar."
+
+#: panel-plugin/mailwatch.c:524 panel-plugin/mailwatch.c:569
+msgid "Mailwatch"
+msgstr "Mailüberwachung"
+
+#: panel-plugin/mailwatch.c:525
+msgid "No configuration needed."
+msgstr "Keine Konfiguration erforderlich."
+
+#: panel-plugin/mailwatch.c:526
+msgid "This mailbox type does not require any configuration settings."
+msgstr "Dieser Mailbox-Typ benötigt keine Konfigurationseinstellungen."
+
+#: panel-plugin/mailwatch.c:552
+msgid "Mailbox _Name:"
+msgstr "Mailbox-_Name:"
+
+#: panel-plugin/mailwatch.c:570
+msgid "Mailbox name required."
+msgstr "Mailboxname wird benötigt."
+
+#: panel-plugin/mailwatch.c:571
+msgid "Please enter a name for the mailbox."
+msgstr "Bitte geben Sie einen Namen für die Mailbox ein."
+
+#: panel-plugin/mailwatch.c:614
+#, c-format
+msgid "Edit Mailbox: %s"
+msgstr "Bearbeite Mailbox: %s"
+
+#: panel-plugin/mailwatch.c:677
+msgid "Select Mailbox Type"
+msgstr "Mailbox-Typ auswählen"
+
+#: panel-plugin/mailwatch.c:742
+msgid "Add New Mailbox"
+msgstr "Neue Mailbox hinzufügen"
+
+#: panel-plugin/mailwatch.c:805
+msgid "Remove Mailbox"
+msgstr "Mailbox entfernen"
+
+#: panel-plugin/mailwatch.c:806
+msgid "Are you sure?"
+msgstr "Sind Sie sicher?"
+
+#: panel-plugin/mailwatch.c:807
+msgid "Removing a mailbox will discard all settings, and cannot be undone."
+msgstr "Das Entfernen einer Mailbox löscht alle Einstellungen und kann nicht rückgängig gemacht werden."
+
+#: panel-plugin/mailwatch.c:879
+msgid "Configured _Mailboxes:"
+msgstr "Konfigurierte _Mailboxen:"
+
