@@ -524,9 +524,12 @@ config_run_addedit_window(const gchar *title, GtkWindow *parent,
     cfg_box = mailbox->type->get_setup_page_func(mailbox);
     if(!cfg_box) {
         /* Even the mailboxes that don't have configurable settings need a name */
-        lbl = gtk_label_new( _( "This mailbox type does not require any configuration settings." ) );
-        gtk_widget_show( lbl );
-        cfg_box = GTK_CONTAINER( lbl );
+        cfg_box = GTK_CONTAINER(gtk_hbox_new(FALSE, BORDER/2));
+        gtk_widget_show(GTK_WIDGET(cfg_box));
+        
+        lbl = gtk_label_new(_("This mailbox type does not require any configuration settings."));
+        gtk_widget_show(lbl);
+        gtk_box_pack_start(GTK_BOX(cfg_box), lbl, TRUE, TRUE, 0);
     }
     
     if(!mailbox_name) {
