@@ -523,11 +523,10 @@ config_run_addedit_window(const gchar *title, GtkWindow *parent,
     
     cfg_box = mailbox->type->get_setup_page_func(mailbox);
     if(!cfg_box) {
-        xfce_message_dialog(parent, _("Mailwatch"),
-                GTK_STOCK_DIALOG_INFO, _("No configuration needed."),
-                _("This mailbox type does not require any configuration settings."),
-                GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
-        return TRUE;
+        /* Even the mailboxes that don't have configurable settings need a name */
+        lbl = gtk_label_new( _( "This mailbox type does not require any configuration settings." ) );
+        gtk_widget_show( lbl );
+        cfg_box = GTK_CONTAINER( lbl );
     }
     
     if(!mailbox_name) {
