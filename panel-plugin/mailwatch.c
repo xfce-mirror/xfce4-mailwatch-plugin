@@ -78,11 +78,13 @@ struct _XfceMailwatch
 extern XfceMailwatchMailboxType builtin_mailbox_type_imap;
 extern XfceMailwatchMailboxType builtin_mailbox_type_maildir;
 extern XfceMailwatchMailboxType builtin_mailbox_type_mbox;
+extern XfceMailwatchMailboxType builtin_mailbox_type_mh;
 
 XfceMailwatchMailboxType *builtin_mailbox_types[] = {
     &builtin_mailbox_type_imap,
     &builtin_mailbox_type_maildir,
     &builtin_mailbox_type_mbox,
+    &builtin_mailbox_type_mh,
     NULL
 };
 #define N_BUILTIN_MAILBOX_TYPES (sizeof(builtin_mailbox_types)/sizeof(builtin_mailbox_types[0]))
