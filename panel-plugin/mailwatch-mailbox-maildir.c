@@ -183,7 +183,7 @@ maildir_new( XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type )
     maildir->mailwatch      = mailwatch;
     maildir->path           = NULL;
     maildir->active         = FALSE;
-    maildir->interval       = XFCE_MAILWATCH_DEFAULT_TIMEOUT / 1000;
+    maildir->interval       = XFCE_MAILWATCH_DEFAULT_TIMEOUT;
         
     if ( !maildir_thread ) {
         maildir_list_mutex = g_mutex_new();

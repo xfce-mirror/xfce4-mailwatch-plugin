@@ -226,7 +226,7 @@ mbox_new( XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type )
 
     mbox->settings_mutex = g_mutex_new();
     mbox->queue = g_async_queue_new();
-    mbox->interval = XFCE_MAILWATCH_DEFAULT_TIMEOUT / 1000;
+    mbox->interval = XFCE_MAILWATCH_DEFAULT_TIMEOUT;
     mbox->thread = g_thread_create( mbox_check_mail_thread, mbox, TRUE, NULL );
 
     return ( (XfceMailwatchMailbox *) mbox );
