@@ -21,7 +21,31 @@
 
 #include <gtk/gtk.h>
 
+#include <gnutls/gnutls.h>
+
 G_BEGIN_DECLS
+
+typedef enum
+{
+    AUTH_NONE = 0,
+    AUTH_SSL_PORT,
+    AUTH_STARTTLS
+} XfceMailwatchAuthType;
+
+typedef struct
+{
+    gboolean using_tls;
+    gboolean gnutls_inited;
+    gnutls_session_t gt_session;
+    gnutls_certificate_credentials_t gt_creds;
+} XfceMailwatchSecurityInfo;
+
+gboolean xfce_mailwatch_net_get_sockaddr(const gchar *host, const gchar *service, struct addrinfo *hints, struct sockaddr_in *addr);
+gboolean xfce_mailwatch_net_negotiate_tls(gint sockfd, XfceMailwatchSecurityInfo *security_info, const gchar *host);
+gssize xfce_mailwatch_net_send(gint sockfd, XfceMailwatchSecurityInfo *security_info, const gchar *buf);
+gssize xfce_mailwatch_net_recv(gint sockfd, XfceMailwatchSecurityInfo *security_info, gchar *buf, gsize len);
+void xfce_mailwatch_net_tls_teardown(XfceMailwatchSecurityInfo *security_info);
+
 
 GtkWidget *xfce_mailwatch_custom_button_new(const gchar *text, const gchar *icon);
 
