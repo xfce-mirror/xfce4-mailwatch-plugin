@@ -3,3 +3,5 @@ png_DATA = xfce-newmail.png xfce-nomail.png
 
 svgdir = $(datadir)/icons/hicolor/scalable/apps
 svg_DATA = xfce-newmail.svg xfce-nomail.svg
+
+EXTRA_DIST = $(png_DATA) $(svg_DATA)

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-25 23:36-0700\n"
+"POT-Creation-Date: 2005-06-26 05:31-0700\n"
 "PO-Revision-Date: 2005-05-20 21:39+0200\n"
 "Last-Translator: Bernhard Walle <bernhard.walle@gmx.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: KBabel 1.10\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:203
+#: panel-plugin/mailwatch-mailbox-imap.c:210
 msgid ""
 "Secure IMAP is not available, and the IMAP server does not support plaintext "
 "logins."
@@ -25,8 +25,8 @@ msgstr ""
 "IMAP über eine verschlüsselte Verbindung ist nicht verfügbar und der Server "
 "unterstützt Plaintext-Logins nicht."
 
-#: panel-plugin/mailwatch-mailbox-imap.c:328
-#: panel-plugin/mailwatch-mailbox-pop3.c:298
+#: panel-plugin/mailwatch-mailbox-imap.c:335
+#: panel-plugin/mailwatch-mailbox-pop3.c:301
 #, fuzzy
 msgid ""
 "XfceMailwatch: Unable to set socket to non-blocking mode.  If the connect "
@@ -36,8 +36,8 @@ msgstr ""
 "Bei Verbindungsprobleme kann es vorkommen, dass das Panel nicht beendet "
 "werden kann."
 
-#: panel-plugin/mailwatch-mailbox-imap.c:390
-#: panel-plugin/mailwatch-mailbox-pop3.c:360
+#: panel-plugin/mailwatch-mailbox-imap.c:397
+#: panel-plugin/mailwatch-mailbox-pop3.c:363
 #, fuzzy
 msgid ""
 "XfceMailwatch: Unable to return socket to blocking mode.  Data may not be "
@@ -46,124 +46,124 @@ msgstr ""
 "Sockets konnten nicht in den blockierenden Modus zurückgeschaltet werden. "
 "Probleme beim Datenempfang können dadurch entstehen."
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1061
+#: panel-plugin/mailwatch-mailbox-imap.c:1068
 msgid "Failed to get folder list"
 msgstr "Laden der Ordnerliste fehlgeschlagen"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1130
-#: panel-plugin/mailwatch-mailbox-imap.c:1478
+#: panel-plugin/mailwatch-mailbox-imap.c:1137
+#: panel-plugin/mailwatch-mailbox-imap.c:1501
 msgid "Please wait..."
 msgstr "Bitte warten..."
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1269
+#: panel-plugin/mailwatch-mailbox-imap.c:1284
 msgid "Advanced IMAP Options"
 msgstr "Erweiterte IMAP-Optionen"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1278
-#: panel-plugin/mailwatch-mailbox-pop3.c:737
+#: panel-plugin/mailwatch-mailbox-imap.c:1293
+#: panel-plugin/mailwatch-mailbox-pop3.c:748
 msgid "Connection"
 msgstr ""
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1290
-msgid "Use non-standard IMAP _port:"
-msgstr ""
-
-#: panel-plugin/mailwatch-mailbox-imap.c:1312
-#: panel-plugin/mailwatch-mailbox-pop3.c:771
+#: panel-plugin/mailwatch-mailbox-imap.c:1302
+#: panel-plugin/mailwatch-mailbox-pop3.c:757
 #, fuzzy
 msgid "Use unsecured connection"
 msgstr "_Sichere Verbindung erzwingen"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1313
-#: panel-plugin/mailwatch-mailbox-pop3.c:772
+#: panel-plugin/mailwatch-mailbox-imap.c:1303
+#: panel-plugin/mailwatch-mailbox-pop3.c:758
 msgid "Use SSL/TLS on alternate port"
 msgstr ""
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1314
-#: panel-plugin/mailwatch-mailbox-pop3.c:773
+#: panel-plugin/mailwatch-mailbox-imap.c:1304
+#: panel-plugin/mailwatch-mailbox-pop3.c:759
 msgid "Use SSL/TLS via STARTTLS"
 msgstr ""
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1321
+#: panel-plugin/mailwatch-mailbox-imap.c:1315
+msgid "Use non-standard IMAP _port:"
+msgstr ""
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1344
 #, fuzzy
 msgid "Folders"
 msgstr "Ordner für neue Mails"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1329
+#: panel-plugin/mailwatch-mailbox-imap.c:1352
 msgid "IMAP server _directory:"
 msgstr "IMAP-Server _Verzeichnis:"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1362
+#: panel-plugin/mailwatch-mailbox-imap.c:1385
 msgid "Error"
 msgstr ""
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1363
+#: panel-plugin/mailwatch-mailbox-imap.c:1386
 msgid "No server or username is set."
 msgstr ""
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1364
+#: panel-plugin/mailwatch-mailbox-imap.c:1387
 msgid ""
 "The folder list cannot be retrieved until a server, username, and probably "
 "password are set.  Also be sure to check any security settings in the "
 "Advanced dialog."
 msgstr ""
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1369
+#: panel-plugin/mailwatch-mailbox-imap.c:1392
 #, fuzzy
 msgid "Set New Mail Folders"
 msgstr "Ordner für neue Mails"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1377
+#: panel-plugin/mailwatch-mailbox-imap.c:1400
 msgid "New Mail Folders"
 msgstr "Ordner für neue Mails"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1499
+#: panel-plugin/mailwatch-mailbox-imap.c:1522
 msgid "IMAP Server"
 msgstr "IMAP-Server"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1513
-#: panel-plugin/mailwatch-mailbox-pop3.c:810
+#: panel-plugin/mailwatch-mailbox-imap.c:1536
+#: panel-plugin/mailwatch-mailbox-pop3.c:829
 msgid "_Mail server:"
 msgstr "_Mailserver:"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1532
-#: panel-plugin/mailwatch-mailbox-pop3.c:829
+#: panel-plugin/mailwatch-mailbox-imap.c:1555
+#: panel-plugin/mailwatch-mailbox-pop3.c:848
 msgid "_Username:"
 msgstr "_Benutzername:"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1551
-#: panel-plugin/mailwatch-mailbox-pop3.c:848
+#: panel-plugin/mailwatch-mailbox-imap.c:1574
+#: panel-plugin/mailwatch-mailbox-pop3.c:867
 msgid "_Password:"
 msgstr "_Passwort:"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1571
-#: panel-plugin/mailwatch-mailbox-pop3.c:868
+#: panel-plugin/mailwatch-mailbox-imap.c:1594
+#: panel-plugin/mailwatch-mailbox-pop3.c:887
 msgid "_Advanced..."
 msgstr "_Erweitert..."
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1578
+#: panel-plugin/mailwatch-mailbox-imap.c:1601
 #, fuzzy
 msgid "New mail _folders..."
 msgstr "Ordner für neue Mails"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1589
-#: panel-plugin/mailwatch-mailbox-pop3.c:879
+#: panel-plugin/mailwatch-mailbox-imap.c:1612
+#: panel-plugin/mailwatch-mailbox-pop3.c:898
 msgid "Check for _new messages every"
 msgstr "Überprüfung nach _neuen Nachrichten im Intervall"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1603
+#: panel-plugin/mailwatch-mailbox-imap.c:1626
 #: panel-plugin/mailwatch-mailbox-maildir.c:439
 #: panel-plugin/mailwatch-mailbox-mbox.c:452
 #: panel-plugin/mailwatch-mailbox-mh.c:572
-#: panel-plugin/mailwatch-mailbox-pop3.c:893
+#: panel-plugin/mailwatch-mailbox-pop3.c:912
 msgid "minute(s)."
 msgstr "Minuten"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1748
+#: panel-plugin/mailwatch-mailbox-imap.c:1771
 msgid "Remote IMAP Mailbox"
 msgstr "Entfernte IMAP-Mailbox"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1749
+#: panel-plugin/mailwatch-mailbox-imap.c:1772
 msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
@@ -233,26 +233,26 @@ msgstr ""
 "Das Mbox-Plugin überwacht eine lokale Mbox-Mailbox (d. h. pro Mailordner "
 "eine Datei, jede Nachricht mit \"From\" abgetrennt) auf neue Nachrichten."
 
-#: panel-plugin/mailwatch-mailbox-pop3.c:728
+#: panel-plugin/mailwatch-mailbox-pop3.c:739
 #, fuzzy
 msgid "Advanced POP3 Options"
 msgstr "Erweiterte IMAP-Optionen"
 
-#: panel-plugin/mailwatch-mailbox-pop3.c:749
+#: panel-plugin/mailwatch-mailbox-pop3.c:770
 msgid "Use non-standard POP3 _port:"
 msgstr ""
 
-#: panel-plugin/mailwatch-mailbox-pop3.c:796
+#: panel-plugin/mailwatch-mailbox-pop3.c:815
 #, fuzzy
 msgid "POP3 Server"
 msgstr "IMAP-Server"
 
-#: panel-plugin/mailwatch-mailbox-pop3.c:1005
+#: panel-plugin/mailwatch-mailbox-pop3.c:1024
 #, fuzzy
 msgid "Remote POP3 Mailbox"
 msgstr "Entfernte IMAP-Mailbox"
 
-#: panel-plugin/mailwatch-mailbox-pop3.c:1006
+#: panel-plugin/mailwatch-mailbox-pop3.c:1025
 #, fuzzy
 msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
@@ -358,7 +358,7 @@ msgstr ""
 "Das Entfernen einer Mailbox löscht alle Einstellungen und kann nicht "
 "rückgängig gemacht werden."
 
-#: panel-plugin/mailwatch.c:885
+#: panel-plugin/mailwatch.c:887
 msgid "Configured _Mailboxes:"
 msgstr "Konfigurierte _Mailboxen:"
 
