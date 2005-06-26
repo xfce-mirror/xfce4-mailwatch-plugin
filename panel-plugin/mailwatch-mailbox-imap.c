@@ -124,6 +124,13 @@ static struct gcry_thread_cbs gcry_threads_gthread = {
 #define IMAP_CMD_QUIT    GINT_TO_POINTER(4)
 #define IMAP_CMD_UPDATE  GINT_TO_POINTER(5)
 
+typedef enum
+{
+    AUTH_NONE = 0,
+    AUTH_SSL_PORT,
+    AUTH_STARTTLS
+} XfceMailwatchAuthType;
+
 typedef struct
 {
     XfceMailwatchMailbox mailbox;
@@ -134,9 +141,12 @@ typedef struct
     gchar *host;
     gchar *username;
     gchar *password;
-    gboolean require_ssl;
     GList *mailboxes_to_check;
     gchar *server_directory;
+    
+    gboolean use_standard_port;
+    gint nonstandard_port;
+    XfceMailwatchAuthType auth_type;
     
     GThread *th;
     GAsyncQueue *aqueue;
@@ -149,12 +159,6 @@ typedef struct
     gboolean requiring_ssl;
     gboolean using_ssl;
     
-    /* some well-meaning admins erroneously ban port 143 and only allow 993,
-     * instead of requiring the use of STARTTLS on port 143.  we should keep
-     * track of this to save time. */
-    guint port143_failures;
-    glong last_143_check;
-    
     /* secure this, dude */
     gboolean gnutls_inited;
     gnutls_session_t gt_session;
@@ -163,16 +167,10 @@ typedef struct
     /* config dlg */
     GtkTreeStore *ts;
     GtkCellRenderer *render;
+    GThread *folder_tree_th;
     GtkWidget *refresh_btn;
     GNode *folder_tree;
 } XfceMailwatchIMAPMailbox;
-
-typedef enum
-{
-    IMAP_SUCCEEDED = 0,
-    IMAP_FAILED = -1,
-    IMAP_NO_STARTTLS_SUPPORT = -2
-} IMAPResult;
 
 enum
 {
@@ -346,7 +344,7 @@ imap_get_sockaddr(const gchar *host, const gchar *service,
 }
 
 static gboolean
-imap_auth_plain(XfceMailwatchIMAPMailbox *imailbox, const gchar *username,
+imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox, const gchar *username,
         const gchar *password)
 {
 #define BUFSIZE 8191
@@ -447,19 +445,15 @@ imap_negotiate_ssl(XfceMailwatchIMAPMailbox *imailbox, const gchar *host)
     return TRUE;
 }
 
-static IMAPResult
+static gboolean
 imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
         const gchar *username, const gchar *password)
 {
 #define BUFSIZE 8191
-    IMAPResult res = IMAP_FAILED;
     gint bin;
     gchar buf[BUFSIZE+1];
     
     TRACE("entering");
-    
-    /* turn off SSL, because obviously we haven't negotiated it yet. */
-    imailbox->using_ssl = FALSE;
     
     g_snprintf(buf, BUFSIZE, "%05d CAPABILITY\r\n", ++imailbox->imap_tag);
     if(imap_send(imailbox, buf) != strlen(buf))
@@ -469,10 +463,8 @@ imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
     DBG("checking for STARTTLS caps (%d): %s", bin, bin>0?buf:"(nada)");
     if(bin <= 0)
         goto cleanuperr;
-    if(!strstr(buf, " STARTTLS")) {
-        res = IMAP_NO_STARTTLS_SUPPORT;
+    if(!strstr(buf, " STARTTLS"))
         goto cleanuperr;
-    }
     
     g_snprintf(buf, BUFSIZE, "%05d STARTTLS\r\n", ++imailbox->imap_tag);
     if(imap_send(imailbox, buf) != strlen(buf))
@@ -486,7 +478,7 @@ imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
     /* now that we've negotiated SSL, reenable using_ssl */
     imailbox->using_ssl = TRUE;
     
-    return IMAP_SUCCEEDED;
+    return TRUE;
     
     cleanuperr:
     
@@ -494,7 +486,7 @@ imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
     close(imailbox->sockfd);
     imailbox->sockfd = -1;
     
-    return res;
+    return FALSE;
 #undef BUFSIZE
 }
 
@@ -503,7 +495,6 @@ imap_connect(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
         const gchar *service)
 {
     struct sockaddr_in addr;
-    gchar buf[1024];
     
     TRACE("entering (%s)", service);
     
@@ -524,7 +515,7 @@ imap_connect(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
      */
     
     if(fcntl(imailbox->sockfd, F_SETFL, fcntl(imailbox->sockfd, F_GETFL) | O_NONBLOCK))
-        g_warning(_("Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."));
+        g_warning(_("XfceMailwatch: Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."));
     
     if(connect(imailbox->sockfd, (struct sockaddr *)&addr,
             sizeof(struct sockaddr_in)))
@@ -586,102 +577,81 @@ imap_connect(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
     }
     
     if(fcntl(imailbox->sockfd, F_SETFL, fcntl(imailbox->sockfd, F_GETFL) & ~(O_NONBLOCK)))
-        g_warning(_("Unable to return socket to blocking mode.  Data may not be retreived correctly."));
-    
-    /* discard opening banner, but only if on the normal imap port */
-    if(!strcmp(service, "imap") && imap_recv(imailbox, buf, 1023) < 0) {
-        DBG("failed to get banner");
-        shutdown(imailbox->sockfd, SHUT_RDWR);
-        close(imailbox->sockfd);
-        imailbox->sockfd = -1;
-        return FALSE;
-    }
+        g_warning(_("XfceMailwatch: Unable to return socket to blocking mode.  Data may not be retreived correctly."));
     
     return TRUE;
 }
 
 static gboolean
 imap_authenticate(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
-        const gchar *username, const gchar *password)
+        const gchar *username, const gchar *password,
+        XfceMailwatchAuthType auth_type)
 {
-    IMAPResult res = IMAP_FAILED;
-    gboolean need_to_trash_banner = FALSE;
+    gboolean ret = FALSE;
     gchar buf[1024];
-    GTimeVal now;
     
-    TRACE("entering");
+    TRACE("entering, auth_type is %d", auth_type);
     
-    /* check the current time.  if it's been more than 4 hours since we last
-     * tried port 143 after failing a couple times, give it another shot now. */
-    g_get_current_time(&now);
-    if(imailbox->port143_failures && now.tv_sec-imailbox->last_143_check > (60*60*4))
-        imailbox->port143_failures = 0;
-    
-    if(imailbox->port143_failures < 3) {
-        /* first try STARTTLS.  if that fails, try connecting on the imaps port.
-         * if that fails, and we're requiring SSL, bail.  otherwise, try
-         * plaintext (yuck), but only if the user allows it. */
-        
-        /* turn this off for connecting */
-        imailbox->using_ssl = FALSE;
-    
-        if(imap_connect(imailbox, host, "imap")) {
-            res = imap_do_starttls(imailbox, host, username, password);
-            DBG("res is %d", res);
-        }
-        
-        /* but otherwise we really love SSL. */
-        imailbox->using_ssl = TRUE;
-        
-        if(res != IMAP_SUCCEEDED)
-            imailbox->port143_failures++;
-        
-        /* if we just failed, set the last failure to now.  if we failed
-         * because the server says there's no STARTTLS support, don't check
-         * again for another 5 days. */
-        if(res == IMAP_FAILED)
-            imailbox->last_143_check = now.tv_sec;
-        else if(res == IMAP_NO_STARTTLS_SUPPORT)
-            imailbox->last_143_check = now.tv_sec + (60*60*24*5);
-    }
-    
-    if(res != IMAP_SUCCEEDED) {
-        if(!imap_connect(imailbox, host, "imaps")) {
-            /* this probably is a transient failure if 143 failed as well */
-            if(res == IMAP_FAILED)
-                imailbox->port143_failures = 0;
-            
-            if(imailbox->requiring_ssl)
-                return FALSE;
-            else {
-                imailbox->using_ssl = FALSE;
-                if(!imap_connect(imailbox, host, "imap"))
-                    return FALSE;
+    switch(auth_type) {
+        case AUTH_NONE:
+            imailbox->using_ssl = FALSE;
+            ret = imap_connect(imailbox, host, "imap");
+
+            /* discard opening banner */
+            if(ret && imap_recv(imailbox, buf, 1023) < 0) {
+                DBG("failed to get banner");
+                shutdown(imailbox->sockfd, SHUT_RDWR);
+                close(imailbox->sockfd);
+                imailbox->sockfd = -1;
             }
-        } else {
+            break;
+        
+        case AUTH_STARTTLS:
+            imailbox->using_ssl = FALSE;
+            ret = imap_connect(imailbox, host, "imap");
+            
+            if(ret) {
+                /* discard opening banner */
+                if(imap_recv(imailbox, buf, 1023) < 0) {
+                    DBG("failed to get banner");
+                    shutdown(imailbox->sockfd, SHUT_RDWR);
+                    close(imailbox->sockfd);
+                    imailbox->sockfd = -1;
+                }
+                
+                ret = imap_do_starttls(imailbox, host, username, password);
+                if(ret)
+                    ret = imap_negotiate_ssl(imailbox, host);
+                imailbox->using_ssl = TRUE;
+            }
+            break;
+        
+        case AUTH_SSL_PORT:
             imailbox->using_ssl = TRUE;
-            need_to_trash_banner = TRUE;
-        }
+            ret = imap_connect(imailbox, host, "imaps");
+            if(ret)
+                ret = imap_negotiate_ssl(imailbox, host);
+        
+            /* discard opening banner */
+            if(ret && imap_recv(imailbox, buf, 1023) < 0) {
+                DBG("failed to get banner");
+                shutdown(imailbox->sockfd, SHUT_RDWR);
+                close(imailbox->sockfd);
+                imailbox->sockfd = -1;
+            }
+            break;
+        
+        default:
+            g_critical("XfceMailwatchIMAPMailbox: Unknown auth type (%d)", auth_type);
+            return FALSE;
     }
     
     DBG("using_ssl is %s", imailbox->using_ssl?"TRUE":"FALSE");
-    
-    if(imailbox->using_ssl && !imap_negotiate_ssl(imailbox, host))
+        
+    if(ret && !imap_send_login_info(imailbox, username, password))
         return FALSE;
     
-    /* discard opening banner, in this case it happens after TLS negotiation */
-    if(need_to_trash_banner && imap_recv(imailbox, buf, 1023) < 0) {
-        DBG("failed to get banner");
-        shutdown(imailbox->sockfd, SHUT_RDWR);
-        close(imailbox->sockfd);
-        imailbox->sockfd = -1;
-        return FALSE;
-    }
-    
-    if(!imap_auth_plain(imailbox, username, password))
-        return FALSE;
-    
-    return TRUE;
+    return ret;
 }
 
 static guint
@@ -796,6 +766,7 @@ imap_check_mail(XfceMailwatchIMAPMailbox *imailbox)
     gchar host[BUFSIZE], username[BUFSIZE], password[BUFSIZE];
     guint new_messages = 0;
     GList *mailboxes_to_check = NULL, *l;
+    XfceMailwatchAuthType auth_type;
     
     g_mutex_lock(imailbox->config_mx);
     
@@ -807,7 +778,7 @@ imap_check_mail(XfceMailwatchIMAPMailbox *imailbox)
     g_strlcpy(host, imailbox->host, BUFSIZE);
     g_strlcpy(username, imailbox->username, BUFSIZE);
     g_strlcpy(password, imailbox->password, BUFSIZE);
-    imailbox->requiring_ssl = imailbox->require_ssl;
+    auth_type = imailbox->auth_type;
     
     /* make a deep copy of the mailbox list */
     for(l = imailbox->mailboxes_to_check; l; l = l->next)
@@ -819,7 +790,7 @@ imap_check_mail(XfceMailwatchIMAPMailbox *imailbox)
     imap_escape_string(username, BUFSIZE);
     imap_escape_string(password, BUFSIZE);
     
-    if(!imap_authenticate(imailbox, host, username, password)) {
+    if(!imap_authenticate(imailbox, host, username, password, auth_type)) {
         DBG("failed to connect to imap server");
         goto cleanup;
     }
@@ -906,7 +877,7 @@ imap_mailbox_new(XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type)
     imailbox->mailbox.type = type;
     imailbox->mailwatch = mailwatch;
     imailbox->timeout = XFCE_MAILWATCH_DEFAULT_TIMEOUT;
-    imailbox->require_ssl = TRUE;
+    imailbox->use_standard_port = TRUE;
     imailbox->config_mx = g_mutex_new();
     /* init the queue */
     imailbox->aqueue = g_async_queue_new();
@@ -1003,14 +974,6 @@ imap_password_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
     g_mutex_unlock(imailbox->config_mx);
     
     return FALSE;
-}
-
-static void
-imap_require_secure_chk_cb(GtkToggleButton *tb, gpointer user_data)
-{
-    XfceMailwatchIMAPMailbox *imailbox = user_data;
-    
-    imailbox->require_ssl = gtk_toggle_button_get_active(tb);
 }
 
 static gboolean
@@ -1298,6 +1261,7 @@ imap_populate_folder_tree_th(gpointer data)
 #define BUFSIZE 1024
     XfceMailwatchIMAPMailbox *imailbox = data;
     gchar host[BUFSIZE], username[BUFSIZE], password[BUFSIZE];
+    XfceMailwatchAuthType auth_type;
     
     TRACE("entering");
     
@@ -1312,14 +1276,14 @@ imap_populate_folder_tree_th(gpointer data)
     g_strlcpy(host, imailbox->host, BUFSIZE);
     g_strlcpy(username, imailbox->username, BUFSIZE);
     g_strlcpy(password, imailbox->password, BUFSIZE);
-    imailbox->requiring_ssl = imailbox->require_ssl;
+    auth_type = imailbox->auth_type;
     
     g_mutex_unlock(imailbox->config_mx);
     
     imap_escape_string(username, BUFSIZE);
     imap_escape_string(password, BUFSIZE);
     
-    if(imap_authenticate(imailbox, host, username, password)) {
+    if(imap_authenticate(imailbox, host, username, password, auth_type)) {
         imailbox->folder_tree = g_node_new((gpointer)0xdeadbeef);
         imap_populate_folder_tree(imailbox, "", imailbox->folder_tree);
         g_idle_add(imap_populate_folder_tree_nodes, imailbox);
@@ -1422,6 +1386,47 @@ imap_config_treeview_btnpress_cb(GtkWidget *w, GdkEventButton *evt,
     return FALSE;
 }
 
+static void
+imap_config_nonstandard_chk_cb(GtkToggleButton *tb, gpointer user_data)
+{
+    XfceMailwatchIMAPMailbox *imailbox = user_data;
+    GtkWidget *entry = g_object_get_data(G_OBJECT(tb), "xfmw-entry");
+    
+    g_mutex_lock(imailbox->config_mx);
+    
+    imailbox->use_standard_port = !gtk_toggle_button_get_active(tb);
+    gtk_widget_set_sensitive(entry, !imailbox->use_standard_port);
+    
+    g_mutex_unlock(imailbox->config_mx);
+}
+
+static gboolean
+imap_config_nonstandard_focusout_cb(GtkWidget *w, GdkEventFocus *evt, 
+        gpointer user_data)
+{
+    XfceMailwatchIMAPMailbox *imailbox = user_data;
+    
+    g_mutex_lock(imailbox->config_mx);
+    
+    imailbox->nonstandard_port = atoi(gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1));
+    
+    g_mutex_unlock(imailbox->config_mx);
+    
+    return FALSE;
+}
+
+static void
+imap_config_security_combo_changed_cb(GtkWidget *w, gpointer user_data)
+{
+    XfceMailwatchIMAPMailbox *imailbox = user_data;
+    
+    g_mutex_lock(imailbox->config_mx);
+    
+    imailbox->auth_type = gtk_combo_box_get_active(GTK_COMBO_BOX(w));
+    
+    g_mutex_unlock(imailbox->config_mx);
+}
+
 static gboolean
 imap_config_serverdir_focusout_cb(GtkWidget *w, GdkEventFocus *evt,
         gpointer user_data)
@@ -1442,21 +1447,69 @@ static void
 imap_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
 {
     XfceMailwatchIMAPMailbox *imailbox = user_data;
-    GtkWidget *dlg, *vbox, *hbox, *lbl, *entry;
+    GtkWidget *dlg, *topvbox, *vbox, *hbox, *lbl, *entry, *frame, *chk, *combo;
+    
+    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     
     dlg = gtk_dialog_new_with_buttons(_("Advanced IMAP Options"),
             GTK_WINDOW(gtk_widget_get_toplevel(w)),
             GTK_DIALOG_DESTROY_WITH_PARENT|GTK_DIALOG_NO_SEPARATOR,
             GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
+    topvbox = gtk_vbox_new(FALSE, BORDER/2);
+    gtk_container_set_border_width(GTK_CONTAINER(topvbox), BORDER/2);
+    gtk_widget_show(topvbox);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), topvbox, TRUE, TRUE, 0);
+    
+    frame = xfce_framebox_new(_("Connection"), TRUE);
+    gtk_widget_show(frame);
+    gtk_box_pack_start(GTK_BOX(topvbox), frame, FALSE, FALSE, 0);
     
     vbox = gtk_vbox_new(FALSE, BORDER/2);
-    gtk_container_set_border_width(GTK_CONTAINER(vbox), BORDER/2);
     gtk_widget_show(vbox);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), vbox, TRUE, TRUE, 0);
+    xfce_framebox_add(XFCE_FRAMEBOX(frame), vbox);
     
     hbox = gtk_hbox_new(FALSE, BORDER/2);
     gtk_widget_show(hbox);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+    
+    chk = gtk_check_button_new_with_mnemonic(_("Use non-standard IMAP _port:"));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(chk),
+            !imailbox->use_standard_port);
+    gtk_widget_show(chk);
+    gtk_box_pack_start(GTK_BOX(hbox), chk, FALSE, FALSE, 0);
+    g_signal_connect(G_OBJECT(chk), "toggled",
+            G_CALLBACK(imap_config_nonstandard_chk_cb), imailbox);
+    
+    entry = gtk_entry_new();
+    gtk_entry_set_width_chars(GTK_ENTRY(entry), 5);
+    if(!imailbox->use_standard_port) {
+        gchar portstr[16];
+        g_snprintf(portstr, 16, "%d", imailbox->nonstandard_port);
+        gtk_entry_set_text(GTK_ENTRY(entry), portstr);
+    } else
+        gtk_widget_set_sensitive(entry, FALSE);
+    gtk_widget_show(entry);
+    gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
+    g_signal_connect(G_OBJECT(entry), "focus-out-event",
+            G_CALLBACK(imap_config_nonstandard_focusout_cb), imailbox);
+    
+    combo = gtk_combo_box_new_text();
+    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use unsecured connection"));
+    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use SSL/TLS on alternate port"));
+    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use SSL/TLS via STARTTLS"));
+    gtk_combo_box_set_active(GTK_COMBO_BOX(combo), imailbox->auth_type);
+    gtk_widget_show(combo);
+    gtk_box_pack_start(GTK_BOX(vbox), combo, FALSE, FALSE, 0);
+    g_signal_connect(G_OBJECT(combo), "changed",
+            G_CALLBACK(imap_config_security_combo_changed_cb), imailbox);
+    
+    frame = xfce_framebox_new(_("Folders"), TRUE);
+    gtk_widget_show(frame);
+    gtk_box_pack_start(GTK_BOX(topvbox), frame, FALSE, FALSE, 0);
+    
+    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    gtk_widget_show(hbox);
+    xfce_framebox_add(XFCE_FRAMEBOX(frame), hbox);
     
     lbl = gtk_label_new_with_mnemonic(_("IMAP server _directory:"));
     gtk_widget_show(lbl);
@@ -1476,13 +1529,12 @@ imap_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     gtk_widget_destroy(dlg);
 }
 
-static GtkContainer *
-imap_get_setup_page(XfceMailwatchMailbox *mailbox)
+static void
+imap_config_newmailfolders_btn_clicked_cb(GtkWidget *w, gpointer user_data)
 {
-    XfceMailwatchIMAPMailbox *imailbox = XFCE_MAILWATCH_IMAP_MAILBOX(mailbox);
-    GtkWidget *topvbox, *vbox, *hbox, *frame, *lbl, *entry, *chk, *sw,
-            *treeview, *btn, *sbtn;
-    GtkSizeGroup *sg;
+    XfceMailwatchIMAPMailbox *imailbox = user_data;
+    GtkWidget *dlg, *topvbox, *vbox, *hbox, *treeview, *frame, *btn, *sw;
+    GtkWindow *toplevel = GTK_WINDOW(gtk_widget_get_toplevel(w));
     GtkTreeStore *ts;
     GtkTreeIter itr;
     GtkCellRenderer *render;
@@ -1491,83 +1543,21 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
     
     xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     
+    if(!imailbox->host || !imailbox->username) {
+        xfce_message_dialog(toplevel, _("Error"), GTK_STOCK_DIALOG_WARNING,
+                _("No server or username is set."),
+                _("The folder list cannot be retrieved until a server, username, and probably password are set.  Also be sure to check any security settings in the Advanced dialog."),
+                GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
+        return;
+    }
+    
+    dlg = gtk_dialog_new_with_buttons(_("Set New Mail Folders"), toplevel,
+            GTK_DIALOG_DESTROY_WITH_PARENT|GTK_DIALOG_NO_SEPARATOR,
+            GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
     topvbox = gtk_vbox_new(FALSE, BORDER/2);
+    gtk_container_set_border_width(GTK_CONTAINER(topvbox), BORDER/2);
     gtk_widget_show(topvbox);
-    
-    frame = xfce_framebox_new(_("IMAP Server"), TRUE);
-    gtk_widget_show(frame);
-    gtk_box_pack_start(GTK_BOX(topvbox), frame, FALSE, FALSE, 0);
-    
-    sg = gtk_size_group_new(GTK_SIZE_GROUP_HORIZONTAL);
-    
-    vbox = gtk_vbox_new(FALSE, BORDER/2);
-    gtk_widget_show(vbox);
-    xfce_framebox_add(XFCE_FRAMEBOX(frame), vbox);
-    
-    hbox = gtk_hbox_new(FALSE, BORDER/2);
-    gtk_widget_show(hbox);
-    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-    
-    lbl = gtk_label_new_with_mnemonic(_("_Mail server:"));
-    gtk_misc_set_alignment(GTK_MISC(lbl), 0.0, 0.5);
-    gtk_widget_show(lbl);
-    gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
-    gtk_size_group_add_widget(sg, lbl);
-    
-    entry = gtk_entry_new();
-    if(imailbox->host)
-        gtk_entry_set_text(GTK_ENTRY(entry), imailbox->host);
-    gtk_widget_show(entry);
-    gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
-    g_signal_connect(G_OBJECT(entry), "focus-out-event",
-            G_CALLBACK(imap_host_entry_focus_out_cb), imailbox);
-    gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), entry);
-    
-    hbox = gtk_hbox_new(FALSE, BORDER/2);
-    gtk_widget_show(hbox);
-    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-    
-    lbl = gtk_label_new_with_mnemonic(_("_Username:"));
-    gtk_misc_set_alignment(GTK_MISC(lbl), 0.0, 0.5);
-    gtk_widget_show(lbl);
-    gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
-    gtk_size_group_add_widget(sg, lbl);
-    
-    entry = gtk_entry_new();
-    if(imailbox->username)
-        gtk_entry_set_text(GTK_ENTRY(entry), imailbox->username);
-    gtk_widget_show(entry);
-    gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
-    g_signal_connect(G_OBJECT(entry), "focus-out-event",
-            G_CALLBACK(imap_username_entry_focus_out_cb), imailbox);
-    gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), entry);
-    
-    hbox = gtk_hbox_new(FALSE, BORDER/2);
-    gtk_widget_show(hbox);
-    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-    
-    lbl = gtk_label_new_with_mnemonic(_("_Password:"));
-    gtk_misc_set_alignment(GTK_MISC(lbl), 0.0, 0.5);
-    gtk_widget_show(lbl);
-    gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
-    gtk_size_group_add_widget(sg, lbl);
-    
-    entry = gtk_entry_new();
-    gtk_entry_set_visibility(GTK_ENTRY(entry), FALSE);
-    if(imailbox->password)
-        gtk_entry_set_text(GTK_ENTRY(entry), imailbox->password);
-    gtk_widget_show(entry);
-    gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
-    g_signal_connect(G_OBJECT(entry), "focus-out-event",
-            G_CALLBACK(imap_password_entry_focus_out_cb), imailbox);
-    gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), entry);
-    
-    chk = gtk_check_button_new_with_mnemonic(_("Require _secure connection"));
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(chk), imailbox->require_ssl);
-    gtk_widget_show(chk);
-    gtk_box_pack_start(GTK_BOX(vbox), chk, FALSE, FALSE, 0);
-    g_signal_connect(G_OBJECT(chk), "toggled",
-            G_CALLBACK(imap_require_secure_chk_cb), imailbox);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), topvbox, TRUE, TRUE, 0);
     
     frame = xfce_framebox_new(_("New Mail Folders"), TRUE);
     gtk_widget_show(frame);
@@ -1653,7 +1643,6 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
     gtk_container_add(GTK_CONTAINER(sw), treeview);
     g_signal_connect(G_OBJECT(treeview), "button-press-event",
             G_CALLBACK(imap_config_treeview_btnpress_cb), imailbox);
-    gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), treeview);
     
     sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview));
     gtk_tree_selection_set_mode(sel, GTK_SELECTION_MULTIPLE);
@@ -1670,19 +1659,113 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
     g_signal_connect(G_OBJECT(btn), "clicked",
             G_CALLBACK(imap_config_refresh_btn_clicked_cb), imailbox);
     
-    if(imailbox->host && imailbox->username) {
-        gtk_tree_store_append(ts, &itr, NULL);
-        gtk_tree_store_set(ts, &itr, IMAP_FOLDERS_NAME, _("Please wait..."), -1);
-        gtk_widget_set_sensitive(btn, FALSE);
-        g_thread_create(imap_populate_folder_tree_th, imailbox, FALSE, NULL);
-    }
+    gtk_tree_store_append(ts, &itr, NULL);
+    gtk_tree_store_set(ts, &itr, IMAP_FOLDERS_NAME, _("Please wait..."), -1);
+    gtk_widget_set_sensitive(btn, FALSE);
+    imailbox->folder_tree_th = g_thread_create(imap_populate_folder_tree_th,
+            imailbox, FALSE, NULL);
+    
+    gtk_dialog_run(GTK_DIALOG(dlg));
+    gtk_widget_destroy(dlg);
+}
+
+static GtkContainer *
+imap_get_setup_page(XfceMailwatchMailbox *mailbox)
+{
+    XfceMailwatchIMAPMailbox *imailbox = XFCE_MAILWATCH_IMAP_MAILBOX(mailbox);
+    GtkWidget *topvbox, *vbox, *hbox, *frame, *lbl, *entry, *btn, *sbtn;
+    GtkSizeGroup *sg;
+    
+    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
+    
+    topvbox = gtk_vbox_new(FALSE, BORDER/2);
+    gtk_widget_show(topvbox);
+    
+    frame = xfce_framebox_new(_("IMAP Server"), TRUE);
+    gtk_widget_show(frame);
+    gtk_box_pack_start(GTK_BOX(topvbox), frame, FALSE, FALSE, 0);
+    
+    sg = gtk_size_group_new(GTK_SIZE_GROUP_HORIZONTAL);
+    
+    vbox = gtk_vbox_new(FALSE, BORDER/2);
+    gtk_widget_show(vbox);
+    xfce_framebox_add(XFCE_FRAMEBOX(frame), vbox);
+    
+    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    gtk_widget_show(hbox);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+    
+    lbl = gtk_label_new_with_mnemonic(_("_Mail server:"));
+    gtk_misc_set_alignment(GTK_MISC(lbl), 0.0, 0.5);
+    gtk_widget_show(lbl);
+    gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
+    gtk_size_group_add_widget(sg, lbl);
+    
+    entry = gtk_entry_new();
+    if(imailbox->host)
+        gtk_entry_set_text(GTK_ENTRY(entry), imailbox->host);
+    gtk_widget_show(entry);
+    gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
+    g_signal_connect(G_OBJECT(entry), "focus-out-event",
+            G_CALLBACK(imap_host_entry_focus_out_cb), imailbox);
+    gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), entry);
+    
+    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    gtk_widget_show(hbox);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+    
+    lbl = gtk_label_new_with_mnemonic(_("_Username:"));
+    gtk_misc_set_alignment(GTK_MISC(lbl), 0.0, 0.5);
+    gtk_widget_show(lbl);
+    gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
+    gtk_size_group_add_widget(sg, lbl);
+    
+    entry = gtk_entry_new();
+    if(imailbox->username)
+        gtk_entry_set_text(GTK_ENTRY(entry), imailbox->username);
+    gtk_widget_show(entry);
+    gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
+    g_signal_connect(G_OBJECT(entry), "focus-out-event",
+            G_CALLBACK(imap_username_entry_focus_out_cb), imailbox);
+    gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), entry);
+    
+    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    gtk_widget_show(hbox);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+    
+    lbl = gtk_label_new_with_mnemonic(_("_Password:"));
+    gtk_misc_set_alignment(GTK_MISC(lbl), 0.0, 0.5);
+    gtk_widget_show(lbl);
+    gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
+    gtk_size_group_add_widget(sg, lbl);
+    
+    entry = gtk_entry_new();
+    gtk_entry_set_visibility(GTK_ENTRY(entry), FALSE);
+    if(imailbox->password)
+        gtk_entry_set_text(GTK_ENTRY(entry), imailbox->password);
+    gtk_widget_show(entry);
+    gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
+    g_signal_connect(G_OBJECT(entry), "focus-out-event",
+            G_CALLBACK(imap_password_entry_focus_out_cb), imailbox);
+    gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), entry);
+    
+    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    gtk_widget_show(hbox);
+    gtk_box_pack_start(GTK_BOX(topvbox), hbox, FALSE, FALSE, 0);
     
     btn = xfce_mailwatch_custom_button_new(_("_Advanced..."),
             GTK_STOCK_PREFERENCES);
     gtk_widget_show(btn);
-    gtk_box_pack_start(GTK_BOX(vbox), btn, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(hbox), btn, FALSE, FALSE, 0);
     g_signal_connect(G_OBJECT(btn), "clicked",
             G_CALLBACK(imap_config_advanced_btn_clicked_cb), imailbox);
+    
+    btn = xfce_mailwatch_custom_button_new(_("New mail _folders..."),
+            GTK_STOCK_DIRECTORY);
+    gtk_widget_show(btn);
+    gtk_box_pack_start(GTK_BOX(hbox), btn, FALSE, FALSE, 0);
+    g_signal_connect(G_OBJECT(btn), "clicked",
+            G_CALLBACK(imap_config_newmailfolders_btn_clicked_cb), imailbox);
     
     hbox = gtk_hbox_new(FALSE, BORDER/2);
     gtk_widget_show(hbox);
@@ -1727,10 +1810,14 @@ imap_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
             imailbox->username = g_strdup(param->value);
         else if(!strcmp(param->key, "password"))
             imailbox->password = g_strdup(param->value);
-        else if(!strcmp(param->key, "require_ssl"))
-            imailbox->require_ssl = *(param->value) == '0' ? FALSE : TRUE;
+        else if(!strcmp(param->key, "auth_type"))
+            imailbox->auth_type = atoi(param->value);
         else if(!strcmp(param->key, "server_directory"))
             imailbox->server_directory = g_strdup(param->value);
+        else if(!strcmp(param->key, "use_standard_port"))
+            imailbox->use_standard_port = *(param->value) == '0' ? FALSE : TRUE;
+        else if(!strcmp(param->key, "nonstandard_port"))
+            imailbox->nonstandard_port = atoi(param->value);
         else if(!strcmp(param->key, "timeout")) {
             imailbox->timeout = atoi(param->value);
             g_async_queue_push(imailbox->aqueue, IMAP_CMD_TIMEOUT);
@@ -1782,13 +1869,23 @@ imap_save_param_list(XfceMailwatchMailbox *mailbox)
     params = g_list_prepend(params, param);
     
     param = g_new(XfceMailwatchParam, 1);
-    param->key = g_strdup("require_ssl");
-    param->value = g_strdup(imailbox->require_ssl ? "1" : "0");
+    param->key = g_strdup("auth_type");
+    param->value = g_strdup_printf("%d", imailbox->auth_type);
     params = g_list_prepend(params, param);
     
     param = g_new(XfceMailwatchParam, 1);
     param->key = g_strdup("server_directory");
     param->value = g_strdup(imailbox->server_directory);
+    params = g_list_prepend(params, param);
+    
+    param = g_new(XfceMailwatchParam, 1);
+    param->key = g_strdup("use_standard_port");
+    param->value = g_strdup(imailbox->use_standard_port ? "1" : "0");
+    params = g_list_prepend(params, param);
+    
+    param = g_new(XfceMailwatchParam, 1);
+    param->key = g_strdup("nonstandard_port");
+    param->value = g_strdup_printf("%d", imailbox->nonstandard_port);
     params = g_list_prepend(params, param);
     
     param = g_new(XfceMailwatchParam, 1);
