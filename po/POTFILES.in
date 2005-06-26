@@ -1,5 +1,7 @@
 panel-plugin/mailwatch-mailbox-imap.c
 panel-plugin/mailwatch-mailbox-maildir.c
 panel-plugin/mailwatch-mailbox-mbox.c
+panel-plugin/mailwatch-mailbox-mh.c
+panel-plugin/mailwatch-mailbox-pop3.c
 panel-plugin/mailwatch-plugin.c
 panel-plugin/mailwatch.c

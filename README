@@ -5,13 +5,14 @@
 The Xfce4 Mailwatch Plugin is a multi-protocol, multi-mailbox mail watcher.
 Currently, the protocols supported are:
   * IMAP (SSL/TLS and cleartext)
+  * POP3 (SSL/TLS and cleartext)
   * Mbox mail spool (local)
   * Maildir mail spool (local)
-POP3 support is planned.
+  * MH-Maildir mail spool (local)
 
 Random list of features:
   * Multiple folder checking support for IMAP.
-  * Independent check intervals for each mailbox (only implemented on IMAP).
+  * Independent check intervals for each mailbox.
   * Threaded design; xfce4-panel UI should never freeze or block.
   * Informative button tooltip that tells you the number of new messages in
     each mailbox.

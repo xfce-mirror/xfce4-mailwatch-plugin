@@ -17,6 +17,7 @@ libmailwatch_la_SOURCES = \
 	mailwatch-mailbox-maildir.c \
 	mailwatch-mailbox-mbox.c \
 	mailwatch-mailbox-mh.c \
+	mailwatch-mailbox-pop3.c \
 	mailwatch-mailbox.h \
 	mailwatch-plugin.c \
 	mailwatch-utils.c \

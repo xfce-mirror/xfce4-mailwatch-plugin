@@ -76,12 +76,14 @@ struct _XfceMailwatch
 
 /* fwd decl from other modules... */
 extern XfceMailwatchMailboxType builtin_mailbox_type_imap;
+extern XfceMailwatchMailboxType builtin_mailbox_type_pop3;
 extern XfceMailwatchMailboxType builtin_mailbox_type_maildir;
 extern XfceMailwatchMailboxType builtin_mailbox_type_mbox;
 extern XfceMailwatchMailboxType builtin_mailbox_type_mh;
 
 XfceMailwatchMailboxType *builtin_mailbox_types[] = {
     &builtin_mailbox_type_imap,
+    &builtin_mailbox_type_pop3,
     &builtin_mailbox_type_maildir,
     &builtin_mailbox_type_mbox,
     &builtin_mailbox_type_mh,
