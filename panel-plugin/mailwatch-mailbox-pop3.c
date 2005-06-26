@@ -81,13 +81,16 @@
 
 #define BORDER                   8
 
+#define POP3_PORT_S              "110"
+#define POP3S_PORT_S             "995"
+
 #define XFCE_MAILWATCH_POP3_MAILBOX(ptr) ((XfceMailwatchPOP3Mailbox *)ptr)
 
-#define POP3_CMD_START   GINT_TO_POINTER(1)
-#define POP3_CMD_PAUSE   GINT_TO_POINTER(2)
-#define POP3_CMD_TIMEOUT GINT_TO_POINTER(3)
-#define POP3_CMD_QUIT    GINT_TO_POINTER(4)
-#define POP3_CMD_UPDATE  GINT_TO_POINTER(5)
+#define POP3_CMD_START           GINT_TO_POINTER(1)
+#define POP3_CMD_PAUSE           GINT_TO_POINTER(2)
+#define POP3_CMD_TIMEOUT         GINT_TO_POINTER(3)
+#define POP3_CMD_QUIT            GINT_TO_POINTER(4)
+#define POP3_CMD_UPDATE          GINT_TO_POINTER(5)
 
 typedef struct
 {
@@ -709,10 +712,18 @@ static void
 pop3_config_security_combo_changed_cb(GtkWidget *w, gpointer user_data)
 {
     XfceMailwatchPOP3Mailbox *pmailbox = user_data;
+    GtkWidget *entry = g_object_get_data(G_OBJECT(w), "xfmw-entry");
     
     g_mutex_lock(pmailbox->config_mx);
     
     pmailbox->auth_type = gtk_combo_box_get_active(GTK_COMBO_BOX(w));
+    
+    if(pmailbox->use_standard_port) {
+        if(pmailbox->auth_type == AUTH_SSL_PORT)
+            gtk_entry_set_text(GTK_ENTRY(entry), POP3S_PORT_S);
+        else
+            gtk_entry_set_text(GTK_ENTRY(entry), POP3_PORT_S);
+    }
     
     g_mutex_unlock(pmailbox->config_mx);
 }
@@ -742,6 +753,16 @@ pop3_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     gtk_widget_show(vbox);
     xfce_framebox_add(XFCE_FRAMEBOX(frame), vbox);
     
+    combo = gtk_combo_box_new_text();
+    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use unsecured connection"));
+    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use SSL/TLS on alternate port"));
+    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use SSL/TLS via STARTTLS"));
+    gtk_combo_box_set_active(GTK_COMBO_BOX(combo), pmailbox->auth_type);
+    gtk_widget_show(combo);
+    gtk_box_pack_start(GTK_BOX(vbox), combo, FALSE, FALSE, 0);
+    g_signal_connect(G_OBJECT(combo), "changed",
+            G_CALLBACK(pop3_config_security_combo_changed_cb), pmailbox);
+    
     hbox = gtk_hbox_new(FALSE, BORDER/2);
     gtk_widget_show(hbox);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
@@ -760,24 +781,20 @@ pop3_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
         gchar portstr[16];
         g_snprintf(portstr, 16, "%d", pmailbox->nonstandard_port);
         gtk_entry_set_text(GTK_ENTRY(entry), portstr);
-    } else
+    } else {
         gtk_widget_set_sensitive(entry, FALSE);
+        if(pmailbox->auth_type == AUTH_SSL_PORT)
+            gtk_entry_set_text(GTK_ENTRY(entry), POP3S_PORT_S);
+        else
+            gtk_entry_set_text(GTK_ENTRY(entry), POP3_PORT_S);
+    }
     gtk_widget_show(entry);
     gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
     g_signal_connect(G_OBJECT(entry), "focus-out-event",
             G_CALLBACK(pop3_config_nonstandard_focusout_cb), pmailbox);
     
     g_object_set_data(G_OBJECT(chk), "xfmw-entry", entry);
-    
-    combo = gtk_combo_box_new_text();
-    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use unsecured connection"));
-    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use SSL/TLS on alternate port"));
-    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use SSL/TLS via STARTTLS"));
-    gtk_combo_box_set_active(GTK_COMBO_BOX(combo), pmailbox->auth_type);
-    gtk_widget_show(combo);
-    gtk_box_pack_start(GTK_BOX(vbox), combo, FALSE, FALSE, 0);
-    g_signal_connect(G_OBJECT(combo), "changed",
-            G_CALLBACK(pop3_config_security_combo_changed_cb), pmailbox);
+    g_object_set_data(G_OBJECT(combo), "xfmw-entry", entry);
     
     gtk_dialog_run(GTK_DIALOG(dlg));
     gtk_widget_destroy(dlg);

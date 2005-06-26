@@ -87,11 +87,14 @@
 
 #define XFCE_MAILWATCH_IMAP_MAILBOX(ptr) ((XfceMailwatchIMAPMailbox *)ptr)
 
-#define IMAP_CMD_START   GINT_TO_POINTER(1)
-#define IMAP_CMD_PAUSE   GINT_TO_POINTER(2)
-#define IMAP_CMD_TIMEOUT GINT_TO_POINTER(3)
-#define IMAP_CMD_QUIT    GINT_TO_POINTER(4)
-#define IMAP_CMD_UPDATE  GINT_TO_POINTER(5)
+#define IMAP_PORT_S              "143"
+#define IMAPS_PORT_S             "993"
+
+#define IMAP_CMD_START           GINT_TO_POINTER(1)
+#define IMAP_CMD_PAUSE           GINT_TO_POINTER(2)
+#define IMAP_CMD_TIMEOUT         GINT_TO_POINTER(3)
+#define IMAP_CMD_QUIT            GINT_TO_POINTER(4)
+#define IMAP_CMD_UPDATE          GINT_TO_POINTER(5)
 
 typedef struct
 {
@@ -108,7 +111,7 @@ typedef struct
     
     gboolean use_standard_port;
     gint nonstandard_port;
-    XfceMailwatchAuthType auth_type;
+  XfceMailwatchAuthType auth_type;
     
     GThread *th;
     GAsyncQueue *aqueue;
@@ -1238,10 +1241,18 @@ static void
 imap_config_security_combo_changed_cb(GtkWidget *w, gpointer user_data)
 {
     XfceMailwatchIMAPMailbox *imailbox = user_data;
+    GtkWidget *entry = g_object_get_data(G_OBJECT(w), "xfmw-entry");
     
     g_mutex_lock(imailbox->config_mx);
     
     imailbox->auth_type = gtk_combo_box_get_active(GTK_COMBO_BOX(w));
+    
+    if(imailbox->use_standard_port) {
+        if(imailbox->auth_type == AUTH_SSL_PORT)
+            gtk_entry_set_text(GTK_ENTRY(entry), IMAPS_PORT_S);
+        else
+            gtk_entry_set_text(GTK_ENTRY(entry), IMAP_PORT_S);
+    }
     
     g_mutex_unlock(imailbox->config_mx);
 }
@@ -1287,6 +1298,16 @@ imap_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     gtk_widget_show(vbox);
     xfce_framebox_add(XFCE_FRAMEBOX(frame), vbox);
     
+    combo = gtk_combo_box_new_text();
+    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use unsecured connection"));
+    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use SSL/TLS on alternate port"));
+    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use SSL/TLS via STARTTLS"));
+    gtk_combo_box_set_active(GTK_COMBO_BOX(combo), imailbox->auth_type);
+    gtk_widget_show(combo);
+    gtk_box_pack_start(GTK_BOX(vbox), combo, FALSE, FALSE, 0);
+    g_signal_connect(G_OBJECT(combo), "changed",
+            G_CALLBACK(imap_config_security_combo_changed_cb), imailbox);
+    
     hbox = gtk_hbox_new(FALSE, BORDER/2);
     gtk_widget_show(hbox);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
@@ -1305,24 +1326,20 @@ imap_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
         gchar portstr[16];
         g_snprintf(portstr, 16, "%d", imailbox->nonstandard_port);
         gtk_entry_set_text(GTK_ENTRY(entry), portstr);
-    } else
+    } else {
         gtk_widget_set_sensitive(entry, FALSE);
+        if(imailbox->auth_type == AUTH_SSL_PORT)
+            gtk_entry_set_text(GTK_ENTRY(entry), IMAPS_PORT_S);
+        else
+            gtk_entry_set_text(GTK_ENTRY(entry), IMAP_PORT_S);
+    }
     gtk_widget_show(entry);
     gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
     g_signal_connect(G_OBJECT(entry), "focus-out-event",
             G_CALLBACK(imap_config_nonstandard_focusout_cb), imailbox);
     
     g_object_set_data(G_OBJECT(chk), "xfmw-entry", entry);
-    
-    combo = gtk_combo_box_new_text();
-    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use unsecured connection"));
-    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use SSL/TLS on alternate port"));
-    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use SSL/TLS via STARTTLS"));
-    gtk_combo_box_set_active(GTK_COMBO_BOX(combo), imailbox->auth_type);
-    gtk_widget_show(combo);
-    gtk_box_pack_start(GTK_BOX(vbox), combo, FALSE, FALSE, 0);
-    g_signal_connect(G_OBJECT(combo), "changed",
-            G_CALLBACK(imap_config_security_combo_changed_cb), imailbox);
+    g_object_set_data(G_OBJECT(combo), "xfmw-entry", entry);
     
     frame = xfce_framebox_new(_("Folders"), TRUE);
     gtk_widget_show(frame);
