@@ -836,6 +836,8 @@ config_remove_btn_clicked_cb(GtkWidget *w, XfceMailwatch *mailwatch)
     g_mutex_unlock(mailwatch->mailboxes_mx);
     
     mailbox->type->free_mailbox_func(mailbox);
+    
+    mailwatch_signal_new_messages_idled(mailwatch);
 }
 
 static gboolean
