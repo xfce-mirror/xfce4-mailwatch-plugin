@@ -1312,6 +1312,8 @@ imap_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     g_signal_connect(G_OBJECT(entry), "focus-out-event",
             G_CALLBACK(imap_config_nonstandard_focusout_cb), imailbox);
     
+    g_object_set_data(G_OBJECT(chk), "xfmw-entry", entry);
+    
     combo = gtk_combo_box_new_text();
     gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use unsecured connection"));
     gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use SSL/TLS on alternate port"));
