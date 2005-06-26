@@ -79,6 +79,10 @@
 #include "mailwatch-utils.h"
 #include "mailwatch.h"
 
+#ifndef GTK_STOCK_DIRECTORY
+#define GTK_STOCK_DIRECTORY      GTK_STOCK_OPEN
+#endif
+
 #define BORDER                   8
 
 #define XFCE_MAILWATCH_IMAP_MAILBOX(ptr) ((XfceMailwatchIMAPMailbox *)ptr)
