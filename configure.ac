@@ -57,5 +57,6 @@ BM_DEBUG_SUPPORT
 AC_OUTPUT([
 Makefile
 panel-plugin/Makefile
+pixmaps/Makefile
 po/Makefile.in
 ])

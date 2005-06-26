@@ -1,5 +1,6 @@
 SUBDIRS = \
 	panel-plugin \
+	pixmaps \
 	po
 
 $(top_srcdir)/configure: $(top_srcdir)/configure.ac
