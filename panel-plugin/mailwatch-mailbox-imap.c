@@ -299,7 +299,7 @@ imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
 
 static gboolean
 imap_connect(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
-        const gchar *service)
+        const gchar *service, gint nonstandard_port)
 {
     struct sockaddr_in addr;
     
@@ -309,6 +309,9 @@ imap_connect(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
         DBG("failed to get sockaddr");
         return FALSE;
     }
+    
+    if(nonstandard_port > 0)
+        addr.sin_port = htons(nonstandard_port);
     
     imailbox->sockfd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
     if(imailbox->sockfd < 0) {
@@ -392,7 +395,7 @@ imap_connect(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
 static gboolean
 imap_authenticate(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
         const gchar *username, const gchar *password,
-        XfceMailwatchAuthType auth_type)
+        XfceMailwatchAuthType auth_type, gint nonstandard_port)
 {
     gboolean ret = FALSE;
     gchar buf[1024];
@@ -402,7 +405,7 @@ imap_authenticate(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
     switch(auth_type) {
         case AUTH_NONE:
             imailbox->security_info.using_tls = FALSE;
-            ret = imap_connect(imailbox, host, "imap");
+            ret = imap_connect(imailbox, host, "imap", nonstandard_port);
 
             /* discard opening banner */
             if(ret && imap_recv(imailbox, buf, 1023) < 0) {
@@ -415,7 +418,7 @@ imap_authenticate(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
         
         case AUTH_STARTTLS:
             imailbox->security_info.using_tls = FALSE;
-            ret = imap_connect(imailbox, host, "imap");
+            ret = imap_connect(imailbox, host, "imap", nonstandard_port);
             
             if(ret) {
                 /* discard opening banner */
@@ -435,7 +438,7 @@ imap_authenticate(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
         
         case AUTH_SSL_PORT:
             imailbox->security_info.using_tls = TRUE;
-            ret = imap_connect(imailbox, host, "imaps");
+            ret = imap_connect(imailbox, host, "imaps", nonstandard_port);
             if(ret)
                 ret = imap_negotiate_ssl(imailbox, host);
         
@@ -574,6 +577,7 @@ imap_check_mail(XfceMailwatchIMAPMailbox *imailbox)
     guint new_messages = 0;
     GList *mailboxes_to_check = NULL, *l;
     XfceMailwatchAuthType auth_type;
+    gint nonstandard_port = -1;
     
     g_mutex_lock(imailbox->config_mx);
     
@@ -586,6 +590,8 @@ imap_check_mail(XfceMailwatchIMAPMailbox *imailbox)
     g_strlcpy(username, imailbox->username, BUFSIZE);
     g_strlcpy(password, imailbox->password, BUFSIZE);
     auth_type = imailbox->auth_type;
+    if(!imailbox->use_standard_port)
+        nonstandard_port = imailbox->nonstandard_port;
     
     /* make a deep copy of the mailbox list */
     for(l = imailbox->mailboxes_to_check; l; l = l->next)
@@ -597,7 +603,9 @@ imap_check_mail(XfceMailwatchIMAPMailbox *imailbox)
     imap_escape_string(username, BUFSIZE);
     imap_escape_string(password, BUFSIZE);
     
-    if(!imap_authenticate(imailbox, host, username, password, auth_type)) {
+    if(!imap_authenticate(imailbox, host, username, password, auth_type,
+            nonstandard_port))
+    {
         DBG("failed to connect to imap server");
         goto cleanup;
     }
@@ -1064,6 +1072,7 @@ imap_populate_folder_tree_th(gpointer data)
     XfceMailwatchIMAPMailbox *imailbox = data;
     gchar host[BUFSIZE], username[BUFSIZE], password[BUFSIZE];
     XfceMailwatchAuthType auth_type;
+    gint nonstandard_port = -1;
     
     TRACE("entering");
     
@@ -1079,13 +1088,17 @@ imap_populate_folder_tree_th(gpointer data)
     g_strlcpy(username, imailbox->username, BUFSIZE);
     g_strlcpy(password, imailbox->password, BUFSIZE);
     auth_type = imailbox->auth_type;
+    if(!imailbox->use_standard_port)
+        nonstandard_port = imailbox->nonstandard_port;
     
     g_mutex_unlock(imailbox->config_mx);
     
     imap_escape_string(username, BUFSIZE);
     imap_escape_string(password, BUFSIZE);
     
-    if(imap_authenticate(imailbox, host, username, password, auth_type)) {
+    if(imap_authenticate(imailbox, host, username, password, auth_type,
+            nonstandard_port))
+    {
         imailbox->folder_tree = g_node_new((gpointer)0xdeadbeef);
         imap_populate_folder_tree(imailbox, "", imailbox->folder_tree);
         g_idle_add(imap_populate_folder_tree_nodes, imailbox);
