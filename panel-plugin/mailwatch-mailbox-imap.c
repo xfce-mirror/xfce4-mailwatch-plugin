@@ -111,7 +111,7 @@ typedef struct
     
     gboolean use_standard_port;
     gint nonstandard_port;
-  XfceMailwatchAuthType auth_type;
+    XfceMailwatchAuthType auth_type;
     
     GThread *th;
     GAsyncQueue *aqueue;
