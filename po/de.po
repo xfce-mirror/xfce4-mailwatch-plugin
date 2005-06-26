@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-25 23:07-0700\n"
+"POT-Creation-Date: 2005-06-25 23:36-0700\n"
 "PO-Revision-Date: 2005-05-20 21:39+0200\n"
 "Last-Translator: Bernhard Walle <bernhard.walle@gmx.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
@@ -60,7 +60,7 @@ msgid "Advanced IMAP Options"
 msgstr "Erweiterte IMAP-Optionen"
 
 #: panel-plugin/mailwatch-mailbox-imap.c:1278
-#: panel-plugin/mailwatch-mailbox-pop3.c:714
+#: panel-plugin/mailwatch-mailbox-pop3.c:737
 msgid "Connection"
 msgstr ""
 
@@ -69,18 +69,18 @@ msgid "Use non-standard IMAP _port:"
 msgstr ""
 
 #: panel-plugin/mailwatch-mailbox-imap.c:1312
-#: panel-plugin/mailwatch-mailbox-pop3.c:748
+#: panel-plugin/mailwatch-mailbox-pop3.c:771
 #, fuzzy
 msgid "Use unsecured connection"
 msgstr "_Sichere Verbindung erzwingen"
 
 #: panel-plugin/mailwatch-mailbox-imap.c:1313
-#: panel-plugin/mailwatch-mailbox-pop3.c:749
+#: panel-plugin/mailwatch-mailbox-pop3.c:772
 msgid "Use SSL/TLS on alternate port"
 msgstr ""
 
 #: panel-plugin/mailwatch-mailbox-imap.c:1314
-#: panel-plugin/mailwatch-mailbox-pop3.c:750
+#: panel-plugin/mailwatch-mailbox-pop3.c:773
 msgid "Use SSL/TLS via STARTTLS"
 msgstr ""
 
@@ -122,22 +122,22 @@ msgid "IMAP Server"
 msgstr "IMAP-Server"
 
 #: panel-plugin/mailwatch-mailbox-imap.c:1513
-#: panel-plugin/mailwatch-mailbox-pop3.c:787
+#: panel-plugin/mailwatch-mailbox-pop3.c:810
 msgid "_Mail server:"
 msgstr "_Mailserver:"
 
 #: panel-plugin/mailwatch-mailbox-imap.c:1532
-#: panel-plugin/mailwatch-mailbox-pop3.c:806
+#: panel-plugin/mailwatch-mailbox-pop3.c:829
 msgid "_Username:"
 msgstr "_Benutzername:"
 
 #: panel-plugin/mailwatch-mailbox-imap.c:1551
-#: panel-plugin/mailwatch-mailbox-pop3.c:825
+#: panel-plugin/mailwatch-mailbox-pop3.c:848
 msgid "_Password:"
 msgstr "_Passwort:"
 
 #: panel-plugin/mailwatch-mailbox-imap.c:1571
-#: panel-plugin/mailwatch-mailbox-pop3.c:845
+#: panel-plugin/mailwatch-mailbox-pop3.c:868
 msgid "_Advanced..."
 msgstr "_Erweitert..."
 
@@ -147,7 +147,7 @@ msgid "New mail _folders..."
 msgstr "Ordner für neue Mails"
 
 #: panel-plugin/mailwatch-mailbox-imap.c:1589
-#: panel-plugin/mailwatch-mailbox-pop3.c:856
+#: panel-plugin/mailwatch-mailbox-pop3.c:879
 msgid "Check for _new messages every"
 msgstr "Überprüfung nach _neuen Nachrichten im Intervall"
 
@@ -155,7 +155,7 @@ msgstr "Überprüfung nach _neuen Nachrichten im Intervall"
 #: panel-plugin/mailwatch-mailbox-maildir.c:439
 #: panel-plugin/mailwatch-mailbox-mbox.c:452
 #: panel-plugin/mailwatch-mailbox-mh.c:572
-#: panel-plugin/mailwatch-mailbox-pop3.c:870
+#: panel-plugin/mailwatch-mailbox-pop3.c:893
 msgid "minute(s)."
 msgstr "Minuten"
 
@@ -233,26 +233,26 @@ msgstr ""
 "Das Mbox-Plugin überwacht eine lokale Mbox-Mailbox (d. h. pro Mailordner "
 "eine Datei, jede Nachricht mit \"From\" abgetrennt) auf neue Nachrichten."
 
-#: panel-plugin/mailwatch-mailbox-pop3.c:705
+#: panel-plugin/mailwatch-mailbox-pop3.c:728
 #, fuzzy
 msgid "Advanced POP3 Options"
 msgstr "Erweiterte IMAP-Optionen"
 
-#: panel-plugin/mailwatch-mailbox-pop3.c:726
+#: panel-plugin/mailwatch-mailbox-pop3.c:749
 msgid "Use non-standard POP3 _port:"
 msgstr ""
 
-#: panel-plugin/mailwatch-mailbox-pop3.c:773
+#: panel-plugin/mailwatch-mailbox-pop3.c:796
 #, fuzzy
 msgid "POP3 Server"
 msgstr "IMAP-Server"
 
-#: panel-plugin/mailwatch-mailbox-pop3.c:982
+#: panel-plugin/mailwatch-mailbox-pop3.c:1005
 #, fuzzy
 msgid "Remote POP3 Mailbox"
 msgstr "Entfernte IMAP-Mailbox"
 
-#: panel-plugin/mailwatch-mailbox-pop3.c:983
+#: panel-plugin/mailwatch-mailbox-pop3.c:1006
 #, fuzzy
 msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
