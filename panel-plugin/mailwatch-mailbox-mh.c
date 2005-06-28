@@ -69,7 +69,8 @@ typedef struct {
     XfceMailwatchMailbox    *xfce_mailwatch_mailbox;
     XfceMailwatch           *mailwatch;
 
-/*    time_t                  mh_profile_ctime;*/
+    gchar                   *mh_profile_fn;
+    time_t                  mh_profile_ctime;
     gchar                   *mh_sequences_fn;
     time_t                  mh_sequences_ctime;
     gchar                   *unseen_sequence; /* This should be a list as there can be multiple? */
@@ -259,11 +260,35 @@ mh_profile_entry_get_value( GList *profile, const gchar *component )
     return ( g_strdup( entry->value ) );
 }
 
-static void
-mh_init( XfceMailwatchMHMailbox *mh )
+static gchar *
+mh_get_profile_filename( void )
 {
-    const gchar *homedir;
-    gchar       *mh_profile = NULL, *mh_path = NULL, *mh_inbox = NULL;
+    const gchar *env;
+    gchar       *mh_profile;
+
+    env = g_getenv( "MH" );
+    if ( env ) {
+        if ( !g_path_is_absolute( env ) ) {
+            gchar       *curdir = g_get_current_dir();
+
+            mh_profile = g_build_filename( curdir, env, NULL );
+
+            g_free( curdir );
+        }
+        else {
+            mh_profile = g_strdup( env );
+        }
+    }
+    else {
+        mh_profile = g_build_filename( g_get_home_dir(), MH_PROFILE, NULL );
+    }
+    return ( mh_profile );
+}
+
+static void
+mh_read_config( XfceMailwatchMHMailbox *mh )
+{
+    gchar       *mh_path = NULL, *mh_inbox = NULL;
     gchar       *mh_sequences = NULL, *tmpptr = NULL;
     GList       *profile;
 
@@ -277,14 +302,13 @@ mh_init( XfceMailwatchMHMailbox *mh )
         g_free( mh->unseen_sequence );
         mh->unseen_sequence = NULL;
     }
-    
-    homedir = g_get_home_dir();
-    mh_profile = g_build_filename( homedir, MH_PROFILE, NULL );
-    
-    profile = mh_profile_read( mh_profile );
-    g_free( mh_profile ); /* N.B. */
+
+    if ( !mh->mh_profile_fn ) {
+        mh->mh_profile_fn = mh_get_profile_filename();
+    }
+
+    profile = mh_profile_read( mh->mh_profile_fn );
     if ( !profile ) {
-        /* g_getenv( "MH" ); */
         DBG( "Profile == NULL" );
         return;
     }
@@ -300,7 +324,7 @@ mh_init( XfceMailwatchMHMailbox *mh )
     }
 
     if ( !g_path_is_absolute( mh_path ) ) {
-        tmpptr = g_build_filename( homedir, mh_path, NULL );
+        tmpptr = g_build_filename( g_get_home_dir(), mh_path, NULL );
         g_free( mh_path );
         mh_path = tmpptr;
     }
@@ -331,6 +355,16 @@ mh_check_mail( XfceMailwatchMHMailbox *mh )
     struct stat     st;
 
     DBG( "-->>" );
+
+    if ( !mh->mh_profile_fn ) {
+        mh->mh_profile_fn = mh_get_profile_filename();
+    }
+    
+    if ( stat( mh->mh_profile_fn, &st ) == 0
+            && st.st_ctime != mh->mh_profile_ctime ) {
+        mh_read_config( mh );
+        mh->mh_profile_ctime = st.st_ctime;
+    }
 
     if ( !mh->mh_sequences_fn ) {
         return;
@@ -398,7 +432,6 @@ mh_main_thread( gpointer data )
 {
     XfceMailwatchMHMailbox  *mh = XFCE_MAILWATCH_MH_MAILBOX( data );
     GTimeVal                tv;
-    gboolean                initialized = FALSE;
 
     g_async_queue_ref( mh->aqueue );
 
@@ -414,10 +447,6 @@ mh_main_thread( gpointer data )
             switch ( msg ) {
                 case MH_MSG_START:
                     mh->active = TRUE;
-                    if ( !initialized ) {
-                        mh_init( mh );
-                        initialized = TRUE;
-                    }
                     break;
 
                 case MH_MSG_PAUSE:
@@ -478,6 +507,9 @@ mh_free( XfceMailwatchMailbox *mailbox )
     g_thread_join( mh->thread );
     g_async_queue_unref( mh->aqueue );
 
+    if ( mh->mh_profile_fn ) {
+        g_free( mh->mh_profile_fn );
+    }
     if ( mh->mh_sequences_fn ) {
         g_free( mh->mh_sequences_fn );
     }
