@@ -76,6 +76,8 @@
 
 #include "mailwatch-utils.h"
 
+#ifdef HAVE_SSL_SUPPORT
+
 #include <gcrypt.h>
 
 /* missing from 1.2.0? */
@@ -153,6 +155,7 @@ my_g_mutex_unlock(void **priv)
 
 /***/
 
+#endif  /* defined(HAVE_SSL_SUPPORT) */
 
 gboolean
 xfce_mailwatch_net_get_sockaddr(const gchar *host, const gchar *service,
@@ -178,6 +181,7 @@ gboolean
 xfce_mailwatch_net_negotiate_tls(gint sockfd,
         XfceMailwatchSecurityInfo *security_info, const gchar *host)
 {
+#ifdef HAVE_SSL_SUPPORT
     gint gt_ret;
     const int cert_type_prio[2] = { GNUTLS_CRT_X509, 0 };
     
@@ -213,6 +217,11 @@ xfce_mailwatch_net_negotiate_tls(gint sockfd,
     }
     
     return TRUE;
+#else
+    g_critical(_("XfceMailwatch: TLS handshake failed: not compiled with SSL support."));
+    
+    return FALSE;
+#endif
 }
 
 
@@ -222,6 +231,7 @@ xfce_mailwatch_net_send(gint sockfd, XfceMailwatchSecurityInfo *security_info,
 {
     gint bout = 0;
     
+#ifdef HAVE_SSL_SUPPORT
     if(security_info->using_tls) {
         gint ret = 0, totallen = strlen(buf);
         gint bytesleft = totallen;
@@ -244,6 +254,7 @@ xfce_mailwatch_net_send(gint sockfd, XfceMailwatchSecurityInfo *security_info,
             }
         }
     } else
+#endif
         bout = send(sockfd, buf, strlen(buf), MSG_NOSIGNAL);
     
     return bout;
@@ -257,6 +268,7 @@ xfce_mailwatch_net_recv(gint sockfd, XfceMailwatchSecurityInfo *security_info,
     struct timeval tv;
     gint ret, bin;
     
+#ifdef HAVE_SSL_SUPPORT
     if(security_info->using_tls) {
         if(!security_info->gnutls_inited) {
             g_critical("XfceMailwatch: using_tls is TRUE, but gnutls was not inited");
@@ -272,6 +284,7 @@ xfce_mailwatch_net_recv(gint sockfd, XfceMailwatchSecurityInfo *security_info,
         else
             bin = ret;
     } else {
+#endif
         FD_ZERO(&rfd);
         FD_SET(sockfd, &rfd);
         tv.tv_sec = 45;
@@ -285,7 +298,9 @@ xfce_mailwatch_net_recv(gint sockfd, XfceMailwatchSecurityInfo *security_info,
             return 0;
         
         bin = recv(sockfd, buf, len, MSG_NOSIGNAL);
+#ifdef HAVE_SSL_SUPPORT
     }
+#endif
     
     if(bin >= 0)
         buf[bin] = 0;
@@ -296,24 +311,15 @@ xfce_mailwatch_net_recv(gint sockfd, XfceMailwatchSecurityInfo *security_info,
 void
 xfce_mailwatch_net_tls_teardown(XfceMailwatchSecurityInfo *security_info)
 {
+#ifdef HAVE_SSL_SUPPORT
     if(security_info->gnutls_inited) {
         gnutls_deinit(security_info->gt_session);
         gnutls_certificate_free_credentials(security_info->gt_creds);
         gnutls_global_deinit();
         security_info->gnutls_inited = FALSE;
     }
+#endif
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 GtkWidget *

@@ -757,7 +757,12 @@ pop3_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use unsecured connection"));
     gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use SSL/TLS on alternate port"));
     gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use SSL/TLS via STARTTLS"));
+#ifdef HAVE_SSL_SUPPORT
     gtk_combo_box_set_active(GTK_COMBO_BOX(combo), pmailbox->auth_type);
+#else
+    gtk_combo_box_set_active(GTK_COMBO_BOX(combo), 0);
+    gtk_widget_set_sensitive(combo, FALSE);
+#endif
     gtk_widget_show(combo);
     gtk_box_pack_start(GTK_BOX(vbox), combo, FALSE, FALSE, 0);
     g_signal_connect(G_OBJECT(combo), "changed",
