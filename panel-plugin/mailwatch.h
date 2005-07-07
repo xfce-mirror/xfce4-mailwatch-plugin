@@ -28,13 +28,30 @@ G_BEGIN_DECLS
 #define XFCE_MAILWATCH_DEFAULT_TIMEOUT (10*60)  /* in seconds */
 
 typedef struct _XfceMailwatch XfceMailwatch;
-typedef void (*XMCallback)(XfceMailwatch *mailwatch, guint arg, gpointer user_data);
+typedef void (*XMCallback)(XfceMailwatch *mailwatch, gpointer arg, gpointer user_data);
 
 typedef enum
 {
     XFCE_MAILWATCH_SIGNAL_TIMEOUT_CHANGED = 0,
-    XFCE_MAILWATCH_SIGNAL_NEW_MESSAGE_COUNT_CHANGED
+    XFCE_MAILWATCH_SIGNAL_NEW_MESSAGE_COUNT_CHANGED,
+    XFCE_MAILWATCH_SIGNAL_LOG_MESSAGE,
+    XFCE_MAILWATCH_NUM_SIGNALS
 } XfceMailwatchSignal;
+
+typedef enum
+{
+    XFCE_MAILWATCH_LOG_INFO = 0,
+    XFCE_MAILWATCH_LOG_WARNING,
+    XFCE_MAILWATCH_LOG_ERROR,
+    XFCE_MAILWATCH_N_LOG_LEVELS
+} XfceMailwatchLogLevel;
+
+typedef struct {
+    XfceMailwatch           *mailwatch;
+    XfceMailwatchLogLevel   level;
+/*    gchar                   *mailbox; not yet implemented */
+    gchar                   *message;
+} XfceMailwatchLogEntry;
 
 XfceMailwatch *xfce_mailwatch_new      ();
 void xfce_mailwatch_destroy            (XfceMailwatch *mailwatch);
@@ -76,7 +93,9 @@ void xfce_mailwatch_signal_disconnect  (XfceMailwatch *mailwatch,
 void xfce_mailwatch_signal_new_messages(XfceMailwatch *mailwatch,
                                         XfceMailwatchMailbox *mailbox,
                                         guint num_new_messages);
-
+void xfce_mailwatch_log_message( XfceMailwatch *mailwatch,
+                                 XfceMailwatchLogLevel level,
+                                 const gchar *fmt, ... );
 G_END_DECLS
 
 #endif

@@ -66,8 +66,8 @@ struct _XfceMailwatch
     
     GMutex *mailboxes_mx;
     
-    GList *xm_callbacks[XFCE_MAILWATCH_SIGNAL_NEW_MESSAGE_COUNT_CHANGED+1];
-    GList *xm_data[XFCE_MAILWATCH_SIGNAL_NEW_MESSAGE_COUNT_CHANGED+1];
+    GList *xm_callbacks[XFCE_MAILWATCH_NUM_SIGNALS];
+    GList *xm_data[XFCE_MAILWATCH_NUM_SIGNALS];
     
     /* config GUI */
     GtkWidget *config_treeview;
@@ -472,7 +472,7 @@ mailwatch_signal_new_messages_idled(gpointer data)
         gpointer user_data = dl->data;
         
         if(callback)
-            callback(mailwatch, new_messages, user_data);
+            callback(mailwatch, GUINT_TO_POINTER( new_messages ), user_data);
     }
     
     return FALSE;
@@ -508,6 +508,52 @@ xfce_mailwatch_signal_new_messages(XfceMailwatch *mailwatch,
     
     if(do_signal)
         g_idle_add(mailwatch_signal_new_messages_idled, mailwatch);
+}
+
+static gboolean
+xfce_mailwatch_signal_log_message( gpointer data )
+{
+    XfceMailwatchLogEntry       *entry = data;
+    XfceMailwatch               *mailwatch = entry->mailwatch;
+    GList                       *cbl, *udl;
+
+    for ( cbl = mailwatch->xm_callbacks[XFCE_MAILWATCH_SIGNAL_LOG_MESSAGE],
+          udl = mailwatch->xm_data[XFCE_MAILWATCH_SIGNAL_LOG_MESSAGE];
+          cbl && udl;
+          cbl = cbl->next, udl = udl->next )
+    {
+        XMCallback      cb = cbl->data;
+        gpointer        user_data = udl->data;
+
+        if ( cb ) {
+            cb( mailwatch, entry, user_data );
+        }
+    }
+    g_free( entry->message );
+    g_free( entry );
+
+    return ( FALSE );
+}
+
+void
+xfce_mailwatch_log_message( XfceMailwatch *mailwatch,
+        XfceMailwatchLogLevel level, const gchar *fmt, ... )
+{
+    XfceMailwatchLogEntry   *entry = NULL;
+    va_list                 args;
+    
+    g_return_if_fail( mailwatch &&
+            level < XFCE_MAILWATCH_N_LOG_LEVELS && message );
+
+    entry = g_new0( XfceMailwatchLogEntry, 1 );
+    entry->mailwatch        = mailwatch;
+    entry->level            = level;
+
+    va_start( args, fmt );
+    entry->message          = g_strdup_vprintf( fmt, args );
+    va_end( args );
+
+    g_idle_add( xfce_mailwatch_signal_log_message, entry );
 }
 
 static gboolean
@@ -973,7 +1019,7 @@ xfce_mailwatch_signal_connect(XfceMailwatch *mailwatch,
         XfceMailwatchSignal signal, XMCallback callback, gpointer user_data)
 {
     g_return_if_fail(mailwatch && callback
-            && signal <= XFCE_MAILWATCH_SIGNAL_NEW_MESSAGE_COUNT_CHANGED);
+            && signal < XFCE_MAILWATCH_NUM_SIGNALS);
     
     mailwatch->xm_callbacks[signal] =
             g_list_append(mailwatch->xm_callbacks[signal], callback);
@@ -987,7 +1033,7 @@ xfce_mailwatch_signal_disconnect(XfceMailwatch *mailwatch,
 {
     GList *cl, *dl;
     g_return_if_fail(mailwatch && callback
-            && signal <= XFCE_MAILWATCH_SIGNAL_NEW_MESSAGE_COUNT_CHANGED);
+            && signal < XFCE_MAILWATCH_NUM_SIGNALS);
     
     for(cl = mailwatch->xm_callbacks[signal], dl = mailwatch->xm_data[signal];
         cl && dl;
