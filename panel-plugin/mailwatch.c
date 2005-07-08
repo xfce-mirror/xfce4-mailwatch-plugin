@@ -525,6 +525,7 @@ xfce_mailwatch_signal_log_message( gpointer data )
         }
     }
     g_free( entry->message );
+    g_free(entry->mailbox_name);
     g_free( entry );
 
     return ( FALSE );
