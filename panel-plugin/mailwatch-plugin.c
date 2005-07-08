@@ -82,10 +82,9 @@ mailwatch_set_icon( XfceMailwatchPlugin *mwp, gboolean newmail )
     }
     
     h = gdk_pixbuf_get_height(pb);
-    ow = gdk_pixbuf_get_width(overlay);
-    oh = gdk_pixbuf_get_height(overlay);
-    
     if(overlay) {
+        ow = gdk_pixbuf_get_width(overlay);
+        oh = gdk_pixbuf_get_height(overlay);
         gdk_pixbuf_composite(overlay, pb, 0, h - oh, ow, oh, 0, h - oh,
                              1.0, 1.0, GDK_INTERP_BILINEAR, 255);
     }

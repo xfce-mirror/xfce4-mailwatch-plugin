@@ -41,6 +41,10 @@
 #include <stdlib.h>
 #endif
 
+#ifdef HAVE_ERRNO_H
+#include <errno.h>
+#endif
+
 #include <gtk/gtk.h>
 
 #include <libxfce4util/libxfce4util.h>
@@ -89,7 +93,10 @@ mbox_check_mail( XfceMailwatchMboxMailbox *mbox )
     /* For some reason g_stat() doesn't update
      * ctime */
     if ( stat( mailbox, &st ) < 0 ) {
-        g_critical( "Mailwatch_mbox: Failed to stat() mailbox %s", mailbox );
+        xfce_mailwatch_log_message( mbox->mailwatch,
+                                    XFCE_MAILWATCH_MAILBOX( mbox ),
+                                    XFCE_MAILWATCH_LOG_ERROR,
+                                    "Failed to stat mbox file: %s", strerror( errno ) );
         g_free( mailbox );
         return;
     }
@@ -100,26 +107,39 @@ mbox_check_mail( XfceMailwatchMboxMailbox *mbox )
         gchar           *p;
         GIOChannel      *ioc;
         gsize           nl;
+        GError          *error = NULL;
 
         num_new = 0;
 
-        ioc = g_io_channel_new_file( mailbox, "r", NULL );
+        ioc = g_io_channel_new_file( mailbox, "r", &error );
         if ( !ioc ) {
-            g_critical( "Mailwatch_mbox: Failed to open mailbox %s", mailbox );
+            xfce_mailwatch_log_message( mbox->mailwatch,
+                                        XFCE_MAILWATCH_MAILBOX( mbox ),
+                                        XFCE_MAILWATCH_LOG_ERROR,
+                                        error->message );
             g_free( mailbox );
+            g_error_free( error );
             return;
         }
-        if ( g_io_channel_set_encoding( ioc, NULL, NULL ) != G_IO_STATUS_NORMAL ) {
-            g_warning( "Mailwatch_mbox: Failed to set encoding (mbox %s)", mailbox );
+        if ( g_io_channel_set_encoding( ioc, NULL, &error ) != G_IO_STATUS_NORMAL ) {
+            xfce_mailwatch_log_message( mbox->mailwatch,
+                                        XFCE_MAILWATCH_MAILBOX( mbox ),
+                                        XFCE_MAILWATCH_LOG_WARNING,
+                                        error->message );
+            g_error_free( error );
+            error = NULL;
         }
        
         if ( mbox->size && st.st_size > mbox->size ) {
             /* G_SEEK_CUR is same as G_SEEK_SET in this context. */
-            if ( g_io_channel_seek_position( ioc, mbox->size, G_SEEK_CUR, NULL ) !=  G_IO_STATUS_NORMAL ) {
-                g_critical( "Mailwatch_mbox: seek failed (mbox %s)", mailbox );
-                /* g_io_channel_new_file() io channels should be closed implicitly */
+            if ( g_io_channel_seek_position( ioc, mbox->size, G_SEEK_CUR, &error ) !=  G_IO_STATUS_NORMAL ) {
+                xfce_mailwatch_log_message( mbox->mailwatch,
+                                            XFCE_MAILWATCH_MAILBOX( mbox ),
+                                            XFCE_MAILWATCH_LOG_ERROR,
+                                            error->message );
                 g_io_channel_unref( ioc );
                 g_free( mailbox );
+                g_error_free( error );
                 return;
             }
             num_new += mbox->new_messages;
@@ -166,7 +186,6 @@ mbox_check_mail( XfceMailwatchMboxMailbox *mbox )
             mbox->new_messages = num_new;
         }
 
-        /*g_message( "num_new: %d", num_new );*/
         xfce_mailwatch_signal_new_messages( mbox->mailwatch, (XfceMailwatchMailbox *) mbox, num_new );
 
         mbox->ctime = st.st_ctime;
