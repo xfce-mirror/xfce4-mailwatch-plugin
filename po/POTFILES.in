@@ -4,4 +4,5 @@ panel-plugin/mailwatch-mailbox-mbox.c
 panel-plugin/mailwatch-mailbox-mh.c
 panel-plugin/mailwatch-mailbox-pop3.c
 panel-plugin/mailwatch-plugin.c
+panel-plugin/mailwatch-utils.c
 panel-plugin/mailwatch.c

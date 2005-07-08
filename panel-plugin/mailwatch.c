@@ -104,6 +104,17 @@ mailwatch_load_mailbox_types()
     return mailbox_types;
 }
 
+GQuark
+xfce_mailwatch_get_error_quark()
+{
+    static GQuark q = 0;
+    
+    if(!q)
+        q = g_quark_from_string("xfce-mailwatch-error");
+    
+    return q;
+}
+
 XfceMailwatch *
 xfce_mailwatch_new()
 {
@@ -370,22 +381,6 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
     return TRUE;
 }
 
-/* DEPRECATED!  will be removed soon */
-guint
-xfce_mailwatch_get_timeout(XfceMailwatch *mailwatch)
-{
-    g_return_val_if_fail(mailwatch, 0);
-    
-    return XFCE_MAILWATCH_DEFAULT_TIMEOUT;
-}
-
-/* DEPRECATED!  will be removed soon */
-void
-xfce_mailwatch_set_timeout(XfceMailwatch *mailwatch, guint seconds)
-{
-
-}
-
 guint
 xfce_mailwatch_get_new_messages(XfceMailwatch *mailwatch)
 {
@@ -536,22 +531,46 @@ xfce_mailwatch_signal_log_message( gpointer data )
 }
 
 void
-xfce_mailwatch_log_message( XfceMailwatch *mailwatch,
-        XfceMailwatchLogLevel level, const gchar *fmt, ... )
+xfce_mailwatch_log_message(XfceMailwatch *mailwatch,
+                           XfceMailwatchMailbox *mailbox,
+                           XfceMailwatchLogLevel level,
+                           const gchar *fmt,
+                           ...)
 {
     XfceMailwatchLogEntry   *entry = NULL;
     va_list                 args;
+    GList *l;
+    GTimeVal                gt;
     
     g_return_if_fail( mailwatch &&
-            level < XFCE_MAILWATCH_N_LOG_LEVELS && message );
-
+            level < XFCE_MAILWATCH_N_LOG_LEVELS && fmt );
+    
     entry = g_new0( XfceMailwatchLogEntry, 1 );
     entry->mailwatch        = mailwatch;
     entry->level            = level;
+    g_get_current_time(&gt);
+    entry->timestamp        = (time_t)gt.tv_sec;
 
     va_start( args, fmt );
     entry->message          = g_strdup_vprintf( fmt, args );
     va_end( args );
+    
+    if(mailbox) {
+        /* locked on, captain */
+        g_mutex_lock(mailwatch->mailboxes_mx);
+        
+        for(l = mailwatch->mailboxes; l; l = l->next) {
+            XfceMailwatchMailboxData *mdata = l->data;
+            
+            if(mdata->mailbox == mailbox) {
+                entry->mailbox_name = g_strdup(mdata->mailbox_name);
+                break;
+            }
+        }
+        
+        /* and we're done, unlock */
+        g_mutex_unlock(mailwatch->mailboxes_mx);
+    }
 
     g_idle_add( xfce_mailwatch_signal_log_message, entry );
 }
@@ -735,7 +754,7 @@ config_ask_new_mailbox_type(XfceMailwatch *mailwatch, GtkWindow *parent)
     gtk_widget_show(topvbox);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), topvbox, TRUE, TRUE, 0);
     
-    lbl = gtk_label_new("Select a mailbox type.  A description of the type will appear below.");
+    lbl = gtk_label_new(_("Select a mailbox type.  A description of the type will appear below."));
     gtk_label_set_line_wrap(GTK_LABEL(lbl), TRUE);
     gtk_misc_set_alignment(GTK_MISC(lbl), 0.0, 0.5);
     gtk_widget_show(lbl);

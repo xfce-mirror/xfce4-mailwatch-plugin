@@ -151,13 +151,45 @@ typedef struct
 static gssize
 imap_send(XfceMailwatchIMAPMailbox *imailbox, const gchar *buf)
 {
-    return xfce_mailwatch_net_send(imailbox->sockfd, &imailbox->security_info, buf);
+    GError *error = NULL;
+    gssize sent;
+    
+    sent = xfce_mailwatch_net_send(imailbox->sockfd,
+                                   &imailbox->security_info,
+                                   buf,
+                                   &error);
+    if(sent < 1) {
+        xfce_mailwatch_log_message(imailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(imailbox),
+                                   XFCE_MAILWATCH_LOG_ERROR,
+                                   error->message);
+        g_error_free(error);
+    }
+    
+    return sent;
 }
 
 static gssize
 imap_recv(XfceMailwatchIMAPMailbox *imailbox, gchar *buf, gsize len)
 {
-    return xfce_mailwatch_net_recv(imailbox->sockfd, &imailbox->security_info, buf, len);
+    GError *error = NULL;
+    gssize recvd;
+    
+    recvd = xfce_mailwatch_net_recv(imailbox->sockfd,
+                                    &imailbox->security_info,
+                                    buf,
+                                    len,
+                                    &error);
+    
+    if(recvd < 1) {
+        xfce_mailwatch_log_message(imailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(imailbox),
+                                   XFCE_MAILWATCH_LOG_ERROR,
+                                   error->message);
+        g_error_free(error);
+    }
+    
+    return recvd;
 }
 
 static void
@@ -171,17 +203,27 @@ imap_do_logout(XfceMailwatchIMAPMailbox *imailbox)
 }
 
 static gboolean
-imap_get_sockaddr(const gchar *host, const gchar *service,
-        struct sockaddr_in *addr)
+imap_get_sockaddr(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
+                  const gchar *service, struct sockaddr_in *addr)
 {
     struct addrinfo hints = { 0, PF_INET, SOCK_STREAM, IPPROTO_TCP,
             sizeof(struct sockaddr_in), NULL, NULL, NULL };
+    GError *error = NULL;
         
     TRACE("entering (%s, %s, %p)", host, service, addr);
     
     g_return_val_if_fail(host && service && addr, FALSE);
     
-    return xfce_mailwatch_net_get_sockaddr(host, service, &hints, addr);
+    if(!xfce_mailwatch_net_get_sockaddr(host, service, &hints, addr, &error)) {
+        xfce_mailwatch_log_message(imailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(imailbox),
+                                   XFCE_MAILWATCH_LOG_ERROR,
+                                   error->message);
+        g_error_free(error);
+        return FALSE;
+    }
+    
+    return TRUE;
 }
 
 static gboolean
@@ -246,11 +288,18 @@ static gboolean
 imap_negotiate_ssl(XfceMailwatchIMAPMailbox *imailbox, const gchar *host)
 {
     gboolean ret;
+    GError *error = NULL;
     
     ret = xfce_mailwatch_net_negotiate_tls(imailbox->sockfd,
-            &imailbox->security_info, host);
+            &imailbox->security_info, host, &error);
     
     if(!ret) {
+        xfce_mailwatch_log_message(imailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(imailbox),
+                                   XFCE_MAILWATCH_LOG_ERROR,
+                                   _("TLS handshake failed: %s"),
+                                   error->message);
+        g_error_free(error);
         shutdown(imailbox->sockfd, SHUT_RDWR);
         close(imailbox->sockfd);
         imailbox->sockfd = -1;
@@ -312,7 +361,7 @@ imap_connect(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
     
     TRACE("entering (%s)", service);
     
-    if(!imap_get_sockaddr(host, service, &addr)) {
+    if(!imap_get_sockaddr(imailbox, host, service, &addr)) {
         DBG("failed to get sockaddr");
         return FALSE;
     }
@@ -322,6 +371,11 @@ imap_connect(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
     
     imailbox->sockfd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
     if(imailbox->sockfd < 0) {
+        xfce_mailwatch_log_message(imailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(imailbox),
+                                   XFCE_MAILWATCH_LOG_WARNING,
+                                   "socket(): %s",
+                                   strerror(errno));
         DBG("failed to open socket");
         return FALSE;
     }
@@ -331,8 +385,12 @@ imap_connect(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
      * to fail!  if the panel is trying to quit, that's just unacceptable.
      */
     
-    if(fcntl(imailbox->sockfd, F_SETFL, fcntl(imailbox->sockfd, F_GETFL) | O_NONBLOCK))
-        g_warning(_("XfceMailwatch: Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."));
+    if(fcntl(imailbox->sockfd, F_SETFL, fcntl(imailbox->sockfd, F_GETFL) | O_NONBLOCK)) {
+        xfce_mailwatch_log_message(imailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(imailbox),
+                                   XFCE_MAILWATCH_LOG_WARNING,
+                                   _("Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."));
+    }
     
     if(connect(imailbox->sockfd, (struct sockaddr *)&addr,
             sizeof(struct sockaddr_in)))
@@ -367,6 +425,11 @@ imap_connect(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
                         DBG("    connection succeeded");
                         failed = FALSE;
                     } else {
+                        xfce_mailwatch_log_message(imailbox->mailwatch,
+                                                   XFCE_MAILWATCH_MAILBOX(imailbox),
+                                                   XFCE_MAILWATCH_LOG_ERROR,
+                                                   _("Failed to connect to server: %s"),
+                                                   strerror(sock_err));
                         DBG("    connection failed: sock_err is %d", sock_err);
                     }
                     break;
@@ -393,8 +456,12 @@ imap_connect(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
         }
     }
     
-    if(fcntl(imailbox->sockfd, F_SETFL, fcntl(imailbox->sockfd, F_GETFL) & ~(O_NONBLOCK)))
-        g_warning(_("XfceMailwatch: Unable to return socket to blocking mode.  Data may not be retreived correctly."));
+    if(fcntl(imailbox->sockfd, F_SETFL, fcntl(imailbox->sockfd, F_GETFL) & ~(O_NONBLOCK))) {
+        xfce_mailwatch_log_message(imailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(imailbox),
+                                   XFCE_MAILWATCH_LOG_WARNING,
+                                   _("Unable to return socket to blocking mode.  Data may not be retreived correctly."));
+    }
     
     return TRUE;
 }
@@ -700,8 +767,8 @@ imap_mailbox_new(XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type)
     imailbox->aqueue = g_async_queue_new();
     /* and init the timeout */
     g_async_queue_push(imailbox->aqueue, IMAP_CMD_TIMEOUT);
-    g_async_queue_push(imailbox->aqueue,
-            GUINT_TO_POINTER(xfce_mailwatch_get_timeout(imailbox->mailwatch)));
+    g_async_queue_push(imailbox->aqueue, 
+                       GUINT_TO_POINTER(XFCE_MAILWATCH_DEFAULT_TIMEOUT));
     /* create checker thread */
     imailbox->th = g_thread_create(imap_check_mail_th, imailbox, TRUE, NULL);
     

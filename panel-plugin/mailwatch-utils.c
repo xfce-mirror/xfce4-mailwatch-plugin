@@ -76,6 +76,10 @@
 
 #include "mailwatch-utils.h"
 
+/* keep in sync with mailwatch.h */
+#define XFCE_MAILWATCH_ERROR           xfce_mailwatch_get_error_quark()
+extern GQuark xfce_mailwatch_get_error_quark();
+
 #ifdef HAVE_SSL_SUPPORT
 
 #include <gcrypt.h>
@@ -159,14 +163,25 @@ my_g_mutex_unlock(void **priv)
 
 gboolean
 xfce_mailwatch_net_get_sockaddr(const gchar *host, const gchar *service,
-        struct addrinfo *hints, struct sockaddr_in *addr)
+        struct addrinfo *hints, struct sockaddr_in *addr, GError **error)
 {
     struct addrinfo *res = NULL;
+    gint ret;
     
-    if(getaddrinfo(host, service, hints, &res))
+    ret = getaddrinfo(host, service, hints, &res);
+    if(ret) {
+        if(error) {
+            g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
+                        "getaddrinfo(): %s", gai_strerror(ret));
+        }
         return FALSE;
+    }
     
     if(res->ai_addrlen != sizeof(struct sockaddr_in)) {
+        if(error) {
+            g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
+                        "getaddrinfo(): res->ai_addrlen != sizeof(struct sockaddr_in)");
+        }
         freeaddrinfo(res);
         return FALSE;
     }
@@ -179,7 +194,9 @@ xfce_mailwatch_net_get_sockaddr(const gchar *host, const gchar *service,
 
 gboolean
 xfce_mailwatch_net_negotiate_tls(gint sockfd,
-        XfceMailwatchSecurityInfo *security_info, const gchar *host)
+                                 XfceMailwatchSecurityInfo *security_info,
+                                 const gchar *host,
+                                 GError **error)
 {
 #ifdef HAVE_SSL_SUPPORT
     gint gt_ret;
@@ -210,6 +227,10 @@ xfce_mailwatch_net_negotiate_tls(gint sockfd,
     /* just do it */
     gt_ret = gnutls_handshake(security_info->gt_session);
     if(gt_ret < 0) {
+        if(error) {
+            g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
+                        gnutls_strerror(gt_ret));
+        }
         g_critical(_("XfceMailwatch: TLS handshake failed: %s"), gnutls_strerror(gt_ret));
         return FALSE;
     } else {
@@ -218,6 +239,10 @@ xfce_mailwatch_net_negotiate_tls(gint sockfd,
     
     return TRUE;
 #else
+    if(error) {
+        g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
+                    _("Not compiled with SSL/TLS support"));
+    }
     g_critical(_("XfceMailwatch: TLS handshake failed: not compiled with SSL support."));
     
     return FALSE;
@@ -226,8 +251,10 @@ xfce_mailwatch_net_negotiate_tls(gint sockfd,
 
 
 gssize
-xfce_mailwatch_net_send(gint sockfd, XfceMailwatchSecurityInfo *security_info,
-        const gchar *buf)
+xfce_mailwatch_net_send(gint sockfd,
+                        XfceMailwatchSecurityInfo *security_info,
+                        const gchar *buf,
+                        GError **error)
 {
     gint bout = 0;
     
@@ -237,6 +264,10 @@ xfce_mailwatch_net_send(gint sockfd, XfceMailwatchSecurityInfo *security_info,
         gint bytesleft = totallen;
         
         if(!security_info->gnutls_inited) {
+            if(error) {
+                g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
+                            _("A secure connection was requested, but gnutls was not initialised"));
+            }
             g_critical("XfceMailwatch: using_tls is TRUE, but gnutls was not inited");
             return -1;
         }
@@ -245,6 +276,11 @@ xfce_mailwatch_net_send(gint sockfd, XfceMailwatchSecurityInfo *security_info,
             ret = gnutls_record_send(security_info->gt_session,
                     buf+totallen-bytesleft, bytesleft);
             if(ret < 0 && ret != GNUTLS_E_INTERRUPTED && ret != GNUTLS_E_AGAIN) {
+                if(error) {
+                    g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
+                                "gnutls_record_send() [%d]: %s", ret,
+                                gnutls_strerror(ret));
+                }
                 DBG("gnutls_record_send() failed (%d): %s", ret, gnutls_strerror(ret));
                 bout = -1;
                 break;
@@ -261,8 +297,11 @@ xfce_mailwatch_net_send(gint sockfd, XfceMailwatchSecurityInfo *security_info,
 }
 
 gssize
-xfce_mailwatch_net_recv(gint sockfd, XfceMailwatchSecurityInfo *security_info,
-        gchar *buf, gsize len)
+xfce_mailwatch_net_recv(gint sockfd,
+                        XfceMailwatchSecurityInfo *security_info,
+                        gchar *buf,
+                        gsize len,
+                        GError **error)
 {
     fd_set rfd;
     struct timeval tv;
@@ -271,6 +310,10 @@ xfce_mailwatch_net_recv(gint sockfd, XfceMailwatchSecurityInfo *security_info,
 #ifdef HAVE_SSL_SUPPORT
     if(security_info->using_tls) {
         if(!security_info->gnutls_inited) {
+            if(error) {
+                g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
+                            _("A secure connection was requested, but gnutls was not initialised"));
+            }
             g_critical("XfceMailwatch: using_tls is TRUE, but gnutls was not inited");
             return -1;
         }
@@ -279,9 +322,14 @@ xfce_mailwatch_net_recv(gint sockfd, XfceMailwatchSecurityInfo *security_info,
             ret = gnutls_record_recv(security_info->gt_session, buf, len);
         } while(ret == GNUTLS_E_INTERRUPTED || ret == GNUTLS_E_AGAIN);
         
-        if(ret < 0)
+        if(ret < 0) {
+            if(error) {
+                g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
+                            "gnutls_record_recv() [%d]: %s", ret,
+                            gnutls_strerror(ret));
+            }
             bin = -1;
-        else
+        } else
             bin = ret;
     } else {
 #endif
@@ -291,13 +339,22 @@ xfce_mailwatch_net_recv(gint sockfd, XfceMailwatchSecurityInfo *security_info,
         tv.tv_usec = 0;
         
         ret = select(FD_SETSIZE, &rfd, NULL, NULL, &tv);
-        if(ret < 0)
+        if(ret < 0) {
+            if(error) {
+                g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
+                            "select(): %s", strerror(errno));
+            }
             return -1;
+        }
         
         if(!FD_ISSET(sockfd, &rfd))
             return 0;
         
         bin = recv(sockfd, buf, len, MSG_NOSIGNAL);
+        if(bin < 0 && error) {
+            g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
+                        "recv(): %s", strerror(errno));
+        }
 #ifdef HAVE_SSL_SUPPORT
     }
 #endif

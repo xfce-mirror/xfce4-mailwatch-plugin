@@ -19,6 +19,8 @@
 #ifndef __MAILWATCH_H__
 #define __MAILWATCH_H__
 
+#include <time.h>
+
 #include <glib.h>
 
 #include "mailwatch-mailbox.h"
@@ -26,6 +28,8 @@
 G_BEGIN_DECLS
 
 #define XFCE_MAILWATCH_DEFAULT_TIMEOUT (10*60)  /* in seconds */
+/* keep in sync with mailwatch-utils.c */
+#define XFCE_MAILWATCH_ERROR           xfce_mailwatch_get_error_quark()
 
 typedef struct _XfceMailwatch XfceMailwatch;
 typedef void (*XMCallback)(XfceMailwatch *mailwatch, gpointer arg, gpointer user_data);
@@ -49,9 +53,12 @@ typedef enum
 typedef struct {
     XfceMailwatch           *mailwatch;
     XfceMailwatchLogLevel   level;
-/*    gchar                   *mailbox; not yet implemented */
+    time_t                  timestamp;
+    gchar                   *mailbox_name;
     gchar                   *message;
 } XfceMailwatchLogEntry;
+
+GQuark xfce_mailwatch_get_error_quark  ();
 
 XfceMailwatch *xfce_mailwatch_new      ();
 void xfce_mailwatch_destroy            (XfceMailwatch *mailwatch);
@@ -63,10 +70,6 @@ G_CONST_RETURN gchar *xfce_mailwatch_get_config_file
 
 gboolean xfce_mailwatch_load_config    (XfceMailwatch *mailwatch);
 gboolean xfce_mailwatch_save_config    (XfceMailwatch *mailwatch);
-
-guint xfce_mailwatch_get_timeout       (XfceMailwatch *mailwatch);
-void xfce_mailwatch_set_timeout        (XfceMailwatch *mailwatch,
-                                        guint seconds);
 
 guint xfce_mailwatch_get_new_messages  (XfceMailwatch *mailwatch);
 
@@ -93,9 +96,12 @@ void xfce_mailwatch_signal_disconnect  (XfceMailwatch *mailwatch,
 void xfce_mailwatch_signal_new_messages(XfceMailwatch *mailwatch,
                                         XfceMailwatchMailbox *mailbox,
                                         guint num_new_messages);
-void xfce_mailwatch_log_message( XfceMailwatch *mailwatch,
-                                 XfceMailwatchLogLevel level,
-                                 const gchar *fmt, ... );
+void xfce_mailwatch_log_message        (XfceMailwatch *mailwatch,
+                                        XfceMailwatchMailbox *mailbox,
+                                        XfceMailwatchLogLevel level,
+                                        const gchar *fmt,
+                                        ... );
+
 G_END_DECLS
 
 #endif

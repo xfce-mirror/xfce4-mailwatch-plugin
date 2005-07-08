@@ -19,12 +19,20 @@
 #ifndef __MAILWATCH_UTILS_H__
 #define __MAILWATCH_UTILS_H__
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
 #endif
 
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
+#endif
+
+#ifdef HAVE_NETDB_H
+#include <netdb.h>
 #endif
 
 #ifdef HAVE_NETINET_IN_H
@@ -56,10 +64,10 @@ typedef struct
 #endif
 } XfceMailwatchSecurityInfo;
 
-gboolean xfce_mailwatch_net_get_sockaddr(const gchar *host, const gchar *service, struct addrinfo *hints, struct sockaddr_in *addr);
-gboolean xfce_mailwatch_net_negotiate_tls(gint sockfd, XfceMailwatchSecurityInfo *security_info, const gchar *host);
-gssize xfce_mailwatch_net_send(gint sockfd, XfceMailwatchSecurityInfo *security_info, const gchar *buf);
-gssize xfce_mailwatch_net_recv(gint sockfd, XfceMailwatchSecurityInfo *security_info, gchar *buf, gsize len);
+gboolean xfce_mailwatch_net_get_sockaddr(const gchar *host, const gchar *service, struct addrinfo *hints, struct sockaddr_in *addr, GError **error);
+gboolean xfce_mailwatch_net_negotiate_tls(gint sockfd, XfceMailwatchSecurityInfo *security_info, const gchar *host, GError **error);
+gssize xfce_mailwatch_net_send(gint sockfd, XfceMailwatchSecurityInfo *security_info, const gchar *buf, GError **error);
+gssize xfce_mailwatch_net_recv(gint sockfd, XfceMailwatchSecurityInfo *security_info, gchar *buf, gsize len, GError **error);
 void xfce_mailwatch_net_tls_teardown(XfceMailwatchSecurityInfo *security_info);
 
 GtkWidget *xfce_mailwatch_custom_button_new(const gchar *text, const gchar *icon);

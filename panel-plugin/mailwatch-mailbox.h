@@ -24,6 +24,8 @@
 
 G_BEGIN_DECLS
 
+#define XFCE_MAILWATCH_MAILBOX(ptr) ((XfceMailwatchMailbox *)ptr)
+
 /* this is used for shared objects only; unsupported as of yet; may not be
  * useful/necessary */
 #define MAILWATCH_MAILBOX_TYPE(mmt_struct) \

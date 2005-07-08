@@ -121,13 +121,45 @@ typedef struct
 static gssize
 pop3_send(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *buf)
 {
-    return xfce_mailwatch_net_send(pmailbox->sockfd, &pmailbox->security_info, buf);
+    GError *error = NULL;
+    gssize sent;
+    
+    sent = xfce_mailwatch_net_send(pmailbox->sockfd,
+                                   &pmailbox->security_info,
+                                   buf,
+                                   &error);
+    if(sent < 1) {
+        xfce_mailwatch_log_message(pmailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(pmailbox),
+                                   XFCE_MAILWATCH_LOG_ERROR,
+                                   error->message);
+        g_error_free(error);
+    }
+    
+    return sent;
 }
 
 static gssize
 pop3_recv(XfceMailwatchPOP3Mailbox *pmailbox, gchar *buf, gsize len)
 {
-    return xfce_mailwatch_net_recv(pmailbox->sockfd, &pmailbox->security_info, buf, len);
+    GError *error = NULL;
+    gssize recvd;
+    
+    recvd = xfce_mailwatch_net_recv(pmailbox->sockfd,
+                                    &pmailbox->security_info,
+                                    buf,
+                                    len,
+                                    &error);
+    
+    if(recvd < 1) {
+        xfce_mailwatch_log_message(pmailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(pmailbox),
+                                   XFCE_MAILWATCH_LOG_ERROR,
+                                   error->message);
+        g_error_free(error);
+    }
+    
+    return recvd;
 }
 
 static void
@@ -141,17 +173,27 @@ pop3_do_logout(XfceMailwatchPOP3Mailbox *pmailbox)
 }
 
 static gboolean
-pop3_get_sockaddr(const gchar *host, const gchar *service,
-        struct sockaddr_in *addr)
+pop3_get_sockaddr(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
+                  const gchar *service, struct sockaddr_in *addr)
 {
     struct addrinfo hints = { 0, PF_INET, SOCK_STREAM, IPPROTO_TCP,
             sizeof(struct sockaddr_in), NULL, NULL, NULL };
-        
+    GError *error = NULL;
+    
     TRACE("entering (%s, %s, %p)", host, service, addr);
     
     g_return_val_if_fail(host && service && addr, FALSE);
     
-    return xfce_mailwatch_net_get_sockaddr(host, service, &hints, addr);
+    if(!xfce_mailwatch_net_get_sockaddr(host, service, &hints, addr, &error)) {
+        xfce_mailwatch_log_message(pmailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(pmailbox),
+                                   XFCE_MAILWATCH_LOG_ERROR,
+                                   error->message);
+        g_error_free(error);
+        return FALSE;
+    }
+    
+    return TRUE;
 }
 
 static gboolean
@@ -214,11 +256,18 @@ static gboolean
 pop3_negotiate_ssl(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host)
 {
     gboolean ret;
+    GError *error = NULL;
     
     ret = xfce_mailwatch_net_negotiate_tls(pmailbox->sockfd,
-            &pmailbox->security_info, host);
+            &pmailbox->security_info, host, &error);
     
     if(!ret) {
+        xfce_mailwatch_log_message(pmailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(pmailbox),
+                                   XFCE_MAILWATCH_LOG_ERROR,
+                                   _("TLS handshake failed: %s"),
+                                   error->message);
+        g_error_free(error);
         shutdown(pmailbox->sockfd, SHUT_RDWR);
         close(pmailbox->sockfd);
         pmailbox->sockfd = -1;
@@ -278,7 +327,7 @@ pop3_connect(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
     
     TRACE("entering (%s)", service);
     
-    if(!pop3_get_sockaddr(host, service, &addr)) {
+    if(!pop3_get_sockaddr(pmailbox, host, service, &addr)) {
         DBG("failed to get sockaddr");
         return FALSE;
     }
@@ -288,6 +337,11 @@ pop3_connect(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
     
     pmailbox->sockfd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
     if(pmailbox->sockfd < 0) {
+        xfce_mailwatch_log_message(pmailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(pmailbox),
+                                   XFCE_MAILWATCH_LOG_WARNING,
+                                   "socket(): %s",
+                                   strerror(errno));
         DBG("failed to open socket");
         return FALSE;
     }
@@ -297,8 +351,12 @@ pop3_connect(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
      * to fail!  if the panel is trying to quit, that's just unacceptable.
      */
     
-    if(fcntl(pmailbox->sockfd, F_SETFL, fcntl(pmailbox->sockfd, F_GETFL) | O_NONBLOCK))
-        g_warning(_("XfceMailwatch: Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."));
+    if(fcntl(pmailbox->sockfd, F_SETFL, fcntl(pmailbox->sockfd, F_GETFL) | O_NONBLOCK)) {
+        xfce_mailwatch_log_message(pmailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(pmailbox),
+                                   XFCE_MAILWATCH_LOG_WARNING,
+                                   _("Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."));
+    }
     
     if(connect(pmailbox->sockfd, (struct sockaddr *)&addr,
             sizeof(struct sockaddr_in)))
@@ -333,6 +391,11 @@ pop3_connect(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
                         DBG("    connection succeeded");
                         failed = FALSE;
                     } else {
+                        xfce_mailwatch_log_message(pmailbox->mailwatch,
+                                                   XFCE_MAILWATCH_MAILBOX(pmailbox),
+                                                   XFCE_MAILWATCH_LOG_ERROR,
+                                                   _("Failed to connect to server: %s"),
+                                                   strerror(sock_err));
                         DBG("    connection failed: sock_err is %d", sock_err);
                     }
                     break;
@@ -359,8 +422,12 @@ pop3_connect(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
         }
     }
     
-    if(fcntl(pmailbox->sockfd, F_SETFL, fcntl(pmailbox->sockfd, F_GETFL) & ~(O_NONBLOCK)))
-        g_warning(_("XfceMailwatch: Unable to return socket to blocking mode.  Data may not be retreived correctly."));
+    if(fcntl(pmailbox->sockfd, F_SETFL, fcntl(pmailbox->sockfd, F_GETFL) & ~(O_NONBLOCK))) {
+        xfce_mailwatch_log_message(pmailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(pmailbox),
+                                   XFCE_MAILWATCH_LOG_WARNING,
+                                   _("Unable to return socket to blocking mode.  Data may not be retreived correctly."));
+    }
     
     return TRUE;
 }
@@ -573,7 +640,7 @@ pop3_mailbox_new(XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type)
     /* and init the timeout */
     g_async_queue_push(pmailbox->aqueue, POP3_CMD_TIMEOUT);
     g_async_queue_push(pmailbox->aqueue,
-            GUINT_TO_POINTER(xfce_mailwatch_get_timeout(pmailbox->mailwatch)));
+            GUINT_TO_POINTER(XFCE_MAILWATCH_DEFAULT_TIMEOUT));
     /* create checker thread */
     pmailbox->th = g_thread_create(pop3_check_mail_th, pmailbox, TRUE, NULL);
     
