@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-08 00:53-0700\n"
+"POT-Creation-Date: 2005-07-09 03:28-0700\n"
 "PO-Revision-Date: 2005-05-23 20:25+0900\n"
 "Last-Translator: Daichi Kawahata <daichik@users.sourceforge.net>\n"
 "Language-Team: xfce-users-jp <xfce-users-jp@ml.fdiary.net>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:252
+#: panel-plugin/mailwatch-mailbox-imap.c:254
 msgid ""
 "Secure IMAP is not available, and the IMAP server does not support plaintext "
 "logins."
@@ -23,13 +23,17 @@ msgstr ""
 "安全な IMAP が利用できません、また IMAP サーバは平文でのログインに対応しませ"
 "ん。"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:300
+#: panel-plugin/mailwatch-mailbox-imap.c:302
 #: panel-plugin/mailwatch-mailbox-pop3.c:268
 #, c-format
 msgid "TLS handshake failed: %s"
 msgstr ""
 
-#: panel-plugin/mailwatch-mailbox-imap.c:392
+#: panel-plugin/mailwatch-mailbox-imap.c:335
+msgid "STARTTLS security was requested, but this server does not support it."
+msgstr ""
+
+#: panel-plugin/mailwatch-mailbox-imap.c:399
 #: panel-plugin/mailwatch-mailbox-pop3.c:358
 #, fuzzy
 msgid ""
@@ -39,13 +43,13 @@ msgstr ""
 "ソケットを非停止モードにセットできません。接続がハングを試みるなら、閉じる際"
 "にパネルがハングするかもしれません。"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:431
+#: panel-plugin/mailwatch-mailbox-imap.c:438
 #: panel-plugin/mailwatch-mailbox-pop3.c:397
 #, fuzzy, c-format
 msgid "Failed to connect to server: %s"
 msgstr "フォルダ一覧の取得に失敗しました"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:463
+#: panel-plugin/mailwatch-mailbox-imap.c:470
 #: panel-plugin/mailwatch-mailbox-pop3.c:429
 #, fuzzy
 msgid ""
@@ -55,124 +59,128 @@ msgstr ""
 "ソケットを非停止モードに戻せません。データを正確に取得できない可能性がありま"
 "す。"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1135
+#: panel-plugin/mailwatch-mailbox-imap.c:589
+msgid ""
+"A buffer was too small to receive all of an IMAP response.  This is a bug!"
+msgstr ""
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1176
 msgid "Failed to get folder list"
 msgstr "フォルダ一覧の取得に失敗しました"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1204
-#: panel-plugin/mailwatch-mailbox-imap.c:1573
+#: panel-plugin/mailwatch-mailbox-imap.c:1302
+#: panel-plugin/mailwatch-mailbox-imap.c:1512
 msgid "Please wait..."
 msgstr "お待ち下さい..."
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1351
-msgid "Advanced IMAP Options"
-msgstr "高度な IMAP オプション"
-
-#: panel-plugin/mailwatch-mailbox-imap.c:1360
-#: panel-plugin/mailwatch-mailbox-pop3.c:815
-msgid "Connection"
-msgstr ""
-
-#: panel-plugin/mailwatch-mailbox-imap.c:1369
-#: panel-plugin/mailwatch-mailbox-pop3.c:824
-#, fuzzy
-msgid "Use unsecured connection"
-msgstr "安全な接続を行う(_S)"
-
-#: panel-plugin/mailwatch-mailbox-imap.c:1370
-#: panel-plugin/mailwatch-mailbox-pop3.c:825
-msgid "Use SSL/TLS on alternate port"
-msgstr ""
-
-#: panel-plugin/mailwatch-mailbox-imap.c:1371
-#: panel-plugin/mailwatch-mailbox-pop3.c:826
-msgid "Use SSL/TLS via STARTTLS"
-msgstr ""
-
-#: panel-plugin/mailwatch-mailbox-imap.c:1387
-msgid "Use non-standard IMAP _port:"
-msgstr ""
-
-#: panel-plugin/mailwatch-mailbox-imap.c:1416
-#, fuzzy
-msgid "Folders"
-msgstr "新規メールフォルダ"
-
-#: panel-plugin/mailwatch-mailbox-imap.c:1424
-msgid "IMAP server _directory:"
-msgstr "IMAP サーバフォルダ(_D):"
-
-#: panel-plugin/mailwatch-mailbox-imap.c:1457
+#: panel-plugin/mailwatch-mailbox-imap.c:1393
 msgid "Error"
 msgstr ""
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1458
+#: panel-plugin/mailwatch-mailbox-imap.c:1394
 msgid "No server or username is set."
 msgstr ""
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1459
+#: panel-plugin/mailwatch-mailbox-imap.c:1395
 msgid ""
 "The folder list cannot be retrieved until a server, username, and probably "
 "password are set.  Also be sure to check any security settings in the "
 "Advanced dialog."
 msgstr ""
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1464
+#: panel-plugin/mailwatch-mailbox-imap.c:1400
 #, fuzzy
 msgid "Set New Mail Folders"
 msgstr "新規メールフォルダ"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1472
+#: panel-plugin/mailwatch-mailbox-imap.c:1411
 msgid "New Mail Folders"
 msgstr "新規メールフォルダ"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1594
+#: panel-plugin/mailwatch-mailbox-imap.c:1595
+msgid "Advanced IMAP Options"
+msgstr "高度な IMAP オプション"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1604
+#: panel-plugin/mailwatch-mailbox-pop3.c:815
+msgid "Connection"
+msgstr ""
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1613
+#: panel-plugin/mailwatch-mailbox-pop3.c:824
+#, fuzzy
+msgid "Use unsecured connection"
+msgstr "安全な接続を行う(_S)"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1614
+#: panel-plugin/mailwatch-mailbox-pop3.c:825
+msgid "Use SSL/TLS on alternate port"
+msgstr ""
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1615
+msgid "Use SSL/TLS via STARTTLS"
+msgstr ""
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1631
+msgid "Use non-standard IMAP _port:"
+msgstr ""
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1660
+#, fuzzy
+msgid "Folders"
+msgstr "新規メールフォルダ"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1668
+msgid "IMAP server _directory:"
+msgstr "IMAP サーバフォルダ(_D):"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1698
 msgid "IMAP Server"
 msgstr "IMAP サーバ"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1608
+#: panel-plugin/mailwatch-mailbox-imap.c:1712
 #: panel-plugin/mailwatch-mailbox-pop3.c:901
 msgid "_Mail server:"
 msgstr "メールサーバ(_M):"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1627
+#: panel-plugin/mailwatch-mailbox-imap.c:1731
 #: panel-plugin/mailwatch-mailbox-pop3.c:920
 msgid "_Username:"
 msgstr "ユーザ名(_U):"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1646
+#: panel-plugin/mailwatch-mailbox-imap.c:1750
 #: panel-plugin/mailwatch-mailbox-pop3.c:939
 msgid "_Password:"
 msgstr "パスワード(_P):"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1666
+#: panel-plugin/mailwatch-mailbox-imap.c:1770
 #: panel-plugin/mailwatch-mailbox-pop3.c:959
 msgid "_Advanced..."
 msgstr "高度な設定(_A)..."
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1673
+#: panel-plugin/mailwatch-mailbox-imap.c:1777
 #, fuzzy
 msgid "New mail _folders..."
 msgstr "新規メールフォルダ"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1684
+#: panel-plugin/mailwatch-mailbox-imap.c:1788
 #: panel-plugin/mailwatch-mailbox-pop3.c:970
 msgid "Check for _new messages every"
 msgstr "新しいメッセージを(_N)"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1698
+#: panel-plugin/mailwatch-mailbox-imap.c:1802
 #: panel-plugin/mailwatch-mailbox-maildir.c:439
-#: panel-plugin/mailwatch-mailbox-mbox.c:452
+#: panel-plugin/mailwatch-mailbox-mbox.c:471
 #: panel-plugin/mailwatch-mailbox-mh.c:604
 #: panel-plugin/mailwatch-mailbox-pop3.c:984
 msgid "minute(s)."
 msgstr "分毎に確認する。"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1843
+#: panel-plugin/mailwatch-mailbox-imap.c:1947
 msgid "Remote IMAP Mailbox"
 msgstr "リモート IMAP メール箱"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1844
+#: panel-plugin/mailwatch-mailbox-imap.c:1948
 msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
@@ -189,7 +197,7 @@ msgid "Maildir _Path:"
 msgstr "Maildir のパス(_P):"
 
 #: panel-plugin/mailwatch-mailbox-maildir.c:423
-#: panel-plugin/mailwatch-mailbox-mbox.c:435
+#: panel-plugin/mailwatch-mailbox-mbox.c:454
 #: panel-plugin/mailwatch-mailbox-mh.c:589
 msgid "_Interval:"
 msgstr "間隔(_I):"
@@ -206,19 +214,19 @@ msgstr ""
 "Maildir プラグインで、Maildir 様式のローカル・メールスプールへ届く新しいメッ"
 "セージを確認します。"
 
-#: panel-plugin/mailwatch-mailbox-mbox.c:350
+#: panel-plugin/mailwatch-mailbox-mbox.c:369
 msgid "Select mbox file"
 msgstr "mbox ファイルを選択して下さい"
 
-#: panel-plugin/mailwatch-mailbox-mbox.c:399
+#: panel-plugin/mailwatch-mailbox-mbox.c:418
 msgid "Mbox _Filename:"
 msgstr "Mbox ファイル名(_F):"
 
-#: panel-plugin/mailwatch-mailbox-mbox.c:477
+#: panel-plugin/mailwatch-mailbox-mbox.c:496
 msgid "Local Mbox spool"
 msgstr "ローカル Mbox スプール"
 
-#: panel-plugin/mailwatch-mailbox-mbox.c:478
+#: panel-plugin/mailwatch-mailbox-mbox.c:497
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
 msgstr ""
 "Mbox プラグインで、mbox 様式のローカル・メール箱へ届く新しいメッセージを確認"
@@ -247,6 +255,10 @@ msgstr ""
 msgid "Advanced POP3 Options"
 msgstr "高度な IMAP オプション"
 
+#: panel-plugin/mailwatch-mailbox-pop3.c:826
+msgid "Use SSL/TLS via STLS"
+msgstr ""
+
 #: panel-plugin/mailwatch-mailbox-pop3.c:842
 msgid "Use non-standard POP3 _port:"
 msgstr ""
@@ -270,40 +282,40 @@ msgstr ""
 "IMAP プラグインで IMAP プロトコルに対応している遠隔メールサーバに接続します。"
 "リンクを保護するために任意に SSL を利用します。"
 
-#: panel-plugin/mailwatch-plugin.c:106 panel-plugin/mailwatch-plugin.c:231
+#: panel-plugin/mailwatch-plugin.c:105 panel-plugin/mailwatch-plugin.c:230
 msgid "No new mail"
 msgstr "新しいメールはありません"
 
-#: panel-plugin/mailwatch-plugin.c:121
+#: panel-plugin/mailwatch-plugin.c:120
 msgid "You have 1 new message:"
 msgstr "一通の新しいメールが届いています:"
 
-#: panel-plugin/mailwatch-plugin.c:123
+#: panel-plugin/mailwatch-plugin.c:122
 #, c-format
 msgid "You have %d new messages:"
 msgstr "%d 通の新しいメールが届いています:"
 
-#: panel-plugin/mailwatch-plugin.c:389
+#: panel-plugin/mailwatch-plugin.c:388
 msgid "Mailwatch log"
 msgstr ""
 
-#: panel-plugin/mailwatch-plugin.c:447
+#: panel-plugin/mailwatch-plugin.c:446
 msgid "Log _lines:"
 msgstr ""
 
-#: panel-plugin/mailwatch-plugin.c:509
+#: panel-plugin/mailwatch-plugin.c:508
 msgid "_Run on click:"
 msgstr "クリックで実行(_R)"
 
-#: panel-plugin/mailwatch-plugin.c:526
+#: panel-plugin/mailwatch-plugin.c:525
 msgid "Run on _new messages:"
 msgstr "メッセージが来た場合に実行(_N):"
 
-#: panel-plugin/mailwatch-plugin.c:543
+#: panel-plugin/mailwatch-plugin.c:542
 msgid "_View Log..."
 msgstr ""
 
-#: panel-plugin/mailwatch-plugin.c:652
+#: panel-plugin/mailwatch-plugin.c:651
 msgid "Mail Watcher"
 msgstr ""
 
@@ -348,56 +360,56 @@ msgstr ""
 "の機密情報を含んでいる場合、あなたと同じシステムを使う他の人達に見られてしま"
 "うかもしれません。"
 
-#: panel-plugin/mailwatch.c:597
+#: panel-plugin/mailwatch.c:598
 msgid "This mailbox type does not require any configuration settings."
 msgstr "この種類のメール箱はいずれの設定も必要ありません。"
 
-#: panel-plugin/mailwatch.c:623
+#: panel-plugin/mailwatch.c:624
 msgid "Mailbox _Name:"
 msgstr "メール箱の名前(_N):"
 
-#: panel-plugin/mailwatch.c:640
+#: panel-plugin/mailwatch.c:641
 msgid "Mailwatch"
 msgstr ""
 
-#: panel-plugin/mailwatch.c:641
+#: panel-plugin/mailwatch.c:642
 msgid "Mailbox name required."
 msgstr "メール箱の名前が必要です。"
 
-#: panel-plugin/mailwatch.c:642
+#: panel-plugin/mailwatch.c:643
 msgid "Please enter a name for the mailbox."
 msgstr "メール箱の名前を入力して下さい。"
 
-#: panel-plugin/mailwatch.c:685
+#: panel-plugin/mailwatch.c:686
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "メール箱の編集: %s"
 
-#: panel-plugin/mailwatch.c:748
+#: panel-plugin/mailwatch.c:749
 msgid "Select Mailbox Type"
 msgstr "メール箱の種類を選択して下さい"
 
-#: panel-plugin/mailwatch.c:757
+#: panel-plugin/mailwatch.c:758
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr "メール箱の種類を選択して下さい。種類の説明は下に表示されます。"
 
-#: panel-plugin/mailwatch.c:813
+#: panel-plugin/mailwatch.c:814
 msgid "Add New Mailbox"
 msgstr "新規メール箱を追加"
 
-#: panel-plugin/mailwatch.c:876
+#: panel-plugin/mailwatch.c:877
 msgid "Remove Mailbox"
 msgstr "メール箱を削除"
 
-#: panel-plugin/mailwatch.c:877
+#: panel-plugin/mailwatch.c:878
 msgid "Are you sure?"
 msgstr "よろしいですか？"
 
-#: panel-plugin/mailwatch.c:878
+#: panel-plugin/mailwatch.c:879
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr "メール箱を削除するとすべての設定が破棄されます、また元に戻せません。"
 
-#: panel-plugin/mailwatch.c:952
+#: panel-plugin/mailwatch.c:953
 msgid "Configured _Mailboxes:"
 msgstr "設定するメール箱:"
 
