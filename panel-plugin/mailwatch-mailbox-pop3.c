@@ -571,9 +571,9 @@ pop3_check_mail(XfceMailwatchPOP3Mailbox *pmailbox)
     xfce_mailwatch_signal_new_messages(pmailbox->mailwatch,
             XFCE_MAILWATCH_MAILBOX(pmailbox), new_messages);
     
-    pop3_do_logout(pmailbox);
-    
     cleanup:
+    
+    pop3_do_logout(pmailbox);
     
     xfce_mailwatch_net_tls_teardown(&pmailbox->security_info);
     
