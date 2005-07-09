@@ -823,7 +823,7 @@ pop3_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     combo = gtk_combo_box_new_text();
     gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use unsecured connection"));
     gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use SSL/TLS on alternate port"));
-    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use SSL/TLS via STARTTLS"));
+    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use SSL/TLS via STLS"));
 #ifdef HAVE_SSL_SUPPORT
     gtk_combo_box_set_active(GTK_COMBO_BOX(combo), pmailbox->auth_type);
 #else

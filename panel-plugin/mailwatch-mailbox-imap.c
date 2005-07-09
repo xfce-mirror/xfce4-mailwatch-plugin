@@ -326,8 +326,13 @@ imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
     DBG("checking for STARTTLS caps (%d): %s", bin, bin>0?buf:"(nada)");
     if(bin <= 0)
         goto cleanuperr;
-    if(!strstr(buf, " STARTTLS"))
+    if(!strstr(buf, " STARTTLS")) {
+        xfce_mailwatch_log_message(imailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(imailbox),
+                                   XFCE_MAILWATCH_LOG_WARNING,
+                                   _("STARTTLS security was requested, but this server does not support it."));
         goto cleanuperr;
+    }
     
     g_snprintf(buf, BUFSIZE, "%05d STARTTLS\r\n", ++imailbox->imap_tag);
     if(imap_send(imailbox, buf) != strlen(buf))
@@ -575,8 +580,13 @@ imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
     if(imap_recv(imailbox, buf, BUFSIZE) < 0)
         return 0;
     g_snprintf(tmp, 64, "%d OK SEARCH", imailbox->imap_tag);
-    if(!strstr(buf, tmp))
+    if(!strstr(buf, tmp)) {
+        xfce_mailwatch_log_message(imailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(imailbox),
+                                   XFCE_MAILWATCH_LOG_WARNING,
+                                   _("A buffer was too small to receive all of an IMAP response.  This is a bug!"));
         g_warning("Mailwatch: Uh-oh.  We didn't get the full response back!");
+    }
     p = strstr(buf, "* SEARCH");
     if(!p)
         return 0;
