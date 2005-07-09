@@ -40,6 +40,10 @@
 #include <stdlib.h>
 #endif
 
+#ifdef HAVE_ERRNO_H
+#include <errno.h>
+#endif
+
 #include <gtk/gtk.h>
 
 #include <libxfce4util/libxfce4util.h>
@@ -141,7 +145,7 @@ mh_profile_entry_create_new( const char *line )
 }
 
 static GList *
-mh_profile_read( const gchar *mh_profile )
+mh_profile_read( XfceMailwatchMHMailbox *mh, const gchar *mh_profile )
 {
     GIOStatus       status;
     GIOChannel      *ioc;
@@ -154,8 +158,8 @@ mh_profile_read( const gchar *mh_profile )
 
     ioc = g_io_channel_new_file( mh_profile, "r", &error );
     if ( !ioc ) {
-        g_critical( MH_PLUGIN_NAME ": Failed to open %s: %s",
-                mh_profile, error->message );
+        xfce_mailwatch_log_message( mh->mailwatch, XFCE_MAILWATCH_MAILBOX( mh ),
+                                    XFCE_MAILWATCH_LOG_ERROR, error->message );
         g_error_free( error );
         return ( NULL );
     }
@@ -197,7 +201,10 @@ mh_profile_read( const gchar *mh_profile )
                         li = g_list_prepend( li, entry );
                     }
                     else {
-                        g_warning( MH_PLUGIN_NAME ": Malformed line %s. Ignoring...", line );
+                        xfce_mailwatch_log_message( mh->mailwatch, XFCE_MAILWATCH_MAILBOX( mh ),
+                                                    XFCE_MAILWATCH_LOG_WARNING,
+                                                    _( "Malformed line %s in %s ignored." ),
+                                                    line, mh_profile );
                     }
                     g_free( line );
                     line = curline;
@@ -216,13 +223,17 @@ mh_profile_read( const gchar *mh_profile )
             li = g_list_prepend( li, e );
         }
         else {
-            g_warning( MH_PLUGIN_NAME ": Malformed line %s. Ignoring...", line );
+            xfce_mailwatch_log_message( mh->mailwatch, XFCE_MAILWATCH_MAILBOX( mh ),
+                    XFCE_MAILWATCH_LOG_WARNING,
+                    _( "Malformed line %s in %s ignored." ), line, mh_profile );
         }
         g_free( line );
     }
     g_io_channel_unref( ioc );
     if ( status != G_IO_STATUS_EOF ) {
-        g_warning( MH_PLUGIN_NAME ": Error reading mh-profile %s: %s", mh_profile, error->message );
+        xfce_mailwatch_log_message( mh->mailwatch, XFCE_MAILWATCH_MAILBOX( mh ),
+                                    XFCE_MAILWATCH_LOG_ERROR,
+                                    error->message );
         g_error_free( error );
     }
 
@@ -307,7 +318,7 @@ mh_read_config( XfceMailwatchMHMailbox *mh )
         mh->mh_profile_fn = mh_get_profile_filename();
     }
 
-    profile = mh_profile_read( mh->mh_profile_fn );
+    profile = mh_profile_read( mh, mh->mh_profile_fn );
     if ( !profile ) {
         DBG( "Profile == NULL" );
         return;
@@ -360,24 +371,38 @@ mh_check_mail( XfceMailwatchMHMailbox *mh )
         mh->mh_profile_fn = mh_get_profile_filename();
     }
     
-    if ( stat( mh->mh_profile_fn, &st ) == 0
-            && st.st_ctime != mh->mh_profile_ctime ) {
-        mh_read_config( mh );
-        mh->mh_profile_ctime = st.st_ctime;
+    if ( stat( mh->mh_profile_fn, &st ) == 0 ) {
+        if ( st.st_ctime != mh->mh_profile_ctime ) {
+            mh_read_config( mh );
+            mh->mh_profile_ctime = st.st_ctime;
+        }
+    }
+    else {
+        xfce_mailwatch_log_message( mh->mailwatch, XFCE_MAILWATCH_MAILBOX( mh ),
+                                    XFCE_MAILWATCH_LOG_WARNING,
+                                    _( "Failed to get status of file %s: %s" ),
+                                    mh->mh_profile_fn, strerror( errno ) );
     }
 
     if ( !mh->mh_sequences_fn ) {
         return;
     }
 
-    if ( stat( mh->mh_sequences_fn, &st ) == 0 ) {
+    if ( stat( mh->mh_sequences_fn, &st ) < 0 ) {
+        xfce_mailwatch_log_message( mh->mailwatch, XFCE_MAILWATCH_MAILBOX( mh ),
+                                    XFCE_MAILWATCH_LOG_ERROR,
+                                    _( "Failed to get status of file %s: %s" ),
+                                    mh->mh_sequences_fn, strerror( errno ) );
+    }
+    else {
         if ( st.st_ctime != mh->mh_sequences_ctime ) {
             GList           *seqlist;
             gchar           *unseen;
+            gulong          num_new = 0;
 
             mh->mh_sequences_ctime = st.st_ctime;
 
-            seqlist = mh_profile_read( mh->mh_sequences_fn );
+            seqlist = mh_profile_read( mh, mh->mh_sequences_fn );
 
 #ifdef DEBUG
             mh_profile_print( seqlist );
@@ -387,7 +412,6 @@ mh_check_mail( XfceMailwatchMHMailbox *mh )
                     mh->unseen_sequence ? mh->unseen_sequence : MH_UNSEEN_SEQ  );
             mh_profile_free( seqlist );
             if ( unseen ) {
-                gulong      num_new = 0;
                 gchar       **v;
                 guint       i;
 
@@ -418,9 +442,8 @@ mh_check_mail( XfceMailwatchMHMailbox *mh )
                     num_new += l1;
                 }
                 g_strfreev( v );
-
-                xfce_mailwatch_signal_new_messages( mh->mailwatch, XFCE_MAILWATCH_MAILBOX( mh ), num_new );
             }
+            xfce_mailwatch_signal_new_messages( mh->mailwatch, XFCE_MAILWATCH_MAILBOX( mh ), num_new );
         }
     }
 
