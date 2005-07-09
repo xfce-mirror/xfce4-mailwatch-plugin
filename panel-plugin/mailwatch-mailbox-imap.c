@@ -125,9 +125,11 @@ typedef struct
     XfceMailwatchSecurityInfo security_info;
     
     /* config dlg */
+    GtkWidget *folder_tree_dialog;
     GtkTreeStore *ts;
     GtkCellRenderer *render;
     GThread *folder_tree_th;
+    GAsyncQueue *folder_tree_aqueue;
     GtkWidget *refresh_btn;
     GNode *folder_tree;
 } XfceMailwatchIMAPMailbox;
@@ -704,9 +706,9 @@ imap_check_mail(XfceMailwatchIMAPMailbox *imailbox)
     xfce_mailwatch_signal_new_messages(imailbox->mailwatch,
             XFCE_MAILWATCH_MAILBOX(imailbox), new_messages);
     
-    imap_do_logout(imailbox);
-    
     cleanup:
+    
+    imap_do_logout(imailbox);
     
     if(mailboxes_to_check) {
         g_list_foreach(mailboxes_to_check, (GFunc)g_free, NULL);
@@ -946,6 +948,9 @@ imap_populate_folder_tree(XfceMailwatchIMAPMailbox *imailbox,
             return FALSE;
     }
     
+    if(g_async_queue_try_pop(imailbox->folder_tree_aqueue) == IMAP_CMD_QUIT)
+        return FALSE;
+    
     if(!strstr(buf, " OK"))
         return FALSE;
     
@@ -1057,8 +1062,12 @@ imap_populate_folder_tree(XfceMailwatchIMAPMailbox *imailbox,
         
         if(has_children) {
             g_strlcat(fullpath, separator, (BUFSIZE+1)/8);
-            imap_populate_folder_tree(imailbox, fullpath, node);
+            if(!imap_populate_folder_tree(imailbox, fullpath, node))
+                return FALSE;
         }
+        
+        if(g_async_queue_try_pop(imailbox->folder_tree_aqueue) == IMAP_CMD_QUIT)
+            return FALSE;
     }
     
     g_strfreev(resp_lines);
@@ -1108,6 +1117,16 @@ imap_populate_folder_tree_nodes(gpointer user_data)
     GList *l;
     GNode *n;
     
+    if(imailbox->folder_tree_th) {
+        g_thread_join(imailbox->folder_tree_th);
+        imailbox->folder_tree_th = NULL;
+        g_async_queue_unref(imailbox->folder_tree_aqueue);
+        imailbox->folder_tree_aqueue = NULL;
+    }
+    
+    if(!imailbox->folder_tree_dialog)
+        return FALSE;
+    
     g_mutex_lock(imailbox->config_mx);
     
     /* make a deep copy of the mailbox list */
@@ -1130,6 +1149,8 @@ imap_populate_folder_tree_nodes(gpointer user_data)
     
     g_hash_table_destroy(mailboxes_to_check);
     
+    gtk_widget_set_sensitive(imailbox->refresh_btn, TRUE);
+    
     return FALSE;
 }
 
@@ -1139,12 +1160,57 @@ imap_populate_folder_tree_failed(gpointer user_data)
     XfceMailwatchIMAPMailbox *imailbox = user_data;
     GtkTreeIter itr;
     
+    if(imailbox->folder_tree_th) {
+        g_thread_join(imailbox->folder_tree_th);
+        imailbox->folder_tree_th = NULL;
+        g_async_queue_unref(imailbox->folder_tree_aqueue);
+        imailbox->folder_tree_aqueue = NULL;
+    }
+    
+    if(!imailbox->folder_tree_dialog)
+        return FALSE;
+    
     gtk_tree_store_clear(imailbox->ts);
     gtk_tree_store_append(imailbox->ts, &itr, NULL);
     gtk_tree_store_set(imailbox->ts, &itr,
-            IMAP_FOLDERS_NAME, _("Failed to get folder list"),
-            IMAP_FOLDERS_HOLDS_MESSAGES, FALSE,
-            -1);
+                       IMAP_FOLDERS_NAME, _("Failed to get folder list"),
+                       IMAP_FOLDERS_HOLDS_MESSAGES, FALSE,
+                       -1);
+    
+    gtk_widget_set_sensitive(imailbox->refresh_btn, TRUE);
+    
+    return FALSE;
+}
+
+static gboolean
+imap_folder_tree_th_join(gpointer user_data)
+{
+    XfceMailwatchIMAPMailbox *imailbox = user_data;
+    
+    if(imailbox->folder_tree_th) {
+        g_thread_join(imailbox->folder_tree_th);
+        imailbox->folder_tree_th = NULL;
+        g_async_queue_unref(imailbox->folder_tree_aqueue);
+        imailbox->folder_tree_aqueue = NULL;
+    }
+    
+    if(imailbox->folder_tree_dialog)
+        gtk_widget_set_sensitive(imailbox->refresh_btn, TRUE);
+    
+    return FALSE;
+}
+
+static gboolean
+imap_free_folder_data(GNode *node, gpointer data)
+{
+    IMAPFolderData *fdata = node->data;
+    
+    if(fdata == (gpointer)0xdeadbeef)
+        return FALSE;
+    
+    g_free(fdata->folder_name);
+    g_free(fdata->full_path);
+    g_free(fdata);
     
     return FALSE;
 }
@@ -1160,11 +1226,13 @@ imap_populate_folder_tree_th(gpointer data)
     
     TRACE("entering");
     
+    g_async_queue_ref(imailbox->folder_tree_aqueue);
+    
     g_mutex_lock(imailbox->config_mx);
     
     if(!imailbox->host || !imailbox->username || !imailbox->password) {
         g_mutex_unlock(imailbox->config_mx);
-        gtk_widget_set_sensitive(imailbox->refresh_btn, TRUE);
+        g_idle_add(imap_folder_tree_th_join, imailbox);
         return NULL;
     }
     
@@ -1183,18 +1251,38 @@ imap_populate_folder_tree_th(gpointer data)
     if(imap_authenticate(imailbox, host, username, password, auth_type,
             nonstandard_port))
     {
-        imailbox->folder_tree = g_node_new((gpointer)0xdeadbeef);
-        imap_populate_folder_tree(imailbox, "", imailbox->folder_tree);
-        g_idle_add(imap_populate_folder_tree_nodes, imailbox);
+       if(g_async_queue_try_pop(imailbox->folder_tree_aqueue) != IMAP_CMD_QUIT) {
+           imailbox->folder_tree = g_node_new((gpointer)0xdeadbeef);
+           if(imap_populate_folder_tree(imailbox, "", imailbox->folder_tree))
+               g_idle_add(imap_populate_folder_tree_nodes, imailbox);
+           else {
+               g_node_traverse(imailbox->folder_tree, G_IN_ORDER,
+                               G_TRAVERSE_ALL, -1, imap_free_folder_data, NULL);
+               g_node_destroy(imailbox->folder_tree);
+               g_idle_add(imap_folder_tree_th_join, imailbox);
+           }
+       } else
+           g_idle_add(imap_folder_tree_th_join, imailbox);
     } else {
         DBG("failed to connect to imap server to probe folders");
         g_idle_add(imap_populate_folder_tree_failed, imailbox);
     }
     
-    gtk_widget_set_sensitive(imailbox->refresh_btn, TRUE);
+    g_async_queue_unref(imailbox->folder_tree_aqueue);
     
     return NULL;
 #undef BUFSIZE
+}
+
+static void
+imap_config_newmailfolders_destroy_cb(GtkWidget *w, gpointer user_data)
+{
+    XfceMailwatchIMAPMailbox *imailbox = user_data;
+    
+    imailbox->folder_tree_dialog = NULL;
+    
+    if(imailbox->folder_tree_aqueue)
+        g_async_queue_push(imailbox->folder_tree_aqueue, IMAP_CMD_QUIT);
 }
 
 static void
@@ -1216,7 +1304,9 @@ imap_config_refresh_btn_clicked_cb(GtkWidget *w, gpointer user_data)
                 "foreground-set", TRUE,
                 "style-set", TRUE, NULL);
     
-    g_thread_create(imap_populate_folder_tree_th, imailbox, FALSE, NULL);
+    imailbox->folder_tree_aqueue = g_async_queue_new();
+    imailbox->folder_tree_th = g_thread_create(imap_populate_folder_tree_th,
+                                               imailbox, TRUE, NULL);
 }
 
 static gboolean
@@ -1283,6 +1373,150 @@ imap_config_treeview_btnpress_cb(GtkWidget *w, GdkEventButton *evt,
     gtk_tree_path_free(path);
     
     return FALSE;
+}
+
+static void
+imap_config_newmailfolders_btn_clicked_cb(GtkWidget *w, gpointer user_data)
+{
+    XfceMailwatchIMAPMailbox *imailbox = user_data;
+    GtkWidget *dlg, *topvbox, *vbox, *hbox, *treeview, *frame, *btn, *sw;
+    GtkWindow *toplevel = GTK_WINDOW(gtk_widget_get_toplevel(w));
+    GtkTreeStore *ts;
+    GtkTreeIter itr;
+    GtkCellRenderer *render;
+    GtkTreeViewColumn *col;
+    GtkTreeSelection *sel;
+    
+    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
+    
+    if(!imailbox->host || !imailbox->username) {
+        xfce_message_dialog(toplevel, _("Error"), GTK_STOCK_DIALOG_WARNING,
+                _("No server or username is set."),
+                _("The folder list cannot be retrieved until a server, username, and probably password are set.  Also be sure to check any security settings in the Advanced dialog."),
+                GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
+        return;
+    }
+    
+    dlg = gtk_dialog_new_with_buttons(_("Set New Mail Folders"), toplevel,
+            GTK_DIALOG_DESTROY_WITH_PARENT|GTK_DIALOG_NO_SEPARATOR,
+            GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
+    imailbox->folder_tree_dialog = dlg;
+    topvbox = gtk_vbox_new(FALSE, BORDER/2);
+    gtk_container_set_border_width(GTK_CONTAINER(topvbox), BORDER/2);
+    gtk_widget_show(topvbox);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), topvbox, TRUE, TRUE, 0);
+    g_signal_connect(G_OBJECT(dlg), "destroy",
+            G_CALLBACK(imap_config_newmailfolders_destroy_cb), imailbox);
+    
+    frame = xfce_framebox_new(_("New Mail Folders"), TRUE);
+    gtk_widget_show(frame);
+    gtk_box_pack_start(GTK_BOX(topvbox), frame, TRUE, TRUE, 0);
+    
+    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    gtk_widget_show(hbox);
+    xfce_framebox_add(XFCE_FRAMEBOX(frame), hbox);
+    
+    sw = gtk_scrolled_window_new(NULL, NULL);
+    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw), GTK_POLICY_NEVER,
+            GTK_POLICY_AUTOMATIC);
+    gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(sw),
+            GTK_SHADOW_ETCHED_IN);
+    gtk_widget_show(sw);
+    gtk_box_pack_start(GTK_BOX(hbox), sw, TRUE, TRUE, 0);
+    
+    imailbox->ts = ts = gtk_tree_store_new(IMAP_FOLDERS_N_COLUMNS,
+            G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_STRING);
+    
+    treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(ts));
+    gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(treeview), FALSE);
+    gtk_widget_add_events(treeview, GDK_BUTTON_PRESS);
+    
+    col = gtk_tree_view_column_new();
+    gtk_tree_view_column_set_title(col, "mailbox-name");
+    gtk_tree_view_column_set_expand(col, TRUE);
+    
+    render = gtk_cell_renderer_pixbuf_new();
+    gtk_tree_view_column_pack_start(col, render, FALSE);
+#if GTK_CHECK_VERSION(2, 6, 0)
+    g_object_set(G_OBJECT(render), "stock-id", GTK_STOCK_DIRECTORY,
+            "stock-size", GTK_ICON_SIZE_MENU, NULL);
+#else
+    {
+        gint iw, ih;
+        GdkPixbuf *pix;
+        GList *icons = NULL;
+        GdkScreen *gscreen = gtk_widget_get_screen(treeview);
+        XfceIconTheme *itheme = xfce_icon_theme_get_for_screen(gscreen);
+        
+        icons = g_list_prepend(icons, "stock_open");
+        icons = g_list_prepend(icons, "stock_folder");
+        icons = g_list_prepend(icons, "stock_directory");
+        
+        gtk_icon_size_lookup(GTK_ICON_SIZE_MENU, &iw, &ih);
+        pix = xfce_icon_theme_load_list(itheme, icons, iw);
+        if(pix) {
+            g_object_set(G_OBJECT(render), "pixbuf", pix, NULL);
+            g_object_unref(G_OBJECT(pix));
+        }
+        
+        g_list_free(icons);
+    }
+#endif
+    
+    imailbox->render = render = gtk_cell_renderer_text_new();
+    gtk_tree_view_column_pack_start(col, render, TRUE);
+    gtk_tree_view_column_set_attributes(col, render,
+            "text", IMAP_FOLDERS_NAME, NULL);
+    /*col = gtk_tree_view_column_new_with_attributes("mailbox-name", render,
+            "text", IMAP_FOLDERS_NAME, NULL);*/
+    {
+        GtkStyle *style;
+        gtk_widget_realize(topvbox);
+        style = gtk_widget_get_style(topvbox);
+        g_object_set(G_OBJECT(render), "foreground-gdk",
+                &style->fg[GTK_STATE_INSENSITIVE],
+                "foreground-set", TRUE,
+                "style", PANGO_STYLE_ITALIC,
+                "style-set", TRUE, NULL);
+    }
+    
+    gtk_tree_view_append_column(GTK_TREE_VIEW(treeview), col);
+    gtk_tree_view_set_expander_column(GTK_TREE_VIEW(treeview), col);
+    
+    render = gtk_cell_renderer_toggle_new();
+    col = gtk_tree_view_column_new_with_attributes("watching", render, "active",
+            IMAP_FOLDERS_WATCHING, NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW(treeview), col);
+    
+    gtk_widget_show(treeview);
+    gtk_container_add(GTK_CONTAINER(sw), treeview);
+    g_signal_connect(G_OBJECT(treeview), "button-press-event",
+            G_CALLBACK(imap_config_treeview_btnpress_cb), imailbox);
+    
+    sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview));
+    gtk_tree_selection_set_mode(sel, GTK_SELECTION_MULTIPLE);
+    gtk_tree_selection_unselect_all(sel);
+    
+    vbox = gtk_vbox_new(FALSE, BORDER/2);
+    gtk_widget_show(vbox);
+    gtk_box_pack_start(GTK_BOX(hbox), vbox, FALSE, FALSE, 0);
+    
+    imailbox->refresh_btn = btn = gtk_button_new_from_stock(GTK_STOCK_REFRESH);
+    gtk_widget_show(btn);
+    gtk_box_pack_start(GTK_BOX(vbox), btn, FALSE, FALSE, 0);
+    g_object_set_data(G_OBJECT(btn), "mailwatch-treeview", treeview);
+    g_signal_connect(G_OBJECT(btn), "clicked",
+            G_CALLBACK(imap_config_refresh_btn_clicked_cb), imailbox);
+    
+    gtk_tree_store_append(ts, &itr, NULL);
+    gtk_tree_store_set(ts, &itr, IMAP_FOLDERS_NAME, _("Please wait..."), -1);
+    gtk_widget_set_sensitive(btn, FALSE);
+    imailbox->folder_tree_aqueue = g_async_queue_new();
+    imailbox->folder_tree_th = g_thread_create(imap_populate_folder_tree_th,
+                                               imailbox, TRUE, NULL);
+    
+    gtk_dialog_run(GTK_DIALOG(dlg));
+    gtk_widget_destroy(dlg);
 }
 
 static void
@@ -1444,146 +1678,6 @@ imap_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
     g_signal_connect(G_OBJECT(entry), "focus-out-event",
             G_CALLBACK(imap_config_serverdir_focusout_cb), imailbox);
-    
-    gtk_dialog_run(GTK_DIALOG(dlg));
-    gtk_widget_destroy(dlg);
-}
-
-static void
-imap_config_newmailfolders_btn_clicked_cb(GtkWidget *w, gpointer user_data)
-{
-    XfceMailwatchIMAPMailbox *imailbox = user_data;
-    GtkWidget *dlg, *topvbox, *vbox, *hbox, *treeview, *frame, *btn, *sw;
-    GtkWindow *toplevel = GTK_WINDOW(gtk_widget_get_toplevel(w));
-    GtkTreeStore *ts;
-    GtkTreeIter itr;
-    GtkCellRenderer *render;
-    GtkTreeViewColumn *col;
-    GtkTreeSelection *sel;
-    
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
-    
-    if(!imailbox->host || !imailbox->username) {
-        xfce_message_dialog(toplevel, _("Error"), GTK_STOCK_DIALOG_WARNING,
-                _("No server or username is set."),
-                _("The folder list cannot be retrieved until a server, username, and probably password are set.  Also be sure to check any security settings in the Advanced dialog."),
-                GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
-        return;
-    }
-    
-    dlg = gtk_dialog_new_with_buttons(_("Set New Mail Folders"), toplevel,
-            GTK_DIALOG_DESTROY_WITH_PARENT|GTK_DIALOG_NO_SEPARATOR,
-            GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
-    topvbox = gtk_vbox_new(FALSE, BORDER/2);
-    gtk_container_set_border_width(GTK_CONTAINER(topvbox), BORDER/2);
-    gtk_widget_show(topvbox);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), topvbox, TRUE, TRUE, 0);
-    
-    frame = xfce_framebox_new(_("New Mail Folders"), TRUE);
-    gtk_widget_show(frame);
-    gtk_box_pack_start(GTK_BOX(topvbox), frame, TRUE, TRUE, 0);
-    
-    hbox = gtk_hbox_new(FALSE, BORDER/2);
-    gtk_widget_show(hbox);
-    xfce_framebox_add(XFCE_FRAMEBOX(frame), hbox);
-    
-    sw = gtk_scrolled_window_new(NULL, NULL);
-    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw), GTK_POLICY_NEVER,
-            GTK_POLICY_AUTOMATIC);
-    gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(sw),
-            GTK_SHADOW_ETCHED_IN);
-    gtk_widget_show(sw);
-    gtk_box_pack_start(GTK_BOX(hbox), sw, TRUE, TRUE, 0);
-    
-    imailbox->ts = ts = gtk_tree_store_new(IMAP_FOLDERS_N_COLUMNS,
-            G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_STRING);
-    
-    treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(ts));
-    gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(treeview), FALSE);
-    gtk_widget_add_events(treeview, GDK_BUTTON_PRESS);
-    
-    col = gtk_tree_view_column_new();
-    gtk_tree_view_column_set_title(col, "mailbox-name");
-    gtk_tree_view_column_set_expand(col, TRUE);
-    
-    render = gtk_cell_renderer_pixbuf_new();
-    gtk_tree_view_column_pack_start(col, render, FALSE);
-#if GTK_CHECK_VERSION(2, 6, 0)
-    g_object_set(G_OBJECT(render), "stock-id", GTK_STOCK_DIRECTORY,
-            "stock-size", GTK_ICON_SIZE_MENU, NULL);
-#else
-    {
-        gint iw, ih;
-        GdkPixbuf *pix;
-        GList *icons = NULL;
-        GdkScreen *gscreen = gtk_widget_get_screen(treeview);
-        XfceIconTheme *itheme = xfce_icon_theme_get_for_screen(gscreen);
-        
-        icons = g_list_prepend(icons, "stock_open");
-        icons = g_list_prepend(icons, "stock_folder");
-        icons = g_list_prepend(icons, "stock_directory");
-        
-        gtk_icon_size_lookup(GTK_ICON_SIZE_MENU, &iw, &ih);
-        pix = xfce_icon_theme_load_list(itheme, icons, iw);
-        if(pix) {
-            g_object_set(G_OBJECT(render), "pixbuf", pix, NULL);
-            g_object_unref(G_OBJECT(pix));
-        }
-        
-        g_list_free(icons);
-    }
-#endif
-    
-    imailbox->render = render = gtk_cell_renderer_text_new();
-    gtk_tree_view_column_pack_start(col, render, TRUE);
-    gtk_tree_view_column_set_attributes(col, render,
-            "text", IMAP_FOLDERS_NAME, NULL);
-    /*col = gtk_tree_view_column_new_with_attributes("mailbox-name", render,
-            "text", IMAP_FOLDERS_NAME, NULL);*/
-    {
-        GtkStyle *style;
-        gtk_widget_realize(topvbox);
-        style = gtk_widget_get_style(topvbox);
-        g_object_set(G_OBJECT(render), "foreground-gdk",
-                &style->fg[GTK_STATE_INSENSITIVE],
-                "foreground-set", TRUE,
-                "style", PANGO_STYLE_ITALIC,
-                "style-set", TRUE, NULL);
-    }
-    
-    gtk_tree_view_append_column(GTK_TREE_VIEW(treeview), col);
-    gtk_tree_view_set_expander_column(GTK_TREE_VIEW(treeview), col);
-    
-    render = gtk_cell_renderer_toggle_new();
-    col = gtk_tree_view_column_new_with_attributes("watching", render, "active",
-            IMAP_FOLDERS_WATCHING, NULL);
-    gtk_tree_view_append_column(GTK_TREE_VIEW(treeview), col);
-    
-    gtk_widget_show(treeview);
-    gtk_container_add(GTK_CONTAINER(sw), treeview);
-    g_signal_connect(G_OBJECT(treeview), "button-press-event",
-            G_CALLBACK(imap_config_treeview_btnpress_cb), imailbox);
-    
-    sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview));
-    gtk_tree_selection_set_mode(sel, GTK_SELECTION_MULTIPLE);
-    gtk_tree_selection_unselect_all(sel);
-    
-    vbox = gtk_vbox_new(FALSE, BORDER/2);
-    gtk_widget_show(vbox);
-    gtk_box_pack_start(GTK_BOX(hbox), vbox, FALSE, FALSE, 0);
-    
-    imailbox->refresh_btn = btn = gtk_button_new_from_stock(GTK_STOCK_REFRESH);
-    gtk_widget_show(btn);
-    gtk_box_pack_start(GTK_BOX(vbox), btn, FALSE, FALSE, 0);
-    g_object_set_data(G_OBJECT(btn), "mailwatch-treeview", treeview);
-    g_signal_connect(G_OBJECT(btn), "clicked",
-            G_CALLBACK(imap_config_refresh_btn_clicked_cb), imailbox);
-    
-    gtk_tree_store_append(ts, &itr, NULL);
-    gtk_tree_store_set(ts, &itr, IMAP_FOLDERS_NAME, _("Please wait..."), -1);
-    gtk_widget_set_sensitive(btn, FALSE);
-    imailbox->folder_tree_th = g_thread_create(imap_populate_folder_tree_th,
-            imailbox, FALSE, NULL);
     
     gtk_dialog_run(GTK_DIALOG(dlg));
     gtk_widget_destroy(dlg);
