@@ -289,9 +289,16 @@ xfce_mailwatch_net_send(gint sockfd,
                 bytesleft -= ret;
             }
         }
-    } else
+    } else {
 #endif
         bout = send(sockfd, buf, strlen(buf), MSG_NOSIGNAL);
+        if(bout < 0 && error) {
+            g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
+                        "send(): %s", strerror(errno));
+        }
+#ifdef HAVE_SSL_SUPPORT
+    }
+#endif
     
     return bout;
 }
