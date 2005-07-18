@@ -478,8 +478,9 @@ imap_authenticate(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
         const gchar *username, const gchar *password,
         XfceMailwatchAuthType auth_type, gint nonstandard_port)
 {
+#define BUFSIZE 2047
     gboolean ret = FALSE;
-    gchar buf[1024];
+    gchar buf[BUFSIZE+1];
     
     TRACE("entering, auth_type is %d", auth_type);
     
@@ -489,7 +490,7 @@ imap_authenticate(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
             ret = imap_connect(imailbox, host, "imap", nonstandard_port);
 
             /* discard opening banner */
-            if(ret && imap_recv(imailbox, buf, 1023) < 0) {
+            if(ret && imap_recv(imailbox, buf, BUFSIZE) < 0) {
                 DBG("failed to get banner");
                 shutdown(imailbox->sockfd, SHUT_RDWR);
                 close(imailbox->sockfd);
@@ -503,7 +504,7 @@ imap_authenticate(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
             
             if(ret) {
                 /* discard opening banner */
-                if(imap_recv(imailbox, buf, 1023) < 0) {
+                if(imap_recv(imailbox, buf, BUFSIZE) < 0) {
                     DBG("failed to get banner");
                     shutdown(imailbox->sockfd, SHUT_RDWR);
                     close(imailbox->sockfd);
@@ -524,7 +525,7 @@ imap_authenticate(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
                 ret = imap_negotiate_ssl(imailbox, host);
         
             /* discard opening banner */
-            if(ret && imap_recv(imailbox, buf, 1023) < 0) {
+            if(ret && imap_recv(imailbox, buf, BUFSIZE) < 0) {
                 DBG("failed to get banner");
                 shutdown(imailbox->sockfd, SHUT_RDWR);
                 close(imailbox->sockfd);
@@ -543,6 +544,7 @@ imap_authenticate(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
         return FALSE;
     
     return ret;
+#undef BUFSIZE
 }
 
 static guint
