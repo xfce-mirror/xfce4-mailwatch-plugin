@@ -217,7 +217,18 @@ mailwatch_create(Control *c)
     XfceMailwatchPlugin *mwp = g_new0(XfceMailwatchPlugin, 1);
     c->data = mwp;
     
+    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
+    
     mwp->mailwatch = xfce_mailwatch_new();
+    
+    if(G_UNLIKELY(!mwp->mailwatch)) {
+        xfce_message_dialog(NULL, _("Xfce Mailwatch"), GTK_STOCK_DIALOG_ERROR,
+                _("The mailwatch applet cannot be added to the panel."),
+                _("It is possible that your version of GLib does not have threads support."),
+                GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
+        g_free(mwp);
+        return FALSE;
+    }
     
     mwp->tooltip = gtk_tooltips_new();
     
@@ -243,7 +254,7 @@ mailwatch_create(Control *c)
             mailwatch_new_messages_changed_cb, mwp);
     xfce_mailwatch_signal_connect( mwp->mailwatch,
             XFCE_MAILWATCH_SIGNAL_LOG_MESSAGE,
-            mailwatch_log_message_cb, mwp );
+            mailwatch_log_message_cb, mwp);
     
     return TRUE;
 }

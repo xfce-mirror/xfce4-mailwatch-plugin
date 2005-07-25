@@ -313,6 +313,8 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
     
     rcfile = xfce_rc_simple_open(config_file_new, FALSE);
     if(!rcfile) {
+        xfce_mailwatch_log_message(mailwatch, NULL, XFCE_MAILWATCH_LOG_WARNING,
+    	        _("Unable to write config file '%s'"), config_file_new);
         g_critical(_("Unable to write config file '%s'"), config_file_new);
         g_free(config_file);
         g_free(config_file_new);
@@ -364,6 +366,8 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
     xfce_rc_close(rcfile);
     
     if(rename(config_file_new, config_file)) {
+        xfce_mailwatch_log_message(mailwatch, NULL, XFCE_MAILWATCH_LOG_WARNING,
+                _("Unable to write config file '%s'"), config_file);
         g_critical(_("Unable to write config file '%s'"), config_file);
         unlink(config_file_new);
         g_free(config_file);
@@ -372,8 +376,12 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
     }
     
     /* protect the file in case it has passwords in it */
-    if(chmod(config_file, 0600))
+    if(chmod(config_file, 0600)) {
+        xfce_mailwatch_log_message(mailwatch, NULL, XFCE_MAILWATCH_LOG_WARNING,
+                _("Unable to set permissions on config file '%s'.  If this file contains passwords or other sensitive information, it may be readable by others on your system."),
+                config_file);
         g_critical(_("Unable to set permissions on config file '%s'.  If this file contains passwords or other sensitive information, it may be readable by others on your system."), config_file);
+    }
     
     g_free(config_file);
     g_free(config_file_new);

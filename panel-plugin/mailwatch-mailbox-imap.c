@@ -1469,8 +1469,6 @@ imap_config_newmailfolders_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     gtk_tree_view_column_pack_start(col, render, TRUE);
     gtk_tree_view_column_set_attributes(col, render,
             "text", IMAP_FOLDERS_NAME, NULL);
-    /*col = gtk_tree_view_column_new_with_attributes("mailbox-name", render,
-            "text", IMAP_FOLDERS_NAME, NULL);*/
     {
         GtkStyle *style;
         gtk_widget_realize(topvbox);
