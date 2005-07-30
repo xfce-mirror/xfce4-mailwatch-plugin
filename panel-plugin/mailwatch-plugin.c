@@ -54,6 +54,7 @@ typedef struct
     gchar *click_command;
     gchar *new_messages_command;
     guint log_lines;
+    gboolean show_log_status;
 
     GdkPixbuf               *pix_log[XFCE_MAILWATCH_N_LOG_LEVELS];
     XfceMailwatchLogLevel   log_status;
@@ -76,7 +77,7 @@ mailwatch_set_icon( XfceMailwatchPlugin *mwp, gboolean newmail )
     GdkPixbuf       *overlay = NULL;
     gint h, ow, oh;
 
-    if ( mwp->log_status &&
+    if ( mwp->log_status && mwp->show_log_status &&
             mwp->log_status < XFCE_MAILWATCH_N_LOG_LEVELS ) {
         overlay = mwp->pix_log[mwp->log_status];
     }
@@ -287,6 +288,13 @@ mailwatch_read_config(Control *c, xmlNodePtr node)
     } else
         mwp->log_lines = DEFAULT_LOG_LINES;
     
+    value = xmlGetProp(node, (const xmlChar *)"show_log_status");
+    if(value) {
+        mwp->show_log_status = (*value == '0' ? FALSE : TRUE);
+        xmlFree(value);
+    } else
+        mwp->show_log_status = TRUE;
+    
     value = xmlGetProp(node, (const xmlChar *)"cfgfile_suffix");
     if(!value) {
         GTimeVal gtv = { 0, 0 };
@@ -321,6 +329,9 @@ mailwatch_write_config(Control *c, xmlNodePtr node)
     
     g_snprintf(buf, 256, "%u", mwp->log_lines);
     xmlSetProp(node, (const xmlChar *)"log_lines", buf);
+    
+    xmlSetProp(node, (const xmlChar *)"show_log_status",
+               mwp->show_log_status ? "1" : "0");
     
     if(!cfgfile)
         return;
@@ -381,18 +392,32 @@ mailwatch_log_lines_changed_cb(GtkWidget *w, gpointer user_data)
 }
 
 static void
+mailwatch_log_status_toggled_cb(GtkToggleButton *tb, gpointer user_data)
+{
+    XfceMailwatchPlugin *mwp = user_data;
+    gboolean have_new_msgs;
+    
+    mwp->show_log_status = gtk_toggle_button_get_active(tb);
+    
+    have_new_msgs = !!xfce_mailwatch_get_new_messages(mwp->mailwatch);
+    mailwatch_set_icon(mwp, have_new_msgs);
+}
+
+static void
 mailwatch_view_log_clicked_cb( GtkWidget *widget, gpointer user_data )
 {
     XfceMailwatchPlugin     *mwp = user_data;
     static GtkWidget        *dialog = NULL;
     GtkWidget               *vbox, *hbox, *scrollw, *treeview, *button, *lbl,
-                            *sbtn;
+                            *sbtn, *chk;
     
     if(dialog) {
         gtk_window_present(GTK_WINDOW(dialog));
         return;
     }
 
+    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
+    
     mwp->log_status = 0;
     mailwatch_set_icon( mwp, mwp->newmail_icon_visible );
 
@@ -467,6 +492,13 @@ mailwatch_view_log_clicked_cb( GtkWidget *widget, gpointer user_data )
     g_signal_connect(G_OBJECT(sbtn), "value-changed",
                      G_CALLBACK(mailwatch_log_lines_changed_cb), mwp);
     gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), sbtn);
+    
+    chk = gtk_check_button_new_with_mnemonic(_("Show log _status in icon"));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(chk), mwp->show_log_status);
+    gtk_widget_show(chk);
+    gtk_box_pack_start(GTK_BOX(vbox), chk, FALSE, FALSE, 0);
+    g_signal_connect(G_OBJECT(chk), "toggled",
+                     G_CALLBACK(mailwatch_log_status_toggled_cb), mwp);
     
     button = gtk_button_new_from_stock(GTK_STOCK_CLEAR);
     gtk_widget_show( button );
