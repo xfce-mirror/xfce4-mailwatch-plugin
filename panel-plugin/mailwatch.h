@@ -102,6 +102,8 @@ void xfce_mailwatch_log_message        (XfceMailwatch *mailwatch,
                                         const gchar *fmt,
                                         ... );
 
+void xfce_mailwatch_threads_enter      ();
+void xfce_mailwatch_threads_leave      ();
 G_END_DECLS
 
 #endif

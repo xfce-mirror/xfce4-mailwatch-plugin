@@ -91,6 +91,9 @@ XfceMailwatchMailboxType *builtin_mailbox_types[] = {
 };
 #define N_BUILTIN_MAILBOX_TYPES (sizeof(builtin_mailbox_types)/sizeof(builtin_mailbox_types[0]))
 
+static GMutex *big_happy_mailwatch_mx = NULL;
+static void xfce_mailwatch_threads_init();
+
 static GList *
 mailwatch_load_mailbox_types()
 {
@@ -118,7 +121,7 @@ xfce_mailwatch_get_error_quark()
 XfceMailwatch *
 xfce_mailwatch_new()
 {
-    XfceMailwatch *mailwatch = g_new0(XfceMailwatch, 1);
+    XfceMailwatch *mailwatch;
     
     if(!g_thread_supported())
         g_thread_init(NULL);
@@ -128,6 +131,9 @@ xfce_mailwatch_new()
         return NULL;
     }
     
+    xfce_mailwatch_threads_init();
+    
+    mailwatch = g_new0(XfceMailwatch, 1);
     mailwatch->mailbox_types = mailwatch_load_mailbox_types();
     mailwatch->mailboxes_mx = g_mutex_new();
     
@@ -1076,5 +1082,37 @@ xfce_mailwatch_signal_disconnect(XfceMailwatch *mailwatch,
                     g_list_delete_link(mailwatch->xm_data[signal], dl);
             break;
         }
+    }
+}
+
+static void
+xfce_mailwatch_threads_init()
+{
+    if(!big_happy_mailwatch_mx)
+        big_happy_mailwatch_mx = g_mutex_new();
+}
+
+void
+xfce_mailwatch_threads_enter()
+{
+    g_return_if_fail(big_happy_mailwatch_mx);
+    
+    g_mutex_lock(big_happy_mailwatch_mx);
+}
+
+void xfce_mailwatch_threads_leave()
+{
+    g_return_if_fail(big_happy_mailwatch_mx);
+    
+    g_mutex_unlock(big_happy_mailwatch_mx);
+}
+
+/* this might not be a good idea, but memleaks are bad */
+G_MODULE_EXPORT void
+g_module_unload(GModule *module)
+{
+    if(big_happy_mailwatch_mx) {
+        g_mutex_free(big_happy_mailwatch_mx);
+        big_happy_mailwatch_mx = NULL;
     }
 }

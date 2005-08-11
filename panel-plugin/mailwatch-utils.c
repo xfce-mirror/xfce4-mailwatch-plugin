@@ -75,10 +75,7 @@
 #include <libxfcegui4/libxfcegui4.h>
 
 #include "mailwatch-utils.h"
-
-/* keep in sync with mailwatch.h */
-#define XFCE_MAILWATCH_ERROR           xfce_mailwatch_get_error_quark()
-extern GQuark xfce_mailwatch_get_error_quark();
+#include "mailwatch.h"
 
 #ifdef HAVE_SSL_SUPPORT
 
@@ -167,16 +164,15 @@ xfce_mailwatch_net_get_sockaddr(const gchar *host, const gchar *service,
 {
     struct addrinfo *res = NULL;
     gint ret;
-    static GStaticMutex gai_mx = G_STATIC_MUTEX_INIT;
     
     /* according to getaddrinfo(3), this should be reentrant.  however, calling
      * it from several threads often causes a crash.  bactraces show that we're
      * indeed inside getaddrinfo() in more than one thread, and I can't figure
      * out any other explanation. */
     
-    g_static_mutex_lock(&gai_mx);   
+    xfce_mailwatch_threads_enter();
     ret = getaddrinfo(host, service, hints, &res);
-    g_static_mutex_unlock(&gai_mx);
+    xfce_mailwatch_threads_leave();
     if(ret) {
         if(error) {
             g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
@@ -195,9 +191,7 @@ xfce_mailwatch_net_get_sockaddr(const gchar *host, const gchar *service,
     }
     
     memcpy(addr, res->ai_addr, sizeof(struct sockaddr_in));
-    g_static_mutex_lock(&gai_mx);
     freeaddrinfo(res);
-    g_static_mutex_unlock(&gai_mx);
     
     return TRUE;
 }
