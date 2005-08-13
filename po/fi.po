@@ -1,0 +1,435 @@
+# Translation of xfce4-mailwatch-plugin into Finnish.
+# Copyright (C) 2005 Brian Tarricone, Pasi Orovuo.
+# This file is distributed under the same license as the xfce4-mailwatch-plugin package.
+# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-07-25 14:15-0700\n"
+"PO-Revision-Date: 2005-08-11 11:35+0200\n"
+"Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:254
+msgid ""
+"Secure IMAP is not available, and the IMAP server does not support plaintext "
+"logins."
+msgstr ""
+"Salattua IMAP-yhteyttä ei ole saatavilla, ja IMAP-palvelin ei tue "
+"salaamattomia kirjautumisia."
+
+#: panel-plugin/mailwatch-mailbox-imap.c:302
+#: panel-plugin/mailwatch-mailbox-pop3.c:268
+#, c-format
+msgid "TLS handshake failed: %s"
+msgstr "TLS-kättely epäonnistui: %s"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:335
+msgid "STARTTLS security was requested, but this server does not support it."
+msgstr ""
+"Pyydettiin STARTTLS-turvallisuuskäytäntöä, mutta palvelin ei tue sitä."
+
+#: panel-plugin/mailwatch-mailbox-imap.c:399
+#: panel-plugin/mailwatch-mailbox-pop3.c:358
+msgid ""
+"Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
+"the panel may hang on close."
+msgstr ""
+"Pistoketta ei voi asettaa estämättömään tilaan. Jos yhdistäminen ei onnistu, "
+"tämä paneeli saattaa jumiutua suljettaessa."
+
+#: panel-plugin/mailwatch-mailbox-imap.c:438
+#: panel-plugin/mailwatch-mailbox-pop3.c:397
+#, c-format
+msgid "Failed to connect to server: %s"
+msgstr "Palvelimeen ei saatu yhteyttä: %s"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:470
+#: panel-plugin/mailwatch-mailbox-pop3.c:429
+msgid ""
+"Unable to return socket to blocking mode.  Data may not be retreived "
+"correctly."
+msgstr ""
+"Pistokkeen palauttaminen estävään tilaan ei onnistu. Tiedonhaku saattaa "
+"epäonnistua."
+
+#: panel-plugin/mailwatch-mailbox-imap.c:591
+msgid ""
+"A buffer was too small to receive all of an IMAP response.  This is a bug!"
+msgstr ""
+"Puskuri oli liian pieni IMAP-vastauksen täydelliseen vastaanottamiseen. "
+"Tämä on ohjelmavirhe!"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1178
+msgid "Failed to get folder list"
+msgstr "Kansiolistan nouto epäonnistui"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1304
+#: panel-plugin/mailwatch-mailbox-imap.c:1512
+msgid "Please wait..."
+msgstr "Odota..."
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1395
+msgid "Error"
+msgstr "Virhe"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1396
+msgid "No server or username is set."
+msgstr "Palvelinta tai käyttäjätunnusta ei ole asetettu."
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1397
+msgid ""
+"The folder list cannot be retrieved until a server, username, and probably "
+"password are set.  Also be sure to check any security settings in the "
+"Advanced dialog."
+msgstr ""
+"Kansiolistaa ei voi noutaa ennen palvelimen, käyttäjätunnuksen ja "
+"todennäköisesti myös salasanan asettamista. Tarkista myös lisäasetukset-"
+"dialogissa olevat tietoturva-asetukset."
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1402
+msgid "Set New Mail Folders"
+msgstr "Aseta uuden postin kansiot"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1413
+msgid "New Mail Folders"
+msgstr "Uuden postin kansiot"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1595
+msgid "Advanced IMAP Options"
+msgstr "IMAP-lisäasetukset"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1604
+#: panel-plugin/mailwatch-mailbox-pop3.c:815
+msgid "Connection"
+msgstr "Yhteys"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1613
+#: panel-plugin/mailwatch-mailbox-pop3.c:824
+msgid "Use unsecured connection"
+msgstr "Käytä turvaamatonta yhteyttä"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1614
+#: panel-plugin/mailwatch-mailbox-pop3.c:825
+msgid "Use SSL/TLS on alternate port"
+msgstr "Käytä vaihtoehtoisia SSL/TLS-portteja"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1615
+msgid "Use SSL/TLS via STARTTLS"
+msgstr "Käytä STARTTLS-käytäntöä SSL/TLS-yhteyksissä"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1631
+msgid "Use non-standard IMAP _port:"
+msgstr "Käytä standardista poikkeavaa IMAP-_porttia:"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1660
+msgid "Folders"
+msgstr "Kansiot"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1668
+msgid "IMAP server _directory:"
+msgstr "IMAP-palvelimen _hakemisto:"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1698
+msgid "IMAP Server"
+msgstr "IMAP-palvelin"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1712
+#: panel-plugin/mailwatch-mailbox-pop3.c:901
+msgid "_Mail server:"
+msgstr "P_ostipalvelin:"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1731
+#: panel-plugin/mailwatch-mailbox-pop3.c:920
+msgid "_Username:"
+msgstr "Käyttäjä_tunnus:"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1750
+#: panel-plugin/mailwatch-mailbox-pop3.c:939
+msgid "_Password:"
+msgstr "_Salasana:"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1770
+#: panel-plugin/mailwatch-mailbox-pop3.c:959
+msgid "_Advanced..."
+msgstr "_Lisäasetukset..."
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1777
+msgid "New mail _folders..."
+msgstr "Uuden postin _kansiot..."
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1788
+#: panel-plugin/mailwatch-mailbox-pop3.c:970
+msgid "Check for _new messages every"
+msgstr "Tarkista uudet postit"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1802
+#: panel-plugin/mailwatch-mailbox-maildir.c:439
+#: panel-plugin/mailwatch-mailbox-mbox.c:471
+#: panel-plugin/mailwatch-mailbox-mh.c:627
+#: panel-plugin/mailwatch-mailbox-pop3.c:984
+msgid "minute(s)."
+msgstr "minuutin välein."
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1947
+msgid "Remote IMAP Mailbox"
+msgstr "IMAP-etäpostilaatikko"
+
+#: panel-plugin/mailwatch-mailbox-imap.c:1948
+msgid ""
+"The IMAP plugin can connect to a remote mail server that supports the IMAP "
+"protocol, optionally using SSL for link protection."
+msgstr ""
+"IMAP-liitännäinen voi yhdistää IMAP-protokollaa tukevaan etäpostipalvelimeen "
+"käyttäen halutessasi SSL-protokollaa yhteyden suojaamiseen."
+
+#: panel-plugin/mailwatch-mailbox-maildir.c:334
+msgid "Select Maildir Folder"
+msgstr "Valitse Maildir-hakemisto"
+
+#: panel-plugin/mailwatch-mailbox-maildir.c:387
+msgid "Maildir _Path:"
+msgstr "Maildir-polku:"
+
+#: panel-plugin/mailwatch-mailbox-maildir.c:423
+#: panel-plugin/mailwatch-mailbox-mbox.c:454
+#: panel-plugin/mailwatch-mailbox-mh.c:612
+msgid "_Interval:"
+msgstr "_Väli:"
+
+#: panel-plugin/mailwatch-mailbox-maildir.c:475
+msgid "Local Maildir Spool"
+msgstr "Paikallinen Maildir-jono"
+
+#: panel-plugin/mailwatch-mailbox-maildir.c:476
+msgid ""
+"The Maildir plugin can watch a local maildir-style mail spool for new "
+"messages."
+msgstr ""
+"Maildir-liitännäinen voi vahtia paikallista maildir-tyyppistä postijonoa "
+"uusien viestien varalta."
+
+#: panel-plugin/mailwatch-mailbox-mbox.c:369
+msgid "Select mbox file"
+msgstr "Valitse mbox-tiedosto"
+
+#: panel-plugin/mailwatch-mailbox-mbox.c:418
+msgid "Mbox _Filename:"
+msgstr "Mbox-tiedostonimi:"
+
+#: panel-plugin/mailwatch-mailbox-mbox.c:496
+msgid "Local Mbox spool"
+msgstr "Paikallinen Mbox-jono"
+
+#: panel-plugin/mailwatch-mailbox-mbox.c:497
+msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
+msgstr ""
+"Mbox-liitännäinen vahtii paikallista mbox-tyyppistä postijonoa uusien "
+"viestien varalta"
+
+#: panel-plugin/mailwatch-mailbox-mh.c:206
+#: panel-plugin/mailwatch-mailbox-mh.c:228
+#, c-format
+msgid "Malformed line %s in %s ignored."
+msgstr "Virheellinen rivi %s syötteessä %s ohitettiin."
+
+#: panel-plugin/mailwatch-mailbox-mh.c:383
+#: panel-plugin/mailwatch-mailbox-mh.c:394
+#, c-format
+msgid "Failed to get status of file %s: %s"
+msgstr "Tiedoston %s tilaa ei voitu selvittää: %s"
+
+#: panel-plugin/mailwatch-mailbox-mh.c:603
+msgid ""
+"The configuration of this plugin is read from\n"
+"the default mh maildir profile file ~/.mh_profile"
+msgstr ""
+"Liitännäisen asetukset luetaan oletusarvoisesta\n"
+"mh-maildir -profiilitiedostosta ~/.mh_profile"
+
+#: panel-plugin/mailwatch-mailbox-mh.c:653
+msgid "Local MH mail folder"
+msgstr "Paikallinen MH-postihakemisto"
+
+#: panel-plugin/mailwatch-mailbox-mh.c:654
+msgid "MH plugin watches local MH folders for new mail"
+msgstr ""
+"MH-liitännäinen vahtii paikallisia MH-hakemistoja uuden postin varalta"
+
+#: panel-plugin/mailwatch-mailbox-pop3.c:806
+msgid "Advanced POP3 Options"
+msgstr "POP3-lisäasetukset"
+
+#: panel-plugin/mailwatch-mailbox-pop3.c:826
+msgid "Use SSL/TLS via STLS"
+msgstr "Käytä STLS-käytäntöä SSL/TLS-yhteyksissä"
+
+#: panel-plugin/mailwatch-mailbox-pop3.c:842
+msgid "Use non-standard POP3 _port:"
+msgstr "Käytä standardista poikkeavaa POP3-porttia:"
+
+#: panel-plugin/mailwatch-mailbox-pop3.c:887
+msgid "POP3 Server"
+msgstr "POP3-palvelin"
+
+#: panel-plugin/mailwatch-mailbox-pop3.c:1096
+msgid "Remote POP3 Mailbox"
+msgstr "POP3-etäpostilaatikko"
+
+#: panel-plugin/mailwatch-mailbox-pop3.c:1097
+msgid ""
+"The POP3 plugin can connect to a remote mail server that supports the POP3 "
+"protocol, optionally using SSL for link protection."
+msgstr ""
+"POP3-liitännäinen voi yhdistää POP3-protokollaa tukevaan etäpostipalvelimeen "
+"käyttäen halutessasi SSL-protokollaa yhteyden suojaamiseen."
+
+#: panel-plugin/mailwatch-plugin.c:105 panel-plugin/mailwatch-plugin.c:241
+msgid "No new mail"
+msgstr "Ei uusia posteja"
+
+#: panel-plugin/mailwatch-plugin.c:120
+msgid "You have 1 new message:"
+msgstr "1 uusi posti:"
+
+#: panel-plugin/mailwatch-plugin.c:122
+#, c-format
+msgid "You have %d new messages:"
+msgstr "%d uutta postia:"
+
+#: panel-plugin/mailwatch-plugin.c:225
+msgid "Xfce Mailwatch"
+msgstr "Xfce postivahti"
+
+#: panel-plugin/mailwatch-plugin.c:226
+msgid "The mailwatch applet cannot be added to the panel."
+msgstr "Postivahti-sovelmaa ei voi lisätä paneeliin"
+
+#: panel-plugin/mailwatch-plugin.c:227
+msgid "It is possible that your version of GLib does not have threads support."
+msgstr "Voi olla, että GLib-versiosi ei tue säikeitä."
+
+#: panel-plugin/mailwatch-plugin.c:399
+msgid "Mailwatch log"
+msgstr "Mailwatch-loki"
+
+#: panel-plugin/mailwatch-plugin.c:457
+msgid "Log _lines:"
+msgstr "Loki_rivit:"
+
+#: panel-plugin/mailwatch-plugin.c:519
+msgid "_Run on click:"
+msgstr "Suo_rita napsautettaessa:"
+
+#: panel-plugin/mailwatch-plugin.c:536
+msgid "Run on _new messages:"
+msgstr "Suorita, kun _uusia viestejä:"
+
+#: panel-plugin/mailwatch-plugin.c:553
+msgid "_View Log..."
+msgstr "_Näytä loki..."
+
+#: panel-plugin/mailwatch-plugin.c:662
+msgid "Mail Watcher"
+msgstr "Postivahti"
+
+#: panel-plugin/mailwatch-utils.c:234
+#, c-format
+msgid "XfceMailwatch: TLS handshake failed: %s"
+msgstr "XfcePostivahti: TLS-kättely epäonnistui: %s"
+
+#: panel-plugin/mailwatch-utils.c:244
+msgid "Not compiled with SSL/TLS support"
+msgstr "SSL/TLS-tuki jätetty pois kääntäessä"
+
+#: panel-plugin/mailwatch-utils.c:246
+msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
+msgstr ""
+"XfcePostivahti: TLS-kättely epäonnistui: SSL/TLS-tuki jätetty pois kääntäessä."
+
+#: panel-plugin/mailwatch-utils.c:269 panel-plugin/mailwatch-utils.c:322
+msgid "A secure connection was requested, but gnutls was not initialised"
+msgstr "Pyydettiin suojattua yhteyttä, mutta gnutls:ää ei alustettu"
+
+#: panel-plugin/mailwatch.c:127
+msgid ""
+"xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
+"likely a problem with your GLib install."
+msgstr ""
+"xfce4-mailwatch-plugin: GThread-tukea ei voi alustaa. Tämä johtuu luultavasti "
+"GLib-asennuksesi ongelmasta."
+
+#: panel-plugin/mailwatch.c:317 panel-plugin/mailwatch.c:318
+#: panel-plugin/mailwatch.c:370 panel-plugin/mailwatch.c:371
+#, c-format
+msgid "Unable to write config file '%s'"
+msgstr "Asetustiedostoa '%s' ei voi kirjoittaa"
+
+#: panel-plugin/mailwatch.c:381 panel-plugin/mailwatch.c:383
+#, c-format
+msgid ""
+"Unable to set permissions on config file '%s'.  If this file contains "
+"passwords or other sensitive information, it may be readable by others on "
+"your system."
+msgstr ""
+"Asetustiedoston '%s' oikeuksia ei voi asettaa. Jos tiedosto sisältää "
+"salasanoja tai muuta arkaluonteista tietoa, se voi olla muiden järjestelmäsi "
+"käyttäjien luettavissa."
+
+#: panel-plugin/mailwatch.c:606
+msgid "This mailbox type does not require any configuration settings."
+msgstr "Tämä postilaatikkotyyppi ei edellytä asetuksien säätämistä."
+
+#: panel-plugin/mailwatch.c:632
+msgid "Mailbox _Name:"
+msgstr "Postilaatikon nimi:"
+
+#: panel-plugin/mailwatch.c:649
+msgid "Mailwatch"
+msgstr "Postivahti"
+
+#: panel-plugin/mailwatch.c:650
+msgid "Mailbox name required."
+msgstr "Postilaatikon nimi on vaadittu tieto."
+
+#: panel-plugin/mailwatch.c:651
+msgid "Please enter a name for the mailbox."
+msgstr "Syötä nimi postilaatikolle"
+
+#: panel-plugin/mailwatch.c:694
+#, c-format
+msgid "Edit Mailbox: %s"
+msgstr "Muokkaa postilaatikkoa: %s"
+
+#: panel-plugin/mailwatch.c:757
+msgid "Select Mailbox Type"
+msgstr "Valitse postilaatikon tyyppi"
+
+#: panel-plugin/mailwatch.c:766
+msgid "Select a mailbox type.  A description of the type will appear below."
+msgstr "Valitse postilaatikon tyyppi. Tyypin kuvaus ilmestyy alle."
+
+#: panel-plugin/mailwatch.c:822
+msgid "Add New Mailbox"
+msgstr "Lisää uusi postilaatikko"
+
+#: panel-plugin/mailwatch.c:885
+msgid "Remove Mailbox"
+msgstr "Poista postilaatikko"
+
+#: panel-plugin/mailwatch.c:886
+msgid "Are you sure?"
+msgstr "Oletko varma?"
+
+#: panel-plugin/mailwatch.c:887
+msgid "Removing a mailbox will discard all settings, and cannot be undone."
+msgstr "Postilaatikon poistaminen kadottaa kaikki asetukset peruuttamattomasti."
+
+#: panel-plugin/mailwatch.c:961
+msgid "Configured _Mailboxes:"
+msgstr "Asetetut P_ostilaatikot:"
