@@ -327,9 +327,6 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
         return FALSE;
     }
     
-    /* we probably don't need to lock here, but it can't hurt */
-    g_mutex_lock(mailwatch->mailboxes_mx);
-    
     /* write out global config and index */
     xfce_rc_set_group(rcfile, "mailwatch");
     xfce_rc_write_int_entry(rcfile, "nmailboxes",
@@ -365,9 +362,6 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
         if(config_data)
             g_list_free(config_data);
     }
-    
-    /* and we're done, unlock */
-    g_mutex_unlock(mailwatch->mailboxes_mx);
     
     xfce_rc_close(rcfile);
     
