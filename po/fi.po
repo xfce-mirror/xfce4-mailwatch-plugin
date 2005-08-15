@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-25 14:15-0700\n"
-"PO-Revision-Date: 2005-08-11 11:35+0200\n"
-"Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
+"POT-Creation-Date: 2005-08-15 19:02+0300\n"
+"PO-Revision-Date: 2005-08-15 19:20+0300\n"
+"Last-Translator: Pasi Orovuo <pasi@xfce.org>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,8 +31,7 @@ msgstr "TLS-kättely epäonnistui: %s"
 
 #: panel-plugin/mailwatch-mailbox-imap.c:335
 msgid "STARTTLS security was requested, but this server does not support it."
-msgstr ""
-"Pyydettiin STARTTLS-turvallisuuskäytäntöä, mutta palvelin ei tue sitä."
+msgstr "Pyydettiin STARTTLS-turvallisuuskäytäntöä, mutta palvelin ei tue sitä."
 
 #: panel-plugin/mailwatch-mailbox-imap.c:399
 #: panel-plugin/mailwatch-mailbox-pop3.c:358
@@ -62,8 +61,8 @@ msgstr ""
 msgid ""
 "A buffer was too small to receive all of an IMAP response.  This is a bug!"
 msgstr ""
-"Puskuri oli liian pieni IMAP-vastauksen täydelliseen vastaanottamiseen. "
-"Tämä on ohjelmavirhe!"
+"Puskuri oli liian pieni IMAP-vastauksen täydelliseen vastaanottamiseen. Tämä "
+"on ohjelmavirhe!"
 
 #: panel-plugin/mailwatch-mailbox-imap.c:1178
 msgid "Failed to get folder list"
@@ -169,7 +168,7 @@ msgid "Check for _new messages every"
 msgstr "Tarkista uudet postit"
 
 #: panel-plugin/mailwatch-mailbox-imap.c:1802
-#: panel-plugin/mailwatch-mailbox-maildir.c:439
+#: panel-plugin/mailwatch-mailbox-maildir.c:456
 #: panel-plugin/mailwatch-mailbox-mbox.c:471
 #: panel-plugin/mailwatch-mailbox-mh.c:627
 #: panel-plugin/mailwatch-mailbox-pop3.c:984
@@ -188,25 +187,35 @@ msgstr ""
 "IMAP-liitännäinen voi yhdistää IMAP-protokollaa tukevaan etäpostipalvelimeen "
 "käyttäen halutessasi SSL-protokollaa yhteyden suojaamiseen."
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:334
+#: panel-plugin/mailwatch-mailbox-maildir.c:100
+#, fuzzy, c-format
+msgid "Failed to stat %s: %s"
+msgstr "Tiedoston %s tilaa ei voitu selvittää: %s"
+
+#: panel-plugin/mailwatch-mailbox-maildir.c:108
+#, fuzzy, c-format
+msgid "%s is not a directory. Is %s really a valid maildir?"
+msgstr "%s ei ole kansio. Onko %s todellakin oikea maildir-kansio?"
+
+#: panel-plugin/mailwatch-mailbox-maildir.c:344
 msgid "Select Maildir Folder"
 msgstr "Valitse Maildir-hakemisto"
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:387
+#: panel-plugin/mailwatch-mailbox-maildir.c:404
 msgid "Maildir _Path:"
 msgstr "Maildir-polku:"
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:423
+#: panel-plugin/mailwatch-mailbox-maildir.c:440
 #: panel-plugin/mailwatch-mailbox-mbox.c:454
 #: panel-plugin/mailwatch-mailbox-mh.c:612
 msgid "_Interval:"
 msgstr "_Väli:"
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:475
+#: panel-plugin/mailwatch-mailbox-maildir.c:490
 msgid "Local Maildir Spool"
 msgstr "Paikallinen Maildir-jono"
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:476
+#: panel-plugin/mailwatch-mailbox-maildir.c:491
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
@@ -258,8 +267,7 @@ msgstr "Paikallinen MH-postihakemisto"
 
 #: panel-plugin/mailwatch-mailbox-mh.c:654
 msgid "MH plugin watches local MH folders for new mail"
-msgstr ""
-"MH-liitännäinen vahtii paikallisia MH-hakemistoja uuden postin varalta"
+msgstr "MH-liitännäinen vahtii paikallisia MH-hakemistoja uuden postin varalta"
 
 #: panel-plugin/mailwatch-mailbox-pop3.c:806
 msgid "Advanced POP3 Options"
@@ -289,82 +297,87 @@ msgstr ""
 "POP3-liitännäinen voi yhdistää POP3-protokollaa tukevaan etäpostipalvelimeen "
 "käyttäen halutessasi SSL-protokollaa yhteyden suojaamiseen."
 
-#: panel-plugin/mailwatch-plugin.c:105 panel-plugin/mailwatch-plugin.c:241
+#: panel-plugin/mailwatch-plugin.c:106 panel-plugin/mailwatch-plugin.c:242
 msgid "No new mail"
 msgstr "Ei uusia posteja"
 
-#: panel-plugin/mailwatch-plugin.c:120
+#: panel-plugin/mailwatch-plugin.c:121
 msgid "You have 1 new message:"
 msgstr "1 uusi posti:"
 
-#: panel-plugin/mailwatch-plugin.c:122
+#: panel-plugin/mailwatch-plugin.c:123
 #, c-format
 msgid "You have %d new messages:"
 msgstr "%d uutta postia:"
 
-#: panel-plugin/mailwatch-plugin.c:225
+#: panel-plugin/mailwatch-plugin.c:226
 msgid "Xfce Mailwatch"
 msgstr "Xfce postivahti"
 
-#: panel-plugin/mailwatch-plugin.c:226
+#: panel-plugin/mailwatch-plugin.c:227
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Postivahti-sovelmaa ei voi lisätä paneeliin"
 
-#: panel-plugin/mailwatch-plugin.c:227
+#: panel-plugin/mailwatch-plugin.c:228
 msgid "It is possible that your version of GLib does not have threads support."
 msgstr "Voi olla, että GLib-versiosi ei tue säikeitä."
 
-#: panel-plugin/mailwatch-plugin.c:399
+#: panel-plugin/mailwatch-plugin.c:424
 msgid "Mailwatch log"
 msgstr "Mailwatch-loki"
 
-#: panel-plugin/mailwatch-plugin.c:457
+#: panel-plugin/mailwatch-plugin.c:482
 msgid "Log _lines:"
-msgstr "Loki_rivit:"
+msgstr "Loki _rivit:"
 
-#: panel-plugin/mailwatch-plugin.c:519
+#: panel-plugin/mailwatch-plugin.c:496
+msgid "Show log _status in icon"
+msgstr "_Näytä lokin tila paneelin kuvakkeessa"
+
+#: panel-plugin/mailwatch-plugin.c:551
 msgid "_Run on click:"
 msgstr "Suo_rita napsautettaessa:"
 
-#: panel-plugin/mailwatch-plugin.c:536
+#: panel-plugin/mailwatch-plugin.c:568
 msgid "Run on _new messages:"
 msgstr "Suorita, kun _uusia viestejä:"
 
-#: panel-plugin/mailwatch-plugin.c:553
+#: panel-plugin/mailwatch-plugin.c:585
 msgid "_View Log..."
 msgstr "_Näytä loki..."
 
-#: panel-plugin/mailwatch-plugin.c:662
+#: panel-plugin/mailwatch-plugin.c:694
 msgid "Mail Watcher"
 msgstr "Postivahti"
 
-#: panel-plugin/mailwatch-utils.c:234
+#: panel-plugin/mailwatch-utils.c:238
 #, c-format
 msgid "XfceMailwatch: TLS handshake failed: %s"
 msgstr "XfcePostivahti: TLS-kättely epäonnistui: %s"
 
-#: panel-plugin/mailwatch-utils.c:244
+#: panel-plugin/mailwatch-utils.c:248
 msgid "Not compiled with SSL/TLS support"
 msgstr "SSL/TLS-tuki jätetty pois kääntäessä"
 
-#: panel-plugin/mailwatch-utils.c:246
+#: panel-plugin/mailwatch-utils.c:250
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
 msgstr ""
-"XfcePostivahti: TLS-kättely epäonnistui: SSL/TLS-tuki jätetty pois kääntäessä."
+"XfcePostivahti: TLS-kättely epäonnistui: SSL/TLS-tuki jätetty pois "
+"kääntäessä."
 
-#: panel-plugin/mailwatch-utils.c:269 panel-plugin/mailwatch-utils.c:322
+#: panel-plugin/mailwatch-utils.c:273 panel-plugin/mailwatch-utils.c:326
 msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr "Pyydettiin suojattua yhteyttä, mutta gnutls:ää ei alustettu"
 
-#: panel-plugin/mailwatch.c:127
+#: panel-plugin/mailwatch.c:130
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
 msgstr ""
-"xfce4-mailwatch-plugin: GThread-tukea ei voi alustaa. Tämä johtuu luultavasti "
-"GLib-asennuksesi ongelmasta."
+"xfce4-mailwatch-plugin: GThread-tukea ei voi alustaa. Tämä johtuu "
+"luultavasti GLib-asennuksesi ongelmasta."
 
-#: panel-plugin/mailwatch.c:317 panel-plugin/mailwatch.c:318
+#: panel-plugin/mailwatch.c:323 panel-plugin/mailwatch.c:324
 #: panel-plugin/mailwatch.c:370 panel-plugin/mailwatch.c:371
 #, c-format
 msgid "Unable to write config file '%s'"
@@ -428,7 +441,8 @@ msgstr "Oletko varma?"
 
 #: panel-plugin/mailwatch.c:887
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
-msgstr "Postilaatikon poistaminen kadottaa kaikki asetukset peruuttamattomasti."
+msgstr ""
+"Postilaatikon poistaminen kadottaa kaikki asetukset peruuttamattomasti."
 
 #: panel-plugin/mailwatch.c:961
 msgid "Configured _Mailboxes:"

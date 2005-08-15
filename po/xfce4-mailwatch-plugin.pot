@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-25 14:15-0700\n"
+"POT-Creation-Date: 2005-08-15 19:02+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -158,7 +158,7 @@ msgid "Check for _new messages every"
 msgstr ""
 
 #: panel-plugin/mailwatch-mailbox-imap.c:1802
-#: panel-plugin/mailwatch-mailbox-maildir.c:439
+#: panel-plugin/mailwatch-mailbox-maildir.c:456
 #: panel-plugin/mailwatch-mailbox-mbox.c:471
 #: panel-plugin/mailwatch-mailbox-mh.c:627
 #: panel-plugin/mailwatch-mailbox-pop3.c:984
@@ -175,25 +175,35 @@ msgid ""
 "protocol, optionally using SSL for link protection."
 msgstr ""
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:334
+#: panel-plugin/mailwatch-mailbox-maildir.c:100
+#, c-format
+msgid "Failed to stat %s: %s"
+msgstr ""
+
+#: panel-plugin/mailwatch-mailbox-maildir.c:108
+#, c-format
+msgid "%s is not a directory. Is %s really a valid maildir?"
+msgstr ""
+
+#: panel-plugin/mailwatch-mailbox-maildir.c:344
 msgid "Select Maildir Folder"
 msgstr ""
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:387
+#: panel-plugin/mailwatch-mailbox-maildir.c:404
 msgid "Maildir _Path:"
 msgstr ""
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:423
+#: panel-plugin/mailwatch-mailbox-maildir.c:440
 #: panel-plugin/mailwatch-mailbox-mbox.c:454
 #: panel-plugin/mailwatch-mailbox-mh.c:612
 msgid "_Interval:"
 msgstr ""
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:475
+#: panel-plugin/mailwatch-mailbox-maildir.c:490
 msgid "Local Maildir Spool"
 msgstr ""
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:476
+#: panel-plugin/mailwatch-mailbox-maildir.c:491
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
@@ -267,79 +277,83 @@ msgid ""
 "protocol, optionally using SSL for link protection."
 msgstr ""
 
-#: panel-plugin/mailwatch-plugin.c:105 panel-plugin/mailwatch-plugin.c:241
+#: panel-plugin/mailwatch-plugin.c:106 panel-plugin/mailwatch-plugin.c:242
 msgid "No new mail"
 msgstr ""
 
-#: panel-plugin/mailwatch-plugin.c:120
+#: panel-plugin/mailwatch-plugin.c:121
 msgid "You have 1 new message:"
 msgstr ""
 
-#: panel-plugin/mailwatch-plugin.c:122
+#: panel-plugin/mailwatch-plugin.c:123
 #, c-format
 msgid "You have %d new messages:"
 msgstr ""
 
-#: panel-plugin/mailwatch-plugin.c:225
+#: panel-plugin/mailwatch-plugin.c:226
 msgid "Xfce Mailwatch"
 msgstr ""
 
-#: panel-plugin/mailwatch-plugin.c:226
+#: panel-plugin/mailwatch-plugin.c:227
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr ""
 
-#: panel-plugin/mailwatch-plugin.c:227
+#: panel-plugin/mailwatch-plugin.c:228
 msgid "It is possible that your version of GLib does not have threads support."
 msgstr ""
 
-#: panel-plugin/mailwatch-plugin.c:399
+#: panel-plugin/mailwatch-plugin.c:424
 msgid "Mailwatch log"
 msgstr ""
 
-#: panel-plugin/mailwatch-plugin.c:457
+#: panel-plugin/mailwatch-plugin.c:482
 msgid "Log _lines:"
 msgstr ""
 
-#: panel-plugin/mailwatch-plugin.c:519
+#: panel-plugin/mailwatch-plugin.c:496
+msgid "Show log _status in icon"
+msgstr ""
+
+#: panel-plugin/mailwatch-plugin.c:551
 msgid "_Run on click:"
 msgstr ""
 
-#: panel-plugin/mailwatch-plugin.c:536
+#: panel-plugin/mailwatch-plugin.c:568
 msgid "Run on _new messages:"
 msgstr ""
 
-#: panel-plugin/mailwatch-plugin.c:553
+#: panel-plugin/mailwatch-plugin.c:585
 msgid "_View Log..."
 msgstr ""
 
-#: panel-plugin/mailwatch-plugin.c:662
+#: panel-plugin/mailwatch-plugin.c:694
 msgid "Mail Watcher"
 msgstr ""
 
-#: panel-plugin/mailwatch-utils.c:234
+#: panel-plugin/mailwatch-utils.c:238
 #, c-format
 msgid "XfceMailwatch: TLS handshake failed: %s"
 msgstr ""
 
-#: panel-plugin/mailwatch-utils.c:244
+#: panel-plugin/mailwatch-utils.c:248
 msgid "Not compiled with SSL/TLS support"
 msgstr ""
 
-#: panel-plugin/mailwatch-utils.c:246
+#: panel-plugin/mailwatch-utils.c:250
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
 msgstr ""
 
-#: panel-plugin/mailwatch-utils.c:269 panel-plugin/mailwatch-utils.c:322
+#: panel-plugin/mailwatch-utils.c:273 panel-plugin/mailwatch-utils.c:326
 msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr ""
 
-#: panel-plugin/mailwatch.c:127
+#: panel-plugin/mailwatch.c:130
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
 msgstr ""
 
-#: panel-plugin/mailwatch.c:317 panel-plugin/mailwatch.c:318
+#: panel-plugin/mailwatch.c:323 panel-plugin/mailwatch.c:324
 #: panel-plugin/mailwatch.c:370 panel-plugin/mailwatch.c:371
 #, c-format
 msgid "Unable to write config file '%s'"

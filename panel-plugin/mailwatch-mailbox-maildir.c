@@ -105,7 +105,7 @@ maildir_check_mail( XfceMailwatchMaildirMailbox *maildir )
         xfce_mailwatch_log_message( maildir->mailwatch,
                                     XFCE_MAILWATCH_MAILBOX( maildir ),
                                     XFCE_MAILWATCH_LOG_ERROR,
-                                    _( "%s is not a directory. %s is really a valid maildir?" ),
+                                    _( "%s is not a directory. Is %s really a valid maildir?" ),
                                     path, maildir->path );
         goto out;
     }
