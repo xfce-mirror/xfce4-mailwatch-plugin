@@ -160,7 +160,7 @@ imap_send(XfceMailwatchIMAPMailbox *imailbox, const gchar *buf)
                                    &imailbox->security_info,
                                    buf,
                                    &error);
-    if(sent < 1) {
+    if(sent < 0) {
         xfce_mailwatch_log_message(imailbox->mailwatch,
                                    XFCE_MAILWATCH_MAILBOX(imailbox),
                                    XFCE_MAILWATCH_LOG_ERROR,
@@ -183,7 +183,7 @@ imap_recv(XfceMailwatchIMAPMailbox *imailbox, gchar *buf, gsize len)
                                     len,
                                     &error);
     
-    if(recvd < 1) {
+    if(recvd < 0) {
         xfce_mailwatch_log_message(imailbox->mailwatch,
                                    XFCE_MAILWATCH_MAILBOX(imailbox),
                                    XFCE_MAILWATCH_LOG_ERROR,

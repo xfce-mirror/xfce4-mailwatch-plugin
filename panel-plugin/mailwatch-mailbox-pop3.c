@@ -128,7 +128,7 @@ pop3_send(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *buf)
                                    &pmailbox->security_info,
                                    buf,
                                    &error);
-    if(sent < 1) {
+    if(sent < 0) {
         xfce_mailwatch_log_message(pmailbox->mailwatch,
                                    XFCE_MAILWATCH_MAILBOX(pmailbox),
                                    XFCE_MAILWATCH_LOG_ERROR,
@@ -151,7 +151,7 @@ pop3_recv(XfceMailwatchPOP3Mailbox *pmailbox, gchar *buf, gsize len)
                                     len,
                                     &error);
     
-    if(recvd < 1) {
+    if(recvd < 0) {
         xfce_mailwatch_log_message(pmailbox->mailwatch,
                                    XFCE_MAILWATCH_MAILBOX(pmailbox),
                                    XFCE_MAILWATCH_LOG_ERROR,
