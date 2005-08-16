@@ -97,7 +97,8 @@ maildir_check_mail( XfceMailwatchMaildirMailbox *maildir )
         xfce_mailwatch_log_message( maildir->mailwatch,
                                     XFCE_MAILWATCH_MAILBOX( maildir ),
                                     XFCE_MAILWATCH_LOG_ERROR,
-                                    _( "Failed to stat %s: %s" ), path, g_strerror( errno ) );
+                                    _( "Failed to get status of file %s: %s" ),
+                                    path, g_strerror( errno ) );
         goto out;
     }
         

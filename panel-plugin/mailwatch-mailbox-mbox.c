@@ -96,7 +96,8 @@ mbox_check_mail( XfceMailwatchMboxMailbox *mbox )
         xfce_mailwatch_log_message( mbox->mailwatch,
                                     XFCE_MAILWATCH_MAILBOX( mbox ),
                                     XFCE_MAILWATCH_LOG_ERROR,
-                                    "Failed to stat mbox file: %s", strerror( errno ) );
+                                    _( "Failed to get status of file %s: %s" ),
+                                    mailbox, g_strerror( errno ) );
         g_free( mailbox );
         return;
     }
