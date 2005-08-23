@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-18 19:29+0900\n"
-"PO-Revision-Date: 2005-08-16 15:21+0900\n"
+"POT-Creation-Date: 2005-08-23 22:10+0900\n"
+"PO-Revision-Date: 2005-08-23 17:06+0900\n"
 "Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
@@ -198,7 +198,7 @@ msgid "Failed to get status of file %s: %s"
 msgstr "ファイル %s のステータス取得に失敗しました: %s"
 
 #: ../panel-plugin/mailwatch-mailbox-maildir.c:109
-#, fuzzy, c-format
+#, c-format
 msgid "%s is not a directory. Is %s really a valid maildir?"
 msgstr "%s はフォルダではありません。%s は本当に適切な maildir ですか？"
 
@@ -319,9 +319,11 @@ msgstr "Xfce メールウォッチ"
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "このメールウォッチ・アプレットはパネルに追加できません。"
 
+# FIXME
 #: ../panel-plugin/mailwatch-plugin.c:228
 msgid "It is possible that your version of GLib does not have threads support."
 msgstr ""
+"あなたの GLib のバージョンはスレッドをサポートしていないためできません。"
 
 #: ../panel-plugin/mailwatch-plugin.c:424
 msgid "Mailwatch log"
