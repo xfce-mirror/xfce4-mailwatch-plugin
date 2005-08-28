@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: gu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-08-27 22:01-0700\n"
-"PO-Revision-Date: 2005-08-26 10:21+0530\n"
+"PO-Revision-Date: 2005-08-28 13:22+0530\n"
 "Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
 "\n"
 
 #: panel-plugin/mailwatch-mailbox-imap.c:254
@@ -57,8 +57,7 @@ msgid ""
 msgstr "બ્લોકીંગ સ્થિતિમાં સોકેટ મળવામાં અસમર્થ.  માહિતી યોગ્ય રીતે મેળવી શકાશે."
 
 #: panel-plugin/mailwatch-mailbox-imap.c:591
-msgid ""
-"A buffer was too small to receive all of an IMAP response.  This is a bug!"
+msgid "A buffer was too small to receive all of an IMAP response.  This is a bug!"
 msgstr "IMAP પ્રત્યુત્તરના બધા મેળવવા માટે બફર ખૂબ નાનો હતો.  આ ભૂલ છે!"
 
 #: panel-plugin/mailwatch-mailbox-imap.c:1178
@@ -326,39 +325,35 @@ msgstr "લોગ પરિસ્થિતિ ચિહ્નમાં બતા
 
 #: panel-plugin/mailwatch-plugin.c:575
 msgid "Select Icon"
-msgstr ""
+msgstr "ચિહ્ન પસંદ કરો"
 
 #: panel-plugin/mailwatch-plugin.c:605 panel-plugin/mailwatch-plugin.c:727
 msgid "_Normal"
-msgstr ""
+msgstr "સામાન્ય (_N)"
 
 #: panel-plugin/mailwatch-plugin.c:630
-#, fuzzy
 msgid "Ne_w mail"
-msgstr "કોઈ નવો મેઈલ નથી"
+msgstr "નવો મેઈલ (_w)"
 
 #: panel-plugin/mailwatch-plugin.c:659
 msgid "External Programs"
-msgstr ""
+msgstr "બાહ્ય કાર્યક્રમો"
 
 #: panel-plugin/mailwatch-plugin.c:671
-#, fuzzy
 msgid "Run _on click:"
-msgstr "ક્લિક કરવા પર ચલાવો (_R):"
+msgstr "ક્લિક કરવા પર ચલાવો (_o):"
 
 #: panel-plugin/mailwatch-plugin.c:688
-#, fuzzy
 msgid "Run on new _messages:"
-msgstr "નવા સંદેશાઓ પર ચલાવો (_n):"
+msgstr "નવા સંદેશાઓ પર ચલાવો (_m):"
 
 #: panel-plugin/mailwatch-plugin.c:701
 msgid "Icons"
-msgstr ""
+msgstr "ચિહ્નો"
 
 #: panel-plugin/mailwatch-plugin.c:747
-#, fuzzy
 msgid "Ne_w Mail"
-msgstr "કોઈ નવો મેઈલ નથી"
+msgstr "નવો મેઈલ (_w)"
 
 #: panel-plugin/mailwatch-plugin.c:755
 msgid "_View Log..."
@@ -459,12 +454,6 @@ msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr "મેઈલબોક્સ દૂર કરવાનું બધા સુયોજનો રદ કરશે, અને તે ફરીથી રદ કરી શકાશે નહિં."
 
 #: panel-plugin/mailwatch.c:958
-#, fuzzy
 msgid "Mailboxes"
-msgstr "મેઈલબોક્સ નામ (_N):"
+msgstr "મેઈલબોક્સ"
 
-#~ msgid "Failed to stat %s: %s"
-#~ msgstr "%s કહેવામાં નિષ્ફળ: %s"
-
-#~ msgid "Configured _Mailboxes:"
-#~ msgstr "રૂપરેખાંકિત મેઈલબોક્સ (_M):"
