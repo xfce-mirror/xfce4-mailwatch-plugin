@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-15 19:02+0300\n"
+"POT-Creation-Date: 2005-08-27 22:01-0700\n"
 "PO-Revision-Date: 2005-08-20 03:14+0200\n"
 "Last-Translator: Stavros Giannouris <stavrosg2002@freemail.gr>\n"
 "Language-Team: Greek <i18ngr@hellug.gr>\n"
@@ -18,8 +18,12 @@ msgstr ""
 "X-Poedit-Country: GREECE\n"
 
 #: panel-plugin/mailwatch-mailbox-imap.c:254
-msgid "Secure IMAP is not available, and the IMAP server does not support plaintext logins."
-msgstr "Δεν υπάρχει διαθέσιμο ασφαλές IMAP, και ο διακομιστής IMAP δεν υποστηρίζει διαπίστευση με απλό κείμενο."
+msgid ""
+"Secure IMAP is not available, and the IMAP server does not support plaintext "
+"logins."
+msgstr ""
+"Δεν υπάρχει διαθέσιμο ασφαλές IMAP, και ο διακομιστής IMAP δεν υποστηρίζει "
+"διαπίστευση με απλό κείμενο."
 
 #: panel-plugin/mailwatch-mailbox-imap.c:302
 #: panel-plugin/mailwatch-mailbox-pop3.c:268
@@ -29,11 +33,14 @@ msgstr "Η χειραψία TLS απέτυχε: %s"
 
 #: panel-plugin/mailwatch-mailbox-imap.c:335
 msgid "STARTTLS security was requested, but this server does not support it."
-msgstr "Ζητήθηκε ασφάλεια STARTTLS, αλλά αυτός ο διακομιστής δεν το υποστηρίζει."
+msgstr ""
+"Ζητήθηκε ασφάλεια STARTTLS, αλλά αυτός ο διακομιστής δεν το υποστηρίζει."
 
 #: panel-plugin/mailwatch-mailbox-imap.c:399
 #: panel-plugin/mailwatch-mailbox-pop3.c:358
-msgid "Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."
+msgid ""
+"Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
+"the panel may hang on close."
 msgstr ""
 
 #: panel-plugin/mailwatch-mailbox-imap.c:438
@@ -44,12 +51,17 @@ msgstr "Αδυναμία σύνδεσης στον εξυπηρετητή: %s"
 
 #: panel-plugin/mailwatch-mailbox-imap.c:470
 #: panel-plugin/mailwatch-mailbox-pop3.c:429
-msgid "Unable to return socket to blocking mode.  Data may not be retreived correctly."
+msgid ""
+"Unable to return socket to blocking mode.  Data may not be retreived "
+"correctly."
 msgstr ""
 
 #: panel-plugin/mailwatch-mailbox-imap.c:591
-msgid "A buffer was too small to receive all of an IMAP response.  This is a bug!"
-msgstr "Η προσωρινή μνήμη ήταν πολύ μικρή για να ληφθεί όλη η απάντηση από το IMAP. Αυτό είναι bug!"
+msgid ""
+"A buffer was too small to receive all of an IMAP response.  This is a bug!"
+msgstr ""
+"Η προσωρινή μνήμη ήταν πολύ μικρή για να ληφθεί όλη η απάντηση από το IMAP. "
+"Αυτό είναι bug!"
 
 #: panel-plugin/mailwatch-mailbox-imap.c:1178
 msgid "Failed to get folder list"
@@ -69,8 +81,14 @@ msgid "No server or username is set."
 msgstr "Δεν έχει οριστεί διακομιστής ή όνομα χρήστη."
 
 #: panel-plugin/mailwatch-mailbox-imap.c:1397
-msgid "The folder list cannot be retrieved until a server, username, and probably password are set.  Also be sure to check any security settings in the Advanced dialog."
-msgstr "Η λίστα φακέλων δεν μπορεί να ανακτηθεί εάν δεν οριστούν ένας διακομιστής, όνομα χρήστη και πιθανόν κωδικός. Επίσης ελέγξετε τις ρυθμίσεις ασφαλείας στον διάλογο Για Προχωρημένους."
+msgid ""
+"The folder list cannot be retrieved until a server, username, and probably "
+"password are set.  Also be sure to check any security settings in the "
+"Advanced dialog."
+msgstr ""
+"Η λίστα φακέλων δεν μπορεί να ανακτηθεί εάν δεν οριστούν ένας διακομιστής, "
+"όνομα χρήστη και πιθανόν κωδικός. Επίσης ελέγξετε τις ρυθμίσεις ασφαλείας "
+"στον διάλογο Για Προχωρημένους."
 
 #: panel-plugin/mailwatch-mailbox-imap.c:1402
 msgid "Set New Mail Folders"
@@ -149,8 +167,8 @@ msgid "Check for _new messages every"
 msgstr "_Αυτόματος έλεγχος για νέα μηνύματα κάθε"
 
 #: panel-plugin/mailwatch-mailbox-imap.c:1802
-#: panel-plugin/mailwatch-mailbox-maildir.c:456
-#: panel-plugin/mailwatch-mailbox-mbox.c:471
+#: panel-plugin/mailwatch-mailbox-maildir.c:457
+#: panel-plugin/mailwatch-mailbox-mbox.c:472
 #: panel-plugin/mailwatch-mailbox-mh.c:627
 #: panel-plugin/mailwatch-mailbox-pop3.c:984
 msgid "minute(s)."
@@ -161,68 +179,76 @@ msgid "Remote IMAP Mailbox"
 msgstr "Απομακρυσμένο Γραμματοκιβώτιο IMAP"
 
 #: panel-plugin/mailwatch-mailbox-imap.c:1948
-msgid "The IMAP plugin can connect to a remote mail server that supports the IMAP protocol, optionally using SSL for link protection."
-msgstr "Το άρθρωμα IMAP μπορεί να συνδεθεί σε έναν απομακρυσμένο διακομιστή που υποστηρίζει το πρωτόκολλο IMAP, χρησιμοποιώντας προαιρετικά SSL για την προστασία της σύνδεσης."
+msgid ""
+"The IMAP plugin can connect to a remote mail server that supports the IMAP "
+"protocol, optionally using SSL for link protection."
+msgstr ""
+"Το άρθρωμα IMAP μπορεί να συνδεθεί σε έναν απομακρυσμένο διακομιστή που "
+"υποστηρίζει το πρωτόκολλο IMAP, χρησιμοποιώντας προαιρετικά SSL για την "
+"προστασία της σύνδεσης."
 
 #: panel-plugin/mailwatch-mailbox-maildir.c:100
+#: panel-plugin/mailwatch-mailbox-mbox.c:99
+#: panel-plugin/mailwatch-mailbox-mh.c:383
+#: panel-plugin/mailwatch-mailbox-mh.c:394
 #, c-format
-msgid "Failed to stat %s: %s"
+msgid "Failed to get status of file %s: %s"
 msgstr "Αποτυχία λήψης της κατάστασης του αρχείου %s: %s"
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:108
+#: panel-plugin/mailwatch-mailbox-maildir.c:109
 #, c-format
 msgid "%s is not a directory. Is %s really a valid maildir?"
 msgstr "Το %s δεν είναι κατάλογος. Είναι το %s σίγουρα ένα έγκυρο maildir;"
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:344
+#: panel-plugin/mailwatch-mailbox-maildir.c:345
 msgid "Select Maildir Folder"
 msgstr "Επιλογή Φακέλου Maildir"
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:404
+#: panel-plugin/mailwatch-mailbox-maildir.c:405
 msgid "Maildir _Path:"
 msgstr "Διαδ_ρομή του Maildir:"
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:440
-#: panel-plugin/mailwatch-mailbox-mbox.c:454
+#: panel-plugin/mailwatch-mailbox-maildir.c:441
+#: panel-plugin/mailwatch-mailbox-mbox.c:455
 #: panel-plugin/mailwatch-mailbox-mh.c:612
 msgid "_Interval:"
 msgstr "Δ_ιάστημα ανανέωσης:"
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:490
+#: panel-plugin/mailwatch-mailbox-maildir.c:491
 msgid "Local Maildir Spool"
 msgstr "Τοπικό Maildir"
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:491
-msgid "The Maildir plugin can watch a local maildir-style mail spool for new messages."
-msgstr "Το άρθρωμα Maildir μπορεί να παρακολουθεί ένα τοπικό αρχείο αλληλογραφίας τύπου maildir για νέα μηνύματα."
+#: panel-plugin/mailwatch-mailbox-maildir.c:492
+msgid ""
+"The Maildir plugin can watch a local maildir-style mail spool for new "
+"messages."
+msgstr ""
+"Το άρθρωμα Maildir μπορεί να παρακολουθεί ένα τοπικό αρχείο αλληλογραφίας "
+"τύπου maildir για νέα μηνύματα."
 
-#: panel-plugin/mailwatch-mailbox-mbox.c:369
+#: panel-plugin/mailwatch-mailbox-mbox.c:370
 msgid "Select mbox file"
 msgstr "Επιλογή αρχείου mbox"
 
-#: panel-plugin/mailwatch-mailbox-mbox.c:418
+#: panel-plugin/mailwatch-mailbox-mbox.c:419
 msgid "Mbox _Filename:"
 msgstr "Όνομα _αρχείου mbox"
 
-#: panel-plugin/mailwatch-mailbox-mbox.c:496
+#: panel-plugin/mailwatch-mailbox-mbox.c:497
 msgid "Local Mbox spool"
 msgstr "Αρχείο αλληλογραφίας Mbox"
 
-#: panel-plugin/mailwatch-mailbox-mbox.c:497
+#: panel-plugin/mailwatch-mailbox-mbox.c:498
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr "Το άρθρωμα mbox παρακολουθεί τοπικά γραμματοκιβώτια τύπου mbox για νέα μηνύματα."
+msgstr ""
+"Το άρθρωμα mbox παρακολουθεί τοπικά γραμματοκιβώτια τύπου mbox για νέα "
+"μηνύματα."
 
 #: panel-plugin/mailwatch-mailbox-mh.c:206
 #: panel-plugin/mailwatch-mailbox-mh.c:228
 #, c-format
 msgid "Malformed line %s in %s ignored."
 msgstr "Η καλοσχηματισμένη γραμμή %s στο %s αγνοήθηκε."
-
-#: panel-plugin/mailwatch-mailbox-mh.c:383
-#: panel-plugin/mailwatch-mailbox-mh.c:394
-#, c-format
-msgid "Failed to get status of file %s: %s"
-msgstr "Αποτυχία λήψης της κατάστασης του αρχείου %s: %s"
 
 #: panel-plugin/mailwatch-mailbox-mh.c:603
 msgid ""
@@ -261,60 +287,93 @@ msgid "Remote POP3 Mailbox"
 msgstr "Απομακρυσμένο γραμματοκιβώτιο POP3"
 
 #: panel-plugin/mailwatch-mailbox-pop3.c:1097
-msgid "The POP3 plugin can connect to a remote mail server that supports the POP3 protocol, optionally using SSL for link protection."
-msgstr "Το άρθρωμα POP3 μπορεί να συνδεθεί σε έναν απομακρυσμένο διακομιστή αλληλογραφίας που υποστηρίζει το πρωτόκολο POP3, προαιρετικά χρησιμοποιώντας SSL για την προστασία της σύνδεσης"
+msgid ""
+"The POP3 plugin can connect to a remote mail server that supports the POP3 "
+"protocol, optionally using SSL for link protection."
+msgstr ""
+"Το άρθρωμα POP3 μπορεί να συνδεθεί σε έναν απομακρυσμένο διακομιστή "
+"αλληλογραφίας που υποστηρίζει το πρωτόκολο POP3, προαιρετικά χρησιμοποιώντας "
+"SSL για την προστασία της σύνδεσης"
 
-#: panel-plugin/mailwatch-plugin.c:106
-#: panel-plugin/mailwatch-plugin.c:242
+#: panel-plugin/mailwatch-plugin.c:114 panel-plugin/mailwatch-plugin.c:250
 msgid "No new mail"
 msgstr "Δεν υπάρχουν νέα μυνήματα"
 
-#: panel-plugin/mailwatch-plugin.c:121
+#: panel-plugin/mailwatch-plugin.c:129
 msgid "You have 1 new message:"
 msgstr "Έχετε 1 νέο μήνυμα:"
 
-#: panel-plugin/mailwatch-plugin.c:123
+#: panel-plugin/mailwatch-plugin.c:131
 #, c-format
 msgid "You have %d new messages:"
 msgstr "Έχετε %d νέα μηνύματά:"
 
-#: panel-plugin/mailwatch-plugin.c:226
+#: panel-plugin/mailwatch-plugin.c:234
 msgid "Xfce Mailwatch"
 msgstr "Xfce Mailwatch"
 
-#: panel-plugin/mailwatch-plugin.c:227
+#: panel-plugin/mailwatch-plugin.c:235
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Το εφαρμογίδιο mailwatch δεν μπορεί να προστεθεί στον πίνακα."
 
-#: panel-plugin/mailwatch-plugin.c:228
+#: panel-plugin/mailwatch-plugin.c:236
 msgid "It is possible that your version of GLib does not have threads support."
-msgstr "Πιθανόν η έκδοση της Glib που διαθέτετε δεν έχει υποστήριξη για νήματα."
+msgstr ""
+"Πιθανόν η έκδοση της Glib που διαθέτετε δεν έχει υποστήριξη για νήματα."
 
-#: panel-plugin/mailwatch-plugin.c:424
+#: panel-plugin/mailwatch-plugin.c:457
 msgid "Mailwatch log"
 msgstr "Καταγραφή του Mailwatch"
 
-#: panel-plugin/mailwatch-plugin.c:482
+#: panel-plugin/mailwatch-plugin.c:515
 msgid "Log _lines:"
 msgstr "Γραμμές κατα_γραφής:"
 
-#: panel-plugin/mailwatch-plugin.c:496
+#: panel-plugin/mailwatch-plugin.c:529
 msgid "Show log _status in icon"
 msgstr ""
 
-#: panel-plugin/mailwatch-plugin.c:551
-msgid "_Run on click:"
+#: panel-plugin/mailwatch-plugin.c:575
+msgid "Select Icon"
+msgstr ""
+
+#: panel-plugin/mailwatch-plugin.c:605 panel-plugin/mailwatch-plugin.c:727
+msgid "_Normal"
+msgstr ""
+
+#: panel-plugin/mailwatch-plugin.c:630
+#, fuzzy
+msgid "Ne_w mail"
+msgstr "Δεν υπάρχουν νέα μυνήματα"
+
+#: panel-plugin/mailwatch-plugin.c:659
+msgid "External Programs"
+msgstr ""
+
+#: panel-plugin/mailwatch-plugin.c:671
+#, fuzzy
+msgid "Run _on click:"
 msgstr "Ε_κτέλεση στο κλικ:"
 
-#: panel-plugin/mailwatch-plugin.c:568
-msgid "Run on _new messages:"
+#: panel-plugin/mailwatch-plugin.c:688
+#, fuzzy
+msgid "Run on new _messages:"
 msgstr "Εκτέλεση στα _νέα μηνύματα"
 
-#: panel-plugin/mailwatch-plugin.c:585
+#: panel-plugin/mailwatch-plugin.c:701
+msgid "Icons"
+msgstr ""
+
+#: panel-plugin/mailwatch-plugin.c:747
+#, fuzzy
+msgid "Ne_w Mail"
+msgstr "Δεν υπάρχουν νέα μυνήματα"
+
+#: panel-plugin/mailwatch-plugin.c:755
 msgid "_View Log..."
 msgstr "Εμφάνιση του α_ρχείου καταγραφών..."
 
-#: panel-plugin/mailwatch-plugin.c:694
+#: panel-plugin/mailwatch-plugin.c:866
 msgid "Mail Watcher"
 msgstr "Παρακολούθηση Αλληλογραφίας"
 
@@ -329,30 +388,35 @@ msgstr "Δεν μεταγλωττίστηκε με υποστήριξη για S
 
 #: panel-plugin/mailwatch-utils.c:250
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
-msgstr "XfceMailwatch: Η χειραψία TLS απέτυχε: δεν μεταγλωττίστηκε με υποστήριξη SSL."
+msgstr ""
+"XfceMailwatch: Η χειραψία TLS απέτυχε: δεν μεταγλωττίστηκε με υποστήριξη SSL."
 
-#: panel-plugin/mailwatch-utils.c:273
-#: panel-plugin/mailwatch-utils.c:326
+#: panel-plugin/mailwatch-utils.c:273 panel-plugin/mailwatch-utils.c:326
 msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr "Απαιτήθηκε ασφαλής σύνδεση, αλλά δεν ξεκίνησε το gnutls"
 
 #: panel-plugin/mailwatch.c:130
-msgid "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."
+msgid ""
+"xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
+"likely a problem with your GLib install."
 msgstr ""
 
-#: panel-plugin/mailwatch.c:323
-#: panel-plugin/mailwatch.c:324
-#: panel-plugin/mailwatch.c:370
-#: panel-plugin/mailwatch.c:371
+#: panel-plugin/mailwatch.c:323 panel-plugin/mailwatch.c:324
+#: panel-plugin/mailwatch.c:370 panel-plugin/mailwatch.c:371
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "Αδυναμία εγγραφής στο αρχείο ρυθμίσεων '%s'"
 
-#: panel-plugin/mailwatch.c:381
-#: panel-plugin/mailwatch.c:383
+#: panel-plugin/mailwatch.c:381 panel-plugin/mailwatch.c:383
 #, c-format
-msgid "Unable to set permissions on config file '%s'.  If this file contains passwords or other sensitive information, it may be readable by others on your system."
-msgstr "Αδύνατος ο ορισμός των δικαιωμάτων στο αρχείο ρυθμίσεων '%s'. Εάν αυτό το αρχείο περιέχει κωδικούς ή άλλες ευαίσθητες πληροφορίες, μπορεί να είναι προσβάσιμο και από άλλους στο σύστημα σας."
+msgid ""
+"Unable to set permissions on config file '%s'.  If this file contains "
+"passwords or other sensitive information, it may be readable by others on "
+"your system."
+msgstr ""
+"Αδύνατος ο ορισμός των δικαιωμάτων στο αρχείο ρυθμίσεων '%s'. Εάν αυτό το "
+"αρχείο περιέχει κωδικούς ή άλλες ευαίσθητες πληροφορίες, μπορεί να είναι "
+"προσβάσιμο και από άλλους στο σύστημα σας."
 
 #: panel-plugin/mailwatch.c:606
 msgid "This mailbox type does not require any configuration settings."
@@ -385,7 +449,9 @@ msgstr "Επιλογή είδους γραμματοκιβωτίου"
 
 #: panel-plugin/mailwatch.c:766
 msgid "Select a mailbox type.  A description of the type will appear below."
-msgstr "Επιλέξτε έναν τύπο γραμματοκιβωτίου. Θα εμφανιστεί μια περιγραφή του παρακάτω."
+msgstr ""
+"Επιλέξτε έναν τύπο γραμματοκιβωτίου. Θα εμφανιστεί μια περιγραφή του "
+"παρακάτω."
 
 #: panel-plugin/mailwatch.c:822
 msgid "Add New Mailbox"
@@ -401,9 +467,17 @@ msgstr "Είστε σίγουροι;"
 
 #: panel-plugin/mailwatch.c:887
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
-msgstr "Με την αφαίρεση ενός γραμματοκιβωτίου θα χαθούν όλες οι ρυθμίσεις, και δεν μπορεί να αναιρεθεί."
+msgstr ""
+"Με την αφαίρεση ενός γραμματοκιβωτίου θα χαθούν όλες οι ρυθμίσεις, και δεν "
+"μπορεί να αναιρεθεί."
 
-#: panel-plugin/mailwatch.c:961
-msgid "Configured _Mailboxes:"
-msgstr "Ρυθμισμένα Γρα_μματοκιβώτια:"
+#: panel-plugin/mailwatch.c:958
+#, fuzzy
+msgid "Mailboxes"
+msgstr "Ό_νομα Γραμματοκιβωτίου:"
 
+#~ msgid "Failed to stat %s: %s"
+#~ msgstr "Αποτυχία λήψης της κατάστασης του αρχείου %s: %s"
+
+#~ msgid "Configured _Mailboxes:"
+#~ msgstr "Ρυθμισμένα Γρα_μματοκιβώτια:"

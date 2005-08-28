@@ -945,7 +945,7 @@ config_set_button_sensitive(GtkTreeView *treeview, GdkEventButton *evt,
 GtkContainer *
 xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
 {
-    GtkWidget *topvbox, *vbox, *hbox, *sw, *treeview, *btn, *lbl;
+    GtkWidget *frame, *vbox, *hbox, *sw, *treeview, *btn;
     GtkListStore *ls;
     GList *l;
     GtkTreeIter itr;
@@ -955,17 +955,12 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
     
     xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     
-    topvbox = gtk_vbox_new(FALSE, BORDER/2);
-    gtk_widget_show(topvbox);
-    
-    lbl = gtk_label_new_with_mnemonic(_("Configured _Mailboxes:"));
-    gtk_misc_set_alignment(GTK_MISC(lbl), 0.0, 0.5);
-    gtk_widget_show(lbl);
-    gtk_box_pack_start(GTK_BOX(topvbox), lbl, FALSE, FALSE, 0);
+    frame = xfce_framebox_new(_("Mailboxes"), TRUE);
+    gtk_widget_show(frame);
     
     hbox = gtk_hbox_new(FALSE, BORDER/2);
     gtk_widget_show(hbox);
-    gtk_box_pack_start(GTK_BOX(topvbox), hbox, TRUE, TRUE, 0);
+    xfce_framebox_add(XFCE_FRAMEBOX(frame), hbox);
     
     sw = gtk_scrolled_window_new(NULL, NULL);
     gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(sw),
@@ -1005,7 +1000,6 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
     gtk_container_add(GTK_CONTAINER(sw), treeview);
     g_signal_connect(G_OBJECT(treeview), "button-press-event",
             G_CALLBACK(config_treeview_button_press_cb), mailwatch);
-    gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), treeview);
     
     sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview));
     gtk_tree_selection_set_mode(sel, GTK_SELECTION_SINGLE);
@@ -1039,7 +1033,7 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
     g_signal_connect(G_OBJECT(btn), "clicked",
             G_CALLBACK(config_remove_btn_clicked_cb), mailwatch);
     
-    return GTK_CONTAINER(topvbox);
+    return GTK_CONTAINER(frame);
 }
 
 void

@@ -20,6 +20,7 @@ Random list of features:
     is clicked.
   * Error log accessible from the plugin properties dialog, with a small
     overlay icon to inform the user of errors at a glance.
+  * Custom button icons.
 
 gnutls 1.2.0 or greater is optional, but required for SSL/TLS support.  Sending
 cleartext passwords across unsecured networks is not recommended.  This plugin

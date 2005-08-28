@@ -36,6 +36,10 @@
 #define BORDER                             8
 #define DEFAULT_LOG_LINES                500
 #define XFCE_MAILWATCH_RESPONSE_CLEAR  72347
+#define DEFAULT_NORMAL_ICON            "xfce-nomail"
+#define DEFAULT_NEW_MAIL_ICON          "xfce-newmail"
+
+static void mailwatch_set_size(Control *c, gint size);
 
 typedef struct
 {
@@ -53,6 +57,10 @@ typedef struct
     
     gchar *click_command;
     gchar *new_messages_command;
+    
+    gchar *normal_icon;
+    gchar *new_mail_icon;
+    
     guint log_lines;
     gboolean show_log_status;
 
@@ -69,7 +77,7 @@ enum {
 };
 
 static void
-mailwatch_set_icon( XfceMailwatchPlugin *mwp, gboolean newmail )
+mailwatch_set_icon(XfceMailwatchPlugin *mwp, gboolean newmail)
 {
     GdkPixbuf       *pb = newmail ?
                             gdk_pixbuf_copy(mwp->pix_newmail) :
@@ -266,6 +274,7 @@ mailwatch_read_config(Control *c, xmlNodePtr node)
     XfceMailwatchPlugin *mwp = c->data;
     xmlChar *value;
     gchar *cfgfile;
+    gboolean reload_icon = TRUE;
     
     DBG("entering");
     
@@ -280,6 +289,25 @@ mailwatch_read_config(Control *c, xmlNodePtr node)
         mwp->new_messages_command = g_strdup(value);
         xmlFree(value);
     }
+    
+    value = xmlGetProp(node, (const xmlChar *)"normal_icon");
+    if(value) {
+        mwp->normal_icon = g_strdup(value);
+        xmlFree(value);
+        reload_icon = TRUE;
+    } else
+        mwp->normal_icon = g_strdup(DEFAULT_NORMAL_ICON);
+    
+    value = xmlGetProp(node, (const xmlChar *)"new_mail_icon");
+    if(value) {
+        mwp->new_mail_icon = g_strdup(value);
+        xmlFree(value);
+        reload_icon = TRUE;
+    } else
+        mwp->new_mail_icon = g_strdup(DEFAULT_NEW_MAIL_ICON);
+    
+    if(reload_icon)
+        mailwatch_set_size(c, settings.size);
     
     value = xmlGetProp(node, (const xmlChar *)"log_lines");
     if(value) {
@@ -326,6 +354,11 @@ mailwatch_write_config(Control *c, xmlNodePtr node)
             mwp->click_command?mwp->click_command:"");
     xmlSetProp(node, (const xmlChar *)"new_messages_command",
             mwp->new_messages_command?mwp->new_messages_command:"");
+    
+    xmlSetProp(node, (const xmlChar *)"normal_icon",
+            mwp->normal_icon?mwp->normal_icon:DEFAULT_NORMAL_ICON);
+    xmlSetProp(node, (const xmlChar *)"new_mail_icon",
+            mwp->new_mail_icon?mwp->new_mail_icon:DEFAULT_NEW_MAIL_ICON);
     
     g_snprintf(buf, 256, "%u", mwp->log_lines);
     xmlSetProp(node, (const xmlChar *)"log_lines", buf);
@@ -528,27 +561,114 @@ mailwatch_newmsg_command_focusout_cb(GtkWidget *w, GdkEventFocus *evt,
 }
 
 static void
+mailwatch_iconbtn_clicked_cb(GtkWidget *w, gpointer user_data)
+{
+    Control *c = user_data;
+    XfceMailwatchPlugin *mwp = c->data;
+    gint icon_type = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(w),
+                                                       "mailwatch-icontype"));
+    GtkWidget *chooser, *toplevel;
+    
+    g_return_if_fail(icon_type == 1 || icon_type == 2);
+    
+    toplevel = gtk_widget_get_toplevel(w);
+    chooser = xfce_file_chooser_dialog_new(_("Select Icon"),
+                                           GTK_WINDOW(toplevel),
+                                           XFCE_FILE_CHOOSER_ACTION_OPEN,
+                                           GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                           GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+                                           NULL);
+    
+    if(gtk_dialog_run(GTK_DIALOG(chooser)) == GTK_RESPONSE_ACCEPT) {
+        gchar *filename = xfce_file_chooser_get_filename(XFCE_FILE_CHOOSER(chooser));
+        if(filename) {
+            switch(icon_type) {
+                case 1:
+                    {
+                        GtkWidget *vbox, *img, *lbl;
+                        
+                        g_free(mwp->normal_icon);
+                        mwp->normal_icon = filename;
+                        mailwatch_set_size(c, settings.size);
+                        
+                        gtk_container_remove(GTK_CONTAINER(w),
+                                             gtk_bin_get_child(GTK_BIN(w)));
+                        
+                        vbox = gtk_vbox_new(FALSE, BORDER/2);
+                        gtk_widget_show(vbox);
+                        gtk_container_add(GTK_CONTAINER(w), vbox);
+                        
+                        img = gtk_image_new_from_pixbuf(mwp->pix_normal);
+                        gtk_widget_show(img);
+                        gtk_box_pack_start(GTK_BOX(vbox), img, TRUE, TRUE, 0);
+                        
+                        lbl = gtk_label_new_with_mnemonic(_("_Normal"));
+                        gtk_widget_show(lbl);
+                        gtk_box_pack_start(GTK_BOX(vbox), lbl, FALSE, FALSE, 0);
+                    }
+                    break;
+                
+                case 2:
+                    {
+                        GtkWidget *vbox, *img, *lbl;
+                        
+                        g_free(mwp->new_mail_icon);
+                        mwp->new_mail_icon = filename;
+                        mailwatch_set_size(c, settings.size);
+                        
+                        gtk_container_remove(GTK_CONTAINER(w),
+                                             gtk_bin_get_child(GTK_BIN(w)));
+                        
+                        vbox = gtk_vbox_new(FALSE, BORDER/2);
+                        gtk_widget_show(vbox);
+                        gtk_container_add(GTK_CONTAINER(w), vbox);
+                        
+                        img = gtk_image_new_from_pixbuf(mwp->pix_newmail);
+                        gtk_widget_show(img);
+                        gtk_box_pack_start(GTK_BOX(vbox), img, TRUE, TRUE, 0);
+                        
+                        lbl = gtk_label_new_with_mnemonic(_("Ne_w mail"));
+                        gtk_widget_show(lbl);
+                        gtk_box_pack_start(GTK_BOX(vbox), lbl, FALSE, FALSE, 0);
+                    }
+                    break;
+            }
+        }
+    }
+    gtk_widget_destroy(chooser);
+}
+
+static void
 mailwatch_create_options(Control *c, GtkContainer *con, GtkWidget *done)
 {
     XfceMailwatchPlugin *mwp = c->data;
-    GtkWidget *vbox, *hbox, *lbl, *entry, *btn;
+    GtkWidget *topvbox, *frame, *hbox, *lbl, *entry, *btn, *vbox, *img;
     GtkContainer *cfg_page;
+    GtkSizeGroup *sg;
     
     xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     
-    vbox = gtk_vbox_new(FALSE, BORDER/2);
-    gtk_widget_show(vbox);
-    gtk_container_add(con, vbox);
+    topvbox = gtk_vbox_new(FALSE, BORDER/2);
+    gtk_widget_show(topvbox);
+    gtk_container_add(con, topvbox);
     
     cfg_page = xfce_mailwatch_get_configuration_page(mwp->mailwatch);
     if(cfg_page)
-        gtk_box_pack_start(GTK_BOX(vbox), GTK_WIDGET(cfg_page), TRUE, TRUE, 0);
+        gtk_box_pack_start(GTK_BOX(topvbox), GTK_WIDGET(cfg_page), TRUE, TRUE, 0);
+    
+    frame = xfce_framebox_new(_("External Programs"), TRUE);
+    gtk_widget_show(frame);
+    gtk_box_pack_start(GTK_BOX(topvbox), frame, FALSE, FALSE, 0);
+    
+    vbox = gtk_vbox_new(FALSE, BORDER/2);
+    gtk_widget_show(vbox);
+    xfce_framebox_add(XFCE_FRAMEBOX(frame), vbox);
     
     hbox = gtk_hbox_new(FALSE, BORDER/2);
     gtk_widget_show(hbox);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
     
-    lbl = gtk_label_new_with_mnemonic(_("_Run on click:"));
+    lbl = gtk_label_new_with_mnemonic(_("Run _on click:"));
     gtk_widget_show(lbl);
     gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
     
@@ -565,7 +685,7 @@ mailwatch_create_options(Control *c, GtkContainer *con, GtkWidget *done)
     gtk_widget_show(hbox);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
     
-    lbl = gtk_label_new_with_mnemonic(_("Run on _new messages:"));
+    lbl = gtk_label_new_with_mnemonic(_("Run on new _messages:"));
     gtk_widget_show(lbl);
     gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
     
@@ -577,15 +697,65 @@ mailwatch_create_options(Control *c, GtkContainer *con, GtkWidget *done)
     gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), entry);
     g_signal_connect(G_OBJECT(entry), "focus-out-event",
             G_CALLBACK(mailwatch_newmsg_command_focusout_cb), mwp);
-
-    hbox = gtk_hbox_new( FALSE, BORDER / 2 );
-    gtk_widget_show( hbox );
-    gtk_box_pack_start( GTK_BOX( vbox ), hbox, FALSE, FALSE, 0 );
+    
+    frame = xfce_framebox_new(_("Icons"), TRUE);
+    gtk_widget_show(frame);
+    gtk_box_pack_start(GTK_BOX(topvbox), frame, FALSE, FALSE, 0);
+    
+    sg = gtk_size_group_new(GTK_SIZE_GROUP_BOTH);
+    
+    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    gtk_widget_show(hbox);
+    xfce_framebox_add(XFCE_FRAMEBOX(frame), hbox);
+    
+    btn = gtk_button_new();
+    g_object_set_data(G_OBJECT(btn), "mailwatch-icontype", GINT_TO_POINTER(1));
+    gtk_widget_show(btn);
+    gtk_box_pack_start(GTK_BOX(hbox), btn, FALSE, FALSE, 0);
+    g_signal_connect(G_OBJECT(btn), "clicked",
+                     G_CALLBACK(mailwatch_iconbtn_clicked_cb), c);
+    gtk_size_group_add_widget(sg, btn);
+    
+    vbox = gtk_vbox_new(FALSE, BORDER/2);
+    gtk_widget_show(vbox);
+    gtk_container_add(GTK_CONTAINER(btn), vbox);
+    
+    img = gtk_image_new_from_pixbuf(mwp->pix_normal);
+    gtk_widget_show(img);
+    gtk_box_pack_start(GTK_BOX(vbox), img, TRUE, TRUE, 0);
+    
+    lbl = gtk_label_new_with_mnemonic(_("_Normal"));
+    gtk_widget_show(lbl);
+    gtk_box_pack_start(GTK_BOX(vbox), lbl, FALSE, FALSE, 0);
+    
+    btn = gtk_button_new();
+    g_object_set_data(G_OBJECT(btn), "mailwatch-icontype", GINT_TO_POINTER(2));
+    gtk_widget_show(btn);
+    gtk_box_pack_start(GTK_BOX(hbox), btn, FALSE, FALSE, 0);
+    g_signal_connect(G_OBJECT(btn), "clicked",
+                     G_CALLBACK(mailwatch_iconbtn_clicked_cb), c);
+    gtk_size_group_add_widget(sg, btn);
+    
+    vbox = gtk_vbox_new(FALSE, BORDER/2);
+    gtk_widget_show(vbox);
+    gtk_container_add(GTK_CONTAINER(btn), vbox);
+    
+    img = gtk_image_new_from_pixbuf(mwp->pix_newmail);
+    gtk_widget_show(img);
+    gtk_box_pack_start(GTK_BOX(vbox), img, TRUE, TRUE, 0);
+    
+    lbl = gtk_label_new_with_mnemonic(_("Ne_w Mail"));
+    gtk_widget_show(lbl);
+    gtk_box_pack_start(GTK_BOX(vbox), lbl, FALSE, FALSE, 0);
+    
+    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    gtk_widget_show(hbox);
+    gtk_box_pack_start(GTK_BOX(topvbox), hbox, FALSE, FALSE, 0);
    
     btn = xfce_mailwatch_custom_button_new(_("_View Log..."), GTK_STOCK_FIND);
     gtk_widget_show(btn);
     gtk_box_pack_end(GTK_BOX(hbox), btn, FALSE, FALSE, 0);
-    g_signal_connect(G_OBJECT(btn ), "clicked",
+    g_signal_connect(G_OBJECT(btn), "clicked",
                      G_CALLBACK(mailwatch_view_log_clicked_cb), mwp);
 }
 
@@ -653,20 +823,22 @@ mailwatch_set_size(Control *c, gint size)
     XfceMailwatchPlugin *mwp = c->data;
     gint wsize = icon_size[size] + border_width, i;
     GtkWidget *dummy;
+    gchar *icon;
     
     if(mwp->pix_normal)
         g_object_unref(G_OBJECT(mwp->pix_normal));
     if(mwp->pix_newmail)
         g_object_unref(G_OBJECT(mwp->pix_newmail));
 
-    for ( i = 0; i < XFCE_MAILWATCH_N_LOG_LEVELS; i++ ) {
-        if ( mwp->pix_log[i] ) {
-            g_object_unref( G_OBJECT( mwp->pix_log[i] ) );
-        }
+    for(i = 0; i < XFCE_MAILWATCH_N_LOG_LEVELS; i++) {
+        if(mwp->pix_log[i])
+            g_object_unref(G_OBJECT(mwp->pix_log[i]));
     }
     
-    mwp->pix_normal = xfce_themed_icon_load("xfce-nomail", icon_size[size]);
-    mwp->pix_newmail = xfce_themed_icon_load("xfce-newmail", icon_size[size]);
+    icon = mwp->normal_icon ? mwp->normal_icon : DEFAULT_NORMAL_ICON;
+    mwp->pix_normal = xfce_themed_icon_load(icon, icon_size[size]);
+    icon = mwp->new_mail_icon ? mwp->new_mail_icon : DEFAULT_NEW_MAIL_ICON;
+    mwp->pix_newmail = xfce_themed_icon_load(icon, icon_size[size]);
 
     dummy = gtk_invisible_new();
     gtk_widget_realize(dummy);
@@ -680,7 +852,7 @@ mailwatch_set_size(Control *c, gint size)
     
     gtk_widget_destroy(dummy);
     
-    mailwatch_set_icon( mwp, mwp->newmail_icon_visible );
+    mailwatch_set_icon(mwp, mwp->newmail_icon_visible);
     
     gtk_widget_set_size_request(c->base, wsize, wsize);
 }
