@@ -763,22 +763,24 @@ static void
 mailwatch_free(Control *c)
 {
     XfceMailwatchPlugin *mwp = c->data;
-    int                 i;
+    gint i;
     
     xfce_mailwatch_destroy(mwp->mailwatch);
+    
+    g_free(mwp->normal_icon);
+    g_free(mwp->new_mail_icon);
     
     if(mwp->pix_normal)
         g_object_unref(G_OBJECT(mwp->pix_normal));
     if(mwp->pix_newmail)
         g_object_unref(G_OBJECT(mwp->pix_newmail));
 
-    for ( i = 0; i < XFCE_MAILWATCH_N_LOG_LEVELS; i++ ) {
-        if ( mwp->pix_log[i] ) {
-            g_object_unref( G_OBJECT( mwp->pix_log[i] ) );
-        }
+    for(i = 0; i < XFCE_MAILWATCH_N_LOG_LEVELS; i++) {
+        if(mwp->pix_log[i])
+            g_object_unref(G_OBJECT(mwp->pix_log[i]));
     }
 
-    g_object_unref( mwp->loglist );
+    g_object_unref(G_OBJECT(mwp->loglist));
     
     gtk_object_sink(GTK_OBJECT(mwp->tooltip));
     
