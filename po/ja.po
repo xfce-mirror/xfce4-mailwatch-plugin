@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-08-27 22:01-0700\n"
-"PO-Revision-Date: 2005-08-23 17:06+0900\n"
+"PO-Revision-Date: 2005-09-14 04:01+0900\n"
 "Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
@@ -338,39 +338,35 @@ msgstr "アイコンでログ・ステータスを表示(_S)"
 
 #: panel-plugin/mailwatch-plugin.c:575
 msgid "Select Icon"
-msgstr ""
+msgstr "アイコンを選択して下さい"
 
 #: panel-plugin/mailwatch-plugin.c:605 panel-plugin/mailwatch-plugin.c:727
 msgid "_Normal"
-msgstr ""
+msgstr "通常(_N)"
 
 #: panel-plugin/mailwatch-plugin.c:630
-#, fuzzy
 msgid "Ne_w mail"
-msgstr "新しいメールはありません"
+msgstr "新しいメール(_W)"
 
 #: panel-plugin/mailwatch-plugin.c:659
 msgid "External Programs"
-msgstr ""
+msgstr "外部プログラム"
 
 #: panel-plugin/mailwatch-plugin.c:671
-#, fuzzy
 msgid "Run _on click:"
-msgstr "クリックで実行(_R)"
+msgstr "クリックで実行(_O):"
 
 #: panel-plugin/mailwatch-plugin.c:688
-#, fuzzy
 msgid "Run on new _messages:"
-msgstr "メッセージが来た場合に実行(_N):"
+msgstr "メッセージが来た場合に実行(_M):"
 
 #: panel-plugin/mailwatch-plugin.c:701
 msgid "Icons"
-msgstr ""
+msgstr "アイコン"
 
 #: panel-plugin/mailwatch-plugin.c:747
-#, fuzzy
 msgid "Ne_w Mail"
-msgstr "新しいメールはありません"
+msgstr "新しいメール(_W)"
 
 #: panel-plugin/mailwatch-plugin.c:755
 msgid "_View Log..."
@@ -474,9 +470,5 @@ msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr "メール箱を削除するとすべての設定が破棄されます、また元に戻せません。"
 
 #: panel-plugin/mailwatch.c:958
-#, fuzzy
 msgid "Mailboxes"
-msgstr "メール箱の名前(_N):"
-
-#~ msgid "Configured _Mailboxes:"
-#~ msgstr "設定するメール箱(_M):"
+msgstr "メール箱"
