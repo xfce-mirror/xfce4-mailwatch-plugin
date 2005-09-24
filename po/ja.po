@@ -1,3 +1,5 @@
+# $Id$
+#
 # Japanese translations for xfce4-mailwatch-plugin package.
 # Copyright (C) 2005 Brian Tarricone.
 # Copyright (C) 2005 Pasi Orovuo.
