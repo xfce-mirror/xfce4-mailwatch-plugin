@@ -1,0 +1,7 @@
+[Xfce Panel]
+Type=X-XFCE-PanelPlugin
+Encoding=UTF-8
+_Name=Mail Watcher
+_Comment=Check mail from multiple mailboxes
+Icon=xfce-mail
+X-XFCE-Exec=@PLUGIN_PATH@/xfce4-mailwatch-plugin

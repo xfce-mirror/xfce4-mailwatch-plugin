@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-27 22:01-0700\n"
+"POT-Creation-Date: 2005-09-29 02:19-0700\n"
 "PO-Revision-Date: 2005-08-28 13:22+0530\n"
 "Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
@@ -15,27 +15,28 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"\n"
 "\n"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:254
+#: ../panel-plugin/mailwatch-mailbox-imap.c:254
 msgid ""
 "Secure IMAP is not available, and the IMAP server does not support plaintext "
 "logins."
 msgstr "સુરક્ષિત IMAP ઉપલબ્ધ નથી, અને IMAP સર્વર સાદાલખાણ પ્રવેશોને આધાર આપતું નથી."
 
-#: panel-plugin/mailwatch-mailbox-imap.c:302
-#: panel-plugin/mailwatch-mailbox-pop3.c:268
+#: ../panel-plugin/mailwatch-mailbox-imap.c:302
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:268
 #, c-format
 msgid "TLS handshake failed: %s"
 msgstr "TLS હેન્ડશેક નિષ્ફળ: %s"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:335
+#: ../panel-plugin/mailwatch-mailbox-imap.c:335
 msgid "STARTTLS security was requested, but this server does not support it."
 msgstr "STARTTLS સુરક્ષાની અરજી થઈ હતી, પરંતુ આ સર્વર તેને આધાર આપતું નથી."
 
-#: panel-plugin/mailwatch-mailbox-imap.c:399
-#: panel-plugin/mailwatch-mailbox-pop3.c:358
+#: ../panel-plugin/mailwatch-mailbox-imap.c:399
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:358
 msgid ""
 "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 "the panel may hang on close."
@@ -43,41 +44,42 @@ msgstr ""
 "બિન-બ્લોકીંગ સ્થિતિમાં સોકેટ સુયોજિત કરવામાં અસમર્થ.  જો જોડાણ અટકી જાય, તો પેનલ બંધ "
 "કરવા પર અટકી જશે."
 
-#: panel-plugin/mailwatch-mailbox-imap.c:438
-#: panel-plugin/mailwatch-mailbox-pop3.c:397
+#: ../panel-plugin/mailwatch-mailbox-imap.c:438
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:397
 #, c-format
 msgid "Failed to connect to server: %s"
 msgstr "સર્વર સાથે જોડાવામાં નિષ્ફળ: %s"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:470
-#: panel-plugin/mailwatch-mailbox-pop3.c:429
+#: ../panel-plugin/mailwatch-mailbox-imap.c:470
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:429
 msgid ""
 "Unable to return socket to blocking mode.  Data may not be retreived "
 "correctly."
 msgstr "બ્લોકીંગ સ્થિતિમાં સોકેટ મળવામાં અસમર્થ.  માહિતી યોગ્ય રીતે મેળવી શકાશે."
 
-#: panel-plugin/mailwatch-mailbox-imap.c:591
-msgid "A buffer was too small to receive all of an IMAP response.  This is a bug!"
+#: ../panel-plugin/mailwatch-mailbox-imap.c:591
+msgid ""
+"A buffer was too small to receive all of an IMAP response.  This is a bug!"
 msgstr "IMAP પ્રત્યુત્તરના બધા મેળવવા માટે બફર ખૂબ નાનો હતો.  આ ભૂલ છે!"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1178
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1178
 msgid "Failed to get folder list"
 msgstr "ફોલ્ડર યાદી મેળવવામાં નિષ્ફળ"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1304
-#: panel-plugin/mailwatch-mailbox-imap.c:1512
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1304
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1513
 msgid "Please wait..."
 msgstr "મહેરબાની કરીને રાહ જુઓ..."
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1395
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1396
 msgid "Error"
 msgstr "ભૂલ"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1396
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1397
 msgid "No server or username is set."
 msgstr "કોઈ સર્વર અથવા વપરાશકર્તાનામ સુયોજિત નથી."
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1397
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1398
 msgid ""
 "The folder list cannot be retrieved until a server, username, and probably "
 "password are set.  Also be sure to check any security settings in the "
@@ -87,95 +89,95 @@ msgstr ""
 "પાછી મેળવી શકાતી નથી.  અદ્યતન સંવાદમાં કોઈપણ સુરક્ષા સુયોજનો ચકાસવા માટે ખાતરી પણ "
 "કરો."
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1402
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
 msgstr "નવા મેઈલ ફોલ્ડરો સુયોજિત કરો"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1413
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1414
 msgid "New Mail Folders"
 msgstr "નવા મેઈલ ફોલ્ડરો"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1595
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1597
 msgid "Advanced IMAP Options"
 msgstr "અદ્યતન IMAP વિકલ્પો"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1604
-#: panel-plugin/mailwatch-mailbox-pop3.c:815
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1606
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:816
 msgid "Connection"
 msgstr "જોડાણ"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1613
-#: panel-plugin/mailwatch-mailbox-pop3.c:824
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1615
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:825
 msgid "Use unsecured connection"
 msgstr "અસુરક્ષિત જોડાણ વાપરો"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1614
-#: panel-plugin/mailwatch-mailbox-pop3.c:825
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1616
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:826
 msgid "Use SSL/TLS on alternate port"
 msgstr "વૈકલ્પિક પોર્ટ પર SSL/TLS વાપરો"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1615
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1617
 msgid "Use SSL/TLS via STARTTLS"
 msgstr "SSL/TLS ને STARTTLS મારફતે વાપરો"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1631
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1633
 msgid "Use non-standard IMAP _port:"
 msgstr "બિન-પ્રમાણભૂત IMAP પોર્ટ વાપરો (_p):"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1660
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1662
 msgid "Folders"
 msgstr "ફોલ્ડરો"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1668
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1670
 msgid "IMAP server _directory:"
 msgstr "IMAP સર્વર ડિરેક્ટરી (_d):"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1698
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1701
 msgid "IMAP Server"
 msgstr "IMAP સર્વર"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1712
-#: panel-plugin/mailwatch-mailbox-pop3.c:901
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1715
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:903
 msgid "_Mail server:"
 msgstr "મેઈલ સર્વર (_M):"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1731
-#: panel-plugin/mailwatch-mailbox-pop3.c:920
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1734
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:922
 msgid "_Username:"
 msgstr "વપરાશકર્તા નામ (_U):"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1750
-#: panel-plugin/mailwatch-mailbox-pop3.c:939
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1753
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:941
 msgid "_Password:"
 msgstr "પાસવર્ડ (_P):"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1770
-#: panel-plugin/mailwatch-mailbox-pop3.c:959
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1773
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:961
 msgid "_Advanced..."
 msgstr "અદ્યતન (_A)..."
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1777
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1780
 msgid "New mail _folders..."
 msgstr "નવા મેઈલ ફોલ્ડરો (_f)..."
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1788
-#: panel-plugin/mailwatch-mailbox-pop3.c:970
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1791
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:972
 msgid "Check for _new messages every"
 msgstr "આટલા દરે નવા સંદેશાઓ માટે ચકાસો (_n)"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1802
-#: panel-plugin/mailwatch-mailbox-maildir.c:457
-#: panel-plugin/mailwatch-mailbox-mbox.c:472
-#: panel-plugin/mailwatch-mailbox-mh.c:627
-#: panel-plugin/mailwatch-mailbox-pop3.c:984
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1805
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:461
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:476
+#: ../panel-plugin/mailwatch-mailbox-mh.c:627
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:986
 msgid "minute(s)."
 msgstr "મિનિટો."
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1947
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1950
 msgid "Remote IMAP Mailbox"
 msgstr "દૂરસ્થ IMAP મેઈલબોક્સ"
 
-#: panel-plugin/mailwatch-mailbox-imap.c:1948
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1951
 msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
@@ -183,66 +185,66 @@ msgstr ""
 "IMAP પ્લગઈન દૂરસ્થ મેઈલ સર્વર સાથે જોડાઈ શકતું નથી કે જે IMAP પ્રોટોકોલને આધાર આપે, "
 "વૈકલ્પિક રીતે ને કડી સુરક્ષા માટે SSL વાપરી રહ્યા છીએ."
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:100
-#: panel-plugin/mailwatch-mailbox-mbox.c:99
-#: panel-plugin/mailwatch-mailbox-mh.c:383
-#: panel-plugin/mailwatch-mailbox-mh.c:394
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:104
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:103
+#: ../panel-plugin/mailwatch-mailbox-mh.c:383
+#: ../panel-plugin/mailwatch-mailbox-mh.c:394
 #, c-format
 msgid "Failed to get status of file %s: %s"
 msgstr "ફાઈલ %s ની પરિસ્થિતિ મેળવવામાં નિષ્ફળ: %s"
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:109
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:113
 #, c-format
 msgid "%s is not a directory. Is %s really a valid maildir?"
 msgstr "%s એ ડિરેક્ટરી નથી. શું %s એ ખરેખર maildir છે?"
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:345
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:349
 msgid "Select Maildir Folder"
 msgstr "Maildir ફોલ્ડર પસંદ કરો"
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:405
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:409
 msgid "Maildir _Path:"
 msgstr "Maildir પાથ (_P):"
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:441
-#: panel-plugin/mailwatch-mailbox-mbox.c:455
-#: panel-plugin/mailwatch-mailbox-mh.c:612
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:445
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:459
+#: ../panel-plugin/mailwatch-mailbox-mh.c:612
 msgid "_Interval:"
 msgstr "અંતરાલ (_I):"
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:491
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:495
 msgid "Local Maildir Spool"
 msgstr "સ્થાનિક Maildir સ્પુલ"
 
-#: panel-plugin/mailwatch-mailbox-maildir.c:492
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:496
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
 msgstr "Maildir પ્લગઈન સ્થાનિક maildir-શૈલી મેઈલ સ્પુલને નવા સંદેશાઓ માટે જોઈ શકતું નથી."
 
-#: panel-plugin/mailwatch-mailbox-mbox.c:370
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:374
 msgid "Select mbox file"
 msgstr "mbox ફાઈલ પસંદ કરો"
 
-#: panel-plugin/mailwatch-mailbox-mbox.c:419
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:423
 msgid "Mbox _Filename:"
 msgstr "Mbox ફાઈલનામ (_F):"
 
-#: panel-plugin/mailwatch-mailbox-mbox.c:497
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:501
 msgid "Local Mbox spool"
 msgstr "સ્થાનિક Mbox સ્પુલ"
 
-#: panel-plugin/mailwatch-mailbox-mbox.c:498
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:502
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
 msgstr "Mbox પ્લગઈન સ્થાનિક mbox-પ્રકારના મેઈલ સ્પુલને નવા સંદેશાઓ માટે ધ્યાન રાખે છે."
 
-#: panel-plugin/mailwatch-mailbox-mh.c:206
-#: panel-plugin/mailwatch-mailbox-mh.c:228
+#: ../panel-plugin/mailwatch-mailbox-mh.c:206
+#: ../panel-plugin/mailwatch-mailbox-mh.c:228
 #, c-format
 msgid "Malformed line %s in %s ignored."
 msgstr "મલીન વાક્ય %s એ %s માં અવગણાયેલ છે."
 
-#: panel-plugin/mailwatch-mailbox-mh.c:603
+#: ../panel-plugin/mailwatch-mailbox-mh.c:603
 msgid ""
 "The configuration of this plugin is read from\n"
 "the default mh maildir profile file ~/.mh_profile"
@@ -250,35 +252,35 @@ msgstr ""
 "આ પ્લગઈનનું રૂપરેખાંકન એ મૂળભુત mh maildir રૂપરેખા ફાઈલ ~/.mh_profile\n"
 "માંથી વાંચી રહ્યું છે"
 
-#: panel-plugin/mailwatch-mailbox-mh.c:653
+#: ../panel-plugin/mailwatch-mailbox-mh.c:653
 msgid "Local MH mail folder"
 msgstr "સ્થાનિક MH મેઈલ ફોલ્ડર"
 
-#: panel-plugin/mailwatch-mailbox-mh.c:654
+#: ../panel-plugin/mailwatch-mailbox-mh.c:654
 msgid "MH plugin watches local MH folders for new mail"
 msgstr "MH પ્લગઈન સ્થાનિક MH ફોલ્ડરોને નવા મેઈલ માટે ધ્યાન રાખે છે"
 
-#: panel-plugin/mailwatch-mailbox-pop3.c:806
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:807
 msgid "Advanced POP3 Options"
 msgstr "અદ્યતન POP3 વિકલ્પો"
 
-#: panel-plugin/mailwatch-mailbox-pop3.c:826
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:827
 msgid "Use SSL/TLS via STLS"
 msgstr "SSL/TLS ને STLS મારફતે વાપરો"
 
-#: panel-plugin/mailwatch-mailbox-pop3.c:842
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:843
 msgid "Use non-standard POP3 _port:"
 msgstr "બિન-પ્રમાણભૂત POP3 પોર્ટ વાપરો (_p):"
 
-#: panel-plugin/mailwatch-mailbox-pop3.c:887
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:889
 msgid "POP3 Server"
 msgstr "POP3 સર્વર"
 
-#: panel-plugin/mailwatch-mailbox-pop3.c:1096
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:1098
 msgid "Remote POP3 Mailbox"
 msgstr "દૂરસ્થ POP3 મેઈલબોક્સ"
 
-#: panel-plugin/mailwatch-mailbox-pop3.c:1097
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:1099
 msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
@@ -286,101 +288,128 @@ msgstr ""
 "POP3 પ્લગઈન દૂરસ્થ મેઈલ સર્વર સાથે જોડાઈ શકે છે કે જે POP3 પ્રોટોકોલને આધાર આપે છે, વૈકલ્પિક "
 "રીતે કડી સુરક્ષા માટે SSL વાપરીને."
 
-#: panel-plugin/mailwatch-plugin.c:114 panel-plugin/mailwatch-plugin.c:250
+#: ../panel-plugin/mailwatch-plugin.c:113
+#: ../panel-plugin/mailwatch-plugin.c:314
+#: ../panel-plugin/mailwatch-plugin-4.2.c:114
+#: ../panel-plugin/mailwatch-plugin-4.2.c:250
 msgid "No new mail"
 msgstr "કોઈ નવો મેઈલ નથી"
 
-#: panel-plugin/mailwatch-plugin.c:129
+#: ../panel-plugin/mailwatch-plugin.c:128
+#: ../panel-plugin/mailwatch-plugin-4.2.c:129
 msgid "You have 1 new message:"
 msgstr "તમારી પાસે ૧ નવો સંદેશો છે:"
 
-#: panel-plugin/mailwatch-plugin.c:131
+#: ../panel-plugin/mailwatch-plugin.c:130
+#: ../panel-plugin/mailwatch-plugin-4.2.c:131
 #, c-format
 msgid "You have %d new messages:"
 msgstr "તમારી પાસે %d નવા સંદેશાઓ છે:"
 
-#: panel-plugin/mailwatch-plugin.c:234
+#: ../panel-plugin/mailwatch-plugin.c:298
+#: ../panel-plugin/mailwatch-plugin-4.2.c:234
 msgid "Xfce Mailwatch"
 msgstr "Xfce Mailwatch"
 
-#: panel-plugin/mailwatch-plugin.c:235
+#: ../panel-plugin/mailwatch-plugin.c:299
+#: ../panel-plugin/mailwatch-plugin-4.2.c:235
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "mailwatch એપ્લેટ પેનલમાં ઉમેરી શકાશે નહિં."
 
-#: panel-plugin/mailwatch-plugin.c:236
+#: ../panel-plugin/mailwatch-plugin.c:300
+#: ../panel-plugin/mailwatch-plugin-4.2.c:236
 msgid "It is possible that your version of GLib does not have threads support."
 msgstr "એ શક્ય છે કે તમારી GLib ની આવૃત્તિ પાસે થ્રેડોનો આધાર નહિં હોય."
 
-#: panel-plugin/mailwatch-plugin.c:457
+#: ../panel-plugin/mailwatch-plugin.c:528
+#: ../panel-plugin/mailwatch-plugin-4.2.c:457
 msgid "Mailwatch log"
 msgstr "Mailwatch લોગ"
 
-#: panel-plugin/mailwatch-plugin.c:515
+#: ../panel-plugin/mailwatch-plugin.c:586
+#: ../panel-plugin/mailwatch-plugin-4.2.c:515
 msgid "Log _lines:"
 msgstr "લોગ લીટીઓ (_l):"
 
-#: panel-plugin/mailwatch-plugin.c:529
+#: ../panel-plugin/mailwatch-plugin.c:600
+#: ../panel-plugin/mailwatch-plugin-4.2.c:529
 msgid "Show log _status in icon"
 msgstr "લોગ પરિસ્થિતિ ચિહ્નમાં બતાવો (_s)"
 
-#: panel-plugin/mailwatch-plugin.c:575
+#: ../panel-plugin/mailwatch-plugin.c:644
+#: ../panel-plugin/mailwatch-plugin-4.2.c:575
 msgid "Select Icon"
 msgstr "ચિહ્ન પસંદ કરો"
 
-#: panel-plugin/mailwatch-plugin.c:605 panel-plugin/mailwatch-plugin.c:727
+#: ../panel-plugin/mailwatch-plugin.c:675
+#: ../panel-plugin/mailwatch-plugin.c:829
+#: ../panel-plugin/mailwatch-plugin-4.2.c:605
+#: ../panel-plugin/mailwatch-plugin-4.2.c:727
 msgid "_Normal"
 msgstr "સામાન્ય (_N)"
 
-#: panel-plugin/mailwatch-plugin.c:630
+#: ../panel-plugin/mailwatch-plugin.c:701
+#: ../panel-plugin/mailwatch-plugin-4.2.c:630
 msgid "Ne_w mail"
 msgstr "નવો મેઈલ (_w)"
 
-#: panel-plugin/mailwatch-plugin.c:659
-msgid "External Programs"
-msgstr "બાહ્ય કાર્યક્રમો"
+#: ../panel-plugin/mailwatch-plugin.c:732
+msgid "Edit Properties"
+msgstr ""
 
-#: panel-plugin/mailwatch-plugin.c:671
-msgid "Run _on click:"
-msgstr "ક્લિક કરવા પર ચલાવો (_o):"
-
-#: panel-plugin/mailwatch-plugin.c:688
-msgid "Run on new _messages:"
-msgstr "નવા સંદેશાઓ પર ચલાવો (_m):"
-
-#: panel-plugin/mailwatch-plugin.c:701
-msgid "Icons"
-msgstr "ચિહ્નો"
-
-#: panel-plugin/mailwatch-plugin.c:747
-msgid "Ne_w Mail"
-msgstr "નવો મેઈલ (_w)"
-
-#: panel-plugin/mailwatch-plugin.c:755
-msgid "_View Log..."
-msgstr "લોગ જુઓ (_V)..."
-
-#: panel-plugin/mailwatch-plugin.c:866
+#: ../panel-plugin/mailwatch-plugin.c:744
+#: ../panel-plugin/mailwatch-plugin-4.2.c:868
 msgid "Mail Watcher"
 msgstr "મેઈલ ધ્યાન રાખનાર"
 
-#: panel-plugin/mailwatch-utils.c:238
+#: ../panel-plugin/mailwatch-plugin.c:761
+#: ../panel-plugin/mailwatch-plugin-4.2.c:659
+msgid "External Programs"
+msgstr "બાહ્ય કાર્યક્રમો"
+
+#: ../panel-plugin/mailwatch-plugin.c:773
+#: ../panel-plugin/mailwatch-plugin-4.2.c:671
+msgid "Run _on click:"
+msgstr "ક્લિક કરવા પર ચલાવો (_o):"
+
+#: ../panel-plugin/mailwatch-plugin.c:790
+#: ../panel-plugin/mailwatch-plugin-4.2.c:688
+msgid "Run on new _messages:"
+msgstr "નવા સંદેશાઓ પર ચલાવો (_m):"
+
+#: ../panel-plugin/mailwatch-plugin.c:803
+#: ../panel-plugin/mailwatch-plugin-4.2.c:701
+msgid "Icons"
+msgstr "ચિહ્નો"
+
+#: ../panel-plugin/mailwatch-plugin.c:849
+#: ../panel-plugin/mailwatch-plugin-4.2.c:747
+msgid "Ne_w Mail"
+msgstr "નવો મેઈલ (_w)"
+
+#: ../panel-plugin/mailwatch-plugin.c:857
+#: ../panel-plugin/mailwatch-plugin-4.2.c:755
+msgid "_View Log..."
+msgstr "લોગ જુઓ (_V)..."
+
+#: ../panel-plugin/mailwatch-utils.c:238
 #, c-format
 msgid "XfceMailwatch: TLS handshake failed: %s"
 msgstr "XfceMailwatch: TLS હેન્ડશેક નિષ્ફળ: %s"
 
-#: panel-plugin/mailwatch-utils.c:248
+#: ../panel-plugin/mailwatch-utils.c:248
 msgid "Not compiled with SSL/TLS support"
 msgstr "SSL/TLS આધાર સાથે કમ્પાઈલ થયેલ નથી"
 
-#: panel-plugin/mailwatch-utils.c:250
+#: ../panel-plugin/mailwatch-utils.c:250
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
 msgstr "XfceMailwatch: TLS હેન્ડશેક નિષ્ફળ: SSL આધાર સાથે કમ્પાઈલ થયેલ નથી."
 
-#: panel-plugin/mailwatch-utils.c:273 panel-plugin/mailwatch-utils.c:326
+#: ../panel-plugin/mailwatch-utils.c:273 ../panel-plugin/mailwatch-utils.c:326
 msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr "સુરક્ષિત જોડાણની અરજી થઈ હતી, પરંતુ gnutls નો પ્રારંભ થયો ન હતો"
 
-#: panel-plugin/mailwatch.c:130
+#: ../panel-plugin/mailwatch.c:131
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
@@ -388,13 +417,13 @@ msgstr ""
 "xfce4-mailwatch-plugin: GThread આધારનો પ્રારંભ કરવામાં અસમર્થ.  આ તમારા GLib "
 "સ્થાપન સાથે સમસ્યા હોય એમ લાગે છે."
 
-#: panel-plugin/mailwatch.c:323 panel-plugin/mailwatch.c:324
-#: panel-plugin/mailwatch.c:370 panel-plugin/mailwatch.c:371
+#: ../panel-plugin/mailwatch.c:324 ../panel-plugin/mailwatch.c:325
+#: ../panel-plugin/mailwatch.c:371 ../panel-plugin/mailwatch.c:372
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "રૂપરેખા ફાઈલ '%s' માં લખવામાં અસમર્થ"
 
-#: panel-plugin/mailwatch.c:381 panel-plugin/mailwatch.c:383
+#: ../panel-plugin/mailwatch.c:382 ../panel-plugin/mailwatch.c:384
 #, c-format
 msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
@@ -404,56 +433,55 @@ msgstr ""
 "રૂપરેખા ફાઈલ '%s' પર પરવાનગીઓ સુયોજિત કરવામાં અસમર્થ.  જો આ ફાઈલ પાસવર્ડો અથવા અન્ય "
 "સંવેદનશીલ જાણકારી સમાવે, તો તે તમારી સિસ્ટમ પર અન્યો દ્વારા વાંચી શકાશે."
 
-#: panel-plugin/mailwatch.c:606
+#: ../panel-plugin/mailwatch.c:607
 msgid "This mailbox type does not require any configuration settings."
 msgstr "આ મેઈલબોક્સ પ્રકાર માટે કોઈપણ રૂપરેખાંકન સુયોજનો જરૂરી નથી."
 
-#: panel-plugin/mailwatch.c:632
+#: ../panel-plugin/mailwatch.c:633
 msgid "Mailbox _Name:"
 msgstr "મેઈલબોક્સ નામ (_N):"
 
-#: panel-plugin/mailwatch.c:649
+#: ../panel-plugin/mailwatch.c:650
 msgid "Mailwatch"
 msgstr "મેઈલવોચ"
 
-#: panel-plugin/mailwatch.c:650
+#: ../panel-plugin/mailwatch.c:651
 msgid "Mailbox name required."
 msgstr "મેઈલબોક્સ નામ જરૂરી છે."
 
-#: panel-plugin/mailwatch.c:651
+#: ../panel-plugin/mailwatch.c:652
 msgid "Please enter a name for the mailbox."
 msgstr "મહેરબાની કરીને મેઈલબોક્સ માટે નામ દાખલ કરો."
 
-#: panel-plugin/mailwatch.c:694
+#: ../panel-plugin/mailwatch.c:695
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "મેઈલબોક્સમાં ફેરફાર કરો: %s"
 
-#: panel-plugin/mailwatch.c:757
+#: ../panel-plugin/mailwatch.c:758
 msgid "Select Mailbox Type"
 msgstr "મેઈલબોક્સ પ્રકાર પસંદ કરો"
 
-#: panel-plugin/mailwatch.c:766
+#: ../panel-plugin/mailwatch.c:767
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr "મેઈલબોક્સ પ્રકાર પસંદ કરો.  પ્રકારનું વર્ણન નીચે દૃશ્યમાન થશે."
 
-#: panel-plugin/mailwatch.c:822
+#: ../panel-plugin/mailwatch.c:823
 msgid "Add New Mailbox"
 msgstr "નવો મેઈલબોક્સ ઉમેરો"
 
-#: panel-plugin/mailwatch.c:885
+#: ../panel-plugin/mailwatch.c:886
 msgid "Remove Mailbox"
 msgstr "દૂરસ્થ મેઈલબોક્સ"
 
-#: panel-plugin/mailwatch.c:886
+#: ../panel-plugin/mailwatch.c:887
 msgid "Are you sure?"
 msgstr "શું તમે ચોક્કસ છો?"
 
-#: panel-plugin/mailwatch.c:887
+#: ../panel-plugin/mailwatch.c:888
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr "મેઈલબોક્સ દૂર કરવાનું બધા સુયોજનો રદ કરશે, અને તે ફરીથી રદ કરી શકાશે નહિં."
 
-#: panel-plugin/mailwatch.c:958
+#: ../panel-plugin/mailwatch.c:959
 msgid "Mailboxes"
 msgstr "મેઈલબોક્સ"
-

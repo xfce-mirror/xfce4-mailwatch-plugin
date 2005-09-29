@@ -43,6 +43,7 @@
 #include <libxfcegui4/libxfcegui4.h>
 
 #include "mailwatch.h"
+#include "mailwatch-utils.h"
 
 #define BORDER          8
 
@@ -945,7 +946,7 @@ config_set_button_sensitive(GtkTreeView *treeview, GdkEventButton *evt,
 GtkContainer *
 xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
 {
-    GtkWidget *frame, *vbox, *hbox, *sw, *treeview, *btn;
+    GtkWidget *frame, *frame_bin, *vbox, *hbox, *sw, *treeview, *btn;
     GtkListStore *ls;
     GList *l;
     GtkTreeIter itr;
@@ -955,12 +956,12 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
     
     xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     
-    frame = xfce_framebox_new(_("Mailboxes"), TRUE);
+    frame = xfce_mailwatch_create_framebox(_("Mailboxes"), &frame_bin);
     gtk_widget_show(frame);
     
     hbox = gtk_hbox_new(FALSE, BORDER/2);
     gtk_widget_show(hbox);
-    xfce_framebox_add(XFCE_FRAMEBOX(frame), hbox);
+    gtk_container_add(GTK_CONTAINER(frame_bin), hbox);
     
     sw = gtk_scrolled_window_new(NULL, NULL);
     gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(sw),
