@@ -1381,7 +1381,8 @@ static void
 imap_config_newmailfolders_btn_clicked_cb(GtkWidget *w, gpointer user_data)
 {
     XfceMailwatchIMAPMailbox *imailbox = user_data;
-    GtkWidget *dlg, *topvbox, *vbox, *hbox, *treeview, *frame, *btn, *sw;
+    GtkWidget *dlg, *topvbox, *vbox, *hbox, *treeview, *frame, *frame_bin,
+              *btn, *sw;
     GtkWindow *toplevel = GTK_WINDOW(gtk_widget_get_toplevel(w));
     GtkTreeStore *ts;
     GtkTreeIter itr;
@@ -1410,13 +1411,13 @@ imap_config_newmailfolders_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     g_signal_connect(G_OBJECT(dlg), "destroy",
             G_CALLBACK(imap_config_newmailfolders_destroy_cb), imailbox);
     
-    frame = xfce_framebox_new(_("New Mail Folders"), TRUE);
+    frame = xfce_mailwatch_create_framebox(_("New Mail Folders"), &frame_bin);
     gtk_widget_show(frame);
     gtk_box_pack_start(GTK_BOX(topvbox), frame, TRUE, TRUE, 0);
     
     hbox = gtk_hbox_new(FALSE, BORDER/2);
     gtk_widget_show(hbox);
-    xfce_framebox_add(XFCE_FRAMEBOX(frame), hbox);
+    gtk_container_add(GTK_CONTAINER(frame_bin), hbox);
     
     sw = gtk_scrolled_window_new(NULL, NULL);
     gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw), GTK_POLICY_NEVER,
@@ -1588,7 +1589,8 @@ static void
 imap_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
 {
     XfceMailwatchIMAPMailbox *imailbox = user_data;
-    GtkWidget *dlg, *topvbox, *vbox, *hbox, *lbl, *entry, *frame, *chk, *combo;
+    GtkWidget *dlg, *topvbox, *vbox, *hbox, *lbl, *entry, *frame, *frame_bin,
+              *chk, *combo;
     
     xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     
@@ -1601,13 +1603,13 @@ imap_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     gtk_widget_show(topvbox);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), topvbox, TRUE, TRUE, 0);
     
-    frame = xfce_framebox_new(_("Connection"), TRUE);
+    frame = xfce_mailwatch_create_framebox(_("Connection"), &frame_bin);
     gtk_widget_show(frame);
     gtk_box_pack_start(GTK_BOX(topvbox), frame, FALSE, FALSE, 0);
     
     vbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_widget_show(vbox);
-    xfce_framebox_add(XFCE_FRAMEBOX(frame), vbox);
+    gtk_container_add(GTK_CONTAINER(frame_bin), vbox);
     
     combo = gtk_combo_box_new_text();
     gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use unsecured connection"));
@@ -1657,13 +1659,13 @@ imap_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     g_object_set_data(G_OBJECT(chk), "xfmw-entry", entry);
     g_object_set_data(G_OBJECT(combo), "xfmw-entry", entry);
     
-    frame = xfce_framebox_new(_("Folders"), TRUE);
+    frame = xfce_mailwatch_create_framebox(_("Folders"), &frame_bin);
     gtk_widget_show(frame);
     gtk_box_pack_start(GTK_BOX(topvbox), frame, FALSE, FALSE, 0);
     
     hbox = gtk_hbox_new(FALSE, BORDER/2);
     gtk_widget_show(hbox);
-    xfce_framebox_add(XFCE_FRAMEBOX(frame), hbox);
+    gtk_container_add(GTK_CONTAINER(frame_bin), hbox);
     
     lbl = gtk_label_new_with_mnemonic(_("IMAP server _directory:"));
     gtk_widget_show(lbl);
@@ -1687,7 +1689,8 @@ static GtkContainer *
 imap_get_setup_page(XfceMailwatchMailbox *mailbox)
 {
     XfceMailwatchIMAPMailbox *imailbox = XFCE_MAILWATCH_IMAP_MAILBOX(mailbox);
-    GtkWidget *topvbox, *vbox, *hbox, *frame, *lbl, *entry, *btn, *sbtn;
+    GtkWidget *topvbox, *vbox, *hbox, *frame, *frame_bin, *lbl, *entry, *btn,
+              *sbtn;
     GtkSizeGroup *sg;
     
     xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -1695,7 +1698,7 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
     topvbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_widget_show(topvbox);
     
-    frame = xfce_framebox_new(_("IMAP Server"), TRUE);
+    frame = xfce_mailwatch_create_framebox(_("IMAP Server"), &frame_bin);
     gtk_widget_show(frame);
     gtk_box_pack_start(GTK_BOX(topvbox), frame, FALSE, FALSE, 0);
     
@@ -1703,7 +1706,7 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
     
     vbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_widget_show(vbox);
-    xfce_framebox_add(XFCE_FRAMEBOX(frame), vbox);
+    gtk_container_add(GTK_CONTAINER(frame_bin), vbox);
     
     hbox = gtk_hbox_new(FALSE, BORDER/2);
     gtk_widget_show(hbox);

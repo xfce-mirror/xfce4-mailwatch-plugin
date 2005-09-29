@@ -799,7 +799,8 @@ static void
 pop3_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
 {
     XfceMailwatchPOP3Mailbox *pmailbox = user_data;
-    GtkWidget *dlg, *topvbox, *vbox, *hbox, *entry, *frame, *chk, *combo;
+    GtkWidget *dlg, *topvbox, *vbox, *hbox, *entry, *frame, *frame_bin, *chk,
+              *combo;
     
     xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     
@@ -812,13 +813,13 @@ pop3_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     gtk_widget_show(topvbox);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), topvbox, TRUE, TRUE, 0);
     
-    frame = xfce_framebox_new(_("Connection"), TRUE);
+    frame = xfce_mailwatch_create_framebox(_("Connection"), &frame_bin);
     gtk_widget_show(frame);
     gtk_box_pack_start(GTK_BOX(topvbox), frame, FALSE, FALSE, 0);
     
     vbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_widget_show(vbox);
-    xfce_framebox_add(XFCE_FRAMEBOX(frame), vbox);
+    gtk_container_add(GTK_CONTAINER(frame_bin), vbox);
     
     combo = gtk_combo_box_new_text();
     gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use unsecured connection"));
@@ -876,7 +877,8 @@ static GtkContainer *
 pop3_get_setup_page(XfceMailwatchMailbox *mailbox)
 {
     XfceMailwatchPOP3Mailbox *pmailbox = XFCE_MAILWATCH_POP3_MAILBOX(mailbox);
-    GtkWidget *topvbox, *vbox, *hbox, *frame, *lbl, *entry, *btn, *sbtn;
+    GtkWidget *topvbox, *vbox, *hbox, *frame, *frame_bin, *lbl, *entry, *btn,
+              *sbtn;
     GtkSizeGroup *sg;
     
     xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
@@ -884,7 +886,7 @@ pop3_get_setup_page(XfceMailwatchMailbox *mailbox)
     topvbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_widget_show(topvbox);
     
-    frame = xfce_framebox_new(_("POP3 Server"), TRUE);
+    frame = xfce_mailwatch_create_framebox(_("POP3 Server"), &frame_bin);
     gtk_widget_show(frame);
     gtk_box_pack_start(GTK_BOX(topvbox), frame, FALSE, FALSE, 0);
     
@@ -892,7 +894,7 @@ pop3_get_setup_page(XfceMailwatchMailbox *mailbox)
     
     vbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_widget_show(vbox);
-    xfce_framebox_add(XFCE_FRAMEBOX(frame), vbox);
+    gtk_container_add(GTK_CONTAINER(frame_bin), vbox);
     
     hbox = gtk_hbox_new(FALSE, BORDER/2);
     gtk_widget_show(hbox);

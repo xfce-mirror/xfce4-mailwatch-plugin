@@ -434,3 +434,15 @@ xfce_mailwatch_custom_button_new(const gchar *text, const gchar *icon)
     
     return btn;
 }
+
+GtkWidget *
+xfce_mailwatch_create_framebox(const gchar *title, GtkWidget **frame_bin)
+{
+#if LIBXFCEGUI4_CHECK_VERSION(4, 3, 4)
+    return xfce_create_framebox(title, frame_bin);
+#else
+    GtkWidget *frame = xfce_framebox_new(title, TRUE);
+    *frame_bin = XFCE_FRAMEBOX(frame)->hbox;
+    return frame;
+#endif
+}

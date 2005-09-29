@@ -71,6 +71,7 @@ gssize xfce_mailwatch_net_recv(gint sockfd, XfceMailwatchSecurityInfo *security_
 void xfce_mailwatch_net_tls_teardown(XfceMailwatchSecurityInfo *security_info);
 
 GtkWidget *xfce_mailwatch_custom_button_new(const gchar *text, const gchar *icon);
+GtkWidget *xfce_mailwatch_create_framebox(const gchar *title, GtkWidget **frame_bin);
 
 G_END_DECLS
 
