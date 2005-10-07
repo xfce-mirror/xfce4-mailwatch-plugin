@@ -1,14 +1,14 @@
-# translation of gu.po to Gujarati
-# This file is distributed under the same license as the PACKAGE package.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+# Gujarati translations for xfce4-mailwatch-plugin package.
+# Copyright (C) 2005 Brian Tarricone, Pasi Orovuo.
+# This file is distributed under the same license as the xfce4-mailwatch-plugin package.
 # Ankit Patel <ankit644@yahoo.com>, 2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gu\n"
+"Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-09-29 02:19-0700\n"
-"PO-Revision-Date: 2005-08-28 13:22+0530\n"
+"PO-Revision-Date: 2005-10-08 01:35+0900\n"
 "Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"\n"
-"\n"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:254
 msgid ""
