@@ -1,8 +1,7 @@
 # $Id$
 #
 # Japanese translations for xfce4-mailwatch-plugin package.
-# Copyright (C) 2005 Brian Tarricone.
-# Copyright (C) 2005 Pasi Orovuo.
+# Copyright (C) 2005 Brian Tarricone, Pasi Orovuo.
 # This file is distributed under the same license as the xfce4-mailwatch-plugin package.
 # Daichi Kawahata <daichi@xfce.org>, 2005.
 #
@@ -11,7 +10,7 @@ msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-09-29 02:19-0700\n"
-"PO-Revision-Date: 2005-09-14 04:01+0900\n"
+"PO-Revision-Date: 2005-10-08 01:43+0900\n"
 "Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
@@ -23,8 +22,8 @@ msgid ""
 "Secure IMAP is not available, and the IMAP server does not support plaintext "
 "logins."
 msgstr ""
-"安全な IMAP が利用できません、また IMAP サーバは平文でのログインに対応しませ"
-"ん。"
+"安全な IMAP が利用できません、また IMAP サーバーは平文でのログインに対応しま"
+"せん。"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:302
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:268
@@ -35,8 +34,8 @@ msgstr "TLS ハンドシェイクに失敗: %s"
 #: ../panel-plugin/mailwatch-mailbox-imap.c:335
 msgid "STARTTLS security was requested, but this server does not support it."
 msgstr ""
-"STARTTLS セキュリティがリクエストされましたが、このサーバはそれをサポートしま"
-"せん。"
+"STARTTLS セキュリティがリクエストされましたが、このサーバーはそれをサポートし"
+"ません。"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:399
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:358
@@ -51,7 +50,7 @@ msgstr ""
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:397
 #, c-format
 msgid "Failed to connect to server: %s"
-msgstr "サーバへの接続に失敗しました: %s"
+msgstr "サーバーへの接続に失敗しました: %s"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:470
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:429
@@ -83,7 +82,7 @@ msgstr "エラー"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1397
 msgid "No server or username is set."
-msgstr "サーバまたはユーザ名がセットされていません。"
+msgstr "サーバーまたはユーザー名がセットされていません。"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1398
 msgid ""
@@ -91,9 +90,9 @@ msgid ""
 "password are set.  Also be sure to check any security settings in the "
 "Advanced dialog."
 msgstr ""
-"サーバ、ユーザ名と多分パスワードがセットされない限り、フォルダリストは取得で"
-"きません。高度な設定用のダイアログでセキュリティの設定を確認するのも忘れない"
-"で下さい。"
+"サーバー、ユーザー名と多分パスワードがセットされない限り、フォルダリストは取"
+"得できません。高度な設定用のダイアログでセキュリティの設定を確認するのも忘れ"
+"ないで下さい。"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
@@ -136,21 +135,21 @@ msgstr "フォルダ"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1670
 msgid "IMAP server _directory:"
-msgstr "IMAP サーバフォルダ(_D):"
+msgstr "IMAP サーバーフォルダ(_D):"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1701
 msgid "IMAP Server"
-msgstr "IMAP サーバ"
+msgstr "IMAP サーバー"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1715
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:903
 msgid "_Mail server:"
-msgstr "メールサーバ(_M):"
+msgstr "メールサーバー(_M):"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1734
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:922
 msgid "_Username:"
-msgstr "ユーザ名(_U):"
+msgstr "ユーザー名(_U):"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1753
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:941
@@ -285,7 +284,7 @@ msgstr "非標準の POP3 ポートを利用する(_P):"
 
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:889
 msgid "POP3 Server"
-msgstr "POP3 サーバ"
+msgstr "POP3 サーバー"
 
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:1098
 msgid "Remote POP3 Mailbox"
@@ -327,7 +326,7 @@ msgstr "Xfce メールウォッチ"
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "このメールウォッチ・アプレットはパネルに追加できません。"
 
-# FIXME
+# FIXME: possible or impossible?
 #: ../panel-plugin/mailwatch-plugin.c:300
 #: ../panel-plugin/mailwatch-plugin-4.2.c:236
 msgid "It is possible that your version of GLib does not have threads support."
@@ -368,7 +367,7 @@ msgstr "新しいメール(_W)"
 
 #: ../panel-plugin/mailwatch-plugin.c:732
 msgid "Edit Properties"
-msgstr ""
+msgstr "プロパティを編集"
 
 #: ../panel-plugin/mailwatch-plugin.c:744
 #: ../panel-plugin/mailwatch-plugin-4.2.c:868
