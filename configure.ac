@@ -66,6 +66,10 @@ XDT_FEATURE_DEBUG
 
 AC_OUTPUT([
 Makefile
+doc/Makefile
+doc/C/Makefile
+doc/C/images/Makefile
+doc/version
 panel-plugin/Makefile
 pixmaps/Makefile
 po/Makefile.in
