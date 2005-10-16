@@ -2,15 +2,16 @@
 # Copyright (C) 2005 Brian Tarricone, Pasi Orovuo.
 # This file is distributed under the same license as the xfce4-mailwatch-plugin package.
 # Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2005.
+# Pasi Orovuo <pasi@xfce.org>, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-29 02:19-0700\n"
-"PO-Revision-Date: 2005-08-15 19:20+0300\n"
+"POT-Creation-Date: 2005-10-17 07:00+0900\n"
+"PO-Revision-Date: 2005-10-08 01:34+0900\n"
 "Last-Translator: Pasi Orovuo <pasi@xfce.org>\n"
-"Language-Team: \n"
+"Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -294,110 +295,110 @@ msgstr ""
 "POP3-liitännäinen voi yhdistää POP3-protokollaa tukevaan etäpostipalvelimeen "
 "käyttäen halutessasi SSL-protokollaa yhteyden suojaamiseen."
 
-#: ../panel-plugin/mailwatch-plugin.c:113
-#: ../panel-plugin/mailwatch-plugin.c:314
+#: ../panel-plugin/mailwatch-plugin.c:114
+#: ../panel-plugin/mailwatch-plugin.c:315
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
 #: ../panel-plugin/mailwatch-plugin-4.2.c:250
 msgid "No new mail"
 msgstr "Ei uusia posteja"
 
-#: ../panel-plugin/mailwatch-plugin.c:128
+#: ../panel-plugin/mailwatch-plugin.c:129
 #: ../panel-plugin/mailwatch-plugin-4.2.c:129
 msgid "You have 1 new message:"
 msgstr "1 uusi posti:"
 
-#: ../panel-plugin/mailwatch-plugin.c:130
+#: ../panel-plugin/mailwatch-plugin.c:131
 #: ../panel-plugin/mailwatch-plugin-4.2.c:131
 #, c-format
 msgid "You have %d new messages:"
 msgstr "%d uutta postia:"
 
-#: ../panel-plugin/mailwatch-plugin.c:298
+#: ../panel-plugin/mailwatch-plugin.c:299
 #: ../panel-plugin/mailwatch-plugin-4.2.c:234
 msgid "Xfce Mailwatch"
 msgstr "Xfce postivahti"
 
-#: ../panel-plugin/mailwatch-plugin.c:299
+#: ../panel-plugin/mailwatch-plugin.c:300
 #: ../panel-plugin/mailwatch-plugin-4.2.c:235
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Postivahti-sovelmaa ei voi lisätä paneeliin"
 
-#: ../panel-plugin/mailwatch-plugin.c:300
+#: ../panel-plugin/mailwatch-plugin.c:301
 #: ../panel-plugin/mailwatch-plugin-4.2.c:236
 msgid "It is possible that your version of GLib does not have threads support."
 msgstr "Voi olla, että GLib-versiosi ei tue säikeitä."
 
-#: ../panel-plugin/mailwatch-plugin.c:528
+#: ../panel-plugin/mailwatch-plugin.c:529
 #: ../panel-plugin/mailwatch-plugin-4.2.c:457
 msgid "Mailwatch log"
 msgstr "Mailwatch-loki"
 
-#: ../panel-plugin/mailwatch-plugin.c:586
+#: ../panel-plugin/mailwatch-plugin.c:587
 #: ../panel-plugin/mailwatch-plugin-4.2.c:515
 msgid "Log _lines:"
 msgstr "Loki _rivit:"
 
-#: ../panel-plugin/mailwatch-plugin.c:600
+#: ../panel-plugin/mailwatch-plugin.c:601
 #: ../panel-plugin/mailwatch-plugin-4.2.c:529
 msgid "Show log _status in icon"
 msgstr "_Näytä lokin tila paneelin kuvakkeessa"
 
-#: ../panel-plugin/mailwatch-plugin.c:644
+#: ../panel-plugin/mailwatch-plugin.c:645
 #: ../panel-plugin/mailwatch-plugin-4.2.c:575
 msgid "Select Icon"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:675
-#: ../panel-plugin/mailwatch-plugin.c:829
+#: ../panel-plugin/mailwatch-plugin.c:676
+#: ../panel-plugin/mailwatch-plugin.c:830
 #: ../panel-plugin/mailwatch-plugin-4.2.c:605
 #: ../panel-plugin/mailwatch-plugin-4.2.c:727
 msgid "_Normal"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:701
+#: ../panel-plugin/mailwatch-plugin.c:702
 #: ../panel-plugin/mailwatch-plugin-4.2.c:630
 #, fuzzy
 msgid "Ne_w mail"
 msgstr "Ei uusia posteja"
 
-#: ../panel-plugin/mailwatch-plugin.c:732
+#: ../panel-plugin/mailwatch-plugin.c:733
 msgid "Edit Properties"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:744
+#: ../panel-plugin/mailwatch-plugin.c:745
 #: ../panel-plugin/mailwatch-plugin-4.2.c:868
 msgid "Mail Watcher"
 msgstr "Postivahti"
 
-#: ../panel-plugin/mailwatch-plugin.c:761
+#: ../panel-plugin/mailwatch-plugin.c:762
 #: ../panel-plugin/mailwatch-plugin-4.2.c:659
 msgid "External Programs"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:773
+#: ../panel-plugin/mailwatch-plugin.c:774
 #: ../panel-plugin/mailwatch-plugin-4.2.c:671
 #, fuzzy
 msgid "Run _on click:"
 msgstr "Suo_rita napsautettaessa:"
 
-#: ../panel-plugin/mailwatch-plugin.c:790
+#: ../panel-plugin/mailwatch-plugin.c:791
 #: ../panel-plugin/mailwatch-plugin-4.2.c:688
 #, fuzzy
 msgid "Run on new _messages:"
 msgstr "Suorita, kun _uusia viestejä:"
 
-#: ../panel-plugin/mailwatch-plugin.c:803
+#: ../panel-plugin/mailwatch-plugin.c:804
 #: ../panel-plugin/mailwatch-plugin-4.2.c:701
 msgid "Icons"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:849
+#: ../panel-plugin/mailwatch-plugin.c:850
 #: ../panel-plugin/mailwatch-plugin-4.2.c:747
 #, fuzzy
 msgid "Ne_w Mail"
 msgstr "Ei uusia posteja"
 
-#: ../panel-plugin/mailwatch-plugin.c:857
+#: ../panel-plugin/mailwatch-plugin.c:858
 #: ../panel-plugin/mailwatch-plugin-4.2.c:755
 msgid "_View Log..."
 msgstr "_Näytä loki..."
