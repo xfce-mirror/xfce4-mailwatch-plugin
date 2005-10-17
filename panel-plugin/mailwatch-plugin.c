@@ -339,7 +339,7 @@ static void
 mailwatch_read_config(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
 {
     const char *value;
-    gchar *cfgfile, *file;
+    gchar *file;
     gboolean reload_icon = TRUE;
     XfceRc *rc;
     
@@ -349,10 +349,13 @@ mailwatch_read_config(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
         return;
     
     rc = xfce_rc_simple_open(file, TRUE);
-    g_free(file);
 
-    if(!rc)
+    if(!rc) {
+        g_free(file);
         return;
+    }
+    
+    xfce_rc_set_group(rc, "mailwatch-plugin");
     
     value = xfce_rc_read_entry(rc, "click_command", NULL);
     if(value)
@@ -379,81 +382,57 @@ mailwatch_read_config(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
     if(reload_icon)
         mailwatch_set_size(plugin, xfce_panel_plugin_get_size(plugin), mwp);
     
-    mwp->log_lines = 
-        xfce_rc_read_int_entry(rc, "log_lines", DEFAULT_LOG_LINES);
+    mwp->log_lines = xfce_rc_read_int_entry(rc, "log_lines", DEFAULT_LOG_LINES);
     
-    mwp->log_lines = 
-        xfce_rc_read_bool_entry(rc, "show_log_status", TRUE);
+    mwp->log_lines = xfce_rc_read_bool_entry(rc, "show_log_status", TRUE);
     
-    value = xfce_rc_read_entry(rc, "cfgfile_suffix", NULL);
-    if(!value) {
-        GTimeVal gtv = { 0, 0 };
-        
-        g_get_current_time(&gtv);
-        cfgfile = g_strdup_printf("xfce4/panel/mailwatch/mailwatch.%ld.%ld.rc",
-                gtv.tv_sec, gtv.tv_usec);
-    } else {
-        cfgfile = g_strdup_printf("xfce4/panel/mailwatch/mailwatch.%s.rc", value);
-    }
-    
-    xfce_mailwatch_set_config_file(mwp->mailwatch, cfgfile);
-    DBG("cfgfile = %s", cfgfile);
-    xfce_mailwatch_load_config(mwp->mailwatch);
-    g_free(cfgfile);
-
     xfce_rc_close(rc);
+    
+    xfce_mailwatch_set_config_file(mwp->mailwatch, file);
+    xfce_mailwatch_load_config(mwp->mailwatch);
+    
+    g_free(file);
 }
 
 static void
 mailwatch_write_config(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
 {
     const gchar *cfgfile = xfce_mailwatch_get_config_file(mwp->mailwatch);
-    gchar *p, *cfgfile_suffix, *file;
+    gchar *file;
     XfceRc *rc;
 
     if(!(file = xfce_panel_plugin_save_location(plugin, TRUE)))
         return;
     
     rc = xfce_rc_simple_open(file, FALSE);
-    g_free(file);
 
-    if(!rc)
+    if(!rc) {
+        g_free(file);
         return;
+    }
     
     DBG("entering(%p): %s",plugin, cfgfile?cfgfile:"[nil]");
     
+    xfce_rc_set_group(rc, "mailwatch-plugin");
+    
     xfce_rc_write_entry(rc, "click_command", 
-            mwp->click_command?mwp->click_command:"");
-    
+                        mwp->click_command?mwp->click_command:"");
     xfce_rc_write_entry(rc, "new_messages_command",
-            mwp->new_messages_command?mwp->new_messages_command:"");
-    
+                        mwp->new_messages_command?mwp->new_messages_command:"");
     xfce_rc_write_entry(rc, "normal_icon",
-            mwp->normal_icon?mwp->normal_icon:DEFAULT_NORMAL_ICON);
-    
+                        mwp->normal_icon?mwp->normal_icon:DEFAULT_NORMAL_ICON);
     xfce_rc_write_entry(rc, "new_mail_icon",
-            mwp->new_mail_icon?mwp->new_mail_icon:DEFAULT_NEW_MAIL_ICON);
-
+                        mwp->new_mail_icon?mwp->new_mail_icon:DEFAULT_NEW_MAIL_ICON);
     xfce_rc_write_int_entry(rc, "log_lines", mwp->log_lines);
-    
     xfce_rc_write_bool_entry(rc, "show_log_status", mwp->show_log_status);
     
-    if(cfgfile)
-    {    
-        xfce_mailwatch_save_config(mwp->mailwatch);
-        
-        p = g_strrstr(cfgfile, ".rc");
-        if(!p || p - cfgfile <= 32 || strlen(cfgfile+32) <= 3) {
-            g_critical("xfce4-mailwatch-plugin: config file length is not as expected");
-            return;
-        }
-        
-        cfgfile_suffix = g_strndup(cfgfile+32, strlen(cfgfile+32)-3);
-        xfce_rc_write_entry(rc, "cfgfile_suffix", cfgfile_suffix);
-        g_free(cfgfile_suffix);
-    }
-
     xfce_rc_close(rc);
+    
+    if(!cfgfile)
+        xfce_mailwatch_set_config_file(mwp->mailwatch, file);
+    xfce_mailwatch_save_config(mwp->mailwatch);
+    
+    g_free(file);
 }
 
 static gboolean

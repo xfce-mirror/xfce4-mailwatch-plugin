@@ -198,6 +198,7 @@ xfce_mailwatch_get_config_file(XfceMailwatch *mailwatch)
 gboolean
 xfce_mailwatch_load_config(XfceMailwatch *mailwatch)
 {
+    gchar *config_file;
     XfceRc *rcfile;
     gchar buf[32];
     GList *l;
@@ -207,9 +208,22 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch)
     g_return_val_if_fail(mailwatch->config_file, FALSE);
     g_return_val_if_fail(!mailwatch->mailboxes, FALSE);  /* FIXME: yeah? */
     
-    rcfile = xfce_rc_config_open(XFCE_RESOURCE_CONFIG, mailwatch->config_file, TRUE);
-    if(!rcfile)
+    if(*mailwatch->config_file != '/') {
+        config_file = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+                                                  mailwatch->config_file,
+                                                  TRUE);
+    } else
+        config_file = g_strdup(mailwatch->config_file);
+    if(!config_file)
+        return FALSE;
+    
+    DBG("opening config file '%s'", config_file);
+    
+    rcfile = xfce_rc_simple_open(config_file, TRUE);
+    if(!rcfile) {
+        g_free(config_file);
         return TRUE;  /* assume no config file exists yet? */
+    }
     
     xfce_rc_set_group(rcfile, "mailwatch");
     nmailboxes = xfce_rc_read_int_entry(rcfile, "nmailboxes", 0);
@@ -294,6 +308,8 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch)
     
     xfce_rc_close(rcfile);
     
+    g_free(config_file);
+    
     return TRUE;
 }
 
@@ -301,7 +317,7 @@ gboolean
 xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
 {
     XfceRc *rcfile;
-    gchar *config_file, *config_file_new, buf[32];
+    gchar *config_file, buf[32];
     GList *l;
     gint i;
     
@@ -310,21 +326,23 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
     
     xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     
-    config_file = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
-            mailwatch->config_file, TRUE);
+    if(*mailwatch->config_file != '/') {
+        config_file = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+                                                  mailwatch->config_file,
+                                                  TRUE);
+    } else
+        config_file = g_strdup(mailwatch->config_file);
     if(!config_file)
         return FALSE;
     
-    config_file_new = g_strconcat(config_file, ".new", NULL);
-    unlink(config_file_new);
+    DBG("opening config file '%s'", config_file);
     
-    rcfile = xfce_rc_simple_open(config_file_new, FALSE);
+    rcfile = xfce_rc_simple_open(config_file, FALSE);
     if(!rcfile) {
         xfce_mailwatch_log_message(mailwatch, NULL, XFCE_MAILWATCH_LOG_WARNING,
-    	        _("Unable to write config file '%s'"), config_file_new);
-        g_critical(_("Unable to write config file '%s'"), config_file_new);
+    	        _("Unable to write config file '%s'"), config_file);
+        g_critical(_("Unable to write config file '%s'"), config_file);
         g_free(config_file);
-        g_free(config_file_new);
         return FALSE;
     }
     
@@ -366,16 +384,6 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
     
     xfce_rc_close(rcfile);
     
-    if(rename(config_file_new, config_file)) {
-        xfce_mailwatch_log_message(mailwatch, NULL, XFCE_MAILWATCH_LOG_WARNING,
-                _("Unable to write config file '%s'"), config_file);
-        g_critical(_("Unable to write config file '%s'"), config_file);
-        unlink(config_file_new);
-        g_free(config_file);
-        g_free(config_file_new);
-        return FALSE;
-    }
-    
     /* protect the file in case it has passwords in it */
     if(chmod(config_file, 0600)) {
         xfce_mailwatch_log_message(mailwatch, NULL, XFCE_MAILWATCH_LOG_WARNING,
@@ -385,7 +393,6 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
     }
     
     g_free(config_file);
-    g_free(config_file_new);
     
     return TRUE;
 }
