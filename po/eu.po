@@ -1,14 +1,14 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Euskara translations for xfce4-mailwatch-plugin package.
+# Copyright (C) 2005 Brian Tarricone, Pasi Orovuo.
+# This file is distributed under the same license as the xfce4-mailwatch-plugin package.
+# Piarres Beobide <pi@beobide.net>, 2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Mail\n"
+"Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-10-17 07:00+0900\n"
-"PO-Revision-Date: 2005-10-17 12:00+0900\n"
+"PO-Revision-Date: 2005-10-21 08:22+0900\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Euskara <librezale@librezale.org>\n"
 "MIME-Version: 1.0\n"
