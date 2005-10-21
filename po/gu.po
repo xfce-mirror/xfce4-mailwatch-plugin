@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-17 07:00+0900\n"
+"POT-Creation-Date: 2005-10-21 20:56+0900\n"
 "PO-Revision-Date: 2005-10-08 01:35+0900\n"
 "Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
@@ -319,73 +319,73 @@ msgstr "mailwatch એપ્લેટ પેનલમાં ઉમેરી શ�
 msgid "It is possible that your version of GLib does not have threads support."
 msgstr "એ શક્ય છે કે તમારી GLib ની આવૃત્તિ પાસે થ્રેડોનો આધાર નહિં હોય."
 
-#: ../panel-plugin/mailwatch-plugin.c:529
+#: ../panel-plugin/mailwatch-plugin.c:508
 #: ../panel-plugin/mailwatch-plugin-4.2.c:457
 msgid "Mailwatch log"
 msgstr "Mailwatch લોગ"
 
-#: ../panel-plugin/mailwatch-plugin.c:587
+#: ../panel-plugin/mailwatch-plugin.c:566
 #: ../panel-plugin/mailwatch-plugin-4.2.c:515
 msgid "Log _lines:"
 msgstr "લોગ લીટીઓ (_l):"
 
-#: ../panel-plugin/mailwatch-plugin.c:601
+#: ../panel-plugin/mailwatch-plugin.c:580
 #: ../panel-plugin/mailwatch-plugin-4.2.c:529
 msgid "Show log _status in icon"
 msgstr "લોગ પરિસ્થિતિ ચિહ્નમાં બતાવો (_s)"
 
-#: ../panel-plugin/mailwatch-plugin.c:645
+#: ../panel-plugin/mailwatch-plugin.c:624
 #: ../panel-plugin/mailwatch-plugin-4.2.c:575
 msgid "Select Icon"
 msgstr "ચિહ્ન પસંદ કરો"
 
-#: ../panel-plugin/mailwatch-plugin.c:676
-#: ../panel-plugin/mailwatch-plugin.c:830
+#: ../panel-plugin/mailwatch-plugin.c:655
+#: ../panel-plugin/mailwatch-plugin.c:809
 #: ../panel-plugin/mailwatch-plugin-4.2.c:605
 #: ../panel-plugin/mailwatch-plugin-4.2.c:727
 msgid "_Normal"
 msgstr "સામાન્ય (_N)"
 
-#: ../panel-plugin/mailwatch-plugin.c:702
+#: ../panel-plugin/mailwatch-plugin.c:681
 #: ../panel-plugin/mailwatch-plugin-4.2.c:630
 msgid "Ne_w mail"
 msgstr "નવો મેઈલ (_w)"
 
-#: ../panel-plugin/mailwatch-plugin.c:733
+#: ../panel-plugin/mailwatch-plugin.c:712
 msgid "Edit Properties"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:745
+#: ../panel-plugin/mailwatch-plugin.c:724
 #: ../panel-plugin/mailwatch-plugin-4.2.c:868
 msgid "Mail Watcher"
 msgstr "મેઈલ ધ્યાન રાખનાર"
 
-#: ../panel-plugin/mailwatch-plugin.c:762
+#: ../panel-plugin/mailwatch-plugin.c:741
 #: ../panel-plugin/mailwatch-plugin-4.2.c:659
 msgid "External Programs"
 msgstr "બાહ્ય કાર્યક્રમો"
 
-#: ../panel-plugin/mailwatch-plugin.c:774
+#: ../panel-plugin/mailwatch-plugin.c:753
 #: ../panel-plugin/mailwatch-plugin-4.2.c:671
 msgid "Run _on click:"
 msgstr "ક્લિક કરવા પર ચલાવો (_o):"
 
-#: ../panel-plugin/mailwatch-plugin.c:791
+#: ../panel-plugin/mailwatch-plugin.c:770
 #: ../panel-plugin/mailwatch-plugin-4.2.c:688
 msgid "Run on new _messages:"
 msgstr "નવા સંદેશાઓ પર ચલાવો (_m):"
 
-#: ../panel-plugin/mailwatch-plugin.c:804
+#: ../panel-plugin/mailwatch-plugin.c:783
 #: ../panel-plugin/mailwatch-plugin-4.2.c:701
 msgid "Icons"
 msgstr "ચિહ્નો"
 
-#: ../panel-plugin/mailwatch-plugin.c:850
+#: ../panel-plugin/mailwatch-plugin.c:829
 #: ../panel-plugin/mailwatch-plugin-4.2.c:747
 msgid "Ne_w Mail"
 msgstr "નવો મેઈલ (_w)"
 
-#: ../panel-plugin/mailwatch-plugin.c:858
+#: ../panel-plugin/mailwatch-plugin.c:837
 #: ../panel-plugin/mailwatch-plugin-4.2.c:755
 msgid "_View Log..."
 msgstr "લોગ જુઓ (_V)..."
@@ -415,13 +415,12 @@ msgstr ""
 "xfce4-mailwatch-plugin: GThread આધારનો પ્રારંભ કરવામાં અસમર્થ.  આ તમારા GLib "
 "સ્થાપન સાથે સમસ્યા હોય એમ લાગે છે."
 
-#: ../panel-plugin/mailwatch.c:324 ../panel-plugin/mailwatch.c:325
-#: ../panel-plugin/mailwatch.c:371 ../panel-plugin/mailwatch.c:372
+#: ../panel-plugin/mailwatch.c:343 ../panel-plugin/mailwatch.c:344
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "રૂપરેખા ફાઈલ '%s' માં લખવામાં અસમર્થ"
 
-#: ../panel-plugin/mailwatch.c:382 ../panel-plugin/mailwatch.c:384
+#: ../panel-plugin/mailwatch.c:390 ../panel-plugin/mailwatch.c:392
 #, c-format
 msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
@@ -431,55 +430,55 @@ msgstr ""
 "રૂપરેખા ફાઈલ '%s' પર પરવાનગીઓ સુયોજિત કરવામાં અસમર્થ.  જો આ ફાઈલ પાસવર્ડો અથવા અન્ય "
 "સંવેદનશીલ જાણકારી સમાવે, તો તે તમારી સિસ્ટમ પર અન્યો દ્વારા વાંચી શકાશે."
 
-#: ../panel-plugin/mailwatch.c:607
+#: ../panel-plugin/mailwatch.c:614
 msgid "This mailbox type does not require any configuration settings."
 msgstr "આ મેઈલબોક્સ પ્રકાર માટે કોઈપણ રૂપરેખાંકન સુયોજનો જરૂરી નથી."
 
-#: ../panel-plugin/mailwatch.c:633
+#: ../panel-plugin/mailwatch.c:640
 msgid "Mailbox _Name:"
 msgstr "મેઈલબોક્સ નામ (_N):"
 
-#: ../panel-plugin/mailwatch.c:650
+#: ../panel-plugin/mailwatch.c:657
 msgid "Mailwatch"
 msgstr "મેઈલવોચ"
 
-#: ../panel-plugin/mailwatch.c:651
+#: ../panel-plugin/mailwatch.c:658
 msgid "Mailbox name required."
 msgstr "મેઈલબોક્સ નામ જરૂરી છે."
 
-#: ../panel-plugin/mailwatch.c:652
+#: ../panel-plugin/mailwatch.c:659
 msgid "Please enter a name for the mailbox."
 msgstr "મહેરબાની કરીને મેઈલબોક્સ માટે નામ દાખલ કરો."
 
-#: ../panel-plugin/mailwatch.c:695
+#: ../panel-plugin/mailwatch.c:702
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "મેઈલબોક્સમાં ફેરફાર કરો: %s"
 
-#: ../panel-plugin/mailwatch.c:758
+#: ../panel-plugin/mailwatch.c:765
 msgid "Select Mailbox Type"
 msgstr "મેઈલબોક્સ પ્રકાર પસંદ કરો"
 
-#: ../panel-plugin/mailwatch.c:767
+#: ../panel-plugin/mailwatch.c:774
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr "મેઈલબોક્સ પ્રકાર પસંદ કરો.  પ્રકારનું વર્ણન નીચે દૃશ્યમાન થશે."
 
-#: ../panel-plugin/mailwatch.c:823
+#: ../panel-plugin/mailwatch.c:830
 msgid "Add New Mailbox"
 msgstr "નવો મેઈલબોક્સ ઉમેરો"
 
-#: ../panel-plugin/mailwatch.c:886
+#: ../panel-plugin/mailwatch.c:893
 msgid "Remove Mailbox"
 msgstr "દૂરસ્થ મેઈલબોક્સ"
 
-#: ../panel-plugin/mailwatch.c:887
+#: ../panel-plugin/mailwatch.c:894
 msgid "Are you sure?"
 msgstr "શું તમે ચોક્કસ છો?"
 
-#: ../panel-plugin/mailwatch.c:888
+#: ../panel-plugin/mailwatch.c:895
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr "મેઈલબોક્સ દૂર કરવાનું બધા સુયોજનો રદ કરશે, અને તે ફરીથી રદ કરી શકાશે નહિં."
 
-#: ../panel-plugin/mailwatch.c:959
+#: ../panel-plugin/mailwatch.c:966
 msgid "Mailboxes"
 msgstr "મેઈલબોક્સ"

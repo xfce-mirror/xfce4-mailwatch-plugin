@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-17 07:00+0900\n"
+"POT-Creation-Date: 2005-10-21 20:56+0900\n"
 "PO-Revision-Date: 2005-10-08 02:52+0900\n"
 "Last-Translator: Stavros Giannouris <stavrosg2002@freemail.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -330,73 +330,73 @@ msgid "It is possible that your version of GLib does not have threads support."
 msgstr ""
 "Πιθανόν η έκδοση της Glib που διαθέτετε δεν έχει υποστήριξη για νήματα."
 
-#: ../panel-plugin/mailwatch-plugin.c:529
+#: ../panel-plugin/mailwatch-plugin.c:508
 #: ../panel-plugin/mailwatch-plugin-4.2.c:457
 msgid "Mailwatch log"
 msgstr "Καταγραφή του Mailwatch"
 
-#: ../panel-plugin/mailwatch-plugin.c:587
+#: ../panel-plugin/mailwatch-plugin.c:566
 #: ../panel-plugin/mailwatch-plugin-4.2.c:515
 msgid "Log _lines:"
 msgstr "Γραμμές κατα_γραφής:"
 
-#: ../panel-plugin/mailwatch-plugin.c:601
+#: ../panel-plugin/mailwatch-plugin.c:580
 #: ../panel-plugin/mailwatch-plugin-4.2.c:529
 msgid "Show log _status in icon"
 msgstr "Εμφάνιση κατάστασης της καταγραφής στο εικονίδιο"
 
-#: ../panel-plugin/mailwatch-plugin.c:645
+#: ../panel-plugin/mailwatch-plugin.c:624
 #: ../panel-plugin/mailwatch-plugin-4.2.c:575
 msgid "Select Icon"
 msgstr "Επιλέξτε Εικονίδιο"
 
-#: ../panel-plugin/mailwatch-plugin.c:676
-#: ../panel-plugin/mailwatch-plugin.c:830
+#: ../panel-plugin/mailwatch-plugin.c:655
+#: ../panel-plugin/mailwatch-plugin.c:809
 #: ../panel-plugin/mailwatch-plugin-4.2.c:605
 #: ../panel-plugin/mailwatch-plugin-4.2.c:727
 msgid "_Normal"
 msgstr "_Κανονικό"
 
-#: ../panel-plugin/mailwatch-plugin.c:702
+#: ../panel-plugin/mailwatch-plugin.c:681
 #: ../panel-plugin/mailwatch-plugin-4.2.c:630
 msgid "Ne_w mail"
 msgstr "Νέ_α αλληλογραφία"
 
-#: ../panel-plugin/mailwatch-plugin.c:733
+#: ../panel-plugin/mailwatch-plugin.c:712
 msgid "Edit Properties"
 msgstr "Επεξεργασία Ιδιοτήτων"
 
-#: ../panel-plugin/mailwatch-plugin.c:745
+#: ../panel-plugin/mailwatch-plugin.c:724
 #: ../panel-plugin/mailwatch-plugin-4.2.c:868
 msgid "Mail Watcher"
 msgstr "Παρακολούθηση Αλληλογραφίας"
 
-#: ../panel-plugin/mailwatch-plugin.c:762
+#: ../panel-plugin/mailwatch-plugin.c:741
 #: ../panel-plugin/mailwatch-plugin-4.2.c:659
 msgid "External Programs"
 msgstr "Εξωτερικά Προγράμματα"
 
-#: ../panel-plugin/mailwatch-plugin.c:774
+#: ../panel-plugin/mailwatch-plugin.c:753
 #: ../panel-plugin/mailwatch-plugin-4.2.c:671
 msgid "Run _on click:"
 msgstr "Εκτέλεση στ_ο κλικ:"
 
-#: ../panel-plugin/mailwatch-plugin.c:791
+#: ../panel-plugin/mailwatch-plugin.c:770
 #: ../panel-plugin/mailwatch-plugin-4.2.c:688
 msgid "Run on new _messages:"
 msgstr "Εκτέλεση στα νέα _μηνύματα"
 
-#: ../panel-plugin/mailwatch-plugin.c:804
+#: ../panel-plugin/mailwatch-plugin.c:783
 #: ../panel-plugin/mailwatch-plugin-4.2.c:701
 msgid "Icons"
 msgstr "Εικονίδια"
 
-#: ../panel-plugin/mailwatch-plugin.c:850
+#: ../panel-plugin/mailwatch-plugin.c:829
 #: ../panel-plugin/mailwatch-plugin-4.2.c:747
 msgid "Ne_w Mail"
 msgstr "Νέ_α Αλληλογραφία"
 
-#: ../panel-plugin/mailwatch-plugin.c:858
+#: ../panel-plugin/mailwatch-plugin.c:837
 #: ../panel-plugin/mailwatch-plugin-4.2.c:755
 msgid "_View Log..."
 msgstr "Εμφάνιση του α_ρχείου καταγραφών..."
@@ -425,13 +425,12 @@ msgid ""
 "likely a problem with your GLib install."
 msgstr ""
 
-#: ../panel-plugin/mailwatch.c:324 ../panel-plugin/mailwatch.c:325
-#: ../panel-plugin/mailwatch.c:371 ../panel-plugin/mailwatch.c:372
+#: ../panel-plugin/mailwatch.c:343 ../panel-plugin/mailwatch.c:344
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "Αδυναμία εγγραφής στο αρχείο ρυθμίσεων '%s'"
 
-#: ../panel-plugin/mailwatch.c:382 ../panel-plugin/mailwatch.c:384
+#: ../panel-plugin/mailwatch.c:390 ../panel-plugin/mailwatch.c:392
 #, c-format
 msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
@@ -442,59 +441,59 @@ msgstr ""
 "αρχείο περιέχει κωδικούς ή άλλες ευαίσθητες πληροφορίες, μπορεί να είναι "
 "προσβάσιμο και από άλλους στο σύστημα σας."
 
-#: ../panel-plugin/mailwatch.c:607
+#: ../panel-plugin/mailwatch.c:614
 msgid "This mailbox type does not require any configuration settings."
 msgstr "Αυτός ο τύπος γραμματοκιβωτίου δεν απαιτεί ρυθμίσεις."
 
-#: ../panel-plugin/mailwatch.c:633
+#: ../panel-plugin/mailwatch.c:640
 msgid "Mailbox _Name:"
 msgstr "Ό_νομα Γραμματοκιβωτίου:"
 
-#: ../panel-plugin/mailwatch.c:650
+#: ../panel-plugin/mailwatch.c:657
 msgid "Mailwatch"
 msgstr "Mailwatch"
 
-#: ../panel-plugin/mailwatch.c:651
+#: ../panel-plugin/mailwatch.c:658
 msgid "Mailbox name required."
 msgstr "Απαιτείται όνομα γραμματοκιβωτίου."
 
-#: ../panel-plugin/mailwatch.c:652
+#: ../panel-plugin/mailwatch.c:659
 msgid "Please enter a name for the mailbox."
 msgstr "Εισάγετε ένα όνομα για αυτό το γραμματοκιβώτιο."
 
-#: ../panel-plugin/mailwatch.c:695
+#: ../panel-plugin/mailwatch.c:702
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "Επεξεργασία γραμματοκιβωτίου: %s"
 
-#: ../panel-plugin/mailwatch.c:758
+#: ../panel-plugin/mailwatch.c:765
 msgid "Select Mailbox Type"
 msgstr "Επιλογή είδους γραμματοκιβωτίου"
 
-#: ../panel-plugin/mailwatch.c:767
+#: ../panel-plugin/mailwatch.c:774
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr ""
 "Επιλέξτε έναν τύπο γραμματοκιβωτίου. Θα εμφανιστεί μια περιγραφή του "
 "παρακάτω."
 
-#: ../panel-plugin/mailwatch.c:823
+#: ../panel-plugin/mailwatch.c:830
 msgid "Add New Mailbox"
 msgstr "Προσθήκη νέου Γραμματοκιβωτίου"
 
-#: ../panel-plugin/mailwatch.c:886
+#: ../panel-plugin/mailwatch.c:893
 msgid "Remove Mailbox"
 msgstr "Αφαίρεση Γραμματοκιβωτίου"
 
-#: ../panel-plugin/mailwatch.c:887
+#: ../panel-plugin/mailwatch.c:894
 msgid "Are you sure?"
 msgstr "Είστε σίγουροι;"
 
-#: ../panel-plugin/mailwatch.c:888
+#: ../panel-plugin/mailwatch.c:895
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr ""
 "Με την αφαίρεση ενός γραμματοκιβωτίου θα χαθούν όλες οι ρυθμίσεις, και δεν "
 "μπορεί να αναιρεθεί."
 
-#: ../panel-plugin/mailwatch.c:959
+#: ../panel-plugin/mailwatch.c:966
 msgid "Mailboxes"
 msgstr "Γραμματοκιβώτια"

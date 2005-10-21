@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-17 07:00+0900\n"
+"POT-Creation-Date: 2005-10-21 20:56+0900\n"
 "PO-Revision-Date: 2005-10-08 01:43+0900\n"
 "Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
@@ -333,73 +333,73 @@ msgid "It is possible that your version of GLib does not have threads support."
 msgstr ""
 "あなたの GLib のバージョンはスレッドをサポートしていないためできません。"
 
-#: ../panel-plugin/mailwatch-plugin.c:529
+#: ../panel-plugin/mailwatch-plugin.c:508
 #: ../panel-plugin/mailwatch-plugin-4.2.c:457
 msgid "Mailwatch log"
 msgstr "メールウォッチ・ログ"
 
-#: ../panel-plugin/mailwatch-plugin.c:587
+#: ../panel-plugin/mailwatch-plugin.c:566
 #: ../panel-plugin/mailwatch-plugin-4.2.c:515
 msgid "Log _lines:"
 msgstr "ログの行数(_L):"
 
-#: ../panel-plugin/mailwatch-plugin.c:601
+#: ../panel-plugin/mailwatch-plugin.c:580
 #: ../panel-plugin/mailwatch-plugin-4.2.c:529
 msgid "Show log _status in icon"
 msgstr "アイコンでログ・ステータスを表示(_S)"
 
-#: ../panel-plugin/mailwatch-plugin.c:645
+#: ../panel-plugin/mailwatch-plugin.c:624
 #: ../panel-plugin/mailwatch-plugin-4.2.c:575
 msgid "Select Icon"
 msgstr "アイコンを選択して下さい"
 
-#: ../panel-plugin/mailwatch-plugin.c:676
-#: ../panel-plugin/mailwatch-plugin.c:830
+#: ../panel-plugin/mailwatch-plugin.c:655
+#: ../panel-plugin/mailwatch-plugin.c:809
 #: ../panel-plugin/mailwatch-plugin-4.2.c:605
 #: ../panel-plugin/mailwatch-plugin-4.2.c:727
 msgid "_Normal"
 msgstr "通常(_N)"
 
-#: ../panel-plugin/mailwatch-plugin.c:702
+#: ../panel-plugin/mailwatch-plugin.c:681
 #: ../panel-plugin/mailwatch-plugin-4.2.c:630
 msgid "Ne_w mail"
 msgstr "新しいメール(_W)"
 
-#: ../panel-plugin/mailwatch-plugin.c:733
+#: ../panel-plugin/mailwatch-plugin.c:712
 msgid "Edit Properties"
 msgstr "プロパティを編集"
 
-#: ../panel-plugin/mailwatch-plugin.c:745
+#: ../panel-plugin/mailwatch-plugin.c:724
 #: ../panel-plugin/mailwatch-plugin-4.2.c:868
 msgid "Mail Watcher"
 msgstr "メール・ウォッチャー"
 
-#: ../panel-plugin/mailwatch-plugin.c:762
+#: ../panel-plugin/mailwatch-plugin.c:741
 #: ../panel-plugin/mailwatch-plugin-4.2.c:659
 msgid "External Programs"
 msgstr "外部プログラム"
 
-#: ../panel-plugin/mailwatch-plugin.c:774
+#: ../panel-plugin/mailwatch-plugin.c:753
 #: ../panel-plugin/mailwatch-plugin-4.2.c:671
 msgid "Run _on click:"
 msgstr "クリックで実行(_O):"
 
-#: ../panel-plugin/mailwatch-plugin.c:791
+#: ../panel-plugin/mailwatch-plugin.c:770
 #: ../panel-plugin/mailwatch-plugin-4.2.c:688
 msgid "Run on new _messages:"
 msgstr "メッセージが来た場合に実行(_M):"
 
-#: ../panel-plugin/mailwatch-plugin.c:804
+#: ../panel-plugin/mailwatch-plugin.c:783
 #: ../panel-plugin/mailwatch-plugin-4.2.c:701
 msgid "Icons"
 msgstr "アイコン"
 
-#: ../panel-plugin/mailwatch-plugin.c:850
+#: ../panel-plugin/mailwatch-plugin.c:829
 #: ../panel-plugin/mailwatch-plugin-4.2.c:747
 msgid "Ne_w Mail"
 msgstr "新しいメール(_W)"
 
-#: ../panel-plugin/mailwatch-plugin.c:858
+#: ../panel-plugin/mailwatch-plugin.c:837
 #: ../panel-plugin/mailwatch-plugin-4.2.c:755
 msgid "_View Log..."
 msgstr "ログを表示(_V)..."
@@ -431,13 +431,12 @@ msgstr ""
 "xfce4-mailwatch-plugin: GTread サポートを初期化できません。あなたの GLib のイ"
 "ンストールに問題があるようです。"
 
-#: ../panel-plugin/mailwatch.c:324 ../panel-plugin/mailwatch.c:325
-#: ../panel-plugin/mailwatch.c:371 ../panel-plugin/mailwatch.c:372
+#: ../panel-plugin/mailwatch.c:343 ../panel-plugin/mailwatch.c:344
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "設定ファイル '%s' を書き出せません"
 
-#: ../panel-plugin/mailwatch.c:382 ../panel-plugin/mailwatch.c:384
+#: ../panel-plugin/mailwatch.c:390 ../panel-plugin/mailwatch.c:392
 #, c-format
 msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
@@ -448,55 +447,55 @@ msgstr ""
 "の機密情報を含んでいる場合、あなたと同じシステムを使う他の人達に見られてしま"
 "うかもしれません。"
 
-#: ../panel-plugin/mailwatch.c:607
+#: ../panel-plugin/mailwatch.c:614
 msgid "This mailbox type does not require any configuration settings."
 msgstr "この種類のメール箱はいずれの設定も必要ありません。"
 
-#: ../panel-plugin/mailwatch.c:633
+#: ../panel-plugin/mailwatch.c:640
 msgid "Mailbox _Name:"
 msgstr "メール箱の名前(_N):"
 
-#: ../panel-plugin/mailwatch.c:650
+#: ../panel-plugin/mailwatch.c:657
 msgid "Mailwatch"
 msgstr "メールウォッチ"
 
-#: ../panel-plugin/mailwatch.c:651
+#: ../panel-plugin/mailwatch.c:658
 msgid "Mailbox name required."
 msgstr "メール箱の名前が必要です。"
 
-#: ../panel-plugin/mailwatch.c:652
+#: ../panel-plugin/mailwatch.c:659
 msgid "Please enter a name for the mailbox."
 msgstr "メール箱の名前を入力して下さい。"
 
-#: ../panel-plugin/mailwatch.c:695
+#: ../panel-plugin/mailwatch.c:702
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "メール箱の編集: %s"
 
-#: ../panel-plugin/mailwatch.c:758
+#: ../panel-plugin/mailwatch.c:765
 msgid "Select Mailbox Type"
 msgstr "メール箱の種類を選択して下さい"
 
-#: ../panel-plugin/mailwatch.c:767
+#: ../panel-plugin/mailwatch.c:774
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr "メール箱の種類を選択して下さい。種類の説明は下に表示されます。"
 
-#: ../panel-plugin/mailwatch.c:823
+#: ../panel-plugin/mailwatch.c:830
 msgid "Add New Mailbox"
 msgstr "新規メール箱を追加"
 
-#: ../panel-plugin/mailwatch.c:886
+#: ../panel-plugin/mailwatch.c:893
 msgid "Remove Mailbox"
 msgstr "メール箱を削除"
 
-#: ../panel-plugin/mailwatch.c:887
+#: ../panel-plugin/mailwatch.c:894
 msgid "Are you sure?"
 msgstr "よろしいですか？"
 
-#: ../panel-plugin/mailwatch.c:888
+#: ../panel-plugin/mailwatch.c:895
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr "メール箱を削除するとすべての設定が破棄されます、また元に戻せません。"
 
-#: ../panel-plugin/mailwatch.c:959
+#: ../panel-plugin/mailwatch.c:966
 msgid "Mailboxes"
 msgstr "メール箱"
