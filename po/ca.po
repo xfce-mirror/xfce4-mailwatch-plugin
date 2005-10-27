@@ -1,0 +1,556 @@
+# translation of ca.po to català
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+# paurullan <paurullan@bulma.net>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ca\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-10-21 20:56+0900\n"
+"PO-Revision-Date: 2005-10-27 22:30+0200\n"
+"Last-Translator: paurullan <paurullan@bulma.net>\n"
+"Language-Team: català\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.10.2\n"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:254
+#, fuzzy
+msgid ""
+"Secure IMAP is not available, and the IMAP server does not support plaintext "
+"logins."
+msgstr "Segur IMAP és no disponible i   IMAP servidor no."
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:302
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:268
+#, c-format
+msgid "TLS handshake failed: %s"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:335
+#, fuzzy
+msgid "STARTTLS security was requested, but this server does not support it."
+msgstr "aquest servidor no."
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:399
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:358
+#, fuzzy
+msgid ""
+"Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
+"the panel may hang on close."
+msgstr "a  set a  mode Si     quadre on tanca."
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:438
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:397
+#, c-format
+#, fuzzy
+msgid "Failed to connect to server: %s"
+msgstr "Ha fallat a  a  servidor"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:470
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:429
+#, fuzzy
+msgid ""
+"Unable to return socket to blocking mode.  Data may not be retreived "
+"correctly."
+msgstr "a  a  mode Dades no."
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:591
+#, fuzzy
+msgid "A buffer was too small to receive all of an IMAP response.  This is a bug!"
+msgstr "A petit a  all de IMAP és a error!"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1178
+#, fuzzy
+msgid "Failed to get folder list"
+msgstr "Ha fallat a  rebre carpeta llista"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1304
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1513
+#, fuzzy
+msgid "Please wait..."
+msgstr "Si us plau, espereu..."
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1396
+#, fuzzy
+msgid "Error"
+msgstr "Error"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1397
+#, fuzzy
+msgid "No server or username is set."
+msgstr "No servidor o nom d'usuari és set."
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1398
+#, fuzzy
+msgid ""
+"The folder list cannot be retrieved until a server, username, and probably "
+"password are set.  Also be sure to check any security settings in the "
+"Advanced dialog."
+msgstr "carpeta llista fins a servidor nom d'usuari i contrasenya set a  activa qualsevol po   Avançat diàleg."
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1403
+#, fuzzy
+msgid "Set New Mail Folders"
+msgstr "Fixa Nou Correu Carpetes"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1414
+#, fuzzy
+msgid "New Mail Folders"
+msgstr "Nou Correu Carpetes"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1597
+#, fuzzy
+msgid "Advanced IMAP Options"
+msgstr "Avançat IMAP Opcions"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1606
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:816
+#, fuzzy
+msgid "Connection"
+msgstr "Connexió"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1615
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:825
+#, fuzzy
+msgid "Use unsecured connection"
+msgstr "Utilitza"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1616
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:826
+#, fuzzy
+msgid "Use SSL/TLS on alternate port"
+msgstr "Utilitza on port"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1617
+#, fuzzy
+msgid "Use SSL/TLS via STARTTLS"
+msgstr "Utilitza"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1633
+#, fuzzy
+msgid "Use non-standard IMAP _port:"
+msgstr "Utilitza IMAP port:"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1662
+#, fuzzy
+msgid "Folders"
+msgstr "Carpetes"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1670
+#, fuzzy
+msgid "IMAP server _directory:"
+msgstr "IMAP servidor:"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1701
+#, fuzzy
+msgid "IMAP Server"
+msgstr "Servidor IMAP"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1715
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:903
+#, fuzzy
+msgid "_Mail server:"
+msgstr "Correu servidor:"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1734
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:922
+#, fuzzy
+msgid "_Username:"
+msgstr "Nom d'_usuari:"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1753
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:941
+#, fuzzy
+msgid "_Password:"
+msgstr "_Contrasenya:"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1773
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:961
+#, fuzzy
+msgid "_Advanced..."
+msgstr "_Avançat..."
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1780
+#, fuzzy
+msgid "New mail _folders..."
+msgstr "Nou correu carpetes."
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1791
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:972
+#, fuzzy
+msgid "Check for _new messages every"
+msgstr "Revisa per a nou cada"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1805
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:461
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:476
+#: ../panel-plugin/mailwatch-mailbox-mh.c:627
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:986
+#, fuzzy
+msgid "minute(s)."
+msgstr "minut."
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1950
+#, fuzzy
+msgid "Remote IMAP Mailbox"
+msgstr "IMAP Bústia"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1951
+#, fuzzy
+msgid ""
+"The IMAP plugin can connect to a remote mail server that supports the IMAP "
+"protocol, optionally using SSL for link protection."
+msgstr "IMAP a  a correu servidor   IMAP utilitzant per a enllaç."
+
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:104
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:103
+#: ../panel-plugin/mailwatch-mailbox-mh.c:383
+#: ../panel-plugin/mailwatch-mailbox-mh.c:394
+#, c-format
+#, fuzzy
+msgid "Failed to get status of file %s: %s"
+msgstr "Ha fallat a  rebre estat de fitxer"
+
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:113
+#, c-format
+#, fuzzy
+msgid "%s is not a directory. Is %s really a valid maildir?"
+msgstr "és no a És a?"
+
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:349
+#, fuzzy
+msgid "Select Maildir Folder"
+msgstr "Seleccioneu Carpeta"
+
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:409
+#, fuzzy
+msgid "Maildir _Path:"
+msgstr "Camí:"
+
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:445
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:459
+#: ../panel-plugin/mailwatch-mailbox-mh.c:612
+#, fuzzy
+msgid "_Interval:"
+msgstr "Interval:"
+
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:495
+#, fuzzy
+msgid "Local Maildir Spool"
+msgstr "Local"
+
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:496
+#, fuzzy
+msgid ""
+"The Maildir plugin can watch a local maildir-style mail spool for new "
+"messages."
+msgstr "a local correu gestió de cues per a nou."
+
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:374
+#, fuzzy
+msgid "Select mbox file"
+msgstr "Seleccioneu fitxer"
+
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:423
+#, fuzzy
+msgid "Mbox _Filename:"
+msgstr "Nom del fitxer:"
+
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:501
+#, fuzzy
+msgid "Local Mbox spool"
+msgstr "Local gestió de cues"
+
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:502
+#, fuzzy
+msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
+msgstr "a local tipus correu gestió de cues per a nou."
+
+#: ../panel-plugin/mailwatch-mailbox-mh.c:206
+#: ../panel-plugin/mailwatch-mailbox-mh.c:228
+#, c-format
+#, fuzzy
+msgid "Malformed line %s in %s ignored."
+msgstr "po ignorat."
+
+#: ../panel-plugin/mailwatch-mailbox-mh.c:603
+#, fuzzy
+msgid ""
+"The configuration of this plugin is read from\n"
+"the default mh maildir profile file ~/.mh_profile"
+msgstr "de aquest és de per defecte fitxer"
+
+#: ../panel-plugin/mailwatch-mailbox-mh.c:653
+#, fuzzy
+msgid "Local MH mail folder"
+msgstr "Local correu carpeta"
+
+#: ../panel-plugin/mailwatch-mailbox-mh.c:654
+#, fuzzy
+msgid "MH plugin watches local MH folders for new mail"
+msgstr "local carpetes per a nou correu"
+
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:807
+#, fuzzy
+msgid "Advanced POP3 Options"
+msgstr "Avançat POP3 Opcions"
+
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:827
+#, fuzzy
+msgid "Use SSL/TLS via STLS"
+msgstr "Utilitza"
+
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:843
+#, fuzzy
+msgid "Use non-standard POP3 _port:"
+msgstr "Utilitza POP3 port:"
+
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:889
+#, fuzzy
+msgid "POP3 Server"
+msgstr "Servidor POP3"
+
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:1098
+#, fuzzy
+msgid "Remote POP3 Mailbox"
+msgstr "POP3 Bústia"
+
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:1099
+#, fuzzy
+msgid ""
+"The POP3 plugin can connect to a remote mail server that supports the POP3 "
+"protocol, optionally using SSL for link protection."
+msgstr "POP3 a  a correu servidor   POP3 utilitzant per a enllaç."
+
+#: ../panel-plugin/mailwatch-plugin.c:114
+#: ../panel-plugin/mailwatch-plugin.c:315
+#: ../panel-plugin/mailwatch-plugin-4.2.c:114
+#: ../panel-plugin/mailwatch-plugin-4.2.c:250
+#, fuzzy
+msgid "No new mail"
+msgstr "No nou correu"
+
+#: ../panel-plugin/mailwatch-plugin.c:129
+#: ../panel-plugin/mailwatch-plugin-4.2.c:129
+#, fuzzy
+msgid "You have 1 new message:"
+msgstr "Tu nou missatge:"
+
+#: ../panel-plugin/mailwatch-plugin.c:131
+#: ../panel-plugin/mailwatch-plugin-4.2.c:131
+#, c-format
+#, fuzzy
+msgid "You have %d new messages:"
+msgstr "Tu nou:"
+
+#: ../panel-plugin/mailwatch-plugin.c:299
+#: ../panel-plugin/mailwatch-plugin-4.2.c:234
+msgid "Xfce Mailwatch"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-plugin.c:300
+#: ../panel-plugin/mailwatch-plugin-4.2.c:235
+#, fuzzy
+msgid "The mailwatch applet cannot be added to the panel."
+msgstr "a    quadre."
+
+#: ../panel-plugin/mailwatch-plugin.c:301
+#: ../panel-plugin/mailwatch-plugin-4.2.c:236
+#, fuzzy
+msgid "It is possible that your version of GLib does not have threads support."
+msgstr "és de no."
+
+#: ../panel-plugin/mailwatch-plugin.c:508
+#: ../panel-plugin/mailwatch-plugin-4.2.c:457
+#, fuzzy
+msgid "Mailwatch log"
+msgstr "log"
+
+#: ../panel-plugin/mailwatch-plugin.c:566
+#: ../panel-plugin/mailwatch-plugin-4.2.c:515
+#, fuzzy
+msgid "Log _lines:"
+msgstr "Log Línies:"
+
+#: ../panel-plugin/mailwatch-plugin.c:580
+#: ../panel-plugin/mailwatch-plugin-4.2.c:529
+#, fuzzy
+msgid "Show log _status in icon"
+msgstr "Mostra log estat po icona"
+
+#: ../panel-plugin/mailwatch-plugin.c:624
+#: ../panel-plugin/mailwatch-plugin-4.2.c:575
+#, fuzzy
+msgid "Select Icon"
+msgstr "Selecciona icona"
+
+#: ../panel-plugin/mailwatch-plugin.c:655
+#: ../panel-plugin/mailwatch-plugin.c:809
+#: ../panel-plugin/mailwatch-plugin-4.2.c:605
+#: ../panel-plugin/mailwatch-plugin-4.2.c:727
+#, fuzzy
+msgid "_Normal"
+msgstr "_Normal"
+
+#: ../panel-plugin/mailwatch-plugin.c:681
+#: ../panel-plugin/mailwatch-plugin-4.2.c:630
+#, fuzzy
+msgid "Ne_w mail"
+msgstr "correu"
+
+#: ../panel-plugin/mailwatch-plugin.c:712
+#, fuzzy
+msgid "Edit Properties"
+msgstr "Edita Propietats"
+
+#: ../panel-plugin/mailwatch-plugin.c:724
+#: ../panel-plugin/mailwatch-plugin-4.2.c:868
+#, fuzzy
+msgid "Mail Watcher"
+msgstr "Correu"
+
+#: ../panel-plugin/mailwatch-plugin.c:741
+#: ../panel-plugin/mailwatch-plugin-4.2.c:659
+#, fuzzy
+msgid "External Programs"
+msgstr "Extern Programes"
+
+#: ../panel-plugin/mailwatch-plugin.c:753
+#: ../panel-plugin/mailwatch-plugin-4.2.c:671
+#, fuzzy
+msgid "Run _on click:"
+msgstr "Ejecutar on feu clic:"
+
+#: ../panel-plugin/mailwatch-plugin.c:770
+#: ../panel-plugin/mailwatch-plugin-4.2.c:688
+#, fuzzy
+msgid "Run on new _messages:"
+msgstr "Ejecutar on nou:"
+
+#: ../panel-plugin/mailwatch-plugin.c:783
+#: ../panel-plugin/mailwatch-plugin-4.2.c:701
+#, fuzzy
+msgid "Icons"
+msgstr "Icones"
+
+#: ../panel-plugin/mailwatch-plugin.c:829
+#: ../panel-plugin/mailwatch-plugin-4.2.c:747
+#, fuzzy
+msgid "Ne_w Mail"
+msgstr "Correu"
+
+#: ../panel-plugin/mailwatch-plugin.c:837
+#: ../panel-plugin/mailwatch-plugin-4.2.c:755
+#, fuzzy
+msgid "_View Log..."
+msgstr "Visualitza Log."
+
+#: ../panel-plugin/mailwatch-utils.c:238
+#, c-format
+msgid "XfceMailwatch: TLS handshake failed: %s"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-utils.c:248
+#, fuzzy
+msgid "Not compiled with SSL/TLS support"
+msgstr "No amb"
+
+#: ../panel-plugin/mailwatch-utils.c:250
+#, fuzzy
+msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
+msgstr "no amb."
+
+#: ../panel-plugin/mailwatch-utils.c:273 ../panel-plugin/mailwatch-utils.c:326
+#, fuzzy
+msgid "A secure connection was requested, but gnutls was not initialised"
+msgstr "A no"
+
+#: ../panel-plugin/mailwatch.c:131
+#, fuzzy
+msgid ""
+"xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
+"likely a problem with your GLib install."
+msgstr "a  és a amb Instal.lar."
+
+#: ../panel-plugin/mailwatch.c:343 ../panel-plugin/mailwatch.c:344
+#, c-format
+#, fuzzy
+msgid "Unable to write config file '%s'"
+msgstr "a  fitxer"
+
+#: ../panel-plugin/mailwatch.c:390 ../panel-plugin/mailwatch.c:392
+#, c-format
+#, fuzzy
+msgid ""
+"Unable to set permissions on config file '%s'.  If this file contains "
+"passwords or other sensitive information, it may be readable by others on "
+"your system."
+msgstr "a  set permisos on fitxer Si aquest fitxer conté o altra per on sistema."
+
+#: ../panel-plugin/mailwatch.c:614
+#, fuzzy
+msgid "This mailbox type does not require any configuration settings."
+msgstr "tipus no qualsevol."
+
+#: ../panel-plugin/mailwatch.c:640
+#, fuzzy
+msgid "Mailbox _Name:"
+msgstr "_Nom de la bústia:"
+
+#: ../panel-plugin/mailwatch.c:657
+msgid "Mailwatch"
+msgstr ""
+
+#: ../panel-plugin/mailwatch.c:658
+#, fuzzy
+msgid "Mailbox name required."
+msgstr "Bústia nom."
+
+#: ../panel-plugin/mailwatch.c:659
+#, fuzzy
+msgid "Please enter a name for the mailbox."
+msgstr "entra a nom per a  ."
+
+#: ../panel-plugin/mailwatch.c:702
+#, c-format
+#, fuzzy
+msgid "Edit Mailbox: %s"
+msgstr "Edita Bústia"
+
+#: ../panel-plugin/mailwatch.c:765
+#, fuzzy
+msgid "Select Mailbox Type"
+msgstr "Seleccioneu Bústia Tipus"
+
+#: ../panel-plugin/mailwatch.c:774
+#, fuzzy
+msgid "Select a mailbox type.  A description of the type will appear below."
+msgstr "Seleccioneu a tipus A descripció de   tipus sota."
+
+#: ../panel-plugin/mailwatch.c:830
+#, fuzzy
+msgid "Add New Mailbox"
+msgstr "Afegeix Nou Bústia"
+
+#: ../panel-plugin/mailwatch.c:893
+#, fuzzy
+msgid "Remove Mailbox"
+msgstr "Suprimeix Bústia"
+
+#: ../panel-plugin/mailwatch.c:894
+#, fuzzy
+msgid "Are you sure?"
+msgstr "tu?"
+
+#: ../panel-plugin/mailwatch.c:895
+#, fuzzy
+msgid "Removing a mailbox will discard all settings, and cannot be undone."
+msgstr "S'està suprimint a all i."
+
+#: ../panel-plugin/mailwatch.c:966
+msgid "Mailboxes"
+msgstr ""
+
