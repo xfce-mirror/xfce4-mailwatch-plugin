@@ -18,6 +18,7 @@ if HAVE_CYGWIN
 endif
 
 libmailwatch_la_SOURCES = \
+	mailwatch-mailbox-gmail.c \
 	mailwatch-mailbox-imap.c \
 	mailwatch-mailbox-maildir.c \
 	mailwatch-mailbox-mbox.c \
@@ -48,6 +49,7 @@ plugindir = $(libexecdir)/xfce4/panel-plugins
 plugin_PROGRAMS = xfce4-mailwatch-plugin
 
 xfce4_mailwatch_plugin_SOURCES = \
+	mailwatch-mailbox-gmail.c \
 	mailwatch-mailbox-imap.c \
 	mailwatch-mailbox-maildir.c \
 	mailwatch-mailbox-mbox.c \

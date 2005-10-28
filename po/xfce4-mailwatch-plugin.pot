@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-21 20:56+0900\n"
+"POT-Creation-Date: 2005-10-27 23:03-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,22 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../panel-plugin/mailwatch-mailbox-imap.c:254
-msgid ""
-"Secure IMAP is not available, and the IMAP server does not support plaintext "
-"logins."
-msgstr ""
-
-#: ../panel-plugin/mailwatch-mailbox-imap.c:302
-#: ../panel-plugin/mailwatch-mailbox-pop3.c:268
-#, c-format
-msgid "TLS handshake failed: %s"
-msgstr ""
-
-#: ../panel-plugin/mailwatch-mailbox-imap.c:335
-msgid "STARTTLS security was requested, but this server does not support it."
-msgstr ""
-
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:215
 #: ../panel-plugin/mailwatch-mailbox-imap.c:399
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:358
 msgid ""
@@ -39,17 +24,88 @@ msgid ""
 "the panel may hang on close."
 msgstr ""
 
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:254
 #: ../panel-plugin/mailwatch-mailbox-imap.c:438
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:397
 #, c-format
 msgid "Failed to connect to server: %s"
 msgstr ""
 
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:286
 #: ../panel-plugin/mailwatch-mailbox-imap.c:470
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:429
 msgid ""
 "Unable to return socket to blocking mode.  Data may not be retreived "
 "correctly."
+msgstr ""
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:317
+#: ../panel-plugin/mailwatch-mailbox-imap.c:302
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:268
+#, c-format
+msgid "TLS handshake failed: %s"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:365
+#, c-format
+msgid ""
+"Received HTTP response code %d.  The most likely reason for this is that "
+"your GMail username or password is incorrect."
+msgstr ""
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:371
+#, c-format
+msgid ""
+"Received HTTP response code %d, which should be 200.  There may be a problem "
+"with GMail's servers, or they have incompatibly changed their authentication "
+"method or location of the new messages feed."
+msgstr ""
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:617
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1734
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:922
+msgid "_Username:"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:636
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1753
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:941
+msgid "_Password:"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:656
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1791
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:972
+msgid "Check for _new messages every"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:671
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1805
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:461
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:476
+#: ../panel-plugin/mailwatch-mailbox-mh.c:627
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:986
+msgid "minute(s)."
+msgstr ""
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:752
+msgid "Remote GMail Mailbox"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:753
+msgid ""
+"The GMail plugin can connect to Google's mail service and securely retrieve "
+"the number of new messages."
+msgstr ""
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:254
+msgid ""
+"Secure IMAP is not available, and the IMAP server does not support plaintext "
+"logins."
+msgstr ""
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:335
+msgid "STARTTLS security was requested, but this server does not support it."
 msgstr ""
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:591
@@ -133,16 +189,6 @@ msgstr ""
 msgid "_Mail server:"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-mailbox-imap.c:1734
-#: ../panel-plugin/mailwatch-mailbox-pop3.c:922
-msgid "_Username:"
-msgstr ""
-
-#: ../panel-plugin/mailwatch-mailbox-imap.c:1753
-#: ../panel-plugin/mailwatch-mailbox-pop3.c:941
-msgid "_Password:"
-msgstr ""
-
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1773
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:961
 msgid "_Advanced..."
@@ -150,19 +196,6 @@ msgstr ""
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1780
 msgid "New mail _folders..."
-msgstr ""
-
-#: ../panel-plugin/mailwatch-mailbox-imap.c:1791
-#: ../panel-plugin/mailwatch-mailbox-pop3.c:972
-msgid "Check for _new messages every"
-msgstr ""
-
-#: ../panel-plugin/mailwatch-mailbox-imap.c:1805
-#: ../panel-plugin/mailwatch-mailbox-maildir.c:461
-#: ../panel-plugin/mailwatch-mailbox-mbox.c:476
-#: ../panel-plugin/mailwatch-mailbox-mh.c:627
-#: ../panel-plugin/mailwatch-mailbox-pop3.c:986
-msgid "minute(s)."
 msgstr ""
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1950
@@ -378,35 +411,35 @@ msgstr ""
 msgid "_View Log..."
 msgstr ""
 
-#: ../panel-plugin/mailwatch-utils.c:238
+#: ../panel-plugin/mailwatch-utils.c:242
 #, c-format
 msgid "XfceMailwatch: TLS handshake failed: %s"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-utils.c:248
+#: ../panel-plugin/mailwatch-utils.c:252
 msgid "Not compiled with SSL/TLS support"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-utils.c:250
+#: ../panel-plugin/mailwatch-utils.c:254
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
 msgstr ""
 
-#: ../panel-plugin/mailwatch-utils.c:273 ../panel-plugin/mailwatch-utils.c:326
+#: ../panel-plugin/mailwatch-utils.c:277 ../panel-plugin/mailwatch-utils.c:330
 msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr ""
 
-#: ../panel-plugin/mailwatch.c:131
+#: ../panel-plugin/mailwatch.c:133
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
 msgstr ""
 
-#: ../panel-plugin/mailwatch.c:343 ../panel-plugin/mailwatch.c:344
+#: ../panel-plugin/mailwatch.c:345 ../panel-plugin/mailwatch.c:346
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr ""
 
-#: ../panel-plugin/mailwatch.c:390 ../panel-plugin/mailwatch.c:392
+#: ../panel-plugin/mailwatch.c:392 ../panel-plugin/mailwatch.c:394
 #, c-format
 msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
@@ -414,55 +447,55 @@ msgid ""
 "your system."
 msgstr ""
 
-#: ../panel-plugin/mailwatch.c:614
+#: ../panel-plugin/mailwatch.c:616
 msgid "This mailbox type does not require any configuration settings."
 msgstr ""
 
-#: ../panel-plugin/mailwatch.c:640
+#: ../panel-plugin/mailwatch.c:642
 msgid "Mailbox _Name:"
 msgstr ""
 
-#: ../panel-plugin/mailwatch.c:657
+#: ../panel-plugin/mailwatch.c:659
 msgid "Mailwatch"
 msgstr ""
 
-#: ../panel-plugin/mailwatch.c:658
+#: ../panel-plugin/mailwatch.c:660
 msgid "Mailbox name required."
 msgstr ""
 
-#: ../panel-plugin/mailwatch.c:659
+#: ../panel-plugin/mailwatch.c:661
 msgid "Please enter a name for the mailbox."
 msgstr ""
 
-#: ../panel-plugin/mailwatch.c:702
+#: ../panel-plugin/mailwatch.c:704
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr ""
 
-#: ../panel-plugin/mailwatch.c:765
+#: ../panel-plugin/mailwatch.c:767
 msgid "Select Mailbox Type"
 msgstr ""
 
-#: ../panel-plugin/mailwatch.c:774
+#: ../panel-plugin/mailwatch.c:776
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr ""
 
-#: ../panel-plugin/mailwatch.c:830
+#: ../panel-plugin/mailwatch.c:832
 msgid "Add New Mailbox"
 msgstr ""
 
-#: ../panel-plugin/mailwatch.c:893
+#: ../panel-plugin/mailwatch.c:895
 msgid "Remove Mailbox"
 msgstr ""
 
-#: ../panel-plugin/mailwatch.c:894
+#: ../panel-plugin/mailwatch.c:896
 msgid "Are you sure?"
 msgstr ""
 
-#: ../panel-plugin/mailwatch.c:895
+#: ../panel-plugin/mailwatch.c:897
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr ""
 
-#: ../panel-plugin/mailwatch.c:966
+#: ../panel-plugin/mailwatch.c:968
 msgid "Mailboxes"
 msgstr ""

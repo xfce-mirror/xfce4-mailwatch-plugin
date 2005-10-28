@@ -9,6 +9,7 @@ Currently, the protocols supported are:
   * Mbox mail spool (local)
   * Maildir mail spool (local)
   * MH-Maildir mail spool (local)
+  * Google Mail (GMail) mailbox (remote)
 
 Random list of features:
   * Multiple folder checking support for IMAP.

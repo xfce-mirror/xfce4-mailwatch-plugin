@@ -73,6 +73,8 @@ void xfce_mailwatch_net_tls_teardown(XfceMailwatchSecurityInfo *security_info);
 GtkWidget *xfce_mailwatch_custom_button_new(const gchar *text, const gchar *icon);
 GtkWidget *xfce_mailwatch_create_framebox(const gchar *title, GtkWidget **frame_bin);
 
+gint xfce_mailwatch_base64_encode(const guint8 *data, gint size, gchar **str);
+
 G_END_DECLS
 
 #endif

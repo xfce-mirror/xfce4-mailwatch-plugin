@@ -1,3 +1,4 @@
+panel-plugin/mailwatch-mailbox-gmail.c
 panel-plugin/mailwatch-mailbox-imap.c
 panel-plugin/mailwatch-mailbox-maildir.c
 panel-plugin/mailwatch-mailbox-mbox.c

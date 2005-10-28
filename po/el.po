@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-21 20:56+0900\n"
+"POT-Creation-Date: 2005-10-27 23:03-0700\n"
 "PO-Revision-Date: 2005-10-08 02:52+0900\n"
 "Last-Translator: Stavros Giannouris <stavrosg2002@freemail.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -18,6 +18,89 @@ msgstr ""
 "X-Poedit-Language: Greek\n"
 "X-Poedit-Country: GREECE\n"
 
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:215
+#: ../panel-plugin/mailwatch-mailbox-imap.c:399
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:358
+msgid ""
+"Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
+"the panel may hang on close."
+msgstr ""
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:254
+#: ../panel-plugin/mailwatch-mailbox-imap.c:438
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:397
+#, c-format
+msgid "Failed to connect to server: %s"
+msgstr "Αδυναμία σύνδεσης στον εξυπηρετητή: %s"
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:286
+#: ../panel-plugin/mailwatch-mailbox-imap.c:470
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:429
+msgid ""
+"Unable to return socket to blocking mode.  Data may not be retreived "
+"correctly."
+msgstr ""
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:317
+#: ../panel-plugin/mailwatch-mailbox-imap.c:302
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:268
+#, c-format
+msgid "TLS handshake failed: %s"
+msgstr "Η χειραψία TLS απέτυχε: %s"
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:365
+#, c-format
+msgid ""
+"Received HTTP response code %d.  The most likely reason for this is that "
+"your GMail username or password is incorrect."
+msgstr ""
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:371
+#, c-format
+msgid ""
+"Received HTTP response code %d, which should be 200.  There may be a problem "
+"with GMail's servers, or they have incompatibly changed their authentication "
+"method or location of the new messages feed."
+msgstr ""
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:617
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1734
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:922
+msgid "_Username:"
+msgstr "_Όνομα Χρήστη:"
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:636
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1753
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:941
+msgid "_Password:"
+msgstr "_Κωδικός:"
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:656
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1791
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:972
+msgid "Check for _new messages every"
+msgstr "_Αυτόματος έλεγχος για νέα μηνύματα κάθε"
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:671
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1805
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:461
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:476
+#: ../panel-plugin/mailwatch-mailbox-mh.c:627
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:986
+msgid "minute(s)."
+msgstr "λεπτά."
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:752
+#, fuzzy
+msgid "Remote GMail Mailbox"
+msgstr "Απομακρυσμένο Γραμματοκιβώτιο IMAP"
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:753
+msgid ""
+"The GMail plugin can connect to Google's mail service and securely retrieve "
+"the number of new messages."
+msgstr ""
+
 #: ../panel-plugin/mailwatch-mailbox-imap.c:254
 msgid ""
 "Secure IMAP is not available, and the IMAP server does not support plaintext "
@@ -26,36 +109,10 @@ msgstr ""
 "Δεν υπάρχει διαθέσιμο ασφαλές IMAP, και ο διακομιστής IMAP δεν υποστηρίζει "
 "διαπίστευση με απλό κείμενο."
 
-#: ../panel-plugin/mailwatch-mailbox-imap.c:302
-#: ../panel-plugin/mailwatch-mailbox-pop3.c:268
-#, c-format
-msgid "TLS handshake failed: %s"
-msgstr "Η χειραψία TLS απέτυχε: %s"
-
 #: ../panel-plugin/mailwatch-mailbox-imap.c:335
 msgid "STARTTLS security was requested, but this server does not support it."
 msgstr ""
 "Ζητήθηκε ασφάλεια STARTTLS, αλλά αυτός ο διακομιστής δεν το υποστηρίζει."
-
-#: ../panel-plugin/mailwatch-mailbox-imap.c:399
-#: ../panel-plugin/mailwatch-mailbox-pop3.c:358
-msgid ""
-"Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
-"the panel may hang on close."
-msgstr ""
-
-#: ../panel-plugin/mailwatch-mailbox-imap.c:438
-#: ../panel-plugin/mailwatch-mailbox-pop3.c:397
-#, c-format
-msgid "Failed to connect to server: %s"
-msgstr "Αδυναμία σύνδεσης στον εξυπηρετητή: %s"
-
-#: ../panel-plugin/mailwatch-mailbox-imap.c:470
-#: ../panel-plugin/mailwatch-mailbox-pop3.c:429
-msgid ""
-"Unable to return socket to blocking mode.  Data may not be retreived "
-"correctly."
-msgstr ""
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:591
 msgid ""
@@ -143,16 +200,6 @@ msgstr "Διακομιστής IMAP"
 msgid "_Mail server:"
 msgstr "Διακο_μιστής Αλληλογραφίας:"
 
-#: ../panel-plugin/mailwatch-mailbox-imap.c:1734
-#: ../panel-plugin/mailwatch-mailbox-pop3.c:922
-msgid "_Username:"
-msgstr "_Όνομα Χρήστη:"
-
-#: ../panel-plugin/mailwatch-mailbox-imap.c:1753
-#: ../panel-plugin/mailwatch-mailbox-pop3.c:941
-msgid "_Password:"
-msgstr "_Κωδικός:"
-
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1773
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:961
 msgid "_Advanced..."
@@ -161,19 +208,6 @@ msgstr "Για Προ_χωρημένους..."
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1780
 msgid "New mail _folders..."
 msgstr "Νέοι _φάκελοι ταχυδρομείου..."
-
-#: ../panel-plugin/mailwatch-mailbox-imap.c:1791
-#: ../panel-plugin/mailwatch-mailbox-pop3.c:972
-msgid "Check for _new messages every"
-msgstr "_Αυτόματος έλεγχος για νέα μηνύματα κάθε"
-
-#: ../panel-plugin/mailwatch-mailbox-imap.c:1805
-#: ../panel-plugin/mailwatch-mailbox-maildir.c:461
-#: ../panel-plugin/mailwatch-mailbox-mbox.c:476
-#: ../panel-plugin/mailwatch-mailbox-mh.c:627
-#: ../panel-plugin/mailwatch-mailbox-pop3.c:986
-msgid "minute(s)."
-msgstr "λεπτά."
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1950
 msgid "Remote IMAP Mailbox"
@@ -401,36 +435,36 @@ msgstr "Νέ_α Αλληλογραφία"
 msgid "_View Log..."
 msgstr "Εμφάνιση του α_ρχείου καταγραφών..."
 
-#: ../panel-plugin/mailwatch-utils.c:238
+#: ../panel-plugin/mailwatch-utils.c:242
 #, c-format
 msgid "XfceMailwatch: TLS handshake failed: %s"
 msgstr "XfceMailwatch: Η χειραψία TLS απέτυχε: %s"
 
-#: ../panel-plugin/mailwatch-utils.c:248
+#: ../panel-plugin/mailwatch-utils.c:252
 msgid "Not compiled with SSL/TLS support"
 msgstr "Δεν μεταγλωττίστηκε με υποστήριξη για SSL/TLS"
 
-#: ../panel-plugin/mailwatch-utils.c:250
+#: ../panel-plugin/mailwatch-utils.c:254
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
 msgstr ""
 "XfceMailwatch: Η χειραψία TLS απέτυχε: δεν μεταγλωττίστηκε με υποστήριξη SSL."
 
-#: ../panel-plugin/mailwatch-utils.c:273 ../panel-plugin/mailwatch-utils.c:326
+#: ../panel-plugin/mailwatch-utils.c:277 ../panel-plugin/mailwatch-utils.c:330
 msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr "Απαιτήθηκε ασφαλής σύνδεση, αλλά δεν ξεκίνησε το gnutls"
 
-#: ../panel-plugin/mailwatch.c:131
+#: ../panel-plugin/mailwatch.c:133
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
 msgstr ""
 
-#: ../panel-plugin/mailwatch.c:343 ../panel-plugin/mailwatch.c:344
+#: ../panel-plugin/mailwatch.c:345 ../panel-plugin/mailwatch.c:346
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "Αδυναμία εγγραφής στο αρχείο ρυθμίσεων '%s'"
 
-#: ../panel-plugin/mailwatch.c:390 ../panel-plugin/mailwatch.c:392
+#: ../panel-plugin/mailwatch.c:392 ../panel-plugin/mailwatch.c:394
 #, c-format
 msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
@@ -441,59 +475,59 @@ msgstr ""
 "αρχείο περιέχει κωδικούς ή άλλες ευαίσθητες πληροφορίες, μπορεί να είναι "
 "προσβάσιμο και από άλλους στο σύστημα σας."
 
-#: ../panel-plugin/mailwatch.c:614
+#: ../panel-plugin/mailwatch.c:616
 msgid "This mailbox type does not require any configuration settings."
 msgstr "Αυτός ο τύπος γραμματοκιβωτίου δεν απαιτεί ρυθμίσεις."
 
-#: ../panel-plugin/mailwatch.c:640
+#: ../panel-plugin/mailwatch.c:642
 msgid "Mailbox _Name:"
 msgstr "Ό_νομα Γραμματοκιβωτίου:"
 
-#: ../panel-plugin/mailwatch.c:657
+#: ../panel-plugin/mailwatch.c:659
 msgid "Mailwatch"
 msgstr "Mailwatch"
 
-#: ../panel-plugin/mailwatch.c:658
+#: ../panel-plugin/mailwatch.c:660
 msgid "Mailbox name required."
 msgstr "Απαιτείται όνομα γραμματοκιβωτίου."
 
-#: ../panel-plugin/mailwatch.c:659
+#: ../panel-plugin/mailwatch.c:661
 msgid "Please enter a name for the mailbox."
 msgstr "Εισάγετε ένα όνομα για αυτό το γραμματοκιβώτιο."
 
-#: ../panel-plugin/mailwatch.c:702
+#: ../panel-plugin/mailwatch.c:704
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "Επεξεργασία γραμματοκιβωτίου: %s"
 
-#: ../panel-plugin/mailwatch.c:765
+#: ../panel-plugin/mailwatch.c:767
 msgid "Select Mailbox Type"
 msgstr "Επιλογή είδους γραμματοκιβωτίου"
 
-#: ../panel-plugin/mailwatch.c:774
+#: ../panel-plugin/mailwatch.c:776
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr ""
 "Επιλέξτε έναν τύπο γραμματοκιβωτίου. Θα εμφανιστεί μια περιγραφή του "
 "παρακάτω."
 
-#: ../panel-plugin/mailwatch.c:830
+#: ../panel-plugin/mailwatch.c:832
 msgid "Add New Mailbox"
 msgstr "Προσθήκη νέου Γραμματοκιβωτίου"
 
-#: ../panel-plugin/mailwatch.c:893
+#: ../panel-plugin/mailwatch.c:895
 msgid "Remove Mailbox"
 msgstr "Αφαίρεση Γραμματοκιβωτίου"
 
-#: ../panel-plugin/mailwatch.c:894
+#: ../panel-plugin/mailwatch.c:896
 msgid "Are you sure?"
 msgstr "Είστε σίγουροι;"
 
-#: ../panel-plugin/mailwatch.c:895
+#: ../panel-plugin/mailwatch.c:897
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr ""
 "Με την αφαίρεση ενός γραμματοκιβωτίου θα χαθούν όλες οι ρυθμίσεις, και δεν "
 "μπορεί να αναιρεθεί."
 
-#: ../panel-plugin/mailwatch.c:966
+#: ../panel-plugin/mailwatch.c:968
 msgid "Mailboxes"
 msgstr "Γραμματοκιβώτια"
