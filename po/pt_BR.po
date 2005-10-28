@@ -1,8 +1,8 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# pt_BR translation for xfce4-mailwatch-plugin
+# Copyright (C) 2005 Adriano Winter Bess <awbess@gmail.com>
+# This file is distributed under the same license as the
+# xfce4-mailwatch-plugin package.
+# Adriano Winter Bess <awbess@gmail.com>, 2005.
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
