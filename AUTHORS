@@ -1,7 +1,8 @@
 Code:
-    Brian Tarricone <bjt23@cornell.edu>  (core, plugin, IMAP, POP3)
-    Pasi Orovuo <pasi.ov@gmail.com>  (mbox, maildir, mh-maildir, bugfixes)
+    Brian Tarricone <bjt23@cornell.edu>  (core, plugin, IMAP, POP3, GMail)
+    Pasi Orovuo <pasi.ov@gmail.com>  (mbox, {mh-,}maildir, bugfixes, logging)
 
 Translations:
     Bernhard Walle <bernhard@bwalle.de>  (de)
     Daichi Kawahata <daichik@users.sourceforge.net>  (ja)
+    Adriano Winter Bess <awbess@gmail.com> (pt_BR)
