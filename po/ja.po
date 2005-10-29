@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-27 23:03-0700\n"
-"PO-Revision-Date: 2005-10-08 01:43+0900\n"
+"POT-Creation-Date: 2005-10-29 17:57+0900\n"
+"PO-Revision-Date: 2005-10-29 18:06+0900\n"
 "Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
@@ -57,6 +57,8 @@ msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
 msgstr ""
+"HTTP 応答コード %d を受信しました。あなたの Gmail ユーザー名またはパスワード"
+"が誤っていることが原因と思われます。"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:371
 #, c-format
@@ -65,6 +67,9 @@ msgid ""
 "with GMail's servers, or they have incompatibly changed their authentication "
 "method or location of the new messages feed."
 msgstr ""
+"200 であるべきですが、HTTP 応答コード %d を受信しました。GMail サーバーに問題"
+"がある可能性があります。あるいは、認証方式を互換性のないものに変更している"
+"か、新着メッセージを受信する場所を変更しています。"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:617
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1734
@@ -94,15 +99,16 @@ msgid "minute(s)."
 msgstr "分毎に確認する。"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:752
-#, fuzzy
 msgid "Remote GMail Mailbox"
-msgstr "リモート IMAP メール箱"
+msgstr "リモート GMail メール箱"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:753
 msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
 msgstr ""
+"GMail プラグインで Google が提供しているメールサービスに接続します。また、新"
+"着メッセージを安全に取得できます。"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:254
 msgid ""
