@@ -1,153 +1,171 @@
-2005-10-20 10:08  piarres
+2005-10-29 09:13  Daichi Kawahata <daichi@xfce.org>
+
+	* ja.po: Updated Japanese translations.
+
+2005-10-28 23:10  Brian Tarricone <kelnos@xfce.org>
+
+	* pt_BR.po: fix pt_BR header
+
+2005-10-28 23:07  Brian Tarricone <kelnos@xfce.org>
+
+	* pt_BR.po: add pt_BR translation from adriano winter bess
+
+2005-10-28 06:11  Brian Tarricone <kelnos@xfce.org>
+
+	* POTFILES.in, de.po, el.po, eu.po, fi.po, gu.po, ja.po,
+	  xfce4-mailwatch-plugin.pot: add gmail mailbox support,
+	  update-po
+
+2005-10-27 20:32  Pau Rullan Ferragut <paurullan@bulma.net>
+
+	* ca.po: begin process to 4.4 work autotranslation of most of
+	  the actual po -- paurullan@bulma.net , ca translator
+
+2005-10-21 11:58  Daichi Kawahata <daichi@xfce.org>
+
+	* de.po, el.po, eu.po, fi.po, gu.po, ja.po: Updated with the
+	  latest POT file.
+	* xfce4-mailwatch-plugin.pot: Updated with the latest sources.
+
+2005-10-21 01:25  Daichi Kawahata <daichi@xfce.org>
+
+	* ChangeLog: Updated.
+
+2005-10-20 23:30  Daichi Kawahata <daichi@xfce.org>
+
+	* eu.po: Modified initial header/comment strings.
+
+2005-10-20 10:08  Piarres Beobide <pi@beobide.net>
 
 	* eu.po: xfce4-mailwatch basque translation
 
-2005-10-16 22:19  daichi
+2005-10-16 22:19  Daichi Kawahata <daichi@xfce.org>
 
 	* de.po, el.po, fi.po, gu.po, ja.po,
 	  xfce4-mailwatch-plugin.pot: Updated.
 
-2005-10-09 17:39  daichi
+2005-10-07 16:56  Daichi Kawahata <daichi@xfce.org>
 
-	* ja.po: Keyword `Id' expansion, hope this works.
+	* de.po, gu.po: Modified initial header/comment strings.
 
-2005-10-07 16:56  daichi
-
-	* de.po, gu.po: Modified initial header strings using template
-	  by "msginit". Modified initial comment strings using template
-	  by "msginit".
-
-2005-10-07 16:52  daichi
+2005-10-07 16:52  Daichi Kawahata <daichi@xfce.org>
 
 	* ja.po: Updated Japanese translations.
 
-2005-10-06 20:05  stavrosg
+2005-10-06 20:05  Stavros Giannouris <stavrosg2002@freemail.gr>
 
 	* el.po: Minor updates & polishing for the Greek translations
 
-2005-09-29 09:24  kelnos
+2005-09-29 09:24  Brian Tarricone <kelnos@xfce.org>
 
 	* POTFILES.in, de.po, el.po, fi.po, gu.po, ja.po,
 	  xfce4-mailwatch-plugin.pot: merge in plugin for new panel, fix
 	  a nice crash bug from jasper (^_~), and update the .po files
 
-2005-09-24 07:45  daichi
+2005-09-24 07:45  Daichi Kawahata <daichi@xfce.org>
 
-	* ja.po: Added initial "$Id$". Updated some translations.
+	* ja.po: Updated some translations.
 
-2005-09-13 20:31  daichi
+2005-09-13 20:31  Daichi Kawahata <daichi@xfce.org>
 
 	* ja.po: Updated Japanese translations.
 
-2005-08-28 07:56  ankit
+2005-08-28 07:56  Ankit Patel <ankit644@yahoo.com>
 
 	* gu.po: Updated Gujarati Translations
 
-2005-08-28 05:05  kelnos
+2005-08-28 05:05  Brian Tarricone <kelnos@xfce.org>
 
 	* de.po, el.po, fi.po, gu.po, ja.po, xfce4-mailwatch-plugin.pot:
 	  rearrange settings panel, add ability for user-supplied button
 	  icons make update-po
 
-2005-08-26 04:52  ankit
+2005-08-26 04:52  Ankit Patel <ankit644@yahoo.com>
 
 	* gu.po: Added Gujarati Translations
 
-2005-08-23 13:51  daichi
+2005-08-23 13:51  Daichi Kawahata <daichi@xfce.org>
 
 	* ja.po: Updated Japanese translations.
 
-2005-08-20 00:43  stavrosg
+2005-08-20 00:43  Stavros Giannouris <stavrosg2002@freemail.gr>
 
 	* el.po: Updated Greek translation for xfce4-mailwatch-plugin
 
-2005-08-18 12:05  daichi
+2005-08-18 12:05  Daichi Kawahata <daichi@xfce.org>
 
 	* ja.po: Updated Japanese translations.
 
-2005-08-15 16:13  pasi
+2005-08-15 16:13  Pasi Orovuo <pasi@xfce.org>
 
 	* de.po, el.po, fi.po, ja.po, xfce4-mailwatch-plugin.pot: Maildir
 	  log message changed. make update-po. Update Finnish translation.
 
-2005-08-13 14:12  daichi
+2005-08-13 14:12  Daichi Kawahata <daichi@xfce.org>
 
 	* fi.po: Added Finnish translations by Jari Rahkonen.
 
-2005-08-06 19:08  stavrosg
+2005-08-06 19:08  Stavros Giannouris <stavrosg2002@freemail.gr>
 
-	* el.po: Initial addition of Greek language files for xfcalendar,
-	  xfce4-mailwatch plugin and mousepad in trunk.
+	* el.po: Initial addition of Greek language files for
+	  xfce4-mailwatch plugin in trunk.
 
-2005-07-25 21:16  kelnos
+2005-07-25 21:16  Brian Tarricone <kelnos@xfce.org>
 
-	* de.po, ja.po, xfce4-mailwatch-plugin.pot: add some log messages,
-	  add a check on plugin creation for a valid XfceMailwatch instance.
-	  make update-po
+	* de.po, ja.po, xfce4-mailwatch-plugin.pot: make update-po
 
-2005-07-22 05:58  kelnos
+2005-07-22 05:58  Brian Tarricone <kelnos@xfce.org>
 
 	* ja.po: update ja translations (daichi kawahata)
 
-2005-07-09 10:28  kelnos
+2005-07-09 10:28  Brian Tarricone <kelnos@xfce.org>
 
 	* de.po, ja.po, xfce4-mailwatch-plugin.pot: update-po
 
-2005-07-08 07:56  kelnos
-
-	* POTFILES.in, de.po, ja.po, xfce4-mailwatch-plugin.pot: lots of
-	  stuff: add support for displaying the mailbox name and a
-	  timestamp in the message log. add pref for # of lines to
-	  remember in the log before discarding old messages. add a
-	  bunch of logging messages to the IMAP and POP3 protocols. make
-	  liberal use of GError in the xfce_mailwatch_net_() functions.
-	  cleanup some pixbuf-related stuff. probably other stuff i can't
-	  remember.
-
-2005-07-02 13:26  kelnos
+2005-07-02 13:26  Brian Tarricone <kelnos@xfce.org>
 
 	* de.po, ja.po, xfce4-mailwatch-plugin.pot: update trans stuff
 
-2005-06-26 12:33  kelnos
+2005-06-26 12:33  Brian Tarricone <kelnos@xfce.org>
 
 	* de.po, ja.po, xfce4-mailwatch-plugin.pot: fix distcheck
 
-2005-06-26 12:30  kelnos
+2005-06-26 12:30  Brian Tarricone <kelnos@xfce.org>
 
 	* .: set svn:ignore
 
-2005-06-26 06:40  kelnos
+2005-06-26 06:40  Brian Tarricone <kelnos@xfce.org>
 
 	* ChangeLog, de.po, ja.po, xfce4-mailwatch-plugin.pot: stuff.
 
-2005-06-26 06:27  kelnos
+2005-06-26 06:27  Brian Tarricone <kelnos@xfce.org>
 
 	* POTFILES.in, de.po, ja.po, xfce4-mailwatch-plugin.pot: add
 	  POP3/POP3s support. yeah, baby.
 
-2005-05-23 18:16  kelnos
+2005-05-23 18:16  Brian Tarricone <kelnos@xfce.org>
 
 	* ja.po: add japanese translation from daichi
 
-2005-05-23 08:19  kelnos
+2005-05-23 08:19  Brian Tarricone <kelnos@xfce.org>
 
 	* de.po: add de translation from bernhard
 
-2005-05-20 18:01  kelnos
+2005-05-20 18:01  Brian Tarricone <kelnos@xfce.org>
 
 	* xfce4-mailwatch-plugin.pot: add pot file
 
-2005-05-03 08:25  kelnos
+2005-05-03 08:25  Brian Tarricone <kelnos@xfce.org>
 
 	* POTFILES.in: add 'run on new messages' command, update
 	  translatable stuff
 
-2005-04-16 05:56  kelnos
+2005-04-16 05:56  Brian Tarricone <kelnos@xfce.org>
 
 	* Makefile.in.in: "automake annoys me", and "oops, how did that
 	  get there"
 
-2005-04-16 05:39  kelnos
+2005-04-16 05:39  Brian Tarricone <kelnos@xfce.org>
 
 	* Makefile.in.in, POTFILES.in: this code totally doesn't do
 	  anything yet. it probably doesn't even compile. but it's a
