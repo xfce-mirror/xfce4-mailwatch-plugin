@@ -392,7 +392,7 @@ mailwatch_read_config(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
     
     mwp->log_lines = xfce_rc_read_int_entry(rc, "log_lines", DEFAULT_LOG_LINES);
     
-    mwp->log_lines = xfce_rc_read_bool_entry(rc, "show_log_status", TRUE);
+    mwp->show_log_status = xfce_rc_read_bool_entry(rc, "show_log_status", TRUE);
     
     xfce_rc_close(rc);
     
