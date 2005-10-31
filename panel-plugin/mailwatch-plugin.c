@@ -77,6 +77,13 @@ enum {
 };
 
 static void
+mailwatch_set_default_config(XfceMailwatchPlugin *mwp)
+{
+    mwp->log_lines = 200;
+    mwp->show_log_status = TRUE;
+}
+
+static void
 mailwatch_set_icon(XfceMailwatchPlugin *mwp, gboolean newmail)
 {
     GdkPixbuf       *pb = newmail ?
@@ -177,7 +184,9 @@ mailwatch_button_release_cb(GtkWidget *w, GdkEventButton *evt,
 }
 
 static void
-mailwatch_log_message_cb( XfceMailwatch *mailwatch, gpointer arg, gpointer user_data )
+mailwatch_log_message_cb(XfceMailwatch *mailwatch,
+                         gpointer arg,
+                         gpointer user_data)
 {
     XfceMailwatchLogEntry   *entry = arg;
     XfceMailwatchPlugin     *mwp = user_data;
@@ -215,10 +224,6 @@ mailwatch_log_message_cb( XfceMailwatch *mailwatch, gpointer arg, gpointer user_
             gtk_list_store_remove(mwp->loglist, &iter);
     }
 }
-
-/*
- * xfce4-panel functions
- */
 
 static GdkPixbuf *
 mailwatch_get_mini_icon(GtkWidget *dummy, const gchar *icon_name, gint size)
@@ -345,13 +350,16 @@ mailwatch_read_config(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
     
     DBG("entering");
     
-    if(!(file = xfce_panel_plugin_lookup_rc_file(plugin)))
+    if(!(file = xfce_panel_plugin_lookup_rc_file(plugin))) {
+        mailwatch_set_default_config(mwp);
         return;
+    }
     
     rc = xfce_rc_simple_open(file, TRUE);
 
     if(!rc) {
         g_free(file);
+        mailwatch_set_default_config(mwp);
         return;
     }
     
