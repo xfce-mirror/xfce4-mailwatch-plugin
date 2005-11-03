@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-27 23:03-0700\n"
+"POT-Creation-Date: 2005-11-03 23:02+0900\n"
 "PO-Revision-Date: 2005-10-08 02:52+0900\n"
 "Last-Translator: Stavros Giannouris <stavrosg2002@freemail.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -330,107 +330,107 @@ msgstr ""
 "αλληλογραφίας που υποστηρίζει το πρωτόκολο POP3, προαιρετικά χρησιμοποιώντας "
 "SSL για την προστασία της σύνδεσης"
 
-#: ../panel-plugin/mailwatch-plugin.c:114
-#: ../panel-plugin/mailwatch-plugin.c:315
+#: ../panel-plugin/mailwatch-plugin.c:121
+#: ../panel-plugin/mailwatch-plugin.c:320
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
 #: ../panel-plugin/mailwatch-plugin-4.2.c:250
 msgid "No new mail"
 msgstr "Δεν υπάρχουν νέα μυνήματα"
 
-#: ../panel-plugin/mailwatch-plugin.c:129
+#: ../panel-plugin/mailwatch-plugin.c:136
 #: ../panel-plugin/mailwatch-plugin-4.2.c:129
 msgid "You have 1 new message:"
 msgstr "Έχετε 1 νέο μήνυμα:"
 
-#: ../panel-plugin/mailwatch-plugin.c:131
+#: ../panel-plugin/mailwatch-plugin.c:138
 #: ../panel-plugin/mailwatch-plugin-4.2.c:131
 #, c-format
 msgid "You have %d new messages:"
 msgstr "Έχετε %d νέα μηνύματά:"
 
-#: ../panel-plugin/mailwatch-plugin.c:299
+#: ../panel-plugin/mailwatch-plugin.c:304
 #: ../panel-plugin/mailwatch-plugin-4.2.c:234
 msgid "Xfce Mailwatch"
 msgstr "Xfce Mailwatch"
 
-#: ../panel-plugin/mailwatch-plugin.c:300
+#: ../panel-plugin/mailwatch-plugin.c:305
 #: ../panel-plugin/mailwatch-plugin-4.2.c:235
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Το εφαρμογίδιο mailwatch δεν μπορεί να προστεθεί στον πίνακα."
 
-#: ../panel-plugin/mailwatch-plugin.c:301
+#: ../panel-plugin/mailwatch-plugin.c:306
 #: ../panel-plugin/mailwatch-plugin-4.2.c:236
 msgid "It is possible that your version of GLib does not have threads support."
 msgstr ""
 "Πιθανόν η έκδοση της Glib που διαθέτετε δεν έχει υποστήριξη για νήματα."
 
-#: ../panel-plugin/mailwatch-plugin.c:508
+#: ../panel-plugin/mailwatch-plugin.c:516
 #: ../panel-plugin/mailwatch-plugin-4.2.c:457
 msgid "Mailwatch log"
 msgstr "Καταγραφή του Mailwatch"
 
-#: ../panel-plugin/mailwatch-plugin.c:566
+#: ../panel-plugin/mailwatch-plugin.c:574
 #: ../panel-plugin/mailwatch-plugin-4.2.c:515
 msgid "Log _lines:"
 msgstr "Γραμμές κατα_γραφής:"
 
-#: ../panel-plugin/mailwatch-plugin.c:580
+#: ../panel-plugin/mailwatch-plugin.c:588
 #: ../panel-plugin/mailwatch-plugin-4.2.c:529
 msgid "Show log _status in icon"
 msgstr "Εμφάνιση κατάστασης της καταγραφής στο εικονίδιο"
 
-#: ../panel-plugin/mailwatch-plugin.c:624
+#: ../panel-plugin/mailwatch-plugin.c:632
 #: ../panel-plugin/mailwatch-plugin-4.2.c:575
 msgid "Select Icon"
 msgstr "Επιλέξτε Εικονίδιο"
 
-#: ../panel-plugin/mailwatch-plugin.c:655
-#: ../panel-plugin/mailwatch-plugin.c:809
+#: ../panel-plugin/mailwatch-plugin.c:663
+#: ../panel-plugin/mailwatch-plugin.c:817
 #: ../panel-plugin/mailwatch-plugin-4.2.c:605
 #: ../panel-plugin/mailwatch-plugin-4.2.c:727
 msgid "_Normal"
 msgstr "_Κανονικό"
 
-#: ../panel-plugin/mailwatch-plugin.c:681
+#: ../panel-plugin/mailwatch-plugin.c:689
 #: ../panel-plugin/mailwatch-plugin-4.2.c:630
 msgid "Ne_w mail"
 msgstr "Νέ_α αλληλογραφία"
 
-#: ../panel-plugin/mailwatch-plugin.c:712
+#: ../panel-plugin/mailwatch-plugin.c:720
 msgid "Edit Properties"
 msgstr "Επεξεργασία Ιδιοτήτων"
 
-#: ../panel-plugin/mailwatch-plugin.c:724
+#: ../panel-plugin/mailwatch-plugin.c:732
 #: ../panel-plugin/mailwatch-plugin-4.2.c:868
 msgid "Mail Watcher"
 msgstr "Παρακολούθηση Αλληλογραφίας"
 
-#: ../panel-plugin/mailwatch-plugin.c:741
+#: ../panel-plugin/mailwatch-plugin.c:749
 #: ../panel-plugin/mailwatch-plugin-4.2.c:659
 msgid "External Programs"
 msgstr "Εξωτερικά Προγράμματα"
 
-#: ../panel-plugin/mailwatch-plugin.c:753
+#: ../panel-plugin/mailwatch-plugin.c:761
 #: ../panel-plugin/mailwatch-plugin-4.2.c:671
 msgid "Run _on click:"
 msgstr "Εκτέλεση στ_ο κλικ:"
 
-#: ../panel-plugin/mailwatch-plugin.c:770
+#: ../panel-plugin/mailwatch-plugin.c:778
 #: ../panel-plugin/mailwatch-plugin-4.2.c:688
 msgid "Run on new _messages:"
 msgstr "Εκτέλεση στα νέα _μηνύματα"
 
-#: ../panel-plugin/mailwatch-plugin.c:783
+#: ../panel-plugin/mailwatch-plugin.c:791
 #: ../panel-plugin/mailwatch-plugin-4.2.c:701
 msgid "Icons"
 msgstr "Εικονίδια"
 
-#: ../panel-plugin/mailwatch-plugin.c:829
+#: ../panel-plugin/mailwatch-plugin.c:837
 #: ../panel-plugin/mailwatch-plugin-4.2.c:747
 msgid "Ne_w Mail"
 msgstr "Νέ_α Αλληλογραφία"
 
-#: ../panel-plugin/mailwatch-plugin.c:837
+#: ../panel-plugin/mailwatch-plugin.c:845
 #: ../panel-plugin/mailwatch-plugin-4.2.c:755
 msgid "_View Log..."
 msgstr "Εμφάνιση του α_ρχείου καταγραφών..."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-27 23:03-0700\n"
+"POT-Creation-Date: 2005-11-03 23:02+0900\n"
 "PO-Revision-Date: 2005-10-22 11:04+0200\n"
 "Last-Translator: Fabian Nowak <timystery@aarcor.de>\n"
 "Language-Team: German <de@li.org>\n"
@@ -332,108 +332,108 @@ msgstr ""
 "Das POP3-Plugin kann sich mit einem entfernten POP3-Server verbinden, "
 "optional mit SSL-Verschlüsselung für mehr Sicherheit."
 
-#: ../panel-plugin/mailwatch-plugin.c:114
-#: ../panel-plugin/mailwatch-plugin.c:315
+#: ../panel-plugin/mailwatch-plugin.c:121
+#: ../panel-plugin/mailwatch-plugin.c:320
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
 #: ../panel-plugin/mailwatch-plugin-4.2.c:250
 msgid "No new mail"
 msgstr "Keine neuen Nachrichten"
 
-#: ../panel-plugin/mailwatch-plugin.c:129
+#: ../panel-plugin/mailwatch-plugin.c:136
 #: ../panel-plugin/mailwatch-plugin-4.2.c:129
 msgid "You have 1 new message:"
 msgstr "Sie haben eine neue Nachricht:"
 
-#: ../panel-plugin/mailwatch-plugin.c:131
+#: ../panel-plugin/mailwatch-plugin.c:138
 #: ../panel-plugin/mailwatch-plugin-4.2.c:131
 #, c-format
 msgid "You have %d new messages:"
 msgstr "Sie haben %d neue Nachrichten:"
 
-#: ../panel-plugin/mailwatch-plugin.c:299
+#: ../panel-plugin/mailwatch-plugin.c:304
 #: ../panel-plugin/mailwatch-plugin-4.2.c:234
 msgid "Xfce Mailwatch"
 msgstr "Xfce Mailüberwachung"
 
-#: ../panel-plugin/mailwatch-plugin.c:300
+#: ../panel-plugin/mailwatch-plugin.c:305
 #: ../panel-plugin/mailwatch-plugin-4.2.c:235
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Die Mailüberwachung kann zum Panel nicht hinzugefügt werden."
 
-#: ../panel-plugin/mailwatch-plugin.c:301
+#: ../panel-plugin/mailwatch-plugin.c:306
 #: ../panel-plugin/mailwatch-plugin-4.2.c:236
 msgid "It is possible that your version of GLib does not have threads support."
 msgstr ""
 "Es ist möglich, dass deine Glib-Version keine Unterstützung für Threads "
 "bietet."
 
-#: ../panel-plugin/mailwatch-plugin.c:508
+#: ../panel-plugin/mailwatch-plugin.c:516
 #: ../panel-plugin/mailwatch-plugin-4.2.c:457
 msgid "Mailwatch log"
 msgstr "Mailwatch Logdatei"
 
-#: ../panel-plugin/mailwatch-plugin.c:566
+#: ../panel-plugin/mailwatch-plugin.c:574
 #: ../panel-plugin/mailwatch-plugin-4.2.c:515
 msgid "Log _lines:"
 msgstr "Logzei_len"
 
-#: ../panel-plugin/mailwatch-plugin.c:580
+#: ../panel-plugin/mailwatch-plugin.c:588
 #: ../panel-plugin/mailwatch-plugin-4.2.c:529
 msgid "Show log _status in icon"
 msgstr "Log_status im Symbol anzeigen"
 
-#: ../panel-plugin/mailwatch-plugin.c:624
+#: ../panel-plugin/mailwatch-plugin.c:632
 #: ../panel-plugin/mailwatch-plugin-4.2.c:575
 msgid "Select Icon"
 msgstr "Symbol auswählen"
 
-#: ../panel-plugin/mailwatch-plugin.c:655
-#: ../panel-plugin/mailwatch-plugin.c:809
+#: ../panel-plugin/mailwatch-plugin.c:663
+#: ../panel-plugin/mailwatch-plugin.c:817
 #: ../panel-plugin/mailwatch-plugin-4.2.c:605
 #: ../panel-plugin/mailwatch-plugin-4.2.c:727
 msgid "_Normal"
 msgstr "_Normal"
 
-#: ../panel-plugin/mailwatch-plugin.c:681
+#: ../panel-plugin/mailwatch-plugin.c:689
 #: ../panel-plugin/mailwatch-plugin-4.2.c:630
 msgid "Ne_w mail"
 msgstr "_Neue Nachrichten"
 
-#: ../panel-plugin/mailwatch-plugin.c:712
+#: ../panel-plugin/mailwatch-plugin.c:720
 msgid "Edit Properties"
 msgstr "Eigenschaften ändern"
 
-#: ../panel-plugin/mailwatch-plugin.c:724
+#: ../panel-plugin/mailwatch-plugin.c:732
 #: ../panel-plugin/mailwatch-plugin-4.2.c:868
 msgid "Mail Watcher"
 msgstr "Mailüberwachung"
 
-#: ../panel-plugin/mailwatch-plugin.c:741
+#: ../panel-plugin/mailwatch-plugin.c:749
 #: ../panel-plugin/mailwatch-plugin-4.2.c:659
 msgid "External Programs"
 msgstr "Externe Programme"
 
-#: ../panel-plugin/mailwatch-plugin.c:753
+#: ../panel-plugin/mailwatch-plugin.c:761
 #: ../panel-plugin/mailwatch-plugin-4.2.c:671
 msgid "Run _on click:"
 msgstr "_Ausführen bei Klick:"
 
-#: ../panel-plugin/mailwatch-plugin.c:770
+#: ../panel-plugin/mailwatch-plugin.c:778
 #: ../panel-plugin/mailwatch-plugin-4.2.c:688
 msgid "Run on new _messages:"
 msgstr "Ausführen bei _neuen Nachrichten:"
 
-#: ../panel-plugin/mailwatch-plugin.c:783
+#: ../panel-plugin/mailwatch-plugin.c:791
 #: ../panel-plugin/mailwatch-plugin-4.2.c:701
 msgid "Icons"
 msgstr "Symbole"
 
-#: ../panel-plugin/mailwatch-plugin.c:829
+#: ../panel-plugin/mailwatch-plugin.c:837
 #: ../panel-plugin/mailwatch-plugin-4.2.c:747
 msgid "Ne_w Mail"
 msgstr "_Neue Nachrichten"
 
-#: ../panel-plugin/mailwatch-plugin.c:837
+#: ../panel-plugin/mailwatch-plugin.c:845
 #: ../panel-plugin/mailwatch-plugin-4.2.c:755
 msgid "_View Log..."
 msgstr "_Logdatei betrachten..."
