@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-03 23:02+0900\n"
+"POT-Creation-Date: 2005-11-04 17:22+0900\n"
 "PO-Revision-Date: 2005-10-29 17:56+0900\n"
 "Last-Translator: Pau Rullan Ferragut <paurullan@bulma.net>\n"
 "Language-Team: Catalan <ca@dodds.net>\n"
@@ -440,6 +440,7 @@ msgstr "Edita Propietats"
 
 #: ../panel-plugin/mailwatch-plugin.c:732
 #: ../panel-plugin/mailwatch-plugin-4.2.c:868
+#: ../panel-plugin/mailwatch.desktop.in.in.h:2
 #, fuzzy
 msgid "Mail Watcher"
 msgstr "Correu"
@@ -582,4 +583,8 @@ msgstr "S'està suprimint a all i."
 
 #: ../panel-plugin/mailwatch.c:968
 msgid "Mailboxes"
+msgstr ""
+
+#: ../panel-plugin/mailwatch.desktop.in.in.h:1
+msgid "Check mail from multiple mailboxes"
 msgstr ""

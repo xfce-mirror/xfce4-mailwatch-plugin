@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-03 23:02+0900\n"
+"POT-Creation-Date: 2005-11-04 17:22+0900\n"
 "PO-Revision-Date: 2005-10-29 18:06+0900\n"
 "Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
@@ -411,6 +411,7 @@ msgstr "プロパティを編集"
 
 #: ../panel-plugin/mailwatch-plugin.c:732
 #: ../panel-plugin/mailwatch-plugin-4.2.c:868
+#: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Mail Watcher"
 msgstr "メール・ウォッチャー"
 
@@ -539,3 +540,7 @@ msgstr "メール箱を削除するとすべての設定が破棄されます、
 #: ../panel-plugin/mailwatch.c:968
 msgid "Mailboxes"
 msgstr "メール箱"
+
+#: ../panel-plugin/mailwatch.desktop.in.in.h:1
+msgid "Check mail from multiple mailboxes"
+msgstr ""

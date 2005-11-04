@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-03 23:02+0900\n"
+"POT-Creation-Date: 2005-11-04 17:22+0900\n"
 "PO-Revision-Date: 2005-10-08 02:52+0900\n"
 "Last-Translator: Stavros Giannouris <stavrosg2002@freemail.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -402,6 +402,7 @@ msgstr "Επεξεργασία Ιδιοτήτων"
 
 #: ../panel-plugin/mailwatch-plugin.c:732
 #: ../panel-plugin/mailwatch-plugin-4.2.c:868
+#: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Mail Watcher"
 msgstr "Παρακολούθηση Αλληλογραφίας"
 
@@ -531,3 +532,7 @@ msgstr ""
 #: ../panel-plugin/mailwatch.c:968
 msgid "Mailboxes"
 msgstr "Γραμματοκιβώτια"
+
+#: ../panel-plugin/mailwatch.desktop.in.in.h:1
+msgid "Check mail from multiple mailboxes"
+msgstr ""
