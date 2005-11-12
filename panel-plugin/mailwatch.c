@@ -84,12 +84,12 @@ extern XfceMailwatchMailboxType builtin_mailbox_type_mh;
 extern XfceMailwatchMailboxType builtin_mailbox_type_gmail;
 
 XfceMailwatchMailboxType *builtin_mailbox_types[] = {
+    &builtin_mailbox_type_gmail,
     &builtin_mailbox_type_imap,
     &builtin_mailbox_type_pop3,
     &builtin_mailbox_type_maildir,
     &builtin_mailbox_type_mbox,
     &builtin_mailbox_type_mh,
-    &builtin_mailbox_type_gmail,
     NULL
 };
 #define N_BUILTIN_MAILBOX_TYPES (sizeof(builtin_mailbox_types)/sizeof(builtin_mailbox_types[0]))
