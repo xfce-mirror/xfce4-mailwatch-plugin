@@ -47,14 +47,15 @@
 
 #include <gtk/gtk.h>
 
-#ifdef XFCE_DISABLE_DEPRECATED
-#undef XFCE_DISABLE_DEPRECATED
-#endif
-
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 
 #include "mailwatch.h"
+
+#if GTK_CHECK_VERSION( 2, 4, 0 ) || \
+    ( LIBXFCEGUI4_CHECK_VERSION( 4, 3, 4 ) && defined( XFCE_DISABLE_DEPRECATED ) )
+#define XFCE_NO_FILE_CHOOSER
+#endif
 
 #define XFCE_MAILWATCH_MBOX_MAILBOX( p )    ( (XfceMailwatchMboxMailbox *) p )
 #define BORDER                              ( 8 )
@@ -371,22 +372,37 @@ mbox_browse_button_clicked_cb( GtkWidget *button,
     xfce_textdomain( GETTEXT_PACKAGE, LOCALEDIR, "UTF-8" );
 
     top = gtk_widget_get_toplevel( button );
+
+#ifdef XFCE_NO_FILE_CHOOSER
+    chooser = gtk_file_chooser_dialog_new( _( "Select mbox file" ),
+            GTK_WINDOW( top ),
+            GTK_FILE_CHOOSER_ACTION_OPEN,
+            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+            GTK_STOCK_OK, GTK_RESPONSE_OK,
+            NULL );
+    if ( mbox->fn ) {
+        gtk_file_chooser_set_filename( GTK_FILE_CHOOSER( chooser ), mbox->fn );
+    }
+#else
     chooser = xfce_file_chooser_new( _( "Select mbox file" ),
             GTK_WINDOW( top ),
             XFCE_FILE_CHOOSER_ACTION_OPEN,
             GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
             GTK_STOCK_OK, GTK_RESPONSE_OK,
             NULL );
-
-    g_mutex_lock( mbox->settings_mutex );
     if ( mbox->fn ) {
         xfce_file_chooser_set_filename( XFCE_FILE_CHOOSER( chooser ), mbox->fn );
     }
-    g_mutex_unlock( mbox->settings_mutex );
+#endif
 
     result = gtk_dialog_run( GTK_DIALOG( chooser ) );
     if ( result == GTK_RESPONSE_OK ) {
-        gchar       *fn = xfce_file_chooser_get_filename( XFCE_FILE_CHOOSER( chooser ) );
+        gchar       *fn =
+#ifdef XFCE_NO_FILE_CHOOSER
+            gtk_file_chooser_get_filename( GTK_FILE_CHOOSER( chooser ) );
+#else
+            xfce_file_chooser_get_filename( XFCE_FILE_CHOOSER( chooser ) );
+#endif
         GtkWidget   *entry = g_object_get_data( G_OBJECT( button ), "mbox_entry" );
 
         gtk_entry_set_text( GTK_ENTRY( entry ), ( fn ) ? fn : "" );
