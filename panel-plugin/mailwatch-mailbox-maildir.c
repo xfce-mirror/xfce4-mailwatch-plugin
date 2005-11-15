@@ -51,11 +51,6 @@
 
 #include "mailwatch.h"
 
-#if GTK_CHECK_VERSION( 2, 4, 0 ) || \
-    ( LIBXFCEGUI4_CHECK_VERSION( 4, 3, 4 ) && defined( XFCE_DISABLE_DEPRECATED ) )
-#define XFCE_NO_FILE_CHOOSER
-#endif
-
 #define XFCE_MAILWATCH_MAILDIR_MAILBOX( p ) ( (XfceMailwatchMaildirMailbox *) p )
 #define BORDER                              ( 8 )
 
@@ -347,7 +342,6 @@ maildir_browse_button_clicked_cb( GtkWidget *button,
     xfce_textdomain( GETTEXT_PACKAGE, LOCALEDIR, "UTF-8" );
 
     parent = gtk_widget_get_toplevel( button );
-#ifdef XFCE_NO_FILE_CHOOSER
     chooser = gtk_file_chooser_dialog_new( _( "Select Maildir Folder" ),
             GTK_WINDOW( parent ),
             GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
@@ -357,26 +351,11 @@ maildir_browse_button_clicked_cb( GtkWidget *button,
     if ( maildir->path ) {
         gtk_file_chooser_set_filename( GTK_FILE_CHOOSER( chooser ), maildir->path );
     }
-#else
-    chooser = xfce_file_chooser_new( _( "Select Maildir Folder" ),
-            GTK_WINDOW(parent),
-            XFCE_FILE_CHOOSER_ACTION_SELECT_FOLDER,
-            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-            GTK_STOCK_OPEN, GTK_RESPONSE_OK,
-            NULL );
-    if ( maildir->path ) {
-        xfce_file_chooser_set_filename( XFCE_FILE_CHOOSER( chooser ), maildir->path );
-    }
-#endif
     
     result = gtk_dialog_run( GTK_DIALOG( chooser ) );
     if ( result == GTK_RESPONSE_OK ) {
         gchar       *path =
-#ifdef XFCE_NO_FILE_CHOOSER
             gtk_file_chooser_get_filename( GTK_FILE_CHOOSER( chooser ) );
-#else
-            xfce_file_chooser_get_filename( XFCE_FILE_CHOOSER( chooser ) );
-#endif
         GtkWidget   *entry = g_object_get_data( G_OBJECT( button ), "maildir_entry" );
         
         gtk_entry_set_text( GTK_ENTRY( entry ), ( path ) ? path : "" );
