@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-04 17:22+0900\n"
-"PO-Revision-Date: 2005-10-29 18:06+0900\n"
+"POT-Creation-Date: 2005-11-22 00:16+0900\n"
+"PO-Revision-Date: 2005-11-15 18:55+0900\n"
 "Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
@@ -91,8 +91,8 @@ msgstr "新しいメッセージを(_N)"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:671
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1805
-#: ../panel-plugin/mailwatch-mailbox-maildir.c:461
-#: ../panel-plugin/mailwatch-mailbox-mbox.c:476
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:458
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:471
 #: ../panel-plugin/mailwatch-mailbox-mh.c:627
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:986
 msgid "minute(s)."
@@ -230,38 +230,38 @@ msgstr ""
 "IMAP プラグインで IMAP プロトコルに対応している遠隔メールサーバに接続します。"
 "リンクを保護するために任意に SSL を利用します。"
 
-#: ../panel-plugin/mailwatch-mailbox-maildir.c:104
-#: ../panel-plugin/mailwatch-mailbox-mbox.c:103
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:100
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:99
 #: ../panel-plugin/mailwatch-mailbox-mh.c:383
 #: ../panel-plugin/mailwatch-mailbox-mh.c:394
 #, c-format
 msgid "Failed to get status of file %s: %s"
 msgstr "ファイル %s のステータス取得に失敗しました: %s"
 
-#: ../panel-plugin/mailwatch-mailbox-maildir.c:113
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:109
 #, c-format
 msgid "%s is not a directory. Is %s really a valid maildir?"
 msgstr "%s はフォルダではありません。%s は本当に適切な maildir ですか？"
 
-#: ../panel-plugin/mailwatch-mailbox-maildir.c:349
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:345
 msgid "Select Maildir Folder"
 msgstr "Maildir フォルダを選択して下さい"
 
-#: ../panel-plugin/mailwatch-mailbox-maildir.c:409
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:406
 msgid "Maildir _Path:"
 msgstr "Maildir のパス(_P):"
 
-#: ../panel-plugin/mailwatch-mailbox-maildir.c:445
-#: ../panel-plugin/mailwatch-mailbox-mbox.c:459
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:442
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:454
 #: ../panel-plugin/mailwatch-mailbox-mh.c:612
 msgid "_Interval:"
 msgstr "間隔(_I):"
 
-#: ../panel-plugin/mailwatch-mailbox-maildir.c:495
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:492
 msgid "Local Maildir Spool"
 msgstr "ローカル Maildir スプール"
 
-#: ../panel-plugin/mailwatch-mailbox-maildir.c:496
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:493
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
@@ -269,19 +269,19 @@ msgstr ""
 "Maildir プラグインで、Maildir 様式のローカル・メールスプールへ届く新しいメッ"
 "セージを確認します。"
 
-#: ../panel-plugin/mailwatch-mailbox-mbox.c:374
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:371
 msgid "Select mbox file"
 msgstr "mbox ファイルを選択して下さい"
 
-#: ../panel-plugin/mailwatch-mailbox-mbox.c:423
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:418
 msgid "Mbox _Filename:"
 msgstr "Mbox ファイル名(_F):"
 
-#: ../panel-plugin/mailwatch-mailbox-mbox.c:501
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:496
 msgid "Local Mbox spool"
 msgstr "ローカル Mbox スプール"
 
-#: ../panel-plugin/mailwatch-mailbox-mbox.c:502
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:497
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
 msgstr ""
 "Mbox プラグインで、mbox タイプのローカル・メール箱へ届く新しいメッセージを確"
@@ -338,112 +338,112 @@ msgstr ""
 "POP3 プラグインで POP3 プロトコルに対応している遠隔メールサーバに接続します。"
 "リンクを保護するために任意に SSL を利用します。"
 
-#: ../panel-plugin/mailwatch-plugin.c:121
-#: ../panel-plugin/mailwatch-plugin.c:320
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
 #: ../panel-plugin/mailwatch-plugin-4.2.c:250
+#: ../panel-plugin/mailwatch-plugin.c:121
+#: ../panel-plugin/mailwatch-plugin.c:320
 msgid "No new mail"
 msgstr "新しいメールはありません"
 
-#: ../panel-plugin/mailwatch-plugin.c:136
 #: ../panel-plugin/mailwatch-plugin-4.2.c:129
+#: ../panel-plugin/mailwatch-plugin.c:136
 msgid "You have 1 new message:"
 msgstr "一通の新しいメールが届いています:"
 
-#: ../panel-plugin/mailwatch-plugin.c:138
 #: ../panel-plugin/mailwatch-plugin-4.2.c:131
+#: ../panel-plugin/mailwatch-plugin.c:138
 #, c-format
 msgid "You have %d new messages:"
 msgstr "%d 通の新しいメールが届いています:"
 
-#: ../panel-plugin/mailwatch-plugin.c:304
 #: ../panel-plugin/mailwatch-plugin-4.2.c:234
+#: ../panel-plugin/mailwatch-plugin.c:304
 msgid "Xfce Mailwatch"
 msgstr "Xfce メールウォッチ"
 
-#: ../panel-plugin/mailwatch-plugin.c:305
 #: ../panel-plugin/mailwatch-plugin-4.2.c:235
+#: ../panel-plugin/mailwatch-plugin.c:305
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "このメールウォッチ・アプレットはパネルに追加できません。"
 
 # FIXME: possible or impossible?
-#: ../panel-plugin/mailwatch-plugin.c:306
 #: ../panel-plugin/mailwatch-plugin-4.2.c:236
+#: ../panel-plugin/mailwatch-plugin.c:306
 msgid "It is possible that your version of GLib does not have threads support."
 msgstr ""
 "あなたの GLib のバージョンはスレッドをサポートしていないためできません。"
 
-#: ../panel-plugin/mailwatch-plugin.c:516
 #: ../panel-plugin/mailwatch-plugin-4.2.c:457
+#: ../panel-plugin/mailwatch-plugin.c:516
 msgid "Mailwatch log"
 msgstr "メールウォッチ・ログ"
 
-#: ../panel-plugin/mailwatch-plugin.c:574
 #: ../panel-plugin/mailwatch-plugin-4.2.c:515
+#: ../panel-plugin/mailwatch-plugin.c:574
 msgid "Log _lines:"
 msgstr "ログの行数(_L):"
 
-#: ../panel-plugin/mailwatch-plugin.c:588
 #: ../panel-plugin/mailwatch-plugin-4.2.c:529
+#: ../panel-plugin/mailwatch-plugin.c:588
 msgid "Show log _status in icon"
 msgstr "アイコンでログ・ステータスを表示(_S)"
 
-#: ../panel-plugin/mailwatch-plugin.c:632
 #: ../panel-plugin/mailwatch-plugin-4.2.c:575
+#: ../panel-plugin/mailwatch-plugin.c:632
 msgid "Select Icon"
 msgstr "アイコンを選択して下さい"
 
-#: ../panel-plugin/mailwatch-plugin.c:663
-#: ../panel-plugin/mailwatch-plugin.c:817
 #: ../panel-plugin/mailwatch-plugin-4.2.c:605
 #: ../panel-plugin/mailwatch-plugin-4.2.c:727
+#: ../panel-plugin/mailwatch-plugin.c:663
+#: ../panel-plugin/mailwatch-plugin.c:817
 msgid "_Normal"
 msgstr "通常(_N)"
 
-#: ../panel-plugin/mailwatch-plugin.c:689
 #: ../panel-plugin/mailwatch-plugin-4.2.c:630
+#: ../panel-plugin/mailwatch-plugin.c:689
 msgid "Ne_w mail"
 msgstr "新しいメール(_W)"
 
-#: ../panel-plugin/mailwatch-plugin.c:720
-msgid "Edit Properties"
-msgstr "プロパティを編集"
+#: ../panel-plugin/mailwatch-plugin-4.2.c:659
+#: ../panel-plugin/mailwatch-plugin.c:749
+msgid "External Programs"
+msgstr "外部プログラム"
 
-#: ../panel-plugin/mailwatch-plugin.c:732
+#: ../panel-plugin/mailwatch-plugin-4.2.c:671
+#: ../panel-plugin/mailwatch-plugin.c:761
+msgid "Run _on click:"
+msgstr "クリックで実行(_O):"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:688
+#: ../panel-plugin/mailwatch-plugin.c:778
+msgid "Run on new _messages:"
+msgstr "メッセージが来た場合に実行(_M):"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:701
+#: ../panel-plugin/mailwatch-plugin.c:791
+msgid "Icons"
+msgstr "アイコン"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:747
+#: ../panel-plugin/mailwatch-plugin.c:837
+msgid "Ne_w Mail"
+msgstr "新しいメール(_W)"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:755
+#: ../panel-plugin/mailwatch-plugin.c:845
+msgid "_View Log..."
+msgstr "ログを表示(_V)..."
+
 #: ../panel-plugin/mailwatch-plugin-4.2.c:868
+#: ../panel-plugin/mailwatch-plugin.c:732
 #: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Mail Watcher"
 msgstr "メール・ウォッチャー"
 
-#: ../panel-plugin/mailwatch-plugin.c:749
-#: ../panel-plugin/mailwatch-plugin-4.2.c:659
-msgid "External Programs"
-msgstr "外部プログラム"
-
-#: ../panel-plugin/mailwatch-plugin.c:761
-#: ../panel-plugin/mailwatch-plugin-4.2.c:671
-msgid "Run _on click:"
-msgstr "クリックで実行(_O):"
-
-#: ../panel-plugin/mailwatch-plugin.c:778
-#: ../panel-plugin/mailwatch-plugin-4.2.c:688
-msgid "Run on new _messages:"
-msgstr "メッセージが来た場合に実行(_M):"
-
-#: ../panel-plugin/mailwatch-plugin.c:791
-#: ../panel-plugin/mailwatch-plugin-4.2.c:701
-msgid "Icons"
-msgstr "アイコン"
-
-#: ../panel-plugin/mailwatch-plugin.c:837
-#: ../panel-plugin/mailwatch-plugin-4.2.c:747
-msgid "Ne_w Mail"
-msgstr "新しいメール(_W)"
-
-#: ../panel-plugin/mailwatch-plugin.c:845
-#: ../panel-plugin/mailwatch-plugin-4.2.c:755
-msgid "_View Log..."
-msgstr "ログを表示(_V)..."
+#: ../panel-plugin/mailwatch-plugin.c:720
+msgid "Edit Properties"
+msgstr "プロパティを編集"
 
 #: ../panel-plugin/mailwatch-utils.c:242
 #, c-format
@@ -543,4 +543,4 @@ msgstr "メール箱"
 
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
-msgstr ""
+msgstr "複数のメール箱からメールをチェックします"
