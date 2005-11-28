@@ -1,3 +1,34 @@
+2005-11-27 02:09  Stavros Giannouris <stavrosg2002@freemail.gr>
+
+	* el.po: Updated Greek translation
+
+2005-11-21 17:14  Daichi Kawahata <daichi@xfce.org>
+
+	* ca.po, de.po, el.po, eu.po, fi.po, gu.po, ja.po, pt_BR.po,
+	  xfce4-mailwatch-plugin.pot: Updated.
+
+2005-11-21 16:06  Daichi Kawahata <daichi@xfce.org>
+
+	* POTFILES.in: Updated POTFILES.in files.
+
+2005-11-04 08:48  Daichi Kawahata <daichi@xfce.org>
+
+	* ca.po, de.po, el.po, eu.po, fi.po, gu.po, ja.po, pt_BR.po,
+	  xfce4-mailwatch-plugin.pot: Updated.
+
+2005-11-04 08:22  Daichi Kawahata <daichi@xfce.org>
+
+	* POTFILES.in: Added missing file reported by Fabian Nowak.
+
+2005-11-03 14:14  Daichi Kawahata <daichi@xfce.org>
+
+	* ca.po, de.po, el.po, eu.po, fi.po, gu.po, ja.po, pt_BR.po,
+	  xfce4-mailwatch-plugin.pot: Updated.
+
+2005-10-31 08:29  Daichi Kawahata <daichi@xfce.org>
+
+	* ChangeLog: Trimmed and updated.
+
 2005-10-29 09:13  Daichi Kawahata <daichi@xfce.org>
 
 	* ja.po: Updated Japanese translations.
