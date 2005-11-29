@@ -2,21 +2,23 @@
 #
 # Japanese translations for xfce4-mailwatch-plugin package.
 # Copyright (C) 2005 Brian Tarricone, Pasi Orovuo.
-# This file is distributed under the same license as the xfce4-mailwatch-plugin package.
+# This file is distributed under the same license as
+#   the xfce4-mailwatch-plugin package.
 # Daichi Kawahata <daichi@xfce.org>, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-22 00:16+0900\n"
-"PO-Revision-Date: 2005-11-15 18:55+0900\n"
+"POT-Creation-Date: 2005-11-28 21:20+0900\n"
+"PO-Revision-Date: 2005-11-29 23:34+0900\n"
 "Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+# FIXME: on panel or connection close?
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:215
 #: ../panel-plugin/mailwatch-mailbox-imap.c:399
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:358
@@ -24,8 +26,8 @@ msgid ""
 "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 "the panel may hang on close."
 msgstr ""
-"ソケットを非停止モードにセットできません。接続がハングを試みるなら、閉じる際"
-"にパネルがハングするかもしれません。"
+"ソケットを非停止モードにセットできません。接続しようとしてハングするなら、こ"
+"の接続を閉じる場合にパネルがハングするかもしれません。"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:254
 #: ../panel-plugin/mailwatch-mailbox-imap.c:438
@@ -57,7 +59,7 @@ msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
 msgstr ""
-"HTTP 応答コード %d を受信しました。あなたの Gmail ユーザー名またはパスワード"
+"HTTP 応答コード %d を受信しました。あなたの GMail ユーザー名またはパスワード"
 "が誤っていることが原因と思われます。"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:371
@@ -67,8 +69,8 @@ msgid ""
 "with GMail's servers, or they have incompatibly changed their authentication "
 "method or location of the new messages feed."
 msgstr ""
-"200 であるべきですが、HTTP 応答コード %d を受信しました。GMail サーバーに問題"
-"がある可能性があります。あるいは、認証方式を互換性のないものに変更している"
+"HTTP 応答コードが 200 になるはずですが、%d を受信しました。GMail サーバーに問"
+"題がある可能性があります。あるいは、認証方式を互換性のないものに変更している"
 "か、新着メッセージを受信する場所を変更しています。"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:617
@@ -87,7 +89,7 @@ msgstr "パスワード(_P):"
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1791
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:972
 msgid "Check for _new messages every"
-msgstr "新しいメッセージを(_N)"
+msgstr "新着メッセージを(_N)"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:671
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1805
@@ -107,8 +109,8 @@ msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
 msgstr ""
-"GMail プラグインで Google が提供しているメールサービスに接続します。また、新"
-"着メッセージを安全に取得できます。"
+"GMail プラグインを利用して Google が提供しているメールサービスに接続します。"
+"また、新着メッセージを安全に取得します。"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:254
 msgid ""
@@ -227,8 +229,8 @@ msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
 msgstr ""
-"IMAP プラグインで IMAP プロトコルに対応している遠隔メールサーバに接続します。"
-"リンクを保護するために任意に SSL を利用します。"
+"IMAP プラグインを利用して IMAP プロトコルに対応しているリモート・メールサー"
+"バーに接続します。リンクを保護するため任意に SSL を利用します。"
 
 #: ../panel-plugin/mailwatch-mailbox-maildir.c:100
 #: ../panel-plugin/mailwatch-mailbox-mbox.c:99
@@ -266,7 +268,7 @@ msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
 msgstr ""
-"Maildir プラグインで、Maildir 様式のローカル・メールスプールへ届く新しいメッ"
+"Maildir プラグインを利用して Maildir 様式のローカル・メールスプールの新着メッ"
 "セージを確認します。"
 
 #: ../panel-plugin/mailwatch-mailbox-mbox.c:371
@@ -284,8 +286,8 @@ msgstr "ローカル Mbox スプール"
 #: ../panel-plugin/mailwatch-mailbox-mbox.c:497
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
 msgstr ""
-"Mbox プラグインで、mbox タイプのローカル・メール箱へ届く新しいメッセージを確"
-"認します。"
+"Mbox プラグインを利用して mbox タイプのローカル・メールスプールの新着メッセー"
+"ジを確認します。"
 
 #: ../panel-plugin/mailwatch-mailbox-mh.c:206
 #: ../panel-plugin/mailwatch-mailbox-mh.c:228
@@ -308,7 +310,7 @@ msgstr "ローカル MH メールフォルダ"
 #: ../panel-plugin/mailwatch-mailbox-mh.c:654
 msgid "MH plugin watches local MH folders for new mail"
 msgstr ""
-"MH プラグインで、ローカル MH フォルダへ届く新しいメッセージを確認します。"
+"MH プラグインを利用してローカル MH フォルダの新着メッセージを確認します。"
 
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:807
 msgid "Advanced POP3 Options"
@@ -335,26 +337,26 @@ msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
 msgstr ""
-"POP3 プラグインで POP3 プロトコルに対応している遠隔メールサーバに接続します。"
-"リンクを保護するために任意に SSL を利用します。"
+"POP3 プラグインを利用して POP3 プロトコルに対応しているリモート・メールサー"
+"バーに接続します。リンクを保護するため任意に SSL を利用します。"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
 #: ../panel-plugin/mailwatch-plugin-4.2.c:250
 #: ../panel-plugin/mailwatch-plugin.c:121
 #: ../panel-plugin/mailwatch-plugin.c:320
 msgid "No new mail"
-msgstr "新しいメールはありません"
+msgstr "新着メールはありません"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:129
 #: ../panel-plugin/mailwatch-plugin.c:136
 msgid "You have 1 new message:"
-msgstr "一通の新しいメールが届いています:"
+msgstr "一通の新着メールが届いています:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:131
 #: ../panel-plugin/mailwatch-plugin.c:138
 #, c-format
 msgid "You have %d new messages:"
-msgstr "%d 通の新しいメールが届いています:"
+msgstr "%d 通の新着メールが届いています:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:234
 #: ../panel-plugin/mailwatch-plugin.c:304
@@ -403,7 +405,7 @@ msgstr "通常(_N)"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:630
 #: ../panel-plugin/mailwatch-plugin.c:689
 msgid "Ne_w mail"
-msgstr "新しいメール(_W)"
+msgstr "新着メール(_W)"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:659
 #: ../panel-plugin/mailwatch-plugin.c:749
@@ -428,7 +430,7 @@ msgstr "アイコン"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:747
 #: ../panel-plugin/mailwatch-plugin.c:837
 msgid "Ne_w Mail"
-msgstr "新しいメール(_W)"
+msgstr "新着メール(_W)"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:755
 #: ../panel-plugin/mailwatch-plugin.c:845
@@ -439,11 +441,11 @@ msgstr "ログを表示(_V)..."
 #: ../panel-plugin/mailwatch-plugin.c:732
 #: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Mail Watcher"
-msgstr "メール・ウォッチャー"
+msgstr "メールウォッチャー"
 
 #: ../panel-plugin/mailwatch-plugin.c:720
 msgid "Edit Properties"
-msgstr "プロパティを編集"
+msgstr "プロパティの編集"
 
 #: ../panel-plugin/mailwatch-utils.c:242
 #, c-format
@@ -452,7 +454,7 @@ msgstr "XfceMailwatch: TLS ハンドシェイクに失敗: %s"
 
 #: ../panel-plugin/mailwatch-utils.c:252
 msgid "Not compiled with SSL/TLS support"
-msgstr "SSL/TLS サポートでコンパイルされていません"
+msgstr "SSL/TLS サポートでコンパイルされていません。"
 
 #: ../panel-plugin/mailwatch-utils.c:254
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
@@ -462,7 +464,7 @@ msgstr ""
 
 #: ../panel-plugin/mailwatch-utils.c:277 ../panel-plugin/mailwatch-utils.c:330
 msgid "A secure connection was requested, but gnutls was not initialised"
-msgstr "安全な接続がリクエストされましたが、gnutls が初期化されませんでした"
+msgstr "安全な接続がリクエストされましたが、GnuTLS が初期化されませんでした。"
 
 #: ../panel-plugin/mailwatch.c:133
 msgid ""
@@ -484,13 +486,13 @@ msgid ""
 "passwords or other sensitive information, it may be readable by others on "
 "your system."
 msgstr ""
-"設定ファイル '%s' の許可属性をセットできません。このファイルがパスワードや他"
-"の機密情報を含んでいる場合、あなたと同じシステムを使う他の人達に見られてしま"
-"うかもしれません。"
+"設定ファイル '%s' のアクセス権をセットできません。このファイルがパスワードや"
+"他の機密情報を含んでいる場合、あなたと同じシステムを使う他の人達に見られてし"
+"まうかもしれません。"
 
 #: ../panel-plugin/mailwatch.c:616
 msgid "This mailbox type does not require any configuration settings."
-msgstr "この種類のメール箱はいずれの設定も必要ありません。"
+msgstr "このタイプのメール箱はいずれの設定も必要ありません。"
 
 #: ../panel-plugin/mailwatch.c:642
 msgid "Mailbox _Name:"
@@ -515,15 +517,15 @@ msgstr "メール箱の編集: %s"
 
 #: ../panel-plugin/mailwatch.c:767
 msgid "Select Mailbox Type"
-msgstr "メール箱の種類を選択して下さい"
+msgstr "メール箱の選択"
 
 #: ../panel-plugin/mailwatch.c:776
 msgid "Select a mailbox type.  A description of the type will appear below."
-msgstr "メール箱の種類を選択して下さい。種類の説明は下に表示されます。"
+msgstr "タイプを選択して下さい。説明は下に表示されます。"
 
 #: ../panel-plugin/mailwatch.c:832
 msgid "Add New Mailbox"
-msgstr "新規メール箱を追加"
+msgstr "新規メール箱の追加"
 
 #: ../panel-plugin/mailwatch.c:895
 msgid "Remove Mailbox"
@@ -543,4 +545,4 @@ msgstr "メール箱"
 
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
-msgstr "複数のメール箱からメールをチェックします"
+msgstr "様々なタイプのメール箱に届くメールをチェックします。"
