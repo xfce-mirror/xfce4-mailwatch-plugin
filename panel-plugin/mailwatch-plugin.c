@@ -723,11 +723,21 @@ mailwatch_create_options(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
                 GTK_DIALOG_NO_SEPARATOR,
                 GTK_STOCK_CLOSE, GTK_RESPONSE_OK,
                 NULL);
-    
+    gtk_button_box_set_layout(GTK_BUTTON_BOX(GTK_DIALOG(dlg)->action_area),
+                              GTK_BUTTONBOX_END);
     g_signal_connect(G_OBJECT(dlg), "response",
                      G_CALLBACK(mailwatch_dialog_response), mwp);
 
     gtk_container_set_border_width(GTK_CONTAINER(dlg), 2);
+
+    btn = xfce_mailwatch_custom_button_new(_("_View Log..."), GTK_STOCK_FIND);
+    gtk_widget_show(btn);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->action_area), btn, FALSE,
+                       FALSE, 0);
+    gtk_button_box_set_child_secondary(GTK_BUTTON_BOX(GTK_DIALOG(dlg)->action_area),
+                                       btn, TRUE);
+    g_signal_connect(G_OBJECT(btn), "clicked",
+                     G_CALLBACK(mailwatch_view_log_clicked_cb), mwp);
     
     header = xfce_create_header(NULL, _("Mail Watcher"));
     gtk_widget_set_size_request(GTK_BIN(header)->child, -1, 32);
@@ -842,12 +852,6 @@ mailwatch_create_options(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
     gtk_widget_show(hbox);
     gtk_box_pack_start(GTK_BOX(topvbox), hbox, FALSE, FALSE, 0);
    
-    btn = xfce_mailwatch_custom_button_new(_("_View Log..."), GTK_STOCK_FIND);
-    gtk_widget_show(btn);
-    gtk_box_pack_end(GTK_BOX(hbox), btn, FALSE, FALSE, 0);
-    g_signal_connect(G_OBJECT(btn), "clicked",
-                     G_CALLBACK(mailwatch_view_log_clicked_cb), mwp);
-
     gtk_widget_show(dlg);
 }
 
