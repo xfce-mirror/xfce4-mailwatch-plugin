@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-22 00:16+0900\n"
+"POT-Creation-Date: 2005-12-20 20:39+0900\n"
 "PO-Revision-Date: 2005-10-08 01:34+0900\n"
 "Last-Translator: Pasi Orovuo <pasi@xfce.org>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
@@ -385,7 +385,7 @@ msgstr ""
 #: ../panel-plugin/mailwatch-plugin-4.2.c:605
 #: ../panel-plugin/mailwatch-plugin-4.2.c:727
 #: ../panel-plugin/mailwatch-plugin.c:663
-#: ../panel-plugin/mailwatch-plugin.c:817
+#: ../panel-plugin/mailwatch-plugin.c:827
 msgid "_Normal"
 msgstr ""
 
@@ -396,40 +396,40 @@ msgid "Ne_w mail"
 msgstr "Ei uusia posteja"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:659
-#: ../panel-plugin/mailwatch-plugin.c:749
+#: ../panel-plugin/mailwatch-plugin.c:759
 msgid "External Programs"
 msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:671
-#: ../panel-plugin/mailwatch-plugin.c:761
+#: ../panel-plugin/mailwatch-plugin.c:771
 #, fuzzy
 msgid "Run _on click:"
 msgstr "Suo_rita napsautettaessa:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:688
-#: ../panel-plugin/mailwatch-plugin.c:778
+#: ../panel-plugin/mailwatch-plugin.c:788
 #, fuzzy
 msgid "Run on new _messages:"
 msgstr "Suorita, kun _uusia viestejä:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:701
-#: ../panel-plugin/mailwatch-plugin.c:791
+#: ../panel-plugin/mailwatch-plugin.c:801
 msgid "Icons"
 msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:747
-#: ../panel-plugin/mailwatch-plugin.c:837
+#: ../panel-plugin/mailwatch-plugin.c:847
 #, fuzzy
 msgid "Ne_w Mail"
 msgstr "Ei uusia posteja"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:755
-#: ../panel-plugin/mailwatch-plugin.c:845
+#: ../panel-plugin/mailwatch-plugin.c:733
 msgid "_View Log..."
 msgstr "_Näytä loki..."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:868
-#: ../panel-plugin/mailwatch-plugin.c:732
+#: ../panel-plugin/mailwatch-plugin.c:742
 #: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Mail Watcher"
 msgstr "Postivahti"
