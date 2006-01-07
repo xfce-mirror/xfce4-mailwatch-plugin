@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-22 00:16+0900\n"
+"POT-Creation-Date: 2006-01-07 12:24+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -363,7 +363,7 @@ msgstr ""
 #: ../panel-plugin/mailwatch-plugin-4.2.c:605
 #: ../panel-plugin/mailwatch-plugin-4.2.c:727
 #: ../panel-plugin/mailwatch-plugin.c:663
-#: ../panel-plugin/mailwatch-plugin.c:817
+#: ../panel-plugin/mailwatch-plugin.c:827
 msgid "_Normal"
 msgstr ""
 
@@ -373,37 +373,37 @@ msgid "Ne_w mail"
 msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:659
-#: ../panel-plugin/mailwatch-plugin.c:749
+#: ../panel-plugin/mailwatch-plugin.c:759
 msgid "External Programs"
 msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:671
-#: ../panel-plugin/mailwatch-plugin.c:761
+#: ../panel-plugin/mailwatch-plugin.c:771
 msgid "Run _on click:"
 msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:688
-#: ../panel-plugin/mailwatch-plugin.c:778
+#: ../panel-plugin/mailwatch-plugin.c:788
 msgid "Run on new _messages:"
 msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:701
-#: ../panel-plugin/mailwatch-plugin.c:791
+#: ../panel-plugin/mailwatch-plugin.c:801
 msgid "Icons"
 msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:747
-#: ../panel-plugin/mailwatch-plugin.c:837
+#: ../panel-plugin/mailwatch-plugin.c:847
 msgid "Ne_w Mail"
 msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:755
-#: ../panel-plugin/mailwatch-plugin.c:845
+#: ../panel-plugin/mailwatch-plugin.c:733
 msgid "_View Log..."
 msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:868
-#: ../panel-plugin/mailwatch-plugin.c:732
+#: ../panel-plugin/mailwatch-plugin.c:742
 #: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Mail Watcher"
 msgstr ""

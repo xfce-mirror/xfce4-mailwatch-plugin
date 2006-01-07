@@ -1,5 +1,5 @@
 # Brazilian Portuguese translation for xfce4-mailwatch-plugin
-# Copyright (C) 2005 Brian Tarricone, Pasi Orovuo.
+# Copyright (C) 2005-2006 Brian Tarricone, Pasi Orovuo.
 # This file is distributed under the same license as the
 # xfce4-mailwatch-plugin package.
 # Adriano Winter Bess <awbess@gmail.com>, 2005.
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-20 20:39+0900\n"
+"POT-Creation-Date: 2006-01-07 12:24+0900\n"
 "PO-Revision-Date: 2005-10-29 17:52+0900\n"
 "Last-Translator: Adriano Winter Bess <awbess@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"

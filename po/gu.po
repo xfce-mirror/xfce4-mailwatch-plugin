@@ -1,5 +1,5 @@
 # Gujarati translations for xfce4-mailwatch-plugin package.
-# Copyright (C) 2005 Brian Tarricone, Pasi Orovuo.
+# Copyright (C) 2005-2006 Brian Tarricone, Pasi Orovuo.
 # This file is distributed under the same license as the xfce4-mailwatch-plugin package.
 # Ankit Patel <ankit644@yahoo.com>, 2005.
 #
@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-20 20:39+0900\n"
+"POT-Creation-Date: 2006-01-07 12:24+0900\n"
 "PO-Revision-Date: 2005-10-08 01:35+0900\n"
 "Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
