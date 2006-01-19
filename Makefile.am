@@ -1,6 +1,7 @@
 @SET_MAKE@
 
 SUBDIRS = \
+	doc \
 	panel-plugin \
 	pixmaps \
 	po

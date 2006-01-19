@@ -4,7 +4,7 @@ SUBDIRS = \
 noinst_DATA = xfce4-mailwatch-plugin.xml
 
 docdir = $(datadir)/xfce4/doc/C
-doc_DATA = xfdesktop.html
+doc_DATA = xfce4-mailwatch-plugin.html
 
 EXTRA_DIST = $(noinst_DATA) $(doc_DATA)
 
