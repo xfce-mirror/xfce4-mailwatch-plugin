@@ -157,22 +157,42 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg,
 }
 
 static gboolean
+mailwatch_button_press_cb(GtkWidget *w,
+                          GdkEventButton *evt,
+                          gpointer user_data)
+{
+    if(evt->button == 2)
+        gtk_button_pressed(GTK_BUTTON(w));
+
+    return FALSE;
+}
+
+static gboolean
 mailwatch_button_release_cb(GtkWidget *w, GdkEventButton *evt,
         gpointer user_data)
 {
     XfceMailwatchPlugin *mwp = user_data;
-    
-    switch(evt->button) {
-        case 1:  /* left */
-            if(mwp->click_command && *mwp->click_command)
-                xfce_exec(mwp->click_command, FALSE, FALSE, NULL);
-            break;
-        
-        case 2:  /* middle */
-            xfce_mailwatch_force_update(mwp->mailwatch);
-            break;
+
+    if(evt->x >= w->allocation.x
+       && evt->x < w->allocation.x + w->allocation.width
+       && evt->y >= w->allocation.y
+       && evt->y < w->allocation.y + w->allocation.height)
+    {
+        switch(evt->button) {
+            case 1:  /* left */
+                if(mwp->click_command && *mwp->click_command)
+                    xfce_exec(mwp->click_command, FALSE, FALSE, NULL);
+                break;
+
+            case 2:  /* middle */
+                xfce_mailwatch_force_update(mwp->mailwatch);
+                break;
+        }
     }
-    
+
+    if(evt->button == 2)
+        gtk_button_released(GTK_BUTTON(w));
+
     return FALSE;
 }
 
@@ -245,6 +265,8 @@ mailwatch_create(Control *c)
     gtk_button_set_relief(GTK_BUTTON(mwp->button), GTK_RELIEF_NONE);
     gtk_widget_show(mwp->button);
     gtk_container_add(GTK_CONTAINER(c->base), mwp->button);
+    g_signal_connect(mwp->button, "button-press-event",
+            G_CALLBACK(mailwatch_button_press_cb), mwp);
     g_signal_connect(mwp->button, "button-release-event",
             G_CALLBACK(mailwatch_button_release_cb), mwp);
     gtk_tooltips_set_tip(mwp->tooltip, mwp->button, _("No new mail"), NULL);
