@@ -90,7 +90,7 @@ typedef struct {
 typedef struct {
     gchar                   *component;
     gchar                   *value;
-} XfceMailwatchMHProfileEntry;
+} MHProfileEntry;
 
 static void
 mh_profile_free( GList *list )
@@ -100,7 +100,7 @@ mh_profile_free( GList *list )
     DBG( " " );
 
     for ( li = g_list_first( list ); li != NULL; li = g_list_next( li ) ) {
-        XfceMailwatchMHProfileEntry     *entry = li->data;
+        MHProfileEntry     *entry = li->data;
 
         g_free( entry->component );
         g_free( entry->value );
@@ -115,23 +115,23 @@ mh_profile_print( GList *profile )
     GList       *li;
 
     for ( li = g_list_first( profile ); li != NULL; li = g_list_next( li ) ) {
-        XfceMailwatchMHProfileEntry     *e = li->data;
+        MHProfileEntry     *e = li->data;
         
         DBG( "%s: %s", e->component, e->value );
     }
 }
 #endif /* DEBUG */
 
-static XfceMailwatchMHProfileEntry *
+static MHProfileEntry *
 mh_profile_entry_create_new( const char *line )
 {
-    XfceMailwatchMHProfileEntry *entry = NULL;
+    MHProfileEntry *entry = NULL;
     gchar                       **v;
 
     v = g_strsplit( line, ":", 2 );
 
     if ( v && v[0] && v[1] ) {
-        entry = g_new0( XfceMailwatchMHProfileEntry, 1 );
+        entry = g_new0( MHProfileEntry, 1 );
 
         entry->component    = g_strstrip( v[0] );
         entry->value        = g_strstrip( v[1] );
@@ -144,83 +144,103 @@ mh_profile_entry_create_new( const char *line )
     return ( entry );
 }
 
+static gchar *
+mh_profile_readline( XfceMailwatchMHMailbox *mh, const gchar *mh_profile, GIOChannel *ioc )
+{
+    gchar           *line = NULL, *curline;
+    gsize           nread, newline;
+    GIOStatus       status;
+    GError          *error = NULL;
+
+    g_return_val_if_fail( ioc != NULL, NULL );
+
+    status = g_io_channel_read_line( ioc, &curline,
+                                     &nread, &newline,
+                                     &error );
+    while ( status == G_IO_STATUS_NORMAL ) {
+        gchar       c;
+
+        curline[newline] = 0;
+
+        if ( !*curline ) {
+            /* An mh profile shouldn't contain blank lines. Ignore 'em */
+            g_free( curline );
+        }
+        else {
+            if ( !line ) {
+                if ( g_ascii_isspace( *curline ) ) {
+                    /* The profile isn't right, ignore */
+                    curline = g_strstrip( curline );
+                }
+
+                line = curline;
+            }
+            else {
+                gchar       *p;
+
+                curline = g_strstrip( curline );
+
+                p = g_strconcat( line, curline, NULL );
+
+                g_free( line );
+                g_free( curline );
+
+                line = p;
+            }
+
+            if ( g_io_channel_read_chars( ioc, &c, 1, &nread, NULL ) == G_IO_STATUS_NORMAL ) {
+                if ( !g_ascii_isspace( c ) || g_ascii_iscntrl( c ) ) {
+                    /* g_ascii_iscntrl() is supposed to catch newlines */
+                    g_io_channel_seek_position( ioc, -1, G_SEEK_CUR, NULL );
+                    break;
+                }
+            }
+        }
+
+        status = g_io_channel_read_line( ioc, &curline,
+                                         &nread, &newline,
+                                         &error );
+    }
+
+    if ( status == G_IO_STATUS_ERROR ) {
+        xfce_mailwatch_log_message( mh->mailwatch, XFCE_MAILWATCH_MAILBOX( mh ),
+                                    XFCE_MAILWATCH_LOG_WARNING,
+                                    "Error reading file %s: %s",
+                                    mh_profile, error->message );
+
+        g_error_free( error );
+    }
+
+    return ( line );
+}
+
 static GList *
 mh_profile_read( XfceMailwatchMHMailbox *mh, const gchar *mh_profile )
 {
-    GIOStatus       status;
     GIOChannel      *ioc;
     GError          *error = NULL;
-    gchar           *line = NULL, *curline = NULL;
+    gchar           *line = NULL;
     GList           *li = NULL;
-    gsize           newline;
 
     DBG( "-->>" );
 
     ioc = g_io_channel_new_file( mh_profile, "r", &error );
     if ( !ioc ) {
         xfce_mailwatch_log_message( mh->mailwatch, XFCE_MAILWATCH_MAILBOX( mh ),
-                                    XFCE_MAILWATCH_LOG_ERROR, error->message );
+                                    XFCE_MAILWATCH_LOG_ERROR,
+                                    "Failed to open file %s: %s",
+                                    mh_profile, error->message );
         g_error_free( error );
         return ( NULL );
     }
     g_io_channel_set_encoding( ioc, NULL, NULL );
 
-    while ( ( status = g_io_channel_read_line( ioc, &curline,
-                    NULL, &newline, &error ) ) == G_IO_STATUS_NORMAL ) {
-        curline[newline] = 0;
-        
-        if ( !curline[0] ) {
-            /* profile should not contain empty lines */
-            break;
-        }
-        else {
-            if ( line ) {
-                gchar       *p = curline;
+    while ( ( line = mh_profile_readline( mh, mh_profile, ioc ) ) ) {
+        MHProfileEntry          *entry;
 
-                DBG( "line: %s", line );
-
-                g_assert( strlen( line ) );
-
-                while ( g_ascii_isspace( *p ) ) {
-                    *p++ = 0;
-                }
-
-                if ( p > curline ) {
-                    gchar       *tmp;
-
-                    tmp = g_strconcat( line, ( *p ? " " : "" ), p, NULL );
-                    g_free( curline );
-                    g_free( line );
-                    line = tmp;
-                }
-                else {
-                    XfceMailwatchMHProfileEntry     *entry;
-
-                    entry = mh_profile_entry_create_new( line );
-                    if ( entry ) {
-                        li = g_list_prepend( li, entry );
-                    }
-                    else {
-                        xfce_mailwatch_log_message( mh->mailwatch, XFCE_MAILWATCH_MAILBOX( mh ),
-                                                    XFCE_MAILWATCH_LOG_WARNING,
-                                                    _( "Malformed line %s in %s ignored." ),
-                                                    line, mh_profile );
-                    }
-                    g_free( line );
-                    line = curline;
-                }
-            }
-            else {
-                line = curline;
-            }
-        }
-    }
-    if ( line ) {
-        XfceMailwatchMHProfileEntry *e;
-
-        e = mh_profile_entry_create_new( line );
-        if ( e ) {
-            li = g_list_prepend( li, e );
+        entry = mh_profile_entry_create_new( line );
+        if ( entry ) {
+            li = g_list_prepend( li, entry );
         }
         else {
             xfce_mailwatch_log_message( mh->mailwatch, XFCE_MAILWATCH_MAILBOX( mh ),
@@ -229,13 +249,9 @@ mh_profile_read( XfceMailwatchMHMailbox *mh, const gchar *mh_profile )
         }
         g_free( line );
     }
+
+    g_io_channel_shutdown( ioc, FALSE, NULL );
     g_io_channel_unref( ioc );
-    if ( status != G_IO_STATUS_EOF ) {
-        xfce_mailwatch_log_message( mh->mailwatch, XFCE_MAILWATCH_MAILBOX( mh ),
-                                    XFCE_MAILWATCH_LOG_ERROR,
-                                    error->message );
-        g_error_free( error );
-    }
 
     DBG( "<<--" );
     return ( li );
@@ -244,7 +260,7 @@ mh_profile_read( XfceMailwatchMHMailbox *mh, const gchar *mh_profile )
 static gint
 mh_profile_entry_compare( gconstpointer a, gconstpointer b )
 {
-    const XfceMailwatchMHProfileEntry   *e = a;
+    const MHProfileEntry    *e = a;
     
     DBG( "%s <-> %s", e->component, (const gchar *) b );
     
@@ -254,8 +270,8 @@ mh_profile_entry_compare( gconstpointer a, gconstpointer b )
 static gchar *
 mh_profile_entry_get_value( GList *profile, const gchar *component )
 {
-    XfceMailwatchMHProfileEntry *entry;
-    GList                       *li;
+    MHProfileEntry          *entry;
+    GList                   *li;
 
     DBG( "--> %s", component );
     
