@@ -12,7 +12,7 @@ AC_PREREQ([2.50])
 
 dnl init automake
 MAILWATCH_VERSION=mailwatch_version
-AM_INIT_AUTOMAKE([xfce4-mailwatch-plugin], [$MAILWATCH_VERSION])
+AM_INIT_AUTOMAKE([dist-bzip2])
 AM_CONFIG_HEADER([config.h])
 AM_MAINTAINER_MODE
 
