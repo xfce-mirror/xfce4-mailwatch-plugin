@@ -69,7 +69,7 @@ msgid ""
 "method or location of the new messages feed."
 msgstr ""
 "HTTP Antwort %d erhalten, welche eigentlich 200 sein sollte. Wahrscheinlich gibt "
-"es Probleme mit den GoogleMail Servern (Änderung des Loginvorgangs, Verschiebung
+"es Probleme mit den GoogleMail Servern (Änderung des Loginvorgangs, Verschiebung "  
 "der Seite mit den Informationen über neue Nachrichten)."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:617
