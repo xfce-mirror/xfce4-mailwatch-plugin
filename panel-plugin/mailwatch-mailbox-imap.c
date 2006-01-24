@@ -567,7 +567,7 @@ imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
     /* grab the response; it should end with "##### OK " */
     if(imap_recv(imailbox, buf, BUFSIZE) < 0)
         return 0;
-    g_snprintf(tmp, 64, "%d OK ", imailbox->imap_tag);
+    g_snprintf(tmp, 64, "%05d OK ", imailbox->imap_tag);
     if(!strstr(buf, tmp))
         return 0;
     DBG("  successfully got reply '%s'", buf);
@@ -583,7 +583,7 @@ imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
      * bound on string length =p */
     if(imap_recv(imailbox, buf, BUFSIZE) < 0)
         return 0;
-    g_snprintf(tmp, 64, "%d OK SEARCH", imailbox->imap_tag);
+    g_snprintf(tmp, 64, "%05d OK", imailbox->imap_tag);
     if(!strstr(buf, tmp)) {
         xfce_mailwatch_log_message(imailbox->mailwatch,
                                    XFCE_MAILWATCH_MAILBOX(imailbox),
