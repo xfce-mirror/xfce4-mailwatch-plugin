@@ -761,9 +761,9 @@
     &sapp; website</ulink>.
   </para>
 
-  <para>All &sapp; related bugs should be reported on the
+  <para>All &sapp; related bugs should be reported on
     <ulink url="http://bugzilla.xfce.org/" type="http">Xfce
-    Bugzilla</ulink>, under the &sapp; product.
+    Bugzilla</ulink>, under the Xfce Panel Plugins product, mailwatch component.
   </para>
 
   <para>If you have problems using &sapp;, use the
