@@ -32,11 +32,11 @@
   <title>Xfce 4 Mailwatch Plugin</title>
 
   <copyright>
-    <year>2005</year> <holder>Pasi Orovuo</holder>
+    <year>2005-2006</year> <holder>Pasi Orovuo</holder>
   </copyright>
 
   <copyright>
-    <year>2005</year> <holder>Brian Tarricone</holder>
+    <year>2005-2006</year> <holder>Brian Tarricone</holder>
   </copyright>
 
   <authorgroup>
@@ -71,6 +71,7 @@
     <itemizedlist>
       <listitem><para>IMAP (SSL/TLS and cleartext)</para></listitem>
       <listitem><para>POP3 (SSL/TLS and cleartext)</para></listitem>
+      <listitem><para>GMail mailbox (HTTPS)</para></listitem>
       <listitem><para>Mbox mail spool (local)</para></listitem>
       <listitem><para>Maildir mail spool (local)</para></listitem>
       <listitem><para>MH-Maildir mail spool (local)</para></listitem>
@@ -94,7 +95,7 @@
       <mediaobject>
         
         <imageobject>
-          <imagedata fileref="mailwatch-properties.png" format="PNG" />
+          <imagedata fileref="images/mailwatch-properties.png" format="PNG" />
         </imageobject>
           
         <textobject>
@@ -130,7 +131,7 @@
           new mail by typing the desired command in the <guilabel>Run on
           new messages</guilabel> entry field. Note that, the command
           is executed once for each time &sapp; detects new mail,
-          regardless of the number of new mails received.
+          regardless of the number of new messages received.
         </para>
       </listitem>
     </varlistentry>
@@ -166,7 +167,7 @@
             <mediaobject>
             
               <imageobject>
-                <imagedata fileref="mailwatch-log-window.png" format="PNG" />
+                <imagedata fileref="images/mailwatch-log-window.png" format="PNG" />
               </imageobject>
 
               <textobject>
@@ -184,7 +185,7 @@
             <mediaobject>
 
               <imageobject>
-                <imagedata fileref="mailwatch-panel-indicator.png"
+                <imagedata fileref="images/mailwatch-panel-indicator.png"
                            format="PNG" />
               </imageobject>
 
@@ -220,7 +221,7 @@
     <screenshot>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="mailwatch-mailbox-type.png" format="PNG" />
+          <imagedata fileref="images/mailwatch-mailbox-type.png" format="PNG" />
         </imageobject>
 
         <textobject>
@@ -252,7 +253,7 @@
       <screenshot>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="mailwatch-imap-settings.png" format="PNG" />
+            <imagedata fileref="images/mailwatch-imap-settings.png" format="PNG" />
           </imageobject>
 
           <textobject>
@@ -279,13 +280,11 @@
         
           <itemizedlist>
             <listitem>
-              <para>Mail server - The hostname of the remote mail server
-              </para>
+              <para>Mail server - The hostname of the remote mail server.</para>
             </listitem>
 
             <listitem>
-              <para>Username - The username to use while accessing the mailbox.
-              </para>
+              <para>Username - The username to use while accessing the mailbox.</para>
             </listitem>
 
             <listitem>
@@ -325,7 +324,7 @@
           <mediaobject>
           
             <imageobject>
-              <imagedata fileref="mailwatch-imap-advanced.png" format="PNG" />
+              <imagedata fileref="images/mailwatch-imap-advanced.png" format="PNG" />
             </imageobject>
 
             <textobject><phrase>Advanced &imap; settings</phrase></textobject>
@@ -373,7 +372,8 @@
             <para>In addition of the connection related settings, there's
               the setting for <guilabel>IMAP server directory</guilabel>.
               It defines the directory on the server, which contains your
-              mails.
+              mail.  This setting may not be necessary on some systems,
+              but is often something like "mail" or "Mail".
             </para>
           </listitem>
         </varlistentry>
@@ -384,7 +384,22 @@
     <sect3 id="mailwatch-mailbox-imap-folders">
       <title>New mail folders</title>
 
-      <para>Okay, I need someone else to document this.
+      <screenshot>
+          <mediaobject>
+          
+            <imageobject>
+              <imagedata fileref="images/mailwatch-imap-new-folders.png" format="PNG" />
+            </imageobject>
+
+            <textobject><phrase>&imap; new mail folders settings</phrase></textobject>
+            
+          </mediaobject>
+      </screenshot>
+        
+      <para>Since &imap; supports viewing mail in multiple folders, it's
+        possible that you'd have new mail in folders other than your
+        inbox.  If that's the case, you can use the New Mail Folders
+        dialog to instruct &sapp; to check mail in multiple folders.
       </para>
     </sect3>
 
@@ -407,7 +422,7 @@
         <mediaobject>
 
           <imageobject>
-            <imagedata fileref="mailwatch-pop3.png" format="PNG" />
+            <imagedata fileref="images/mailwatch-pop3-settings.png" format="PNG" />
           </imageobject>
 
           <textobject><phrase>&sapp; &pop; settings</phrase></textobject>
@@ -473,7 +488,7 @@
           <mediaobject>
           
             <imageobject>
-              <imagedata fileref="mailwatch-pop3-advanced.png" format="PNG" />
+              <imagedata fileref="images/mailwatch-pop3-advanced.png" format="PNG" />
             </imageobject>
 
             <textobject>
@@ -520,16 +535,62 @@
     
   </sect2>
 
+
+  <sect2 id="mailwatch-mailbox-gmail">
+    <title>GMail</title>
+    
+    <para>Mailwatch can also watch your
+      <ulink url="http://gmail.com/" type="http">GMail</ulink> mailbox.
+      Mailwatch does this securely by using HTTPS and GMail's RSS feed.
+    </para>
+    
+    <figure id="mailwatch-mailbox-gmail-fig">
+      <title>GMail Settings</title>
+      
+      <screenshot>
+        <mediaobject>
+        
+          <imageobject>
+            <imagedata fileref="images/mailwatch-gmail-settings.png" format="PNG" />
+          </imageobject>
+          
+          <textobject>
+            <phrase>GMail Settings</phrase>
+          </textobject>
+          
+        </mediaobject>
+      </screenshot>
+    </figure>
+    
+    <variablelist>
+      <varlistentry>
+        <term>GMail Server</term>
+        
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para>Username - Your GMail username.</para>
+            </listitem>
+          
+            <listitem>
+              <para>Password - Your GMail password.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect2>
+  
   <sect2 id="mailwatch-mailbox-maildir">
     <title>Maildir</title>
 
-    <para>Maildir is a mailbox format for local mailboxes and thus,
-      there is no hostname etc. to configure, but merely a directory
-      where your mails are stored. A Maildir mailbox has a certain
+    <para>Maildir is a mailbox format for local mailboxes and thus
+      there is no hostname, etc. to configure, but merely a directory
+      where your mail is stored. A Maildir mailbox has a certain
       distinguishable hierarchy, which defines the mailbox (and which
       Mailwatch expects to find). A Maildir consists of a top level
-      directory, <filename class="directory">~/.maildir</filename> for
-      example, which contains three subdirectories
+      directory (<filename class="directory">~/.maildir</filename> for
+      example), which contains three subdirectories
       (<filename class="directory">cur</filename>,
       <filename class="directory">new</filename>,
       <filename class="directory">tmp</filename>).
@@ -542,7 +603,7 @@
         <mediaobject>
           
           <imageobject>
-            <imagedata fileref="mailwatch-maildir.png" format="PNG" />
+            <imagedata fileref="images/mailwatch-maildir-settings.png" format="PNG" />
           </imageobject>
 
           <textobject>
@@ -568,8 +629,8 @@
         <term>Maildir Path</term>
 
         <listitem>
-          <para>The toplevel directory of your Maildir. Not any of the
-            three subdirectories
+          <para>The toplevel directory of your Maildir.  (Note: This is the
+            main mail folder, not any of the three subdirectories.
           </para>
         </listitem>
       </varlistentry>
@@ -601,7 +662,7 @@
         <mediaobject>
         
           <imageobject>
-            <imagedata fileref="mailwatch-mbox.png" format="PNG" />
+            <imagedata fileref="images/mailwatch-mbox-settings.png" format="PNG" />
           </imageobject>
 
           <textobject>
@@ -661,7 +722,7 @@
         <mediaobject>
         
           <imageobject>
-            <imagedata fileref="mailwatch-mh.png" format="PNG" />
+            <imagedata fileref="images/mailwatch-mh-settings.png" format="PNG" />
           </imageobject>
 
           <textobject>
@@ -696,13 +757,13 @@
   <para>&app; is written and maintained by Brian Tarricone
     <email>bjt23@cornell.edu</email> and Pasi Orovuo
     <email>pasi.ov@gmail.com</email>. For more information,
-    please visit the <ulink url="http://www.xfce.org" type="http">
-    Xfce website</ulink>.
+    please visit the <ulink url="http://spuriousinterrupt.org/projects/mailwatch" type="http">
+    &sapp; website</ulink>.
   </para>
 
   <para>All &sapp; related bugs should be reported on the
     <ulink url="http://bugzilla.xfce.org/" type="http">Xfce
-    Bugzilla</ulink>, under the Xfce Panel Plugins product.
+    Bugzilla</ulink>, under the &sapp; product.
   </para>
 
   <para>If you have problems using &sapp;, use the
