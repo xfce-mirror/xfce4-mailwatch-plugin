@@ -7,13 +7,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-07 12:24+0900\n"
+"POT-Creation-Date: 2006-01-23 22:53-0800\n"
 "PO-Revision-Date: 2006-01-08 21:51+0100\n"
 "Last-Translator: Pau Rul·lan Ferragut <paurullan@bulma.net>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:215
 #: ../panel-plugin/mailwatch-mailbox-imap.c:399
@@ -87,7 +87,7 @@ msgstr "Revisa per a nou cada"
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1805
 #: ../panel-plugin/mailwatch-mailbox-maildir.c:458
 #: ../panel-plugin/mailwatch-mailbox-mbox.c:471
-#: ../panel-plugin/mailwatch-mailbox-mh.c:627
+#: ../panel-plugin/mailwatch-mailbox-mh.c:643
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:986
 #, fuzzy
 msgid "minute(s)."
@@ -242,8 +242,8 @@ msgstr "IMAP a  a correu servidor   IMAP utilitzant per a enllaç."
 
 #: ../panel-plugin/mailwatch-mailbox-maildir.c:100
 #: ../panel-plugin/mailwatch-mailbox-mbox.c:99
-#: ../panel-plugin/mailwatch-mailbox-mh.c:383
-#: ../panel-plugin/mailwatch-mailbox-mh.c:394
+#: ../panel-plugin/mailwatch-mailbox-mh.c:399
+#: ../panel-plugin/mailwatch-mailbox-mh.c:410
 #, fuzzy, c-format
 msgid "Failed to get status of file %s: %s"
 msgstr "Ha fallat a  rebre estat de fitxer"
@@ -265,7 +265,7 @@ msgstr "Camí:"
 
 #: ../panel-plugin/mailwatch-mailbox-maildir.c:442
 #: ../panel-plugin/mailwatch-mailbox-mbox.c:454
-#: ../panel-plugin/mailwatch-mailbox-mh.c:612
+#: ../panel-plugin/mailwatch-mailbox-mh.c:628
 #, fuzzy
 msgid "_Interval:"
 msgstr "Interval:"
@@ -302,25 +302,24 @@ msgstr "Local gestió de cues"
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
 msgstr "a local tipus correu gestió de cues per a nou."
 
-#: ../panel-plugin/mailwatch-mailbox-mh.c:206
-#: ../panel-plugin/mailwatch-mailbox-mh.c:228
+#: ../panel-plugin/mailwatch-mailbox-mh.c:248
 #, fuzzy, c-format
 msgid "Malformed line %s in %s ignored."
 msgstr "po ignorat."
 
-#: ../panel-plugin/mailwatch-mailbox-mh.c:603
+#: ../panel-plugin/mailwatch-mailbox-mh.c:619
 #, fuzzy
 msgid ""
 "The configuration of this plugin is read from\n"
 "the default mh maildir profile file ~/.mh_profile"
 msgstr "de aquest és de per defecte fitxer"
 
-#: ../panel-plugin/mailwatch-mailbox-mh.c:653
+#: ../panel-plugin/mailwatch-mailbox-mh.c:669
 #, fuzzy
 msgid "Local MH mail folder"
 msgstr "Local correu carpeta"
 
-#: ../panel-plugin/mailwatch-mailbox-mh.c:654
+#: ../panel-plugin/mailwatch-mailbox-mh.c:670
 #, fuzzy
 msgid "MH plugin watches local MH folders for new mail"
 msgstr "local carpetes per a nou correu"
@@ -358,9 +357,9 @@ msgid ""
 msgstr "POP3 a  a correu servidor   POP3 utilitzant per a enllaç."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
-#: ../panel-plugin/mailwatch-plugin-4.2.c:250
+#: ../panel-plugin/mailwatch-plugin-4.2.c:272
 #: ../panel-plugin/mailwatch-plugin.c:121
-#: ../panel-plugin/mailwatch-plugin.c:320
+#: ../panel-plugin/mailwatch-plugin.c:342
 #, fuzzy
 msgid "No new mail"
 msgstr "No nou correu"
@@ -377,105 +376,119 @@ msgstr "Tu nou missatge:"
 msgid "You have %d new messages:"
 msgstr "Tu nou:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:234
-#: ../panel-plugin/mailwatch-plugin.c:304
+#: ../panel-plugin/mailwatch-plugin-4.2.c:254
+#: ../panel-plugin/mailwatch-plugin.c:324
 msgid "Xfce Mailwatch"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:235
-#: ../panel-plugin/mailwatch-plugin.c:305
+#: ../panel-plugin/mailwatch-plugin-4.2.c:255
+#: ../panel-plugin/mailwatch-plugin.c:325
 #, fuzzy
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "a    quadre."
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:236
-#: ../panel-plugin/mailwatch-plugin.c:306
+#: ../panel-plugin/mailwatch-plugin-4.2.c:256
+#: ../panel-plugin/mailwatch-plugin.c:326
 #, fuzzy
 msgid "It is possible that your version of GLib does not have threads support."
 msgstr "és de no."
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:457
-#: ../panel-plugin/mailwatch-plugin.c:516
+#: ../panel-plugin/mailwatch-plugin-4.2.c:479
+#: ../panel-plugin/mailwatch-plugin.c:538
 #, fuzzy
 msgid "Mailwatch log"
 msgstr "log"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:515
-#: ../panel-plugin/mailwatch-plugin.c:574
+#: ../panel-plugin/mailwatch-plugin-4.2.c:537
+#: ../panel-plugin/mailwatch-plugin.c:596
 #, fuzzy
 msgid "Log _lines:"
 msgstr "Log Línies:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:529
-#: ../panel-plugin/mailwatch-plugin.c:588
+#: ../panel-plugin/mailwatch-plugin-4.2.c:551
+#: ../panel-plugin/mailwatch-plugin.c:610
 #, fuzzy
 msgid "Show log _status in icon"
 msgstr "Mostra log estat po icona"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:575
-#: ../panel-plugin/mailwatch-plugin.c:632
+#: ../panel-plugin/mailwatch-plugin-4.2.c:597
+#: ../panel-plugin/mailwatch-plugin.c:654
 #, fuzzy
 msgid "Select Icon"
 msgstr "Selecciona icona"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:605
-#: ../panel-plugin/mailwatch-plugin-4.2.c:727
-#: ../panel-plugin/mailwatch-plugin.c:663
-#: ../panel-plugin/mailwatch-plugin.c:827
+#: ../panel-plugin/mailwatch-plugin-4.2.c:627
+#: ../panel-plugin/mailwatch-plugin-4.2.c:749
+#: ../panel-plugin/mailwatch-plugin.c:685
+#: ../panel-plugin/mailwatch-plugin.c:873
 #, fuzzy
 msgid "_Normal"
 msgstr "_Normal"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:630
-#: ../panel-plugin/mailwatch-plugin.c:689
+#: ../panel-plugin/mailwatch-plugin-4.2.c:652
+#: ../panel-plugin/mailwatch-plugin.c:711
 #, fuzzy
 msgid "Ne_w mail"
 msgstr "correu"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:659
-#: ../panel-plugin/mailwatch-plugin.c:759
+#: ../panel-plugin/mailwatch-plugin-4.2.c:681
+#: ../panel-plugin/mailwatch-plugin.c:805
 #, fuzzy
 msgid "External Programs"
 msgstr "Extern Programes"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:671
-#: ../panel-plugin/mailwatch-plugin.c:771
+#: ../panel-plugin/mailwatch-plugin-4.2.c:693
+#: ../panel-plugin/mailwatch-plugin.c:817
 #, fuzzy
 msgid "Run _on click:"
 msgstr "Ejecutar on feu clic:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:688
-#: ../panel-plugin/mailwatch-plugin.c:788
+#: ../panel-plugin/mailwatch-plugin-4.2.c:710
+#: ../panel-plugin/mailwatch-plugin.c:834
 #, fuzzy
 msgid "Run on new _messages:"
 msgstr "Ejecutar on nou:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:701
-#: ../panel-plugin/mailwatch-plugin.c:801
+#: ../panel-plugin/mailwatch-plugin-4.2.c:723
+#: ../panel-plugin/mailwatch-plugin.c:847
 #, fuzzy
 msgid "Icons"
 msgstr "Icones"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:747
-#: ../panel-plugin/mailwatch-plugin.c:847
+#: ../panel-plugin/mailwatch-plugin-4.2.c:769
+#: ../panel-plugin/mailwatch-plugin.c:893
 #, fuzzy
 msgid "Ne_w Mail"
 msgstr "Correu"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:755
-#: ../panel-plugin/mailwatch-plugin.c:733
+#: ../panel-plugin/mailwatch-plugin-4.2.c:777
+#: ../panel-plugin/mailwatch-plugin.c:777
 #, fuzzy
 msgid "_View Log..."
 msgstr "Visualitza Log."
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:868
-#: ../panel-plugin/mailwatch-plugin.c:742
+#: ../panel-plugin/mailwatch-plugin-4.2.c:890
+#: ../panel-plugin/mailwatch-plugin.c:788
 #: ../panel-plugin/mailwatch.desktop.in.in.h:2
 #, fuzzy
 msgid "Mail Watcher"
 msgstr "Correu"
 
-#: ../panel-plugin/mailwatch-plugin.c:720
+#: ../panel-plugin/mailwatch-plugin.c:729
+#, c-format
+msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-plugin.c:731
+msgid "Help Unavailable"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-plugin.c:732
+#, fuzzy
+msgid "Failed to run xfhelp4"
+msgstr "Ha fallat a  rebre carpeta llista"
+
+#: ../panel-plugin/mailwatch-plugin.c:759
 #, fuzzy
 msgid "Edit Properties"
 msgstr "Edita Propietats"
