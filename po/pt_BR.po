@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-01-23 22:53-0800\n"
-"PO-Revision-Date: 2005-10-29 17:52+0900\n"
+"PO-Revision-Date: 2006-01-24 22:06-0200\n"
 "Last-Translator: Adriano Winter Bess <awbess@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgid ""
 "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 "the panel may hang on close."
 msgstr ""
-"Não é possível ajustar a conexão para o modo não-bloqueante. Se a tentativa "
+"Não é possível ajustar o socket para o modo não-bloqueante. Se a tentativa "
 "de conexão travar, o painel pode travar ao fechar."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:254
@@ -40,7 +40,7 @@ msgid ""
 "Unable to return socket to blocking mode.  Data may not be retreived "
 "correctly."
 msgstr ""
-"Não é possível retornar a conexão ao modo bloqueante. As informaçÂões podem "
+"Não é possível retornar o socket ao modo bloqueante. As informações podem "
 "não ser recuperadas corretamente."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:317
@@ -68,8 +68,8 @@ msgid ""
 msgstr ""
 "Recebido o código de resposta HTTP %d, que deveria ser 200. Pode haver um "
 "problema com os servidores do GMail, ou eles podem ter alterado o método de "
-"autenticaçÂão ou a localizaçÂão das informaçÂões sobre novas mensagens de "
-"forma incompatível."
+"autenticação ou a localização das informações sobre novas mensagens de forma "
+"incompatível."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:617
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1734
@@ -120,7 +120,7 @@ msgstr ""
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:335
 msgid "STARTTLS security was requested, but this server does not support it."
-msgstr "Segurança STARTTLS foi requisitada, mas este servidor não suporta-a."
+msgstr "Segurança STARTTLS foi requisitada, mas este servidor não a suporta."
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:591
 msgid ""
@@ -131,7 +131,7 @@ msgstr ""
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1178
 msgid "Failed to get folder list"
-msgstr "Falha ao obter a lista de pastas"
+msgstr "Falhou ao obter a lista de pastas"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1304
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1513
@@ -144,7 +144,7 @@ msgstr "Erro"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1397
 msgid "No server or username is set."
-msgstr "Nenhum servidor ou nome de usuário foi ajustado."
+msgstr "Nenhum servidor ou nome de usuário foi configurado."
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1398
 msgid ""
@@ -197,7 +197,7 @@ msgstr "Pastas"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1670
 msgid "IMAP server _directory:"
-msgstr "Servidor de diretório IMAP:"
+msgstr "Servidor de _diretório IMAP:"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1701
 msgid "IMAP Server"
@@ -440,15 +440,15 @@ msgstr "Monitor de Mensagens"
 #, c-format
 msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
 msgstr ""
+"A ajuda não está disponível porque 'xfhelp4' não pode ser executado: %s"
 
 #: ../panel-plugin/mailwatch-plugin.c:731
 msgid "Help Unavailable"
-msgstr ""
+msgstr "Ajuda Indisponível"
 
 #: ../panel-plugin/mailwatch-plugin.c:732
-#, fuzzy
 msgid "Failed to run xfhelp4"
-msgstr "Falha ao obter a lista de pastas"
+msgstr "Falhou ao executar xfhelp4"
 
 #: ../panel-plugin/mailwatch-plugin.c:759
 msgid "Edit Properties"
@@ -494,8 +494,8 @@ msgid ""
 "your system."
 msgstr ""
 "Não é possível ajustar as permissões no arquivo de configuração '%s'. Se "
-"este arquivo contém senhas ou outras informações privadas, ele poderá ser "
-"lido por outros no seu sistema."
+"este arquivo contém senhas ou outras informações privadas, elas poderão ser "
+"lidas por outros no seu sistema."
 
 #: ../panel-plugin/mailwatch.c:616
 msgid "This mailbox type does not require any configuration settings."
@@ -556,4 +556,4 @@ msgstr "Caixas de mensagens"
 
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
-msgstr ""
+msgstr "Verificar mensagens de várias caixas de mensagens"
