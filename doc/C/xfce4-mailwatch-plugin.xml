@@ -13,10 +13,10 @@
              tooltip, which indicates mailboxes that have new mail.
              This setting is required, regardless of the mailbox type.">
     <!ENTITY remote_interval_desc "Defines how often &sapp; accesses
-             the mailbox to see if there's new mail. Depending on the 
-             situation, the interval usually varies from 30 to 5
-             minutes. It's not recommended to set this any lower than
-             10 minutes, unless you're really sure your service provider
+             the mailbox to see if there's new mail. You shouldn't set
+             this too low, as it will create unnecessary network traffic.
+             It's not recommended to set this lower than 5 minutes,
+             unless you're really sure your service provider
              is okay with that.">
     <!ENTITY local_interval_desc "Defines how often &sapp; checks the
              mailbox for new mail. It is safe to set a value as low as
@@ -129,7 +129,7 @@
           in the <guilabel>Run on click</guilabel> entry field. You can
           also define the command to be executed when &sapp; detects
           new mail by typing the desired command in the <guilabel>Run on
-          new messages</guilabel> entry field. Note that, the command
+          new messages</guilabel> entry field. Note that the command
           is executed once for each time &sapp; detects new mail,
           regardless of the number of new messages received.
         </para>
@@ -141,7 +141,7 @@
 
       <listitem>
         <para>The icons that &sapp; displays in the panel are configurable.
-          Both, <guiicon>Normal</guiicon> and <guiicon>New Mail</guiicon>,
+          Both the <guiicon>Normal</guiicon> and <guiicon>New Mail</guiicon>
           buttons present a file chooser dialog, which you can use to select
           your preferred icons.
         </para>
@@ -157,7 +157,7 @@
           place. The log is accessible via the <guibutton>View Log</guibutton>
           button. There's also a setting to <guilabel>Show log status
           in icon</guilabel> in the log dialog which, if enabled, provides
-          a visual indication of new log events, in the panel.
+          a visual indication of new log events in the panel.
         </para>
 
         <figure id="mailwatch-log-window-fig">
@@ -238,7 +238,7 @@
     <para>&imap;, acronym for <emphasis>Internet Message Access
       Protocol</emphasis>, is a quite common mailbox format. An &imap;
       mailbox is a remote mailbox, so it requires various configuration
-      options, to be able to contact the remote &imap; server and get
+      options to be able to contact the remote &imap; server and get
       information on the mailbox.      
     </para>
     
@@ -347,20 +347,21 @@
               the &imap; RFC uses the port 993 for client connections.
               In this scheme, the connection is encrypted from the
               beginning, as the encryption is initialized before the
-              actual &imap; traffic. The other, less common but used
-              nevertheless, uses the ordinary &imap; port for initializing
+              actual &imap; traffic. The other, less common method, uses
+              the ordinary &imap; port for initializing
               the connection and then, before any sensitive data is
               transmitted, initializes the encryption with the
-              <emphasis>STARTTLS</emphasis> extension. &sapp; provides
+              <emphasis>STARTTLS</emphasis> command. &sapp; provides
               default settings for these setups, which are
               <guimenuitem>Use SSL/TLS on alternate port</guimenuitem> and
-              <guimenuitem>Use SSL/TLS via STARTTLS</guimenuitem> 
-              appropriately.
+              <guimenuitem>Use SSL/TLS via STARTTLS</guimenuitem>
+              respectively.
             </para>
 
             <para>There's also the possibility of using a non-standard &imap;
-              port, if your service provider such requires. Just check the
-              box, and type in the appropriate port.
+              port, if your service provider so requires. Just check the
+              box, and type in the appropriate port.  The box will pre-fill
+              the default port for the selected connection type.
             </para>
           </listitem>
         </varlistentry>
@@ -369,11 +370,13 @@
           <term>Folders</term>
 
           <listitem>
-            <para>In addition of the connection related settings, there's
-              the setting for <guilabel>IMAP server directory</guilabel>.
-              It defines the directory on the server, which contains your
-              mail.  This setting may not be necessary on some systems,
-              but is often something like "mail" or "Mail".
+            <para>In addition of the connection related settings, you can
+              set the directory on the server where your mail is stored using
+              the <guilabel>IMAP server directory</guilabel> text box.  This
+              setting may not be necessary on some systems.  If you see a large
+              number of strange folder names when looking in the <guilabel>New
+              mail folders</guilabel> dialog box, you may need to set this,
+              often to something like "mail", "Mail", or "Maildir".
             </para>
           </listitem>
         </varlistentry>
@@ -397,9 +400,10 @@
       </screenshot>
         
       <para>Since &imap; supports viewing mail in multiple folders, it's
-        possible that you'd have new mail in folders other than your
-        inbox.  If that's the case, you can use the New Mail Folders
-        dialog to instruct &sapp; to check mail in multiple folders.
+        possible that you'd receive new mail in folders other than your
+        inbox.  If that's the case, you can use the <guilabel>New Mail
+        Folders</guilabel>  dialog to instruct &sapp; to check mail in
+        multiple folders.
       </para>
     </sect3>
 
@@ -410,9 +414,9 @@
     
     <para>&pop;, short for <emphasis>Post Office Protocol Version 3
       </emphasis>, is another common type of remote mailboxes. Because
-      of it's remote nature, the settings for &pop; are almost the same
-      with &imap;, with some omissions as &pop;
-      isn't as advanced protocol as &imap;.
+      of its remote nature, the settings for &pop; are almost the same
+      as &imap;, with some omissions as, &pop; isn't as advanced a protocol
+      as &imap;.
     </para>
 
     <figure id="mailwatch-mailbox-pop3-fig">
@@ -474,7 +478,7 @@
     </variablelist>
 
     <para>While for most users providing these settings should be enough,
-      there's also the advanced settings for those who need additional
+      there are also advanced settings for those who need additional
       features.
     </para>
  
@@ -630,7 +634,7 @@
 
         <listitem>
           <para>The toplevel directory of your Maildir.  (Note: This is the
-            main mail folder, not any of the three subdirectories.
+            main mail folder, not any of the three subdirectories.)
           </para>
         </listitem>
       </varlistentry>
@@ -650,9 +654,10 @@
   <sect2 id="mailwatch-mailbox-mbox">
     <title>Mbox</title>
 
-    <para>Mbox is another very common local mailbox format. The configuration
-      is also quite similar to that of Maildir, with the difference that
-      Mbox expects to find a special Mbox file instead of a directory tree.
+    <para>Mbox is another very common local mailbox format in which each
+      folder is a single, large file that contains all your messages.
+      Because of this, Mbox expects to find a specially-formatted Mbox
+      file instead of a directory tree.
     </para>
 
     <figure id="mailwatch-mailbox-mbox-fig">
@@ -688,7 +693,7 @@
         <term>Mbox Filename</term>
 
         <listitem>
-          <para>The location of your Mbox file (often in
+          <para>The location of your Mbox file (often
             <filename>/var/mail/</filename><envar>$USER</envar>).
           </para>
         </listitem>
@@ -709,10 +714,11 @@
   <sect2 id="mailwatch-mailbox-mh">
     <title>MH Maildir</title>
     
-    <para>For a MH Maildir, &sapp; reads your
-      <envar>$HOME</envar><filename>/.mh_profile</filename> for it's
-      configuration, so once your MH system is configured, &sapp;
-      will be able to take advantage of it.
+    <para>MH Maildir is a variant of the Maildir format.  For a MH
+      Maildir, &sapp; reads your
+      <envar>$HOME</envar><filename>/.mh_profile</filename> for its
+      configuration, so there are no actual settings specific to MH
+      mailboxes.
     </para>
 
     <figure id="mailwatch-mailbox-mh-fig">
