@@ -4,21 +4,20 @@
 # Copyright (C) 2005-2006 Brian Tarricone, Pasi Orovuo.
 # This file is distributed under the same license as
 #   the xfce4-mailwatch-plugin package.
-# Daichi Kawahata <daichi@xfce.org>, 2005.
+# Daichi Kawahata <daichi@xfce.org>, 2005-2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-01-23 22:53-0800\n"
-"PO-Revision-Date: 2005-11-29 23:34+0900\n"
+"PO-Revision-Date: 2006-01-29 16:13+0900\n"
 "Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-# FIXME: on panel or connection close?
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:215
 #: ../panel-plugin/mailwatch-mailbox-imap.c:399
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:358
@@ -367,7 +366,6 @@ msgstr "Xfce メールウォッチ"
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "このメールウォッチ・アプレットはパネルに追加できません。"
 
-# FIXME: possible or impossible?
 #: ../panel-plugin/mailwatch-plugin-4.2.c:256
 #: ../panel-plugin/mailwatch-plugin.c:326
 msgid "It is possible that your version of GLib does not have threads support."
@@ -445,16 +443,15 @@ msgstr "メールウォッチャー"
 #: ../panel-plugin/mailwatch-plugin.c:729
 #, c-format
 msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
-msgstr ""
+msgstr "「xfhelp4」を実行できませんのでヘルプは利用できません: %s"
 
 #: ../panel-plugin/mailwatch-plugin.c:731
 msgid "Help Unavailable"
-msgstr ""
+msgstr "ヘルプは利用できません"
 
 #: ../panel-plugin/mailwatch-plugin.c:732
-#, fuzzy
 msgid "Failed to run xfhelp4"
-msgstr "フォルダ一覧の取得に失敗しました"
+msgstr "xfhelp4 の実行に失敗しました"
 
 #: ../panel-plugin/mailwatch-plugin.c:759
 msgid "Edit Properties"
