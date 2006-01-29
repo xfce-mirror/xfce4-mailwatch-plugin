@@ -24,9 +24,9 @@ msgid ""
 "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 "the panel may hang on close."
 msgstr ""
-"Eine offene Verbindung konnte nicht geschlossen werden. "
-"Bei Verbindungsprobleme kann es vorkommen, dass das Panel nicht beendet "
-"werden kann."
+"Eine offene Verbindung konnte nicht geschlossen werden. Bei "
+"Verbindungsprobleme kann es vorkommen, dass das Panel nicht beendet werden "
+"kann."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:254
 #: ../panel-plugin/mailwatch-mailbox-imap.c:438
@@ -42,8 +42,8 @@ msgid ""
 "Unable to return socket to blocking mode.  Data may not be retreived "
 "correctly."
 msgstr ""
-"Eine Verbindung konnte nicht korrekt aufgebaut werden. "
-"Dadurch können Probleme beim Datenempfang entstehen."
+"Eine Verbindung konnte nicht korrekt aufgebaut werden. Dadurch können "
+"Probleme beim Datenempfang entstehen."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:317
 #: ../panel-plugin/mailwatch-mailbox-imap.c:302
@@ -58,8 +58,8 @@ msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
 msgstr ""
-"HTTP Antwort %d erhalten. Wahrscheinlich ist Ihr GoogleMail Passwort "
-"oder Benutzername inkorrekt."
+"HTTP Antwort %d erhalten. Wahrscheinlich ist Ihr GoogleMail Passwort oder "
+"Benutzername inkorrekt."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:371
 #, c-format
@@ -68,9 +68,9 @@ msgid ""
 "with GMail's servers, or they have incompatibly changed their authentication "
 "method or location of the new messages feed."
 msgstr ""
-"HTTP Antwort %d erhalten, welche eigentlich 200 sein sollte. Wahrscheinlich gibt "
-"es Probleme mit den GoogleMail Servern (Änderung des Loginvorgangs, Verschiebung "  
-"der Seite mit den Informationen über neue Nachrichten)."
+"HTTP Antwort %d erhalten, welche eigentlich 200 sein sollte. Wahrscheinlich "
+"gibt es Probleme mit den GoogleMail Servern (Änderung des Loginvorgangs, "
+"Verschiebung der Seite mit den Informationen über neue Nachrichten)."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:617
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1734
@@ -108,8 +108,8 @@ msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
 msgstr ""
-"Das GoogleMail Plugin kann sich mit Google verbinden und über eine sichere"
-"Verbindung die Anzahl der neuen Nachrichten herausfinden."
+"Das GoogleMail Plugin kann sich mit Google verbinden und über eine "
+"sichereVerbindung die Anzahl der neuen Nachrichten herausfinden."
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:254
 msgid ""
@@ -122,14 +122,15 @@ msgstr ""
 #: ../panel-plugin/mailwatch-mailbox-imap.c:335
 msgid "STARTTLS security was requested, but this server does not support it."
 msgstr ""
-"STARTTLS-Login wurde verlangt, der Server unterstützt das Verfahren aber nicht."
+"STARTTLS-Login wurde verlangt, der Server unterstützt das Verfahren aber "
+"nicht."
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:591
 msgid ""
 "A buffer was too small to receive all of an IMAP response.  This is a bug!"
 msgstr ""
-"Buffer war zu klein um die gesamte IMAP-Antwort zu empfangen. Dies ist "
-"ein Bug!"
+"Buffer war zu klein um die gesamte IMAP-Antwort zu empfangen. Dies ist ein "
+"Bug!"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1178
 msgid "Failed to get folder list"
@@ -155,8 +156,8 @@ msgid ""
 "Advanced dialog."
 msgstr ""
 "Die Ordnerliste kann nicht empfangen werden, bis ein Server, Benutzer und "
-"wahrscheinlich Passwort eingegeben wurden. Bitte sehen Sie sich auch im Dialog"
-"\"Erweitert\" die Sicherheitseinstellungen an."
+"wahrscheinlich Passwort eingegeben wurden. Bitte sehen Sie sich auch im "
+"Dialog\"Erweitert\" die Sicherheitseinstellungen an."
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
@@ -228,8 +229,8 @@ msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
 msgstr ""
-"Das IMAP-Plugin kann sich mit einem entfernten Server verbinden, auch mit SSL-"
-"Verschlüsselung für mehr Verbindungssicherheit."
+"Das IMAP-Plugin kann sich mit einem entfernten Server verbinden, auch mit "
+"SSL-Verschlüsselung für mehr Verbindungssicherheit."
 
 #: ../panel-plugin/mailwatch-mailbox-maildir.c:100
 #: ../panel-plugin/mailwatch-mailbox-mbox.c:99
@@ -242,7 +243,8 @@ msgstr "Konnte Status von Datei %s nicht feststellen: %s"
 #: ../panel-plugin/mailwatch-mailbox-maildir.c:109
 #, c-format
 msgid "%s is not a directory. Is %s really a valid maildir?"
-msgstr "%s ist kein Verzeichnis. Ist %s wirklich ein gültiges Maildir-Verzeichnis?"
+msgstr ""
+"%s ist kein Verzeichnis. Ist %s wirklich ein gültiges Maildir-Verzeichnis?"
 
 #: ../panel-plugin/mailwatch-mailbox-maildir.c:345
 msgid "Select Maildir Folder"
@@ -334,8 +336,8 @@ msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
 msgstr ""
-"Das POP3-Plugin kann sich mit einem entfernten Server verbinden, "
-"auch mit SSL-Verschlüsselung für mehr Verbindungssicherheit."
+"Das POP3-Plugin kann sich mit einem entfernten Server verbinden, auch mit "
+"SSL-Verschlüsselung für mehr Verbindungssicherheit."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
 #: ../panel-plugin/mailwatch-plugin-4.2.c:272
@@ -368,8 +370,7 @@ msgstr "Die Mailwatch kann zum Panel nicht hinzugefügt werden."
 #: ../panel-plugin/mailwatch-plugin-4.2.c:256
 #: ../panel-plugin/mailwatch-plugin.c:326
 msgid "It is possible that your version of GLib does not have threads support."
-msgstr ""
-"Es ist möglich, dass Ihre Glib-Version Threads nicht unterstützt."
+msgstr "Es ist möglich, dass Ihre Glib-Version Threads nicht unterstützt."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:479
 #: ../panel-plugin/mailwatch-plugin.c:538
@@ -442,7 +443,9 @@ msgstr "Mail Watcher"
 #: ../panel-plugin/mailwatch-plugin.c:729
 #, c-format
 msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
-msgstr "Die Hilfe ist nicht verfügbar, da 'xfhelp4' nicht ausgeführt werden konnte: %s"
+msgstr ""
+"Die Hilfe ist nicht verfügbar, da 'xfhelp4' nicht ausgeführt werden konnte: %"
+"s"
 
 #: ../panel-plugin/mailwatch-plugin.c:731
 msgid "Help Unavailable"

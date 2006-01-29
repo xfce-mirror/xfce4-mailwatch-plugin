@@ -41,7 +41,8 @@ msgstr "Huts zerbitzarira konektatzerakoan: %s"
 msgid ""
 "Unable to return socket to blocking mode.  Data may not be retreived "
 "correctly."
-msgstr "Ezin da socket-a blokeo modura itzuli.  Datuak ez dira behar bezala jasoko."
+msgstr ""
+"Ezin da socket-a blokeo modura itzuli.  Datuak ez dira behar bezala jasoko."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:317
 #: ../panel-plugin/mailwatch-mailbox-imap.c:302
@@ -122,7 +123,8 @@ msgid "STARTTLS security was requested, but this server does not support it."
 msgstr "STARTTLS seguratsuna eskatu da baina zerbitzariak ez du onartzen."
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:591
-msgid "A buffer was too small to receive all of an IMAP response.  This is a bug!"
+msgid ""
+"A buffer was too small to receive all of an IMAP response.  This is a bug!"
 msgstr ""
 "Bufferra oso txikia da IMAP erantzun guztia jasotzeko. Hau programa-errore "
 "bat da!"
@@ -262,7 +264,8 @@ msgstr "Maildir hilara lokala"
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
-msgstr "Maildir pluginak maildir-moduko posta hilara araka dezake mezu berrien bila."
+msgstr ""
+"Maildir pluginak maildir-moduko posta hilara araka dezake mezu berrien bila."
 
 #: ../panel-plugin/mailwatch-mailbox-mbox.c:371
 msgid "Select mbox file"
@@ -460,7 +463,8 @@ msgstr "Ez da SSL/TLS onarpenarekin kompilatu."
 
 #: ../panel-plugin/mailwatch-utils.c:254
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
-msgstr "XfceMailwatch: TKS agurrak huts egin du: ez dago SSL onarpenaz kompilaturik"
+msgstr ""
+"XfceMailwatch: TKS agurrak huts egin du: ez dago SSL onarpenaz kompilaturik"
 
 #: ../panel-plugin/mailwatch-utils.c:277 ../panel-plugin/mailwatch-utils.c:330
 msgid "A secure connection was requested, but gnutls was not initialised"
@@ -550,4 +554,3 @@ msgstr "Postakutxak"
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "Postakutxa anitzetako posta arakatu"
-

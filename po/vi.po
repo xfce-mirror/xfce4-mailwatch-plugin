@@ -23,8 +23,8 @@ msgid ""
 "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 "the panel may hang on close."
 msgstr ""
-"Không đặt được socket cho chế độ không phải khối.  Nếu kết nối ngắt, "
-"thì bảng panel có thể sẽ đóng."
+"Không đặt được socket cho chế độ không phải khối.  Nếu kết nối ngắt, thì "
+"bảng panel có thể sẽ đóng."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:254
 #: ../panel-plugin/mailwatch-mailbox-imap.c:438
@@ -40,8 +40,8 @@ msgid ""
 "Unable to return socket to blocking mode.  Data may not be retreived "
 "correctly."
 msgstr ""
-"Không trả lại được socket về chế độ khối.  Có thể không nhận được "
-"dữ liệu đúng."
+"Không trả lại được socket về chế độ khối.  Có thể không nhận được dữ liệu "
+"đúng."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:317
 #: ../panel-plugin/mailwatch-mailbox-imap.c:302
@@ -56,8 +56,8 @@ msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
 msgstr ""
-"Nhận được mã trả lời HTTP %d.  Nguyên nhân có khả năng cao nhất là "
-"người dùng hoặc mật khẩu GMail không đúng."
+"Nhận được mã trả lời HTTP %d.  Nguyên nhân có khả năng cao nhất là người "
+"dùng hoặc mật khẩu GMail không đúng."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:371
 #, c-format
@@ -66,9 +66,9 @@ msgid ""
 "with GMail's servers, or they have incompatibly changed their authentication "
 "method or location of the new messages feed."
 msgstr ""
-"Nhận được câu trả lời HTTP mã %d, khác với giá trị đúng (200).  Có thể có vấn đề "
-"với máy chủ GMail, hoặc phương thức xác thực người dùng hay vị trí thư mới của "
-"GMail đã thay đổi."
+"Nhận được câu trả lời HTTP mã %d, khác với giá trị đúng (200).  Có thể có "
+"vấn đề với máy chủ GMail, hoặc phương thức xác thực người dùng hay vị trí "
+"thư mới của GMail đã thay đổi."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:617
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1734
@@ -114,15 +114,16 @@ msgid ""
 "Secure IMAP is not available, and the IMAP server does not support plaintext "
 "logins."
 msgstr ""
-"Không dùng được IMAP bảo mật, và máy chủ IMAP không hỗ trợ đăng nhập "
-"thông thường."
+"Không dùng được IMAP bảo mật, và máy chủ IMAP không hỗ trợ đăng nhập thông "
+"thường."
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:335
 msgid "STARTTLS security was requested, but this server does not support it."
 msgstr "Yêu cầu dùng bảo mật STARTTLS, nhưng máy chủ này không hỗ trợ."
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:591
-msgid "A buffer was too small to receive all of an IMAP response.  This is a bug!"
+msgid ""
+"A buffer was too small to receive all of an IMAP response.  This is a bug!"
 msgstr "Không đủ bộ đệm để nhận toàn bộ câu trả lời IMAP.  Đây là một lỗi bug!"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1178
@@ -148,9 +149,9 @@ msgid ""
 "password are set.  Also be sure to check any security settings in the "
 "Advanced dialog."
 msgstr ""
-"Chỉ nhận được danh sách thư mục khi thiết lập đúng máy chủ, tên người "
-"dùng và mật khẩu.  Đồng thời cần kiểm tra lại các thiết lập bảo mật trong "
-"hộp thoại Nâng cao."
+"Chỉ nhận được danh sách thư mục khi thiết lập đúng máy chủ, tên người dùng "
+"và mật khẩu.  Đồng thời cần kiểm tra lại các thiết lập bảo mật trong hộp "
+"thoại Nâng cao."
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
@@ -222,8 +223,8 @@ msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
 msgstr ""
-"Plugin IMAP kết nối tới một máy chủ thư ở xa có hỗ trợ giao thức IMAP, "
-"có thể chọn dùng SSL để bảo mật kết nối."
+"Plugin IMAP kết nối tới một máy chủ thư ở xa có hỗ trợ giao thức IMAP, có "
+"thể chọn dùng SSL để bảo mật kết nối."
 
 #: ../panel-plugin/mailwatch-mailbox-maildir.c:100
 #: ../panel-plugin/mailwatch-mailbox-mbox.c:99
@@ -261,8 +262,8 @@ msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
 msgstr ""
-"Plugin Maildir dùng để kiểm tra thư mới của hộp thư dạng maildir trên "
-"máy nội bộ."
+"Plugin Maildir dùng để kiểm tra thư mới của hộp thư dạng maildir trên máy "
+"nội bộ."
 
 #: ../panel-plugin/mailwatch-mailbox-mbox.c:371
 msgid "Select mbox file"
@@ -326,8 +327,8 @@ msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
 msgstr ""
-"Plugin POP3 kết nối tới một máy chủ thư ở xa có hỗ trợ giao thức POP3, "
-"có thể chọn dùng SSL để bảo mật kết nối."
+"Plugin POP3 kết nối tới một máy chủ thư ở xa có hỗ trợ giao thức POP3, có "
+"thể chọn dùng SSL để bảo mật kết nối."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
 #: ../panel-plugin/mailwatch-plugin-4.2.c:272
@@ -458,7 +459,9 @@ msgstr "Biên dịch không có hỗ trợ SSL/TLS"
 
 #: ../panel-plugin/mailwatch-utils.c:254
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
-msgstr "XfceMailwatch: \"Bắt tay\" TLS không thành công: không biên dịch với hỗ trợ SSL."
+msgstr ""
+"XfceMailwatch: \"Bắt tay\" TLS không thành công: không biên dịch với hỗ trợ "
+"SSL."
 
 #: ../panel-plugin/mailwatch-utils.c:277 ../panel-plugin/mailwatch-utils.c:330
 msgid "A secure connection was requested, but gnutls was not initialised"
@@ -469,8 +472,8 @@ msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
 msgstr ""
-"xfce4-mailwatch-plugin: Không chạy được hỗ trợ GThread support.  Rất "
-"có thể có vấn đề từ cài đặt GLib."
+"xfce4-mailwatch-plugin: Không chạy được hỗ trợ GThread support.  Rất có thể "
+"có vấn đề từ cài đặt GLib."
 
 #: ../panel-plugin/mailwatch.c:345 ../panel-plugin/mailwatch.c:346
 #, c-format
@@ -484,9 +487,9 @@ msgid ""
 "passwords or other sensitive information, it may be readable by others on "
 "your system."
 msgstr ""
-"Không đặt được quyền hạn cho tập tin cấu hình '%s'.  Nếu tập tin "
-"này chứa mật khẩu hoặc thông tin có giá trị, thì những người dùng "
-"khác sẽ đọc được chúng."
+"Không đặt được quyền hạn cho tập tin cấu hình '%s'.  Nếu tập tin này chứa "
+"mật khẩu hoặc thông tin có giá trị, thì những người dùng khác sẽ đọc được "
+"chúng."
 
 #: ../panel-plugin/mailwatch.c:616
 msgid "This mailbox type does not require any configuration settings."
@@ -544,4 +547,3 @@ msgstr "Hộp thư"
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "Kiểm tra thư từ nhiều hộp thư"
-
