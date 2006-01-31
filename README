@@ -27,6 +27,9 @@ gnutls 1.2.0 or greater is optional, but required for SSL/TLS support.  Sending
 cleartext passwords across unsecured networks is not recommended.  This plugin
 should work with any Xfce version from 4.2.0 onwards.
 
+See the Mailwatch website for more information and the latest release:
+http://spuriousinterrupt.org/projects/mailwatch
+
 Please use the Xfce general discussion list if you have problems:
 http://foo-projects.org/mailman/listinfo/xfce
 Development discussion (if any) takes place on the xfce4-dev list:

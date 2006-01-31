@@ -4,7 +4,7 @@ dnl xfce4-mailwatch-plugin - a mail notification plugin for the xfce4 panel
 dnl
 
 dnl version info
-m4_define([mailwatch_version], [0.1.0svn])
+m4_define([mailwatch_version], [1.0.0])
 
 dnl init autoconf
 AC_INIT([xfce4-mailwatch-plugin], [mailwatch_version], [bjt23@cornell.edu])
