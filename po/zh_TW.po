@@ -5,7 +5,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-mailwatch-plugin 0.1.0svn\n"
+"Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-01-23 22:53-0800\n"
 "PO-Revision-Date: 2006-02-08 19:26+0800\n"
@@ -22,8 +22,8 @@ msgid ""
 "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 "the panel may hang on close."
 msgstr ""
-"無法將 socket 設為非阻斷狀態(non-blocking mode)。如果連結的企圖持續的話，"
-"面板在關閉時可能會卡住。"
+"無法將 socket 設為非阻斷狀態(non-blocking mode)。如果連結的企圖持續的話，面板"
+"在關閉時可能會卡住。"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:254
 #: ../panel-plugin/mailwatch-mailbox-imap.c:438
@@ -38,8 +38,7 @@ msgstr "無法連結到伺服器：%s"
 msgid ""
 "Unable to return socket to blocking mode.  Data may not be retreived "
 "correctly."
-msgstr ""
-"無法將 socket 切回阻斷狀態，資料可能無法正常取回。"
+msgstr "無法將 socket 切回阻斷狀態，資料可能無法正常取回。"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:317
 #: ../panel-plugin/mailwatch-mailbox-imap.c:302
@@ -53,8 +52,7 @@ msgstr "TLS 交握失敗：%s"
 msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
-msgstr ""
-"收到 HTTP 回應代碼 %d。最可能的原因是您 GMail 的帳號或是密碼不正確。"
+msgstr "收到 HTTP 回應代碼 %d。最可能的原因是您 GMail 的帳號或是密碼不正確。"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:371
 #, c-format
@@ -108,8 +106,7 @@ msgstr ""
 msgid ""
 "Secure IMAP is not available, and the IMAP server does not support plaintext "
 "logins."
-msgstr ""
-"無法使用安全的 IMAP，而且該 IMAP 伺服器不支援明文(plaintext)登入。"
+msgstr "無法使用安全的 IMAP，而且該 IMAP 伺服器不支援明文(plaintext)登入。"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:335
 msgid "STARTTLS security was requested, but this server does not support it."
@@ -118,8 +115,7 @@ msgstr "已經要求 STARTTLS 安全連線，但是這個伺服器不支援。"
 #: ../panel-plugin/mailwatch-mailbox-imap.c:591
 msgid ""
 "A buffer was too small to receive all of an IMAP response.  This is a bug!"
-msgstr ""
-"一個緩衝區太小，無法接收一個 IMAP 回應的全部內容。這是一個程式臭蟲！"
+msgstr "一個緩衝區太小，無法接收一個 IMAP 回應的全部內容。這是一個程式臭蟲！"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1178
 msgid "Failed to get folder list"
@@ -256,8 +252,7 @@ msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
 msgstr ""
-"本 Maildir 外掛程式可以監視本地的 maildir 形式的郵件 spool中是否有新"
-"訊息"
+"本 Maildir 外掛程式可以監視本地的 maildir 形式的郵件 spool中是否有新訊息"
 
 #: ../panel-plugin/mailwatch-mailbox-mbox.c:371
 msgid "Select mbox file"
@@ -285,8 +280,8 @@ msgid ""
 "The configuration of this plugin is read from\n"
 "the default mh maildir profile file ~/.mh_profile"
 msgstr ""
-"本外掛程式的組態設定乃讀自預設的 mh maildir 的"
-"profile 檔案 ~/.mh_profile。(_P)"
+"本外掛程式的組態設定乃讀自預設的 mh maildir 的profile 檔案 ~/.mh_profile。"
+"(_P)"
 
 #: ../panel-plugin/mailwatch-mailbox-mh.c:669
 msgid "Local MH mail folder"
@@ -321,8 +316,8 @@ msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
 msgstr ""
-"本 POP3 外掛程式能連結到支援 POP3 協定的遠端郵件伺服器，可選用 SSL 進行連結"
-"保護。"
+"本 POP3 外掛程式能連結到支援 POP3 協定的遠端郵件伺服器，可選用 SSL 進行連結保"
+"護。"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
 #: ../panel-plugin/mailwatch-plugin-4.2.c:272
@@ -464,8 +459,8 @@ msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
 msgstr ""
-"xfce4-mailwatch-plugin：無法初始化 GThread 支援。這應該是您 GLib 安裝上"
-"的問題。"
+"xfce4-mailwatch-plugin：無法初始化 GThread 支援。這應該是您 GLib 安裝上的問"
+"題。"
 
 #: ../panel-plugin/mailwatch.c:345 ../panel-plugin/mailwatch.c:346
 #, c-format
@@ -479,8 +474,8 @@ msgid ""
 "passwords or other sensitive information, it may be readable by others on "
 "your system."
 msgstr ""
-"無法設定設定檔'%s'的權限。如果這個檔案包含密碼或其他敏感資訊，您系統上的"
-"其他人可能讀得到。"
+"無法設定設定檔'%s'的權限。如果這個檔案包含密碼或其他敏感資訊，您系統上的其他"
+"人可能讀得到。"
 
 #: ../panel-plugin/mailwatch.c:616
 msgid "This mailbox type does not require any configuration settings."

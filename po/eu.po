@@ -6,7 +6,7 @@
 # Piarres Beobide <pi@beobide.net>, 2005, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: eu\n"
+"Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-01-23 22:53-0800\n"
 "PO-Revision-Date: 2006-01-24 20:44+0100\n"
