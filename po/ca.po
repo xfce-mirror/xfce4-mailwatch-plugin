@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-01-23 22:53-0800\n"
-"PO-Revision-Date: 2006-01-08 21:51+0100\n"
+"PO-Revision-Date: 2006-03-18 22:33+0100\n"
 "Last-Translator: Pau Rul·lan Ferragut <paurullan@bulma.net>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -18,41 +18,39 @@ msgstr ""
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:215
 #: ../panel-plugin/mailwatch-mailbox-imap.c:399
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:358
-#, fuzzy
 msgid ""
 "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 "the panel may hang on close."
-msgstr "a  set a  mode Si     quadre on tanca."
+msgstr "No s'ha pogut configurar el sòcol a mode no-bloquejador. Si l'intent de connexió es pengés és possible que el quadre també es pengi quan s'intenti tancar."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:254
 #: ../panel-plugin/mailwatch-mailbox-imap.c:438
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:397
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to connect to server: %s"
-msgstr "Ha fallat a  a  servidor"
+msgstr "No s'ha pogut connectar al servidor: %s"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:286
 #: ../panel-plugin/mailwatch-mailbox-imap.c:470
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:429
-#, fuzzy
 msgid ""
 "Unable to return socket to blocking mode.  Data may not be retreived "
 "correctly."
-msgstr "a  a  mode Dades no."
+msgstr "No s'ha pogut configurar el sòcol a mode no-bloquejador. Es possible que no es consegueixin les dades correctament."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:317
 #: ../panel-plugin/mailwatch-mailbox-imap.c:302
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:268
 #, c-format
 msgid "TLS handshake failed: %s"
-msgstr ""
+msgstr "No s'ha pogut dur a terme la connexió TLS: %s"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:365
 #, c-format
 msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
-msgstr ""
+msgstr "S'ha rebut el codi HTTP %d. El més probable és que el vostre usuario o contrassenya de GMail siguin incorrectes."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:371
 #, c-format
@@ -60,28 +58,25 @@ msgid ""
 "Received HTTP response code %d, which should be 200.  There may be a problem "
 "with GMail's servers, or they have incompatibly changed their authentication "
 "method or location of the new messages feed."
-msgstr ""
+msgstr "S'ha rebut el codi HTTP %d, el qual hauria de ser 200. O hi ha varis problemes amb els servidors de GMail o han fet canvis que fan incompatibles l'autentificació o han canviat la localització del canal de missatges nous."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:617
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1734
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:922
-#, fuzzy
 msgid "_Username:"
 msgstr "Nom d'_usuari:"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:636
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1753
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:941
-#, fuzzy
 msgid "_Password:"
 msgstr "_Contrasenya:"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:656
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1791
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:972
-#, fuzzy
 msgid "Check for _new messages every"
-msgstr "Revisa per a nou cada"
+msgstr "Comprova si hi ha missatges nous cada"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:671
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1805
@@ -89,20 +84,18 @@ msgstr "Revisa per a nou cada"
 #: ../panel-plugin/mailwatch-mailbox-mbox.c:471
 #: ../panel-plugin/mailwatch-mailbox-mh.c:643
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:986
-#, fuzzy
 msgid "minute(s)."
-msgstr "minut."
+msgstr "minut(s)."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:752
-#, fuzzy
 msgid "Remote GMail Mailbox"
-msgstr "IMAP Bústia"
+msgstr "Bústia remota de GMail"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:753
 msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
-msgstr ""
+msgstr "El connector GMail pot connectar-se al servei de correu de Google i recuperar de manera segura el nombre de missatges."
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:254
 #, fuzzy
@@ -379,7 +372,7 @@ msgstr "Tu nou:"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:254
 #: ../panel-plugin/mailwatch-plugin.c:324
 msgid "Xfce Mailwatch"
-msgstr ""
+msgstr "Monitor de correu Xfce"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:255
 #: ../panel-plugin/mailwatch-plugin.c:325
@@ -477,11 +470,11 @@ msgstr "Correu"
 #: ../panel-plugin/mailwatch-plugin.c:729
 #, c-format
 msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
-msgstr ""
+msgstr "No s'ha pogut accedir a l'ajuda perquè no s'ha pogut executar 'xfhelp4': %s"
 
 #: ../panel-plugin/mailwatch-plugin.c:731
 msgid "Help Unavailable"
-msgstr ""
+msgstr "L'ajuda no està disponible"
 
 #: ../panel-plugin/mailwatch-plugin.c:732
 #, fuzzy
@@ -496,12 +489,11 @@ msgstr "Edita Propietats"
 #: ../panel-plugin/mailwatch-utils.c:242
 #, c-format
 msgid "XfceMailwatch: TLS handshake failed: %s"
-msgstr ""
+msgstr "Monitor de correu Xfce: no s'ha pogut dur a terme la connexió TLS: %s"
 
 #: ../panel-plugin/mailwatch-utils.c:252
-#, fuzzy
 msgid "Not compiled with SSL/TLS support"
-msgstr "No amb"
+msgstr "No s'ha compilat amb les opcions per SSL/TLS"
 
 #: ../panel-plugin/mailwatch-utils.c:254
 #, fuzzy
@@ -546,7 +538,7 @@ msgstr "_Nom de la bústia:"
 
 #: ../panel-plugin/mailwatch.c:659
 msgid "Mailwatch"
-msgstr ""
+msgstr "Monitor de correu"
 
 #: ../panel-plugin/mailwatch.c:660
 #, fuzzy
@@ -589,14 +581,13 @@ msgid "Are you sure?"
 msgstr "tu?"
 
 #: ../panel-plugin/mailwatch.c:897
-#, fuzzy
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
-msgstr "S'està suprimint a all i."
+msgstr "Si es suprimeixen les bústies tots els paràmetres es perdran. Aquests paràmetres no es poden recuperar."
 
 #: ../panel-plugin/mailwatch.c:968
 msgid "Mailboxes"
-msgstr ""
+msgstr "Bústies"
 
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
-msgstr ""
+msgstr "Comprova el correu de múltiples bústies"
