@@ -1,3 +1,4 @@
+# Russian translation of xfce4-mailwatch-plugin.
 # Russian translations for xfce4-mailwatch-plugin package.
 # Copyright (C) 2005-2006 Brian Tarricone, Pasi Orovuo.
 # This file is distributed under the same license as
@@ -9,12 +10,13 @@ msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-01-23 22:53-0800\n"
-"PO-Revision-Date: 2006-03-13 21:00+0500\n"
+"PO-Revision-Date: 2006-03-25 12:34+0500\n"
 "Last-Translator: Andrey Fedoseev <andrey.fedoseev@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.2\n"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:215
 #: ../panel-plugin/mailwatch-mailbox-imap.c:399
@@ -65,19 +67,19 @@ msgstr ""
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1734
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:922
 msgid "_Username:"
-msgstr ""
+msgstr "Имя пользователя:"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:636
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1753
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:941
 msgid "_Password:"
-msgstr ""
+msgstr "Пароль:"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:656
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1791
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:972
 msgid "Check for _new messages every"
-msgstr ""
+msgstr "Проверять наличие новых сообщений каждые"
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:671
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1805
@@ -86,7 +88,7 @@ msgstr ""
 #: ../panel-plugin/mailwatch-mailbox-mh.c:643
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:986
 msgid "minute(s)."
-msgstr ""
+msgstr "минут."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:752
 msgid "Remote GMail Mailbox"
@@ -143,11 +145,11 @@ msgstr ""
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1414
 msgid "New Mail Folders"
-msgstr ""
+msgstr "Новые почтовые папки"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1597
 msgid "Advanced IMAP Options"
-msgstr ""
+msgstr "Расширенные настройки IMAP"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1606
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:816
@@ -166,11 +168,11 @@ msgstr ""
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1617
 msgid "Use SSL/TLS via STARTTLS"
-msgstr ""
+msgstr "Использовать SSL/TLS через STARTTLS"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1633
 msgid "Use non-standard IMAP _port:"
-msgstr ""
+msgstr "Использовать нестандартный порт IMAP:"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1662
 msgid "Folders"
@@ -187,16 +189,16 @@ msgstr "Сервер IMAP"
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1715
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:903
 msgid "_Mail server:"
-msgstr ""
+msgstr "Почтовый сервер"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1773
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:961
 msgid "_Advanced..."
-msgstr ""
+msgstr "Дополнительно..."
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1780
 msgid "New mail _folders..."
-msgstr ""
+msgstr "Новые почтовые папки..."
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1950
 msgid "Remote IMAP Mailbox"
@@ -223,17 +225,17 @@ msgstr ""
 
 #: ../panel-plugin/mailwatch-mailbox-maildir.c:345
 msgid "Select Maildir Folder"
-msgstr ""
+msgstr "Выберите папку maildir"
 
 #: ../panel-plugin/mailwatch-mailbox-maildir.c:406
 msgid "Maildir _Path:"
-msgstr ""
+msgstr "Путь к папке maildir"
 
 #: ../panel-plugin/mailwatch-mailbox-maildir.c:442
 #: ../panel-plugin/mailwatch-mailbox-mbox.c:454
 #: ../panel-plugin/mailwatch-mailbox-mh.c:628
 msgid "_Interval:"
-msgstr ""
+msgstr "Интервал:"
 
 #: ../panel-plugin/mailwatch-mailbox-maildir.c:492
 msgid "Local Maildir Spool"
@@ -251,7 +253,7 @@ msgstr "Выберите файл mbox"
 
 #: ../panel-plugin/mailwatch-mailbox-mbox.c:418
 msgid "Mbox _Filename:"
-msgstr ""
+msgstr "Имя файла mbox"
 
 #: ../panel-plugin/mailwatch-mailbox-mbox.c:496
 msgid "Local Mbox spool"
@@ -282,15 +284,15 @@ msgstr ""
 
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:807
 msgid "Advanced POP3 Options"
-msgstr ""
+msgstr "Расширенные настройки POP3"
 
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:827
 msgid "Use SSL/TLS via STLS"
-msgstr ""
+msgstr "Использовать SSL/TLS через STLS"
 
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:843
 msgid "Use non-standard POP3 _port:"
-msgstr ""
+msgstr "Использовать нестандартный порт POP3:"
 
 #: ../panel-plugin/mailwatch-mailbox-pop3.c:889
 msgid "POP3 Server"
@@ -327,7 +329,7 @@ msgstr "У вас %d новых писем"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:254
 #: ../panel-plugin/mailwatch-plugin.c:324
 msgid "Xfce Mailwatch"
-msgstr ""
+msgstr "Проверка почты Xfce"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:255
 #: ../panel-plugin/mailwatch-plugin.c:325
@@ -347,12 +349,12 @@ msgstr "Журнал проверки почты"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:537
 #: ../panel-plugin/mailwatch-plugin.c:596
 msgid "Log _lines:"
-msgstr ""
+msgstr "Строк в журнале:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:551
 #: ../panel-plugin/mailwatch-plugin.c:610
 msgid "Show log _status in icon"
-msgstr ""
+msgstr "Показывать статус из журнала на значке"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:597
 #: ../panel-plugin/mailwatch-plugin.c:654
@@ -364,53 +366,53 @@ msgstr "Выберите значок"
 #: ../panel-plugin/mailwatch-plugin.c:685
 #: ../panel-plugin/mailwatch-plugin.c:873
 msgid "_Normal"
-msgstr ""
+msgstr "Обычный"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:652
 #: ../panel-plugin/mailwatch-plugin.c:711
 msgid "Ne_w mail"
-msgstr ""
+msgstr "Новая почта"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:681
 #: ../panel-plugin/mailwatch-plugin.c:805
 msgid "External Programs"
-msgstr ""
+msgstr "Внешние программы"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:693
 #: ../panel-plugin/mailwatch-plugin.c:817
 msgid "Run _on click:"
-msgstr ""
+msgstr "Запускать при щелчке мышью"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:710
 #: ../panel-plugin/mailwatch-plugin.c:834
 msgid "Run on new _messages:"
-msgstr ""
+msgstr "Запускать при наличии новых сообшений"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:723
 #: ../panel-plugin/mailwatch-plugin.c:847
 msgid "Icons"
-msgstr ""
+msgstr "Значки"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:769
 #: ../panel-plugin/mailwatch-plugin.c:893
 msgid "Ne_w Mail"
-msgstr ""
+msgstr "Новая почта"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:777
 #: ../panel-plugin/mailwatch-plugin.c:777
 msgid "_View Log..."
-msgstr ""
+msgstr "Просмотреть журнал..."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:890
 #: ../panel-plugin/mailwatch-plugin.c:788
 #: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Mail Watcher"
-msgstr ""
+msgstr "Проверка почты"
 
 #: ../panel-plugin/mailwatch-plugin.c:729
 #, c-format
 msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
-msgstr ""
+msgstr "Справка недоступна, потому что не удается запустить 'xfhelp4': %s"
 
 #: ../panel-plugin/mailwatch-plugin.c:731
 msgid "Help Unavailable"
@@ -418,11 +420,11 @@ msgstr "Справка недоступна"
 
 #: ../panel-plugin/mailwatch-plugin.c:732
 msgid "Failed to run xfhelp4"
-msgstr ""
+msgstr "Не удалось запустить xfhelp4"
 
 #: ../panel-plugin/mailwatch-plugin.c:759
 msgid "Edit Properties"
-msgstr ""
+msgstr "Редактировать настройки"
 
 #: ../panel-plugin/mailwatch-utils.c:242
 #, c-format
@@ -431,7 +433,7 @@ msgstr ""
 
 #: ../panel-plugin/mailwatch-utils.c:252
 msgid "Not compiled with SSL/TLS support"
-msgstr ""
+msgstr "Собрано без поддержки SSL/TLS"
 
 #: ../panel-plugin/mailwatch-utils.c:254
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
@@ -466,11 +468,11 @@ msgstr "Этот тип почтового ящика не требует доп
 
 #: ../panel-plugin/mailwatch.c:642
 msgid "Mailbox _Name:"
-msgstr ""
+msgstr "Название почтового ящика:"
 
 #: ../panel-plugin/mailwatch.c:659
 msgid "Mailwatch"
-msgstr ""
+msgstr "Проверка почты"
 
 #: ../panel-plugin/mailwatch.c:660
 msgid "Mailbox name required."
@@ -483,7 +485,7 @@ msgstr "Укажите название почтового ящика"
 #: ../panel-plugin/mailwatch.c:704
 #, c-format
 msgid "Edit Mailbox: %s"
-msgstr ""
+msgstr "Параметры почтового ящика: %s"
 
 #: ../panel-plugin/mailwatch.c:767
 msgid "Select Mailbox Type"
@@ -508,6 +510,8 @@ msgstr "Вы уверены?"
 #: ../panel-plugin/mailwatch.c:897
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr ""
+"Удаляя почтовый ящик вы удалите все его настройки и не сможете их "
+"восстановить."
 
 #: ../panel-plugin/mailwatch.c:968
 msgid "Mailboxes"
