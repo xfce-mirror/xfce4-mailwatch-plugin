@@ -6,7 +6,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-mailwatch-plugin\n"
+"Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-01-23 22:53-0800\n"
 "PO-Revision-Date: 2006-03-30 14:23+0300\n"

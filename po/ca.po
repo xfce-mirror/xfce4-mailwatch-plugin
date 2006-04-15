@@ -6,7 +6,7 @@
 # Pau Rul·lan Ferragut <paurullan@bulma.net> 2005, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: ca\n"
+"Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-01-23 22:53-0800\n"
 "PO-Revision-Date: 2006-03-19 17:37+0100\n"
@@ -23,7 +23,10 @@ msgstr ""
 msgid ""
 "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 "the panel may hang on close."
-msgstr "No s'ha pogut configurar el sòcol a mode no-bloquejador. Si l'intent de connexió es pengés és possible que el quadre també es pengi quan s'intenti tancar."
+msgstr ""
+"No s'ha pogut configurar el sòcol a mode no-bloquejador. Si l'intent de "
+"connexió es pengés és possible que el quadre també es pengi quan s'intenti "
+"tancar."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:254
 #: ../panel-plugin/mailwatch-mailbox-imap.c:438
@@ -38,7 +41,9 @@ msgstr "No s'ha pogut connectar al servidor: %s"
 msgid ""
 "Unable to return socket to blocking mode.  Data may not be retreived "
 "correctly."
-msgstr "No s'ha pogut configurar el sòcol a mode no-bloquejador. Es possible que no es consegueixin les dades correctament."
+msgstr ""
+"No s'ha pogut configurar el sòcol a mode no-bloquejador. Es possible que no "
+"es consegueixin les dades correctament."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:317
 #: ../panel-plugin/mailwatch-mailbox-imap.c:302
@@ -52,7 +57,9 @@ msgstr "No s'ha pogut dur a terme la connexió TLS: %s"
 msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
-msgstr "S'ha rebut el codi HTTP %d. El més probable és que el vostre usuario o contrassenya de GMail siguin incorrectes."
+msgstr ""
+"S'ha rebut el codi HTTP %d. El més probable és que el vostre usuario o "
+"contrassenya de GMail siguin incorrectes."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:371
 #, c-format
@@ -60,7 +67,10 @@ msgid ""
 "Received HTTP response code %d, which should be 200.  There may be a problem "
 "with GMail's servers, or they have incompatibly changed their authentication "
 "method or location of the new messages feed."
-msgstr "S'ha rebut el codi HTTP %d, el qual hauria de ser 200. O hi ha varis problemes amb els servidors de GMail o han fet canvis que fan incompatibles l'autentificació o han canviat la localització del canal de missatges nous."
+msgstr ""
+"S'ha rebut el codi HTTP %d, el qual hauria de ser 200. O hi ha varis "
+"problemes amb els servidors de GMail o han fet canvis que fan incompatibles "
+"l'autentificació o han canviat la localització del canal de missatges nous."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:617
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1734
@@ -97,7 +107,9 @@ msgstr "Bústia remota de GMail"
 msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
-msgstr "El connector GMail pot connectar-se al servei de correu de Google i recuperar de manera segura el nombre de missatges."
+msgstr ""
+"El connector GMail pot connectar-se al servei de correu de Google i "
+"recuperar de manera segura el nombre de missatges."
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:254
 #, fuzzy
@@ -113,7 +125,8 @@ msgstr "aquest servidor no."
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:591
 #, fuzzy
-msgid "A buffer was too small to receive all of an IMAP response.  This is a bug!"
+msgid ""
+"A buffer was too small to receive all of an IMAP response.  This is a bug!"
 msgstr "A petit a  all de IMAP és a error!"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1178
@@ -143,7 +156,9 @@ msgid ""
 "The folder list cannot be retrieved until a server, username, and probably "
 "password are set.  Also be sure to check any security settings in the "
 "Advanced dialog."
-msgstr "carpeta llista fins a servidor nom d'usuari i contrasenya set a  activa qualsevol po   Avançat diàleg."
+msgstr ""
+"carpeta llista fins a servidor nom d'usuari i contrasenya set a  activa "
+"qualsevol po   Avançat diàleg."
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1403
 #, fuzzy
@@ -469,7 +484,8 @@ msgstr "Correu"
 #: ../panel-plugin/mailwatch-plugin.c:729
 #, c-format
 msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
-msgstr "No s'ha pogut accedir a l'ajuda perquè no s'ha pogut executar 'xfhelp4': %s"
+msgstr ""
+"No s'ha pogut accedir a l'ajuda perquè no s'ha pogut executar 'xfhelp4': %s"
 
 #: ../panel-plugin/mailwatch-plugin.c:731
 msgid "Help Unavailable"
@@ -580,7 +596,9 @@ msgstr "tu?"
 
 #: ../panel-plugin/mailwatch.c:897
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
-msgstr "Si es suprimeixen les bústies tots els paràmetres es perdran. Aquests paràmetres no es poden recuperar."
+msgstr ""
+"Si es suprimeixen les bústies tots els paràmetres es perdran. Aquests "
+"paràmetres no es poden recuperar."
 
 #: ../panel-plugin/mailwatch.c:968
 msgid "Mailboxes"
@@ -589,4 +607,3 @@ msgstr "Bústies"
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "Comprova el correu de múltiples bústies"
-
