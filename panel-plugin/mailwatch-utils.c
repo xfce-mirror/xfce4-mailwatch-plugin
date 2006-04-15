@@ -84,6 +84,7 @@
 #ifdef HAVE_SSL_SUPPORT
 
 #include <gcrypt.h>
+#include <gnutls/gnutls.h>
 
 /* missing from 1.2.0? */
 #ifndef _GCRY_PTH_SOCKADDR
@@ -233,7 +234,9 @@ xfce_mailwatch_net_negotiate_tls(gint sockfd,
             (gnutls_transport_ptr_t)sockfd);
     
     /* just do it */
-    gt_ret = gnutls_handshake(security_info->gt_session);
+    do {
+        gt_ret = gnutls_handshake(security_info->gt_session);
+    } while(gt_ret == GNUTLS_E_AGAIN || gt_ret == GNUTLS_E_INTERRUPTED);
     if(gt_ret < 0) {
         if(error) {
             g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
@@ -385,6 +388,7 @@ xfce_mailwatch_net_tls_teardown(XfceMailwatchSecurityInfo *security_info)
 {
 #ifdef HAVE_SSL_SUPPORT
     if(security_info->gnutls_inited) {
+        gnutls_bye(security_info->gt_session, GNUTLS_SHUT_RDWR);
         gnutls_deinit(security_info->gt_session);
         gnutls_certificate_free_credentials(security_info->gt_creds);
         gnutls_global_deinit();
