@@ -1,5 +1,8 @@
 # make sure both are distributed, regardless of which condition is taken
-EXTRA_DIST = mailwatch-plugin.c mailwatch-plugin-4.2.c
+EXTRA_DIST = \
+	mailwatch-plugin.c \
+	mailwatch-plugin-4.2.c \
+	mailwatch-mailbox-gmail.c
 
 if BUILD_42_PANEL_PLUGIN
 
@@ -45,8 +48,6 @@ libmailwatch_la_LIBADD = \
 	@GTHREAD_LIBS@ \
 	@XFCE4_PANEL_LIBS@ \
 	@GNUTLS_LIBS@
-
-EXTRA_DIST = mailwatch-mailbox-gmail.c
 
 else
 
@@ -107,9 +108,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 	sed -e "s^@PLUGIN_PATH@^$(libexecdir)/xfce4/panel-plugins^" \
 		$< > $@
 
-EXTRA_DIST += \
-	$(desktop_in_in_files) \
-	mailwatch-mailbox-gmail.c
+EXTRA_DIST += $(desktop_in_in_files)
 
 DISTCLEANFILES = \
 	$(desktop_DATA) $(desktop_in_files)
