@@ -4,7 +4,7 @@ dnl xfce4-mailwatch-plugin - a mail notification plugin for the xfce4 panel
 dnl
 
 dnl version info
-m4_define([mailwatch_version], [1.0.1svn])
+m4_define([mailwatch_version], [1.0.1])
 
 dnl init autoconf
 AC_INIT([xfce4-mailwatch-plugin], [mailwatch_version], [bjt23@cornell.edu])
@@ -60,6 +60,7 @@ XDT_CHECK_OPTIONAL_PACKAGE([GNUTLS], [gnutls], [1.2.0], [ssl],
 if test "x$GNUTLS_FOUND" = "xyes"; then
 	AC_DEFINE_UNQUOTED([HAVE_SSL_SUPPORT], [1], [Define if SSL support is enabled])
 fi
+AM_CONDITIONAL([HAVE_SSL_SUPPORT], [test "x$GNUTLS_FOUND" = "xyes"])
 
 dnl check for debugging support
 XDT_FEATURE_DEBUG

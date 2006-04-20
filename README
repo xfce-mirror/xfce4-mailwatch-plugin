@@ -9,7 +9,7 @@ Currently, the protocols supported are:
   * Mbox mail spool (local)
   * Maildir mail spool (local)
   * MH-Maildir mail spool (local)
-  * Google Mail (GMail) mailbox (remote)
+  * Google Mail (GMail) mailbox (remote) (requires gnutls)
 
 Random list of features:
   * Multiple folder checking support for IMAP.
@@ -23,9 +23,9 @@ Random list of features:
     overlay icon to inform the user of errors at a glance.
   * Custom button icons.
 
-gnutls 1.2.0 or greater is optional, but required for SSL/TLS support.  Sending
-cleartext passwords across unsecured networks is not recommended.  This plugin
-should work with any Xfce version from 4.2.0 onwards.
+gnutls 1.2.0 or greater is optional, but required for SSL/TLS support.  GMail
+requires gnutls.  Sending cleartext passwords across unsecured networks is not
+recommended.  This plugin should work with any Xfce version from 4.2.0 onwards.
 
 See the Mailwatch website for more information and the latest release:
 http://spuriousinterrupt.org/projects/mailwatch

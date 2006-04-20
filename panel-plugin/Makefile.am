@@ -18,7 +18,6 @@ if HAVE_CYGWIN
 endif
 
 libmailwatch_la_SOURCES = \
-	mailwatch-mailbox-gmail.c \
 	mailwatch-mailbox-imap.c \
 	mailwatch-mailbox-maildir.c \
 	mailwatch-mailbox-mbox.c \
@@ -30,6 +29,10 @@ libmailwatch_la_SOURCES = \
 	mailwatch-utils.h \
 	mailwatch.c \
 	mailwatch.h
+
+if HAVE_SSL_SUPPORT
+libmailwatch_la_SOURCES += mailwatch-mailbox-gmail.c
+endif
 
 libmailwatch_la_CFLAGS = \
 	@GTHREAD_CFLAGS@ \
@@ -43,13 +46,14 @@ libmailwatch_la_LIBADD = \
 	@XFCE4_PANEL_LIBS@ \
 	@GNUTLS_LIBS@
 
+EXTRA_DIST = mailwatch-mailbox-gmail.c
+
 else
 
 plugindir = $(libexecdir)/xfce4/panel-plugins
 plugin_PROGRAMS = xfce4-mailwatch-plugin
 
 xfce4_mailwatch_plugin_SOURCES = \
-	mailwatch-mailbox-gmail.c \
 	mailwatch-mailbox-imap.c \
 	mailwatch-mailbox-maildir.c \
 	mailwatch-mailbox-mbox.c \
@@ -61,6 +65,10 @@ xfce4_mailwatch_plugin_SOURCES = \
 	mailwatch-utils.h \
 	mailwatch.c \
 	mailwatch.h
+
+if HAVE_SSL_SUPPORT
+xfce4_mailwatch_plugin_SOURCES += mailwatch-mailbox-gmail.c
+endif
 
 xfce4_mailwatch_plugin_CFLAGS = \
 	@GTHREAD_CFLAGS@ \
@@ -93,15 +101,17 @@ desktop_in_files = $(desktop_in_in_files:.desktop.in.in=.desktop.in)
 desktopdir = $(datadir)/xfce4/panel-plugins
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
-
-EXTRA_DIST += $(desktop_in_in_files)
-
-DISTCLEANFILES = \
-	$(desktop_DATA) $(desktop_in_files)
 	
 # get full path into .desktop file
 %.desktop.in: %.desktop.in.in
 	sed -e "s^@PLUGIN_PATH@^$(libexecdir)/xfce4/panel-plugins^" \
 		$< > $@
+
+EXTRA_DIST += \
+	$(desktop_in_in_files) \
+	mailwatch-mailbox-gmail.c
+
+DISTCLEANFILES = \
+	$(desktop_DATA) $(desktop_in_files)
 
 endif
