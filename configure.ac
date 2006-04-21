@@ -34,7 +34,7 @@ AC_CHECK_HEADERS(errno.h fcntl.h math.h netdb.h netinet/in.h signal.h stddef.h s
 AC_CHECK_FUNCS(mmap sigaction srandom)
 
 dnl Check for i18n support
-XDT_I18N([ca de el eu fi fr gu ja pt_BR ru vi zh_TW])
+XDT_I18N([ca de el eu fi fr gu he ja pt_BR ru vi zh_TW])
 
 dnl Check for X11 installed
 XDT_CHECK_LIBX11_REQUIRE
