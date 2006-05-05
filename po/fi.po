@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-23 22:53-0800\n"
+"POT-Creation-Date: 2006-05-06 04:19+0900\n"
 "PO-Revision-Date: 2006-01-24 23:30+0200\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
@@ -453,25 +453,25 @@ msgstr "Xfhelp4:n suorittaminen epäonnistui"
 msgid "Edit Properties"
 msgstr "Muokkaa ominaisuuksia"
 
-#: ../panel-plugin/mailwatch-utils.c:242
+#: ../panel-plugin/mailwatch-utils.c:245
 #, c-format
 msgid "XfceMailwatch: TLS handshake failed: %s"
 msgstr "XfcePostivahti: TLS-kättely epäonnistui: %s"
 
-#: ../panel-plugin/mailwatch-utils.c:252
+#: ../panel-plugin/mailwatch-utils.c:255
 msgid "Not compiled with SSL/TLS support"
 msgstr "SSL/TLS-tuki jätetty pois kääntäessä"
 
-#: ../panel-plugin/mailwatch-utils.c:254
+#: ../panel-plugin/mailwatch-utils.c:257
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
 msgstr ""
 "XfcePostivahti: TLS-kättely epäonnistui: SSL-tuki jätetty pois kääntäessä."
 
-#: ../panel-plugin/mailwatch-utils.c:277 ../panel-plugin/mailwatch-utils.c:330
+#: ../panel-plugin/mailwatch-utils.c:280 ../panel-plugin/mailwatch-utils.c:333
 msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr "Pyydettiin suojattua yhteyttä, mutta gnutls:ää ei alustettu"
 
-#: ../panel-plugin/mailwatch.c:133
+#: ../panel-plugin/mailwatch.c:137
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
@@ -479,12 +479,12 @@ msgstr ""
 "xfce4-mailwatch-plugin: GThread-tukea ei voi alustaa. Tämä johtuu "
 "luultavasti ongelmasta GLib-asennuksessasi."
 
-#: ../panel-plugin/mailwatch.c:345 ../panel-plugin/mailwatch.c:346
+#: ../panel-plugin/mailwatch.c:349 ../panel-plugin/mailwatch.c:350
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "Asetustiedostoa \"%s\" ei voi kirjoittaa"
 
-#: ../panel-plugin/mailwatch.c:392 ../panel-plugin/mailwatch.c:394
+#: ../panel-plugin/mailwatch.c:396 ../panel-plugin/mailwatch.c:398
 #, c-format
 msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
@@ -495,57 +495,57 @@ msgstr ""
 "salasanoja tai muuta arkaluonteista tietoa, se voi olla muiden järjestelmäsi "
 "käyttäjien luettavissa."
 
-#: ../panel-plugin/mailwatch.c:616
+#: ../panel-plugin/mailwatch.c:620
 msgid "This mailbox type does not require any configuration settings."
 msgstr "Tämä postilaatikkotyyppi ei edellytä asetuksien säätämistä."
 
-#: ../panel-plugin/mailwatch.c:642
+#: ../panel-plugin/mailwatch.c:646
 msgid "Mailbox _Name:"
 msgstr "Postilaatikon _nimi:"
 
-#: ../panel-plugin/mailwatch.c:659
+#: ../panel-plugin/mailwatch.c:663
 msgid "Mailwatch"
 msgstr "Postivahti"
 
-#: ../panel-plugin/mailwatch.c:660
+#: ../panel-plugin/mailwatch.c:664
 msgid "Mailbox name required."
 msgstr "Postilaatikon nimi on vaadittu tieto."
 
-#: ../panel-plugin/mailwatch.c:661
+#: ../panel-plugin/mailwatch.c:665
 msgid "Please enter a name for the mailbox."
 msgstr "Syötä nimi postilaatikolle"
 
-#: ../panel-plugin/mailwatch.c:704
+#: ../panel-plugin/mailwatch.c:708
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "Muokkaa postilaatikkoa: %s"
 
-#: ../panel-plugin/mailwatch.c:767
+#: ../panel-plugin/mailwatch.c:771
 msgid "Select Mailbox Type"
 msgstr "Valitse postilaatikon tyyppi"
 
-#: ../panel-plugin/mailwatch.c:776
+#: ../panel-plugin/mailwatch.c:780
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr "Valitse postilaatikon tyyppi. Tyypin kuvaus ilmestyy alapuolelle."
 
-#: ../panel-plugin/mailwatch.c:832
+#: ../panel-plugin/mailwatch.c:836
 msgid "Add New Mailbox"
 msgstr "Lisää uusi postilaatikko"
 
-#: ../panel-plugin/mailwatch.c:895
+#: ../panel-plugin/mailwatch.c:899
 msgid "Remove Mailbox"
 msgstr "Poista postilaatikko"
 
-#: ../panel-plugin/mailwatch.c:896
+#: ../panel-plugin/mailwatch.c:900
 msgid "Are you sure?"
 msgstr "Oletko varma?"
 
-#: ../panel-plugin/mailwatch.c:897
+#: ../panel-plugin/mailwatch.c:901
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr ""
 "Postilaatikon poistaminen kadottaa kaikki asetukset peruuttamattomasti."
 
-#: ../panel-plugin/mailwatch.c:968
+#: ../panel-plugin/mailwatch.c:972
 msgid "Mailboxes"
 msgstr "Postilaatikot"
 

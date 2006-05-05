@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-23 22:53-0800\n"
+"POT-Creation-Date: 2006-05-06 04:19+0900\n"
 "PO-Revision-Date: 2006-01-27 01:04+0300\n"
 "Last-Translator: Phan Vĩnh Thịnh <teppi@vnlinux.org>\n"
 "Language-Team: Vietnamese <none@li.org>\n"
@@ -448,26 +448,26 @@ msgstr "Không chạy được xfhelp4"
 msgid "Edit Properties"
 msgstr "Sửa Thuộc tính"
 
-#: ../panel-plugin/mailwatch-utils.c:242
+#: ../panel-plugin/mailwatch-utils.c:245
 #, c-format
 msgid "XfceMailwatch: TLS handshake failed: %s"
 msgstr "XfceMailwatch: \"Bắt tay\" TLS không thành công: %s"
 
-#: ../panel-plugin/mailwatch-utils.c:252
+#: ../panel-plugin/mailwatch-utils.c:255
 msgid "Not compiled with SSL/TLS support"
 msgstr "Biên dịch không có hỗ trợ SSL/TLS"
 
-#: ../panel-plugin/mailwatch-utils.c:254
+#: ../panel-plugin/mailwatch-utils.c:257
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
 msgstr ""
 "XfceMailwatch: \"Bắt tay\" TLS không thành công: không biên dịch với hỗ trợ "
 "SSL."
 
-#: ../panel-plugin/mailwatch-utils.c:277 ../panel-plugin/mailwatch-utils.c:330
+#: ../panel-plugin/mailwatch-utils.c:280 ../panel-plugin/mailwatch-utils.c:333
 msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr "Yêu cầu một kết nối bảo mật, nhưng chưa chạy gnutls"
 
-#: ../panel-plugin/mailwatch.c:133
+#: ../panel-plugin/mailwatch.c:137
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
@@ -475,12 +475,12 @@ msgstr ""
 "xfce4-mailwatch-plugin: Không chạy được hỗ trợ GThread support.  Rất có thể "
 "có vấn đề từ cài đặt GLib."
 
-#: ../panel-plugin/mailwatch.c:345 ../panel-plugin/mailwatch.c:346
+#: ../panel-plugin/mailwatch.c:349 ../panel-plugin/mailwatch.c:350
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "Không ghi được tập tin cấu hình '%s'"
 
-#: ../panel-plugin/mailwatch.c:392 ../panel-plugin/mailwatch.c:394
+#: ../panel-plugin/mailwatch.c:396 ../panel-plugin/mailwatch.c:398
 #, c-format
 msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
@@ -491,56 +491,56 @@ msgstr ""
 "mật khẩu hoặc thông tin có giá trị, thì những người dùng khác sẽ đọc được "
 "chúng."
 
-#: ../panel-plugin/mailwatch.c:616
+#: ../panel-plugin/mailwatch.c:620
 msgid "This mailbox type does not require any configuration settings."
 msgstr "Dạng hộp thư này không yêu cầu bất kỳ thiết lập cấu hình nào."
 
-#: ../panel-plugin/mailwatch.c:642
+#: ../panel-plugin/mailwatch.c:646
 msgid "Mailbox _Name:"
 msgstr "Tên _Hộp thư:"
 
-#: ../panel-plugin/mailwatch.c:659
+#: ../panel-plugin/mailwatch.c:663
 msgid "Mailwatch"
 msgstr "Trình theo dõi thư"
 
-#: ../panel-plugin/mailwatch.c:660
+#: ../panel-plugin/mailwatch.c:664
 msgid "Mailbox name required."
 msgstr "Cần tên hộp thư."
 
-#: ../panel-plugin/mailwatch.c:661
+#: ../panel-plugin/mailwatch.c:665
 msgid "Please enter a name for the mailbox."
 msgstr "Xin hãy nhập tên cho hộp thư."
 
-#: ../panel-plugin/mailwatch.c:704
+#: ../panel-plugin/mailwatch.c:708
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "Sửa Hộp thư: %s"
 
-#: ../panel-plugin/mailwatch.c:767
+#: ../panel-plugin/mailwatch.c:771
 msgid "Select Mailbox Type"
 msgstr "Chọn dạng Hộp thư"
 
-#: ../panel-plugin/mailwatch.c:776
+#: ../panel-plugin/mailwatch.c:780
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr "Chọn dạng hộp thư.  Đọc mô tả của dạng ở dưới."
 
-#: ../panel-plugin/mailwatch.c:832
+#: ../panel-plugin/mailwatch.c:836
 msgid "Add New Mailbox"
 msgstr "Thêm Hộp thư Mới"
 
-#: ../panel-plugin/mailwatch.c:895
+#: ../panel-plugin/mailwatch.c:899
 msgid "Remove Mailbox"
 msgstr "Xóa hộp thư"
 
-#: ../panel-plugin/mailwatch.c:896
+#: ../panel-plugin/mailwatch.c:900
 msgid "Are you sure?"
 msgstr "Chắc chắn xóa?"
 
-#: ../panel-plugin/mailwatch.c:897
+#: ../panel-plugin/mailwatch.c:901
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr "Xóa hộp thư sẽ bỏ mọi thiết lập, và không thể phục hồi lại."
 
-#: ../panel-plugin/mailwatch.c:968
+#: ../panel-plugin/mailwatch.c:972
 msgid "Mailboxes"
 msgstr "Hộp thư"
 

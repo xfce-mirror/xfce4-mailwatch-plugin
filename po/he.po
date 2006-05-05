@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-23 22:53-0800\n"
+"POT-Creation-Date: 2006-05-06 04:19+0900\n"
 "PO-Revision-Date: 2006-04-28 13:28+0300\n"
 "Last-Translator: Yuval Tanny <tanai@int.gov.il>\n"
 "Language-Team: Hebrew\n"
@@ -24,7 +24,9 @@ msgstr ""
 msgid ""
 "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 "the panel may hang on close."
-msgstr "אין אפשרות להגדיר את השקע למצב לא-חוסם. אם יתנתק ניסיון ההתחברות ייתכן כי הלוח יתנתק ביציאה."
+msgstr ""
+"אין אפשרות להגדיר את השקע למצב לא-חוסם. אם יתנתק ניסיון ההתחברות ייתכן כי "
+"הלוח יתנתק ביציאה."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:254
 #: ../panel-plugin/mailwatch-mailbox-imap.c:438
@@ -39,7 +41,8 @@ msgstr "כשל בהתחברות לשרת: %s"
 msgid ""
 "Unable to return socket to blocking mode.  Data may not be retreived "
 "correctly."
-msgstr "אין אפשרות להחזיר את השקע למצב לא-חסימה. ייתכן כי מידע לא יאוחזר כראוי."
+msgstr ""
+"אין אפשרות להחזיר את השקע למצב לא-חסימה. ייתכן כי מידע לא יאוחזר כראוי."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:317
 #: ../panel-plugin/mailwatch-mailbox-imap.c:302
@@ -53,7 +56,9 @@ msgstr "לחיצת-יד TLS כשלה: %s"
 msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
-msgstr "התקבל קוד %d מתגובת HTTP. כנראה משום ששם המשתמש או הססמה שלך ב-GMail אינה נכונים."
+msgstr ""
+"התקבל קוד %d מתגובת HTTP. כנראה משום ששם המשתמש או הססמה שלך ב-GMail אינה "
+"נכונים."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:371
 #, c-format
@@ -61,7 +66,9 @@ msgid ""
 "Received HTTP response code %d, which should be 200.  There may be a problem "
 "with GMail's servers, or they have incompatibly changed their authentication "
 "method or location of the new messages feed."
-msgstr "התקבל קוד %d מתגובת HTTP במקום קוד 200. ייתכן כי קיימת בעיה עם שרתי GMail או שהשתנו אופן ההזדהות שלהם או מיקומם באופן שאינו מאפשר עוד לקבל הודעות חדשות."
+msgstr ""
+"התקבל קוד %d מתגובת HTTP במקום קוד 200. ייתכן כי קיימת בעיה עם שרתי GMail או "
+"שהשתנו אופן ההזדהות שלהם או מיקומם באופן שאינו מאפשר עוד לקבל הודעות חדשות."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:617
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1734
@@ -98,7 +105,9 @@ msgstr "תיבת דוא\"ל GMail מרוחקת"
 msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
-msgstr "התוסף ל-GMail יכול להתחבר לשירות הדוא\"ל של Google ולאחזר באופן מאובטח את מספר ההודעות החדשות."
+msgstr ""
+"התוסף ל-GMail יכול להתחבר לשירות הדוא\"ל של Google ולאחזר באופן מאובטח את "
+"מספר ההודעות החדשות."
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:254
 msgid ""
@@ -111,7 +120,8 @@ msgid "STARTTLS security was requested, but this server does not support it."
 msgstr "אבטחת STARTTLS התבקשה אך שרת זה אינו תומך בכך."
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:591
-msgid "A buffer was too small to receive all of an IMAP response.  This is a bug!"
+msgid ""
+"A buffer was too small to receive all of an IMAP response.  This is a bug!"
 msgstr "האוגר היה קטן מכדי לקבל את מלוא תגובת ה-IMAP. זהו באג!"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1178
@@ -136,7 +146,9 @@ msgid ""
 "The folder list cannot be retrieved until a server, username, and probably "
 "password are set.  Also be sure to check any security settings in the "
 "Advanced dialog."
-msgstr "אין אפשרות לאחזר את רשימת התיקיות עד ששרת, שם משתמש וכנראה גם ססמה יוגדרו. נא לבדוק גם את הגדרות האבטחה בתיבת הדו-שיח המתקדמת."
+msgstr ""
+"אין אפשרות לאחזר את רשימת התיקיות עד ששרת, שם משתמש וכנראה גם ססמה יוגדרו. "
+"נא לבדוק גם את הגדרות האבטחה בתיבת הדו-שיח המתקדמת."
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
@@ -207,7 +219,9 @@ msgstr "תיבת דוא\"ל IMAP מרוחקת"
 msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
-msgstr "תוסף ה-IMAP יכול להתחבר לשרת דוא\"ל מרוחק התומך בפרוטוקולIMAP אפשרי גם עם SSL להגנת קישור."
+msgstr ""
+"תוסף ה-IMAP יכול להתחבר לשרת דוא\"ל מרוחק התומך בפרוטוקולIMAP אפשרי גם עם "
+"SSL להגנת קישור."
 
 #: ../panel-plugin/mailwatch-mailbox-maildir.c:100
 #: ../panel-plugin/mailwatch-mailbox-mbox.c:99
@@ -244,7 +258,9 @@ msgstr "מיכל Maildir מקומי"
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
-msgstr "תוסף ה-Maildir יכול לעקוב אחר מיכל דוא\"ל מקומי בסגנון Maildir לקבלת הודעות חדשות."
+msgstr ""
+"תוסף ה-Maildir יכול לעקוב אחר מיכל דוא\"ל מקומי בסגנון Maildir לקבלת הודעות "
+"חדשות."
 
 #: ../panel-plugin/mailwatch-mailbox-mbox.c:371
 msgid "Select mbox file"
@@ -307,7 +323,9 @@ msgstr "תיבת דוא\"ל POP3 מרוחקת"
 msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
-msgstr "תוסף ה-POP3 יכול להתחבר לשרת מרוחק התומך בפרוטוקול POP3 אפשרי גם עם SSL להגנת קישור."
+msgstr ""
+"תוסף ה-POP3 יכול להתחבר לשרת מרוחק התומך בפרוטוקול POP3 אפשרי גם עם SSL "
+"להגנת קישור."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
 #: ../panel-plugin/mailwatch-plugin-4.2.c:272
@@ -427,96 +445,99 @@ msgstr "כשל בהרצת xfhelp4"
 msgid "Edit Properties"
 msgstr "עריכת מאפיינים"
 
-#: ../panel-plugin/mailwatch-utils.c:242
+#: ../panel-plugin/mailwatch-utils.c:245
 #, c-format
 msgid "XfceMailwatch: TLS handshake failed: %s"
 msgstr "XfceMailwatch: לחיצת יד TLS כשלה: %s"
 
-#: ../panel-plugin/mailwatch-utils.c:252
+#: ../panel-plugin/mailwatch-utils.c:255
 msgid "Not compiled with SSL/TLS support"
 msgstr "לא מהודר עם תמיכת SSL/TLS"
 
-#: ../panel-plugin/mailwatch-utils.c:254
+#: ../panel-plugin/mailwatch-utils.c:257
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
 msgstr "XfceMailwatch: לחיצת יד TLS כשלה: לא מהודר עם תמיכת SSL."
 
-#: ../panel-plugin/mailwatch-utils.c:277 ../panel-plugin/mailwatch-utils.c:330
+#: ../panel-plugin/mailwatch-utils.c:280 ../panel-plugin/mailwatch-utils.c:333
 msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr "התבקש חיבור מאובטח אך gnutls לא אותחל"
 
-#: ../panel-plugin/mailwatch.c:133
+#: ../panel-plugin/mailwatch.c:137
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
-msgstr "תוסף xfce4-mailwatch: אין אפשרות לאתחל תמיכה ב-GThread. כנראה מדובר בבעיה בהתקנת ה-GLib שלך."
+msgstr ""
+"תוסף xfce4-mailwatch: אין אפשרות לאתחל תמיכה ב-GThread. כנראה מדובר בבעיה "
+"בהתקנת ה-GLib שלך."
 
-#: ../panel-plugin/mailwatch.c:345 ../panel-plugin/mailwatch.c:346
+#: ../panel-plugin/mailwatch.c:349 ../panel-plugin/mailwatch.c:350
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "אין אפשרות לכתוב קובץ הגדרות %s"
 
-#: ../panel-plugin/mailwatch.c:392 ../panel-plugin/mailwatch.c:394
+#: ../panel-plugin/mailwatch.c:396 ../panel-plugin/mailwatch.c:398
 #, c-format
 msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
 "passwords or other sensitive information, it may be readable by others on "
 "your system."
-msgstr "אין אפשרות להגדיר הרשאות בקובץ ההגדרות %s. אם קובץ זה מכיל ססמאות או מידע רגיש אחר ייתכן כי הוא בר קריאה על ידי אחרים במערכת שלך."
+msgstr ""
+"אין אפשרות להגדיר הרשאות בקובץ ההגדרות %s. אם קובץ זה מכיל ססמאות או מידע "
+"רגיש אחר ייתכן כי הוא בר קריאה על ידי אחרים במערכת שלך."
 
-#: ../panel-plugin/mailwatch.c:616
+#: ../panel-plugin/mailwatch.c:620
 msgid "This mailbox type does not require any configuration settings."
 msgstr "סוג זה של תיבת דוא\"ל אינו דורש הגדרות."
 
-#: ../panel-plugin/mailwatch.c:642
+#: ../panel-plugin/mailwatch.c:646
 msgid "Mailbox _Name:"
 msgstr "_שם תיבת הדוא\"ל:"
 
-#: ../panel-plugin/mailwatch.c:659
+#: ../panel-plugin/mailwatch.c:663
 msgid "Mailwatch"
 msgstr "Mailwatch"
 
-#: ../panel-plugin/mailwatch.c:660
+#: ../panel-plugin/mailwatch.c:664
 msgid "Mailbox name required."
 msgstr "דרוש שם לתיבת הדוא\"ל."
 
-#: ../panel-plugin/mailwatch.c:661
+#: ../panel-plugin/mailwatch.c:665
 msgid "Please enter a name for the mailbox."
 msgstr "נא להזין שם לתיבת הדוא\"ל."
 
-#: ../panel-plugin/mailwatch.c:704
+#: ../panel-plugin/mailwatch.c:708
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "עריכת תיבת הדוא\"ל: %s"
 
-#: ../panel-plugin/mailwatch.c:767
+#: ../panel-plugin/mailwatch.c:771
 msgid "Select Mailbox Type"
 msgstr "בחירת סוג תיבת הדוא\"ל"
 
-#: ../panel-plugin/mailwatch.c:776
+#: ../panel-plugin/mailwatch.c:780
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr "בחירת סוג תיבת הדוא\"ל. תיאורו של הסוג המצוין יוצג מטה."
 
-#: ../panel-plugin/mailwatch.c:832
+#: ../panel-plugin/mailwatch.c:836
 msgid "Add New Mailbox"
 msgstr "הוספת תיבת דוא\"ל"
 
-#: ../panel-plugin/mailwatch.c:895
+#: ../panel-plugin/mailwatch.c:899
 msgid "Remove Mailbox"
 msgstr "הסרת תיבת דוא\"ל"
 
-#: ../panel-plugin/mailwatch.c:896
+#: ../panel-plugin/mailwatch.c:900
 msgid "Are you sure?"
 msgstr "האם אתה בטוח?"
 
-#: ../panel-plugin/mailwatch.c:897
+#: ../panel-plugin/mailwatch.c:901
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr "הסרת תיבת דוא\"ל תסיר את כל ההגדרות ואין אפשרות לבטל את הפעולה."
 
-#: ../panel-plugin/mailwatch.c:968
+#: ../panel-plugin/mailwatch.c:972
 msgid "Mailboxes"
 msgstr "תיבות דוא\"ל"
 
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "בדוק דוא\"ל ממספר תיבות"
-

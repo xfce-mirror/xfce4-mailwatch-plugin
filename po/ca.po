@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-23 22:53-0800\n"
+"POT-Creation-Date: 2006-05-06 04:19+0900\n"
 "PO-Revision-Date: 2006-03-19 17:37+0100\n"
 "Last-Translator: Pau Rul·lan Ferragut <paurullan@bulma.net>\n"
 "Language-Team: Catalan\n"
@@ -501,38 +501,38 @@ msgstr "Fallit a "
 msgid "Edit Properties"
 msgstr "Edita Propietats"
 
-#: ../panel-plugin/mailwatch-utils.c:242
+#: ../panel-plugin/mailwatch-utils.c:245
 #, c-format
 msgid "XfceMailwatch: TLS handshake failed: %s"
 msgstr "Monitor de correu Xfce: no s'ha pogut dur a terme la connexió TLS: %s"
 
-#: ../panel-plugin/mailwatch-utils.c:252
+#: ../panel-plugin/mailwatch-utils.c:255
 msgid "Not compiled with SSL/TLS support"
 msgstr "No s'ha compilat amb les opcions per SSL/TLS"
 
-#: ../panel-plugin/mailwatch-utils.c:254
+#: ../panel-plugin/mailwatch-utils.c:257
 #, fuzzy
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
 msgstr "no amb."
 
-#: ../panel-plugin/mailwatch-utils.c:277 ../panel-plugin/mailwatch-utils.c:330
+#: ../panel-plugin/mailwatch-utils.c:280 ../panel-plugin/mailwatch-utils.c:333
 #, fuzzy
 msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr "A no"
 
-#: ../panel-plugin/mailwatch.c:133
+#: ../panel-plugin/mailwatch.c:137
 #, fuzzy
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
 msgstr "a  és a amb Instal.lar."
 
-#: ../panel-plugin/mailwatch.c:345 ../panel-plugin/mailwatch.c:346
+#: ../panel-plugin/mailwatch.c:349 ../panel-plugin/mailwatch.c:350
 #, fuzzy, c-format
 msgid "Unable to write config file '%s'"
 msgstr "a  fitxer"
 
-#: ../panel-plugin/mailwatch.c:392 ../panel-plugin/mailwatch.c:394
+#: ../panel-plugin/mailwatch.c:396 ../panel-plugin/mailwatch.c:398
 #, fuzzy, c-format
 msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
@@ -540,67 +540,67 @@ msgid ""
 "your system."
 msgstr "a  set permisos on fitxer Si aquest fitxer conté o altra per on."
 
-#: ../panel-plugin/mailwatch.c:616
+#: ../panel-plugin/mailwatch.c:620
 #, fuzzy
 msgid "This mailbox type does not require any configuration settings."
 msgstr "tipus no qualsevol."
 
-#: ../panel-plugin/mailwatch.c:642
+#: ../panel-plugin/mailwatch.c:646
 #, fuzzy
 msgid "Mailbox _Name:"
 msgstr "_Nom de la bústia:"
 
-#: ../panel-plugin/mailwatch.c:659
+#: ../panel-plugin/mailwatch.c:663
 msgid "Mailwatch"
 msgstr "Monitor de correu"
 
-#: ../panel-plugin/mailwatch.c:660
+#: ../panel-plugin/mailwatch.c:664
 #, fuzzy
 msgid "Mailbox name required."
 msgstr "Bústia nom."
 
-#: ../panel-plugin/mailwatch.c:661
+#: ../panel-plugin/mailwatch.c:665
 #, fuzzy
 msgid "Please enter a name for the mailbox."
 msgstr "entra a nom per a  ."
 
-#: ../panel-plugin/mailwatch.c:704
+#: ../panel-plugin/mailwatch.c:708
 #, fuzzy, c-format
 msgid "Edit Mailbox: %s"
 msgstr "Edita Bústia"
 
-#: ../panel-plugin/mailwatch.c:767
+#: ../panel-plugin/mailwatch.c:771
 #, fuzzy
 msgid "Select Mailbox Type"
 msgstr "Seleccioneu Bústia Tipus"
 
-#: ../panel-plugin/mailwatch.c:776
+#: ../panel-plugin/mailwatch.c:780
 #, fuzzy
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr "Seleccioneu a tipus A descripció de   tipus sota."
 
-#: ../panel-plugin/mailwatch.c:832
+#: ../panel-plugin/mailwatch.c:836
 #, fuzzy
 msgid "Add New Mailbox"
 msgstr "Afegeix Nou Bústia"
 
-#: ../panel-plugin/mailwatch.c:895
+#: ../panel-plugin/mailwatch.c:899
 #, fuzzy
 msgid "Remove Mailbox"
 msgstr "Suprimeix Bústia"
 
-#: ../panel-plugin/mailwatch.c:896
+#: ../panel-plugin/mailwatch.c:900
 #, fuzzy
 msgid "Are you sure?"
 msgstr "tu?"
 
-#: ../panel-plugin/mailwatch.c:897
+#: ../panel-plugin/mailwatch.c:901
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr ""
 "Si es suprimeixen les bústies tots els paràmetres es perdran. Aquests "
 "paràmetres no es poden recuperar."
 
-#: ../panel-plugin/mailwatch.c:968
+#: ../panel-plugin/mailwatch.c:972
 msgid "Mailboxes"
 msgstr "Bústies"
 

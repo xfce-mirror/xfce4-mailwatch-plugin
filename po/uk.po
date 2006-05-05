@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-23 22:53-0800\n"
+"POT-Creation-Date: 2006-05-06 04:19+0900\n"
 "PO-Revision-Date: 2006-04-23 11:22+0200\n"
 "Last-Translator: Maxim Dziumanenko <mvd@mylinux.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -22,8 +22,8 @@ msgid ""
 "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 "the panel may hang on close."
 msgstr ""
-"Не вдається встановити неблокуючий режим.  Якщо програма зависає при спробі з'єднання, "
-"панель може зависнути при завкриванні."
+"Не вдається встановити неблокуючий режим.  Якщо програма зависає при спробі "
+"з'єднання, панель може зависнути при завкриванні."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:254
 #: ../panel-plugin/mailwatch-mailbox-imap.c:438
@@ -39,7 +39,8 @@ msgid ""
 "Unable to return socket to blocking mode.  Data may not be retreived "
 "correctly."
 msgstr ""
-"Не вдається перемикнути сокет у блокуючий режим.  Дані можуть бути отримані некоректно."
+"Не вдається перемикнути сокет у блокуючий режим.  Дані можуть бути отримані "
+"некоректно."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:317
 #: ../panel-plugin/mailwatch-mailbox-imap.c:302
@@ -64,8 +65,8 @@ msgid ""
 "with GMail's servers, or they have incompatibly changed their authentication "
 "method or location of the new messages feed."
 msgstr ""
-"Отримано відповідь HTTP з кодом %d, але мало б бути 200.  Можливо проблема "
-"з сервером GMail, чи на сервері несумісним чином змінено метод аутентифікації "
+"Отримано відповідь HTTP з кодом %d, але мало б бути 200.  Можливо проблема з "
+"сервером GMail, чи на сервері несумісним чином змінено метод аутентифікації "
 "або адресу джерела новин."
 
 #: ../panel-plugin/mailwatch-mailbox-gmail.c:617
@@ -112,7 +113,8 @@ msgid ""
 "Secure IMAP is not available, and the IMAP server does not support plaintext "
 "logins."
 msgstr ""
-"Безпечний IMAP недоступний, а сервер IMAP не підтримує передачу паролів прямим текстом."
+"Безпечний IMAP недоступний, а сервер IMAP не підтримує передачу паролів "
+"прямим текстом."
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:335
 msgid "STARTTLS security was requested, but this server does not support it."
@@ -121,8 +123,7 @@ msgstr "Запитано функціональність STARTTLS, але се�
 #: ../panel-plugin/mailwatch-mailbox-imap.c:591
 msgid ""
 "A buffer was too small to receive all of an IMAP response.  This is a bug!"
-msgstr ""
-"Буфер надто малий для отримання усіх відповідей IMAP.  Це помилка!"
+msgstr "Буфер надто малий для отримання усіх відповідей IMAP.  Це помилка!"
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1178
 msgid "Failed to get folder list"
@@ -147,8 +148,9 @@ msgid ""
 "password are set.  Also be sure to check any security settings in the "
 "Advanced dialog."
 msgstr ""
-"Список тек неможливо отримати доки не буде вказано сервер, ім'я користувача, та, можливо, "
-"пароль.  Також перевірте параметри безпеки у діалоговому вікні Додатково."
+"Список тек неможливо отримати доки не буде вказано сервер, ім'я користувача, "
+"та, можливо, пароль.  Також перевірте параметри безпеки у діалоговому вікні "
+"Додатково."
 
 #: ../panel-plugin/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
@@ -220,8 +222,8 @@ msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
 msgstr ""
-"Модуль IMAP можу з'єднуватись з віддаленим поштовим сервером, який підтримує протокол IMAP, "
-"можливо, з використанням протоколу SSL для захисту з'єднання."
+"Модуль IMAP можу з'єднуватись з віддаленим поштовим сервером, який підтримує "
+"протокол IMAP, можливо, з використанням протоколу SSL для захисту з'єднання."
 
 #: ../panel-plugin/mailwatch-mailbox-maildir.c:100
 #: ../panel-plugin/mailwatch-mailbox-mbox.c:99
@@ -259,7 +261,8 @@ msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
 msgstr ""
-"Модуль maildir може перевіряти нові повідомлення у локальній теці типу maildir"
+"Модуль maildir може перевіряти нові повідомлення у локальній теці типу "
+"maildir"
 
 #: ../panel-plugin/mailwatch-mailbox-mbox.c:371
 msgid "Select mbox file"
@@ -323,8 +326,8 @@ msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
 msgstr ""
-"Модуль POP3 можу з'єднуватись з віддаленим поштовим сервером, який підтримує протокол POP3, "
-"можливо з використанням протоколу SSL."
+"Модуль POP3 можу з'єднуватись з віддаленим поштовим сервером, який підтримує "
+"протокол POP3, можливо з використанням протоколу SSL."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
 #: ../panel-plugin/mailwatch-plugin-4.2.c:272
@@ -444,24 +447,26 @@ msgstr "Не вдається запустити xfhelp4"
 msgid "Edit Properties"
 msgstr "Редагування властивостей"
 
-#: ../panel-plugin/mailwatch-utils.c:242
+#: ../panel-plugin/mailwatch-utils.c:245
 #, c-format
 msgid "XfceMailwatch: TLS handshake failed: %s"
 msgstr "XfceMailwatch: помилка встановлення з'єднання TLS: %s"
 
-#: ../panel-plugin/mailwatch-utils.c:252
+#: ../panel-plugin/mailwatch-utils.c:255
 msgid "Not compiled with SSL/TLS support"
 msgstr "Зібрано без підтримки SSL/TLS"
 
-#: ../panel-plugin/mailwatch-utils.c:254
+#: ../panel-plugin/mailwatch-utils.c:257
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
-msgstr "XfceMailwatch: помилка встановлення з'єднання TLS: програму зібрано без підтримки SSL."
+msgstr ""
+"XfceMailwatch: помилка встановлення з'єднання TLS: програму зібрано без "
+"підтримки SSL."
 
-#: ../panel-plugin/mailwatch-utils.c:277 ../panel-plugin/mailwatch-utils.c:330
+#: ../panel-plugin/mailwatch-utils.c:280 ../panel-plugin/mailwatch-utils.c:333
 msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr "Вимагається безпечне з'єднання, але gnutls не ініціалізована"
 
-#: ../panel-plugin/mailwatch.c:133
+#: ../panel-plugin/mailwatch.c:137
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
@@ -469,71 +474,74 @@ msgstr ""
 "xfce4-mailwatch-plugin: Не вдається ініціалізувати підтримку GThread.  Це "
 "проблема у встановленні GLib."
 
-#: ../panel-plugin/mailwatch.c:345 ../panel-plugin/mailwatch.c:346
+#: ../panel-plugin/mailwatch.c:349 ../panel-plugin/mailwatch.c:350
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "Не вдається записати конфігураційний файл '%s'"
 
-#: ../panel-plugin/mailwatch.c:392 ../panel-plugin/mailwatch.c:394
+#: ../panel-plugin/mailwatch.c:396 ../panel-plugin/mailwatch.c:398
 #, c-format
 msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
 "passwords or other sensitive information, it may be readable by others on "
 "your system."
 msgstr ""
-"Не вдається встановити права на конфігураційний файл '%s'.  Якщо цей файл містить паролі "
-"чи іншу конфіденційну інформацію, доступ до неї зможуть отримати інші користувачі системи."
+"Не вдається встановити права на конфігураційний файл '%s'.  Якщо цей файл "
+"містить паролі чи іншу конфіденційну інформацію, доступ до неї зможуть "
+"отримати інші користувачі системи."
 
-#: ../panel-plugin/mailwatch.c:616
+#: ../panel-plugin/mailwatch.c:620
 msgid "This mailbox type does not require any configuration settings."
 msgstr "Цей тип поштової скриньки не вимагає параметрів конфігурації."
 
-#: ../panel-plugin/mailwatch.c:642
+#: ../panel-plugin/mailwatch.c:646
 msgid "Mailbox _Name:"
 msgstr "_Назва поштової скриньки:"
 
-#: ../panel-plugin/mailwatch.c:659
+#: ../panel-plugin/mailwatch.c:663
 msgid "Mailwatch"
 msgstr "Перевірка пошти"
 
-#: ../panel-plugin/mailwatch.c:660
+#: ../panel-plugin/mailwatch.c:664
 msgid "Mailbox name required."
 msgstr "Потрібно вказати назву поштової скриньки."
 
-#: ../panel-plugin/mailwatch.c:661
+#: ../panel-plugin/mailwatch.c:665
 msgid "Please enter a name for the mailbox."
 msgstr "Введіть назву поштової скриньки."
 
-#: ../panel-plugin/mailwatch.c:704
+#: ../panel-plugin/mailwatch.c:708
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "Редагування поштової скриньки: %s"
 
-#: ../panel-plugin/mailwatch.c:767
+#: ../panel-plugin/mailwatch.c:771
 msgid "Select Mailbox Type"
 msgstr "Виберіть тип потової скриньки"
 
-#: ../panel-plugin/mailwatch.c:776
+#: ../panel-plugin/mailwatch.c:780
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr "Виберіть тип поштової скриньки. Опис типу з'явиться нижче."
 
-#: ../panel-plugin/mailwatch.c:832
+#: ../panel-plugin/mailwatch.c:836
 msgid "Add New Mailbox"
 msgstr "Додати нову поштову скриньку"
 
-#: ../panel-plugin/mailwatch.c:895
+#: ../panel-plugin/mailwatch.c:899
 msgid "Remove Mailbox"
 msgstr "Видалити нову поштову скриньку"
 
-#: ../panel-plugin/mailwatch.c:896
+#: ../panel-plugin/mailwatch.c:900
 msgid "Are you sure?"
 msgstr "Ви впевнені?"
 
-#: ../panel-plugin/mailwatch.c:897
+#: ../panel-plugin/mailwatch.c:901
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
-msgstr "Видалення поштової скриньки призведе до видалення усіх параметрів, і їх не можна буде відновити."
+msgstr ""
+"Видалення поштової скриньки призведе до видалення усіх параметрів, і їх не "
+"можна буде відновити."
 
-#: ../panel-plugin/mailwatch.c:968
+#: ../panel-plugin/mailwatch.c:972
 msgid "Mailboxes"
 msgstr "Поштові скриньки"
 

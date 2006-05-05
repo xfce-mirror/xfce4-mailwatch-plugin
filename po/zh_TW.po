@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-23 22:53-0800\n"
+"POT-Creation-Date: 2006-05-06 04:19+0900\n"
 "PO-Revision-Date: 2006-02-08 19:26+0800\n"
 "Last-Translator: Hydonsingore Cia <hydonsingore@mail.educities.edu.tw>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -437,24 +437,24 @@ msgstr "執行 xfhelp4 失敗"
 msgid "Edit Properties"
 msgstr "編輯特性"
 
-#: ../panel-plugin/mailwatch-utils.c:242
+#: ../panel-plugin/mailwatch-utils.c:245
 #, c-format
 msgid "XfceMailwatch: TLS handshake failed: %s"
 msgstr "XfceMailwatch：TLS 交握失敗：%s"
 
-#: ../panel-plugin/mailwatch-utils.c:252
+#: ../panel-plugin/mailwatch-utils.c:255
 msgid "Not compiled with SSL/TLS support"
 msgstr "沒有編譯 SSL/TLS 支援"
 
-#: ../panel-plugin/mailwatch-utils.c:254
+#: ../panel-plugin/mailwatch-utils.c:257
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
 msgstr "XfceMailwatch：TLS 交握失敗：沒有編譯 SSL/TLS 支援。"
 
-#: ../panel-plugin/mailwatch-utils.c:277 ../panel-plugin/mailwatch-utils.c:330
+#: ../panel-plugin/mailwatch-utils.c:280 ../panel-plugin/mailwatch-utils.c:333
 msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr "需要安全連結，但是 gnutls 並未初始化。"
 
-#: ../panel-plugin/mailwatch.c:133
+#: ../panel-plugin/mailwatch.c:137
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
@@ -462,12 +462,12 @@ msgstr ""
 "xfce4-mailwatch-plugin：無法初始化 GThread 支援。這應該是您 GLib 安裝上的問"
 "題。"
 
-#: ../panel-plugin/mailwatch.c:345 ../panel-plugin/mailwatch.c:346
+#: ../panel-plugin/mailwatch.c:349 ../panel-plugin/mailwatch.c:350
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "無法寫入設定檔'%s'"
 
-#: ../panel-plugin/mailwatch.c:392 ../panel-plugin/mailwatch.c:394
+#: ../panel-plugin/mailwatch.c:396 ../panel-plugin/mailwatch.c:398
 #, c-format
 msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
@@ -477,56 +477,56 @@ msgstr ""
 "無法設定設定檔'%s'的權限。如果這個檔案包含密碼或其他敏感資訊，您系統上的其他"
 "人可能讀得到。"
 
-#: ../panel-plugin/mailwatch.c:616
+#: ../panel-plugin/mailwatch.c:620
 msgid "This mailbox type does not require any configuration settings."
 msgstr "本類型的信箱不需要任何組態設定。"
 
-#: ../panel-plugin/mailwatch.c:642
+#: ../panel-plugin/mailwatch.c:646
 msgid "Mailbox _Name:"
 msgstr "信箱名稱(_N)"
 
-#: ../panel-plugin/mailwatch.c:659
+#: ../panel-plugin/mailwatch.c:663
 msgid "Mailwatch"
 msgstr "Mailwatch"
 
-#: ../panel-plugin/mailwatch.c:660
+#: ../panel-plugin/mailwatch.c:664
 msgid "Mailbox name required."
 msgstr "需要信箱名稱。"
 
-#: ../panel-plugin/mailwatch.c:661
+#: ../panel-plugin/mailwatch.c:665
 msgid "Please enter a name for the mailbox."
 msgstr "請鍵入信箱名稱。"
 
-#: ../panel-plugin/mailwatch.c:704
+#: ../panel-plugin/mailwatch.c:708
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "編輯信箱：%s"
 
-#: ../panel-plugin/mailwatch.c:767
+#: ../panel-plugin/mailwatch.c:771
 msgid "Select Mailbox Type"
 msgstr "選擇類型"
 
-#: ../panel-plugin/mailwatch.c:776
+#: ../panel-plugin/mailwatch.c:780
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr "選擇一種類型的信箱。關於類型的描述在下方。"
 
-#: ../panel-plugin/mailwatch.c:832
+#: ../panel-plugin/mailwatch.c:836
 msgid "Add New Mailbox"
 msgstr "新增信箱"
 
-#: ../panel-plugin/mailwatch.c:895
+#: ../panel-plugin/mailwatch.c:899
 msgid "Remove Mailbox"
 msgstr "移除信箱"
 
-#: ../panel-plugin/mailwatch.c:896
+#: ../panel-plugin/mailwatch.c:900
 msgid "Are you sure?"
 msgstr "您確定嗎？"
 
-#: ../panel-plugin/mailwatch.c:897
+#: ../panel-plugin/mailwatch.c:901
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr "移除一個信箱會廢棄所有的設定，而且不能反悔。"
 
-#: ../panel-plugin/mailwatch.c:968
+#: ../panel-plugin/mailwatch.c:972
 msgid "Mailboxes"
 msgstr "信箱"
 
