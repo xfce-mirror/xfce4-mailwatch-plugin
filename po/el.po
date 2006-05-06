@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-05-06 04:19+0900\n"
-"PO-Revision-Date: 2006-03-30 14:23+0300\n"
-"Last-Translator: Stathis Kamperis <ekamperi@auth.gr>\n"
+"PO-Revision-Date: 2006-05-06 16:40+0200\n"
+"Last-Translator: Stavros Giannouris <stavrosg2002@freemail.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -302,7 +302,7 @@ msgid ""
 "the default mh maildir profile file ~/.mh_profile"
 msgstr ""
 "Οι ρυθμίσεις αυτού του αρθρώματος διαβάζονται από το\n"
-"προκαθορισμένο αρχείο προφιλ του mh maildir ~/.mh_profile"
+"προκαθορισμένο αρχείο προφίλ του mh maildir ~/.mh_profile"
 
 #: ../panel-plugin/mailwatch-mailbox-mh.c:669
 msgid "Local MH mail folder"
@@ -338,15 +338,15 @@ msgid ""
 "protocol, optionally using SSL for link protection."
 msgstr ""
 "Το άρθρωμα POP3 μπορεί να συνδεθεί σε έναν απομακρυσμένο διακομιστή "
-"αλληλογραφίας που υποστηρίζει το πρωτόκολο POP3, προαιρετικά χρησιμοποιώντας "
-"SSL για την προστασία της σύνδεσης"
+"αλληλογραφίας που υποστηρίζει το πρωτόκολλο POP3, προαιρετικά "
+"χρησιμοποιώντας SSL για την προστασία της σύνδεσης"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
 #: ../panel-plugin/mailwatch-plugin-4.2.c:272
 #: ../panel-plugin/mailwatch-plugin.c:121
 #: ../panel-plugin/mailwatch-plugin.c:342
 msgid "No new mail"
-msgstr "Δεν υπάρχουν νέα μυνήματα"
+msgstr "Δεν υπάρχουν νέα μηνύματα"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:129
 #: ../panel-plugin/mailwatch-plugin.c:136
@@ -514,7 +514,7 @@ msgstr "Ό_νομα γραμματοκιβωτίου:"
 
 #: ../panel-plugin/mailwatch.c:663
 msgid "Mailwatch"
-msgstr "Mailwatch"
+msgstr "Παρακολούθηση αλληλογραφίας"
 
 #: ../panel-plugin/mailwatch.c:664
 msgid "Mailbox name required."
