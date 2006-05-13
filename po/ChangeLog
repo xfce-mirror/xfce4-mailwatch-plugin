@@ -1,9 +1,15 @@
+2006-05-13  Daichi Kawahata <daichi@xfce.org>
+
+	* cs.po: Added Czech translations by Michal Varady
+	  <miko.vaji@gmail.com>.
+
 2006-05-09  Pau Rul·lan Ferragut <paurullan@bulma.net>
-	* ca.po: Update catalan translation by 
-	Carles Muñoz Gorriz <carlesmu@internuatas.org>
+
+	* ca.po: Update catalan translation by
+	  Carles Muñoz Gorriz <carlesmu@internuatas.org>
 
 2006-02-08  Hydonsingore Cia <hydonsingore@mail.educities.edu.tw>
-	
+
 	* zh_TW.po: Newly added.
 
 2006-01-24  Piarres Beobide <pi@beobide.net>
