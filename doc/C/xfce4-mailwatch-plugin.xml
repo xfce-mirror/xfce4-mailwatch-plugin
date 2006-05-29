@@ -80,6 +80,20 @@
   </para>
 </sect1>
 
+<sect1 id="mailwatch-usage">
+  <title>Usage</title>
+
+  <para>The &sapp; icon remains gray (default color) as long as it does 
+	not detect any new mail. As soon as it checks, and there is new mail, 
+	the mail icon will turn gold (default color). By clicking on the mail 
+	icon, a command, to be defined in the properties dialog box, will be 
+	launched. A forced mail check can be obtained by middle-clicking
+	the &sapp; icon in the panel. Right-clicking on the &sapp; icon
+	shows a context menu from which you can choose <guimenuitem>Properties</guimenuitem>
+	to access the configuration options.	
+  </para>
+</sect1>
+
 <sect1 id="mailwatch-properties">
   <title>Properties</title>
 
