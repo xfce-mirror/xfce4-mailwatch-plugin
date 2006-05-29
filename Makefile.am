@@ -2,6 +2,7 @@
 
 SUBDIRS = \
 	doc \
+	libmailwatch-core \
 	panel-plugin \
 	pixmaps \
 	po

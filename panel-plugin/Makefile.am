@@ -1,8 +1,7 @@
 # make sure both are distributed, regardless of which condition is taken
 EXTRA_DIST = \
 	mailwatch-plugin.c \
-	mailwatch-plugin-4.2.c \
-	mailwatch-mailbox-gmail.c
+	mailwatch-plugin-4.2.c
 
 if BUILD_42_PANEL_PLUGIN
 
@@ -21,30 +20,17 @@ if HAVE_CYGWIN
 endif
 
 libmailwatch_la_SOURCES = \
-	mailwatch-mailbox-imap.c \
-	mailwatch-mailbox-maildir.c \
-	mailwatch-mailbox-mbox.c \
-	mailwatch-mailbox-mh.c \
-	mailwatch-mailbox-pop3.c \
-	mailwatch-mailbox.h \
-	mailwatch-plugin-4.2.c \
-	mailwatch-utils.c \
-	mailwatch-utils.h \
-	mailwatch.c \
-	mailwatch.h
-
-if HAVE_SSL_SUPPORT
-libmailwatch_la_SOURCES += mailwatch-mailbox-gmail.c
-endif
+	mailwatch-plugin-4.2.c
 
 libmailwatch_la_CFLAGS = \
+	-I$(top_srcdir)/libmailwatch-core \
 	@GTHREAD_CFLAGS@ \
 	@XFCE4_PANEL_CFLAGS@ \
-	@GNUTLS_CFLAGS@ \
 	-DDATADIR=\"$(datadir)\" \
 	-DLOCALEDIR=\"$(localedir)\"
 
 libmailwatch_la_LIBADD = \
+	$(top_builddir)/libmailwatch-core/libmailwatch-core.la \
 	@GTHREAD_LIBS@ \
 	@XFCE4_PANEL_LIBS@ \
 	@GNUTLS_LIBS@
@@ -55,38 +41,24 @@ plugindir = $(libexecdir)/xfce4/panel-plugins
 plugin_PROGRAMS = xfce4-mailwatch-plugin
 
 xfce4_mailwatch_plugin_SOURCES = \
-	mailwatch-mailbox-imap.c \
-	mailwatch-mailbox-maildir.c \
-	mailwatch-mailbox-mbox.c \
-	mailwatch-mailbox-mh.c \
-	mailwatch-mailbox-pop3.c \
-	mailwatch-mailbox.h \
-	mailwatch-plugin.c \
-	mailwatch-utils.c \
-	mailwatch-utils.h \
-	mailwatch.c \
-	mailwatch.h
-
-if HAVE_SSL_SUPPORT
-xfce4_mailwatch_plugin_SOURCES += mailwatch-mailbox-gmail.c
-endif
+	mailwatch-plugin.c
 
 xfce4_mailwatch_plugin_CFLAGS = \
+	-I$(top_srcdir)/libmailwatch-core \
 	@GTHREAD_CFLAGS@ \
 	@LIBXFCE4PANEL_CFLAGS@ \
-	@GNUTLS_CFLAGS@ \
 	-DDATADIR=\"$(datadir)\" \
 	-DLOCALEDIR=\"$(localedir)\"
 
 xfce4_mailwatch_plugin_LDFLAGS = \
+	$(top_builddir)/libmailwatch-core/libmailwatch-core.la \
 	@GTHREAD_LIBS@ \
 	@LIBXFCE4PANEL_LIBS@ \
 	@GNUTLS_LIBS@
 
 if HAVE_CYGWIN
   xfce4_mailwatch_plugin_LDFLAGS += \
-	-no-undefined \
-	-export-symbols $(datadir)/xfce4/devel/panel.def
+	-no-undefined
 endif
 
 # .desktop file

@@ -71,6 +71,7 @@ doc/Makefile
 doc/C/Makefile
 doc/C/images/Makefile
 doc/version
+libmailwatch-core/Makefile
 panel-plugin/Makefile
 pixmaps/Makefile
 po/Makefile.in

@@ -1,15 +1,15 @@
 # List of source files containing translatable strings.
 
-panel-plugin/mailwatch-mailbox-gmail.c
-panel-plugin/mailwatch-mailbox-imap.c
-panel-plugin/mailwatch-mailbox-maildir.c
-panel-plugin/mailwatch-mailbox-mbox.c
-panel-plugin/mailwatch-mailbox-mh.c
-panel-plugin/mailwatch-mailbox-pop3.c
+libmailwatch-core/mailwatch-mailbox-gmail.c
+libmailwatch-core/mailwatch-mailbox-imap.c
+libmailwatch-core/mailwatch-mailbox-maildir.c
+libmailwatch-core/mailwatch-mailbox-mbox.c
+libmailwatch-core/mailwatch-mailbox-mh.c
+libmailwatch-core/mailwatch-mailbox-pop3.c
 panel-plugin/mailwatch-plugin-4.2.c
 panel-plugin/mailwatch-plugin.c
-panel-plugin/mailwatch-utils.c
-panel-plugin/mailwatch.c
+libmailwatch-core/mailwatch-utils.c
+libmailwatch-core/mailwatch.c
 
 # files added by intltool-prepare.
 panel-plugin/mailwatch.desktop.in.in
