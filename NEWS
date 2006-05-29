@@ -2,13 +2,26 @@
 | Mailwatch |
 +-----------+
 
+Version 1.0.2svn:
+
+  Bugfixes:
+    * Fix a compiler error on some systems (bug 1822).
+
+  Features:
+    * Update the new message counts for all mailboxes on startup, rather than
+      waiting for the first interval timeout.
+    * Document the behavior of forcing a new messsage count update when the
+      user double-clicks the icon (patch from Maximilian Schleiss).
+
 Version 1.0.1 (20 Apr 2006):
+
   Bugfixes:
     * Fix a possible connection failure when using IMAPS or POP3S.
     * Don't compile in the GMail mailbox type if GNUTLS is not available,
       as GMail requires an SSL HTTP connection.
 
 Version 1.0.0 (31 Jan 2006):
+
   Initial release.  I feel pretty good about it, thus the 1.0.0
   designation.  That means there are no bugs.  Seriously.  Ok, not
   really.
