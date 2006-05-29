@@ -287,6 +287,8 @@ mailwatch_create(Control *c)
             XFCE_MAILWATCH_SIGNAL_LOG_MESSAGE,
             mailwatch_log_message_cb, mwp);
     
+    xfce_mailwatch_force_update(mwp->mailwatch);
+    
     return TRUE;
 }
 

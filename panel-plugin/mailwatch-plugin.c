@@ -952,6 +952,8 @@ mailwatch_construct(XfcePanelPlugin *plugin)
 
     g_signal_connect(plugin, "size-changed", G_CALLBACK(mailwatch_set_size),
                       mwp);
+    
+    xfce_mailwatch_force_update(mwp->mailwatch);
 }
 
 
