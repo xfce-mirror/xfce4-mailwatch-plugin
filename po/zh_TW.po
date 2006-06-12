@@ -1,15 +1,15 @@
 # Taiwanese Chinese translations for xfce4-mailwatch-plugin package.
 # Copyright (C) 2005-2006 Brian Tarricone, Pasi Orovuo.
 # This file is distributed under the same license as the xfce4-mailwatch-plugin package.
-# Hydonsingore Cia <hydonsingore@mail.educities.edu.tw>, 2006.
+# Hydonsingore Cia <hydonsingore@educities.edu.tw>, 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-05-28 22:36-0700\n"
-"PO-Revision-Date: 2006-02-08 19:26+0800\n"
-"Last-Translator: Hydonsingore Cia <hydonsingore@mail.educities.edu.tw>\n"
+"PO-Revision-Date: 2006-06-12 21:36+0800\n"
+"Last-Translator: Hydonsingore Cia <hydonsingore@educities.edu.tw>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
