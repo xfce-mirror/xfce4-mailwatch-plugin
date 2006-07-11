@@ -321,7 +321,7 @@ gmail_check_atom_feed(XfceMailwatchGMailMailbox *gmailbox,
     }
     
     g_snprintf(buf, BUFSIZE, "%s:%s", username, password);
-    if(xfce_mailwatch_base64_encode(buf, strlen(buf), &base64_creds) <= 0) {
+    if(xfce_mailwatch_base64_encode((guchar *)buf, strlen(buf), &base64_creds) <= 0) {
         DBG("failed to base64 enc credentials");
         goto cleanup;
     }
