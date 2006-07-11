@@ -551,11 +551,13 @@ static guint
 imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
         const gchar *mailbox_name)
 {
-#define BUFSIZE 16383   /* yeah, this is probably overkill */
-    gint new_messages = 0;
-    gchar buf[BUFSIZE+1], *p, *q, tmp[64];
+#define BUFSIZE 8191
+    gint new_messages = 0, bin, i = 0;
+    gchar buf[BUFSIZE+1], *p, *q, tmp[64], *buf_extra = NULL;
     
     TRACE("entering, folder %s", mailbox_name);
+    
+    memset(buf, 0, BUFSIZE + 1);
     
     /* ask the server to look at the mailbox */
     g_snprintf(buf, BUFSIZE, "%05d EXAMINE %s\r\n", ++imailbox->imap_tag,
@@ -580,21 +582,32 @@ imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
     
     /* get response; it should have "* SEARCH" followed by a space-delimited
      * list of unseen messages.  unfortunately, this means there's no upper
-     * bound on string length =p */
-    if(imap_recv(imailbox, buf, BUFSIZE) < 0)
-        return 0;
+     * bound on string length, so we need a buffer that can grow. */
+    do {
+        buf_extra = g_realloc(buf_extra, ((BUFSIZE + 1) * (i + 1)) + 1);
+        DBG("pass %d: allocated %d bytes", i+1, ((BUFSIZE + 1) * (i + 1)) + 1);
+        bin = imap_recv(imailbox, buf_extra + (BUFSIZE + 1) * i, BUFSIZE + 1);
+        DBG("pass %d: got %d bytes", i+1, bin);
+        if(bin < 0)
+            return 0;        
+        ++i;
+    } while(bin == BUFSIZE + 1);
+    
+    buf_extra[(BUFSIZE + 1) * i] = 0;
     g_snprintf(tmp, 64, "%05d OK", imailbox->imap_tag);
-    if(!strstr(buf, tmp)) {
+    if(!strstr(buf_extra, tmp)) {
         xfce_mailwatch_log_message(imailbox->mailwatch,
                                    XFCE_MAILWATCH_MAILBOX(imailbox),
                                    XFCE_MAILWATCH_LOG_WARNING,
-                                   _("A buffer was too small to receive all of an IMAP response.  This is a bug!"));
-        g_warning("Mailwatch: Uh-oh.  We didn't get the full response back!");
+                                   _("The IMAP server returned a response we weren't quite expecting.  This might be OK, or this plugin might need to be modified to support your mail server if the new message counts are incorrect."));
+        g_warning("Mailwatch: Odd response to SEARCH UNSEEN");
     }
-    p = strstr(buf, "* SEARCH");
-    if(!p)
+    p = strstr(buf_extra, "* SEARCH");
+    if(!p) {
+        g_free(buf_extra);
         return 0;
-    DBG("  successfully got reply '%s'", buf);
+    }
+    DBG("  successfully got reply '%s'", buf_extra);
     
     p += 8;
     
@@ -602,8 +615,10 @@ imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
     q = strstr(p, "\r");
     if(!q)
         q = strstr(p, "\n");
-    if(!q)
+    if(!q) {
+        g_free(buf_extra);
         return 0;
+    }
     *q = 0;
     DBG("  ok, we have a list of messages: '%s'", p);
     
@@ -612,6 +627,8 @@ imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
         new_messages++;
         p++;
     }
+    
+    g_free(buf_extra);
     
     DBG("new message count in mailbox '%s' is %d", mailbox_name, new_messages);
     
