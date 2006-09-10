@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-28 22:36-0700\n"
+"POT-Creation-Date: 2006-09-10 21:29+0200\n"
 "PO-Revision-Date: 2006-06-12 21:36+0800\n"
 "Last-Translator: Hydonsingore Cia <hydonsingore@educities.edu.tw>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -65,25 +65,25 @@ msgstr ""
 "了一個不相容的認證方式，或是新訊息的 feed 換了位置。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:617
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1734
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1751
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:922
 msgid "_Username:"
 msgstr "使用者(_U)："
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:636
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1753
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1770
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:941
 msgid "_Password:"
 msgstr "密碼(_P)："
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:656
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1791
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1808
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:972
 msgid "Check for _new messages every"
 msgstr "檢查訊息間隔時間(_N)"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:671
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1805
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1822
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:458
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:471
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:643
@@ -112,29 +112,31 @@ msgstr "無法使用安全的 IMAP，而且該 IMAP 伺服器不支援明文(pla
 msgid "STARTTLS security was requested, but this server does not support it."
 msgstr "已經要求 STARTTLS 安全連線，但是這個伺服器不支援。"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:591
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:602
 msgid ""
-"A buffer was too small to receive all of an IMAP response.  This is a bug!"
-msgstr "一個緩衝區太小，無法接收一個 IMAP 回應的全部內容。這是一個程式臭蟲！"
+"The IMAP server returned a response we weren't quite expecting.  This might "
+"be OK, or this plugin might need to be modified to support your mail server "
+"if the new message counts are incorrect."
+msgstr ""
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1178
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1195
 msgid "Failed to get folder list"
 msgstr "無法取得資料夾清單"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1304
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1513
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1321
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1530
 msgid "Please wait..."
 msgstr "請等待..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1396
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1413
 msgid "Error"
 msgstr "錯誤"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1397
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1414
 msgid "No server or username is set."
 msgstr "伺服器或是使用者名稱沒設定。"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1398
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1415
 msgid ""
 "The folder list cannot be retrieved until a server, username, and probably "
 "password are set.  Also be sure to check any security settings in the "
@@ -143,72 +145,72 @@ msgstr ""
 "在伺服器、使用者名稱、甚至是密碼還沒設好之前，無法取回資料夾清單。請順便檢查"
 "在進階對話窗中所有的安全設定。"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1420
 msgid "Set New Mail Folders"
 msgstr "設定新信匣"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1414
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1431
 msgid "New Mail Folders"
 msgstr "新信匣"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1597
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1614
 msgid "Advanced IMAP Options"
 msgstr "進階 IMAP 選項"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1606
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1623
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:816
 msgid "Connection"
 msgstr "連結"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1615
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1632
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:825
 msgid "Use unsecured connection"
 msgstr "使用沒有保全的連結"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1616
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1633
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:826
 msgid "Use SSL/TLS on alternate port"
 msgstr "在另外的連接埠上使用 SSL/TLS"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1617
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1634
 msgid "Use SSL/TLS via STARTTLS"
 msgstr "經由 STARTTLS 使用 SSL/TLS"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1633
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1650
 msgid "Use non-standard IMAP _port:"
 msgstr "使用非標準的 IMAP 連接埠："
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1662
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1679
 msgid "Folders"
 msgstr "資料夾"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1670
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1687
 msgid "IMAP server _directory:"
 msgstr "IMAP 伺服器目錄(_D)"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1701
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1718
 msgid "IMAP Server"
 msgstr "IMAP 伺服器"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1715
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1732
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:903
 msgid "_Mail server:"
 msgstr "郵件伺服器(_M)："
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1773
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1790
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:961
 msgid "_Advanced..."
 msgstr "進階(_A)..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1780
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1797
 msgid "New mail _folders..."
 msgstr "新的郵件匣(_F)"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1950
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1967
 msgid "Remote IMAP Mailbox"
 msgstr "遠端 IMAP 信箱"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1951
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1968
 msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
@@ -352,69 +354,69 @@ msgstr "無法將郵件監視程式新增到面板中。"
 msgid "It is possible that your version of GLib does not have threads support."
 msgstr "這可能是因為您 GLib 的版本沒有支援執行緒(threads)。"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:479
+#: ../panel-plugin/mailwatch-plugin-4.2.c:481
 #: ../panel-plugin/mailwatch-plugin.c:538
 msgid "Mailwatch log"
 msgstr "Mailwatch 記錄"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:537
+#: ../panel-plugin/mailwatch-plugin-4.2.c:539
 #: ../panel-plugin/mailwatch-plugin.c:596
 msgid "Log _lines:"
 msgstr "記錄行數(_L)："
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:551
+#: ../panel-plugin/mailwatch-plugin-4.2.c:553
 #: ../panel-plugin/mailwatch-plugin.c:610
 msgid "Show log _status in icon"
 msgstr "在圖示中顯示記錄狀態(_S)"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:597
+#: ../panel-plugin/mailwatch-plugin-4.2.c:599
 #: ../panel-plugin/mailwatch-plugin.c:654
 msgid "Select Icon"
 msgstr "選擇圖示"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:627
-#: ../panel-plugin/mailwatch-plugin-4.2.c:749
+#: ../panel-plugin/mailwatch-plugin-4.2.c:629
+#: ../panel-plugin/mailwatch-plugin-4.2.c:751
 #: ../panel-plugin/mailwatch-plugin.c:685
 #: ../panel-plugin/mailwatch-plugin.c:873
 msgid "_Normal"
 msgstr "正常(_N)"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:652
+#: ../panel-plugin/mailwatch-plugin-4.2.c:654
 #: ../panel-plugin/mailwatch-plugin.c:711
 msgid "Ne_w mail"
 msgstr "新信件(_W)"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:681
+#: ../panel-plugin/mailwatch-plugin-4.2.c:683
 #: ../panel-plugin/mailwatch-plugin.c:805
 msgid "External Programs"
 msgstr "外部程式"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:693
+#: ../panel-plugin/mailwatch-plugin-4.2.c:695
 #: ../panel-plugin/mailwatch-plugin.c:817
 msgid "Run _on click:"
 msgstr "按下後啟動(_O)"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:710
+#: ../panel-plugin/mailwatch-plugin-4.2.c:712
 #: ../panel-plugin/mailwatch-plugin.c:834
 msgid "Run on new _messages:"
 msgstr "有新訊息時啟動(_M)："
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:723
+#: ../panel-plugin/mailwatch-plugin-4.2.c:725
 #: ../panel-plugin/mailwatch-plugin.c:847
 msgid "Icons"
 msgstr "圖示"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:769
+#: ../panel-plugin/mailwatch-plugin-4.2.c:771
 #: ../panel-plugin/mailwatch-plugin.c:893
 msgid "Ne_w Mail"
 msgstr "新信件(_W)"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:777
+#: ../panel-plugin/mailwatch-plugin-4.2.c:779
 #: ../panel-plugin/mailwatch-plugin.c:777
 msgid "_View Log..."
 msgstr "檢視記錄(_V)"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:890
+#: ../panel-plugin/mailwatch-plugin-4.2.c:892
 #: ../panel-plugin/mailwatch-plugin.c:788
 #: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Mail Watcher"
@@ -534,3 +536,8 @@ msgstr "信箱"
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "檢查諸多信箱中的信件"
+
+#~ msgid ""
+#~ "A buffer was too small to receive all of an IMAP response.  This is a bug!"
+#~ msgstr ""
+#~ "一個緩衝區太小，無法接收一個 IMAP 回應的全部內容。這是一個程式臭蟲！"
