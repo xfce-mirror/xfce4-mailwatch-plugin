@@ -2,14 +2,14 @@
 # Copyright (C) 2005-2006 Brian Tarricone, Pasi Orovuo.
 # This file is distributed under the same license as the
 # xfce4-mailwatch-plugin package.
-# Adriano Winter Bess <awbess@gmail.com>, 2005.
+# Adriano Winter Bess <awbess@gmail.com>, 2005,2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-09-10 21:29+0200\n"
-"PO-Revision-Date: 2006-01-24 22:06-0200\n"
+"PO-Revision-Date: 2006-11-03 12:54-0200\n"
 "Last-Translator: Adriano Winter Bess <awbess@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -128,6 +128,10 @@ msgid ""
 "be OK, or this plugin might need to be modified to support your mail server "
 "if the new message counts are incorrect."
 msgstr ""
+"O servidor de IMAP retornou uma resposta pela qual não estávamos esperando. "
+"Isto pode não ser nenhum problema, ou este plugin pode precisar ser "
+"modificado para suportar o seu servidor de e-mail se a contagem de novas "
+"mensagens estiver incorreta."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1195
 msgid "Failed to get folder list"
