@@ -373,6 +373,7 @@ mailwatch_read_config(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
     DBG("entering");
     
     if(!(file = xfce_panel_plugin_lookup_rc_file(plugin))) {
+        DBG("Mailwatch: no config found; setting defaults");
         mailwatch_set_default_config(mwp);
         return;
     }
@@ -380,6 +381,7 @@ mailwatch_read_config(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
     rc = xfce_rc_simple_open(file, TRUE);
 
     if(!rc) {
+        DBG("Mailwatch: no config found in \"%s\"; setting defaults", file);
         g_free(file);
         mailwatch_set_default_config(mwp);
         return;
@@ -427,21 +429,23 @@ mailwatch_read_config(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
 static void
 mailwatch_write_config(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
 {
-    const gchar *cfgfile = xfce_mailwatch_get_config_file(mwp->mailwatch);
     gchar *file;
     XfceRc *rc;
-
-    if(!(file = xfce_panel_plugin_save_location(plugin, TRUE)))
+    
+    TRACE("entering");
+    
+    if(!(file = xfce_panel_plugin_save_location(plugin, TRUE))) {
+        g_critical("Mailwatch: Unable to find save location for configuration file");
         return;
+    }
     
     rc = xfce_rc_simple_open(file, FALSE);
 
     if(!rc) {
+        g_critical("Mailwatch: Unable to open \"%s\" for writing", file);
         g_free(file);
         return;
     }
-    
-    DBG("entering(%p): %s",plugin, cfgfile?cfgfile:"[nil]");
     
     xfce_rc_set_group(rc, "mailwatch-plugin");
     
@@ -458,8 +462,7 @@ mailwatch_write_config(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
     
     xfce_rc_close(rc);
     
-    if(!cfgfile)
-        xfce_mailwatch_set_config_file(mwp->mailwatch, file);
+    xfce_mailwatch_set_config_file(mwp->mailwatch, file);
     xfce_mailwatch_save_config(mwp->mailwatch);
     
     g_free(file);
