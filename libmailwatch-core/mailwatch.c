@@ -258,6 +258,8 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch)
         if(!mailbox_id)
             continue;
         
+        DBG("loading config for mailbox %s, type %s", mailbox_name, mailbox_id);
+        
         if(!xfce_rc_has_group(rcfile, buf))
             continue;
         xfce_rc_set_group(rcfile, buf);
@@ -289,6 +291,10 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch)
             const gchar *value;
             
             value = xfce_rc_read_entry(rcfile, cfg_entries[j], NULL);
+            
+            DBG("got param %s = %s", cfg_entries[j],
+                value ? (!g_ascii_strcasecmp(cfg_entries[j], "password")
+                         ? "[password hidden]" : value) : "[null]");
             
             param = g_new(XfceMailwatchParam, 1);
             param->key = cfg_entries[j];

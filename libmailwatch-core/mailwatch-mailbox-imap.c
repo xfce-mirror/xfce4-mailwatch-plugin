@@ -1364,6 +1364,7 @@ imap_config_treeview_btnpress_cb(GtkWidget *w, GdkEventButton *evt,
                             g_free(l->data);
                             imailbox->mailboxes_to_check =
                                     g_list_delete_link(imailbox->mailboxes_to_check, l);
+                            DBG("IMAP: removing %s from the new mail folder list (not saved yet)", (gchar *)l->data);
                             break;
                         }
                     }
@@ -1372,6 +1373,7 @@ imap_config_treeview_btnpress_cb(GtkWidget *w, GdkEventButton *evt,
                     imailbox->mailboxes_to_check =
                             g_list_prepend(imailbox->mailboxes_to_check,
                                     folder_path);
+                    DBG("IMAP: adding %s to the new mail folder list (not saved yet)", folder_path);
                 }
                 g_mutex_unlock(imailbox->config_mx);
             } else
@@ -1868,6 +1870,7 @@ imap_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
             imailbox->mailboxes_to_check =
                     g_list_prepend(imailbox->mailboxes_to_check,
                             g_strdup(param->value));
+            DBG("IMAP: config: got a new mail folder: %s", param->value);
         }
     }
     imailbox->mailboxes_to_check = g_list_reverse(imailbox->mailboxes_to_check);
@@ -1937,6 +1940,8 @@ imap_save_param_list(XfceMailwatchMailbox *mailbox)
         param->key = g_strdup_printf("newmail_box_%d", i);
         param->value = g_strdup(g_list_nth_data(imailbox->mailboxes_to_check, i));
         params = g_list_prepend(params, param);
+        DBG("IMAP: sending back new mail folder param (%s, %s)", param->key,
+            param->value);
     }
     
     g_mutex_unlock(imailbox->config_mx);
