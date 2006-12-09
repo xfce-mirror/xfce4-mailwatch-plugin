@@ -751,15 +751,14 @@ mailwatch_dialog_response(GtkWidget *dlg, int response,
 static void
 mailwatch_create_options(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
 {
-    GtkWidget *dlg, *header;
-    GtkWidget *topvbox, *frame, *frame_bin, *hbox, *lbl, *entry, *btn, *vbox,
-              *img;
+    GtkWidget *dlg, *topvbox, *frame, *frame_bin, *hbox, *lbl, *entry, *btn,
+              *vbox, *img;
     GtkContainer *cfg_page;
     GtkSizeGroup *sg;
     
     xfce_panel_plugin_block_menu(plugin);
     
-    dlg = gtk_dialog_new_with_buttons(_("Edit Properties"), 
+    dlg = xfce_titled_dialog_new_with_buttons(_("Mail Watcher"), 
                 GTK_WINDOW(gtk_widget_get_toplevel(GTK_WIDGET(plugin))),
                 GTK_DIALOG_DESTROY_WITH_PARENT |
                 GTK_DIALOG_NO_SEPARATOR, NULL);
@@ -769,6 +768,7 @@ mailwatch_create_options(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
                      G_CALLBACK(mailwatch_dialog_response), mwp);
 
     gtk_container_set_border_width(GTK_CONTAINER(dlg), 2);
+    gtk_window_set_icon_name(GTK_WINDOW(dlg), "xfce4-settings");
     
     btn = gtk_button_new_from_stock(GTK_STOCK_HELP);
     gtk_widget_show(btn);
@@ -788,13 +788,6 @@ mailwatch_create_options(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
     gtk_widget_show(btn);
     gtk_dialog_add_action_widget(GTK_DIALOG(dlg), btn, GTK_RESPONSE_ACCEPT);
                      
-    header = xfce_create_header(NULL, _("Mail Watcher"));
-    gtk_widget_set_size_request(GTK_BIN(header)->child, -1, 32);
-    gtk_container_set_border_width(GTK_CONTAINER(header), BORDER - 2);
-    gtk_widget_show(header);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), header,
-                        FALSE, TRUE, 0);
-    
     topvbox = gtk_vbox_new(FALSE, BORDER);
     gtk_container_set_border_width(GTK_CONTAINER(topvbox), BORDER - 2);
     gtk_widget_show(topvbox);

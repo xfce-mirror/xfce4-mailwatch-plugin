@@ -621,6 +621,7 @@ gmail_get_setup_page(XfceMailwatchMailbox *mailbox)
     gtk_size_group_add_widget(sg, lbl);
     
     entry = gtk_entry_new();
+    gtk_entry_set_activates_default(GTK_ENTRY(entry), TRUE);
     if(gmailbox->username)
         gtk_entry_set_text(GTK_ENTRY(entry), gmailbox->username);
     gtk_widget_show(entry);
@@ -640,6 +641,7 @@ gmail_get_setup_page(XfceMailwatchMailbox *mailbox)
     gtk_size_group_add_widget(sg, lbl);
     
     entry = gtk_entry_new();
+    gtk_entry_set_activates_default(GTK_ENTRY(entry), TRUE);
     gtk_entry_set_visibility(GTK_ENTRY(entry), FALSE);
     if(gmailbox->password)
         gtk_entry_set_text(GTK_ENTRY(entry), gmailbox->password);

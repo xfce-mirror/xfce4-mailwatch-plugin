@@ -422,6 +422,7 @@ mbox_get_setup_page( XfceMailwatchMailbox *mailbox )
     gtk_size_group_add_widget( GTK_SIZE_GROUP( sg ), label );
 
     entry = gtk_entry_new();
+    gtk_entry_set_activates_default( GTK_ENTRY( entry ), TRUE );
     g_mutex_lock( mbox->settings_mutex );
     if ( mbox->fn ) {
         gtk_entry_set_text( GTK_ENTRY( entry ), mbox->fn );

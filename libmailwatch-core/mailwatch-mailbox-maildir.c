@@ -409,6 +409,7 @@ maildir_get_setup_page( XfceMailwatchMailbox *mailbox )
     gtk_size_group_add_widget( sg, label );
 
     entry = gtk_entry_new();
+    gtk_entry_set_activates_default( GTK_ENTRY ( entry ), TRUE );
     g_mutex_lock( maildir->mutex );
     if ( maildir->path ) {
         gtk_entry_set_text( GTK_ENTRY( entry ), maildir->path );

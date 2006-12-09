@@ -640,6 +640,7 @@ config_run_addedit_window(const gchar *title, GtkWindow *parent,
                 GTK_DIALOG_NO_SEPARATOR, GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT,
                 NULL);
     }
+    gtk_dialog_set_default_response(GTK_DIALOG(dlg), GTK_RESPONSE_ACCEPT);
     
     topvbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_container_set_border_width(GTK_CONTAINER(topvbox), BORDER);
@@ -655,6 +656,7 @@ config_run_addedit_window(const gchar *title, GtkWindow *parent,
     gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
     
     entry = gtk_entry_new();
+    gtk_entry_set_activates_default(GTK_ENTRY(entry), TRUE);
     if(mailbox_name)
         gtk_entry_set_text(GTK_ENTRY(entry), mailbox_name);
     gtk_widget_show(entry);
@@ -778,6 +780,7 @@ config_ask_new_mailbox_type(XfceMailwatch *mailwatch, GtkWindow *parent)
     dlg = gtk_dialog_new_with_buttons(_("Select Mailbox Type"), parent,
             GTK_DIALOG_NO_SEPARATOR, GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
             GTK_STOCK_OK, GTK_RESPONSE_ACCEPT, NULL);
+    gtk_dialog_set_default_response(GTK_DIALOG(dlg), GTK_RESPONSE_ACCEPT);
     
     topvbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_container_set_border_width(GTK_CONTAINER(topvbox), BORDER);

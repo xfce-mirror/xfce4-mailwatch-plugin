@@ -1617,6 +1617,8 @@ imap_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
             GTK_WINDOW(gtk_widget_get_toplevel(w)),
             GTK_DIALOG_DESTROY_WITH_PARENT|GTK_DIALOG_NO_SEPARATOR,
             GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
+    gtk_dialog_set_default_response(GTK_DIALOG(dlg), GTK_RESPONSE_ACCEPT);
+    
     topvbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_container_set_border_width(GTK_CONTAINER(topvbox), BORDER/2);
     gtk_widget_show(topvbox);
@@ -1658,6 +1660,7 @@ imap_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
             G_CALLBACK(imap_config_nonstandard_chk_cb), imailbox);
     
     entry = gtk_entry_new();
+    gtk_entry_set_activates_default(GTK_ENTRY(entry), TRUE);
     gtk_entry_set_width_chars(GTK_ENTRY(entry), 5);
     if(!imailbox->use_standard_port) {
         gchar portstr[16];
@@ -1691,6 +1694,7 @@ imap_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
     
     entry = gtk_entry_new();
+    gtk_entry_set_activates_default(GTK_ENTRY(entry), TRUE);
     g_mutex_lock(imailbox->config_mx);
     if(imailbox->server_directory)
         gtk_entry_set_text(GTK_ENTRY(entry), imailbox->server_directory);
@@ -1738,6 +1742,7 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
     gtk_size_group_add_widget(sg, lbl);
     
     entry = gtk_entry_new();
+    gtk_entry_set_activates_default(GTK_ENTRY(entry), TRUE);
     if(imailbox->host)
         gtk_entry_set_text(GTK_ENTRY(entry), imailbox->host);
     gtk_widget_show(entry);
@@ -1757,6 +1762,7 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
     gtk_size_group_add_widget(sg, lbl);
     
     entry = gtk_entry_new();
+    gtk_entry_set_activates_default(GTK_ENTRY(entry), TRUE);
     if(imailbox->username)
         gtk_entry_set_text(GTK_ENTRY(entry), imailbox->username);
     gtk_widget_show(entry);
@@ -1776,6 +1782,7 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
     gtk_size_group_add_widget(sg, lbl);
     
     entry = gtk_entry_new();
+    gtk_entry_set_activates_default(GTK_ENTRY(entry), TRUE);
     gtk_entry_set_visibility(GTK_ENTRY(entry), FALSE);
     if(imailbox->password)
         gtk_entry_set_text(GTK_ENTRY(entry), imailbox->password);

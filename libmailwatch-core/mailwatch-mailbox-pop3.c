@@ -808,6 +808,8 @@ pop3_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
             GTK_WINDOW(gtk_widget_get_toplevel(w)),
             GTK_DIALOG_DESTROY_WITH_PARENT|GTK_DIALOG_NO_SEPARATOR,
             GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
+    gtk_dialog_set_default_response(GTK_DIALOG(dlg), GTK_RESPONSE_ACCEPT);
+    
     topvbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_container_set_border_width(GTK_CONTAINER(topvbox), BORDER/2);
     gtk_widget_show(topvbox);
@@ -849,6 +851,7 @@ pop3_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
             G_CALLBACK(pop3_config_nonstandard_chk_cb), pmailbox);
     
     entry = gtk_entry_new();
+    gtk_entry_set_activates_default(GTK_ENTRY(entry), TRUE);
     gtk_entry_set_width_chars(GTK_ENTRY(entry), 5);
     if(!pmailbox->use_standard_port) {
         gchar portstr[16];
@@ -907,6 +910,7 @@ pop3_get_setup_page(XfceMailwatchMailbox *mailbox)
     gtk_size_group_add_widget(sg, lbl);
     
     entry = gtk_entry_new();
+    gtk_entry_set_activates_default(GTK_ENTRY(entry), TRUE);
     if(pmailbox->host)
         gtk_entry_set_text(GTK_ENTRY(entry), pmailbox->host);
     gtk_widget_show(entry);
@@ -926,6 +930,7 @@ pop3_get_setup_page(XfceMailwatchMailbox *mailbox)
     gtk_size_group_add_widget(sg, lbl);
     
     entry = gtk_entry_new();
+    gtk_entry_set_activates_default(GTK_ENTRY(entry), TRUE);
     if(pmailbox->username)
         gtk_entry_set_text(GTK_ENTRY(entry), pmailbox->username);
     gtk_widget_show(entry);
@@ -939,6 +944,7 @@ pop3_get_setup_page(XfceMailwatchMailbox *mailbox)
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
     
     lbl = gtk_label_new_with_mnemonic(_("_Password:"));
+    gtk_entry_set_activates_default(GTK_ENTRY(entry), TRUE);
     gtk_misc_set_alignment(GTK_MISC(lbl), 0.0, 0.5);
     gtk_widget_show(lbl);
     gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
