@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-09-10 21:29+0200\n"
-"PO-Revision-Date: 2006-09-11 12:55+0100\n"
+"PO-Revision-Date: 2007-02-12 23:11+0100\n"
 "Last-Translator: Maximilian Schleiss <maxschleiss@bluewin.ch>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -352,17 +352,17 @@ msgstr "Nou_veau courrier"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:683
 #: ../panel-plugin/mailwatch-plugin.c:805
 msgid "External Programs"
-msgstr "Programmes externes"
+msgstr "Programmes externes à exécuter"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:695
 #: ../panel-plugin/mailwatch-plugin.c:817
 msgid "Run _on click:"
-msgstr "Exécuter au _clique :"
+msgstr "Lors d'un _clic :"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:712
 #: ../panel-plugin/mailwatch-plugin.c:834
 msgid "Run on new _messages:"
-msgstr "Exécuter sur les nouveaux _messages :"
+msgstr "Nouveaux _messages :"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:725
 #: ../panel-plugin/mailwatch-plugin.c:847
