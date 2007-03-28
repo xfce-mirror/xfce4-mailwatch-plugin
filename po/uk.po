@@ -1,19 +1,23 @@
-# Ukrainian translation of xfce4-mailwatch-plugin.
+# Ukrainian translation of xfce4-mailwatch-plugin
 # Copyright (C) 2002-2006 The Xfce development team.
 # This file is distributed under the same license as the xfce4-mailwatch-plugin package.
-# Maxim Dziumanenko <mvd@mylinux.ua>, 2006.
 #
+# Maxim Dziumanenko <dziumanenko@gmail.com>, 2006.
+# Dmitry Nikitin <luckas_fb@mail.ru>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
+"Project-Id-Version: xfce4-mailwatch-plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-09-10 21:29+0200\n"
-"PO-Revision-Date: 2006-04-23 11:22+0200\n"
-"Last-Translator: Maxim Dziumanenko <mvd@mylinux.ua>\n"
-"Language-Team: Ukrainian <uk@li.org>\n"
+"PO-Revision-Date: 2007-03-14 19:03+0200\n"
+"Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
+"Language-Team: Ukrainian <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:215
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:399
@@ -22,8 +26,8 @@ msgid ""
 "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 "the panel may hang on close."
 msgstr ""
-"Не вдається встановити неблокуючий режим.  Якщо програма зависає при спробі "
-"з'єднання, панель може зависнути при завкриванні."
+"Не вдається встановити сокет в неблокуючий режим. Якщо програма зависає при "
+"спробі з'єднання, панель може зависнути при закритті."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:254
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:438
@@ -39,7 +43,7 @@ msgid ""
 "Unable to return socket to blocking mode.  Data may not be retreived "
 "correctly."
 msgstr ""
-"Не вдається перемикнути сокет у блокуючий режим.  Дані можуть бути отримані "
+"Не вдається повернути сокет у блокуючий режим.  Дані можуть бути отримані "
 "некоректно."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:317
@@ -126,6 +130,9 @@ msgid ""
 "be OK, or this plugin might need to be modified to support your mail server "
 "if the new message counts are incorrect."
 msgstr ""
+"Сервер IMAP повернув відповідь - ми зовсім не очікували. Це ймовірно є "
+"нормальним, але це розширення мабуть потребує змін для підтримки вашого "
+"поштового серверу якщо нове враховане повідомлення є неправильним."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1195
 msgid "Failed to get folder list"
@@ -142,7 +149,7 @@ msgstr "Помилка"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1414
 msgid "No server or username is set."
-msgstr "Не встановлено назву сервера або ім'я користува."
+msgstr "Не встановлено назву сервера або ім'я користувача."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1415
 msgid ""
@@ -256,15 +263,15 @@ msgstr "_Інтервал:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:492
 msgid "Local Maildir Spool"
-msgstr "Локальний спул maildir"
+msgstr "Локальний буфер maildir"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:493
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
 msgstr ""
-"Модуль maildir може перевіряти нові повідомлення у локальній теці типу "
-"maildir"
+"Розширення Maildir може спостерігати за новими повідомленнями у локальній "
+"теці типу maildir."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Select mbox file"
@@ -276,7 +283,7 @@ msgstr "_Файл Mbox:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:496
 msgid "Local Mbox spool"
-msgstr "Локальний спул mbox"
+msgstr "Локальний буфер mbox"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:497
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
@@ -551,7 +558,3 @@ msgstr "Поштові скриньки"
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "Перевіряти пошту з кількох поштових скриньок"
-
-#~ msgid ""
-#~ "A buffer was too small to receive all of an IMAP response.  This is a bug!"
-#~ msgstr "Буфер надто малий для отримання усіх відповідей IMAP.  Це помилка!"
