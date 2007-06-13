@@ -1,18 +1,24 @@
+2007-06-13  Maximilian Schleiss <maximilian@xfce.org>
+
+	* it.po: Added translation
+	by Roberto Pariset <robdebian@gmail.com>
+
 2007-03-31  Pau Rul-lan Ferragut <paurullan@bulma.net>
 
-  * gb.po: British translation by Jeff Bailes <thepizzaking@gmail.com>
+	* gb.po: British translation
+	by Jeff Bailes <thepizzaking@gmail.com>
 
 2007-03-28 Maxim Dziumanenko <dziumanenko@gmail.com>
 
         * uk.po: Update Ukrainian translation by Dmitry Nikitin.
 
-2007-02-20  Maximilian Schleiss <maxschleiss@bluewin.ch>
+2007-02-20  Maximilian Schleiss <maximilian@xfce.org>
 
 	* fr.po: Modified the French translation slightly.
 	* sq.po: Modified the headers for the Albanian translation by
 	Besnik Bleta <besnik@programeshqip.org>
 
-2007-02-02  Maximilian Schleiss <maxschleiss@bluewin.ch>
+2007-02-02  Maximilian Schleiss <maximilian@xfce.org>
 
 	* fr.po: Added the Albanian translation by
 	Besnik Bleta <besnik@programeshqip.org>
