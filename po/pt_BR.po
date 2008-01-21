@@ -3,9 +3,9 @@
 # This file is distributed under the same license as the
 # xfce4-mailwatch-plugin package.
 # Adriano Winter Bess <awbess@gmail.com>, 2005,2006.
-# Fábio Nogueira <deb-user-ba@ubuntu.com>, 2007.
 # Og Maciel <ogmaciel@gnome.org>, 2007.
-#
+# Fábio Nogueira <deb-user-ba@ubuntu.com>, 2007,2008.
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
@@ -25,7 +25,7 @@ msgid ""
 "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 "the panel may hang on close."
 msgstr ""
-"Não é possível ajustar o socket para o modo não-bloqueante. Se a tentativa "
+"Não é possível ajustar o soquete para o modo não-bloqueante. Se a tentativa "
 "de conexão travar, o painel pode travar ao fechar."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:254
@@ -42,7 +42,7 @@ msgid ""
 "Unable to return socket to blocking mode.  Data may not be retreived "
 "correctly."
 msgstr ""
-"Não é possível retornar o socket ao modo de bloqueio. As informações podem "
+"Não é possível retornar o soquete ao modo de bloqueio. As informações podem "
 "não ser recuperadas corretamente."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:317
