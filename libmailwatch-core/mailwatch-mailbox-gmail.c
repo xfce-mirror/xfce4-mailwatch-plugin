@@ -160,7 +160,7 @@ gmail_get_sockaddr(XfceMailwatchGMailMailbox *gmailbox, const gchar *host,
                   const gchar *service, struct sockaddr_in *addr)
 {
     struct addrinfo hints = { 0, PF_INET, SOCK_STREAM, IPPROTO_TCP,
-            sizeof(struct sockaddr_in), NULL, NULL, NULL };
+            0, NULL, NULL, NULL };
     GError *error = NULL;
     
     TRACE("entering (%s, %s, %p)", host, service, addr);
