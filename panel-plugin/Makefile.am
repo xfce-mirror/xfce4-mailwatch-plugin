@@ -29,6 +29,9 @@ libmailwatch_la_CFLAGS = \
 	-DDATADIR=\"$(datadir)\" \
 	-DLOCALEDIR=\"$(localedir)\"
 
+libmailwatch_la_DEPENDENCIES = \
+	$(top_builddir)/libmailwatch-core/libmailwatch-code.la
+
 libmailwatch_la_LIBADD = \
 	$(top_builddir)/libmailwatch-core/libmailwatch-core.la \
 	@GTHREAD_LIBS@ \
@@ -49,6 +52,9 @@ xfce4_mailwatch_plugin_CFLAGS = \
 	@LIBXFCE4PANEL_CFLAGS@ \
 	-DDATADIR=\"$(datadir)\" \
 	-DLOCALEDIR=\"$(localedir)\"
+
+xfce4_mailwatch_plugin_DEPENDENCIES = \
+	$(top_builddir)/libmailwatch-core/libmailwatch-core.la
 
 xfce4_mailwatch_plugin_LDFLAGS = \
 	$(top_builddir)/libmailwatch-core/libmailwatch-core.la \
