@@ -48,11 +48,14 @@ XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.4.0])
 XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.2.0])
 XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.2.0])
 
-XDT_CHECK_OPTIONAL_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.3.20])
-if test "x$LIBXFCE4PANEL_FOUND" != "xyes"; then
+XDT_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.3.20],
+                  [have_44_panel=yes], [
+echo "*** Package libxfce4panel not found.  Looking for old-style 4.2 panel"
+])
+if test "x$have_44_panel" != "xyes"; then
     XDT_XFCE_PANEL_PLUGIN([XFCE4_PANEL], [4.2.0])
 fi
-AM_CONDITIONAL([BUILD_42_PANEL_PLUGIN], [test "x$LIBXFCE4PANEL_FOUND" != "xyes"])
+AM_CONDITIONAL([BUILD_42_PANEL_PLUGIN], [test "x$have_44_panel" != "xyes"])
 
 dnl check for gnutls support
 XDT_CHECK_OPTIONAL_PACKAGE([GNUTLS], [gnutls], [1.2.0], [ssl],
