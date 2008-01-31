@@ -307,6 +307,9 @@ gmail_connect(XfceMailwatchGMailMailbox *gmailbox, gint *port)
             break;
     }
     
+    if(addresses)
+        freeaddrinfo(addresses);
+    
     return (gmailbox->sockfd >= 0);
 }
 

@@ -445,6 +445,9 @@ pop3_connect(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
             break;
     }
     
+    if(addresses)
+        freeaddrinfo(addresses);
+    
     return (pmailbox->sockfd >= 0);
 }
 

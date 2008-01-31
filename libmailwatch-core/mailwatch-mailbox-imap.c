@@ -485,6 +485,9 @@ imap_connect(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
             break;
     }
     
+    if(addresses)
+        freeaddrinfo(addresses);
+    
     return (imailbox->sockfd >= 0);
 }
 
