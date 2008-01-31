@@ -473,14 +473,34 @@ imap_connect(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
     return TRUE;
 }
 
+static inline gboolean
+imap_slurp_banner(XfceMailwatchIMAPMailbox *imailbox)
+{
+    gchar buf[2048];
+    gint bin;
+    
+    do {
+        bin = imap_recv(imailbox, buf, sizeof(buf)-1);
+        if(bin < 0) {
+            DBG("failed to get banner");
+            shutdown(imailbox->sockfd, SHUT_RDWR);
+            close(imailbox->sockfd);
+            imailbox->sockfd = -1;
+        } else {
+            buf[bin] = 0;
+            DBG("got banner, discarding: %s\n", buf);
+        }
+    } while(bin != -1 && !strchr(buf, '\n'));
+    
+    return (bin != -1);
+}
+
 static gboolean
 imap_authenticate(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
         const gchar *username, const gchar *password,
         XfceMailwatchAuthType auth_type, gint nonstandard_port)
 {
-#define BUFSIZE 2047
     gboolean ret = FALSE;
-    gchar buf[BUFSIZE+1];
     
     TRACE("entering, auth_type is %d", auth_type);
     
@@ -488,34 +508,20 @@ imap_authenticate(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
         case AUTH_NONE:
             imailbox->security_info.using_tls = FALSE;
             ret = imap_connect(imailbox, host, "imap", nonstandard_port);
-
-            /* discard opening banner */
-            if(ret && imap_recv(imailbox, buf, BUFSIZE) < 0) {
-                DBG("failed to get banner");
-                shutdown(imailbox->sockfd, SHUT_RDWR);
-                close(imailbox->sockfd);
-                imailbox->sockfd = -1;
-            }
+            if(ret)
+                ret = imap_slurp_banner(imailbox);
             break;
         
         case AUTH_STARTTLS:
             imailbox->security_info.using_tls = FALSE;
             ret = imap_connect(imailbox, host, "imap", nonstandard_port);
-            
-            if(ret) {
-                /* discard opening banner */
-                if(imap_recv(imailbox, buf, BUFSIZE) < 0) {
-                    DBG("failed to get banner");
-                    shutdown(imailbox->sockfd, SHUT_RDWR);
-                    close(imailbox->sockfd);
-                    imailbox->sockfd = -1;
-                }
-                
+            if(ret)
+                ret = imap_slurp_banner(imailbox);
+            if(ret)
                 ret = imap_do_starttls(imailbox, host, username, password);
-                if(ret)
-                    ret = imap_negotiate_ssl(imailbox, host);
-                imailbox->security_info.using_tls = TRUE;
-            }
+            if(ret)
+                ret = imap_negotiate_ssl(imailbox, host);
+            imailbox->security_info.using_tls = TRUE;
             break;
         
         case AUTH_SSL_PORT:
@@ -523,14 +529,8 @@ imap_authenticate(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
             ret = imap_connect(imailbox, host, "imaps", nonstandard_port);
             if(ret)
                 ret = imap_negotiate_ssl(imailbox, host);
-        
-            /* discard opening banner */
-            if(ret && imap_recv(imailbox, buf, BUFSIZE) < 0) {
-                DBG("failed to get banner");
-                shutdown(imailbox->sockfd, SHUT_RDWR);
-                close(imailbox->sockfd);
-                imailbox->sockfd = -1;
-            }
+            if(ret)
+                ret = imap_slurp_banner(imailbox);
             break;
         
         default:
@@ -540,11 +540,10 @@ imap_authenticate(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
     
     DBG("using_tls is %s", imailbox->security_info.using_tls?"TRUE":"FALSE");
         
-    if(ret && !imap_send_login_info(imailbox, username, password))
-        return FALSE;
+    if(ret)
+       ret = imap_send_login_info(imailbox, username, password);
     
     return ret;
-#undef BUFSIZE
 }
 
 static guint

@@ -432,13 +432,34 @@ pop3_connect(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
     return TRUE;
 }
 
+static inline gboolean
+pop3_slurp_banner(XfceMailwatchPOP3Mailbox *pmailbox)
+{
+    gchar buf[2048];
+    gint bin;
+    
+    do {
+        bin = pop3_recv(pmailbox, buf, sizeof(buf)-1);
+        if(bin < 0) {
+            DBG("failed to get banner");
+            shutdown(pmailbox->sockfd, SHUT_RDWR);
+            close(pmailbox->sockfd);
+            pmailbox->sockfd = -1;
+        } else {
+            buf[bin] = 0;
+            DBG("got banner, discarding: %s\n", buf);
+        }
+    } while(bin != -1 && !strchr(buf, '\n'));
+    
+    return (bin != -1);
+}
+
 static gboolean
 pop3_authenticate(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
         const gchar *username, const gchar *password,
         XfceMailwatchAuthType auth_type, gint nonstandard_port)
 {
     gboolean ret = FALSE;
-    gchar buf[1024];
     
     TRACE("entering, auth_type is %d", auth_type);
     
@@ -446,34 +467,20 @@ pop3_authenticate(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
         case AUTH_NONE:
             pmailbox->security_info.using_tls = FALSE;
             ret = pop3_connect(pmailbox, host, "pop3", nonstandard_port);
-
-            /* discard opening banner */
-            if(ret && pop3_recv(pmailbox, buf, 1023) < 0) {
-                DBG("failed to get banner");
-                shutdown(pmailbox->sockfd, SHUT_RDWR);
-                close(pmailbox->sockfd);
-                pmailbox->sockfd = -1;
-            }
+            if(ret)
+                ret = pop3_slurp_banner(pmailbox);
             break;
         
         case AUTH_STARTTLS:
             pmailbox->security_info.using_tls = FALSE;
             ret = pop3_connect(pmailbox, host, "pop3", nonstandard_port);
-            
-            if(ret) {
-                /* discard opening banner */
-                if(pop3_recv(pmailbox, buf, 1023) < 0) {
-                    DBG("failed to get banner");
-                    shutdown(pmailbox->sockfd, SHUT_RDWR);
-                    close(pmailbox->sockfd);
-                    pmailbox->sockfd = -1;
-                }
-                
+            if(ret)
+                ret = pop3_slurp_banner(pmailbox);
+            if(ret)
                 ret = pop3_do_stls(pmailbox, host, username, password);
-                if(ret)
-                    ret = pop3_negotiate_ssl(pmailbox, host);
-                pmailbox->security_info.using_tls = TRUE;
-            }
+            if(ret)
+                ret = pop3_negotiate_ssl(pmailbox, host);
+            pmailbox->security_info.using_tls = TRUE;
             break;
         
         case AUTH_SSL_PORT:
@@ -481,14 +488,8 @@ pop3_authenticate(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
             ret = pop3_connect(pmailbox, host, "pop3s", nonstandard_port);
             if(ret)
                 ret = pop3_negotiate_ssl(pmailbox, host);
-        
-            /* discard opening banner */
-            if(ret && pop3_recv(pmailbox, buf, 1023) < 0) {
-                DBG("failed to get banner");
-                shutdown(pmailbox->sockfd, SHUT_RDWR);
-                close(pmailbox->sockfd);
-                pmailbox->sockfd = -1;
-            }
+            if(ret)
+                ret = pop3_slurp_banner(pmailbox);
             break;
         
         default:
