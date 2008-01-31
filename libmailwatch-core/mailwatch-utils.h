@@ -64,10 +64,9 @@ typedef struct
 #endif
 } XfceMailwatchSecurityInfo;
 
-gboolean xfce_mailwatch_net_get_sockaddr(const gchar *host,
+gboolean xfce_mailwatch_net_get_addrinfo(const gchar *host,
                                          const gchar *service,
-                                         struct addrinfo *hints,
-                                         struct sockaddr_in *addr,
+                                         struct addrinfo **results,
                                          GError **error);
 gboolean xfce_mailwatch_net_negotiate_tls(gint sockfd,
                                           XfceMailwatchSecurityInfo *security_info,

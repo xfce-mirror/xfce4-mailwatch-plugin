@@ -156,18 +156,16 @@ gmail_recv(XfceMailwatchGMailMailbox *gmailbox, gchar *buf, gsize len)
 }
 
 static gboolean
-gmail_get_sockaddr(XfceMailwatchGMailMailbox *gmailbox, const gchar *host,
-                  const gchar *service, struct sockaddr_in *addr)
+gmail_get_addrinfo(XfceMailwatchGMailMailbox *gmailbox, const gchar *host,
+                  const gchar *service, struct addrinfo **addresses)
 {
-    struct addrinfo hints = { 0, PF_INET, SOCK_STREAM, IPPROTO_TCP,
-            0, NULL, NULL, NULL };
     GError *error = NULL;
     
-    TRACE("entering (%s, %s, %p)", host, service, addr);
+    TRACE("entering (%s, %s, %p)", host, service, addresses);
     
-    g_return_val_if_fail(host && service && addr, FALSE);
+    g_return_val_if_fail(host && service && addresses, FALSE);
     
-    if(!xfce_mailwatch_net_get_sockaddr(host, service, &hints, addr, &error)) {
+    if(!xfce_mailwatch_net_get_addrinfo(host, service, addresses, &error)) {
         xfce_mailwatch_log_message(gmailbox->mailwatch,
                                    XFCE_MAILWATCH_MAILBOX(gmailbox),
                                    XFCE_MAILWATCH_LOG_ERROR,
@@ -183,110 +181,133 @@ gmail_get_sockaddr(XfceMailwatchGMailMailbox *gmailbox, const gchar *host,
 static gboolean
 gmail_connect(XfceMailwatchGMailMailbox *gmailbox, gint *port)
 {
-    struct sockaddr_in addr;
+    struct addrinfo *addresses = NULL, *ai;
+    gpointer msg = NULL;
     
-    if(!gmail_get_sockaddr(gmailbox, GMAIL_HOST, "https", &addr)) {
+    if(!gmail_get_addrinfo(gmailbox, GMAIL_HOST, "https", &addresses)) {
         DBG("failed to get sockaddr");
         return FALSE;
     }
     
-    *port = ntohs(addr.sin_port);
-    
-    gmailbox->sockfd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
-    if(gmailbox->sockfd < 0) {
-        xfce_mailwatch_log_message(gmailbox->mailwatch,
-                                   XFCE_MAILWATCH_MAILBOX(gmailbox),
-                                   XFCE_MAILWATCH_LOG_WARNING,
-                                   "socket(): %s",
-                                   strerror(errno));
-        DBG("failed to open socket");
-        return FALSE;
-    }
-    
-    /* this next batch of crap is necessary because it seems like a failed
-     * connection (that is, one that isn't ECONNREFUSED) takes over 3 minutes
-     * to fail!  if the panel is trying to quit, that's just unacceptable.
-     */
-    
-    if(fcntl(gmailbox->sockfd, F_SETFL, fcntl(gmailbox->sockfd, F_GETFL) | O_NONBLOCK)) {
-        xfce_mailwatch_log_message(gmailbox->mailwatch,
-                                   XFCE_MAILWATCH_MAILBOX(gmailbox),
-                                   XFCE_MAILWATCH_LOG_WARNING,
-                                   _("Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."));
-    }
-    
-    if(connect(gmailbox->sockfd, (struct sockaddr *)&addr,
-            sizeof(struct sockaddr_in)))
-    {
-        gboolean failed = TRUE;
+    for(ai = addresses; ai; ai = ai->ai_next) {
+        gchar portstr[16];
         
-        if(errno == EINPROGRESS) {
-            gint iters_left;
-            for(iters_left = 25; iters_left >= 0; iters_left--) {
-                fd_set wfd;
-                struct timeval tv = { 2, 0 };
-                int sock_err = 0;
-                socklen_t sock_err_len = sizeof(int);
-                gpointer msg;
-                
-                FD_ZERO(&wfd);
-                FD_SET(gmailbox->sockfd, &wfd);
-                
-                DBG("checking for a connection...");
-                
-                /* wait until the connect attempt finishes */
-                if(select(FD_SETSIZE, NULL, &wfd, NULL, &tv) < 0)
-                    break;
-                
-                /* check to see if it finished, and, if so, if there was an
-                 * error, or if it completed successfully */
-                if(FD_ISSET(gmailbox->sockfd, &wfd)) {
-                    if(!getsockopt(gmailbox->sockfd, SOL_SOCKET, SO_ERROR,
-                                &sock_err, &sock_err_len)
-                            && !sock_err)
-                    {
-                        DBG("    connection succeeded");
-                        failed = FALSE;
-                    } else {
-                        xfce_mailwatch_log_message(gmailbox->mailwatch,
-                                                   XFCE_MAILWATCH_MAILBOX(gmailbox),
-                                                   XFCE_MAILWATCH_LOG_ERROR,
-                                                   _("Failed to connect to server: %s"),
-                                                   strerror(sock_err));
-                        DBG("    connection failed: sock_err is %d", sock_err);
-                    }
-                    break;
-                }
-                
-                /* check the main thread to see if we're supposed to quit */
-                msg = g_async_queue_try_pop(gmailbox->aqueue);
-                if(msg) {
-                    /* put it back so pop3_check_mail_th() can read it */
-                    g_async_queue_push(gmailbox->aqueue, msg);
-                    if(msg == GMAIL_CMD_QUIT) {
-                        failed = TRUE;
+        *port = 0;
+        if(!getnameinfo(ai->ai_addr, ai->ai_addrlen, NULL, 0,
+                        portstr, sizeof(portstr), NI_NUMERICSERV))
+        {
+            *port = atoi(portstr);
+        }
+    
+        gmailbox->sockfd = socket(ai->ai_family, ai->ai_socktype,
+                                  ai->ai_protocol);
+        if(gmailbox->sockfd < 0)
+            continue;
+#if 0
+        if(gmailbox->sockfd < 0) {
+            xfce_mailwatch_log_message(gmailbox->mailwatch,
+                                       XFCE_MAILWATCH_MAILBOX(gmailbox),
+                                       XFCE_MAILWATCH_LOG_WARNING,
+                                       "socket(): %s",
+                                       strerror(errno));
+            DBG("failed to open socket");
+            return FALSE;
+        }
+#endif
+        /* this next batch of crap is necessary because it seems like a failed
+         * connection (that is, one that isn't ECONNREFUSED) takes over 3 minutes
+         * to fail!  if the panel is trying to quit, that's just unacceptable.
+         */
+        
+        if(fcntl(gmailbox->sockfd, F_SETFL,
+                 fcntl(gmailbox->sockfd, F_GETFL) | O_NONBLOCK))
+        {
+            xfce_mailwatch_log_message(gmailbox->mailwatch,
+                                       XFCE_MAILWATCH_MAILBOX(gmailbox),
+                                       XFCE_MAILWATCH_LOG_WARNING,
+                                       _("Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."));
+        }
+        
+        if(connect(gmailbox->sockfd, ai->ai_addr, ai->ai_addrlen) < 0) {
+            gboolean failed = TRUE;
+            
+            if(errno == EINPROGRESS) {
+                gint iters_left;
+                for(iters_left = 25; iters_left >= 0; iters_left--) {
+                    fd_set wfd;
+                    struct timeval tv = { 2, 0 };
+                    int sock_err = 0;
+                    socklen_t sock_err_len = sizeof(int);
+                    
+                    FD_ZERO(&wfd);
+                    FD_SET(gmailbox->sockfd, &wfd);
+                    
+                    DBG("checking for a connection...");
+                    
+                    /* wait until the connect attempt finishes */
+                    if(select(FD_SETSIZE, NULL, &wfd, NULL, &tv) < 0)
                         break;
+                    
+                    /* check to see if it finished, and, if so, if there was an
+                     * error, or if it completed successfully */
+                    if(FD_ISSET(gmailbox->sockfd, &wfd)) {
+                        if(!getsockopt(gmailbox->sockfd, SOL_SOCKET, SO_ERROR,
+                                       &sock_err, &sock_err_len)
+                           && !sock_err)
+                        {
+                            DBG("    connection succeeded");
+                            failed = FALSE;
+                        } else {
+#if 0
+                            xfce_mailwatch_log_message(gmailbox->mailwatch,
+                                                       XFCE_MAILWATCH_MAILBOX(gmailbox),
+                                                       XFCE_MAILWATCH_LOG_ERROR,
+                                                       _("Failed to connect to server: %s"),
+                                                       strerror(sock_err));
+#endif
+                            DBG("    connection failed: sock_err is (%d) %s",
+                                sock_err, strerror(sock_err));
+                        }
+                        break;
+                    }
+                    
+                    /* check the main thread to see if we're supposed to quit */
+                    msg = g_async_queue_try_pop(gmailbox->aqueue);
+                    if(msg) {
+                        /* put it back so pop3_check_mail_th() can read it */
+                        g_async_queue_push(gmailbox->aqueue, msg);
+                        if(msg == GMAIL_CMD_QUIT) {
+                            failed = TRUE;
+                            break;
+                        }
+                        msg = NULL;
                     }
                 }
             }
+            
+            if(failed) {
+                DBG("failed to connect");
+                close(gmailbox->sockfd);
+                gmailbox->sockfd = -1;
+                continue;
+            } else
+                break;
         }
         
-        if(failed) {
-            DBG("failed to connect");
-            close(gmailbox->sockfd);
-            gmailbox->sockfd = -1;
-            return FALSE;
+        if(fcntl(gmailbox->sockfd, F_SETFL,
+                 fcntl(gmailbox->sockfd, F_GETFL) & ~(O_NONBLOCK)))
+        {
+            xfce_mailwatch_log_message(gmailbox->mailwatch,
+                                       XFCE_MAILWATCH_MAILBOX(gmailbox),
+                                       XFCE_MAILWATCH_LOG_WARNING,
+                                       _("Unable to return socket to blocking mode.  Data may not be retreived correctly."));
         }
+        
+        if(msg && msg == GMAIL_CMD_QUIT)
+            break;
     }
     
-    if(fcntl(gmailbox->sockfd, F_SETFL, fcntl(gmailbox->sockfd, F_GETFL) & ~(O_NONBLOCK))) {
-        xfce_mailwatch_log_message(gmailbox->mailwatch,
-                                   XFCE_MAILWATCH_MAILBOX(gmailbox),
-                                   XFCE_MAILWATCH_LOG_WARNING,
-                                   _("Unable to return socket to blocking mode.  Data may not be retreived correctly."));
-    }
-    
-    return TRUE;
+    return (gmailbox->sockfd >= 0);
 }
 
 static gboolean
@@ -299,7 +320,7 @@ gmail_check_atom_feed(XfceMailwatchGMailMailbox *gmailbox,
     gboolean ret = FALSE, first_recv = TRUE;
     GError *error = NULL;
     gchar buf[BUFSIZE+1], *base64_creds, *p, *q;
-    gint bin, port, respcode, tmp;
+    gint bin, port = 0, respcode, tmp;
     
     if(!gmail_connect(gmailbox, &port)) {
         DBG("failed to connect to gmail server");

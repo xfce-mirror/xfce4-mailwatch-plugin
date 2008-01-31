@@ -173,18 +173,16 @@ pop3_do_logout(XfceMailwatchPOP3Mailbox *pmailbox)
 }
 
 static gboolean
-pop3_get_sockaddr(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
-                  const gchar *service, struct sockaddr_in *addr)
+pop3_get_addrinfo(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
+                  const gchar *service, struct addrinfo **addresses)
 {
-    struct addrinfo hints = { 0, PF_INET, SOCK_STREAM, IPPROTO_TCP,
-            0, NULL, NULL, NULL };
     GError *error = NULL;
     
-    TRACE("entering (%s, %s, %p)", host, service, addr);
+    TRACE("entering (%s, %s, %p)", host, service, addresses);
     
-    g_return_val_if_fail(host && service && addr, FALSE);
+    g_return_val_if_fail(host && service && addresses, FALSE);
     
-    if(!xfce_mailwatch_net_get_sockaddr(host, service, &hints, addr, &error)) {
+    if(!xfce_mailwatch_net_get_addrinfo(host, service, addresses, &error)) {
         xfce_mailwatch_log_message(pmailbox->mailwatch,
                                    XFCE_MAILWATCH_MAILBOX(pmailbox),
                                    XFCE_MAILWATCH_LOG_ERROR,
@@ -323,113 +321,131 @@ static gboolean
 pop3_connect(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
         const gchar *service, gint nonstandard_port)
 {
-    struct sockaddr_in addr;
+    struct addrinfo *addresses = NULL, *ai;
+    gchar buf[16] = { 0, };
+    gpointer msg = NULL;
     
     TRACE("entering (%s)", service);
     
-    if(!pop3_get_sockaddr(pmailbox, host, service, &addr)) {
+    if(nonstandard_port > 0)
+        g_snprintf(buf, sizeof(buf), "%d", nonstandard_port);
+    
+    if(!pop3_get_addrinfo(pmailbox, host, *buf ? buf : service, &addresses)) {
         DBG("failed to get sockaddr");
         return FALSE;
     }
     
-    if(nonstandard_port > 0)
-        addr.sin_port = htons(nonstandard_port);
+    for(ai = addresses; ai; ai = ai->ai_next) {
+        pmailbox->sockfd = socket(ai->ai_family, ai->ai_socktype,
+                                  ai->ai_protocol);
+        if(pmailbox->sockfd < 0)
+            continue;
     
-    pmailbox->sockfd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
-    if(pmailbox->sockfd < 0) {
-        xfce_mailwatch_log_message(pmailbox->mailwatch,
-                                   XFCE_MAILWATCH_MAILBOX(pmailbox),
-                                   XFCE_MAILWATCH_LOG_WARNING,
-                                   "socket(): %s",
-                                   strerror(errno));
-        DBG("failed to open socket");
-        return FALSE;
-    }
-    
-    /* this next batch of crap is necessary because it seems like a failed
-     * connection (that is, one that isn't ECONNREFUSED) takes over 3 minutes
-     * to fail!  if the panel is trying to quit, that's just unacceptable.
-     */
-    
-    if(fcntl(pmailbox->sockfd, F_SETFL, fcntl(pmailbox->sockfd, F_GETFL) | O_NONBLOCK)) {
-        xfce_mailwatch_log_message(pmailbox->mailwatch,
-                                   XFCE_MAILWATCH_MAILBOX(pmailbox),
-                                   XFCE_MAILWATCH_LOG_WARNING,
-                                   _("Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."));
-    }
-    
-    if(connect(pmailbox->sockfd, (struct sockaddr *)&addr,
-            sizeof(struct sockaddr_in)))
-    {
-        gboolean failed = TRUE;
+#if 0
+        if(pmailbox->sockfd < 0) {
+            xfce_mailwatch_log_message(pmailbox->mailwatch,
+                                       XFCE_MAILWATCH_MAILBOX(pmailbox),
+                                       XFCE_MAILWATCH_LOG_WARNING,
+                                       "socket(): %s",
+                                       strerror(errno));
+            DBG("failed to open socket");
+            return FALSE;
+        }
+#endif
+        /* this next batch of crap is necessary because it seems like a failed
+         * connection (that is, one that isn't ECONNREFUSED) takes over 3 minutes
+         * to fail!  if the panel is trying to quit, that's just unacceptable.
+         */
         
-        if(errno == EINPROGRESS) {
-            gint iters_left;
-            for(iters_left = 25; iters_left >= 0; iters_left--) {
-                fd_set wfd;
-                struct timeval tv = { 2, 0 };
-                int sock_err = 0;
-                socklen_t sock_err_len = sizeof(int);
-                gpointer msg;
-                
-                FD_ZERO(&wfd);
-                FD_SET(pmailbox->sockfd, &wfd);
-                
-                DBG("checking for a connection...");
-                
-                /* wait until the connect attempt finishes */
-                if(select(FD_SETSIZE, NULL, &wfd, NULL, &tv) < 0)
-                    break;
-                
-                /* check to see if it finished, and, if so, if there was an
-                 * error, or if it completed successfully */
-                if(FD_ISSET(pmailbox->sockfd, &wfd)) {
-                    if(!getsockopt(pmailbox->sockfd, SOL_SOCKET, SO_ERROR,
-                                &sock_err, &sock_err_len)
-                            && !sock_err)
-                    {
-                        DBG("    connection succeeded");
-                        failed = FALSE;
-                    } else {
-                        xfce_mailwatch_log_message(pmailbox->mailwatch,
-                                                   XFCE_MAILWATCH_MAILBOX(pmailbox),
-                                                   XFCE_MAILWATCH_LOG_ERROR,
-                                                   _("Failed to connect to server: %s"),
-                                                   strerror(sock_err));
-                        DBG("    connection failed: sock_err is %d", sock_err);
-                    }
-                    break;
-                }
-                
-                /* check the main thread to see if we're supposed to quit */
-                msg = g_async_queue_try_pop(pmailbox->aqueue);
-                if(msg) {
-                    /* put it back so pop3_check_mail_th() can read it */
-                    g_async_queue_push(pmailbox->aqueue, msg);
-                    if(msg == POP3_CMD_QUIT) {
-                        failed = TRUE;
+        if(fcntl(pmailbox->sockfd, F_SETFL,
+                 fcntl(pmailbox->sockfd, F_GETFL) | O_NONBLOCK))
+        {
+            xfce_mailwatch_log_message(pmailbox->mailwatch,
+                                       XFCE_MAILWATCH_MAILBOX(pmailbox),
+                                       XFCE_MAILWATCH_LOG_WARNING,
+                                       _("Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."));
+        }
+        
+        if(connect(pmailbox->sockfd, ai->ai_addr, ai->ai_addrlen) < 0) {
+            gboolean failed = TRUE;
+            
+            if(errno == EINPROGRESS) {
+                gint iters_left;
+                for(iters_left = 25; iters_left >= 0; iters_left--) {
+                    fd_set wfd;
+                    struct timeval tv = { 2, 0 };
+                    int sock_err = 0;
+                    socklen_t sock_err_len = sizeof(int);
+                    
+                    FD_ZERO(&wfd);
+                    FD_SET(pmailbox->sockfd, &wfd);
+                    
+                    DBG("checking for a connection...");
+                    
+                    /* wait until the connect attempt finishes */
+                    if(select(FD_SETSIZE, NULL, &wfd, NULL, &tv) < 0)
                         break;
+                    
+                    /* check to see if it finished, and, if so, if there was an
+                     * error, or if it completed successfully */
+                    if(FD_ISSET(pmailbox->sockfd, &wfd)) {
+                        if(!getsockopt(pmailbox->sockfd, SOL_SOCKET, SO_ERROR,
+                                       &sock_err, &sock_err_len)
+                           && !sock_err)
+                        {
+                            DBG("    connection succeeded");
+                            failed = FALSE;
+                        } else {
+#if 0
+                            xfce_mailwatch_log_message(pmailbox->mailwatch,
+                                                       XFCE_MAILWATCH_MAILBOX(pmailbox),
+                                                       XFCE_MAILWATCH_LOG_ERROR,
+                                                       _("Failed to connect to server: %s"),
+                                                       strerror(sock_err));
+#endif
+                            DBG("    connection failed: sock_err is (%d) %s",
+                                sock_err, strerror(sock_err));
+                        }
+                        break;
+                    }
+                    
+                    /* check the main thread to see if we're supposed to quit */
+                    msg = g_async_queue_try_pop(pmailbox->aqueue);
+                    if(msg) {
+                        /* put it back so pop3_check_mail_th() can read it */
+                        g_async_queue_push(pmailbox->aqueue, msg);
+                        if(msg == POP3_CMD_QUIT) {
+                            failed = TRUE;
+                            break;
+                        }
+                        msg = NULL;
                     }
                 }
             }
+            
+            if(failed) {
+                DBG("failed to connect");
+                close(pmailbox->sockfd);
+                pmailbox->sockfd = -1;
+                continue;
+            } else
+                break;
         }
         
-        if(failed) {
-            DBG("failed to connect");
-            close(pmailbox->sockfd);
-            pmailbox->sockfd = -1;
-            return FALSE;
+        if(fcntl(pmailbox->sockfd, F_SETFL,
+                 fcntl(pmailbox->sockfd, F_GETFL) & ~(O_NONBLOCK)))
+        {
+            xfce_mailwatch_log_message(pmailbox->mailwatch,
+                                       XFCE_MAILWATCH_MAILBOX(pmailbox),
+                                       XFCE_MAILWATCH_LOG_WARNING,
+                                       _("Unable to return socket to blocking mode.  Data may not be retreived correctly."));
         }
+        
+        if(msg && msg == POP3_CMD_QUIT)
+            break;
     }
     
-    if(fcntl(pmailbox->sockfd, F_SETFL, fcntl(pmailbox->sockfd, F_GETFL) & ~(O_NONBLOCK))) {
-        xfce_mailwatch_log_message(pmailbox->mailwatch,
-                                   XFCE_MAILWATCH_MAILBOX(pmailbox),
-                                   XFCE_MAILWATCH_LOG_WARNING,
-                                   _("Unable to return socket to blocking mode.  Data may not be retreived correctly."));
-    }
-    
-    return TRUE;
+    return (pmailbox->sockfd >= 0);
 }
 
 static inline gboolean

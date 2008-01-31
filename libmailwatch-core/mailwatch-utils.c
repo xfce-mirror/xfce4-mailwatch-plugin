@@ -164,11 +164,24 @@ my_g_mutex_unlock(void **priv)
 #endif  /* defined(HAVE_SSL_SUPPORT) */
 
 gboolean
-xfce_mailwatch_net_get_sockaddr(const gchar *host, const gchar *service,
-        struct addrinfo *hints, struct sockaddr_in *addr, GError **error)
+xfce_mailwatch_net_get_addrinfo(const gchar *host,
+                                const gchar *service,
+                                struct addrinfo **results,
+                                GError **error)
 {
-    struct addrinfo *res = NULL;
+    struct addrinfo hints;
     gint ret;
+    
+    g_return_val_if_fail(results && !*results, FALSE);  /* FIXME: set |error| */
+    
+    memset(&hints, 0, sizeof(hints));
+#ifdef ENABLE_IPV6_SUPPORT
+    hints.ai_family = AF_UNSPEC;
+#else
+    hints.ai_family = AF_INET;
+#endif
+    hints.ai_socktype = SOCK_STREAM;
+    hints.ai_flags = AI_ADDRCONFIG;
     
     /* according to getaddrinfo(3), this should be reentrant.  however, calling
      * it from several threads often causes a crash.  bactraces show that we're
@@ -176,7 +189,7 @@ xfce_mailwatch_net_get_sockaddr(const gchar *host, const gchar *service,
      * out any other explanation. */
     
     xfce_mailwatch_threads_enter();
-    ret = getaddrinfo(host, service, hints, &res);
+    ret = getaddrinfo(host, service, &hints, results);
     xfce_mailwatch_threads_leave();
     if(ret) {
         if(error) {
@@ -185,18 +198,6 @@ xfce_mailwatch_net_get_sockaddr(const gchar *host, const gchar *service,
         }
         return FALSE;
     }
-    
-    if(res->ai_addrlen != sizeof(struct sockaddr_in)) {
-        if(error) {
-            g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                        "getaddrinfo(): res->ai_addrlen != sizeof(struct sockaddr_in)");
-        }
-        freeaddrinfo(res);
-        return FALSE;
-    }
-    
-    memcpy(addr, res->ai_addr, sizeof(struct sockaddr_in));
-    freeaddrinfo(res);
     
     return TRUE;
 }

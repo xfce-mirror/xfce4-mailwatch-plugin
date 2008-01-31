@@ -65,6 +65,18 @@ if test "x$GNUTLS_FOUND" = "xyes"; then
 fi
 AM_CONDITIONAL([HAVE_SSL_SUPPORT], [test "x$GNUTLS_FOUND" = "xyes"])
 
+dnl to ipv6, or to not ipv6
+AC_MSG_CHECKING([whether to support IPv6])
+AC_ARG_WITH([ipv6],
+            [AC_HELP_STRING([--disable-ipv6],
+                            [Disable IPv6 support (default=enabled)])],
+            [enable_ipv6_support=$withval], [enable_ipv6_support=yes])
+AC_MSG_RESULT([$enable_ipv6_support])
+if test "x$enable_ipv6_support" = "xyes"; then
+    AC_DEFINE([ENABLE_IPV6_SUPPORT], [1],
+              [Define if IPv6 support should be enabled])
+fi
+
 dnl check for debugging support
 XDT_FEATURE_DEBUG
 
