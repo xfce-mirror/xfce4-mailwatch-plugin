@@ -77,7 +77,8 @@ typedef struct
  *
  * Returns: A #XfceMailwatchMailbox instance.
  **/
-typedef XfceMailwatchMailbox *(*NewMailboxFunc)(struct _XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type);
+typedef XfceMailwatchMailbox *(*NewMailboxFunc)(struct _XfceMailwatch *mailwatch,
+                                                XfceMailwatchMailboxType *type);
 
 /**
  * SetActivatedFunc:
@@ -87,7 +88,8 @@ typedef XfceMailwatchMailbox *(*NewMailboxFunc)(struct _XfceMailwatch *mailwatch
  * Temporarily disables or reenables a particular mailbox, without freeing any
  * memory or clearing any settings.
  **/
-typedef void (*SetActivatedFunc)(XfceMailwatchMailbox *mailbox, gboolean activated);
+typedef void (*SetActivatedFunc)(XfceMailwatchMailbox *mailbox,
+                                 gboolean activated);
 
 /**
  * ForceUpdateCallback:
@@ -122,7 +124,8 @@ typedef GtkContainer *(*GetSetupPageFunc)(XfceMailwatchMailbox *mailbox);
  * configure @mailbox to be able to check mail.  The caller will take care of
  * freeing the list and parameters.
  **/
-typedef void (*RestoreParamListFunc)(XfceMailwatchMailbox *mailbox, GList *params);
+typedef void (*RestoreParamListFunc)(XfceMailwatchMailbox *mailbox,
+                                     GList *params);
 
 /**
  * SaveParamListFunc:

@@ -64,16 +64,34 @@ typedef struct
 #endif
 } XfceMailwatchSecurityInfo;
 
-gboolean xfce_mailwatch_net_get_sockaddr(const gchar *host, const gchar *service, struct addrinfo *hints, struct sockaddr_in *addr, GError **error);
-gboolean xfce_mailwatch_net_negotiate_tls(gint sockfd, XfceMailwatchSecurityInfo *security_info, const gchar *host, GError **error);
-gssize xfce_mailwatch_net_send(gint sockfd, XfceMailwatchSecurityInfo *security_info, const gchar *buf, GError **error);
-gssize xfce_mailwatch_net_recv(gint sockfd, XfceMailwatchSecurityInfo *security_info, gchar *buf, gsize len, GError **error);
+gboolean xfce_mailwatch_net_get_sockaddr(const gchar *host,
+                                         const gchar *service,
+                                         struct addrinfo *hints,
+                                         struct sockaddr_in *addr,
+                                         GError **error);
+gboolean xfce_mailwatch_net_negotiate_tls(gint sockfd,
+                                          XfceMailwatchSecurityInfo *security_info,
+                                          const gchar *host,
+                                          GError **error);
+gssize xfce_mailwatch_net_send(gint sockfd,
+                               XfceMailwatchSecurityInfo *security_info,
+                               const gchar *buf,
+                               GError **error);
+gssize xfce_mailwatch_net_recv(gint sockfd,
+                               XfceMailwatchSecurityInfo *security_info,
+                               gchar *buf,
+                               gsize len,
+                               GError **error);
 void xfce_mailwatch_net_tls_teardown(XfceMailwatchSecurityInfo *security_info);
 
-GtkWidget *xfce_mailwatch_custom_button_new(const gchar *text, const gchar *icon);
-GtkWidget *xfce_mailwatch_create_framebox(const gchar *title, GtkWidget **frame_bin);
+GtkWidget *xfce_mailwatch_custom_button_new(const gchar *text,
+                                            const gchar *icon);
+GtkWidget *xfce_mailwatch_create_framebox(const gchar *title,
+                                          GtkWidget **frame_bin);
 
-gint xfce_mailwatch_base64_encode(const guint8 *data, gint size, gchar **str);
+gint xfce_mailwatch_base64_encode(const guint8 *data,
+                                  gint size,
+                                  gchar **str);
 
 G_END_DECLS
 

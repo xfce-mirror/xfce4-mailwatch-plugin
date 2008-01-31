@@ -32,7 +32,9 @@ G_BEGIN_DECLS
 #define XFCE_MAILWATCH_ERROR           xfce_mailwatch_get_error_quark()
 
 typedef struct _XfceMailwatch XfceMailwatch;
-typedef void (*XMCallback)(XfceMailwatch *mailwatch, gpointer arg, gpointer user_data);
+typedef void (*XMCallback)(XfceMailwatch *mailwatch,
+                           gpointer arg,
+                           gpointer user_data);
 
 typedef enum
 {
