@@ -568,89 +568,70 @@ static guint
 imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
         const gchar *mailbox_name)
 {
-#define BUFSIZE 8191
-    gint new_messages = 0, bin, i = 0;
-    gchar buf[BUFSIZE+1], *p, *q, tmp[64], *buf_extra = NULL;
+    gint new_messages = 0;
+    gchar buf[4096], *p, *q, tmp[64];
+    gboolean got_OK = FALSE, got_LF = FALSE;
     
     TRACE("entering, folder %s", mailbox_name);
     
-    memset(buf, 0, BUFSIZE + 1);
+    memset(buf, 0, sizeof(buf));
     
     /* ask the server to look at the mailbox */
-    g_snprintf(buf, BUFSIZE, "%05d EXAMINE %s\r\n", ++imailbox->imap_tag,
-            mailbox_name);
+    g_snprintf(buf, sizeof(buf), "%05d STATUS %s (UNSEEN)\r\n",
+               ++imailbox->imap_tag, mailbox_name);
     if(imap_send(imailbox, buf) != strlen(buf))
         return 0;
     DBG("  successfully sent cmd '%s'", buf);
     
-    /* grab the response; it should end with "##### OK " */
-    if(imap_recv(imailbox, buf, BUFSIZE) < 0)
-        return 0;
-    g_snprintf(tmp, 64, "%05d OK ", imailbox->imap_tag);
-    if(!strstr(buf, tmp))
-        return 0;
-    DBG("  successfully got reply '%s'", buf);
-    
-    /* send SEARCH command */
-    g_snprintf(buf, BUFSIZE, "%05d SEARCH UNSEEN\r\n", ++imailbox->imap_tag);
-    if(imap_send(imailbox, buf) != strlen(buf))
-        return 0;
-    DBG("  successfully sent cmd '%s'", buf);
-    
-    /* get response; it should have "* SEARCH" followed by a space-delimited
-     * list of unseen messages.  unfortunately, this means there's no upper
-     * bound on string length, so we need a buffer that can grow. */
+    /* grab the response */
+    g_snprintf(tmp, sizeof(tmp), "%05d NO", imailbox->imap_tag);
     do {
-        buf_extra = g_realloc(buf_extra, ((BUFSIZE + 1) * (i + 1)) + 1);
-        DBG("pass %d: allocated %d bytes", i+1, ((BUFSIZE + 1) * (i + 1)) + 1);
-        bin = imap_recv(imailbox, buf_extra + (BUFSIZE + 1) * i, BUFSIZE + 1);
-        DBG("pass %d: got %d bytes", i+1, bin);
-        if(bin < 0)
-            return 0;        
-        ++i;
-    } while(bin == BUFSIZE + 1);
+        if(imap_recv(imailbox, buf, sizeof(buf)-1) <= 0) {
+            xfce_mailwatch_log_message(imailbox->mailwatch,
+                                       XFCE_MAILWATCH_MAILBOX(imailbox),
+                                       XFCE_MAILWATCH_LOG_WARNING,
+                                       _("The IMAP server returned a response we weren't quite expecting.  This might be OK, or this plugin might need to be modified to support your mail server if the new message counts are incorrect."));
+            g_warning("Mailwatch: Odd response to SEARCH UNSEEN");
+            return 0;
+        }
+        
+        if(strstr(buf, tmp))
+            return 0;
+    } while(!(p = strstr(buf, "(UNSEEN ")));
     
-    buf_extra[(BUFSIZE + 1) * i] = 0;
-    g_snprintf(tmp, 64, "%05d OK", imailbox->imap_tag);
-    if(!strstr(buf_extra, tmp)) {
-        xfce_mailwatch_log_message(imailbox->mailwatch,
-                                   XFCE_MAILWATCH_MAILBOX(imailbox),
-                                   XFCE_MAILWATCH_LOG_WARNING,
-                                   _("The IMAP server returned a response we weren't quite expecting.  This might be OK, or this plugin might need to be modified to support your mail server if the new message counts are incorrect."));
-        g_warning("Mailwatch: Odd response to SEARCH UNSEEN");
-    }
-    p = strstr(buf_extra, "* SEARCH");
-    if(!p) {
-        g_free(buf_extra);
-        return 0;
-    }
-    DBG("  successfully got reply '%s'", buf_extra);
-    
-    p += 8;
-    
-    /* find the end of the line */
-    q = strstr(p, "\r");
+    q = strchr(p, ')');
     if(!q)
-        q = strstr(p, "\n");
-    if(!q) {
-        g_free(buf_extra);
         return 0;
-    }
     *q = 0;
-    DBG("  ok, we have a list of messages: '%s'", p);
+    new_messages = atoi(p+8);
+    *q = ')';
     
-    /* find each space in the string; that's a message */
-    while((p = strstr(p, " "))) {
-        new_messages++;
-        p++;
+    /* make sure we got the entire command; it should end with "##### OK" in it */
+    g_snprintf(tmp, sizeof(tmp), "%05d OK", imailbox->imap_tag);
+    while(!got_OK && !got_LF) {
+        DBG("looking for end, got: %s", buf);
+        
+        if(!got_OK) {
+            gchar *p = strstr(buf, tmp);
+            if(p) {
+                DBG("got OK");
+                got_OK = TRUE;
+                got_LF = !!strchr(p, '\n');
+                DBG("%s LF after getting OK", got_LF?"got":"didn't get");
+            } else
+                DBG("didn't get OK");
+        } else {
+            got_LF = !!strchr(buf, '\n');
+            DBG("%s LF", got_LF?"got":"didn't get");
+        }
+        
+        if(!got_OK && !got_LF && imap_recv(imailbox, buf, sizeof(buf)-1) <= 0)
+            break;
     }
-    
-    g_free(buf_extra);
     
     DBG("new message count in mailbox '%s' is %d", mailbox_name, new_messages);
     
     return (guint)new_messages;
-#undef BUFSIZE
 }
 
 static void
