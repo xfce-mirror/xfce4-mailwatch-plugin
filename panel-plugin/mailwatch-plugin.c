@@ -127,19 +127,15 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg,
             mwp->newmail_icon_visible = TRUE;
         }
         if(new_messages != mwp->new_messages) {
-            GString *ttip_str = g_string_sized_new(32);
+            GString *ttip_str = g_string_sized_new(64);
             gchar **mailbox_names = NULL;
             guint *new_message_counts = NULL;
             gint i;
             
-            if(new_messages == 1)
-                g_string_assign(ttip_str, _("You have 1 new message:"));
-            else {
-                gchar *str = g_strdup_printf(_("You have %d new messages:"),
-                        new_messages);
-                g_string_assign(ttip_str, str);
-                g_free(str);
-            }
+            g_string_append_printf(ttip_str,
+                                   ngettext("You have %d new message:",
+                                            "You have %d new messages:",
+                                            new_messages), new_messages);
             mwp->new_messages = new_messages;
             
             xfce_mailwatch_get_new_message_breakdown(mwp->mailwatch,

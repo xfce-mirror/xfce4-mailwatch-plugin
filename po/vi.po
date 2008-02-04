@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-09-10 21:29+0200\n"
+"POT-Creation-Date: 2008-02-03 20:52-0800\n"
 "PO-Revision-Date: 2006-01-27 01:04+0300\n"
 "Last-Translator: Phan Vĩnh Thịnh <teppi@vnlinux.org>\n"
 "Language-Team: Vietnamese <none@li.org>\n"
@@ -16,9 +16,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:215
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:399
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:358
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:228
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:406
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:366
 msgid ""
 "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 "the panel may hang on close."
@@ -26,16 +26,16 @@ msgstr ""
 "Không đặt được socket cho chế độ không phải khối.  Nếu kết nối ngắt, thì "
 "bảng panel có thể sẽ đóng."
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:254
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:438
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:397
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:265
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:443
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:403
 #, c-format
 msgid "Failed to connect to server: %s"
 msgstr "Không kết nối được tới máy chủ: %s"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:286
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:470
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:429
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:303
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:481
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:441
 msgid ""
 "Unable to return socket to blocking mode.  Data may not be retreived "
 "correctly."
@@ -43,14 +43,14 @@ msgstr ""
 "Không trả lại được socket về chế độ khối.  Có thể không nhận được dữ liệu "
 "đúng."
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:317
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:302
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:268
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:341
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:300
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:266
 #, c-format
 msgid "TLS handshake failed: %s"
 msgstr "\"Bắt tay\" TLS không thành công: %s"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:365
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:389
 #, c-format
 msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
@@ -59,7 +59,7 @@ msgstr ""
 "Nhận được mã trả lời HTTP %d.  Nguyên nhân có khả năng cao nhất là người "
 "dùng hoặc mật khẩu GMail không đúng."
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:371
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:395
 #, c-format
 msgid ""
 "Received HTTP response code %d, which should be 200.  There may be a problem "
@@ -70,38 +70,38 @@ msgstr ""
 "vấn đề với máy chủ GMail, hoặc phương thức xác thực người dùng hay vị trí "
 "thư mới của GMail đã thay đổi."
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:617
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1751
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:922
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:641
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1775
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:946
 msgid "_Username:"
 msgstr "Người _dùng:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:636
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1770
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:941
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:661
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1795
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:966
 msgid "_Password:"
 msgstr "_Mật khẩu:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:656
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1808
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:972
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:682
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1834
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:998
 msgid "Check for _new messages every"
 msgstr "Kiểm tra thư mới _sau"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:671
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1822
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:458
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:471
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:697
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1848
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:459
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:472
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:643
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:986
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1012
 msgid "minute(s)."
 msgstr "phút."
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:752
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:778
 msgid "Remote GMail Mailbox"
 msgstr "Hộp thư GMail ở xa"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:753
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:779
 msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
@@ -109,7 +109,7 @@ msgstr ""
 "Plugin GMail có thể kết nối tới dịch vụ thư của Google và nhận thư mới theo "
 "đường truyền bảo mật."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:254
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:252
 msgid ""
 "Secure IMAP is not available, and the IMAP server does not support plaintext "
 "logins."
@@ -117,35 +117,35 @@ msgstr ""
 "Không dùng được IMAP bảo mật, và máy chủ IMAP không hỗ trợ đăng nhập thông "
 "thường."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:335
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:333
 msgid "STARTTLS security was requested, but this server does not support it."
 msgstr "Yêu cầu dùng bảo mật STARTTLS, nhưng máy chủ này không hỗ trợ."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:602
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:619
 msgid ""
 "The IMAP server returned a response we weren't quite expecting.  This might "
 "be OK, or this plugin might need to be modified to support your mail server "
 "if the new message counts are incorrect."
 msgstr ""
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1195
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1212
 msgid "Failed to get folder list"
 msgstr "Không lấy được danh sách thư mục"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1321
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1530
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1338
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1549
 msgid "Please wait..."
 msgstr "Xin hãy đợi..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1413
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1432
 msgid "Error"
 msgstr "Lỗi"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1414
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1433
 msgid "No server or username is set."
 msgstr "Chưa đặt máy chủ hoặc người dùng."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1415
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1434
 msgid ""
 "The folder list cannot be retrieved until a server, username, and probably "
 "password are set.  Also be sure to check any security settings in the "
@@ -155,72 +155,72 @@ msgstr ""
 "và mật khẩu.  Đồng thời cần kiểm tra lại các thiết lập bảo mật trong hộp "
 "thoại Nâng cao."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1420
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1439
 msgid "Set New Mail Folders"
 msgstr "Đặt các Thư mục Mới"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1431
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1450
 msgid "New Mail Folders"
 msgstr "Thư mục mới"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1614
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1633
 msgid "Advanced IMAP Options"
 msgstr "Tùy chọn IMAP nâng cao"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1623
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:816
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1644
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:838
 msgid "Connection"
 msgstr "Kết nối"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1632
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:825
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1653
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:847
 msgid "Use unsecured connection"
 msgstr "Dùng kết nối không bảo mật"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1633
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:826
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1654
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:848
 msgid "Use SSL/TLS on alternate port"
 msgstr "Dùng SSL/TLS trên cổng xen kẽ"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1634
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1655
 msgid "Use SSL/TLS via STARTTLS"
 msgstr "Dùng SSL/TLS qua STARTTLS"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1650
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1671
 msgid "Use non-standard IMAP _port:"
 msgstr "Dùng _cổng IMAP không theo chuẩn:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1679
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1701
 msgid "Folders"
 msgstr "Thư mục"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1687
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1709
 msgid "IMAP server _directory:"
 msgstr "_Thư mục máy chủ IMAP:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1718
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1741
 msgid "IMAP Server"
 msgstr "Máy chủ IMAP"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1732
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:903
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1755
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:926
 msgid "_Mail server:"
 msgstr "Máy _chủ:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1790
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:961
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1816
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:987
 msgid "_Advanced..."
 msgstr "_Nâng cao..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1797
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1823
 msgid "New mail _folders..."
 msgstr "_Thư mục mới..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1967
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1996
 msgid "Remote IMAP Mailbox"
 msgstr "Hộp thư IMAP ở xa"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1968
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1997
 msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
@@ -249,17 +249,17 @@ msgstr "Chọn Thư mục Maildir"
 msgid "Maildir _Path:"
 msgstr "Đường _dẫn Maildir:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:442
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:454
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:443
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:455
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:628
 msgid "_Interval:"
 msgstr "_Kiểm tra thư mới sau:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:492
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:493
 msgid "Local Maildir Spool"
 msgstr "Maildir trên máy"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:493
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:494
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
@@ -275,11 +275,11 @@ msgstr "Chọn tập tin mbox"
 msgid "Mbox _Filename:"
 msgstr "_Tên tập tin Mbox:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:496
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:497
 msgid "Local Mbox spool"
 msgstr "Mbox trên máy"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:497
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:498
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
 msgstr "Plugin Mbox theo dõi hộp thư dạng mbox trên máy nội bộ."
 
@@ -304,27 +304,27 @@ msgstr "Hộp thư MH trên máy"
 msgid "MH plugin watches local MH folders for new mail"
 msgstr "Plugin MH theo dõi thư mục MH nội bộ"
 
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:807
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:827
 msgid "Advanced POP3 Options"
 msgstr "Tùy chọn POP3 nâng cao"
 
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:827
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:849
 msgid "Use SSL/TLS via STLS"
 msgstr "Dùng SSL/TLS qua STLS"
 
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:843
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:865
 msgid "Use non-standard POP3 _port:"
 msgstr "Dùng _cổng POP3 không theo chuẩn:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:889
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:912
 msgid "POP3 Server"
 msgstr "Máy chủ POP3"
 
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1098
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1124
 msgid "Remote POP3 Mailbox"
 msgstr "Hộp thư POP3 ở xa"
 
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1099
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1125
 msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
@@ -333,140 +333,133 @@ msgstr ""
 "thể chọn dùng SSL để bảo mật kết nối."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
-#: ../panel-plugin/mailwatch-plugin-4.2.c:272
+#: ../panel-plugin/mailwatch-plugin-4.2.c:268
 #: ../panel-plugin/mailwatch-plugin.c:121
-#: ../panel-plugin/mailwatch-plugin.c:342
+#: ../panel-plugin/mailwatch-plugin.c:338
 msgid "No new mail"
 msgstr "Không có thư mới"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:129
 #: ../panel-plugin/mailwatch-plugin.c:136
-msgid "You have 1 new message:"
-msgstr "Có 1 thư mới:"
+#, fuzzy, c-format
+msgid "You have %d new message:"
+msgid_plural "You have %d new messages:"
+msgstr[0] "Có %d thư mới:"
+msgstr[1] "Có %d thư mới:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:131
-#: ../panel-plugin/mailwatch-plugin.c:138
-#, c-format
-msgid "You have %d new messages:"
-msgstr "Có %d thư mới:"
-
-#: ../panel-plugin/mailwatch-plugin-4.2.c:254
-#: ../panel-plugin/mailwatch-plugin.c:324
+#: ../panel-plugin/mailwatch-plugin-4.2.c:250
+#: ../panel-plugin/mailwatch-plugin.c:320
 msgid "Xfce Mailwatch"
 msgstr "Trình theo dõi thư của Xfce"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:255
-#: ../panel-plugin/mailwatch-plugin.c:325
+#: ../panel-plugin/mailwatch-plugin-4.2.c:251
+#: ../panel-plugin/mailwatch-plugin.c:321
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Không thêm được trình theo dõi thư vào thanh panel."
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:256
-#: ../panel-plugin/mailwatch-plugin.c:326
+#: ../panel-plugin/mailwatch-plugin-4.2.c:252
+#: ../panel-plugin/mailwatch-plugin.c:322
 msgid "It is possible that your version of GLib does not have threads support."
 msgstr "Có thể phiên bản GLib trên máy không hỗ trợ luồng."
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:481
-#: ../panel-plugin/mailwatch-plugin.c:538
+#: ../panel-plugin/mailwatch-plugin-4.2.c:477
+#: ../panel-plugin/mailwatch-plugin.c:537
 msgid "Mailwatch log"
 msgstr "Bản ghi"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:539
-#: ../panel-plugin/mailwatch-plugin.c:596
+#: ../panel-plugin/mailwatch-plugin-4.2.c:535
+#: ../panel-plugin/mailwatch-plugin.c:595
 msgid "Log _lines:"
 msgstr "_Dòng ghi:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:553
-#: ../panel-plugin/mailwatch-plugin.c:610
+#: ../panel-plugin/mailwatch-plugin-4.2.c:549
+#: ../panel-plugin/mailwatch-plugin.c:609
 msgid "Show log _status in icon"
 msgstr "Hiển thị _trạng thái trong biểu tượng"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:599
-#: ../panel-plugin/mailwatch-plugin.c:654
+#: ../panel-plugin/mailwatch-plugin-4.2.c:595
+#: ../panel-plugin/mailwatch-plugin.c:653
 msgid "Select Icon"
 msgstr "Chọn Biểu tượng"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:629
-#: ../panel-plugin/mailwatch-plugin-4.2.c:751
-#: ../panel-plugin/mailwatch-plugin.c:685
-#: ../panel-plugin/mailwatch-plugin.c:873
+#: ../panel-plugin/mailwatch-plugin-4.2.c:625
+#: ../panel-plugin/mailwatch-plugin-4.2.c:747
+#: ../panel-plugin/mailwatch-plugin.c:684
+#: ../panel-plugin/mailwatch-plugin.c:865
 msgid "_Normal"
 msgstr "_Bình thường"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:654
-#: ../panel-plugin/mailwatch-plugin.c:711
+#: ../panel-plugin/mailwatch-plugin-4.2.c:650
+#: ../panel-plugin/mailwatch-plugin.c:710
 msgid "Ne_w mail"
 msgstr "Thư _mới"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:683
-#: ../panel-plugin/mailwatch-plugin.c:805
+#: ../panel-plugin/mailwatch-plugin-4.2.c:679
+#: ../panel-plugin/mailwatch-plugin.c:797
 msgid "External Programs"
 msgstr "Chương trình ngoài"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:695
-#: ../panel-plugin/mailwatch-plugin.c:817
+#: ../panel-plugin/mailwatch-plugin-4.2.c:691
+#: ../panel-plugin/mailwatch-plugin.c:809
 msgid "Run _on click:"
 msgstr "Khi nhấn chuột, _chạy:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:712
-#: ../panel-plugin/mailwatch-plugin.c:834
+#: ../panel-plugin/mailwatch-plugin-4.2.c:708
+#: ../panel-plugin/mailwatch-plugin.c:826
 msgid "Run on new _messages:"
 msgstr "Khi có thư _mới, chạy:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:725
-#: ../panel-plugin/mailwatch-plugin.c:847
+#: ../panel-plugin/mailwatch-plugin-4.2.c:721
+#: ../panel-plugin/mailwatch-plugin.c:839
 msgid "Icons"
 msgstr "Biểu tượng"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:771
-#: ../panel-plugin/mailwatch-plugin.c:893
+#: ../panel-plugin/mailwatch-plugin-4.2.c:767
+#: ../panel-plugin/mailwatch-plugin.c:885
 msgid "Ne_w Mail"
 msgstr "_Thư mới"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:779
-#: ../panel-plugin/mailwatch-plugin.c:777
+#: ../panel-plugin/mailwatch-plugin-4.2.c:775
+#: ../panel-plugin/mailwatch-plugin.c:776
 msgid "_View Log..."
 msgstr "_Xem Bản ghi..."
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:892
-#: ../panel-plugin/mailwatch-plugin.c:788
+#: ../panel-plugin/mailwatch-plugin-4.2.c:888
+#: ../panel-plugin/mailwatch-plugin.c:757
 #: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Mail Watcher"
 msgstr "Theo dõi Thư"
 
-#: ../panel-plugin/mailwatch-plugin.c:729
+#: ../panel-plugin/mailwatch-plugin.c:728
 #, c-format
 msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
 msgstr "Không xem được trợ giúp vì không chạy được 'xfhelp4': %s"
 
-#: ../panel-plugin/mailwatch-plugin.c:731
+#: ../panel-plugin/mailwatch-plugin.c:730
 msgid "Help Unavailable"
 msgstr "Không xem được Trợ giúp"
 
-#: ../panel-plugin/mailwatch-plugin.c:732
+#: ../panel-plugin/mailwatch-plugin.c:731
 msgid "Failed to run xfhelp4"
 msgstr "Không chạy được xfhelp4"
 
-#: ../panel-plugin/mailwatch-plugin.c:759
-msgid "Edit Properties"
-msgstr "Sửa Thuộc tính"
-
-#: ../libmailwatch-core/mailwatch-utils.c:245
+#: ../libmailwatch-core/mailwatch-utils.c:246
 #, c-format
 msgid "XfceMailwatch: TLS handshake failed: %s"
 msgstr "XfceMailwatch: \"Bắt tay\" TLS không thành công: %s"
 
-#: ../libmailwatch-core/mailwatch-utils.c:255
+#: ../libmailwatch-core/mailwatch-utils.c:256
 msgid "Not compiled with SSL/TLS support"
 msgstr "Biên dịch không có hỗ trợ SSL/TLS"
 
-#: ../libmailwatch-core/mailwatch-utils.c:257
+#: ../libmailwatch-core/mailwatch-utils.c:258
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
 msgstr ""
 "XfceMailwatch: \"Bắt tay\" TLS không thành công: không biên dịch với hỗ trợ "
 "SSL."
 
-#: ../libmailwatch-core/mailwatch-utils.c:280
-#: ../libmailwatch-core/mailwatch-utils.c:333
+#: ../libmailwatch-core/mailwatch-utils.c:281
+#: ../libmailwatch-core/mailwatch-utils.c:334
 msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr "Yêu cầu một kết nối bảo mật, nhưng chưa chạy gnutls"
 
@@ -478,12 +471,12 @@ msgstr ""
 "xfce4-mailwatch-plugin: Không chạy được hỗ trợ GThread support.  Rất có thể "
 "có vấn đề từ cài đặt GLib."
 
-#: ../libmailwatch-core/mailwatch.c:350 ../libmailwatch-core/mailwatch.c:351
+#: ../libmailwatch-core/mailwatch.c:356 ../libmailwatch-core/mailwatch.c:357
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "Không ghi được tập tin cấu hình '%s'"
 
-#: ../libmailwatch-core/mailwatch.c:397 ../libmailwatch-core/mailwatch.c:399
+#: ../libmailwatch-core/mailwatch.c:403 ../libmailwatch-core/mailwatch.c:405
 #, c-format
 msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
@@ -494,62 +487,71 @@ msgstr ""
 "mật khẩu hoặc thông tin có giá trị, thì những người dùng khác sẽ đọc được "
 "chúng."
 
-#: ../libmailwatch-core/mailwatch.c:621
+#: ../libmailwatch-core/mailwatch.c:627
 msgid "This mailbox type does not require any configuration settings."
 msgstr "Dạng hộp thư này không yêu cầu bất kỳ thiết lập cấu hình nào."
 
-#: ../libmailwatch-core/mailwatch.c:647
+#: ../libmailwatch-core/mailwatch.c:654
 msgid "Mailbox _Name:"
 msgstr "Tên _Hộp thư:"
 
-#: ../libmailwatch-core/mailwatch.c:664
+#: ../libmailwatch-core/mailwatch.c:672
 msgid "Mailwatch"
 msgstr "Trình theo dõi thư"
 
-#: ../libmailwatch-core/mailwatch.c:665
+#: ../libmailwatch-core/mailwatch.c:673
 msgid "Mailbox name required."
 msgstr "Cần tên hộp thư."
 
-#: ../libmailwatch-core/mailwatch.c:666
+#: ../libmailwatch-core/mailwatch.c:674
 msgid "Please enter a name for the mailbox."
 msgstr "Xin hãy nhập tên cho hộp thư."
 
-#: ../libmailwatch-core/mailwatch.c:709
+#: ../libmailwatch-core/mailwatch.c:717
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "Sửa Hộp thư: %s"
 
-#: ../libmailwatch-core/mailwatch.c:772
+#: ../libmailwatch-core/mailwatch.c:780
 msgid "Select Mailbox Type"
 msgstr "Chọn dạng Hộp thư"
 
-#: ../libmailwatch-core/mailwatch.c:781
+#: ../libmailwatch-core/mailwatch.c:790
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr "Chọn dạng hộp thư.  Đọc mô tả của dạng ở dưới."
 
-#: ../libmailwatch-core/mailwatch.c:837
+#: ../libmailwatch-core/mailwatch.c:846
 msgid "Add New Mailbox"
 msgstr "Thêm Hộp thư Mới"
 
-#: ../libmailwatch-core/mailwatch.c:900
+#: ../libmailwatch-core/mailwatch.c:909
 msgid "Remove Mailbox"
 msgstr "Xóa hộp thư"
 
-#: ../libmailwatch-core/mailwatch.c:901
+#: ../libmailwatch-core/mailwatch.c:910
 msgid "Are you sure?"
 msgstr "Chắc chắn xóa?"
 
-#: ../libmailwatch-core/mailwatch.c:902
+#: ../libmailwatch-core/mailwatch.c:911
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr "Xóa hộp thư sẽ bỏ mọi thiết lập, và không thể phục hồi lại."
 
-#: ../libmailwatch-core/mailwatch.c:973
+#: ../libmailwatch-core/mailwatch.c:982
 msgid "Mailboxes"
 msgstr "Hộp thư"
 
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "Kiểm tra thư từ nhiều hộp thư"
+
+#~ msgid "You have 1 new message:"
+#~ msgstr "Có 1 thư mới:"
+
+#~ msgid "You have %d new messages:"
+#~ msgstr "Có %d thư mới:"
+
+#~ msgid "Edit Properties"
+#~ msgstr "Sửa Thuộc tính"
 
 #~ msgid ""
 #~ "A buffer was too small to receive all of an IMAP response.  This is a bug!"

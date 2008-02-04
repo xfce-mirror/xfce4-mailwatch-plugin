@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.2svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-09-10 21:29+0200\n"
+"POT-Creation-Date: 2008-02-03 20:52-0800\n"
 "PO-Revision-Date: 2006-12-04 09:04+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
@@ -19,9 +19,9 @@ msgstr ""
 "Plural-Forms: Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: KBabel 1.11.2\n"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:215
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:399
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:358
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:228
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:406
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:366
 msgid ""
 "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 "the panel may hang on close."
@@ -30,16 +30,16 @@ msgstr ""
 "connexió es pengés és possible que el quadre també es pengi quan s'intenti "
 "tancar."
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:254
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:438
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:397
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:265
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:443
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:403
 #, c-format
 msgid "Failed to connect to server: %s"
 msgstr "No s'ha pogut connectar al servidor: %s"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:286
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:470
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:429
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:303
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:481
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:441
 msgid ""
 "Unable to return socket to blocking mode.  Data may not be retreived "
 "correctly."
@@ -47,14 +47,14 @@ msgstr ""
 "No s'ha pogut configurar el sòcol a mode no-bloquejador. Es possible que no "
 "es consegueixin les dades correctament."
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:317
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:302
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:268
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:341
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:300
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:266
 #, c-format
 msgid "TLS handshake failed: %s"
 msgstr "No s'ha pogut dur a terme la connexió TLS: %s"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:365
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:389
 #, c-format
 msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
@@ -63,7 +63,7 @@ msgstr ""
 "S'ha rebut el codi HTTP %d. El més probable és que el vostre usuario o "
 "contrassenya de GMail siguin incorrectes."
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:371
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:395
 #, c-format
 msgid ""
 "Received HTTP response code %d, which should be 200.  There may be a problem "
@@ -74,38 +74,38 @@ msgstr ""
 "problemes amb els servidors de GMail, s'han fet canvis que fa incompatible "
 "l'autentificació o s'ha canviat la localització dels missatges nous."
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:617
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1751
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:922
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:641
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1775
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:946
 msgid "_Username:"
 msgstr "Nom d'_usuari:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:636
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1770
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:941
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:661
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1795
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:966
 msgid "_Password:"
 msgstr "_Contrasenya:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:656
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1808
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:972
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:682
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1834
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:998
 msgid "Check for _new messages every"
 msgstr "Comprova si hi ha missatges _nous cada"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:671
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1822
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:458
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:471
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:697
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1848
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:459
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:472
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:643
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:986
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1012
 msgid "minute(s)."
 msgstr "minut(s)."
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:752
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:778
 msgid "Remote GMail Mailbox"
 msgstr "Bústia remota de GMail"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:753
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:779
 msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
@@ -113,7 +113,7 @@ msgstr ""
 "El connector GMail pot connectar-se al servei de correu de Google i "
 "recuperar de manera segura el nombre de missatges."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:254
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:252
 msgid ""
 "Secure IMAP is not available, and the IMAP server does not support plaintext "
 "logins."
@@ -121,11 +121,11 @@ msgstr ""
 "La seguretat IMAP no està disponible i el servidor IMAP no permet connexions "
 "de text."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:335
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:333
 msgid "STARTTLS security was requested, but this server does not support it."
 msgstr "S'ha demanat seguretat STARTLS però el servidor no ho permet."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:602
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:619
 msgid ""
 "The IMAP server returned a response we weren't quite expecting.  This might "
 "be OK, or this plugin might need to be modified to support your mail server "
@@ -136,24 +136,24 @@ msgstr ""
 "servidor de correu en el cas que el comptador de missatges nous sigui "
 "incorrecte."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1195
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1212
 msgid "Failed to get folder list"
 msgstr "No s'ha obtingut la llista de carpetes"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1321
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1530
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1338
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1549
 msgid "Please wait..."
 msgstr "Espereu…"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1413
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1432
 msgid "Error"
 msgstr "Error"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1414
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1433
 msgid "No server or username is set."
 msgstr "No s'ha informat el servidor o el nom d'usuari."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1415
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1434
 msgid ""
 "The folder list cannot be retrieved until a server, username, and probably "
 "password are set.  Also be sure to check any security settings in the "
@@ -163,72 +163,72 @@ msgstr ""
 "l'usuari i probablement la clau.  Assegureu-vos de fixar les opcions de "
 "seguretat a la finestra d'opcions avançades."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1420
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1439
 msgid "Set New Mail Folders"
 msgstr "Fixa no ves carpetes de correu"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1431
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1450
 msgid "New Mail Folders"
 msgstr "Noves carpetes de correu"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1614
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1633
 msgid "Advanced IMAP Options"
 msgstr "Opcions avançades d'IMAP"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1623
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:816
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1644
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:838
 msgid "Connection"
 msgstr "Connexió"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1632
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:825
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1653
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:847
 msgid "Use unsecured connection"
 msgstr "Utilitza una connexió no segura"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1633
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:826
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1654
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:848
 msgid "Use SSL/TLS on alternate port"
 msgstr "Utilitza SSL/TLS en un ort alternatiu"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1634
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1655
 msgid "Use SSL/TLS via STARTTLS"
 msgstr "Utilitza SSL/TLS mitjançant STARTTLS"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1650
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1671
 msgid "Use non-standard IMAP _port:"
 msgstr "Utilitza un _port no habitual d'IMAP:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1679
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1701
 msgid "Folders"
 msgstr "Carpetes"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1687
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1709
 msgid "IMAP server _directory:"
 msgstr "_Directori del servidor IMAP: "
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1718
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1741
 msgid "IMAP Server"
 msgstr "Servidor IMAP"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1732
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:903
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1755
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:926
 msgid "_Mail server:"
 msgstr "Servidor de _correu;"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1790
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:961
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1816
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:987
 msgid "_Advanced..."
 msgstr "_Avançat…"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1797
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1823
 msgid "New mail _folders..."
 msgstr "_Carpetes noves de correu…"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1967
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1996
 msgid "Remote IMAP Mailbox"
 msgstr "Bústia de correu IMAP"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1968
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1997
 msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
@@ -247,8 +247,7 @@ msgstr "No s'ha pogut obtenir l'estat del fitxer «%s»: %s"
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:109
 #, c-format
 msgid "%s is not a directory. Is %s really a valid maildir?"
-msgstr ""
-"«%s» No és un directori. És realment «%s» una carpeta de correu vàlida?"
+msgstr "«%s» No és un directori. És realment «%s» una carpeta de correu vàlida?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:345
 msgid "Select Maildir Folder"
@@ -258,17 +257,17 @@ msgstr "Seleccioneu una carpeta de correu"
 msgid "Maildir _Path:"
 msgstr "_Camí a la carpeta de correu:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:442
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:454
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:443
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:455
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:628
 msgid "_Interval:"
 msgstr "_Interval:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:492
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:493
 msgid "Local Maildir Spool"
 msgstr "Cua local de carpetes «maildir»"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:493
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:494
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
@@ -284,11 +283,11 @@ msgstr "Seleccioneu el fitxer Mbox"
 msgid "Mbox _Filename:"
 msgstr "Nom del _fitxer Mbox:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:496
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:497
 msgid "Local Mbox spool"
 msgstr "Cua local Mbox"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:497
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:498
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
 msgstr ""
 "El connector Mbox monitoritza el correu de les cues locals de tipus «mbox». "
@@ -314,27 +313,27 @@ msgstr "Carpeta local de correu MH"
 msgid "MH plugin watches local MH folders for new mail"
 msgstr "El connector MH monitoritza el correu a les carpetes locals MH"
 
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:807
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:827
 msgid "Advanced POP3 Options"
 msgstr "Opcions avançades de POP3"
 
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:827
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:849
 msgid "Use SSL/TLS via STLS"
 msgstr "Utilitza SSL/TLS mitjançant STLS"
 
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:843
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:865
 msgid "Use non-standard POP3 _port:"
 msgstr "Utilitza un _port no habitual de POP3:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:889
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:912
 msgid "POP3 Server"
 msgstr "Servidor POP3"
 
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1098
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1124
 msgid "Remote POP3 Mailbox"
 msgstr "Bústia remota de POP3"
 
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1099
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1125
 msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
@@ -344,141 +343,134 @@ msgstr ""
 "connexió."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
-#: ../panel-plugin/mailwatch-plugin-4.2.c:272
+#: ../panel-plugin/mailwatch-plugin-4.2.c:268
 #: ../panel-plugin/mailwatch-plugin.c:121
-#: ../panel-plugin/mailwatch-plugin.c:342
+#: ../panel-plugin/mailwatch-plugin.c:338
 msgid "No new mail"
 msgstr "No hi han nous correus"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:129
 #: ../panel-plugin/mailwatch-plugin.c:136
-msgid "You have 1 new message:"
-msgstr "Teniu 1 missatge nou:"
+#, fuzzy, c-format
+msgid "You have %d new message:"
+msgid_plural "You have %d new messages:"
+msgstr[0] "Teniu %d missatges nous:"
+msgstr[1] "Teniu %d missatges nous:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:131
-#: ../panel-plugin/mailwatch-plugin.c:138
-#, c-format
-msgid "You have %d new messages:"
-msgstr "Teniu %d missatges nous:"
-
-#: ../panel-plugin/mailwatch-plugin-4.2.c:254
-#: ../panel-plugin/mailwatch-plugin.c:324
+#: ../panel-plugin/mailwatch-plugin-4.2.c:250
+#: ../panel-plugin/mailwatch-plugin.c:320
 msgid "Xfce Mailwatch"
 msgstr "Monitor de correu d'Xfce"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:255
-#: ../panel-plugin/mailwatch-plugin.c:325
+#: ../panel-plugin/mailwatch-plugin-4.2.c:251
+#: ../panel-plugin/mailwatch-plugin.c:321
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "No es pot afegir el monitor de correu al quadre."
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:256
-#: ../panel-plugin/mailwatch-plugin.c:326
+#: ../panel-plugin/mailwatch-plugin-4.2.c:252
+#: ../panel-plugin/mailwatch-plugin.c:322
 msgid "It is possible that your version of GLib does not have threads support."
 msgstr "Pot ser que la vostra versió de GLib no permeti fils."
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:481
-#: ../panel-plugin/mailwatch-plugin.c:538
+#: ../panel-plugin/mailwatch-plugin-4.2.c:477
+#: ../panel-plugin/mailwatch-plugin.c:537
 msgid "Mailwatch log"
 msgstr "Registre del monitor de correu"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:539
-#: ../panel-plugin/mailwatch-plugin.c:596
+#: ../panel-plugin/mailwatch-plugin-4.2.c:535
+#: ../panel-plugin/mailwatch-plugin.c:595
 msgid "Log _lines:"
 msgstr "_Línies del registre:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:553
-#: ../panel-plugin/mailwatch-plugin.c:610
+#: ../panel-plugin/mailwatch-plugin-4.2.c:549
+#: ../panel-plugin/mailwatch-plugin.c:609
 msgid "Show log _status in icon"
 msgstr "Mostra l'e_stat del registre a la icona"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:599
-#: ../panel-plugin/mailwatch-plugin.c:654
+#: ../panel-plugin/mailwatch-plugin-4.2.c:595
+#: ../panel-plugin/mailwatch-plugin.c:653
 msgid "Select Icon"
 msgstr "Selecciona la icona"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:629
-#: ../panel-plugin/mailwatch-plugin-4.2.c:751
-#: ../panel-plugin/mailwatch-plugin.c:685
-#: ../panel-plugin/mailwatch-plugin.c:873
+#: ../panel-plugin/mailwatch-plugin-4.2.c:625
+#: ../panel-plugin/mailwatch-plugin-4.2.c:747
+#: ../panel-plugin/mailwatch-plugin.c:684
+#: ../panel-plugin/mailwatch-plugin.c:865
 msgid "_Normal"
 msgstr "_Normal"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:654
-#: ../panel-plugin/mailwatch-plugin.c:711
+#: ../panel-plugin/mailwatch-plugin-4.2.c:650
+#: ../panel-plugin/mailwatch-plugin.c:710
 msgid "Ne_w mail"
 msgstr "_Correu nou"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:683
-#: ../panel-plugin/mailwatch-plugin.c:805
+#: ../panel-plugin/mailwatch-plugin-4.2.c:679
+#: ../panel-plugin/mailwatch-plugin.c:797
 msgid "External Programs"
 msgstr "Programes externs"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:695
-#: ../panel-plugin/mailwatch-plugin.c:817
+#: ../panel-plugin/mailwatch-plugin-4.2.c:691
+#: ../panel-plugin/mailwatch-plugin.c:809
 msgid "Run _on click:"
 msgstr "Executa _al fer clic:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:712
-#: ../panel-plugin/mailwatch-plugin.c:834
+#: ../panel-plugin/mailwatch-plugin-4.2.c:708
+#: ../panel-plugin/mailwatch-plugin.c:826
 msgid "Run on new _messages:"
 msgstr "Executa quan hi hagin nous _missatges:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:725
-#: ../panel-plugin/mailwatch-plugin.c:847
+#: ../panel-plugin/mailwatch-plugin-4.2.c:721
+#: ../panel-plugin/mailwatch-plugin.c:839
 msgid "Icons"
 msgstr "Icones"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:771
-#: ../panel-plugin/mailwatch-plugin.c:893
+#: ../panel-plugin/mailwatch-plugin-4.2.c:767
+#: ../panel-plugin/mailwatch-plugin.c:885
 msgid "Ne_w Mail"
 msgstr "_Correu nou"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:779
-#: ../panel-plugin/mailwatch-plugin.c:777
+#: ../panel-plugin/mailwatch-plugin-4.2.c:775
+#: ../panel-plugin/mailwatch-plugin.c:776
 msgid "_View Log..."
 msgstr "_Veu el registre…"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:892
-#: ../panel-plugin/mailwatch-plugin.c:788
+#: ../panel-plugin/mailwatch-plugin-4.2.c:888
+#: ../panel-plugin/mailwatch-plugin.c:757
 #: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Mail Watcher"
 msgstr "Monitor de correu"
 
-#: ../panel-plugin/mailwatch-plugin.c:729
+#: ../panel-plugin/mailwatch-plugin.c:728
 #, c-format
 msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
 msgstr ""
 "No s'ha pogut accedir a l'ajuda perquè no s'ha pogut executar 'xfhelp4': %s"
 
-#: ../panel-plugin/mailwatch-plugin.c:731
+#: ../panel-plugin/mailwatch-plugin.c:730
 msgid "Help Unavailable"
 msgstr "L'ajuda no està disponible"
 
-#: ../panel-plugin/mailwatch-plugin.c:732
+#: ../panel-plugin/mailwatch-plugin.c:731
 msgid "Failed to run xfhelp4"
 msgstr "No s'ha pogut executar «xfhelp4»"
 
-#: ../panel-plugin/mailwatch-plugin.c:759
-msgid "Edit Properties"
-msgstr "Edita les propietats"
-
-#: ../libmailwatch-core/mailwatch-utils.c:245
+#: ../libmailwatch-core/mailwatch-utils.c:246
 #, c-format
 msgid "XfceMailwatch: TLS handshake failed: %s"
 msgstr "Monitor de correu d'Xfce: Connexió TLS fallida: %s"
 
-#: ../libmailwatch-core/mailwatch-utils.c:255
+#: ../libmailwatch-core/mailwatch-utils.c:256
 msgid "Not compiled with SSL/TLS support"
 msgstr "No s'ha compilat amb les opcions per SSL/TLS"
 
-#: ../libmailwatch-core/mailwatch-utils.c:257
+#: ../libmailwatch-core/mailwatch-utils.c:258
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
 msgstr ""
 "Monitor de correu d'Xfce: Connexió TLS fallida: no s'ha compilat amb suport "
 "per SSL."
 
-#: ../libmailwatch-core/mailwatch-utils.c:280
-#: ../libmailwatch-core/mailwatch-utils.c:333
+#: ../libmailwatch-core/mailwatch-utils.c:281
+#: ../libmailwatch-core/mailwatch-utils.c:334
 msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr "S'ha soŀlicitat una connexió segura, però gnutls no està inicialitzat."
 
@@ -490,12 +482,12 @@ msgstr ""
 "xfce4-mailwatch-plugin: No es pot inicialitzar el suport per GThread. Pot "
 "ser degut a problemes amb la vostra instaŀlació de GLib."
 
-#: ../libmailwatch-core/mailwatch.c:350 ../libmailwatch-core/mailwatch.c:351
+#: ../libmailwatch-core/mailwatch.c:356 ../libmailwatch-core/mailwatch.c:357
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "No es pot escriure el fitxer de configuració «%s»"
 
-#: ../libmailwatch-core/mailwatch.c:397 ../libmailwatch-core/mailwatch.c:399
+#: ../libmailwatch-core/mailwatch.c:403 ../libmailwatch-core/mailwatch.c:405
 #, c-format
 msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
@@ -506,65 +498,74 @@ msgstr ""
 "fitxer te alguna clau o altra informació important podrà ser llegir per "
 "altres usuaris del sistema."
 
-#: ../libmailwatch-core/mailwatch.c:621
+#: ../libmailwatch-core/mailwatch.c:627
 msgid "This mailbox type does not require any configuration settings."
 msgstr "A aquest tipus de bústia no li cal cap configuració."
 
-#: ../libmailwatch-core/mailwatch.c:647
+#: ../libmailwatch-core/mailwatch.c:654
 msgid "Mailbox _Name:"
 msgstr "_Nom de la bústia:"
 
-#: ../libmailwatch-core/mailwatch.c:664
+#: ../libmailwatch-core/mailwatch.c:672
 msgid "Mailwatch"
 msgstr "Monitor de correu"
 
-#: ../libmailwatch-core/mailwatch.c:665
+#: ../libmailwatch-core/mailwatch.c:673
 msgid "Mailbox name required."
 msgstr "Cal que la bústia tingui un nom."
 
-#: ../libmailwatch-core/mailwatch.c:666
+#: ../libmailwatch-core/mailwatch.c:674
 msgid "Please enter a name for the mailbox."
 msgstr "Introduïu un nom per la bústia."
 
-#: ../libmailwatch-core/mailwatch.c:709
+#: ../libmailwatch-core/mailwatch.c:717
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "Edita la bústia: %s"
 
-#: ../libmailwatch-core/mailwatch.c:772
+#: ../libmailwatch-core/mailwatch.c:780
 msgid "Select Mailbox Type"
 msgstr "Seleccioneu el tipus de bústia"
 
-#: ../libmailwatch-core/mailwatch.c:781
+#: ../libmailwatch-core/mailwatch.c:790
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr ""
 "Seleccioneu un tipus de bústia. La descripció del tipus es mostrarà a sota."
 
-#: ../libmailwatch-core/mailwatch.c:837
+#: ../libmailwatch-core/mailwatch.c:846
 msgid "Add New Mailbox"
 msgstr "Afegeix una bústia nova"
 
-#: ../libmailwatch-core/mailwatch.c:900
+#: ../libmailwatch-core/mailwatch.c:909
 msgid "Remove Mailbox"
 msgstr "Suprimeix la bústia"
 
-#: ../libmailwatch-core/mailwatch.c:901
+#: ../libmailwatch-core/mailwatch.c:910
 msgid "Are you sure?"
 msgstr "Esteu segurs?"
 
-#: ../libmailwatch-core/mailwatch.c:902
+#: ../libmailwatch-core/mailwatch.c:911
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr ""
 "Si es suprimeixen les bústies tots els paràmetres es perdran. Aquests "
 "paràmetres no es poden recuperar."
 
-#: ../libmailwatch-core/mailwatch.c:973
+#: ../libmailwatch-core/mailwatch.c:982
 msgid "Mailboxes"
 msgstr "Bústies"
 
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "Comprova el correu de múltiples bústies"
+
+#~ msgid "You have 1 new message:"
+#~ msgstr "Teniu 1 missatge nou:"
+
+#~ msgid "You have %d new messages:"
+#~ msgstr "Teniu %d missatges nous:"
+
+#~ msgid "Edit Properties"
+#~ msgstr "Edita les propietats"
 
 #~ msgid ""
 #~ "A buffer was too small to receive all of an IMAP response.  This is a bug!"
