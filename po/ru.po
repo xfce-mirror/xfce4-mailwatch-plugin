@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-03 20:52-0800\n"
+"POT-Creation-Date: 2008-02-03 21:01-0800\n"
 "PO-Revision-Date: 2006-04-22 14:48+0600\n"
 "Last-Translator: Sergey Fedoseev <fedoseev.sergey@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -309,9 +309,9 @@ msgid ""
 msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
-#: ../panel-plugin/mailwatch-plugin-4.2.c:268
+#: ../panel-plugin/mailwatch-plugin-4.2.c:271
 #: ../panel-plugin/mailwatch-plugin.c:121
-#: ../panel-plugin/mailwatch-plugin.c:338
+#: ../panel-plugin/mailwatch-plugin.c:341
 msgid "No new mail"
 msgstr "Нет новых писем"
 
@@ -323,100 +323,106 @@ msgid_plural "You have %d new messages:"
 msgstr[0] "У вас %d новых писем:"
 msgstr[1] "У вас %d новых писем:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:250
-#: ../panel-plugin/mailwatch-plugin.c:320
+#: ../panel-plugin/mailwatch-plugin-4.2.c:140
+#: ../panel-plugin/mailwatch-plugin.c:147
+#, c-format
+msgid "tells how many new messages in each mailbox|    %d in %s"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:253
+#: ../panel-plugin/mailwatch-plugin.c:323
 msgid "Xfce Mailwatch"
 msgstr "Проверка почты Xfce"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:251
-#: ../panel-plugin/mailwatch-plugin.c:321
+#: ../panel-plugin/mailwatch-plugin-4.2.c:254
+#: ../panel-plugin/mailwatch-plugin.c:324
 #, fuzzy
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Не удалось добавить апплет проверки почты на панель."
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:252
-#: ../panel-plugin/mailwatch-plugin.c:322
+#: ../panel-plugin/mailwatch-plugin-4.2.c:255
+#: ../panel-plugin/mailwatch-plugin.c:325
 msgid "It is possible that your version of GLib does not have threads support."
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:477
-#: ../panel-plugin/mailwatch-plugin.c:537
+#: ../panel-plugin/mailwatch-plugin-4.2.c:480
+#: ../panel-plugin/mailwatch-plugin.c:540
 msgid "Mailwatch log"
 msgstr "Журнал проверки почты"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:535
-#: ../panel-plugin/mailwatch-plugin.c:595
+#: ../panel-plugin/mailwatch-plugin-4.2.c:538
+#: ../panel-plugin/mailwatch-plugin.c:598
 msgid "Log _lines:"
 msgstr "Строк в журнале:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:549
-#: ../panel-plugin/mailwatch-plugin.c:609
+#: ../panel-plugin/mailwatch-plugin-4.2.c:552
+#: ../panel-plugin/mailwatch-plugin.c:612
 msgid "Show log _status in icon"
 msgstr "Показывать статус из журнала на значке"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:595
-#: ../panel-plugin/mailwatch-plugin.c:653
+#: ../panel-plugin/mailwatch-plugin-4.2.c:598
+#: ../panel-plugin/mailwatch-plugin.c:656
 msgid "Select Icon"
 msgstr "Выберите значок"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:625
-#: ../panel-plugin/mailwatch-plugin-4.2.c:747
-#: ../panel-plugin/mailwatch-plugin.c:684
-#: ../panel-plugin/mailwatch-plugin.c:865
+#: ../panel-plugin/mailwatch-plugin-4.2.c:628
+#: ../panel-plugin/mailwatch-plugin-4.2.c:750
+#: ../panel-plugin/mailwatch-plugin.c:687
+#: ../panel-plugin/mailwatch-plugin.c:868
 msgid "_Normal"
 msgstr "Обычный"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:650
-#: ../panel-plugin/mailwatch-plugin.c:710
+#: ../panel-plugin/mailwatch-plugin-4.2.c:653
+#: ../panel-plugin/mailwatch-plugin.c:713
 msgid "Ne_w mail"
 msgstr "Новая почта"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:679
-#: ../panel-plugin/mailwatch-plugin.c:797
+#: ../panel-plugin/mailwatch-plugin-4.2.c:682
+#: ../panel-plugin/mailwatch-plugin.c:800
 msgid "External Programs"
 msgstr "Внешние программы"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:691
-#: ../panel-plugin/mailwatch-plugin.c:809
+#: ../panel-plugin/mailwatch-plugin-4.2.c:694
+#: ../panel-plugin/mailwatch-plugin.c:812
 msgid "Run _on click:"
 msgstr "Запускать при щелчке мышью:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:708
-#: ../panel-plugin/mailwatch-plugin.c:826
+#: ../panel-plugin/mailwatch-plugin-4.2.c:711
+#: ../panel-plugin/mailwatch-plugin.c:829
 msgid "Run on new _messages:"
 msgstr "Запускать при наличии новых сообщений:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:721
-#: ../panel-plugin/mailwatch-plugin.c:839
+#: ../panel-plugin/mailwatch-plugin-4.2.c:724
+#: ../panel-plugin/mailwatch-plugin.c:842
 msgid "Icons"
 msgstr "Значки"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:767
-#: ../panel-plugin/mailwatch-plugin.c:885
+#: ../panel-plugin/mailwatch-plugin-4.2.c:770
+#: ../panel-plugin/mailwatch-plugin.c:888
 msgid "Ne_w Mail"
 msgstr "Новая почта"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:775
-#: ../panel-plugin/mailwatch-plugin.c:776
+#: ../panel-plugin/mailwatch-plugin-4.2.c:778
+#: ../panel-plugin/mailwatch-plugin.c:779
 msgid "_View Log..."
 msgstr "Просмотреть журнал..."
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:888
-#: ../panel-plugin/mailwatch-plugin.c:757
+#: ../panel-plugin/mailwatch-plugin-4.2.c:891
+#: ../panel-plugin/mailwatch-plugin.c:760
 #: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Mail Watcher"
 msgstr "Проверка почты"
 
-#: ../panel-plugin/mailwatch-plugin.c:728
+#: ../panel-plugin/mailwatch-plugin.c:731
 #, c-format
 msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
 msgstr "Справка недоступна, потому что не удается запустить 'xfhelp4': %s"
 
-#: ../panel-plugin/mailwatch-plugin.c:730
+#: ../panel-plugin/mailwatch-plugin.c:733
 msgid "Help Unavailable"
 msgstr "Справка недоступна"
 
-#: ../panel-plugin/mailwatch-plugin.c:731
+#: ../panel-plugin/mailwatch-plugin.c:734
 msgid "Failed to run xfhelp4"
 msgstr "Не удалось запустить xfhelp4"
 

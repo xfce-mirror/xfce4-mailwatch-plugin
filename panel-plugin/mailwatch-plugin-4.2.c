@@ -135,8 +135,11 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg,
                     &mailbox_names, &new_message_counts);
             for(i = 0; mailbox_names[i]; i++) {
                 if(new_message_counts[i] > 0) {
-                    g_string_append_printf(ttip_str, "\n    %d in %s",
-                            new_message_counts[i], mailbox_names[i]);
+                    g_string_append_c(ttip_str, '\n');
+                    g_string_append_printf(ttip_str,
+                                           Q_("tells how many new messages in each mailbox|    %d in %s"),
+                                           new_message_counts[i],
+                                           mailbox_names[i]);
                 }
             }
             
