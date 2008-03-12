@@ -1,6 +1,6 @@
 /*
  *  xfce4-mailwatch-plugin - a mail notification applet for the xfce4 panel
- *  Copyright (c) 2005 Brian Tarricone <bjt23@cornell.edu>
+ *  Copyright (c) 2005-2008 Brian Tarricone <bjt23@cornell.edu>
  *  Copyright (c) 2005 Jasper Huijsmans <jasper@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -924,10 +924,19 @@ mailwatch_free(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
 }
 
 static void
+mailwatch_update_now_clicked_cb(GtkMenuItem *mi,
+                                gpointer user_data)
+{
+    XfceMailwatchPlugin *mwp = user_data;
+    xfce_mailwatch_force_update(mwp->mailwatch);
+}
+
+static void
 mailwatch_construct(XfcePanelPlugin *plugin)
 {
     XfceMailwatchPlugin *mwp;
-    
+    GtkWidget *mi, *img;
+
     xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
     if(!(mwp = mailwatch_create(plugin)))
@@ -948,6 +957,15 @@ mailwatch_construct(XfcePanelPlugin *plugin)
     g_signal_connect(plugin, "size-changed", G_CALLBACK(mailwatch_set_size),
                       mwp);
     
+    mi = gtk_image_menu_item_new_with_label(_("Update Now"));
+    img = gtk_image_new_from_stock(GTK_STOCK_REFRESH, GTK_ICON_SIZE_MENU);
+    gtk_widget_show(img);
+    gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(mi), img);
+    gtk_widget_show(mi);
+    g_signal_connect(G_OBJECT(mi), "activate",
+                     G_CALLBACK(mailwatch_update_now_clicked_cb), mwp);
+    xfce_panel_plugin_menu_insert_item(plugin, GTK_MENU_ITEM(mi));
+
     xfce_mailwatch_force_update(mwp->mailwatch);
 }
 
