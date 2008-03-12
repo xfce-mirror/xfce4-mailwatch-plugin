@@ -1,6 +1,6 @@
 /*
  *  xfce4-mailwatch-plugin - a mail notification applet for the xfce4 panel
- *  Copyright (c) 2005 Brian Tarricone <bjt23@cornell.edu>
+ *  Copyright (c) 2005-2008 Brian Tarricone <bjt23@cornell.edu>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by

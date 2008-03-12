@@ -1,6 +1,6 @@
 /*
  *  xfce4-mailwatch-plugin - a mail notification applet for the xfce4 panel
- *  Copyright (c) 2005 Brian Tarricone <bjt23@cornell.edu>
+ *  Copyright (c) 2005-2008 Brian Tarricone <bjt23@cornell.edu>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -285,17 +285,34 @@ xfce_mailwatch_net_send(gint sockfd,
         }
         
         while(bytesleft > 0) {
-            ret = gnutls_record_send(security_info->gt_session,
+            do {
+                ret = gnutls_record_send(security_info->gt_session,
                     buf+totallen-bytesleft, bytesleft);
-            if(ret < 0 && ret != GNUTLS_E_INTERRUPTED && ret != GNUTLS_E_AGAIN) {
+            } while(ret == GNUTLS_E_INTERRUPTED || ret == GNUTLS_E_AGAIN);
+            
+            if(ret == GNUTLS_E_REHANDSHAKE) {
+                /* server has requested a new handshake */
+                do {
+                    ret = gnutls_handshake(security_info->gt_session);
+                } while(ret == GNUTLS_E_AGAIN || ret == GNUTLS_E_INTERRUPTED);
+                
+                if(ret < 0) {
+                    if(error) {
+                        g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
+                                    "gnutls_handshake() [%d]: %s", ret,
+                                    gnutls_strerror(ret));
+                    }
+                    return -1;
+                }
+            } else if(ret < 0) {
                 if(error) {
                     g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
                                 "gnutls_record_send() [%d]: %s", ret,
                                 gnutls_strerror(ret));
                 }
-                DBG("gnutls_record_send() failed (%d): %s", ret, gnutls_strerror(ret));
-                bout = -1;
-                break;
+                DBG("gnutls_record_send() failed (%d): %s", ret,
+                    gnutls_strerror(ret));
+                return -1;
             } else if(ret > 0) {
                 bout += ret;
                 bytesleft -= ret;
@@ -303,7 +320,10 @@ xfce_mailwatch_net_send(gint sockfd,
         }
     } else {
 #endif
-        bout = send(sockfd, buf, strlen(buf), MSG_NOSIGNAL);
+        do {
+            bout = send(sockfd, buf, strlen(buf), MSG_NOSIGNAL);
+        } while(bout < 0 && (errno == EAGAIN || errno == EINTR));
+        
         if(bout < 0 && error) {
             g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
                         "send(): %s", strerror(errno));
@@ -324,7 +344,7 @@ xfce_mailwatch_net_recv(gint sockfd,
 {
     fd_set rfd;
     struct timeval tv;
-    gint ret, bin;
+    gint ret, bin = 0;
     
 #ifdef HAVE_SSL_SUPPORT
     if(security_info->using_tls) {
@@ -337,27 +357,47 @@ xfce_mailwatch_net_recv(gint sockfd,
             return -1;
         }
         
+retry_recv:
         do {
             ret = gnutls_record_recv(security_info->gt_session, buf, len);
         } while(ret == GNUTLS_E_INTERRUPTED || ret == GNUTLS_E_AGAIN);
         
-        if(ret < 0) {
+        if(ret == GNUTLS_E_REHANDSHAKE) {
+            /* server has requested a new handshake */
+            do {
+                ret = gnutls_handshake(security_info->gt_session);
+            } while(ret == GNUTLS_E_AGAIN || ret == GNUTLS_E_INTERRUPTED);
+            
+            if(ret < 0) {
+                if(error) {
+                    g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
+                                "gnutls_handshake() [%d]: %s", ret,
+                                gnutls_strerror(ret));
+                }
+                return -1;
+            }
+            
+            goto retry_recv;
+        } else if(ret < 0) {
             if(error) {
                 g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
                             "gnutls_record_recv() [%d]: %s", ret,
                             gnutls_strerror(ret));
             }
-            bin = -1;
+            return -1;
         } else
             bin = ret;
     } else {
 #endif
         FD_ZERO(&rfd);
         FD_SET(sockfd, &rfd);
-        tv.tv_sec = 45;
+        tv.tv_sec = 30;
         tv.tv_usec = 0;
         
-        ret = select(FD_SETSIZE, &rfd, NULL, NULL, &tv);
+        do {
+            ret = select(FD_SETSIZE, &rfd, NULL, NULL, &tv);
+        } while(ret < 0 && (errno == EAGAIN || errno == EINTR));
+        
         if(ret < 0) {
             if(error) {
                 g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
@@ -366,13 +406,15 @@ xfce_mailwatch_net_recv(gint sockfd,
             return -1;
         }
         
-        if(!FD_ISSET(sockfd, &rfd))
-            return 0;
-        
-        bin = recv(sockfd, buf, len, MSG_NOSIGNAL);
-        if(bin < 0 && error) {
-            g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                        "recv(): %s", strerror(errno));
+        if(FD_ISSET(sockfd, &rfd)) {
+            do {
+                bin = recv(sockfd, buf, len, MSG_NOSIGNAL);
+            } while(bin < 0 && (errno == EAGAIN || errno == EINTR));
+            
+            if(bin < 0 && error) {
+                g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
+                            "recv(): %s", strerror(errno));
+            }
         }
 #ifdef HAVE_SSL_SUPPORT
     }
