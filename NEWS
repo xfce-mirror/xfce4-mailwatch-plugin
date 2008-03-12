@@ -6,12 +6,16 @@ Version 1.0.2svn:
 
   Bugfixes:
     * Fix a compiler error on some systems (bug 1822).
+    * Fix incorrect getaddrinfo() usage breaking use on NetBSD (bug 3767).
+    * Fix possible hang when reading IMAP responses when a selected folder
+      is later deleted or unsubscribed.
 
   Features:
     * Update the new message counts for all mailboxes on startup, rather than
       waiting for the first interval timeout.
     * Document the behavior of forcing a new messsage count update when the
       user double-clicks the icon (patch from Maximilian Schleiss).
+    * Add experimental IPv6 support.
 
 Version 1.0.1 (20 Apr 2006):
 
