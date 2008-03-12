@@ -655,7 +655,7 @@ mailwatch_iconbtn_clicked_cb(GtkWidget *w, XfceMailwatchPlugin *mwp)
     toplevel = gtk_widget_get_toplevel(w);
     chooser = gtk_file_chooser_dialog_new(_("Select Icon"),
                                           GTK_WINDOW(toplevel),
-                                          XFCE_FILE_CHOOSER_ACTION_OPEN,
+                                          GTK_FILE_CHOOSER_ACTION_OPEN,
                                           GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
                                           GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
                                           NULL);
