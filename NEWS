@@ -10,6 +10,8 @@ Version 1.0.2svn:
     * Fix possible hang when reading IMAP responses when a selected folder
       is later deleted or unsubscribed.
     * Fix buffer size issues when reading IMAP folder contents (bug 2009).
+    * Fix mailcheck interval not getting saved if changed using the
+      keyboard rather than the mouse (bug 2386).
 
   Features:
     * Update the new message counts for all mailboxes on startup, rather than
