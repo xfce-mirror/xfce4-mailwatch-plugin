@@ -942,8 +942,8 @@ imap_password_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
 }
 
 static gboolean
-imap_config_timeout_spinbutton_changed_cb(GtkSpinButton *sb, GdkEventFocus *evt,
-        gpointer user_data)
+imap_config_timeout_spinbutton_changed_cb(GtkSpinButton *sb,
+                                          gpointer user_data)
 {
     XfceMailwatchIMAPMailbox *imailbox = user_data;
     gint value = gtk_spin_button_get_value_as_int(sb) * 60;
@@ -1874,7 +1874,7 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(sbtn), imailbox->timeout/60);
     gtk_widget_show(sbtn);
     gtk_box_pack_start(GTK_BOX(hbox), sbtn, FALSE, FALSE, 0);
-    g_signal_connect(G_OBJECT(sbtn), "focus-out-event",
+    g_signal_connect(G_OBJECT(sbtn), "value-changed",
             G_CALLBACK(imap_config_timeout_spinbutton_changed_cb), imailbox);
     gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), sbtn);
     

@@ -609,7 +609,6 @@ gmail_config_password_focus_out_cb(GtkWidget *w,
 
 static gboolean
 gmail_config_timeout_spinbutton_changed_cb(GtkSpinButton *sb,
-                                           GdkEventFocus *evt,
                                            gpointer user_data)
 {
     XfceMailwatchGMailMailbox *gmailbox = XFCE_MAILWATCH_GMAIL_MAILBOX(user_data);
@@ -689,7 +688,7 @@ gmail_get_setup_page(XfceMailwatchMailbox *mailbox)
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(sbtn), gmailbox->timeout/60);
     gtk_widget_show(sbtn);
     gtk_box_pack_start(GTK_BOX(hbox), sbtn, FALSE, FALSE, 0);
-    g_signal_connect(G_OBJECT(sbtn), "focus-out-event",
+    g_signal_connect(G_OBJECT(sbtn), "value-changed",
                      G_CALLBACK(gmail_config_timeout_spinbutton_changed_cb),
                      gmailbox);
     gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), sbtn);
