@@ -236,7 +236,7 @@ xfce_mailwatch_net_negotiate_tls(gint sockfd,
     gnutls_credentials_set(security_info->gt_session, GNUTLS_CRD_CERTIFICATE,
             security_info->gt_creds);
     gnutls_transport_set_ptr(security_info->gt_session,
-            (gnutls_transport_ptr_t)sockfd);
+            (gnutls_transport_ptr_t)(glong)sockfd);
     
     /* just do it */
     do {

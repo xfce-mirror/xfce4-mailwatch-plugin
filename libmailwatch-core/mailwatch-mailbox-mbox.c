@@ -285,12 +285,12 @@ mbox_save_settings( XfceMailwatchMailbox *mailbox )
 
     param = g_new( XfceMailwatchParam, 1 );
     param->key      = g_strdup( "ctime" );
-    param->value    = g_strdup_printf( "%li", mbox->ctime );
+    param->value    = g_strdup_printf( "%ld", (glong)mbox->ctime );
     settings = g_list_append( settings, param );
 
     param = g_new( XfceMailwatchParam, 1 );
     param->key      = g_strdup( "size" );
-    param->value    = g_strdup_printf( "%u", mbox->size );
+    param->value    = g_strdup_printf( "%lu", (gulong)mbox->size );
     settings = g_list_append( settings, param );
 
     param = g_new( XfceMailwatchParam, 1 );

@@ -260,7 +260,7 @@ maildir_save_param_list( XfceMailwatchMailbox *mailbox )
 
     param           = g_new( XfceMailwatchParam, 1 );
     param->key      = g_strdup( "mtime" );
-    param->value    = g_strdup_printf( "%ld", (long int)maildir->mtime );
+    param->value    = g_strdup_printf( "%ld", (glong)maildir->mtime );
     settings        = g_list_append( settings, param );
 
     param           = g_new( XfceMailwatchParam, 1 );
