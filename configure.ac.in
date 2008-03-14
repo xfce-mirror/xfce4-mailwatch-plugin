@@ -1,17 +1,22 @@
-dnl configure.ac
+dnl configure.ac.in
 dnl
 dnl xfce4-mailwatch-plugin - a mail notification plugin for the xfce4 panel
 dnl
 
 dnl version info
-m4_define([mailwatch_version], [1.0.2svn])
+m4_define([mailwatch_version_major], [1])
+m4_define([mailwatch_version_minor], [0])
+m4_define([mailwatch_version_micro], [2])
+m4_define([mailwatch_version_build], [r@REVISION@])
+m4_define([mailwatch_version_tag], [svn])
+m4_define([mailwatch_version], [mailwatch_version_major().mailwatch_version_minor().mailwatch_version_micro()ifelse(mailwatch_version_tag(), [svn], [mailwatch_version_tag()-mailwatch_version_build()], [mailwatch_version_tag()])])
 
 dnl init autoconf
-AC_INIT([xfce4-mailwatch-plugin], [mailwatch_version], [bjt23@cornell.edu])
+AC_INIT([xfce4-mailwatch-plugin], [mailwatch_version],
+        [http://bugzilla.xfce.org/])
 AC_PREREQ([2.50])
 
 dnl init automake
-MAILWATCH_VERSION=mailwatch_version
 AM_INIT_AUTOMAKE([dist-bzip2])
 AM_CONFIG_HEADER([config.h])
 AM_MAINTAINER_MODE
@@ -31,8 +36,11 @@ AC_PROG_INTLTOOL([0.31], [no-xml])
 
 dnl check for standard header files
 AC_HEADER_STDC
-AC_CHECK_HEADERS(errno.h fcntl.h math.h netdb.h netinet/in.h signal.h stddef.h string.h sys/select.h sys/socket.h sys/stat.h sys/types.h sys/wait.h time.h unistd.h)
-AC_CHECK_FUNCS(mmap sigaction srandom)
+AC_CHECK_HEADERS([errno.h fcntl.h math.h netdb.h netinet/in.h \
+                  signal.h stddef.h string.h sys/select.h \
+                  sys/socket.h sys/stat.h sys/types.h sys/wait.h \
+                  time.h unistd.h])
+AC_CHECK_FUNCS([mmap sigaction srandom])
 
 dnl Check for i18n support
 XDT_I18N([@LINGUAS@])
@@ -62,7 +70,7 @@ dnl check for gnutls support
 XDT_CHECK_OPTIONAL_PACKAGE([GNUTLS], [gnutls], [1.2.0], [ssl],
 	[gnutls support for secure IMAP/POP3 connections], [yes])
 if test "x$GNUTLS_FOUND" = "xyes"; then
-	AC_DEFINE_UNQUOTED([HAVE_SSL_SUPPORT], [1], [Define if SSL support is enabled])
+	AC_DEFINE([HAVE_SSL_SUPPORT], [1], [Define if SSL support is enabled])
 fi
 AM_CONDITIONAL([HAVE_SSL_SUPPORT], [test "x$GNUTLS_FOUND" = "xyes"])
 
