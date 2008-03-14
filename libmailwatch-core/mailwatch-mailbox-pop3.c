@@ -202,8 +202,76 @@ pop3_send_login_info(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *username,
     gint bin, bout;
     gchar buf[BUFSIZE+1];
     
-    TRACE("entering");
+#ifdef HAVE_SSL_SUPPORT
+    gint off;
+    gchar *p, *q;
     
+    /* see if CRAM-MD5 is supported */
+    g_strlcpy(buf, "CAPA\r\n", BUFSIZE);
+    bout = pop3_send(pmailbox, buf);
+    if(bout != strlen(buf))
+        goto cleanuperr;
+
+    off = 0;
+    do {
+        bin = pop3_recv(pmailbox, buf + off, BUFSIZE - off);
+        if(bin > 0)
+            off += bin;
+    } while(bin > 0 && !strstr(buf, ".\r\n"));
+    if(bin < 0)
+        goto cleanuperr;
+
+    if((p = strstr(buf, "SASL ")) && (q = strstr(p, "\r\n"))
+       && (p = strstr(p, "CRAM-MD5")) && p < q)
+    {
+        /* server supports CRAM-MD5 */
+        g_strlcpy(buf, "AUTH CRAM-MD5\r\n", BUFSIZE);
+        bout = pop3_send(pmailbox, buf);
+        if(bout != strlen(buf))
+            goto cleanuperr;
+
+        bin = pop3_recv(pmailbox, buf, BUFSIZE);
+        if(bin <= 0)
+            goto cleanuperr;
+        DBG("got cram-md5 challenge: %s\n", buf);
+
+        if(*buf == '+' && *(buf+1) == ' ' && *(buf+2)) {
+            gchar *response_base64;
+
+            p = strstr(buf, "\r\n");
+            if(!p)
+                p = strstr(buf, "\n");
+            if(!p) {
+                DBG("cram-md5 challenge wasn't a full line?");
+                goto cleanuperr;
+            }
+            *p = 0;
+
+            response_base64 = xfce_mailwatch_cram_md5(username, password,
+                                                      buf + 2);
+            if(!response_base64)
+                goto cleanuperr;
+            g_strlcpy(buf, response_base64, BUFSIZE);
+            g_strlcat(buf, "\r\n", BUFSIZE);
+            g_free(response_base64);
+            bout = pop3_send(pmailbox, buf);
+            if(bout != strlen(buf))
+                goto cleanuperr;
+
+            bin = pop3_recv(pmailbox, buf, BUFSIZE);
+            if(bin <= 0)
+                goto cleanuperr;
+            DBG("got response to cram-md5 auth: %s", buf);
+            if(strncmp(buf, "+OK", 3))
+                goto cleanuperr;
+
+            TRACE("leaving (success)");
+
+            return TRUE;
+        }
+    }
+#endif
+
     /* send the username */
     g_snprintf(buf, BUFSIZE, "USER %s\r\n", username);
     bout = pop3_send(pmailbox, buf);
@@ -240,7 +308,7 @@ pop3_send_login_info(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *username,
     
     return TRUE;
     
-    cleanuperr:
+cleanuperr:
     
     shutdown(pmailbox->sockfd, SHUT_RDWR);
     close(pmailbox->sockfd);

@@ -88,10 +88,16 @@ GtkWidget *xfce_mailwatch_custom_button_new(const gchar *text,
 GtkWidget *xfce_mailwatch_create_framebox(const gchar *title,
                                           GtkWidget **frame_bin);
 
-gint xfce_mailwatch_base64_encode(const guint8 *data,
-                                  gint size,
-                                  gchar **str);
+gchar *xfce_mailwatch_cram_md5(const gchar *username,
+                               const gchar *password,
+                               const gchar *challenge_base64);
 
+gint xfce_mailwatch_base64_encode(const guint8 *data,
+                                  gsize size,
+                                  gchar **str);
+gint xfce_mailwatch_base64_decode(const gchar *str,
+                                  guint8 *data,
+                                  gsize size);
 G_END_DECLS
 
 #endif

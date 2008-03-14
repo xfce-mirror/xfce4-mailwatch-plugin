@@ -9,6 +9,7 @@ Version 1.0.2svn:
     * Fix incorrect getaddrinfo() usage breaking use on NetBSD (bug 3767).
     * Fix possible hang when reading IMAP responses when a selected folder
       is later deleted or unsubscribed.
+    * Fix buffer size issues when reading IMAP folder contents (bug 2009).
 
   Features:
     * Update the new message counts for all mailboxes on startup, rather than
@@ -16,6 +17,8 @@ Version 1.0.2svn:
     * Document the behavior of forcing a new messsage count update when the
       user double-clicks the icon (patch from Maximilian Schleiss).
     * Add experimental IPv6 support.
+    * Add an 'Update Now' menu item (bug 3908).
+    * Add CRAM-MD5 authentication support for POP3 and IMAP (bug 3420).
 
 Version 1.0.1 (20 Apr 2006):
 

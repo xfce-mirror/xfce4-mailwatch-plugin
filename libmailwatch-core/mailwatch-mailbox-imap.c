@@ -253,9 +253,61 @@ imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox, const gchar *username,
         goto cleanuperr;
     }
     
+#ifdef HAVE_SSL_SUPPORT
+    if(strstr(buf, "AUTH=CRAM-MD5")) {
+        /* the server supports CRAM-MD5; prefer that over LOGIN */
+        g_snprintf(buf, BUFSIZE, "%05d AUTHENTICATE CRAM-MD5\r\n",
+                   ++imailbox->imap_tag);
+        bout = imap_send(imailbox, buf);
+        if(bout != strlen(buf))
+            goto cleanuperr;
+        
+        bin = imap_recv(imailbox, buf, BUFSIZE);
+        DBG("response from AUTHENTICATE CRAM-MD5 (%d): %s\n", bin, bin>0?buf:"(nada)");
+        if(bin <= 0)
+            goto cleanuperr;
+
+        if(*buf == '+' && *(buf+1) == ' ' && *(buf+2)) {
+            gchar *p, *response_base64;
+
+            /* we got a challenge */
+            p = strstr(buf, "\r\n");
+            if(!p)
+                p = strstr(buf, "\n");
+            if(!p) {
+                DBG("cram-md5 challenge wasn't a full line?");
+                goto cleanuperr;
+            }
+            *p = 0;
+
+            response_base64 = xfce_mailwatch_cram_md5(username, password,
+                                                      buf + 2);
+            if(!response_base64)
+                goto cleanuperr;
+            g_snprintf(buf, BUFSIZE, "%s\r\n", response_base64);
+            g_free(response_base64);
+            bout = imap_send(imailbox, buf);
+            DBG("sent CRAM-MD5 response: %s\n", buf);
+            if(bout != strlen(buf))
+                goto cleanuperr;
+
+            bin = imap_recv(imailbox, buf, BUFSIZE);
+            DBG("reponse from cram-md5 resp (%d): %s\n", bin, bin>0?buf:"(nada)");
+            if(bin <= 0)
+                goto cleanuperr;
+            if(!strstr(buf, "OK"))
+                goto cleanuperr;
+
+            /* auth successful */
+            TRACE("leaving (success)");
+            return TRUE;
+        }
+    }
+#endif
+
     /* send the creds */
     g_snprintf(buf, BUFSIZE, "%05d LOGIN \"%s\" \"%s\"\r\n",
-            ++imailbox->imap_tag, username, password);
+               ++imailbox->imap_tag, username, password);
     bout = imap_send(imailbox, buf);
     DBG("sent login (%d)", bout);
     if(bout != strlen(buf))

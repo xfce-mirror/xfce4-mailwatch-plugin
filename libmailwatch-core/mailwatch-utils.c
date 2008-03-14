@@ -498,6 +498,78 @@ xfce_mailwatch_create_framebox(const gchar *title, GtkWidget **frame_bin)
 #endif
 }
 
+#ifdef HAVE_SSL_SUPPORT
+
+/* assumes |dest| is allocated 2x |src_len| */
+static void
+bin2hex(gchar *dest,
+        const guchar *src,
+        gsize src_len)
+{
+    static const gchar hexdigits[] = "0123456789abcdef";
+
+    if(!src_len)
+        return;
+
+    while(src_len-- > 0) {
+        *dest++ = hexdigits[(*src >> 4) & 0xf];
+        *dest++ = hexdigits[*src & 0xf];
+        src++;
+    }
+}
+
+gchar *
+xfce_mailwatch_cram_md5(const gchar *username,
+                        const gchar *password,
+                        const gchar *challenge_base64)
+{
+    gchar challenge[2048];
+    gsize len, username_len;
+    gcry_md_hd_t hmac_md5;
+    gchar *response, *response_base64 = NULL;
+    
+    g_return_val_if_fail(username && *username && password && *password
+                         && challenge_base64 && *challenge_base64, NULL);
+
+    len = xfce_mailwatch_base64_decode(challenge_base64, (guchar *)challenge,
+                                       sizeof(challenge) - 1);
+    if(len <= 0)
+        return NULL;
+    challenge[len] = 0;
+    DBG("challenge is \"%s\"\n", challenge);
+
+    if(gcry_md_open(&hmac_md5, GCRY_MD_MD5, GCRY_MD_FLAG_HMAC) != GPG_ERR_NO_ERROR)
+        return NULL;
+    gcry_md_setkey(hmac_md5, password, strlen(password));
+    gcry_md_write(hmac_md5, challenge, len);
+    gcry_md_final(hmac_md5);
+
+    username_len = strlen(username);
+    /* username + a space + MD5 in hex + null */
+    response = g_malloc0(username_len + 1
+                         + gcry_md_get_algo_dlen(GCRY_MD_MD5)*2 + 1);
+    strcpy(response, username);
+    response[username_len] = ' ';
+    bin2hex(response + username_len + 1, gcry_md_read(hmac_md5, GCRY_MD_MD5),
+            gcry_md_get_algo_dlen(GCRY_MD_MD5));
+
+    gcry_md_close(hmac_md5);
+
+    DBG("response before base64: %s\n", response);
+    if(xfce_mailwatch_base64_encode((guchar *)response, strlen(response),
+                                    &response_base64) <= 0)
+    {
+        g_free(response_base64);
+        response_base64 = NULL;
+    }
+
+    g_free(response);
+
+    return response_base64;
+}
+
+#endif
+
 
 /*
  * The following Base64 code is provided under the following license:
@@ -534,13 +606,15 @@ xfce_mailwatch_create_framebox(const gchar *title, GtkWidget **frame_bin)
  * SUCH DAMAGE.
  *
  * Modified slightly by Brian Tarricone <bjt23@cornell.edu> to use g_malloc()
- * and glib primitive types.
+ * and glib primitive types, and to add buffer overrun checking.
  */
 
 static const gchar base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 gint
-xfce_mailwatch_base64_encode(const guint8 *data, gint size, gchar **str)
+xfce_mailwatch_base64_encode(const guint8 *data,
+                             gsize size,
+                             gchar **str)
 {
   gchar *s, *p;
   gint i;
@@ -548,8 +622,6 @@ xfce_mailwatch_base64_encode(const guint8 *data, gint size, gchar **str)
   const guchar *q;
 
   p = s = (gchar *)g_malloc(size*4/3+4);
-  if (p == NULL)
-      return -1;
   q = (const guchar *)data;
   i=0;
   for(i = 0; i < size;){
@@ -575,6 +647,91 @@ xfce_mailwatch_base64_encode(const guint8 *data, gint size, gchar **str)
   *p=0;
   *str = s;
   return strlen(s);
+}
+
+static
+int pos(gchar c)
+{
+  gchar *p;
+  for(p = (gchar *)base64; *p; p++)
+    if(*p == c)
+      return p - base64;
+  return -1;
+}
+
+gint
+xfce_mailwatch_base64_decode(const gchar *str,
+                             guint8 *data,
+                             gsize size)
+{
+  const char *p;
+  unsigned char *q;
+  int c;
+  int x;
+  int done = 0;
+  
+  q=(unsigned char*)data;
+  for(p=str; *p && !done; p+=4){
+    x = pos(p[0]);
+    if(x >= 0)
+      c = x;
+    else{
+      done = 3;
+      break;
+    }
+    c*=64;
+    
+    x = pos(p[1]);
+    if(x >= 0)
+      c += x;
+    else
+      return -1;
+    c*=64;
+    
+    if(p[2] == '=')
+      done++;
+    else{
+      x = pos(p[2]);
+      if(x >= 0)
+	c += x;
+      else
+	return -1;
+    }
+    c*=64;
+    
+    if(p[3] == '=')
+      done++;
+    else{
+      if(done)
+	return -1;
+      x = pos(p[3]);
+      if(x >= 0)
+	c += x;
+      else
+	return -1;
+    }
+    if(done < 3) {
+      if(!size)
+        return -1;
+      *q++=(c&0x00ff0000)>>16;
+      --size;
+    }
+      
+    if(done < 2) {
+      if(!size)
+        return -1;
+      *q++=(c&0x0000ff00)>>8;
+      --size;
+    }
+
+    if(done < 1) {
+      if(!size)
+          return -1;
+      *q++=(c&0x000000ff)>>0;
+      --size;
+    }
+  }
+  return q - (unsigned char*)data;
 }
 
 /*****
