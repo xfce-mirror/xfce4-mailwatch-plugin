@@ -952,18 +952,14 @@ config_treeview_button_press_cb(GtkTreeView *treeview, GdkEventButton *evt,
     return FALSE;
 }
 
-static gboolean
-config_set_button_sensitive(GtkTreeView *treeview, GdkEventButton *evt, 
-        GtkWidget *w)
+static void
+config_set_button_sensitive(GtkTreeSelection *sel, 
+                            GtkWidget *w)
 {
-    GtkTreeSelection *sel = gtk_tree_view_get_selection(treeview);
-    
     if(gtk_tree_selection_get_selected(sel, NULL, NULL))
         gtk_widget_set_sensitive(w, TRUE);
     else
         gtk_widget_set_sensitive(w, FALSE);
-    
-    return FALSE;
 }
 
 GtkContainer *
@@ -1039,23 +1035,23 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
     g_signal_connect(G_OBJECT(btn), "clicked",
             G_CALLBACK(config_add_btn_clicked_cb), mailwatch);
     
-    btn = gtk_button_new_from_stock(GTK_STOCK_EDIT);
-    gtk_widget_set_sensitive(btn, FALSE);
-    gtk_widget_show(btn);
-    gtk_box_pack_start(GTK_BOX(vbox), btn, FALSE, FALSE, 0);
-    g_signal_connect_after(G_OBJECT(treeview), "button-release-event",
-            G_CALLBACK(config_set_button_sensitive), btn);
-    g_signal_connect(G_OBJECT(btn), "clicked",
-            G_CALLBACK(config_edit_btn_clicked_cb), mailwatch);
-    
     btn = gtk_button_new_from_stock(GTK_STOCK_REMOVE);
     gtk_widget_set_sensitive(btn, FALSE);
     gtk_widget_show(btn);
     gtk_box_pack_start(GTK_BOX(vbox), btn, FALSE, FALSE, 0);
-    g_signal_connect_after(G_OBJECT(treeview), "button-release-event",
+    g_signal_connect_after(G_OBJECT(sel), "changed",
             G_CALLBACK(config_set_button_sensitive), btn);
     g_signal_connect(G_OBJECT(btn), "clicked",
             G_CALLBACK(config_remove_btn_clicked_cb), mailwatch);
+
+    btn = gtk_button_new_from_stock(GTK_STOCK_EDIT);
+    gtk_widget_set_sensitive(btn, FALSE);
+    gtk_widget_show(btn);
+    gtk_box_pack_start(GTK_BOX(vbox), btn, FALSE, FALSE, 0);
+    g_signal_connect_after(G_OBJECT(sel), "changed",
+            G_CALLBACK(config_set_button_sensitive), btn);
+    g_signal_connect(G_OBJECT(btn), "clicked",
+            G_CALLBACK(config_edit_btn_clicked_cb), mailwatch);
     
     return GTK_CONTAINER(frame);
 }
