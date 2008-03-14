@@ -21,6 +21,8 @@ Version 1.0.2svn:
     * Add experimental IPv6 support.
     * Add an 'Update Now' menu item (bug 3908).
     * Add CRAM-MD5 authentication support for POP3 and IMAP (bug 3420).
+    * Add about dialog.
+
 
 Version 1.0.1 (20 Apr 2006):
 
@@ -28,6 +30,7 @@ Version 1.0.1 (20 Apr 2006):
     * Fix a possible connection failure when using IMAPS or POP3S.
     * Don't compile in the GMail mailbox type if GNUTLS is not available,
       as GMail requires an SSL HTTP connection.
+
 
 Version 1.0.0 (31 Jan 2006):
 
