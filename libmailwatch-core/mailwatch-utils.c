@@ -118,8 +118,8 @@ static struct gcry_thread_cbs gcry_threads_gthread = {
     (ssize_t (*)(pid_t, int *, int))waitpid,
     accept,
     (int (*)(int, _GCRY_PTH_SOCKADDR *, _GCRY_PTH_SOCKLEN_T))connect,
-    sendmsg,
-    recvmsg
+    (int (*)(int, const struct msghdr *, int))sendmsg,
+    (int (*)(int, struct msghdr *, int))recvmsg
 };
 
 /*
