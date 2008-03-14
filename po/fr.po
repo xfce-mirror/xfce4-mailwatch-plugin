@@ -8,12 +8,13 @@ msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-14 02:43-0700\n"
-"PO-Revision-Date: 2007-01-23 22:02+0100\n"
+"PO-Revision-Date: 2008-03-14 13:00+0100\n"
 "Last-Translator: Mike Massonnet <mmassonnet@xfce.org>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:228
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:458
@@ -211,7 +212,7 @@ msgstr "Serveur IMAP"
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1788
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:994
 msgid "_Mail server:"
-msgstr "Serveur de courrier :"
+msgstr "_Serveur de courrier :"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1849
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1055
@@ -353,17 +354,17 @@ msgstr "Aucun nouveau message"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:129
 #: ../panel-plugin/mailwatch-plugin.c:120
-#, fuzzy, c-format
+#, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
-msgstr[0] "Vous avez %d nouveaux messages :"
+msgstr[0] "Vous avez %d nouveau message :"
 msgstr[1] "Vous avez %d nouveaux messages :"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:140
 #: ../panel-plugin/mailwatch-plugin.c:131
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr ""
+msgstr "    %d sur %s"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:253
 #: ../panel-plugin/mailwatch-plugin.c:345
@@ -443,7 +444,7 @@ msgstr "Nou_veau courrier"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:778
 #: ../panel-plugin/mailwatch-plugin.c:805
 msgid "_View Log..."
-msgstr "_Voir l'historique.."
+msgstr "_Voir l'historique..."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:891
 #: ../panel-plugin/mailwatch-plugin.c:786
@@ -465,36 +466,36 @@ msgid "Failed to run xfhelp4"
 msgstr "Échec à l'exécution de xfhelp4"
 
 #: ../panel-plugin/mailwatch-plugin.c:976
-#, fuzzy
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "Xfce Mailwatch"
+msgstr "Greffon Xfce4 Mailwatch"
 
 #: ../panel-plugin/mailwatch-plugin.c:978
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr ""
+msgstr "Un greffon de vérification de mail pour le panneau Xfce"
 
 #: ../panel-plugin/mailwatch-plugin.c:979
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 msgstr ""
+"Copyright (c) 2005-2008 Brian Tarricone\n"
+"Copyright (c) 2005 Pasi Orovuo"
 
 #: ../panel-plugin/mailwatch-plugin.c:985
 msgid "Maintainer, Original Author"
-msgstr ""
+msgstr "Mainteneur, Auteur original"
 
 #: ../panel-plugin/mailwatch-plugin.c:987
 msgid "Developer"
-msgstr ""
+msgstr "Développeur"
 
 #: ../panel-plugin/mailwatch-plugin.c:1028
 msgid "Update Now"
-msgstr ""
+msgstr "Mettre à jour"
 
 #: ../panel-plugin/mailwatch-plugin.c:1037
-#, fuzzy
 msgid "About Mailwatch"
-msgstr "Mailwatch"
+msgstr "À propos de Mailwatch"
 
 #: ../libmailwatch-core/mailwatch-utils.c:250
 #, c-format
