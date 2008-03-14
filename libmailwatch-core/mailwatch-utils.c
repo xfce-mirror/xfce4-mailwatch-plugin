@@ -74,6 +74,10 @@
 #define MSG_NOSIGNAL 0
 #endif
 
+#ifndef AI_ADDRCONFIG
+#define AI_ADDRCONFIG 0
+#endif
+
 #include <gtk/gtk.h>
 
 #include <libxfcegui4/libxfcegui4.h>
