@@ -89,6 +89,10 @@ fi
 dnl check for debugging support
 XDT_FEATURE_DEBUG
 
+AC_DEFINE_UNQUOTED([WEBSITE],
+                   ["http://spuriousinterrupt.org/projects/mailwatch"],
+                   [The Mailwatch website])
+
 AC_OUTPUT([
 Makefile
 doc/Makefile

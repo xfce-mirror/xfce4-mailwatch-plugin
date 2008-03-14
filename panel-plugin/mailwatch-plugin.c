@@ -67,6 +67,8 @@ typedef struct
     GdkPixbuf               *pix_log[XFCE_MAILWATCH_N_LOG_LEVELS];
     XfceMailwatchLogLevel   log_status;
     GtkListStore            *loglist;
+
+    GtkWidget *about_dialog;
 } XfceMailwatchPlugin;
 
 enum {
@@ -900,6 +902,9 @@ static void
 mailwatch_free(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
 {
     gint i;
+
+    if(mwp->about_dialog)
+        gtk_widget_destroy(mwp->about_dialog);
     
     xfce_mailwatch_destroy(mwp->mailwatch);
     
@@ -932,6 +937,45 @@ mailwatch_update_now_clicked_cb(GtkMenuItem *mi,
 }
 
 static void
+mailwatch_about_clicked_cb(GtkMenuItem *mi,
+                           gpointer user_data)
+{
+    XfceMailwatchPlugin *mwp = user_data;
+    XfceAboutInfo *ainfo;
+    GdkPixbuf *icon;
+
+    if(G_UNLIKELY(mwp->about_dialog)) {
+        gtk_window_present(GTK_WINDOW(mwp->about_dialog));
+        return;
+    }
+
+    ainfo = xfce_about_info_new(_("Xfce4 Mailwatch Plugin"),
+                                VERSION,
+                                _("A featureful mail-checker applet for the Xfce Panel"),
+                                _("Copyright (c) 2005-2008 Brian Tarricone\n"
+                                  "Copyright (c) 2005 Pasi Orovuo"),
+                                  XFCE_LICENSE_GPL);
+    xfce_about_info_set_homepage(ainfo, WEBSITE);
+    xfce_about_info_add_credit(ainfo, "Brian J. Tarricone",
+                               "bjt23@cornell.edu",
+                               _("Maintainer, Original Author"));
+    xfce_about_info_add_credit(ainfo, "Pasi Orovuo", "pasi.ov@gmail.com",
+                               _("Developer"));
+    
+    icon = xfce_themed_icon_load("xfce-mail", 32);
+    
+    mwp->about_dialog = xfce_about_dialog_new_with_values(NULL, ainfo, icon);
+    g_object_add_weak_pointer(G_OBJECT(mwp->about_dialog),
+                              (gpointer)&mwp->about_dialog);
+    gtk_widget_show_all(mwp->about_dialog);
+    g_signal_connect(G_OBJECT(mwp->about_dialog), "response",
+                     G_CALLBACK(gtk_widget_destroy), NULL);
+
+    if(icon)
+        g_object_unref(G_OBJECT(icon));
+}
+
+static void
 mailwatch_construct(XfcePanelPlugin *plugin)
 {
     XfceMailwatchPlugin *mwp;
@@ -945,17 +989,17 @@ mailwatch_construct(XfcePanelPlugin *plugin)
     mailwatch_read_config(plugin, mwp);
 
     g_signal_connect(plugin, "free-data", 
-                      G_CALLBACK(mailwatch_free), mwp);
+                     G_CALLBACK(mailwatch_free), mwp);
     
     g_signal_connect(plugin, "save", 
-                      G_CALLBACK(mailwatch_write_config), mwp);
+                     G_CALLBACK(mailwatch_write_config), mwp);
     
     xfce_panel_plugin_menu_show_configure(plugin);
     g_signal_connect(plugin, "configure-plugin", 
-                      G_CALLBACK(mailwatch_create_options), mwp);
+                     G_CALLBACK(mailwatch_create_options), mwp);
 
-    g_signal_connect(plugin, "size-changed", G_CALLBACK(mailwatch_set_size),
-                      mwp);
+    g_signal_connect(plugin, "size-changed",
+                     G_CALLBACK(mailwatch_set_size), mwp);
     
     mi = gtk_image_menu_item_new_with_label(_("Update Now"));
     img = gtk_image_new_from_stock(GTK_STOCK_REFRESH, GTK_ICON_SIZE_MENU);
@@ -966,9 +1010,17 @@ mailwatch_construct(XfcePanelPlugin *plugin)
                      G_CALLBACK(mailwatch_update_now_clicked_cb), mwp);
     xfce_panel_plugin_menu_insert_item(plugin, GTK_MENU_ITEM(mi));
 
+    mi = gtk_image_menu_item_new_with_label(_("About Mailwatch"));
+    img = gtk_image_new_from_stock(GTK_STOCK_ABOUT, GTK_ICON_SIZE_MENU);
+    gtk_widget_show(img);
+    gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(mi), img);
+    gtk_widget_show(mi);
+    g_signal_connect(G_OBJECT(mi), "activate",
+                     G_CALLBACK(mailwatch_about_clicked_cb), mwp);
+    xfce_panel_plugin_menu_insert_item(plugin, GTK_MENU_ITEM(mi));
+
     xfce_mailwatch_force_update(mwp->mailwatch);
 }
-
 
 XFCE_PANEL_PLUGIN_REGISTER_EXTERNAL(mailwatch_construct);
 
