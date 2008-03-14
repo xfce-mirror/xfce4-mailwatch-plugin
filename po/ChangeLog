@@ -1,3 +1,7 @@
+2008-03-14  Stavros Giannouris <stavrosg@hellug.gr>
+
+	* el.po: Greek translation updated
+
 2008-03-14  Mike Massonnet <mmassonnet@xfce.org>
 
 	* fr.po: Updated French translation
@@ -174,7 +178,7 @@
 
 	* ChangeLog: Updated.
 
-2005-11-27  Stavros Giannouris <stavrosg2002@freemail.gr>
+2005-11-27  Stavros Giannouris <stavrosg@hellug.gr>
 
 	* el.po: Updated Greek translation.
 
@@ -259,7 +263,7 @@
 
 	* ja.po: Updated Japanese translations.
 
-2005-10-06  Stavros Giannouris <stavrosg2002@freemail.gr>
+2005-10-06  Stavros Giannouris <stavrosg@hellug.gr>
 
 	* el.po: Minor updates & polishing for the Greek translations
 
@@ -295,7 +299,7 @@
 
 	* ja.po: Updated Japanese translations.
 
-2005-08-20  Stavros Giannouris <stavrosg2002@freemail.gr>
+2005-08-20  Stavros Giannouris <stavrosg@hellug.gr>
 
 	* el.po: Updated Greek translation for xfce4-mailwatch-plugin
 
@@ -312,7 +316,7 @@
 
 	* fi.po: Added Finnish translations by Jari Rahkonen.
 
-2005-08-06  Stavros Giannouris <stavrosg2002@freemail.gr>
+2005-08-06  Stavros Giannouris <stavrosg@hellug.gr>
 
 	* el.po: Initial addition of Greek language files for
 	  xfce4-mailwatch plugin in trunk.
