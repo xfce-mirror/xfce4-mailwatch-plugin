@@ -27,8 +27,8 @@
 
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
-#include <libxfcegui4/xfce_scaled_image.h>
 #include <libxfce4panel/xfce-panel-plugin.h>
+#include <libxfce4panel/xfce-panel-convenience.h>
 
 #include "mailwatch.h"
 #include "mailwatch-mailbox.h"
@@ -78,37 +78,15 @@ enum {
     LOGLIST_N_COLUMNS
 };
 
+static gboolean mailwatch_set_size(XfcePanelPlugin *plugin,
+                                   gint wsize,
+                                   XfceMailwatchPlugin *mwp);
+
 static void
 mailwatch_set_default_config(XfceMailwatchPlugin *mwp)
 {
     mwp->log_lines = 200;
     mwp->show_log_status = TRUE;
-}
-
-static void
-mailwatch_set_icon(XfceMailwatchPlugin *mwp, gboolean newmail)
-{
-    GdkPixbuf       *pb = newmail ?
-                            gdk_pixbuf_copy(mwp->pix_newmail) :
-                            gdk_pixbuf_copy(mwp->pix_normal);
-    GdkPixbuf       *overlay = NULL;
-    gint h, ow, oh;
-
-    if( mwp->log_status && mwp->show_log_status &&
-            mwp->log_status < XFCE_MAILWATCH_N_LOG_LEVELS ) {
-        overlay = mwp->pix_log[mwp->log_status];
-    }
-    
-    h = gdk_pixbuf_get_height(pb);
-    if(overlay) {
-        ow = gdk_pixbuf_get_width(overlay);
-        oh = gdk_pixbuf_get_height(overlay);
-        gdk_pixbuf_composite(overlay, pb, 0, h - oh, ow, oh, 0, h - oh,
-                             1.0, 1.0, GDK_INTERP_BILINEAR, 255);
-    }
-    
-    xfce_scaled_image_set_from_pixbuf(XFCE_SCALED_IMAGE(mwp->image ), pb);
-    g_object_unref(G_OBJECT(pb));
 }
         
 static void
@@ -119,14 +97,18 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg,
     guint new_messages = GPOINTER_TO_UINT( arg );
     
     if(new_messages == 0 && mwp->newmail_icon_visible) {
-        mailwatch_set_icon( mwp, FALSE );
-        gtk_tooltips_set_tip(mwp->tooltip, mwp->button, _("No new mail"), NULL);
         mwp->newmail_icon_visible = FALSE;
         mwp->new_messages = 0;
+        mailwatch_set_size(mwp->plugin,
+                           xfce_panel_plugin_get_size(mwp->plugin),
+                           mwp);
+        gtk_tooltips_set_tip(mwp->tooltip, mwp->button, _("No new mail"), NULL);
     } else if(new_messages > 0) {
         if(!mwp->newmail_icon_visible) {
-            mailwatch_set_icon( mwp, TRUE );
             mwp->newmail_icon_visible = TRUE;
+            mailwatch_set_size(mwp->plugin,
+                               xfce_panel_plugin_get_size(mwp->plugin),
+                               mwp);
         }
         if(new_messages != mwp->new_messages) {
             GString *ttip_str = g_string_sized_new(64);
@@ -237,7 +219,9 @@ mailwatch_log_message_cb(XfceMailwatch *mailwatch,
     
     if( entry->level > mwp->log_status ) {
         mwp->log_status = entry->level;
-        mailwatch_set_icon( mwp, mwp->newmail_icon_visible );
+        mailwatch_set_size(mwp->plugin,
+                           xfce_panel_plugin_get_size(mwp->plugin),
+                           mwp);
     }
     
     while(gtk_tree_model_iter_n_children(GTK_TREE_MODEL(mwp->loglist), NULL) > mwp->log_lines) {
@@ -268,16 +252,46 @@ mailwatch_get_mini_icon(GtkWidget *dummy, const gchar *icon_name, gint size)
     return pix;
 }
 
+static GdkPixbuf *
+mailwatch_build_icon(XfceMailwatchPlugin *mwp,
+                     gboolean newmail)
+{
+    GdkPixbuf *pb = newmail ? gdk_pixbuf_copy(mwp->pix_newmail)
+                            : gdk_pixbuf_copy(mwp->pix_normal);
+    GdkPixbuf *overlay = NULL;
+    gint h, ow, oh;
+
+    if(mwp->log_status && mwp->show_log_status
+       && mwp->log_status < XFCE_MAILWATCH_N_LOG_LEVELS)
+    {
+        overlay = mwp->pix_log[mwp->log_status];
+    }
+    
+    h = gdk_pixbuf_get_height(pb);
+    if(overlay) {
+        ow = gdk_pixbuf_get_width(overlay);
+        oh = gdk_pixbuf_get_height(overlay);
+        gdk_pixbuf_composite(overlay, pb, 0, h - oh, ow, oh, 0, h - oh,
+                             1.0, 1.0, GDK_INTERP_BILINEAR, 255);
+    }
+
+    return pb;
+}
+
 static gboolean
 mailwatch_set_size(XfcePanelPlugin *plugin, gint wsize, 
                    XfceMailwatchPlugin *mwp)
 {
-    gint size, i;
+    gint size, width, height, i;
     GtkWidget *dummy;
     gchar *icon;
+    GdkPixbuf *pb;
     
+    /* this is such lame lame voodoo magic.  the x/ythickness stuff
+     * shouldn't be needed, since i think the panel button convienence
+     * thingo sets them to zero, but we'll leave it for now. */
     size = wsize - MAX(GTK_WIDGET(mwp->button)->style->xthickness, 
-                        GTK_WIDGET(mwp->button)->style->ythickness) - 1;
+                       GTK_WIDGET(mwp->button)->style->ythickness) * 2 - 2;
     
     if(mwp->pix_normal)
         g_object_unref(G_OBJECT(mwp->pix_normal));
@@ -306,9 +320,15 @@ mailwatch_set_size(XfcePanelPlugin *plugin, gint wsize,
     
     gtk_widget_destroy(dummy);
     
-    mailwatch_set_icon(mwp, mwp->newmail_icon_visible);
-    
-    gtk_widget_set_size_request(mwp->button, wsize, wsize);
+    pb = mailwatch_build_icon(mwp, mwp->newmail_icon_visible);
+    width = gdk_pixbuf_get_width(pb);
+    height = gdk_pixbuf_get_height(pb);
+    gtk_image_set_from_pixbuf(GTK_IMAGE(mwp->image), pb);
+    g_object_unref(G_OBJECT(pb));
+
+    width += wsize - size;
+    height += wsize - size;
+    gtk_widget_set_size_request(mwp->button, width, height);
 
     return TRUE;
 }
@@ -331,8 +351,8 @@ mailwatch_create(XfcePanelPlugin *plugin)
     }
     
     mwp->tooltip = gtk_tooltips_new();
-    
-    mwp->button = gtk_button_new();
+
+    mwp->button = xfce_create_panel_button();
     gtk_button_set_relief(GTK_BUTTON(mwp->button), GTK_RELIEF_NONE);
     gtk_widget_show(mwp->button);
     gtk_container_add(GTK_CONTAINER(plugin), mwp->button);
@@ -344,7 +364,7 @@ mailwatch_create(XfcePanelPlugin *plugin)
     
     xfce_panel_plugin_add_action_widget(plugin, mwp->button);
     
-    mwp->image = xfce_scaled_image_new();
+    mwp->image = gtk_image_new();
     gtk_widget_show(mwp->image);
     gtk_container_add(GTK_CONTAINER(mwp->button), mwp->image);
 
@@ -520,7 +540,9 @@ mailwatch_log_status_toggled_cb(GtkToggleButton *tb, gpointer user_data)
     mwp->show_log_status = gtk_toggle_button_get_active(tb);
     
     have_new_msgs = !!xfce_mailwatch_get_new_messages(mwp->mailwatch);
-    mailwatch_set_icon(mwp, have_new_msgs);
+    mailwatch_set_size(mwp->plugin,
+                       xfce_panel_plugin_get_size(mwp->plugin),
+                       mwp);
 }
 
 static void
@@ -537,7 +559,9 @@ mailwatch_view_log_clicked_cb( GtkWidget *widget, gpointer user_data )
     }
 
     mwp->log_status = 0;
-    mailwatch_set_icon( mwp, mwp->newmail_icon_visible );
+    mailwatch_set_size(mwp->plugin,
+                       xfce_panel_plugin_get_size(mwp->plugin),
+                       mwp);
 
     dialog = gtk_dialog_new_with_buttons(_( "Mailwatch log" ),
                                          GTK_WINDOW(gtk_widget_get_toplevel(widget)),
