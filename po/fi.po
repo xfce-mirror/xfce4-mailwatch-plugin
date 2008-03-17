@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-14 02:43-0700\n"
+"POT-Creation-Date: 2008-03-17 16:51-0700\n"
 "PO-Revision-Date: 2008-03-14 10:35+0200\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
@@ -480,13 +480,9 @@ msgstr "Ylläpitäjä, projektin alkuunpanija"
 msgid "Developer"
 msgstr "Kehittäjä"
 
-#: ../panel-plugin/mailwatch-plugin.c:1028
+#: ../panel-plugin/mailwatch-plugin.c:1032
 msgid "Update Now"
 msgstr "Päivitä nyt"
-
-#: ../panel-plugin/mailwatch-plugin.c:1037
-msgid "About Mailwatch"
-msgstr "Tietoja Postivahdista"
 
 #: ../libmailwatch-core/mailwatch-utils.c:250
 #, c-format
@@ -590,3 +586,6 @@ msgstr "Postilaatikot"
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "Tarkista posti useista postilaatikoista"
+
+#~ msgid "About Mailwatch"
+#~ msgstr "Tietoja Postivahdista"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-14 02:43-0700\n"
+"POT-Creation-Date: 2008-03-17 16:51-0700\n"
 "PO-Revision-Date: 2008-03-14 21:32+0200\n"
 "Last-Translator: Stavros Giannouris <stavrosg@hellug.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -489,13 +489,9 @@ msgstr "Αρχική ανάπτυξη, συντήρηση"
 msgid "Developer"
 msgstr "Ανάπτυξη"
 
-#: ../panel-plugin/mailwatch-plugin.c:1028
+#: ../panel-plugin/mailwatch-plugin.c:1032
 msgid "Update Now"
 msgstr "Ενημέρωση τώρα"
-
-#: ../panel-plugin/mailwatch-plugin.c:1037
-msgid "About Mailwatch"
-msgstr "Περί του Mailwatch"
 
 #: ../libmailwatch-core/mailwatch-utils.c:250
 #, c-format
@@ -602,6 +598,9 @@ msgstr "Γραμματοκιβώτια"
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "Έλεγχος πολλαπλών γραμματοκιβωτίων"
+
+#~ msgid "About Mailwatch"
+#~ msgstr "Περί του Mailwatch"
 
 #~ msgid "You have 1 new message:"
 #~ msgstr "Έχετε 1 νέο μήνυμα:"

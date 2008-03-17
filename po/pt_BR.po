@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-14 02:43-0700\n"
+"POT-Creation-Date: 2008-03-17 16:51-0700\n"
 "PO-Revision-Date: 2008-02-11 10:38-0500\n"
 "Last-Translator: Fábio Nogueira <deb-user-ba@ubuntu.com>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
@@ -486,14 +486,9 @@ msgstr ""
 msgid "Developer"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:1028
+#: ../panel-plugin/mailwatch-plugin.c:1032
 msgid "Update Now"
 msgstr ""
-
-#: ../panel-plugin/mailwatch-plugin.c:1037
-#, fuzzy
-msgid "About Mailwatch"
-msgstr "Monitor de Mensagens"
 
 #: ../libmailwatch-core/mailwatch-utils.c:250
 #, c-format
@@ -601,6 +596,10 @@ msgstr "Caixas de Mensagens"
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "Verificar mensagens de várias caixas de mensagens"
+
+#, fuzzy
+#~ msgid "About Mailwatch"
+#~ msgstr "Monitor de Mensagens"
 
 #~ msgid "You have 1 new message:"
 #~ msgstr "Você tem 1 mensagem nova:"

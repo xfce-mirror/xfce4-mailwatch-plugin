@@ -961,8 +961,8 @@ mailwatch_update_now_clicked_cb(GtkMenuItem *mi,
 }
 
 static void
-mailwatch_about_clicked_cb(GtkMenuItem *mi,
-                           gpointer user_data)
+mailwatch_show_about(XfcePanelPlugin *plugin,
+                     gpointer user_data)
 {
     XfceMailwatchPlugin *mwp = user_data;
     XfceAboutInfo *ainfo;
@@ -1019,8 +1019,12 @@ mailwatch_construct(XfcePanelPlugin *plugin)
                      G_CALLBACK(mailwatch_write_config), mwp);
     
     xfce_panel_plugin_menu_show_configure(plugin);
-    g_signal_connect(plugin, "configure-plugin", 
+    g_signal_connect(plugin, "configure-plugin",
                      G_CALLBACK(mailwatch_create_options), mwp);
+    
+    xfce_panel_plugin_menu_show_about(plugin);
+    g_signal_connect(plugin, "about",
+                     G_CALLBACK(mailwatch_show_about), mwp);
 
     g_signal_connect(plugin, "size-changed",
                      G_CALLBACK(mailwatch_set_size), mwp);
@@ -1032,15 +1036,6 @@ mailwatch_construct(XfcePanelPlugin *plugin)
     gtk_widget_show(mi);
     g_signal_connect(G_OBJECT(mi), "activate",
                      G_CALLBACK(mailwatch_update_now_clicked_cb), mwp);
-    xfce_panel_plugin_menu_insert_item(plugin, GTK_MENU_ITEM(mi));
-
-    mi = gtk_image_menu_item_new_with_label(_("About Mailwatch"));
-    img = gtk_image_new_from_stock(GTK_STOCK_ABOUT, GTK_ICON_SIZE_MENU);
-    gtk_widget_show(img);
-    gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(mi), img);
-    gtk_widget_show(mi);
-    g_signal_connect(G_OBJECT(mi), "activate",
-                     G_CALLBACK(mailwatch_about_clicked_cb), mwp);
     xfce_panel_plugin_menu_insert_item(plugin, GTK_MENU_ITEM(mi));
 
     xfce_mailwatch_force_update(mwp->mailwatch);

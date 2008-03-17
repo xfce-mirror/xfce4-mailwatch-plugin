@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-14 02:43-0700\n"
+"POT-Creation-Date: 2008-03-17 16:51-0700\n"
 "PO-Revision-Date: 2006-06-12 21:36+0800\n"
 "Last-Translator: Hydonsingore Cia <hydonsingore@educities.edu.tw>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -461,14 +461,9 @@ msgstr ""
 msgid "Developer"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:1028
+#: ../panel-plugin/mailwatch-plugin.c:1032
 msgid "Update Now"
 msgstr ""
-
-#: ../panel-plugin/mailwatch-plugin.c:1037
-#, fuzzy
-msgid "About Mailwatch"
-msgstr "Mailwatch"
 
 #: ../libmailwatch-core/mailwatch-utils.c:250
 #, c-format
@@ -569,6 +564,10 @@ msgstr "信箱"
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "檢查諸多信箱中的信件"
+
+#, fuzzy
+#~ msgid "About Mailwatch"
+#~ msgstr "Mailwatch"
 
 #~ msgid "You have 1 new message:"
 #~ msgstr "您有一封新訊息："

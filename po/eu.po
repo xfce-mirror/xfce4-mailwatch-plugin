@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-14 02:43-0700\n"
+"POT-Creation-Date: 2008-03-17 16:51-0700\n"
 "PO-Revision-Date: 2006-09-12 22:12+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: librezale <librezale@librezale.org>\n"
@@ -477,14 +477,9 @@ msgstr ""
 msgid "Developer"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:1028
+#: ../panel-plugin/mailwatch-plugin.c:1032
 msgid "Update Now"
 msgstr ""
-
-#: ../panel-plugin/mailwatch-plugin.c:1037
-#, fuzzy
-msgid "About Mailwatch"
-msgstr "Posta arakatzailea"
 
 #: ../libmailwatch-core/mailwatch-utils.c:250
 #, c-format
@@ -591,6 +586,10 @@ msgstr "Postakutxak"
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "Postakutxa anitzetako posta arakatu"
+
+#, fuzzy
+#~ msgid "About Mailwatch"
+#~ msgstr "Posta arakatzailea"
 
 #~ msgid "You have 1 new message:"
 #~ msgstr "Mezu berri bat duzu:"

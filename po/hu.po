@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-14 02:43-0700\n"
+"POT-Creation-Date: 2008-03-17 16:51-0700\n"
 "PO-Revision-Date: 2006-09-12 08:23+0100\n"
 "Last-Translator: SZERVÁC Attila <sas@321.hu>\n"
 "Language-Team: Hungarian <debian-l10n-hungarian@lists.debian.org>\n"
@@ -483,14 +483,9 @@ msgstr ""
 msgid "Developer"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:1028
+#: ../panel-plugin/mailwatch-plugin.c:1032
 msgid "Update Now"
 msgstr ""
-
-#: ../panel-plugin/mailwatch-plugin.c:1037
-#, fuzzy
-msgid "About Mailwatch"
-msgstr "Levélfigyelő"
 
 #: ../libmailwatch-core/mailwatch-utils.c:250
 #, c-format
@@ -594,6 +589,10 @@ msgstr "Postafiókok"
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "Levél ellenőrzése több postafiókból"
+
+#, fuzzy
+#~ msgid "About Mailwatch"
+#~ msgstr "Levélfigyelő"
 
 #~ msgid "You have 1 new message:"
 #~ msgstr "1 új üzenete van:"

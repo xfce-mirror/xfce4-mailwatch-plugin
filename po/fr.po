@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-14 02:43-0700\n"
+"POT-Creation-Date: 2008-03-17 16:51-0700\n"
 "PO-Revision-Date: 2008-03-17 17:21+0100\n"
 "Last-Translator: Mike Massonnet <mmassonnet@xfce.org>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
@@ -489,13 +489,9 @@ msgstr "Mainteneur, Auteur original"
 msgid "Developer"
 msgstr "Développeur"
 
-#: ../panel-plugin/mailwatch-plugin.c:1028
+#: ../panel-plugin/mailwatch-plugin.c:1032
 msgid "Update Now"
 msgstr "Mettre à jour"
-
-#: ../panel-plugin/mailwatch-plugin.c:1037
-msgid "About Mailwatch"
-msgstr "À propos"
 
 #: ../libmailwatch-core/mailwatch-utils.c:250
 #, c-format
@@ -602,6 +598,9 @@ msgstr "Boîtes aux lettres"
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "Surveiller le courrier de multiples boîtes aux lettres"
+
+#~ msgid "About Mailwatch"
+#~ msgstr "À propos"
 
 #~ msgid "You have 1 new message:"
 #~ msgstr "Vous avez 1 nouveau message :"
