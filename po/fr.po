@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-14 02:43-0700\n"
-"PO-Revision-Date: 2008-03-14 13:00+0100\n"
+"PO-Revision-Date: 2008-03-17 17:21+0100\n"
 "Last-Translator: Mike Massonnet <mmassonnet@xfce.org>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -450,7 +450,7 @@ msgstr "_Voir l'historique..."
 #: ../panel-plugin/mailwatch-plugin.c:786
 #: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Mail Watcher"
-msgstr "Surveillance du Courrier"
+msgstr "Surveillance du courrier"
 
 #: ../panel-plugin/mailwatch-plugin.c:757
 #, c-format
@@ -495,7 +495,7 @@ msgstr "Mettre à jour"
 
 #: ../panel-plugin/mailwatch-plugin.c:1037
 msgid "About Mailwatch"
-msgstr "À propos de Mailwatch"
+msgstr "À propos"
 
 #: ../libmailwatch-core/mailwatch-utils.c:250
 #, c-format
