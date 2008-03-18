@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the xfce4-mailwatch-plugin package.
 # Bernhard Walle <bernhard.walle@gmx.de>, 2005.
 # Fabian Nowak <timystery@arcor.de>, 2005.
+# Enrico Tröger <enrico.troeger@uvena.de>, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-17 16:51-0700\n"
-"PO-Revision-Date: 2006-08-27 18:16+0200\n"
-"Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
+"PO-Revision-Date: 2008-03-18 16:46+0100\n"
+"Last-Translator: Enrico Tröger <enrico.troeger@uvena.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -101,7 +102,7 @@ msgstr "Minute(n)"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:777
 msgid "Remote GMail Mailbox"
-msgstr "Entfernte GoogleMail-Mailbox"
+msgstr "Entferntes GoogleMail-Postfach"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:778
 msgid ""
@@ -131,7 +132,7 @@ msgid ""
 "be OK, or this plugin might need to be modified to support your mail server "
 "if the new message counts are incorrect."
 msgstr ""
-"Der IMAP-Server hat eine recht unerwartete Antwort geliefert. Dies könnte in "
+"Der IMAP-Server hat eine unerwartete Antwort geliefert. Dies könnte in "
 "Ordnung sein, oder dieses Plugin müsste geändert werden, um Ihren Mail-"
 "Server zu unterstützen, falls die Anzahl an neuen Nachrichten inkorrekt ist."
 
@@ -225,7 +226,7 @@ msgstr "Ordner _für neue Emails..."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:2029
 msgid "Remote IMAP Mailbox"
-msgstr "Entfernte IMAP-Mailbox"
+msgstr "Entferntes IMAP-Postfach"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:2030
 msgid ""
@@ -265,7 +266,7 @@ msgstr "_Intervall:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:493
 msgid "Local Maildir Spool"
-msgstr "Lokale Maildir-Mailbox"
+msgstr "Lokales Maildir-Postfach"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:494
 msgid ""
@@ -285,12 +286,12 @@ msgstr "Mbox-_Dateiname:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:497
 msgid "Local Mbox spool"
-msgstr "Lokale Mbox-Mailbox"
+msgstr "Lokales Mbox-Postfach"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:498
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
 msgstr ""
-"Das Mbox-Plugin überwacht eine lokale Mbox-Mailbox auf neue Nachrichten."
+"Das Mbox-Plugin überwacht ein lokales Mbox-Postfach auf neue Nachrichten."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:248
 #, c-format
@@ -304,7 +305,7 @@ msgid ""
 msgstr ""
 "Die Konfiguration dieses Plugins wird aus der\n"
 "Standard-Profildatei für das MH Maildir-Verzeichnis\n"
-"~/.mh_profile gelsen"
+"~/.mh_profile gelesen"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:669
 msgid "Local MH mail folder"
@@ -332,7 +333,7 @@ msgstr "POP3-Server"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1192
 msgid "Remote POP3 Mailbox"
-msgstr "Entfernte POP3-Mailbox"
+msgstr "Entferntes POP3-Postfach"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1193
 msgid ""
@@ -351,17 +352,17 @@ msgstr "Keine neuen Nachrichten"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:129
 #: ../panel-plugin/mailwatch-plugin.c:120
-#, fuzzy, c-format
+#, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
-msgstr[0] "Sie haben %d neue Nachrichten:"
+msgstr[0] "Sie haben %d neue Nachricht:"
 msgstr[1] "Sie haben %d neue Nachrichten:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:140
 #: ../panel-plugin/mailwatch-plugin.c:131
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr ""
+msgstr "tells how many new messages in each mailbox|    %d in %s"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:253
 #: ../panel-plugin/mailwatch-plugin.c:345
@@ -462,31 +463,32 @@ msgid "Failed to run xfhelp4"
 msgstr "Konnte xfhelp4 nicht ausführen"
 
 #: ../panel-plugin/mailwatch-plugin.c:976
-#, fuzzy
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "Xfce Mailwatch"
+msgstr "Xfce4 Mailwatch-Plugin"
 
 #: ../panel-plugin/mailwatch-plugin.c:978
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr ""
+msgstr "Ein funktionsreiches Mail-Prüf-Plugin für die Xfce-Leiste"
 
 #: ../panel-plugin/mailwatch-plugin.c:979
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 msgstr ""
+"Copyright (c) 2005-2008 Brian Tarricone\n"
+"Copyright (c) 2005 Pasi Orovuo"
 
 #: ../panel-plugin/mailwatch-plugin.c:985
 msgid "Maintainer, Original Author"
-msgstr ""
+msgstr "Ursprünglicher Autor/Maintainer"
 
 #: ../panel-plugin/mailwatch-plugin.c:987
 msgid "Developer"
-msgstr ""
+msgstr "Entwickler"
 
 #: ../panel-plugin/mailwatch-plugin.c:1032
 msgid "Update Now"
-msgstr ""
+msgstr "Aktualisieren"
 
 #: ../libmailwatch-core/mailwatch-utils.c:250
 #, c-format
@@ -539,11 +541,11 @@ msgstr ""
 
 #: ../libmailwatch-core/mailwatch.c:627
 msgid "This mailbox type does not require any configuration settings."
-msgstr "Dieser Mailbox-Typ benötigt keine Konfigurationseinstellungen."
+msgstr "Dieser Postfach-Typ benötigt keine Konfigurationseinstellungen."
 
 #: ../libmailwatch-core/mailwatch.c:654
 msgid "Mailbox _Name:"
-msgstr "Mailbox-_Name:"
+msgstr "Postfach-_Name:"
 
 #: ../libmailwatch-core/mailwatch.c:672
 msgid "Mailwatch"
@@ -551,33 +553,33 @@ msgstr "Mailwatch"
 
 #: ../libmailwatch-core/mailwatch.c:673
 msgid "Mailbox name required."
-msgstr "Mailboxname wird benötigt."
+msgstr "Postfachname wird benötigt."
 
 #: ../libmailwatch-core/mailwatch.c:674
 msgid "Please enter a name for the mailbox."
-msgstr "Bitte geben Sie einen Namen für die Mailbox ein."
+msgstr "Bitte geben Sie einen Namen für das Postfach ein."
 
 #: ../libmailwatch-core/mailwatch.c:717
 #, c-format
 msgid "Edit Mailbox: %s"
-msgstr "Mailbox bearbeiten: %s"
+msgstr "Postfach bearbeiten: %s"
 
 #: ../libmailwatch-core/mailwatch.c:780
 msgid "Select Mailbox Type"
-msgstr "Mailbox-Typ auswählen"
+msgstr "Postfach-Typ auswählen"
 
 #: ../libmailwatch-core/mailwatch.c:790
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr ""
-"Wählen Sie einen Mailboxtyxp. Eine Beschreibung des Typs erscheint unten."
+"Wählen Sie einen Postfach-Typ. Eine Beschreibung des Typs erscheint unten."
 
 #: ../libmailwatch-core/mailwatch.c:846
 msgid "Add New Mailbox"
-msgstr "Neue Mailbox hinzufügen"
+msgstr "Neues Postfach hinzufügen"
 
 #: ../libmailwatch-core/mailwatch.c:909
 msgid "Remove Mailbox"
-msgstr "Mailbox entfernen"
+msgstr "Postfach entfernen"
 
 #: ../libmailwatch-core/mailwatch.c:910
 msgid "Are you sure?"
@@ -586,32 +588,16 @@ msgstr "Sind Sie sicher?"
 #: ../libmailwatch-core/mailwatch.c:911
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr ""
-"Das Entfernen einer Mailbox löscht alle Einstellungen und kann nicht "
+"Das Entfernen eines Postfachs löscht alle Einstellungen und kann nicht "
 "rückgängig gemacht werden."
 
 #: ../libmailwatch-core/mailwatch.c:978
 msgid "Mailboxes"
-msgstr "Mailboxen:"
+msgstr "Postfächer:"
 
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
-msgstr "Mehrere Mailboxen auf neue Nachrichten überprüfen"
+msgstr "Mehrere Postfächer auf neue Nachrichten überprüfen"
 
-#, fuzzy
 #~ msgid "About Mailwatch"
-#~ msgstr "Mailwatch"
-
-#~ msgid "You have 1 new message:"
-#~ msgstr "Sie haben eine neue Nachricht:"
-
-#~ msgid "You have %d new messages:"
-#~ msgstr "Sie haben %d neue Nachrichten:"
-
-#~ msgid "Edit Properties"
-#~ msgstr "Eigenschaften ändern"
-
-#~ msgid ""
-#~ "A buffer was too small to receive all of an IMAP response.  This is a bug!"
-#~ msgstr ""
-#~ "Buffer war zu klein um die gesamte IMAP-Antwort zu empfangen. Dies ist "
-#~ "ein Bug!"
+#~ msgstr "Über Mailwatch"
