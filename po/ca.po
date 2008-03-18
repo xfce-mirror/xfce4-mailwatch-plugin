@@ -4,20 +4,19 @@
 # This file is distributed under the same license as the xfce4-mailwatch-plugin
 # package.
 # Pau Rul·lan Ferragut <paurullan@bulma.net> 2005, 2006.
-# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2006.
+# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2006, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.2svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-17 16:51-0700\n"
-"PO-Revision-Date: 2006-12-04 09:04+0100\n"
+"PO-Revision-Date: 2008-03-18 13:46+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: KBabel 1.11.2\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:228
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:458
@@ -351,17 +350,17 @@ msgstr "No hi han nous correus"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:129
 #: ../panel-plugin/mailwatch-plugin.c:120
-#, fuzzy, c-format
+#, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
-msgstr[0] "Teniu %d missatges nous:"
+msgstr[0] "Teniu %d missatge nou:"
 msgstr[1] "Teniu %d missatges nous:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:140
 #: ../panel-plugin/mailwatch-plugin.c:131
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr ""
+msgstr "%d a %s"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:253
 #: ../panel-plugin/mailwatch-plugin.c:345
@@ -461,13 +460,14 @@ msgid "Failed to run xfhelp4"
 msgstr "No s'ha pogut executar «xfhelp4»"
 
 #: ../panel-plugin/mailwatch-plugin.c:976
-#, fuzzy
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "Monitor de correu d'Xfce"
+msgstr "Connector de motorització de correu oer xfce4"
 
 #: ../panel-plugin/mailwatch-plugin.c:978
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr ""
+"Una miniaplicació plena de funcionalitats per comprovar el correu pel plafó "
+"d'Xfce"
 
 #: ../panel-plugin/mailwatch-plugin.c:979
 msgid ""
@@ -477,15 +477,15 @@ msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin.c:985
 msgid "Maintainer, Original Author"
-msgstr ""
+msgstr "Mantenidor, autor original"
 
 #: ../panel-plugin/mailwatch-plugin.c:987
 msgid "Developer"
-msgstr ""
+msgstr "Desenvolupador"
 
 #: ../panel-plugin/mailwatch-plugin.c:1032
 msgid "Update Now"
-msgstr ""
+msgstr "Actualitza ara"
 
 #: ../libmailwatch-core/mailwatch-utils.c:250
 #, c-format
