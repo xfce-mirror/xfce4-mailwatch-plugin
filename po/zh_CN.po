@@ -1,0 +1,535 @@
+# Simplified Chinese translations for xfce4-mailwatch-plugin package.
+# Copyright (C) 2005-2006 Brian Tarricone, Pasi Orovuo.
+# This file is distributed under the same license as the xfce4-mailwatch-plugin package.
+# Hydonsingore Cia <hydonsingore@mail.educities.edu.tw>, 2006.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-01-23 22:53-0800\n"
+"PO-Revision-Date: 2008-03-17 09:16+0800\n"
+"Last-Translator: Vern Sun <s5unty@gmail.com>\n"
+"Language-Team: Chinese <xfce-i18n@xfce.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:215
+#: ../panel-plugin/mailwatch-mailbox-imap.c:399
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:358
+msgid ""
+"Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
+"the panel may hang on close."
+msgstr ""
+"无法将 socket 设为非阻塞状态。If the connect attempt hangs, "
+"the panel may hang on close."
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:254
+#: ../panel-plugin/mailwatch-mailbox-imap.c:438
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:397
+#, c-format
+msgid "Failed to connect to server: %s"
+msgstr "无法连接到服务器：%s"
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:286
+#: ../panel-plugin/mailwatch-mailbox-imap.c:470
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:429
+msgid ""
+"Unable to return socket to blocking mode.  Data may not be retreived "
+"correctly."
+msgstr "无法将 socket 切回阻塞状态，数据可能无法正常取回。"
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:317
+#: ../panel-plugin/mailwatch-mailbox-imap.c:302
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:268
+#, c-format
+msgid "TLS handshake failed: %s"
+msgstr "TLS 交握失败：%s"
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:365
+#, c-format
+msgid ""
+"Received HTTP response code %d.  The most likely reason for this is that "
+"your GMail username or password is incorrect."
+msgstr "收到 HTTP 回应代码 %d。最可能的原因是您 GMail 的帐号或是密码不正确。"
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:371
+#, c-format
+msgid ""
+"Received HTTP response code %d, which should be 200.  There may be a problem "
+"with GMail's servers, or they have incompatibly changed their authentication "
+"method or location of the new messages feed."
+msgstr ""
+"收到 HTTP 回应代码 %d，本来应该是200。这可能是 GMail 服务器的问题，或者他们改"
+"了一个不相容的认证方式，或是新信息的 feed 换了位置。"
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:617
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1734
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:922
+msgid "_Username:"
+msgstr "使用者(_U)："
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:636
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1753
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:941
+msgid "_Password:"
+msgstr "密码(_P)："
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:656
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1791
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:972
+msgid "Check for _new messages every"
+msgstr "检查信息间隔时间(_N)"
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:671
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1805
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:458
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:471
+#: ../panel-plugin/mailwatch-mailbox-mh.c:643
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:986
+msgid "minute(s)."
+msgstr "分钟。"
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:752
+msgid "Remote GMail Mailbox"
+msgstr "远端 GMail 邮箱"
+
+#: ../panel-plugin/mailwatch-mailbox-gmail.c:753
+msgid ""
+"The GMail plugin can connect to Google's mail service and securely retrieve "
+"the number of new messages."
+msgstr ""
+"GMail 插件无法连接到 Goolge 的邮件服务，所以无法安全地取回新邮件的数目。"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:254
+msgid ""
+"Secure IMAP is not available, and the IMAP server does not support plaintext "
+"logins."
+msgstr "无法使用安全的 IMAP，而且该 IMAP 服务器不支持明文(plaintext)登入。"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:335
+msgid "STARTTLS security was requested, but this server does not support it."
+msgstr "已经要求 STARTTLS 安全连线，但是这个服务器不支持。"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:591
+msgid ""
+"A buffer was too small to receive all of an IMAP response.  This is a bug!"
+msgstr "一个缓冲区太小，无法接收一个 IMAP 回应的全部内容。这是一个程式臭虫！"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1178
+msgid "Failed to get folder list"
+msgstr "无法取得文件夹清单"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1304
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1513
+msgid "Please wait..."
+msgstr "请等待..."
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1396
+msgid "Error"
+msgstr "错误"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1397
+msgid "No server or username is set."
+msgstr "服务器或是使用者名称没设定。"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1398
+msgid ""
+"The folder list cannot be retrieved until a server, username, and probably "
+"password are set.  Also be sure to check any security settings in the "
+"Advanced dialog."
+msgstr ""
+"在服务器、使用者名称、甚至是密码还没设好之前，无法取回文件夹清单。请顺便检查"
+"在进阶对话窗中所有的安全设定。"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1403
+msgid "Set New Mail Folders"
+msgstr "设定新邮箱"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1414
+msgid "New Mail Folders"
+msgstr "新邮箱"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1597
+msgid "Advanced IMAP Options"
+msgstr "进阶 IMAP 选项"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1606
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:816
+msgid "Connection"
+msgstr "连接"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1615
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:825
+msgid "Use unsecured connection"
+msgstr "使用没有保全的连接"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1616
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:826
+msgid "Use SSL/TLS on alternate port"
+msgstr "在另外的连接端口上使用 SSL/TLS"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1617
+msgid "Use SSL/TLS via STARTTLS"
+msgstr "经由 STARTTLS 使用 SSL/TLS"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1633
+msgid "Use non-standard IMAP _port:"
+msgstr "使用非标准的 IMAP 连接端口："
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1662
+msgid "Folders"
+msgstr "文件夹"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1670
+msgid "IMAP server _directory:"
+msgstr "IMAP 服务器目录(_D)"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1701
+msgid "IMAP Server"
+msgstr "IMAP 服务器"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1715
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:903
+msgid "_Mail server:"
+msgstr "邮件服务器(_M)："
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1773
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:961
+msgid "_Advanced..."
+msgstr "进阶(_A)..."
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1780
+msgid "New mail _folders..."
+msgstr "新的邮箱(_F)"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1950
+msgid "Remote IMAP Mailbox"
+msgstr "远端 IMAP 邮箱"
+
+#: ../panel-plugin/mailwatch-mailbox-imap.c:1951
+msgid ""
+"The IMAP plugin can connect to a remote mail server that supports the IMAP "
+"protocol, optionally using SSL for link protection."
+msgstr ""
+"本 IMAP 插件能够连接支持 IMAP 协定的远端邮件服务器，可选用 SSL 来进行连接"
+"保护。"
+
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:100
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:99
+#: ../panel-plugin/mailwatch-mailbox-mh.c:399
+#: ../panel-plugin/mailwatch-mailbox-mh.c:410
+#, c-format
+msgid "Failed to get status of file %s: %s"
+msgstr "无法取得文件 %s 的状态：%s"
+
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:109
+#, c-format
+msgid "%s is not a directory. Is %s really a valid maildir?"
+msgstr "%s 不是一个目录。请问 %s 真的是有效的 maildir 吗？"
+
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:345
+msgid "Select Maildir Folder"
+msgstr "选择 Maildir 文件夹"
+
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:406
+msgid "Maildir _Path:"
+msgstr "Maildir 路径(_P)"
+
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:442
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:454
+#: ../panel-plugin/mailwatch-mailbox-mh.c:628
+msgid "_Interval:"
+msgstr "间隔(_I)："
+
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:492
+msgid "Local Maildir Spool"
+msgstr "本地 Maildir Spool"
+
+#: ../panel-plugin/mailwatch-mailbox-maildir.c:493
+msgid ""
+"The Maildir plugin can watch a local maildir-style mail spool for new "
+"messages."
+msgstr ""
+"本 Maildir 插件可以监视本地的 maildir 形式的邮件 spool中是否有新邮件"
+
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:371
+msgid "Select mbox file"
+msgstr "选择 mbox 文件"
+
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:418
+msgid "Mbox _Filename:"
+msgstr "Mbox 文件名称(_F)"
+
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:496
+msgid "Local Mbox spool"
+msgstr "本地 Mbox spool"
+
+#: ../panel-plugin/mailwatch-mailbox-mbox.c:497
+msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
+msgstr "Mbox 插件监视本地 mobox 型的邮件 spool 中是否有新邮件。"
+
+#: ../panel-plugin/mailwatch-mailbox-mh.c:248
+#, c-format
+msgid "Malformed line %s in %s ignored."
+msgstr "第 %s 行( %s )不正常，已忽略。"
+
+#: ../panel-plugin/mailwatch-mailbox-mh.c:619
+msgid ""
+"The configuration of this plugin is read from\n"
+"the default mh maildir profile file ~/.mh_profile"
+msgstr ""
+"本插件的配置读自默认的 mh maildir 的profile 文件 ~/.mh_profile。"
+"(_P)"
+
+#: ../panel-plugin/mailwatch-mailbox-mh.c:669
+msgid "Local MH mail folder"
+msgstr "本地 MH 邮件文件夹"
+
+#: ../panel-plugin/mailwatch-mailbox-mh.c:670
+msgid "MH plugin watches local MH folders for new mail"
+msgstr "MH 插件监视本地 MH 文件夹中是否有新信件。"
+
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:807
+msgid "Advanced POP3 Options"
+msgstr "进阶 POP3 选项"
+
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:827
+msgid "Use SSL/TLS via STLS"
+msgstr "经 STLS 使用 SSL/TLS"
+
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:843
+msgid "Use non-standard POP3 _port:"
+msgstr "使用非标准的 POP3 连接端口(_P)："
+
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:889
+msgid "POP3 Server"
+msgstr "POP3 服务器"
+
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:1098
+msgid "Remote POP3 Mailbox"
+msgstr "远端 POP3 邮箱"
+
+#: ../panel-plugin/mailwatch-mailbox-pop3.c:1099
+msgid ""
+"The POP3 plugin can connect to a remote mail server that supports the POP3 "
+"protocol, optionally using SSL for link protection."
+msgstr ""
+"本 POP3 插件能连接到支持 POP3 协定的远端邮件服务器，可选用 SSL 进行连接保"
+"护。"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:114
+#: ../panel-plugin/mailwatch-plugin-4.2.c:272
+#: ../panel-plugin/mailwatch-plugin.c:121
+#: ../panel-plugin/mailwatch-plugin.c:342
+msgid "No new mail"
+msgstr "无新信件"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:129
+#: ../panel-plugin/mailwatch-plugin.c:136
+msgid "You have 1 new message:"
+msgstr "您有一封新讯息："
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:131
+#: ../panel-plugin/mailwatch-plugin.c:138
+#, c-format
+msgid "You have %d new messages:"
+msgstr "您有 %d 封新讯息："
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:254
+#: ../panel-plugin/mailwatch-plugin.c:324
+msgid "Xfce Mailwatch"
+msgstr "Xfce Mailwatch"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:255
+#: ../panel-plugin/mailwatch-plugin.c:325
+msgid "The mailwatch applet cannot be added to the panel."
+msgstr "无法将邮件监视程式新增到面板中。"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:256
+#: ../panel-plugin/mailwatch-plugin.c:326
+msgid "It is possible that your version of GLib does not have threads support."
+msgstr "这可能是因为您 GLib 的版本没有支持执行绪(threads)。"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:479
+#: ../panel-plugin/mailwatch-plugin.c:538
+msgid "Mailwatch log"
+msgstr "Mailwatch 记录"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:537
+#: ../panel-plugin/mailwatch-plugin.c:596
+msgid "Log _lines:"
+msgstr "记录行数(_L)："
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:551
+#: ../panel-plugin/mailwatch-plugin.c:610
+msgid "Show log _status in icon"
+msgstr "在图示中显示记录状态(_S)"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:597
+#: ../panel-plugin/mailwatch-plugin.c:654
+msgid "Select Icon"
+msgstr "选择图示"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:627
+#: ../panel-plugin/mailwatch-plugin-4.2.c:749
+#: ../panel-plugin/mailwatch-plugin.c:685
+#: ../panel-plugin/mailwatch-plugin.c:873
+msgid "_Normal"
+msgstr "正常(_N)"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:652
+#: ../panel-plugin/mailwatch-plugin.c:711
+msgid "Ne_w mail"
+msgstr "新信件(_W)"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:681
+#: ../panel-plugin/mailwatch-plugin.c:805
+msgid "External Programs"
+msgstr "外部程式"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:693
+#: ../panel-plugin/mailwatch-plugin.c:817
+msgid "Run _on click:"
+msgstr "按下后启动(_O)"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:710
+#: ../panel-plugin/mailwatch-plugin.c:834
+msgid "Run on new _messages:"
+msgstr "有新讯息时启动(_M)："
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:723
+#: ../panel-plugin/mailwatch-plugin.c:847
+msgid "Icons"
+msgstr "图示"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:769
+#: ../panel-plugin/mailwatch-plugin.c:893
+msgid "Ne_w Mail"
+msgstr "新信件(_W)"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:777
+#: ../panel-plugin/mailwatch-plugin.c:777
+msgid "_View Log..."
+msgstr "检视记录(_V)"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:890
+#: ../panel-plugin/mailwatch-plugin.c:788
+#: ../panel-plugin/mailwatch.desktop.in.in.h:2
+msgid "Mail Watcher"
+msgstr "邮件监视器"
+
+#: ../panel-plugin/mailwatch-plugin.c:729
+#, c-format
+msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
+msgstr "「说明」无法使用，因为'xfhelp4'无法执行：%s"
+
+#: ../panel-plugin/mailwatch-plugin.c:731
+msgid "Help Unavailable"
+msgstr "「说明」无法使用"
+
+#: ../panel-plugin/mailwatch-plugin.c:732
+msgid "Failed to run xfhelp4"
+msgstr "执行 xfhelp4 失败"
+
+#: ../panel-plugin/mailwatch-plugin.c:759
+msgid "Edit Properties"
+msgstr "编辑特性"
+
+#: ../panel-plugin/mailwatch-utils.c:242
+#, c-format
+msgid "XfceMailwatch: TLS handshake failed: %s"
+msgstr "XfceMailwatch：TLS 交握失败：%s"
+
+#: ../panel-plugin/mailwatch-utils.c:252
+msgid "Not compiled with SSL/TLS support"
+msgstr "没有编译 SSL/TLS 支持"
+
+#: ../panel-plugin/mailwatch-utils.c:254
+msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
+msgstr "XfceMailwatch：TLS 交握失败：没有编译 SSL/TLS 支持。"
+
+#: ../panel-plugin/mailwatch-utils.c:277 ../panel-plugin/mailwatch-utils.c:330
+msgid "A secure connection was requested, but gnutls was not initialised"
+msgstr "需要安全连接，但是 gnutls 并未初始化。"
+
+#: ../panel-plugin/mailwatch.c:133
+msgid ""
+"xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
+"likely a problem with your GLib install."
+msgstr ""
+"xfce4-mailwatch-plugin：无法初始化 GThread 支持。这应该是您 GLib 安装上的问"
+"题。"
+
+#: ../panel-plugin/mailwatch.c:345 ../panel-plugin/mailwatch.c:346
+#, c-format
+msgid "Unable to write config file '%s'"
+msgstr "无法写入配置文件'%s'"
+
+#: ../panel-plugin/mailwatch.c:392 ../panel-plugin/mailwatch.c:394
+#, c-format
+msgid ""
+"Unable to set permissions on config file '%s'.  If this file contains "
+"passwords or other sensitive information, it may be readable by others on "
+"your system."
+msgstr ""
+"无法设定配置文件'%s'的权限。如果这个文件包含密码或其他敏感信息，您系统上的其他"
+"人可能读得到。"
+
+#: ../panel-plugin/mailwatch.c:616
+msgid "This mailbox type does not require any configuration settings."
+msgstr "本类型的邮箱不需要任何配置设定。"
+
+#: ../panel-plugin/mailwatch.c:642
+msgid "Mailbox _Name:"
+msgstr "邮箱名称(_N)"
+
+#: ../panel-plugin/mailwatch.c:659
+msgid "Mailwatch"
+msgstr "Mailwatch"
+
+#: ../panel-plugin/mailwatch.c:660
+msgid "Mailbox name required."
+msgstr "需要邮箱名称。"
+
+#: ../panel-plugin/mailwatch.c:661
+msgid "Please enter a name for the mailbox."
+msgstr "请键入邮箱名称。"
+
+#: ../panel-plugin/mailwatch.c:704
+#, c-format
+msgid "Edit Mailbox: %s"
+msgstr "编辑邮箱：%s"
+
+#: ../panel-plugin/mailwatch.c:767
+msgid "Select Mailbox Type"
+msgstr "选择类型"
+
+#: ../panel-plugin/mailwatch.c:776
+msgid "Select a mailbox type.  A description of the type will appear below."
+msgstr "选择一种类型的邮箱。关於类型的描述在下方。"
+
+#: ../panel-plugin/mailwatch.c:832
+msgid "Add New Mailbox"
+msgstr "新增邮箱"
+
+#: ../panel-plugin/mailwatch.c:895
+msgid "Remove Mailbox"
+msgstr "移除邮箱"
+
+#: ../panel-plugin/mailwatch.c:896
+msgid "Are you sure?"
+msgstr "您确定吗？"
+
+#: ../panel-plugin/mailwatch.c:897
+msgid "Removing a mailbox will discard all settings, and cannot be undone."
+msgstr "移除一个邮箱会废弃所有的设定，而且不能反悔。"
+
+#: ../panel-plugin/mailwatch.c:968
+msgid "Mailboxes"
+msgstr "邮箱"
+
+#: ../panel-plugin/mailwatch.desktop.in.in.h:1
+msgid "Check mail from multiple mailboxes"
+msgstr "检查诸多邮箱中的信件"
