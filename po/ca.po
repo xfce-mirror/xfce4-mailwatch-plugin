@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.2svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-17 16:51-0700\n"
-"PO-Revision-Date: 2008-03-18 13:46+0100\n"
+"PO-Revision-Date: 2008-03-21 20:25+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -461,7 +461,7 @@ msgstr "No s'ha pogut executar «xfhelp4»"
 
 #: ../panel-plugin/mailwatch-plugin.c:976
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "Connector de motorització de correu oer xfce4"
+msgstr "Connector del monitor de correu d'Xfce4"
 
 #: ../panel-plugin/mailwatch-plugin.c:978
 msgid "A featureful mail-checker applet for the Xfce Panel"
@@ -595,7 +595,7 @@ msgstr "Comprova el correu de múltiples bústies"
 
 #, fuzzy
 #~ msgid "About Mailwatch"
-#~ msgstr "Monitor de correu"
+#~ msgstr "Quant al Monitor de correu"
 
 #~ msgid "You have 1 new message:"
 #~ msgstr "Teniu 1 missatge nou:"
