@@ -8,22 +8,21 @@ msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-17 16:51-0700\n"
-"PO-Revision-Date: 2006-09-12 08:23+0100\n"
+"PO-Revision-Date: 2008-04-17 09:28+0100\n"
 "Last-Translator: SZERVÁC Attila <sas@321.hu>\n"
 "Language-Team: Hungarian <debian-l10n-hungarian@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+"X-Poedit-Language: Hungarian\n"
+"X-Poedit-Country: HUNGARY\n"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:228
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:458
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:434
-msgid ""
-"Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
-"the panel may hang on close."
-msgstr ""
-"A foglalat nem állítható nem blokkoló módba. Ha a csatlakozási kísérlet "
-"elakad, akkor a párbeszédablak is elakadhat bezáráskor."
+msgid "Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."
+msgstr "A foglalat nem állítható nem blokkoló módba. Ha a csatlakozási kísérlet elakad, akkor a párbeszédablak is elakadhat bezáráskor."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:265
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:495
@@ -35,12 +34,8 @@ msgstr "A csatlakozás meghiúsult a kiszolgálóhoz: %s"
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:303
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:533
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:509
-msgid ""
-"Unable to return socket to blocking mode.  Data may not be retreived "
-"correctly."
-msgstr ""
-"A foglalat nem állítható vissza blokkoló módba. Lehetséges, hogy az adatok "
-"nem kerültek helyesen lekérésre."
+msgid "Unable to return socket to blocking mode.  Data may not be retreived correctly."
+msgstr "A foglalat nem állítható vissza blokkoló módba. Lehetséges, hogy az adatok nem kerültek helyesen lekérésre."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:341
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:352
@@ -51,23 +46,13 @@ msgstr "A TLS kézfogás meghiúsult: %s"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:389
 #, c-format
-msgid ""
-"Received HTTP response code %d.  The most likely reason for this is that "
-"your GMail username or password is incorrect."
-msgstr ""
-"A(z) %d HTTP válaszkód érkezett. Ennek legvalószínűbb oka, hogy a GMail "
-"felhasználói nevét vagy jelszavát helytelenül adta meg."
+msgid "Received HTTP response code %d.  The most likely reason for this is that your GMail username or password is incorrect."
+msgstr "A(z) %d HTTP válaszkód érkezett. Ennek legvalószínűbb oka, hogy a GMail felhasználói nevét vagy jelszavát helytelenül adta meg."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:395
 #, c-format
-msgid ""
-"Received HTTP response code %d, which should be 200.  There may be a problem "
-"with GMail's servers, or they have incompatibly changed their authentication "
-"method or location of the new messages feed."
-msgstr ""
-"A(z) %d HTTP válaszkód érkezett, amelynek 200-nak kellene lennie. Probléma "
-"lehet a GMail kiszolgálóival, vagy inkompatibilis módon módosították a "
-"hitelesítési eljárásukat vagy az új üzenetek folyamának helyét."
+msgid "Received HTTP response code %d, which should be 200.  There may be a problem with GMail's servers, or they have incompatibly changed their authentication method or location of the new messages feed."
+msgstr "A(z) %d HTTP válaszkód érkezett, amelynek 200-nak kellene lennie. Probléma lehet a GMail kiszolgálóival, vagy inkompatibilis módon módosították a hitelesítési eljárásukat vagy az új üzenetek folyamának helyét."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:640
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1808
@@ -101,36 +86,20 @@ msgid "Remote GMail Mailbox"
 msgstr "Távoli GMail postafiók"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:778
-msgid ""
-"The GMail plugin can connect to Google's mail service and securely retrieve "
-"the number of new messages."
-msgstr ""
-"A GMail bővítmény képes kapcsolódni a Google levelezőszolgáltatásához és "
-"biztonságosan lekérni az új üzenetek számát."
+msgid "The GMail plugin can connect to Google's mail service and securely retrieve the number of new messages."
+msgstr "A GMail bővítmény képes kapcsolódni a Google levelezőszolgáltatásához és biztonságosan lekérni az új üzenetek számát."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:252
-msgid ""
-"Secure IMAP is not available, and the IMAP server does not support plaintext "
-"logins."
-msgstr ""
-"A biztonságos IMAP nem érhető el és az IMAP kiszolgáló nem támogatja az "
-"egyszerű szöveges bejelentkezést."
+msgid "Secure IMAP is not available, and the IMAP server does not support plaintext logins."
+msgstr "A biztonságos IMAP nem érhető el és az IMAP kiszolgáló nem támogatja az egyszerű szöveges bejelentkezést."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:385
 msgid "STARTTLS security was requested, but this server does not support it."
-msgstr ""
-"STARTTLS biztonsági szolgáltatást kértél, de ez a kiszolgáló nem támogatja "
-"azt."
+msgstr "STARTTLS biztonsági szolgáltatást kértél, de ez a kiszolgáló nem támogatja azt."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:645
-msgid ""
-"The IMAP server returned a response we weren't quite expecting.  This might "
-"be OK, or this plugin might need to be modified to support your mail server "
-"if the new message counts are incorrect."
-msgstr ""
-"Az IMAP kiszolgáló váratlan választ adott. Talán lényegtelen, de lehet, hogy "
-"e beillesztést módosítani kell e levelező kiszolgáló támogatásához, ha az új "
-"levelek számát elvéti."
+msgid "The IMAP server returned a response we weren't quite expecting.  This might be OK, or this plugin might need to be modified to support your mail server if the new message counts are incorrect."
+msgstr "Az IMAP kiszolgáló váratlan választ adott. Talán lényegtelen, de lehet, hogy e beillesztést módosítani kell e levelező kiszolgáló támogatásához, ha az új levelek számát elvéti."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1245
 msgid "Failed to get folder list"
@@ -150,14 +119,8 @@ msgid "No server or username is set."
 msgstr "Nincs kiszolgáló vagy felhasználói név beállítva."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1467
-msgid ""
-"The folder list cannot be retrieved until a server, username, and probably "
-"password are set.  Also be sure to check any security settings in the "
-"Advanced dialog."
-msgstr ""
-"A mappalista nem kérhető le, amíg a kiszolgáló, felhasználói név és "
-"valószínűleg a jelszó nincsenek beállítva. Ezen kívül ellenőrizd a "
-"biztonsági beállításokat a Haladó párbeszédablakban."
+msgid "The folder list cannot be retrieved until a server, username, and probably password are set.  Also be sure to check any security settings in the Advanced dialog."
+msgstr "A mappalista nem kérhető le, amíg a kiszolgáló, felhasználói név és valószínűleg a jelszó nincsenek beállítva. Ezen kívül ellenőrizd a biztonsági beállításokat a Haladó párbeszédablakban."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1472
 msgid "Set New Mail Folders"
@@ -225,13 +188,8 @@ msgid "Remote IMAP Mailbox"
 msgstr "Távoli IMAP postafiók"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:2030
-msgid ""
-"The IMAP plugin can connect to a remote mail server that supports the IMAP "
-"protocol, optionally using SSL for link protection."
-msgstr ""
-"Az IMAP bővítmény képes csatlakozni egy IMAP protokollt használó távoli "
-"levelezőkiszolgálóhoz, a kapcsolat védelme érdekében opcionálisan SSL "
-"használatával."
+msgid "The IMAP plugin can connect to a remote mail server that supports the IMAP protocol, optionally using SSL for link protection."
+msgstr "Az IMAP bővítmény képes csatlakozni egy IMAP protokollt használó távoli levelezőkiszolgálóhoz, a kapcsolat védelme érdekében opcionálisan SSL használatával."
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:100
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:99
@@ -265,12 +223,8 @@ msgid "Local Maildir Spool"
 msgstr "Helyi levélkönyvtár-tároló"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:494
-msgid ""
-"The Maildir plugin can watch a local maildir-style mail spool for new "
-"messages."
-msgstr ""
-"A levélmappa bővítmény képes figyelni az új üzeneteket egy helyi levélmappa-"
-"stílusú levéltárolóban."
+msgid "The Maildir plugin can watch a local maildir-style mail spool for new messages."
+msgstr "A levélmappa bővítmény képes figyelni az új üzeneteket egy helyi levélmappa-stílusú levéltárolóban."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Select mbox file"
@@ -286,15 +240,12 @@ msgstr "Helyi Mbox tároló"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:498
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr ""
-"Az Mbox bővítmény képes figyelni az új üzeneteket egy helyi mbox-stílusú "
-"levéltárolóban."
+msgstr "Az Mbox bővítmény képes figyelni az új üzeneteket egy helyi mbox-stílusú levéltárolóban."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:248
 #, c-format
 msgid "Malformed line %s in %s ignored."
-msgstr ""
-"A(z) %s rosszul formázott sor figyelmen kívül hagyva a következőben: %s."
+msgstr "A(z) %s rosszul formázott sor figyelmen kívül hagyva a következőben: %s."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:619
 msgid ""
@@ -333,13 +284,8 @@ msgid "Remote POP3 Mailbox"
 msgstr "Távoli POP3 postafiók"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1193
-msgid ""
-"The POP3 plugin can connect to a remote mail server that supports the POP3 "
-"protocol, optionally using SSL for link protection."
-msgstr ""
-"A POP3 bővítmény képes egy POP3 protokollt támogató távoli "
-"levelezőkiszolgálóhoz kapcsolódni, a kapcsolat védelme érdekében "
-"opcionálisan SSL használatával."
+msgid "The POP3 plugin can connect to a remote mail server that supports the POP3 protocol, optionally using SSL for link protection."
+msgstr "A POP3 bővítmény képes egy POP3 protokollt támogató távoli levelezőkiszolgálóhoz kapcsolódni, a kapcsolat védelme érdekében opcionálisan SSL használatával."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
 #: ../panel-plugin/mailwatch-plugin-4.2.c:271
@@ -350,17 +296,17 @@ msgstr "Nincs új levél"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:129
 #: ../panel-plugin/mailwatch-plugin.c:120
-#, fuzzy, c-format
+#, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
-msgstr[0] "%d új üzenete van:"
-msgstr[1] "%d új üzenete van:"
+msgstr[0] "%d új üzeneted van:"
+msgstr[1] "%d új üzeneted van:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:140
 #: ../panel-plugin/mailwatch-plugin.c:131
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr ""
+msgstr "mutatja, hány ú üzenet van az egyes levelesládákban|    %d itt: %s"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:253
 #: ../panel-plugin/mailwatch-plugin.c:345
@@ -375,9 +321,7 @@ msgstr "A levélfigyelő kisalkalmazás nem adható a panelhez."
 #: ../panel-plugin/mailwatch-plugin-4.2.c:255
 #: ../panel-plugin/mailwatch-plugin.c:347
 msgid "It is possible that your version of GLib does not have threads support."
-msgstr ""
-"Lehetséges, hogy a Glib használt verziója nem rendelkezik a szálak "
-"támogatásával."
+msgstr "Lehetséges, hogy a Glib használt verziója nem rendelkezik a szálak támogatásával."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:480
 #: ../panel-plugin/mailwatch-plugin.c:566
@@ -461,31 +405,32 @@ msgid "Failed to run xfhelp4"
 msgstr "Az xfhelp4 futtatása meghiúsult"
 
 #: ../panel-plugin/mailwatch-plugin.c:976
-#, fuzzy
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "Xfce levélfigyelő"
+msgstr "Xfce4 levél-figyelő beillesztés"
 
 #: ../panel-plugin/mailwatch-plugin.c:978
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr ""
+msgstr "Egy okos levél-figyelő kisalkalmazás az Xfce panelhoz"
 
 #: ../panel-plugin/mailwatch-plugin.c:979
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 msgstr ""
+"Copyright (c) 2005-2008 Brian Tarricone\n"
+"Copyright (c) 2005 Pasi Orovuo"
 
 #: ../panel-plugin/mailwatch-plugin.c:985
 msgid "Maintainer, Original Author"
-msgstr ""
+msgstr "Karbantartó, eredeti szerző"
 
 #: ../panel-plugin/mailwatch-plugin.c:987
 msgid "Developer"
-msgstr ""
+msgstr "Fejlesztő"
 
 #: ../panel-plugin/mailwatch-plugin.c:1032
 msgid "Update Now"
-msgstr ""
+msgstr "Frissíts most"
 
 #: ../libmailwatch-core/mailwatch-utils.c:250
 #, c-format
@@ -499,9 +444,7 @@ msgstr "A program SSL/TLS támogatás nélkül lett lefordítva"
 
 #: ../libmailwatch-core/mailwatch-utils.c:262
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
-msgstr ""
-"Xfce levélfigyelő: A TLS kézfogás meghiúsult: A program SSL támogatás nélkül "
-"lett lefordítva."
+msgstr "Xfce levélfigyelő: A TLS kézfogás meghiúsult: A program SSL támogatás nélkül lett lefordítva."
 
 #: ../libmailwatch-core/mailwatch-utils.c:285
 #: ../libmailwatch-core/mailwatch-utils.c:358
@@ -510,28 +453,20 @@ msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr "Biztonságos kapcsolatot kértél, de a gnutls nem lett inicializálva"
 
 #: ../libmailwatch-core/mailwatch.c:138
-msgid ""
-"xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
-"likely a problem with your GLib install."
-msgstr ""
-"xfce4-mailwatch-plugin: Nem lehet inicializálni a GThread támogatást. Ez a "
-"probléma valószínűleg a Glib telepítéssel kapcsolatos."
+msgid "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."
+msgstr "xfce4-mailwatch-plugin: Nem lehet inicializálni a GThread támogatást. Ez a probléma valószínűleg a Glib telepítéssel kapcsolatos."
 
-#: ../libmailwatch-core/mailwatch.c:356 ../libmailwatch-core/mailwatch.c:357
+#: ../libmailwatch-core/mailwatch.c:356
+#: ../libmailwatch-core/mailwatch.c:357
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "Nem lehet a következő konfigurációs fájlba írni: \"%s\""
 
-#: ../libmailwatch-core/mailwatch.c:403 ../libmailwatch-core/mailwatch.c:405
+#: ../libmailwatch-core/mailwatch.c:403
+#: ../libmailwatch-core/mailwatch.c:405
 #, c-format
-msgid ""
-"Unable to set permissions on config file '%s'.  If this file contains "
-"passwords or other sensitive information, it may be readable by others on "
-"your system."
-msgstr ""
-"Nem lehet beállítani a(z) \"%s\" beállítófájl jogosultságait. Ha a fájl "
-"jelszavakat vagy más érzékeny információkat tartalmaz, akkor azok "
-"olvashatóvá válhatnak a rendszer más felhasználói számára."
+msgid "Unable to set permissions on config file '%s'.  If this file contains passwords or other sensitive information, it may be readable by others on your system."
+msgstr "Nem lehet beállítani a(z) \"%s\" beállítófájl jogosultságait. Ha a fájl jelszavakat vagy más érzékeny információkat tartalmaz, akkor azok olvashatóvá válhatnak a rendszer más felhasználói számára."
 
 #: ../libmailwatch-core/mailwatch.c:627
 msgid "This mailbox type does not require any configuration settings."
@@ -593,18 +528,15 @@ msgstr "Levél ellenőrzése több postafiókból"
 #, fuzzy
 #~ msgid "About Mailwatch"
 #~ msgstr "Levélfigyelő"
-
 #~ msgid "You have 1 new message:"
 #~ msgstr "1 új üzenete van:"
-
 #~ msgid "You have %d new messages:"
 #~ msgstr "%d új üzenete van:"
-
 #~ msgid "Edit Properties"
 #~ msgstr "Tulajdonságok szerkesztése"
-
 #~ msgid ""
 #~ "A buffer was too small to receive all of an IMAP response.  This is a bug!"
 #~ msgstr ""
 #~ "Egy puffer túl kicsi volt az összes IMAP válasz fogadásához. Ez egy "
 #~ "programhiba!"
+
