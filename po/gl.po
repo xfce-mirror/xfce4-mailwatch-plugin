@@ -1,27 +1,29 @@
-# Galician translation for xfce4-mailwatch-plugin
-# Copyright (c) (c) 2006 Canonical Ltd, and Rosetta Contributors 2006
-# This file is distributed under the same license as the xfce4-mailwatch-plugin package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2006.
+# Galician translation of xfce4-mailwatch-plugin
+# Copyright (C) 2008 Leandro Regueiro
+# This file is distributed under the same license as the xfce package.
 #
-#, fuzzy
+# Leandro Regueiro <leandro.regueiro@gmail.com>, 2008.
+#
+# Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
+# colaborar connosco, podes atopar máis información en <http://trasno.net>
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-17 16:51-0700\n"
-"PO-Revision-Date: 2006-08-17 19:36+0000\n"
-"Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
-"Language-Team: Galician <gl@li.org>\n"
+"PO-Revision-Date: 2008-06-24 19:47+0100\n"
+"Last-Translator: Leandro Regueiro <leandro DOT regueiro AT gmail DOT com>\n"
+"Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:228
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:458
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:434
-msgid ""
-"Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
-"the panel may hang on close."
+msgid "Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:265
@@ -29,14 +31,12 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:471
 #, c-format
 msgid "Failed to connect to server: %s"
-msgstr ""
+msgstr "Fallo ó conectar ó servidor: %s"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:303
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:533
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:509
-msgid ""
-"Unable to return socket to blocking mode.  Data may not be retreived "
-"correctly."
+msgid "Unable to return socket to blocking mode.  Data may not be retreived correctly."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:341
@@ -48,17 +48,12 @@ msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:389
 #, c-format
-msgid ""
-"Received HTTP response code %d.  The most likely reason for this is that "
-"your GMail username or password is incorrect."
+msgid "Received HTTP response code %d.  The most likely reason for this is that your GMail username or password is incorrect."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:395
 #, c-format
-msgid ""
-"Received HTTP response code %d, which should be 200.  There may be a problem "
-"with GMail's servers, or they have incompatibly changed their authentication "
-"method or location of the new messages feed."
+msgid "Received HTTP response code %d, which should be 200.  There may be a problem with GMail's servers, or they have incompatibly changed their authentication method or location of the new messages feed."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:640
@@ -93,15 +88,11 @@ msgid "Remote GMail Mailbox"
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:778
-msgid ""
-"The GMail plugin can connect to Google's mail service and securely retrieve "
-"the number of new messages."
+msgid "The GMail plugin can connect to Google's mail service and securely retrieve the number of new messages."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:252
-msgid ""
-"Secure IMAP is not available, and the IMAP server does not support plaintext "
-"logins."
+msgid "Secure IMAP is not available, and the IMAP server does not support plaintext logins."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:385
@@ -109,10 +100,7 @@ msgid "STARTTLS security was requested, but this server does not support it."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:645
-msgid ""
-"The IMAP server returned a response we weren't quite expecting.  This might "
-"be OK, or this plugin might need to be modified to support your mail server "
-"if the new message counts are incorrect."
+msgid "The IMAP server returned a response we weren't quite expecting.  This might be OK, or this plugin might need to be modified to support your mail server if the new message counts are incorrect."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1245
@@ -133,10 +121,7 @@ msgid "No server or username is set."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1467
-msgid ""
-"The folder list cannot be retrieved until a server, username, and probably "
-"password are set.  Also be sure to check any security settings in the "
-"Advanced dialog."
+msgid "The folder list cannot be retrieved until a server, username, and probably password are set.  Also be sure to check any security settings in the Advanced dialog."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1472
@@ -205,9 +190,7 @@ msgid "Remote IMAP Mailbox"
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:2030
-msgid ""
-"The IMAP plugin can connect to a remote mail server that supports the IMAP "
-"protocol, optionally using SSL for link protection."
+msgid "The IMAP plugin can connect to a remote mail server that supports the IMAP protocol, optionally using SSL for link protection."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:100
@@ -242,9 +225,7 @@ msgid "Local Maildir Spool"
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:494
-msgid ""
-"The Maildir plugin can watch a local maildir-style mail spool for new "
-"messages."
+msgid "The Maildir plugin can watch a local maildir-style mail spool for new messages."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
@@ -303,9 +284,7 @@ msgid "Remote POP3 Mailbox"
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1193
-msgid ""
-"The POP3 plugin can connect to a remote mail server that supports the POP3 "
-"protocol, optionally using SSL for link protection."
+msgid "The POP3 plugin can connect to a remote mail server that supports the POP3 protocol, optionally using SSL for link protection."
 msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
@@ -313,14 +292,14 @@ msgstr ""
 #: ../panel-plugin/mailwatch-plugin.c:105
 #: ../panel-plugin/mailwatch-plugin.c:363
 msgid "No new mail"
-msgstr ""
+msgstr "Non hai correo novo"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:129
 #: ../panel-plugin/mailwatch-plugin.c:120
-#, fuzzy, c-format
+#, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
-msgstr[0] "Ten %d mensaxes novas:"
+msgstr[0] "Ten %d mensaxe nova:"
 msgstr[1] "Ten %d mensaxes novas:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:140
@@ -369,7 +348,7 @@ msgstr ""
 #: ../panel-plugin/mailwatch-plugin.c:713
 #: ../panel-plugin/mailwatch-plugin.c:894
 msgid "_Normal"
-msgstr ""
+msgstr "_Normal"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:653
 #: ../panel-plugin/mailwatch-plugin.c:739
@@ -419,11 +398,11 @@ msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin.c:759
 msgid "Help Unavailable"
-msgstr ""
+msgstr "Axuda non dispoñible"
 
 #: ../panel-plugin/mailwatch-plugin.c:760
 msgid "Failed to run xfhelp4"
-msgstr ""
+msgstr "Fallo ó executar xfhelp4"
 
 #: ../panel-plugin/mailwatch-plugin.c:976
 msgid "Xfce4 Mailwatch Plugin"
@@ -441,11 +420,11 @@ msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin.c:985
 msgid "Maintainer, Original Author"
-msgstr ""
+msgstr "Mantedor, Autor Orixinal"
 
 #: ../panel-plugin/mailwatch-plugin.c:987
 msgid "Developer"
-msgstr ""
+msgstr "Desenvolvedor"
 
 #: ../panel-plugin/mailwatch-plugin.c:1032
 msgid "Update Now"
@@ -472,22 +451,19 @@ msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch.c:138
-msgid ""
-"xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
-"likely a problem with your GLib install."
+msgid "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."
 msgstr ""
 
-#: ../libmailwatch-core/mailwatch.c:356 ../libmailwatch-core/mailwatch.c:357
+#: ../libmailwatch-core/mailwatch.c:356
+#: ../libmailwatch-core/mailwatch.c:357
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr ""
 
-#: ../libmailwatch-core/mailwatch.c:403 ../libmailwatch-core/mailwatch.c:405
+#: ../libmailwatch-core/mailwatch.c:403
+#: ../libmailwatch-core/mailwatch.c:405
 #, c-format
-msgid ""
-"Unable to set permissions on config file '%s'.  If this file contains "
-"passwords or other sensitive information, it may be readable by others on "
-"your system."
+msgid "Unable to set permissions on config file '%s'.  If this file contains passwords or other sensitive information, it may be readable by others on your system."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch.c:627
@@ -533,7 +509,7 @@ msgstr ""
 
 #: ../libmailwatch-core/mailwatch.c:910
 msgid "Are you sure?"
-msgstr ""
+msgstr "Está seguro?"
 
 #: ../libmailwatch-core/mailwatch.c:911
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
@@ -549,6 +525,6 @@ msgstr ""
 
 #~ msgid "You have 1 new message:"
 #~ msgstr "Ten 1 mensaxe nova:"
-
 #~ msgid "You have %d new messages:"
 #~ msgstr "Ten %d mensaxes novas:"
+
