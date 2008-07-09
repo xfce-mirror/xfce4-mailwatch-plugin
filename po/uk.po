@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the xfce4-mailwatch-plugin package.
 #
 # Maxim Dziumanenko <dziumanenko@gmail.com>, 2006.
-# Dmitry Nikitin <luckas_fb@mail.ru>, 2007.
+# Dmitry Nikitin <luckas_fb@mail.ru>, 2007, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-17 16:51-0700\n"
-"PO-Revision-Date: 2007-03-14 19:03+0200\n"
+"POT-Creation-Date: 2008-07-09 13:43+0000\n"
+"PO-Revision-Date: 2008-07-08 18:01+0300\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
-"Language-Team: Ukrainian <xfce-i18n@xfce.org>\n"
+"Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -347,10 +347,10 @@ msgstr "Немає нової пошти"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:129
 #: ../panel-plugin/mailwatch-plugin.c:120
-#, fuzzy, c-format
+#, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
-msgstr[0] "Є %d нових повідомлень:"
+msgstr[0] "Є %d нове повідомлення:"
 msgstr[1] "Є %d нових повідомлень:"
 msgstr[2] "Є %d нових повідомлень:"
 
@@ -358,7 +358,7 @@ msgstr[2] "Є %d нових повідомлень:"
 #: ../panel-plugin/mailwatch-plugin.c:131
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr ""
+msgstr "    %d в %s"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:253
 #: ../panel-plugin/mailwatch-plugin.c:345
@@ -457,31 +457,32 @@ msgid "Failed to run xfhelp4"
 msgstr "Не вдається запустити xfhelp4"
 
 #: ../panel-plugin/mailwatch-plugin.c:976
-#, fuzzy
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "Перевірка пошти Xfce"
+msgstr "Плагін для перевірки пошти Xfce4"
 
 #: ../panel-plugin/mailwatch-plugin.c:978
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr ""
+msgstr "Повнофункціональний аплет перевірки пошти для панелі Xfce"
 
 #: ../panel-plugin/mailwatch-plugin.c:979
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 msgstr ""
+"Авторські права (c) 2005-2008 Brian Tarricone\n"
+"Авторські права (c) 2005 Pasi Orovuo"
 
 #: ../panel-plugin/mailwatch-plugin.c:985
 msgid "Maintainer, Original Author"
-msgstr ""
+msgstr "Підтримка, основний автор"
 
 #: ../panel-plugin/mailwatch-plugin.c:987
 msgid "Developer"
-msgstr ""
+msgstr "Розробник"
 
 #: ../panel-plugin/mailwatch-plugin.c:1032
 msgid "Update Now"
-msgstr ""
+msgstr "Оновити зараз"
 
 #: ../libmailwatch-core/mailwatch-utils.c:250
 #, c-format
@@ -587,16 +588,3 @@ msgstr "Поштові скриньки"
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "Перевіряти пошту з кількох поштових скриньок"
-
-#, fuzzy
-#~ msgid "About Mailwatch"
-#~ msgstr "Перевірка пошти"
-
-#~ msgid "You have 1 new message:"
-#~ msgstr "Є 1 нове повідомлення:"
-
-#~ msgid "You have %d new messages:"
-#~ msgstr "Є %d нових повідомлень:"
-
-#~ msgid "Edit Properties"
-#~ msgstr "Редагування властивостей"
