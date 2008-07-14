@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-17 16:51-0700\n"
-"PO-Revision-Date: 2008-03-18 13:53+0100\n"
+"PO-Revision-Date: 2008-06-10 15:02+0100\n"
 "Last-Translator: Nuno Miguel <nunis@netcabo.pt>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,12 +20,8 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:228
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:458
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:434
-msgid ""
-"Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
-"the panel may hang on close."
-msgstr ""
-"Não é possível ajustar o socket para o modo não-bloqueante.  Se a tentativa "
-"de ligação falhar, o painel pode bloquear ao fechar."
+msgid "Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."
+msgstr "Não é possível ajustar o socket para o modo não-bloqueante.  Se a tentativa de ligação falhar, o painel pode bloquear ao fechar."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:265
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:495
@@ -227,15 +223,15 @@ msgstr "Directório de Mensagens Local"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:494
 msgid "The Maildir plugin can watch a local maildir-style mail spool for new messages."
-msgstr "O plugin de directório de mensagens pode monitorizar novas mensagens em uma caixa de mensagens estilo \"maildir\"."
+msgstr "O plugin de directório de mensagens pode monitorizar novas mensagens numa caixa de mensagens estilo \"maildir\"."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Select mbox file"
-msgstr "Seleccione arquivo mbox"
+msgstr "Seleccione ficheiro mbox"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:418
 msgid "Mbox _Filename:"
-msgstr "Nome do _Arquivo Mbox"
+msgstr "Nome do _Ficheiro Mbox"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:497
 msgid "Local Mbox spool"
@@ -256,7 +252,7 @@ msgid ""
 "the default mh maildir profile file ~/.mh_profile"
 msgstr ""
 "A configuração deste plugin é lida a partir do\n"
-"ficheiro de configuração padrão mh maildir ~/.mh_profile"
+"ficheiro de configuração omisso mh maildir ~/.mh_profile"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:669
 msgid "Local MH mail folder"
@@ -309,7 +305,7 @@ msgstr[1] "Tem %d novas mensagens:"
 #: ../panel-plugin/mailwatch-plugin.c:131
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "indica quantas novas mensagens em cada caixa|    %d em %s"
+msgstr "    %d em %s"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:253
 #: ../panel-plugin/mailwatch-plugin.c:345
@@ -531,7 +527,6 @@ msgstr "Verificar mensagens de várias caixas de mensagens"
 #, fuzzy
 #~ msgid "About Mailwatch"
 #~ msgstr "Monitor de mensagens"
-
 #~ msgid "You have 1 new message:"
 #~ msgstr "Tem 1 mensagem nova:"
 #~ msgid "You have %d new messages:"
