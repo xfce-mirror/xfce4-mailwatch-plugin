@@ -14,7 +14,9 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:228
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:458
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:434
-msgid "Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."
+msgid ""
+"Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
+"the panel may hang on close."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:265
@@ -27,7 +29,9 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:303
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:533
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:509
-msgid "Unable to return socket to blocking mode.  Data may not be retreived correctly."
+msgid ""
+"Unable to return socket to blocking mode.  Data may not be retreived "
+"correctly."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:341
@@ -39,12 +43,17 @@ msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:389
 #, c-format
-msgid "Received HTTP response code %d.  The most likely reason for this is that your GMail username or password is incorrect."
+msgid ""
+"Received HTTP response code %d.  The most likely reason for this is that "
+"your GMail username or password is incorrect."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:395
 #, c-format
-msgid "Received HTTP response code %d, which should be 200.  There may be a problem with GMail's servers, or they have incompatibly changed their authentication method or location of the new messages feed."
+msgid ""
+"Received HTTP response code %d, which should be 200.  There may be a problem "
+"with GMail's servers, or they have incompatibly changed their authentication "
+"method or location of the new messages feed."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:640
@@ -79,11 +88,15 @@ msgid "Remote GMail Mailbox"
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:778
-msgid "The GMail plugin can connect to Google's mail service and securely retrieve the number of new messages."
+msgid ""
+"The GMail plugin can connect to Google's mail service and securely retrieve "
+"the number of new messages."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:252
-msgid "Secure IMAP is not available, and the IMAP server does not support plaintext logins."
+msgid ""
+"Secure IMAP is not available, and the IMAP server does not support plaintext "
+"logins."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:385
@@ -91,7 +104,10 @@ msgid "STARTTLS security was requested, but this server does not support it."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:645
-msgid "The IMAP server returned a response we weren't quite expecting.  This might be OK, or this plugin might need to be modified to support your mail server if the new message counts are incorrect."
+msgid ""
+"The IMAP server returned a response we weren't quite expecting.  This might "
+"be OK, or this plugin might need to be modified to support your mail server "
+"if the new message counts are incorrect."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1245
@@ -112,7 +128,10 @@ msgid "No server or username is set."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1467
-msgid "The folder list cannot be retrieved until a server, username, and probably password are set.  Also be sure to check any security settings in the Advanced dialog."
+msgid ""
+"The folder list cannot be retrieved until a server, username, and probably "
+"password are set.  Also be sure to check any security settings in the "
+"Advanced dialog."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1472
@@ -181,7 +200,9 @@ msgid "Remote IMAP Mailbox"
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:2030
-msgid "The IMAP plugin can connect to a remote mail server that supports the IMAP protocol, optionally using SSL for link protection."
+msgid ""
+"The IMAP plugin can connect to a remote mail server that supports the IMAP "
+"protocol, optionally using SSL for link protection."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:100
@@ -216,7 +237,9 @@ msgid "Local Maildir Spool"
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:494
-msgid "The Maildir plugin can watch a local maildir-style mail spool for new messages."
+msgid ""
+"The Maildir plugin can watch a local maildir-style mail spool for new "
+"messages."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
@@ -275,7 +298,9 @@ msgid "Remote POP3 Mailbox"
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1193
-msgid "The POP3 plugin can connect to a remote mail server that supports the POP3 protocol, optionally using SSL for link protection."
+msgid ""
+"The POP3 plugin can connect to a remote mail server that supports the POP3 "
+"protocol, optionally using SSL for link protection."
 msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
@@ -442,19 +467,22 @@ msgid "A secure connection was requested, but gnutls was not initialised"
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch.c:138
-msgid "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."
+msgid ""
+"xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
+"likely a problem with your GLib install."
 msgstr ""
 
-#: ../libmailwatch-core/mailwatch.c:356
-#: ../libmailwatch-core/mailwatch.c:357
+#: ../libmailwatch-core/mailwatch.c:356 ../libmailwatch-core/mailwatch.c:357
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr ""
 
-#: ../libmailwatch-core/mailwatch.c:403
-#: ../libmailwatch-core/mailwatch.c:405
+#: ../libmailwatch-core/mailwatch.c:403 ../libmailwatch-core/mailwatch.c:405
 #, c-format
-msgid "Unable to set permissions on config file '%s'.  If this file contains passwords or other sensitive information, it may be readable by others on your system."
+msgid ""
+"Unable to set permissions on config file '%s'.  If this file contains "
+"passwords or other sensitive information, it may be readable by others on "
+"your system."
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch.c:627
@@ -513,4 +541,3 @@ msgstr ""
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr ""
-
