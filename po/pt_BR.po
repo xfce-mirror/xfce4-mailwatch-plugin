@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-17 16:51-0700\n"
-"PO-Revision-Date: 2008-03-25 20:06-0300\n"
+"PO-Revision-Date: 2008-07-22 19:35-0300\n"
 "Last-Translator: Fábio Nogueira <deb-user-ba@ubuntu.com>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -103,7 +103,7 @@ msgstr "minuto(s)."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:777
 msgid "Remote GMail Mailbox"
-msgstr "Caixa de Mensagens Remota do GMail"
+msgstr "Caixa de mensagens remota do GMail"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:778
 msgid ""
@@ -165,15 +165,15 @@ msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1472
 msgid "Set New Mail Folders"
-msgstr "Defina Pastas de Novas Mensagens"
+msgstr "Defina pastas de novas mensagens"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1483
 msgid "New Mail Folders"
-msgstr "Pastas de Novas Mensagens"
+msgstr "Pastas de novas mensagens"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1666
 msgid "Advanced IMAP Options"
-msgstr "Opções Avançadas de IMAP"
+msgstr "Opções avançadas de IMAP"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1677
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:906
@@ -213,7 +213,7 @@ msgstr "Servidor IMAP"
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1788
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:994
 msgid "_Mail server:"
-msgstr "Servidor de _Mensagens:"
+msgstr "Servidor de _mensagens:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1849
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1055
@@ -226,7 +226,7 @@ msgstr "_Pastas de novas mensagens..."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:2029
 msgid "Remote IMAP Mailbox"
-msgstr "Caixa de Mensagens IMAP Remota"
+msgstr "Caixa de mensagens IMAP remota"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:2030
 msgid ""
@@ -253,11 +253,11 @@ msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:345
 msgid "Select Maildir Folder"
-msgstr "Selecione a Pasta do Diretório de Mensagens"
+msgstr "Selecione a pasta do diretório de mensagens"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:406
 msgid "Maildir _Path:"
-msgstr "_Caminho do Diretório de Mensagens:"
+msgstr "_Caminho do diretório de mensagens:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:443
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:455
@@ -267,23 +267,23 @@ msgstr "_Intervalo:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:493
 msgid "Local Maildir Spool"
-msgstr "Diretório de Mensagens Local"
+msgstr "Diretório de mensagens local"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:494
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
 msgstr ""
-"O plug-in de diretório de mensagens pode monitorar novas mensagens em uma "
+"O plug-in de diretório de mensagens pode monitorar novas mensagens numa "
 "caixa de mensagens estilo \"maildir\"."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Select mbox file"
-msgstr "Selecione arquivo mbox"
+msgstr "Selecione arquivo Mbox"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:418
 msgid "Mbox _Filename:"
-msgstr "Nome do _Arquivo Mbox:"
+msgstr "Nome do _arquivo Mbox:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:497
 msgid "Local Mbox spool"
@@ -292,7 +292,7 @@ msgstr "Arquivo Mbox local"
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:498
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
 msgstr ""
-"O plug-in Mbox monitora novas mensagens em um arquivo local tipo \"mbox\"."
+"O plug-in Mbox monitora novas mensagens em um arquivo local tipo \"Mbox\"."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:248
 #, c-format
@@ -317,7 +317,7 @@ msgstr "O plug-in MH monitora novas mensagens em pastas MH locais."
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:895
 msgid "Advanced POP3 Options"
-msgstr "Opções Avançadas de POP3"
+msgstr "Opções avançadas de POP3"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:917
 msgid "Use SSL/TLS via STLS"
@@ -333,7 +333,7 @@ msgstr "Servidor POP3"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1192
 msgid "Remote POP3 Mailbox"
-msgstr "Caixa de Mensagens POP3 Remota"
+msgstr "Caixa de mensagens POP3 remota"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1193
 msgid ""
@@ -369,7 +369,7 @@ msgstr ""
 #: ../panel-plugin/mailwatch-plugin-4.2.c:253
 #: ../panel-plugin/mailwatch-plugin.c:345
 msgid "Xfce Mailwatch"
-msgstr "Monitor de Mensagens do Xfce"
+msgstr "Monitor de mensagens do Xfce"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:254
 #: ../panel-plugin/mailwatch-plugin.c:346
@@ -399,7 +399,7 @@ msgstr "Mostrar _status do histórico no ícone"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:598
 #: ../panel-plugin/mailwatch-plugin.c:682
 msgid "Select Icon"
-msgstr "Selecione Ícone"
+msgstr "Selecione icone"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:628
 #: ../panel-plugin/mailwatch-plugin-4.2.c:750
@@ -416,7 +416,7 @@ msgstr "No_va mensagem"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:682
 #: ../panel-plugin/mailwatch-plugin.c:826
 msgid "External Programs"
-msgstr "Programas Externos"
+msgstr "Programas externos"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:694
 #: ../panel-plugin/mailwatch-plugin.c:838
@@ -436,18 +436,18 @@ msgstr "Ícones"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:770
 #: ../panel-plugin/mailwatch-plugin.c:914
 msgid "Ne_w Mail"
-msgstr "No_va Mensagem"
+msgstr "No_va mensagem"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:778
 #: ../panel-plugin/mailwatch-plugin.c:805
 msgid "_View Log..."
-msgstr "Ver _Histórico..."
+msgstr "Ver _histórico..."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:891
 #: ../panel-plugin/mailwatch-plugin.c:786
 #: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Mail Watcher"
-msgstr "Monitor de Mensagens"
+msgstr "Monitor de mensagens"
 
 #: ../panel-plugin/mailwatch-plugin.c:757
 #, c-format
@@ -457,7 +457,7 @@ msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin.c:759
 msgid "Help Unavailable"
-msgstr "Ajuda Indisponível"
+msgstr "Ajuda indisponível"
 
 #: ../panel-plugin/mailwatch-plugin.c:760
 msgid "Failed to run xfhelp4"
@@ -465,11 +465,11 @@ msgstr "Falhou ao executar xfhelp4"
 
 #: ../panel-plugin/mailwatch-plugin.c:976
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "Monitor de Mensagens do Xfce4"
+msgstr "Monitor de mensagens do Xfce4"
 
 #: ../panel-plugin/mailwatch-plugin.c:978
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr "Um poderoso miniaplicativo verificador de e-mail para o Painel do Xfce"
+msgstr "Um poderoso miniaplicativo verificador de e-mail para o painel do Xfce"
 
 #: ../panel-plugin/mailwatch-plugin.c:979
 msgid ""
@@ -489,7 +489,7 @@ msgstr "Desenvolvedor"
 
 #: ../panel-plugin/mailwatch-plugin.c:1032
 msgid "Update Now"
-msgstr "Atualizar Agora"
+msgstr "Atualizar agora"
 
 #: ../libmailwatch-core/mailwatch-utils.c:250
 #, c-format
@@ -543,11 +543,11 @@ msgstr "Este tipo de caixa de mensagens não requer nenhuma configuração."
 
 #: ../libmailwatch-core/mailwatch.c:654
 msgid "Mailbox _Name:"
-msgstr "_Nome da Caixa de Mensagens:"
+msgstr "_Nome da caixa de mensagens:"
 
 #: ../libmailwatch-core/mailwatch.c:672
 msgid "Mailwatch"
-msgstr "Monitor de Mensagens"
+msgstr "Monitor de mensagens"
 
 #: ../libmailwatch-core/mailwatch.c:673
 msgid "Mailbox name required."
@@ -560,11 +560,11 @@ msgstr "Por favor escolha um nome para a caixa de mensagens."
 #: ../libmailwatch-core/mailwatch.c:717
 #, c-format
 msgid "Edit Mailbox: %s"
-msgstr "Editar Caixa de Mensagens: %s"
+msgstr "Editar caixa de mensagens: %s"
 
 #: ../libmailwatch-core/mailwatch.c:780
 msgid "Select Mailbox Type"
-msgstr "Selecione o Tipo de Caixa de Mensagens"
+msgstr "Selecione o tipo de caixa de mensagens"
 
 #: ../libmailwatch-core/mailwatch.c:790
 msgid "Select a mailbox type.  A description of the type will appear below."
@@ -574,11 +574,11 @@ msgstr ""
 
 #: ../libmailwatch-core/mailwatch.c:846
 msgid "Add New Mailbox"
-msgstr "Adicionar Nova Caixa de Mensagens"
+msgstr "Adicionar nova caixa de mensagens"
 
 #: ../libmailwatch-core/mailwatch.c:909
 msgid "Remove Mailbox"
-msgstr "Remover Caixa de Mensagens"
+msgstr "Remover caixa de mensagens"
 
 #: ../libmailwatch-core/mailwatch.c:910
 msgid "Are you sure?"
@@ -592,7 +592,7 @@ msgstr ""
 
 #: ../libmailwatch-core/mailwatch.c:978
 msgid "Mailboxes"
-msgstr "Caixas de Mensagens"
+msgstr "Caixas de mensagens"
 
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
