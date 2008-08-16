@@ -13,6 +13,8 @@ libmailwatch_core_la_SOURCES = \
 	mailwatch-mailbox-mh.c \
 	mailwatch-mailbox-pop3.c \
 	mailwatch-mailbox.h \
+	mailwatch-net-conn.c \
+	mailwatch-net-conn.h \
 	mailwatch-utils.c \
 	mailwatch-utils.h \
 	mailwatch.c \
