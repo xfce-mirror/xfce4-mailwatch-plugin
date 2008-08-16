@@ -83,6 +83,11 @@
                                   ) \
                              )
 
+#define RECV_TIMEOUT            30  /* seconds */
+#define TIMER_INIT              time_t __timer_start
+#define TIMER_START             __timer_start = time(NULL)
+#define TIMER_EXPIRED(endtime)  (time(NULL) - __timer_start >= (endtime))
+
 struct _XfceMailwatchNetConn
 {
     gchar *hostname;
@@ -105,6 +110,14 @@ struct _XfceMailwatchNetConn
     XMNCShouldContinueFunc should_continue;
     gpointer should_continue_user_data;
 };
+
+typedef enum
+{
+    XFCE_MAILWATCH_NET_CONN_SUCCESS = 0,
+    XFCE_MAILWATCH_NET_CONN_FATAL,
+    XFCE_MAILWATCH_NET_CONN_ERROR,
+} XfceMailwatchNetConnStatus;
+
 
 
 #ifdef HAVE_SSL_SUPPORT
@@ -183,6 +196,163 @@ my_g_mutex_unlock(void **priv)
 }
 
 #endif  /* defined(HAVE_SSL_SUPPORT) */
+
+
+
+static gboolean
+xfce_mailwatch_net_conn_tls_handshake(XfceMailwatchNetConn *net_conn,
+                                      GError **error)
+{
+    gint ret;
+    TIMER_INIT;
+
+    TIMER_START;
+    do {
+        ret = gnutls_handshake(net_conn->gt_session);
+    } while((GNUTLS_E_AGAIN == ret || GNUTLS_E_INTERRUPTED == ret)
+            && !TIMER_EXPIRED(RECV_TIMEOUT) && SHOULD_CONTINUE(net_conn));
+
+    if(ret != GNUTLS_E_SUCCESS) {
+        gint code = XFCE_MAILWATCH_ERROR_FAILED;
+        const gchar *reason;
+
+        if(!SHOULD_CONTINUE(net_conn)) {
+            code = XFCE_MAILWATCH_ERROR_ABORTED;
+            reason = _("Operation aborted");
+        } else if(GNUTLS_E_AGAIN == ret || GNUTLS_E_INTERRUPTED == ret)
+            reason = strerror(ETIMEDOUT);
+        else
+            reason = gnutls_strerror(ret);
+        if(error)
+            g_set_error(error, XFCE_MAILWATCH_ERROR, code, reason);
+        g_critical("XfceMailwatch: TLS handshake failed: %s", reason);
+
+        return FALSE;
+    }
+
+    DBG("TLS handshake succeeded");
+
+    return TRUE;
+}
+
+static XfceMailwatchNetConnStatus
+xfce_mailwatch_net_conn_do_connect(XfceMailwatchNetConn *net_conn,
+                                   struct sockaddr *addr,
+                                   size_t addrlen,
+                                   GError **error)
+{
+    gint ret;
+    TIMER_INIT;
+
+    TIMER_START;
+    do {
+        ret = connect(net_conn->fd, addr, addrlen);
+    } while(ret < 0 && (EINTR == errno || EAGAIN == errno)
+            && !TIMER_EXPIRED(RECV_TIMEOUT) && SHOULD_CONTINUE(net_conn));
+
+    if(!ret || (ret < 0 && EINPROGRESS == errno))  /* we're done here */
+        return XFCE_MAILWATCH_NET_CONN_SUCCESS;
+
+    /* this is a little different.  the only 'fatal' error at this
+     * point in the overall connect operation is if SHOULD_CONTINUE
+     * is false.  in that case, we set |error| and return _FATAL.
+     * if the timer expired or another error occurred, we just
+     * return a non-fatal _ERROR without setting |error|. */
+    if(!SHOULD_CONTINUE(net_conn)) {
+        if(error) {
+            g_set_error(error, XFCE_MAILWATCH_ERROR,
+                        XFCE_MAILWATCH_ERROR_ABORTED,
+                        _("Operation aborted"));
+        }
+
+        return XFCE_MAILWATCH_NET_CONN_FATAL;
+    }
+
+    return XFCE_MAILWATCH_NET_CONN_ERROR;
+}
+
+static XfceMailwatchNetConnStatus
+xfce_mailwatch_net_conn_get_connect_status(XfceMailwatchNetConn *net_conn,
+                                           struct sockaddr *addr,
+                                           GError **error)
+{
+    TIMER_INIT;
+
+    TIMER_START;
+    do {
+        fd_set wfd;
+        struct timeval tv = { 1, 0 };
+        int sock_err = 0;
+        socklen_t sock_err_len = sizeof(int);
+
+        FD_ZERO(&wfd);
+        FD_SET(net_conn->fd, &wfd);
+
+        DBG("checking for a connection...");
+
+        /* wait until the connect attempt finishes */
+        if(select(FD_SETSIZE, NULL, &wfd, NULL, &tv) < 0) {
+            if(EINTR == errno)
+                continue;
+            /* FIXME: should a select() failure actually be fatal? */
+            return XFCE_MAILWATCH_NET_CONN_ERROR;
+        }
+
+        /* check to see if it finished, and, if so, if there was an
+         * error, or if it completed successfully */
+        if(!FD_ISSET(net_conn->fd, &wfd))
+            continue;
+
+        if(!getsockopt(net_conn->fd, SOL_SOCKET, SO_ERROR,
+                       &sock_err, &sock_err_len)
+           && !sock_err)
+        {
+            DBG("    connection succeeded");
+
+            /* figure out the actual port */
+            switch(addr->sa_family) {
+#ifdef ENABLE_IPV6_SUPPORT
+                case AF_INET6:
+                {
+                    struct sockaddr_in6 *addr_in6 = (struct sockaddr_in6 *)addr;
+                    net_conn->actual_port = ntohs(addr_in6->sin6_port);
+                    break;
+                }
+#endif
+                case AF_INET:
+                {
+                    struct sockaddr_in *addr_in = (struct sockaddr_in *)addr;
+                    net_conn->actual_port = ntohs(addr_in->sin_port);
+                    break;
+                }
+
+                default:
+                    g_warning("Unable to determine socket type to get real port number");
+                    break;
+            }
+
+            errno = 0;
+            return XFCE_MAILWATCH_NET_CONN_SUCCESS;
+        } else {
+            DBG("    connection failed: sock_err is (%d) %s",
+                sock_err, strerror(sock_err));
+            errno = sock_err;
+            return XFCE_MAILWATCH_NET_CONN_ERROR;
+        }
+    } while(!TIMER_EXPIRED(RECV_TIMEOUT) && SHOULD_CONTINUE(net_conn));
+
+    if(!SHOULD_CONTINUE(net_conn)) {
+        if(error) {
+            g_set_error(error, XFCE_MAILWATCH_ERROR,
+                        XFCE_MAILWATCH_ERROR_ABORTED, _("Operation aborted"));
+        }
+
+        return XFCE_MAILWATCH_NET_CONN_FATAL;
+    }
+
+    return XFCE_MAILWATCH_NET_CONN_ERROR;
+}
+
 
 
 void
@@ -331,7 +501,6 @@ gboolean
 xfce_mailwatch_net_conn_connect(XfceMailwatchNetConn *net_conn,
                                 GError **error)
 {
-    gboolean connect_succeeded = FALSE;
     struct addrinfo *addresses = NULL, *ai;
     
     g_return_val_if_fail(net_conn && (!error || !*error), FALSE);
@@ -345,8 +514,6 @@ xfce_mailwatch_net_conn_connect(XfceMailwatchNetConn *net_conn,
     }
     
     for(ai = addresses; ai; ai = ai->ai_next) {
-        gint ret;
-
         net_conn->fd = socket(ai->ai_family, ai->ai_socktype, ai->ai_protocol);
         if(net_conn->fd < 0)
             continue;
@@ -354,139 +521,63 @@ xfce_mailwatch_net_conn_connect(XfceMailwatchNetConn *net_conn,
         if(fcntl(net_conn->fd, F_SETFL,
                  fcntl(net_conn->fd, F_GETFL) | O_NONBLOCK))
         {
-            g_warning(_("Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."));
+            g_warning(_("Unable to set socket to non-blocking mode. Things may not work properly from here on out."));
         }
         
-        do {
-            ret = connect(net_conn->fd, ai->ai_addr, ai->ai_addrlen);
-
-            if(ret < 0 && !SHOULD_CONTINUE(net_conn)) {
-                if(error) {
-                    g_set_error(error, XFCE_MAILWATCH_ERROR,
-                                XFCE_MAILWATCH_ERROR_ABORTED, NULL);
-                    goto out_err;
-                }
-            }
-        } while(ret < 0 && (EINTR == errno || EAGAIN == errno));
-
-        if(ret < 0 && EINPROGRESS == errno) {
-            gint iters_left;
-
-            for(iters_left = 45; iters_left >= 0; iters_left--) {
-                fd_set wfd;
-                struct timeval tv = { 1, 0 };
-                int sock_err = 0;
-                socklen_t sock_err_len = sizeof(int);
-                
-                FD_ZERO(&wfd);
-                FD_SET(net_conn->fd, &wfd);
-                
-                DBG("checking for a connection...");
-
-                /* check the main thread to see if we're supposed to quit */
-                if(!SHOULD_CONTINUE(net_conn)) {
-                    if(error) {
-                        g_set_error(error, XFCE_MAILWATCH_ERROR,
-                                    XFCE_MAILWATCH_ERROR_ABORTED, NULL);
-                    }
-                    goto out_err;
-                }
-                
-                /* wait until the connect attempt finishes */
-                if(select(FD_SETSIZE, NULL, &wfd, NULL, &tv) < 0) {
-                    if(EINTR == errno || EAGAIN == errno)
-                        continue;
-                    else
-                        break;
-                }
-                
-                /* check to see if it finished, and, if so, if there was an
-                 * error, or if it completed successfully */
-                if(FD_ISSET(net_conn->fd, &wfd)) {
-                    if(!getsockopt(net_conn->fd, SOL_SOCKET, SO_ERROR,
-                                   &sock_err, &sock_err_len)
-                       && !sock_err)
-                    {
-                        DBG("    connection succeeded");
-                        connect_succeeded = TRUE;
-                        errno = 0;
-
-                        /* figure out the actual port */
-                        switch(ai->ai_addr->sa_family) {
-#ifdef ENABLE_IPV6_SUPPORT
-                            case AF_INET6:
-                            {
-                                struct sockaddr_in6 *addr = (struct sockaddr_in6 *)ai->ai_addr;
-                                net_conn->actual_port = ntohs(addr->sin6_port);
-                                break;
-                            }
-#endif
-                            case AF_INET:
-                            {
-                                struct sockaddr_in *addr = (struct sockaddr_in *)ai->ai_addr;
-                                net_conn->actual_port = ntohs(addr->sin_port);
-                                break;
-                            }
-
-                            default:
-                                g_warning("Unable to determine socket type to get real port number");
-                                break;
-                        }
-                    } else {
-                        DBG("    connection failed: sock_err is (%d) %s",
-                            sock_err, strerror(sock_err));
-                        errno = sock_err;
-                    }
-                    break;
-                } else
-                    errno = ETIMEDOUT;
-            }
-        }
-        
-        if(connect_succeeded) {
-            if(fcntl(net_conn->fd, F_SETFL,
-                     fcntl(net_conn->fd, F_GETFL) & ~(O_NONBLOCK)))
-            {
-                g_warning(_("Unable to return socket to blocking mode.  Data may not be retreived correctly."));
-            }
-            break;
-        } else {
-            DBG("failed to connect");
-            if(net_conn->fd != -1) {
+        switch(xfce_mailwatch_net_conn_do_connect(net_conn, ai->ai_addr,
+                                                  ai->ai_addrlen, error))
+        {
+            case XFCE_MAILWATCH_NET_CONN_FATAL:
+                goto out_err;
+            case XFCE_MAILWATCH_NET_CONN_ERROR:
                 close(net_conn->fd);
                 net_conn->fd = -1;
-            }
+                continue;
+            case XFCE_MAILWATCH_NET_CONN_SUCCESS:
+                break;
         }
-        
-        if(!SHOULD_CONTINUE(net_conn)) {
-            if(error) {
-                g_set_error(error, XFCE_MAILWATCH_ERROR,
-                            XFCE_MAILWATCH_ERROR_ABORTED, NULL);
-            }
-            goto out_err;
-        }
-    }
-    
-    if(!connect_succeeded) {
-        if(error) {
-            g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                        _("Failed to connect to server \"%s\": %s"),
-                        net_conn->hostname, strerror(errno));
+
+        switch(xfce_mailwatch_net_conn_get_connect_status(net_conn,
+                                                          ai->ai_addr,
+                                                          error))
+        {
+            case XFCE_MAILWATCH_NET_CONN_FATAL:
+                goto out_err;
+            case XFCE_MAILWATCH_NET_CONN_ERROR:
+                close(net_conn->fd);
+                net_conn->fd = -1;
+                continue;
+            case XFCE_MAILWATCH_NET_CONN_SUCCESS:
+#if 0  /* let's use non-blocking sockets.  this can potentially hide
+        * bugs in my implementation, though */
+                if(fcntl(net_conn->fd, F_SETFL,
+                         fcntl(net_conn->fd, F_GETFL) & ~(O_NONBLOCK)))
+                {
+                    g_warning(_("Unable to return socket to blocking mode.  Data may not be retreived correctly."));
+                }
+#endif
+                freeaddrinfo(addresses);
+                return TRUE;
         }
     }
 
 out_err:
     
-    if(!connect_succeeded && net_conn->fd != -1) {  /* needed for the gotos */
-        shutdown(net_conn->fd, SHUT_RDWR);
+    if(net_conn->fd >= 0) {
         close(net_conn->fd);
         net_conn->fd = -1;
+    }
+
+    if(error && !*error) {
+        g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
+                    _("Failed to connect to server \"%s\": %s"),
+                    net_conn->hostname, strerror(errno));
     }
 
     if(addresses)
         freeaddrinfo(addresses);
 
-    return connect_succeeded;
+    return FALSE;
 }
 
 gboolean
@@ -494,7 +585,6 @@ xfce_mailwatch_net_conn_make_secure(XfceMailwatchNetConn *net_conn,
                                     GError **error)
 {
 #ifdef HAVE_SSL_SUPPORT
-    gint gt_ret;
     const int cert_type_prio[2] = { GNUTLS_CRT_X509, 0 };
 #endif
 
@@ -517,47 +607,28 @@ xfce_mailwatch_net_conn_make_secure(XfceMailwatchNetConn *net_conn,
                            net_conn->gt_creds);
     gnutls_transport_set_ptr(net_conn->gt_session,
                              (gnutls_transport_ptr_t)net_conn->fd);
+    if(fcntl(net_conn->fd, F_GETFL) & O_NONBLOCK)
+        gnutls_transport_set_lowat(net_conn->gt_session, 0);
     
-    do {
-        gt_ret = gnutls_handshake(net_conn->gt_session);
+    if(!xfce_mailwatch_net_conn_tls_handshake(net_conn, error)) {
+#if 0
+        gnutls_bye(net_conn->gt_session, GNUTLS_SHUT_RDWR);
+#endif
+        gnutls_deinit(net_conn->gt_session);
+        gnutls_certificate_free_credentials(net_conn->gt_creds);
 
-        if(gt_ret != GNUTLS_E_SUCCESS && !SHOULD_CONTINUE(net_conn)) {
-            if(error) {
-                g_set_error(error, XFCE_MAILWATCH_ERROR,
-                            XFCE_MAILWATCH_ERROR_ABORTED, NULL);
-            }
-            goto out_err;
-        }
-    } while(gt_ret == GNUTLS_E_AGAIN || gt_ret == GNUTLS_E_INTERRUPTED);
-
-    if(gt_ret != GNUTLS_E_SUCCESS) {
-        if(error) {
-            g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                        gnutls_strerror(gt_ret));
-        }
-        g_critical(_("XfceMailwatch: TLS handshake failed: %s"), gnutls_strerror(gt_ret));
-        goto out_err;
+        return FALSE;
     }
 
-    DBG("TLS handshake succeeded");
     net_conn->is_secure = TRUE;
 
     return TRUE;
-
-out_err:
-#if 0
-    gnutls_bye(net_conn->gt_session, GNUTLS_SHUT_RDWR);
-#endif
-    gnutls_deinit(net_conn->gt_session);
-    gnutls_certificate_free_credentials(net_conn->gt_creds);
-
-    return FALSE;
 #else
     if(error) {
         g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
                     _("Not compiled with SSL/TLS support"));
     }
-    g_critical(_("XfceMailwatch: TLS handshake failed: not compiled with SSL support."));
+    g_critical("XfceMailwatch: TLS handshake failed: not compiled with SSL support.");
     
     return FALSE;
 #endif
@@ -570,6 +641,7 @@ xfce_mailwatch_net_conn_send_data(XfceMailwatchNetConn *net_conn,
                                   GError **error)
 {
     gint bout = 0;
+    TIMER_INIT;
 
     g_return_val_if_fail(net_conn && (!error || !*error), -1);
     g_return_val_if_fail(net_conn->fd != -1, -1);
@@ -581,54 +653,41 @@ xfce_mailwatch_net_conn_send_data(XfceMailwatchNetConn *net_conn,
     if(net_conn->is_secure) {
         gint ret = 0, totallen = buf_len;
         gint bytesleft = totallen;
-        
+
         while(bytesleft > 0) {
+            TIMER_START;
             do {
                 ret = gnutls_record_send(net_conn->gt_session,
                                          buf + totallen - bytesleft,
                                          bytesleft);
 
-                if(GNUTLS_E_SUCCESS != ret && !SHOULD_CONTINUE(net_conn)) {
-                    if(error) {
-                        g_set_error(error, XFCE_MAILWATCH_ERROR,
-                                    XFCE_MAILWATCH_ERROR_ABORTED, NULL);
-                    }
-                    return -1;
-                }
-            } while(GNUTLS_E_INTERRUPTED == ret || GNUTLS_E_AGAIN == ret);
-            
-            if(GNUTLS_E_REHANDSHAKE == ret) {
-                /* server has requested a new handshake */
-                do {
-                    ret = gnutls_handshake(net_conn->gt_session);
-
-                    if(GNUTLS_E_SUCCESS != ret && !SHOULD_CONTINUE(net_conn)) {
-                        if(error) {
-                            g_set_error(error, XFCE_MAILWATCH_ERROR,
-                                        XFCE_MAILWATCH_ERROR_ABORTED, NULL);
-                        }
+                if(GNUTLS_E_REHANDSHAKE == ret) {
+                    if(!xfce_mailwatch_net_conn_tls_handshake(net_conn, error))
                         return -1;
-                    }
-                } while(GNUTLS_E_AGAIN == ret || GNUTLS_E_INTERRUPTED == ret);
-                
-                if(GNUTLS_E_SUCCESS != ret) {
-                    if(error) {
-                        g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                                    _("TLS handshake failed (%d): %s"), ret,
-                                    gnutls_strerror(ret));
-                    }
-                    return -1;
+                    ret = GNUTLS_E_AGAIN;
                 }
-            } else if(ret < 0) {
+            } while((GNUTLS_E_INTERRUPTED == ret || GNUTLS_E_AGAIN == ret)
+                    && !TIMER_EXPIRED(RECV_TIMEOUT) && SHOULD_CONTINUE(net_conn));
+
+            if(ret < 0) {
+                gint code = XFCE_MAILWATCH_ERROR_FAILED;
+                const gchar *reason;
+
+                if(!SHOULD_CONTINUE(net_conn)) {
+                    code = XFCE_MAILWATCH_ERROR_ABORTED;
+                    reason = _("Operation aborted");
+                } else if(TIMER_EXPIRED(RECV_TIMEOUT))
+                    reason = strerror(ETIMEDOUT);
+                else
+                    reason = gnutls_strerror(ret);
                 if(error) {
-                    g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                                _("Failed to send encrypted data (%d): %s"),
-                                ret, gnutls_strerror(ret));
+                    g_set_error(error, XFCE_MAILWATCH_ERROR, code,
+                                _("Failed to send encrypted data: %s"),
+                                reason);
                 }
-                DBG("gnutls_record_send() failed (%d): %s", ret,
-                    gnutls_strerror(ret));
+                DBG("gnutls_record_send() failed (%d): %s", ret, reason);
                 return -1;
-            } else if(ret > 0) {
+            } else {
                 bout += ret;
                 bytesleft -= ret;
             }
@@ -636,24 +695,27 @@ xfce_mailwatch_net_conn_send_data(XfceMailwatchNetConn *net_conn,
     } else
 #endif
     {
+        TIMER_START;
         do {
             bout = send(net_conn->fd, buf, buf_len, MSG_NOSIGNAL);
-
-            if(bout < 0 && !SHOULD_CONTINUE(net_conn)) {
-                if(error) {
-                    g_set_error(error, XFCE_MAILWATCH_ERROR,
-                                XFCE_MAILWATCH_ERROR_ABORTED, NULL);
-                }
-                return -1;
-            }
-        } while(bout < 0 && (EINTR == errno || EAGAIN == errno));
+        } while(bout < 0 && (EINTR == errno || EAGAIN == errno)
+                && !TIMER_EXPIRED(RECV_TIMEOUT) && SHOULD_CONTINUE(net_conn));
     }
 
-    if(bout < 0) {
-        if(error) {
-            g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                        _("Failed to send data: %s"), strerror(errno));
-        }
+    if(bout < 0 && error) {
+        gint code = XFCE_MAILWATCH_ERROR_FAILED;
+        const gchar *reason;
+
+        if(!SHOULD_CONTINUE(net_conn)) {
+            code = XFCE_MAILWATCH_ERROR_ABORTED;
+            reason = _("Operation aborted");
+        } else if(EINTR == errno || EAGAIN == errno)
+            reason = strerror(ETIMEDOUT);
+        else
+            reason = strerror(errno);
+
+        g_set_error(error, XFCE_MAILWATCH_ERROR, code,
+                    _("Failed to send data: %s"), reason);
     }
 
     return bout;
@@ -666,111 +728,109 @@ xfce_mailwatch_net_conn_recv_internal(XfceMailwatchNetConn *net_conn,
                                       gboolean block,
                                       GError **error)
 {
-    gint bin = 0;
-    gint tries_left;
-    gboolean data_ready = FALSE;
+    gint ret, bin = 0, code = XFCE_MAILWATCH_ERROR_FAILED;
+    const gchar *reason;
+    TIMER_INIT;
 
-    for(tries_left = 45; tries_left >= 0; --tries_left) {
+    TIMER_START;
+    do {
         fd_set rfd;
-        struct timeval tv;
-
-        if(!SHOULD_CONTINUE(net_conn)) {
-            if(error) {
-                g_set_error(error, XFCE_MAILWATCH_ERROR,
-                            XFCE_MAILWATCH_ERROR_ABORTED, NULL);
-            }
-            return -1;
-        }
+        struct timeval tv = { 1, 0 };
 
         FD_ZERO(&rfd);
         FD_SET(net_conn->fd, &rfd);
-        if(block)
-            tv.tv_sec = 1;
-        else
+        if(!block)
             tv.tv_sec = 0;
-        tv.tv_usec = 0;
 
-        if(select(FD_SETSIZE, &rfd, NULL, NULL, &tv) < 0)
-            continue;
-
-        if(FD_ISSET(net_conn->fd, &rfd)) {
-            data_ready = TRUE;
+        ret = select(FD_SETSIZE, &rfd, NULL, NULL, &tv);
+        if(ret > 0 && FD_ISSET(net_conn->fd, &rfd))
             break;
+        else if(ret < 0 && EINTR != errno) {
+            g_set_error(error, XFCE_MAILWATCH_ERROR,
+                        XFCE_MAILWATCH_ERROR_FAILED, strerror(errno));
+            return -1;
         } else if(!block)
             return 0;
-    }
+    } while(ret < 0 && EINTR == errno && !TIMER_EXPIRED(RECV_TIMEOUT)
+            && SHOULD_CONTINUE(net_conn));
 
-    if(!data_ready)
-        return 0;
+    if(!SHOULD_CONTINUE(net_conn)) {
+        if(error) {
+            g_set_error(error, XFCE_MAILWATCH_ERROR,
+                        XFCE_MAILWATCH_ERROR_ABORTED, _("Operation aborted"));
+        }
+        return -1;
+    } else if(TIMER_EXPIRED(RECV_TIMEOUT)) {
+        if(error) {
+            g_set_error(error, XFCE_MAILWATCH_ERROR,
+                        XFCE_MAILWATCH_ERROR_FAILED, strerror(ETIMEDOUT));
+        }
+        return -1;
+    }
 
 #ifdef HAVE_SSL_SUPPORT
     if(net_conn->is_secure) {
         gint ret;
+        code = XFCE_MAILWATCH_ERROR_FAILED;
 
+        TIMER_START;
         do {
             ret = gnutls_record_recv(net_conn->gt_session, buf, buf_len);
 
             if(GNUTLS_E_REHANDSHAKE == ret) {
-                do {
-                    ret = gnutls_handshake(net_conn->gt_session);
-
-                    if(GNUTLS_E_SUCCESS != ret && !SHOULD_CONTINUE(net_conn)) {
-                        if(error) {
-                            g_set_error(error, XFCE_MAILWATCH_ERROR,
-                                        XFCE_MAILWATCH_ERROR_ABORTED, NULL);
-                        }
-                        return -1;
-                    }
-                } while(GNUTLS_E_AGAIN == ret || GNUTLS_E_INTERRUPTED == ret);
-
-                if(ret != GNUTLS_E_SUCCESS) {
-                    if(error) {
-                        g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                                    _("TLS handshake failed (%d): %s"), ret,
-                                    gnutls_strerror(ret));
-                    }
+                if(!xfce_mailwatch_net_conn_tls_handshake(net_conn, error))
                     return -1;
-                }
-
                 ret = GNUTLS_E_AGAIN;
             }
-        } while(GNUTLS_E_INTERRUPTED == ret || GNUTLS_E_AGAIN == ret);
+        } while((GNUTLS_E_INTERRUPTED == ret || GNUTLS_E_AGAIN == ret)
+                && !TIMER_EXPIRED(RECV_TIMEOUT) && SHOULD_CONTINUE(net_conn));
         
         if(ret < 0) {
             if(error) {
-                g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                            _("Failed to receive encrypted data (%d): %s"),
-                            ret, gnutls_strerror(ret));
+                if(!SHOULD_CONTINUE(net_conn)) {
+                    code = XFCE_MAILWATCH_ERROR_ABORTED;
+                    reason = _("Operation aborted");
+                } else if(TIMER_EXPIRED(RECV_TIMEOUT))
+                    reason = strerror(ETIMEDOUT);
+                else
+                    reason = gnutls_strerror(ret);
+
+                g_set_error(error, XFCE_MAILWATCH_ERROR, code,
+                            _("Failed to receive encrypted data: %s"),
+                            reason);
             }
-            return -1;
+
+            bin = -1;
         } else
             bin = ret;
     } else
 #endif
     {
         gint ret;
+        code = XFCE_MAILWATCH_ERROR_FAILED;
 
+        TIMER_START;
         do {
             ret = recv(net_conn->fd, buf, buf_len, MSG_NOSIGNAL);
+        } while(ret < 0 && (EINTR == errno || EAGAIN == errno)
+                && !TIMER_EXPIRED(RECV_TIMEOUT) && SHOULD_CONTINUE(net_conn));
 
-            if(ret < 0 && !SHOULD_CONTINUE(net_conn)) {
-                if(error) {
-                    g_set_error(error, XFCE_MAILWATCH_ERROR,
-                                XFCE_MAILWATCH_ERROR_ABORTED, NULL);
-                }
-                return -1;
+        if(ret < 0) {
+            if(error) {
+                if(!SHOULD_CONTINUE(net_conn)) {
+                    code = XFCE_MAILWATCH_ERROR_ABORTED;
+                    reason = _("Operation aborted");
+                } else if(TIMER_EXPIRED(RECV_TIMEOUT))
+                    reason = strerror(ETIMEDOUT);
+                else
+                    reason = strerror(errno);
+
+                g_set_error(error, XFCE_MAILWATCH_ERROR, code,
+                            _("Failed to receive data: %s"), reason);
             }
-        } while(ret < 0 && (EINTR == errno || EAGAIN == errno));
-
-        if(ret > 0)
+            bin = -1;
+        } else
             bin = ret;
-    }
-
-    if(bin < 0) {
-        if(error) {
-            g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                        _("Failed to receive data: %s"), strerror(errno));
-        }
     }
 
     return bin;
