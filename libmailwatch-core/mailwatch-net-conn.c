@@ -91,6 +91,7 @@ struct _XfceMailwatchNetConn
     const gchar *line_terminator;
 
     gint fd;
+    guint actual_port;
 
     guchar *buffer;
     gsize buffer_len;
@@ -206,6 +207,7 @@ xfce_mailwatch_net_conn_new(const gchar *hostname,
     net_conn->service = service ? g_strdup(service) : NULL;
     net_conn->line_terminator = g_intern_string("\r\n");
     net_conn->fd = -1;
+    net_conn->actual_port = -1;
 
     return net_conn;
 }
@@ -221,6 +223,16 @@ xfce_mailwatch_net_conn_set_should_continue_func(XfceMailwatchNetConn *net_conn,
 }
 
 void
+xfce_mailwatch_net_conn_set_service(XfceMailwatchNetConn *net_conn,
+                                    const gchar *service)
+{
+    g_return_if_fail(net_conn && net_conn->fd == -1);
+
+    g_free(net_conn->service);
+    net_conn->service = g_strdup(service);
+}
+
+void
 xfce_mailwatch_net_conn_set_port(XfceMailwatchNetConn *net_conn,
                                  guint port)
 {
@@ -232,7 +244,11 @@ guint
 xfce_mailwatch_net_conn_get_port(XfceMailwatchNetConn *net_conn)
 {
     g_return_val_if_fail(net_conn, 0);
-    return net_conn->port;
+
+    if(net_conn->actual_port != -1)
+        return net_conn->actual_port;
+    else
+        return net_conn->port;
 }
 
 void
@@ -316,6 +332,8 @@ xfce_mailwatch_net_conn_connect(XfceMailwatchNetConn *net_conn,
     g_return_val_if_fail(net_conn && (!error || !*error), FALSE);
     g_return_val_if_fail(net_conn->fd == -1, TRUE);
 
+    net_conn->actual_port = -1;
+
     if(!xfce_mailwatch_net_conn_get_addrinfo(net_conn, &addresses, error)) {
         DBG("failed to get sockaddr");
         return FALSE;
@@ -387,6 +405,28 @@ xfce_mailwatch_net_conn_connect(XfceMailwatchNetConn *net_conn,
                         DBG("    connection succeeded");
                         connect_succeeded = TRUE;
                         errno = 0;
+
+                        /* figure out the actual port */
+                        switch(ai->ai_addr->sa_family) {
+#ifdef ENABLE_IPV6_SUPPORT
+                            case AF_INET6:
+                            {
+                                struct sockaddr_in6 *addr = (struct sockaddr_in6 *)ai->ai_addr;
+                                net_conn->actual_port = ntohs(addr->sin6_port);
+                                break;
+                            }
+#endif
+                            case AF_INET:
+                            {
+                                struct sockaddr_in *addr = (struct sockaddr_in *)ai->ai_addr;
+                                net_conn->actual_port = ntohs(addr->sin_port);
+                                break;
+                            }
+
+                            default:
+                                g_warning("Unable to determine socket type to get real port number");
+                                break;
+                        }
                     } else {
                         DBG("    connection failed: sock_err is (%d) %s",
                             sock_err, strerror(sock_err));
@@ -519,13 +559,16 @@ out_err:
 gint
 xfce_mailwatch_net_conn_send_data(XfceMailwatchNetConn *net_conn,
                                   const guchar *buf,
-                                  gsize buf_len,
+                                  gssize buf_len,
                                   GError **error)
 {
     gint bout = 0;
 
     g_return_val_if_fail(net_conn && (!error || !*error), -1);
     g_return_val_if_fail(net_conn->fd != -1, -1);
+
+    if(buf_len < 0)
+        buf_len = strlen((const gchar *)buf);
 
 #ifdef HAVE_SSL_SUPPORT
     if(net_conn->is_secure) {
@@ -776,7 +819,7 @@ xfce_mailwatch_net_conn_recv_data(XfceMailwatchNetConn *net_conn,
 
 gint
 xfce_mailwatch_net_conn_recv_line(XfceMailwatchNetConn *net_conn,
-                                  guchar *buf,
+                                  gchar *buf,
                                   gsize buf_len,
                                   GError **error)
 {
@@ -864,6 +907,7 @@ xfce_mailwatch_net_conn_disconnect(XfceMailwatchNetConn *net_conn)
     shutdown(net_conn->fd, SHUT_RDWR);
     close(net_conn->fd);
     net_conn->fd = -1;
+    net_conn->actual_port = -1;
 }
 
 void

@@ -38,6 +38,9 @@ void xfce_mailwatch_net_conn_set_should_continue_func(XfceMailwatchNetConn *net_
                                                       XMNCShouldContinueFunc func,
                                                       gpointer user_data);
 
+void xfce_mailwatch_net_conn_set_service(XfceMailwatchNetConn *net_conn,
+                                         const gchar *service);
+
 void xfce_mailwatch_net_conn_set_port(XfceMailwatchNetConn *net_conn,
                                       guint port);
 guint xfce_mailwatch_net_conn_get_port(XfceMailwatchNetConn *net_conn);
@@ -56,7 +59,7 @@ gboolean xfce_mailwatch_net_conn_make_secure(XfceMailwatchNetConn *net_conn,
 
 gint xfce_mailwatch_net_conn_send_data(XfceMailwatchNetConn *net_conn,
                                        const guchar *buf,
-                                       gsize buf_len,
+                                       gssize buf_len,
                                        GError **error);
 
 gint xfce_mailwatch_net_conn_recv_data(XfceMailwatchNetConn *net_conn,
@@ -64,7 +67,7 @@ gint xfce_mailwatch_net_conn_recv_data(XfceMailwatchNetConn *net_conn,
                                        gsize buf_len,
                                        GError **error);
 gint xfce_mailwatch_net_conn_recv_line(XfceMailwatchNetConn *net_conn,
-                                       guchar *buf,
+                                       gchar *buf,
                                        gsize buf_len,
                                        GError **error);
 
