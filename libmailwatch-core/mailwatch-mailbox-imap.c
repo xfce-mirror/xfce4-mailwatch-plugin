@@ -243,6 +243,9 @@ imap_recv_command(XfceMailwatchIMAPMailbox *imailbox,
             return tot + bin;
 
         tot += bin;
+
+        if(!imap_should_continue(net_conn, imailbox))
+            return -1;
     }
 
     g_critical("imap_recv_command(): buffer full!");

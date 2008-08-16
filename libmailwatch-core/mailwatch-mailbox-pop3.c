@@ -163,6 +163,9 @@ pop3_recv_command(XfceMailwatchPOP3Mailbox *pmailbox,
         }
 
         tot += bin;
+
+        if(!pop3_should_continue(pmailbox->net_conn, pmailbox))
+            return -1;
     }
 
     g_critical("pop3_recv_command(): buffer full!");
