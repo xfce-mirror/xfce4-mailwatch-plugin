@@ -327,18 +327,26 @@ imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox,
 #define BUFSIZE 8191
     gint bin;
     gchar buf[BUFSIZE+1];
+    gboolean starttls_ok = FALSE;
     
     TRACE("entering");
     
     g_snprintf(buf, BUFSIZE, "%05d CAPABILITY\r\n", ++imailbox->imap_tag);
     if(imap_send(imailbox, net_conn, buf) != strlen(buf))
         return FALSE;
-    
-    bin = imap_recv(imailbox, net_conn, buf, BUFSIZE);
-    DBG("checking for STARTTLS caps (%d): %s", bin, bin>0?buf:"(nada)");
-    if(bin <= 0)
-        return FALSE;
-    if(!strstr(buf, " STARTTLS")) {
+
+    do {
+        bin = imap_recv(imailbox, net_conn, buf, BUFSIZE);
+        DBG("checking for STARTTLS caps (%d): %s", bin, bin>0?buf:"(nada)");
+        if(bin <= 0)
+            return FALSE;
+        if(bin > 6 && (!strncmp(buf+6, "NO", 2) || !strncmp(buf+6, "BAD", 3)))
+            return FALSE;
+        if(strstr(buf, " STARTTLS"))
+            starttls_ok = TRUE;
+    } while(strncmp(buf+6, "OK", 2));
+
+    if(!starttls_ok) {
         xfce_mailwatch_log_message(imailbox->mailwatch,
                                    XFCE_MAILWATCH_MAILBOX(imailbox),
                                    XFCE_MAILWATCH_LOG_WARNING,
@@ -352,6 +360,7 @@ imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox,
     
     if(imap_recv(imailbox, net_conn, buf, BUFSIZE) < 0)
         return FALSE;
+    DBG("got STARTLS response: %s", bin>0?buf:"(nada)");
     if(!strstr(buf, " OK"))
         return FALSE;
     
@@ -463,49 +472,44 @@ imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
                    const gchar *mailbox_name)
 {
     gint new_messages = 0, bin;
-    gchar buf[4096], *p, *q, tmp[64];
+    gchar buf[4096], *p, *q;
     
     TRACE("entering, folder %s", mailbox_name);
-    
-    memset(buf, 0, sizeof(buf));
     
     /* ask the server to look at the mailbox */
     g_snprintf(buf, sizeof(buf), "%05d STATUS %s (UNSEEN)\r\n",
                ++imailbox->imap_tag, mailbox_name);
+
     if(imap_send(imailbox, net_conn, buf) != strlen(buf))
         return 0;
     DBG("  successfully sent cmd '%s'", buf);
     
-    /* grab the response */
-    g_snprintf(tmp, sizeof(tmp), "%05d NO", imailbox->imap_tag);
-    if(imap_recv(imailbox, net_conn, buf, sizeof(buf)-1) <= 0) {
-        xfce_mailwatch_log_message(imailbox->mailwatch,
-                                   XFCE_MAILWATCH_MAILBOX(imailbox),
-                                   XFCE_MAILWATCH_LOG_WARNING,
-                                   _("The IMAP server returned a response we weren't quite expecting.  This might be OK, or this plugin might need to be modified to support your mail server if the new message counts are incorrect."));
-        g_warning("Mailwatch: Odd response to SEARCH UNSEEN");
-        return 0;
-    }
-    
-    if(strstr(buf, tmp))
-        return 0;
-    p = strstr(buf, "(UNSEEN ");
-    if(!p)
-        return 0;
-    q = strchr(p, ')');
-    if(!q)
-        return 0;
-    *q = 0;
-    new_messages = atoi(p+8);
-    *q = ')';
-    
-    /* make sure we got the entire command; it should end with "##### OK" in it */
-    g_snprintf(tmp, sizeof(tmp), "%05d OK", imailbox->imap_tag);
     do {
+        /* grab the response */
         bin = imap_recv(imailbox, net_conn, buf, sizeof(buf)-1);
-        if(bin < 0)
-            return (guint)new_messages;
-    } while(!strstr(buf, tmp));
+        if(bin <= 0) {
+            xfce_mailwatch_log_message(imailbox->mailwatch,
+                                       XFCE_MAILWATCH_MAILBOX(imailbox),
+                                       XFCE_MAILWATCH_LOG_WARNING,
+                                       _("The IMAP server returned a response we weren't quite expecting.  This might be OK, or this plugin might need to be modified to support your mail server if the new message counts are incorrect."));
+            g_warning("Mailwatch: Odd response to STATUS UNSEEN");
+            return 0;
+        }
+        DBG("response to STATUS UNSEEN: %s", buf);
+
+        if(bin > 6 && (!strncmp(buf+6, "NO", 2) || !strncmp(buf+6, "BAD", 3)))
+            return 0;
+
+        p = strstr(buf, "(UNSEEN ");
+        if(p) {
+            q = strchr(p, ')');
+            if(q) {
+                *q = 0;
+                new_messages = atoi(p+8);
+                *q = ')';
+            }
+        }
+    } while(bin < 6 || strncmp(buf+6, "OK", 2));
     
     DBG("new message count in mailbox '%s' is %d", mailbox_name, new_messages);
     
