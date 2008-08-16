@@ -42,40 +42,12 @@
 #include <sys/types.h>
 #endif
 
-#ifdef HAVE_SYS_SOCKET_H
-#include <sys/socket.h>
-#endif
-
-#if HAVE_NETINET_IN_H
-#include <netinet/in.h>
-#endif
-
-#ifdef HAVE_NETDB_H
-#include <netdb.h>
-#endif
-
-#ifdef HAVE_SYS_SELECT_H
-#include <sys/select.h>
-#endif
-
-#ifdef HAVE_SYS_WAIT_H
-#include <sys/wait.h>
-#endif
-
-#ifdef HAVE_FCNTL_H
-#include <fcntl.h>
-#endif
-
 #ifdef HAVE_ERRNO_H
 #include <errno.h>
 #endif
 
-#ifndef MSG_NOSIGNAL
-#define MSG_NOSIGNAL 0
-#endif
-
-#ifndef AI_ADDRCONFIG
-#define AI_ADDRCONFIG 0
+#ifdef HAVE_SSL_SUPPORT
+#include <gcrypt.h>
 #endif
 
 #include <gtk/gtk.h>
@@ -85,366 +57,6 @@
 #include "mailwatch-utils.h"
 #include "mailwatch-common.h"
 #include "mailwatch.h"
-
-#ifdef HAVE_SSL_SUPPORT
-
-#include <gcrypt.h>
-#include <gnutls/gnutls.h>
-
-/* missing from 1.2.0? */
-#ifndef _GCRY_PTH_SOCKADDR
-#define _GCRY_PTH_SOCKADDR  struct sockaddr
-#endif
-#ifndef _GCRY_PTH_SOCKLEN_T
-#define _GCRY_PTH_SOCKLEN_T socklen_t
-#endif
-
-#define GNUTLS_CA_FILE           "ca.pem"
-    
-/* stuff to support 'gthreads' with gcrypt */
-static int my_g_mutex_init(void **priv);
-static int my_g_mutex_destroy(void **priv);
-static int my_g_mutex_lock(void **priv);
-static int my_g_mutex_unlock(void **priv);
-static struct gcry_thread_cbs gcry_threads_gthread = {
-    GCRY_THREAD_OPTION_USER,
-    NULL,
-    my_g_mutex_init,
-    my_g_mutex_destroy,
-    my_g_mutex_lock,
-    my_g_mutex_unlock,
-    read,
-    write,
-    (ssize_t (*)(int, fd_set *, fd_set *, fd_set *, struct timeval *))select,
-    (ssize_t (*)(pid_t, int *, int))waitpid,
-    accept,
-    (int (*)(int, _GCRY_PTH_SOCKADDR *, _GCRY_PTH_SOCKLEN_T))connect,
-    (int (*)(int, const struct msghdr *, int))sendmsg,
-    (int (*)(int, struct msghdr *, int))recvmsg
-};
-
-/*
- * gthread -> gcrypt support wrappers
- */
-static int
-my_g_mutex_init(void **priv)
-{
-    GMutex **gmx = (GMutex **)priv;
-    
-    *gmx = g_mutex_new();
-    if(!*gmx)
-        return -1;
-    return 0;
-}
-
-static int
-my_g_mutex_destroy(void **priv)
-{
-    GMutex **gmx = (GMutex **)priv;
-    
-    g_mutex_free(*gmx);
-    return 0;
-}
-
-static int
-my_g_mutex_lock(void **priv)
-{
-    GMutex **gmx = (GMutex **)priv;
-    
-    g_mutex_lock(*gmx);
-    return 0;
-}
-
-static int
-my_g_mutex_unlock(void **priv)
-{
-    GMutex **gmx = (GMutex **)priv;
-    
-    g_mutex_unlock(*gmx);
-    return 0;
-}
-
-/***/
-
-#endif  /* defined(HAVE_SSL_SUPPORT) */
-
-gboolean
-xfce_mailwatch_net_get_addrinfo(const gchar *host,
-                                const gchar *service,
-                                struct addrinfo **results,
-                                GError **error)
-{
-    struct addrinfo hints;
-    gint ret;
-    
-    g_return_val_if_fail(results && !*results, FALSE);  /* FIXME: set |error| */
-    
-    memset(&hints, 0, sizeof(hints));
-#ifdef ENABLE_IPV6_SUPPORT
-    hints.ai_family = AF_UNSPEC;
-#else
-    hints.ai_family = AF_INET;
-#endif
-    hints.ai_socktype = SOCK_STREAM;
-    hints.ai_flags = AI_ADDRCONFIG;
-    
-    /* according to getaddrinfo(3), this should be reentrant.  however, calling
-     * it from several threads often causes a crash.  bactraces show that we're
-     * indeed inside getaddrinfo() in more than one thread, and I can't figure
-     * out any other explanation. */
-    
-    xfce_mailwatch_threads_enter();
-    ret = getaddrinfo(host, service, &hints, results);
-    xfce_mailwatch_threads_leave();
-    if(ret) {
-        if(error) {
-            g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                        "getaddrinfo(): %s", gai_strerror(ret));
-        }
-        return FALSE;
-    }
-    
-    return TRUE;
-}
-
-gboolean
-xfce_mailwatch_net_negotiate_tls(gint sockfd,
-                                 XfceMailwatchSecurityInfo *security_info,
-                                 const gchar *host,
-                                 GError **error)
-{
-#ifdef HAVE_SSL_SUPPORT
-    gint gt_ret;
-    const int cert_type_prio[2] = { GNUTLS_CRT_X509, 0 };
-    
-    TRACE("entering");
-    
-    /* init */
-    gcry_control(GCRYCTL_SET_THREAD_CBS, &gcry_threads_gthread);
-    gnutls_global_init();
-    security_info->gnutls_inited = TRUE;
-    
-    /* init the x509 cert */
-    gnutls_certificate_allocate_credentials(&security_info->gt_creds);
-    gnutls_certificate_set_x509_trust_file(security_info->gt_creds,
-            GNUTLS_CA_FILE, GNUTLS_X509_FMT_PEM);
-    
-    /* init the session and set it up */
-    gnutls_init(&security_info->gt_session, GNUTLS_CLIENT);
-    gnutls_set_default_priority(security_info->gt_session);
-    gnutls_certificate_type_set_priority(security_info->gt_session,
-            cert_type_prio);
-    gnutls_credentials_set(security_info->gt_session, GNUTLS_CRD_CERTIFICATE,
-            security_info->gt_creds);
-    gnutls_transport_set_ptr(security_info->gt_session,
-            (gnutls_transport_ptr_t)(glong)sockfd);
-    
-    /* just do it */
-    do {
-        gt_ret = gnutls_handshake(security_info->gt_session);
-    } while(gt_ret == GNUTLS_E_AGAIN || gt_ret == GNUTLS_E_INTERRUPTED);
-    if(gt_ret < 0) {
-        if(error) {
-            g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                        gnutls_strerror(gt_ret));
-        }
-        g_critical(_("XfceMailwatch: TLS handshake failed: %s"), gnutls_strerror(gt_ret));
-        return FALSE;
-    } else {
-        DBG("TLS handshake succeeded");
-    }
-    
-    return TRUE;
-#else
-    if(error) {
-        g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                    _("Not compiled with SSL/TLS support"));
-    }
-    g_critical(_("XfceMailwatch: TLS handshake failed: not compiled with SSL support."));
-    
-    return FALSE;
-#endif
-}
-
-
-gssize
-xfce_mailwatch_net_send(gint sockfd,
-                        XfceMailwatchSecurityInfo *security_info,
-                        const gchar *buf,
-                        GError **error)
-{
-    gint bout = 0;
-    
-#ifdef HAVE_SSL_SUPPORT
-    if(security_info->using_tls) {
-        gint ret = 0, totallen = strlen(buf);
-        gint bytesleft = totallen;
-        
-        if(!security_info->gnutls_inited) {
-            if(error) {
-                g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                            _("A secure connection was requested, but gnutls was not initialised"));
-            }
-            g_critical("XfceMailwatch: using_tls is TRUE, but gnutls was not inited");
-            return -1;
-        }
-        
-        while(bytesleft > 0) {
-            do {
-                ret = gnutls_record_send(security_info->gt_session,
-                    buf+totallen-bytesleft, bytesleft);
-            } while(ret == GNUTLS_E_INTERRUPTED || ret == GNUTLS_E_AGAIN);
-            
-            if(ret == GNUTLS_E_REHANDSHAKE) {
-                /* server has requested a new handshake */
-                do {
-                    ret = gnutls_handshake(security_info->gt_session);
-                } while(ret == GNUTLS_E_AGAIN || ret == GNUTLS_E_INTERRUPTED);
-                
-                if(ret < 0) {
-                    if(error) {
-                        g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                                    "gnutls_handshake() [%d]: %s", ret,
-                                    gnutls_strerror(ret));
-                    }
-                    return -1;
-                }
-            } else if(ret < 0) {
-                if(error) {
-                    g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                                "gnutls_record_send() [%d]: %s", ret,
-                                gnutls_strerror(ret));
-                }
-                DBG("gnutls_record_send() failed (%d): %s", ret,
-                    gnutls_strerror(ret));
-                return -1;
-            } else if(ret > 0) {
-                bout += ret;
-                bytesleft -= ret;
-            }
-        }
-    } else {
-#endif
-        do {
-            bout = send(sockfd, buf, strlen(buf), MSG_NOSIGNAL);
-        } while(bout < 0 && (errno == EAGAIN || errno == EINTR));
-        
-        if(bout < 0 && error) {
-            g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                        "send(): %s", strerror(errno));
-        }
-#ifdef HAVE_SSL_SUPPORT
-    }
-#endif
-    
-    return bout;
-}
-
-gssize
-xfce_mailwatch_net_recv(gint sockfd,
-                        XfceMailwatchSecurityInfo *security_info,
-                        gchar *buf,
-                        gsize len,
-                        GError **error)
-{
-    fd_set rfd;
-    struct timeval tv;
-    gint ret, bin = 0;
-    
-#ifdef HAVE_SSL_SUPPORT
-    if(security_info->using_tls) {
-        if(!security_info->gnutls_inited) {
-            if(error) {
-                g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                            _("A secure connection was requested, but gnutls was not initialised"));
-            }
-            g_critical("XfceMailwatch: using_tls is TRUE, but gnutls was not inited");
-            return -1;
-        }
-        
-retry_recv:
-        do {
-            ret = gnutls_record_recv(security_info->gt_session, buf, len);
-        } while(ret == GNUTLS_E_INTERRUPTED || ret == GNUTLS_E_AGAIN);
-        
-        if(ret == GNUTLS_E_REHANDSHAKE) {
-            /* server has requested a new handshake */
-            do {
-                ret = gnutls_handshake(security_info->gt_session);
-            } while(ret == GNUTLS_E_AGAIN || ret == GNUTLS_E_INTERRUPTED);
-            
-            if(ret < 0) {
-                if(error) {
-                    g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                                "gnutls_handshake() [%d]: %s", ret,
-                                gnutls_strerror(ret));
-                }
-                return -1;
-            }
-            
-            goto retry_recv;
-        } else if(ret < 0) {
-            if(error) {
-                g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                            "gnutls_record_recv() [%d]: %s", ret,
-                            gnutls_strerror(ret));
-            }
-            return -1;
-        } else
-            bin = ret;
-    } else {
-#endif
-        FD_ZERO(&rfd);
-        FD_SET(sockfd, &rfd);
-        tv.tv_sec = 30;
-        tv.tv_usec = 0;
-        
-        do {
-            ret = select(FD_SETSIZE, &rfd, NULL, NULL, &tv);
-        } while(ret < 0 && (errno == EAGAIN || errno == EINTR));
-        
-        if(ret < 0) {
-            if(error) {
-                g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                            "select(): %s", strerror(errno));
-            }
-            return -1;
-        }
-        
-        if(FD_ISSET(sockfd, &rfd)) {
-            do {
-                bin = recv(sockfd, buf, len, MSG_NOSIGNAL);
-            } while(bin < 0 && (errno == EAGAIN || errno == EINTR));
-            
-            if(bin < 0 && error) {
-                g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                            "recv(): %s", strerror(errno));
-            }
-        }
-#ifdef HAVE_SSL_SUPPORT
-    }
-#endif
-    
-    if(bin >= 0)
-        buf[bin] = 0;
-    
-    return bin;
-}
-
-void
-xfce_mailwatch_net_tls_teardown(XfceMailwatchSecurityInfo *security_info)
-{
-#ifdef HAVE_SSL_SUPPORT
-    if(security_info->gnutls_inited) {
-        gnutls_bye(security_info->gt_session, GNUTLS_SHUT_RDWR);
-        gnutls_deinit(security_info->gt_session);
-        gnutls_certificate_free_credentials(security_info->gt_creds);
-        gnutls_global_deinit();
-        security_info->gnutls_inited = FALSE;
-    }
-#endif
-}
-
 
 GtkWidget *
 xfce_mailwatch_custom_button_new(const gchar *text, const gchar *icon)
@@ -504,7 +116,6 @@ xfce_mailwatch_create_framebox(const gchar *title, GtkWidget **frame_bin)
 }
 
 #ifdef HAVE_SSL_SUPPORT
-
 /* assumes |dest| is allocated 2x |src_len| */
 static void
 bin2hex(gchar *dest,
@@ -522,12 +133,14 @@ bin2hex(gchar *dest,
         src++;
     }
 }
+#endif
 
 gchar *
 xfce_mailwatch_cram_md5(const gchar *username,
                         const gchar *password,
                         const gchar *challenge_base64)
 {
+#ifdef HAVE_SSL_SUPPORT
     gchar challenge[2048];
     gsize len, username_len;
     gcry_md_hd_t hmac_md5;
@@ -571,9 +184,11 @@ xfce_mailwatch_cram_md5(const gchar *username,
     g_free(response);
 
     return response_base64;
-}
-
+#else
+    g_warning("CRAM-MD5 computation unavailable: libmailwatch was not compiled with gnutls support.");
+    return NULL
 #endif
+}
 
 
 /*

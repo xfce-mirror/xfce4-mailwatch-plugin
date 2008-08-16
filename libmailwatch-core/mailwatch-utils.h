@@ -19,31 +19,7 @@
 #ifndef __MAILWATCH_UTILS_H__
 #define __MAILWATCH_UTILS_H__
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
-#ifdef HAVE_SYS_TYPES_H
-#include <sys/types.h>
-#endif
-
-#ifdef HAVE_SYS_SOCKET_H
-#include <sys/socket.h>
-#endif
-
-#ifdef HAVE_NETDB_H
-#include <netdb.h>
-#endif
-
-#ifdef HAVE_NETINET_IN_H
-#include <netinet/in.h>
-#endif
-
 #include <gtk/gtk.h>
-
-#ifdef HAVE_SSL_SUPPORT
-#include <gnutls/gnutls.h>
-#endif
 
 G_BEGIN_DECLS
 
@@ -53,35 +29,6 @@ typedef enum
     AUTH_SSL_PORT,
     AUTH_STARTTLS
 } XfceMailwatchAuthType;
-
-typedef struct
-{
-    gboolean using_tls;
-    gboolean gnutls_inited;
-#ifdef HAVE_SSL_SUPPORT
-    gnutls_session_t gt_session;
-    gnutls_certificate_credentials_t gt_creds;
-#endif
-} XfceMailwatchSecurityInfo;
-
-gboolean xfce_mailwatch_net_get_addrinfo(const gchar *host,
-                                         const gchar *service,
-                                         struct addrinfo **results,
-                                         GError **error);
-gboolean xfce_mailwatch_net_negotiate_tls(gint sockfd,
-                                          XfceMailwatchSecurityInfo *security_info,
-                                          const gchar *host,
-                                          GError **error);
-gssize xfce_mailwatch_net_send(gint sockfd,
-                               XfceMailwatchSecurityInfo *security_info,
-                               const gchar *buf,
-                               GError **error);
-gssize xfce_mailwatch_net_recv(gint sockfd,
-                               XfceMailwatchSecurityInfo *security_info,
-                               gchar *buf,
-                               gsize len,
-                               GError **error);
-void xfce_mailwatch_net_tls_teardown(XfceMailwatchSecurityInfo *security_info);
 
 GtkWidget *xfce_mailwatch_custom_button_new(const gchar *text,
                                             const gchar *icon);
@@ -98,6 +45,7 @@ gint xfce_mailwatch_base64_encode(const guint8 *data,
 gint xfce_mailwatch_base64_decode(const gchar *str,
                                   guint8 *data,
                                   gsize size);
+
 G_END_DECLS
 
 #endif
