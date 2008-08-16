@@ -46,10 +46,6 @@
 #include <netinet/in.h>
 #endif
 
-#ifdef HAVE_NETDB_H
-#include <netdb.h>
-#endif
-
 #ifdef HAVE_SYS_SELECT_H
 #include <sys/select.h>
 #endif
@@ -58,24 +54,13 @@
 #include <sys/wait.h>
 #endif
 
-#ifdef HAVE_FCNTL_H
-#include <fcntl.h>
-#endif
-
-#ifdef HAVE_ERRNO_H
-#include <errno.h>
-#endif
-
-#ifndef MSG_NOSIGNAL
-#define MSG_NOSIGNAL 0
-#endif
-
 #include <glib.h>
 #include <gtk/gtk.h>
 
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 
+#include "mailwatch-net-conn.h"
 #include "mailwatch-utils.h"
 #include "mailwatch.h"
 
@@ -90,15 +75,10 @@
 #define IMAP_PORT_S              "143"
 #define IMAPS_PORT_S             "993"
 
-#define IMAP_CMD_START           GINT_TO_POINTER(1)
-#define IMAP_CMD_PAUSE           GINT_TO_POINTER(2)
-#define IMAP_CMD_TIMEOUT         GINT_TO_POINTER(3)
-#define IMAP_CMD_QUIT            GINT_TO_POINTER(4)
-#define IMAP_CMD_UPDATE          GINT_TO_POINTER(5)
-
 typedef struct
 {
     XfceMailwatchMailbox mailbox;
+    XfceMailwatch *mailwatch;
     
     GMutex *config_mx;
     
@@ -113,23 +93,18 @@ typedef struct
     gint nonstandard_port;
     XfceMailwatchAuthType auth_type;
     
-    GThread *th;
-    GAsyncQueue *aqueue;
-    
-    XfceMailwatch *mailwatch;
-    
-    /* state related to the current connection (if any) */
-    gint sockfd;
+    /* current connection stuff */
+    gint running;
+    gpointer th;  /* really a GThread *, but avoids casts later */
     guint imap_tag;
-    /* secure this, dude */
-    XfceMailwatchSecurityInfo security_info;
+    guint check_id;
     
     /* config dlg */
+    gint folder_tree_running;
+    gpointer folder_tree_th;  /* (GThread *) */
     GtkWidget *folder_tree_dialog;
     GtkTreeStore *ts;
     GtkCellRenderer *render;
-    GThread *folder_tree_th;
-    GAsyncQueue *folder_tree_aqueue;
     GtkWidget *refresh_btn;
     GNode *folder_tree;
 } XfceMailwatchIMAPMailbox;
@@ -150,16 +125,34 @@ typedef struct
     gboolean holds_messages;
 } IMAPFolderData;
 
+
+static gboolean
+imap_should_continue(XfceMailwatchNetConn *net_conn,
+                     gpointer user_data)
+{
+    XfceMailwatchIMAPMailbox *imailbox = user_data;
+    return (gboolean)g_atomic_int_get(&imailbox->running);
+}
+
+static gboolean
+imap_folder_tree_should_continue(XfceMailwatchNetConn *net_conn,
+                                 gpointer user_data)
+{
+    XfceMailwatchIMAPMailbox *imailbox = user_data;
+    return (gboolean)g_atomic_int_get(&imailbox->folder_tree_running);
+}
+
 static gssize
-imap_send(XfceMailwatchIMAPMailbox *imailbox, const gchar *buf)
+imap_send(XfceMailwatchIMAPMailbox *imailbox,
+          XfceMailwatchNetConn *net_conn,
+          const gchar *buf)
 {
     GError *error = NULL;
     gssize sent;
     
-    sent = xfce_mailwatch_net_send(imailbox->sockfd,
-                                   &imailbox->security_info,
-                                   buf,
-                                   &error);
+    sent = xfce_mailwatch_net_conn_send_data(net_conn,
+                                             (guchar *)buf, strlen(buf),
+                                             &error);
     if(sent < 0) {
         xfce_mailwatch_log_message(imailbox->mailwatch,
                                    XFCE_MAILWATCH_MAILBOX(imailbox),
@@ -172,16 +165,16 @@ imap_send(XfceMailwatchIMAPMailbox *imailbox, const gchar *buf)
 }
 
 static gssize
-imap_recv(XfceMailwatchIMAPMailbox *imailbox, gchar *buf, gsize len)
+imap_recv(XfceMailwatchIMAPMailbox *imailbox,
+          XfceMailwatchNetConn *net_conn,
+          gchar *buf,
+          gsize len)
 {
     GError *error = NULL;
     gssize recvd;
     
-    recvd = xfce_mailwatch_net_recv(imailbox->sockfd,
-                                    &imailbox->security_info,
-                                    buf,
-                                    len,
-                                    &error);
+    recvd = xfce_mailwatch_net_conn_recv_line(net_conn,
+                                              buf, len, &error);
     
     if(recvd < 0) {
         xfce_mailwatch_log_message(imailbox->mailwatch,
@@ -194,41 +187,11 @@ imap_recv(XfceMailwatchIMAPMailbox *imailbox, gchar *buf, gsize len)
     return recvd;
 }
 
-static void
-imap_do_logout(XfceMailwatchIMAPMailbox *imailbox)
-{
-    imap_send(imailbox, "ABCD LOGOUT\r\n");
-    
-    shutdown(imailbox->sockfd, SHUT_RDWR);
-    close(imailbox->sockfd);
-    imailbox->sockfd = -1;
-}
-
 static gboolean
-imap_get_addrinfo(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
-                  const gchar *service, struct addrinfo **addresses)
-{
-    GError *error = NULL;
-        
-    TRACE("entering (%s, %s, %p)", host, service, addresses);
-    
-    g_return_val_if_fail(host && service && addresses, FALSE);
-    
-    if(!xfce_mailwatch_net_get_addrinfo(host, service, addresses, &error)) {
-        xfce_mailwatch_log_message(imailbox->mailwatch,
-                                   XFCE_MAILWATCH_MAILBOX(imailbox),
-                                   XFCE_MAILWATCH_LOG_ERROR,
-                                   error->message);
-        g_error_free(error);
-        return FALSE;
-    }
-    
-    return TRUE;
-}
-
-static gboolean
-imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox, const gchar *username,
-        const gchar *password)
+imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox,
+                     XfceMailwatchNetConn *net_conn,
+                     const gchar *username,
+                     const gchar *password)
 {
 #define BUFSIZE 8191
     gint bin, bout;
@@ -238,11 +201,11 @@ imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox, const gchar *username,
     
     /* check capabilities */
     g_snprintf(buf, BUFSIZE, "%05d CAPABILITY\r\n", ++imailbox->imap_tag);
-    bout = imap_send(imailbox, buf);
+    bout = imap_send(imailbox, net_conn, buf);
     DBG("sent CAPABILITY (%d)", bout);
     if(bout != strlen(buf))
         goto cleanuperr;
-    bin = imap_recv(imailbox, buf, BUFSIZE);
+    bin = imap_recv(imailbox, net_conn, buf, BUFSIZE);
     DBG("response from CAPABILITY (%d): %s", bin, bin>0?buf:"(nada)");
     if(bin <= 0)
         goto cleanuperr;
@@ -258,11 +221,11 @@ imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox, const gchar *username,
         /* the server supports CRAM-MD5; prefer that over LOGIN */
         g_snprintf(buf, BUFSIZE, "%05d AUTHENTICATE CRAM-MD5\r\n",
                    ++imailbox->imap_tag);
-        bout = imap_send(imailbox, buf);
+        bout = imap_send(imailbox, net_conn, buf);
         if(bout != strlen(buf))
             goto cleanuperr;
         
-        bin = imap_recv(imailbox, buf, BUFSIZE);
+        bin = imap_recv(imailbox, net_conn, buf, BUFSIZE);
         DBG("response from AUTHENTICATE CRAM-MD5 (%d): %s\n", bin, bin>0?buf:"(nada)");
         if(bin <= 0)
             goto cleanuperr;
@@ -286,12 +249,12 @@ imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox, const gchar *username,
                 goto cleanuperr;
             g_snprintf(buf, BUFSIZE, "%s\r\n", response_base64);
             g_free(response_base64);
-            bout = imap_send(imailbox, buf);
+            bout = imap_send(imailbox, net_conn, buf);
             DBG("sent CRAM-MD5 response: %s\n", buf);
             if(bout != strlen(buf))
                 goto cleanuperr;
 
-            bin = imap_recv(imailbox, buf, BUFSIZE);
+            bin = imap_recv(imailbox, net_conn, buf, BUFSIZE);
             DBG("reponse from cram-md5 resp (%d): %s\n", bin, bin>0?buf:"(nada)");
             if(bin <= 0)
                 goto cleanuperr;
@@ -308,13 +271,13 @@ imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox, const gchar *username,
     /* send the creds */
     g_snprintf(buf, BUFSIZE, "%05d LOGIN \"%s\" \"%s\"\r\n",
                ++imailbox->imap_tag, username, password);
-    bout = imap_send(imailbox, buf);
+    bout = imap_send(imailbox, net_conn, buf);
     DBG("sent login (%d)", bout);
     if(bout != strlen(buf))
         goto cleanuperr;
     
     /* and see if we actually got auth-ed */
-    bin = imap_recv(imailbox, buf, BUFSIZE);
+    bin = imap_recv(imailbox, net_conn, buf, BUFSIZE);
     DBG("response from login (%d): %s", bin, bin>0?buf:"(nada)");
     if(bin <= 0)
         goto cleanuperr;
@@ -326,24 +289,21 @@ imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox, const gchar *username,
     
     return TRUE;
     
-    cleanuperr:
-    
-    shutdown(imailbox->sockfd, SHUT_RDWR);
-    close(imailbox->sockfd);
-    imailbox->sockfd = -1;
-    
+cleanuperr:
+
     return FALSE;
 #undef BUFSIZE
 }
 
 static gboolean
-imap_negotiate_ssl(XfceMailwatchIMAPMailbox *imailbox, const gchar *host)
+imap_negotiate_ssl(XfceMailwatchIMAPMailbox *imailbox,
+                   XfceMailwatchNetConn *net_conn,
+                   const gchar *host)
 {
     gboolean ret;
     GError *error = NULL;
     
-    ret = xfce_mailwatch_net_negotiate_tls(imailbox->sockfd,
-            &imailbox->security_info, host, &error);
+    ret = xfce_mailwatch_net_conn_make_secure(net_conn, &error);
     
     if(!ret) {
         xfce_mailwatch_log_message(imailbox->mailwatch,
@@ -352,17 +312,17 @@ imap_negotiate_ssl(XfceMailwatchIMAPMailbox *imailbox, const gchar *host)
                                    _("TLS handshake failed: %s"),
                                    error->message);
         g_error_free(error);
-        shutdown(imailbox->sockfd, SHUT_RDWR);
-        close(imailbox->sockfd);
-        imailbox->sockfd = -1;
     }
     
     return ret;
 }
 
 static gboolean
-imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
-        const gchar *username, const gchar *password)
+imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox,
+                 XfceMailwatchNetConn *net_conn,
+                 const gchar *host,
+                 const gchar *username,
+                 const gchar *password)
 {
 #define BUFSIZE 8191
     gint bin;
@@ -371,236 +331,119 @@ imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
     TRACE("entering");
     
     g_snprintf(buf, BUFSIZE, "%05d CAPABILITY\r\n", ++imailbox->imap_tag);
-    if(imap_send(imailbox, buf) != strlen(buf))
-        goto cleanuperr;
+    if(imap_send(imailbox, net_conn, buf) != strlen(buf))
+        return FALSE;
     
-    bin = imap_recv(imailbox, buf, BUFSIZE);
+    bin = imap_recv(imailbox, net_conn, buf, BUFSIZE);
     DBG("checking for STARTTLS caps (%d): %s", bin, bin>0?buf:"(nada)");
     if(bin <= 0)
-        goto cleanuperr;
+        return FALSE;
     if(!strstr(buf, " STARTTLS")) {
         xfce_mailwatch_log_message(imailbox->mailwatch,
                                    XFCE_MAILWATCH_MAILBOX(imailbox),
                                    XFCE_MAILWATCH_LOG_WARNING,
                                    _("STARTTLS security was requested, but this server does not support it."));
-        goto cleanuperr;
+        return FALSE;
     }
     
     g_snprintf(buf, BUFSIZE, "%05d STARTTLS\r\n", ++imailbox->imap_tag);
-    if(imap_send(imailbox, buf) != strlen(buf))
-        goto cleanuperr;
+    if(imap_send(imailbox, net_conn, buf) != strlen(buf))
+        return FALSE;
     
-    if(imap_recv(imailbox, buf, BUFSIZE) < 0)
-        goto cleanuperr;
+    if(imap_recv(imailbox, net_conn, buf, BUFSIZE) < 0)
+        return FALSE;
     if(!strstr(buf, " OK"))
-        goto cleanuperr;
-    
-    /* now that we've negotiated SSL, reenable using_tls */
-    imailbox->security_info.using_tls = TRUE;
+        return FALSE;
     
     return TRUE;
-    
-    cleanuperr:
-    
-    shutdown(imailbox->sockfd, SHUT_RDWR);
-    close(imailbox->sockfd);
-    imailbox->sockfd = -1;
-    
-    return FALSE;
 #undef BUFSIZE
 }
 
 static gboolean
-imap_connect(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
-        const gchar *service, gint nonstandard_port)
+imap_connect(XfceMailwatchIMAPMailbox *imailbox,
+             XfceMailwatchNetConn *net_conn,
+             const gchar *host,
+             const gchar *service,
+             gint nonstandard_port)
 {
-    struct addrinfo *addresses = NULL, *ai;
-    gchar buf[16] = { 0, };
-    gpointer msg = NULL;
+    GError *error = NULL;
 
     TRACE("entering (%s)", service);
     
-    if(nonstandard_port > 0)
-        g_snprintf(buf, sizeof(buf), "%d", nonstandard_port);
+    g_return_val_if_fail(net_conn, FALSE);
     
-    if(!imap_get_addrinfo(imailbox, host, *buf ? buf : service, &addresses)) {
-        DBG("failed to get sockaddr");
+    xfce_mailwatch_net_conn_set_service(net_conn, service);
+    if(nonstandard_port > 0)
+        xfce_mailwatch_net_conn_set_port(net_conn, nonstandard_port);
+    
+    if(xfce_mailwatch_net_conn_connect(net_conn, &error))
+        return TRUE;
+    else {
+        xfce_mailwatch_log_message(imailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(imailbox),
+                                   XFCE_MAILWATCH_LOG_ERROR,
+                                   "%s", error->message);
+        g_error_free(error);
         return FALSE;
     }
-    
-    for(ai = addresses; ai; ai = ai->ai_next) {
-        imailbox->sockfd = socket(ai->ai_family, ai->ai_socktype,
-                                  ai->ai_protocol);
-        if(imailbox->sockfd < 0)
-            continue;
-#if 0
-        if(imailbox->sockfd < 0) {
-            xfce_mailwatch_log_message(imailbox->mailwatch,
-                                       XFCE_MAILWATCH_MAILBOX(imailbox),
-                                       XFCE_MAILWATCH_LOG_WARNING,
-                                       "socket(): %s",
-                                       strerror(errno));
-            DBG("failed to open socket");
-            return FALSE;
-        }
-#endif 
-        /* this next batch of crap is necessary because it seems like a failed
-         * connection (that is, one that isn't ECONNREFUSED) takes over 3 minutes
-         * to fail!  if the panel is trying to quit, that's just unacceptable.
-         */
-        
-        if(fcntl(imailbox->sockfd, F_SETFL,
-                 fcntl(imailbox->sockfd, F_GETFL) | O_NONBLOCK))
-        {
-            xfce_mailwatch_log_message(imailbox->mailwatch,
-                                       XFCE_MAILWATCH_MAILBOX(imailbox),
-                                       XFCE_MAILWATCH_LOG_WARNING,
-                                       _("Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."));
-        }
-        
-        if(connect(imailbox->sockfd, ai->ai_addr, ai->ai_addrlen) < 0) {
-            gboolean failed = TRUE;
-            
-            if(errno == EINPROGRESS) {
-                gint iters_left;
-                for(iters_left = 25; iters_left >= 0; iters_left--) {
-                    fd_set wfd;
-                    struct timeval tv = { 2, 0 };
-                    int sock_err = 0;
-                    socklen_t sock_err_len = sizeof(int);
-                    
-                    FD_ZERO(&wfd);
-                    FD_SET(imailbox->sockfd, &wfd);
-                    
-                    DBG("checking for a connection...");
-                    
-                    /* wait until the connect attempt finishes */
-                    if(select(FD_SETSIZE, NULL, &wfd, NULL, &tv) < 0)
-                        break;
-                    
-                    /* check to see if it finished, and, if so, if there was an
-                     * error, or if it completed successfully */
-                    if(FD_ISSET(imailbox->sockfd, &wfd)) {
-                        if(!getsockopt(imailbox->sockfd, SOL_SOCKET, SO_ERROR,
-                                       &sock_err, &sock_err_len)
-                           && !sock_err)
-                        {
-                            DBG("    connection succeeded");
-                            failed = FALSE;
-                        } else {
-#if 0
-                            xfce_mailwatch_log_message(imailbox->mailwatch,
-                                                       XFCE_MAILWATCH_MAILBOX(imailbox),
-                                                       XFCE_MAILWATCH_LOG_ERROR,
-                                                       _("Failed to connect to server: %s"),
-                                                       strerror(sock_err));
-#endif
-                            DBG("    connection failed: sock_err is (%d) %s",
-                                sock_err, strerror(sock_err));
-                        }
-                        break;
-                    }
-                    
-                    /* check the main thread to see if we're supposed to quit */
-                    msg = g_async_queue_try_pop(imailbox->aqueue);
-                    if(msg) {
-                        /* put it back so imap_check_mail_th() can read it */
-                        g_async_queue_push(imailbox->aqueue, msg);
-                        if(msg == IMAP_CMD_QUIT) {
-                            failed = TRUE;
-                            break;
-                        }
-                        msg = NULL;
-                    }
-                }
-            }
-            
-            if(failed) {
-                DBG("failed to connect");
-                close(imailbox->sockfd);
-                imailbox->sockfd = -1;
-                continue;
-            } else
-                break;
-        }
-        
-        if(fcntl(imailbox->sockfd, F_SETFL,
-                 fcntl(imailbox->sockfd, F_GETFL) & ~(O_NONBLOCK)))
-        {
-            xfce_mailwatch_log_message(imailbox->mailwatch,
-                                       XFCE_MAILWATCH_MAILBOX(imailbox),
-                                       XFCE_MAILWATCH_LOG_WARNING,
-                                       _("Unable to return socket to blocking mode.  Data may not be retreived correctly."));
-        }
-        
-        if(msg && msg == IMAP_CMD_QUIT)
-            break;
-    }
-    
-    if(addresses)
-        freeaddrinfo(addresses);
-    
-    return (imailbox->sockfd >= 0);
 }
 
 static inline gboolean
-imap_slurp_banner(XfceMailwatchIMAPMailbox *imailbox)
+imap_slurp_banner(XfceMailwatchIMAPMailbox *imailbox,
+                  XfceMailwatchNetConn *net_conn)
 {
     gchar buf[2048];
     gint bin;
     
-    do {
-        bin = imap_recv(imailbox, buf, sizeof(buf)-1);
-        if(bin < 0) {
-            DBG("failed to get banner");
-            shutdown(imailbox->sockfd, SHUT_RDWR);
-            close(imailbox->sockfd);
-            imailbox->sockfd = -1;
-        } else {
-            buf[bin] = 0;
-            DBG("got banner, discarding: %s\n", buf);
-        }
-    } while(bin != -1 && !strchr(buf, '\n'));
+    bin = imap_recv(imailbox, net_conn, buf, sizeof(buf)-1);
+    if(bin < 0) {
+        DBG("failed to get banner");
+    } else {
+        buf[bin] = 0;
+        DBG("got banner, discarding: %s\n", buf);
+    }
     
     return (bin != -1);
 }
 
 static gboolean
-imap_authenticate(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
-        const gchar *username, const gchar *password,
-        XfceMailwatchAuthType auth_type, gint nonstandard_port)
+imap_authenticate(XfceMailwatchIMAPMailbox *imailbox,
+                  XfceMailwatchNetConn *net_conn,
+                  const gchar *host,
+                  const gchar *username,
+                  const gchar *password,
+                  XfceMailwatchAuthType auth_type,
+                  gint nonstandard_port)
 {
     gboolean ret = FALSE;
+
+    g_return_val_if_fail(net_conn && host && username && password, FALSE);
     
     TRACE("entering, auth_type is %d", auth_type);
     
     switch(auth_type) {
         case AUTH_NONE:
-            imailbox->security_info.using_tls = FALSE;
-            ret = imap_connect(imailbox, host, "imap", nonstandard_port);
+            ret = imap_connect(imailbox, net_conn, host, "imap", nonstandard_port);
             if(ret)
-                ret = imap_slurp_banner(imailbox);
+                ret = imap_slurp_banner(imailbox, net_conn);
             break;
         
         case AUTH_STARTTLS:
-            imailbox->security_info.using_tls = FALSE;
-            ret = imap_connect(imailbox, host, "imap", nonstandard_port);
+            ret = imap_connect(imailbox, net_conn, host, "imap", nonstandard_port);
             if(ret)
-                ret = imap_slurp_banner(imailbox);
+                ret = imap_slurp_banner(imailbox, net_conn);
             if(ret)
-                ret = imap_do_starttls(imailbox, host, username, password);
+                ret = imap_do_starttls(imailbox, net_conn, host, username, password);
             if(ret)
-                ret = imap_negotiate_ssl(imailbox, host);
-            imailbox->security_info.using_tls = TRUE;
+                ret = imap_negotiate_ssl(imailbox, net_conn, host);
             break;
         
         case AUTH_SSL_PORT:
-            imailbox->security_info.using_tls = TRUE;
-            ret = imap_connect(imailbox, host, "imaps", nonstandard_port);
+            ret = imap_connect(imailbox, net_conn, host, "imaps", nonstandard_port);
             if(ret)
-                ret = imap_negotiate_ssl(imailbox, host);
+                ret = imap_negotiate_ssl(imailbox, net_conn, host);
             if(ret)
-                ret = imap_slurp_banner(imailbox);
+                ret = imap_slurp_banner(imailbox, net_conn);
             break;
         
         default:
@@ -608,21 +451,19 @@ imap_authenticate(XfceMailwatchIMAPMailbox *imailbox, const gchar *host,
             return FALSE;
     }
     
-    DBG("using_tls is %s", imailbox->security_info.using_tls?"TRUE":"FALSE");
-        
     if(ret)
-       ret = imap_send_login_info(imailbox, username, password);
-    
+       ret = imap_send_login_info(imailbox, net_conn, username, password);
+
     return ret;
 }
 
 static guint
 imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
-        const gchar *mailbox_name)
+                   XfceMailwatchNetConn *net_conn,
+                   const gchar *mailbox_name)
 {
-    gint new_messages = 0;
+    gint new_messages = 0, bin;
     gchar buf[4096], *p, *q, tmp[64];
-    gboolean got_OK = FALSE, got_LF = FALSE;
     
     TRACE("entering, folder %s", mailbox_name);
     
@@ -631,26 +472,26 @@ imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
     /* ask the server to look at the mailbox */
     g_snprintf(buf, sizeof(buf), "%05d STATUS %s (UNSEEN)\r\n",
                ++imailbox->imap_tag, mailbox_name);
-    if(imap_send(imailbox, buf) != strlen(buf))
+    if(imap_send(imailbox, net_conn, buf) != strlen(buf))
         return 0;
     DBG("  successfully sent cmd '%s'", buf);
     
     /* grab the response */
     g_snprintf(tmp, sizeof(tmp), "%05d NO", imailbox->imap_tag);
-    do {
-        if(imap_recv(imailbox, buf, sizeof(buf)-1) <= 0) {
-            xfce_mailwatch_log_message(imailbox->mailwatch,
-                                       XFCE_MAILWATCH_MAILBOX(imailbox),
-                                       XFCE_MAILWATCH_LOG_WARNING,
-                                       _("The IMAP server returned a response we weren't quite expecting.  This might be OK, or this plugin might need to be modified to support your mail server if the new message counts are incorrect."));
-            g_warning("Mailwatch: Odd response to SEARCH UNSEEN");
-            return 0;
-        }
-        
-        if(strstr(buf, tmp))
-            return 0;
-    } while(!(p = strstr(buf, "(UNSEEN ")));
+    if(imap_recv(imailbox, net_conn, buf, sizeof(buf)-1) <= 0) {
+        xfce_mailwatch_log_message(imailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(imailbox),
+                                   XFCE_MAILWATCH_LOG_WARNING,
+                                   _("The IMAP server returned a response we weren't quite expecting.  This might be OK, or this plugin might need to be modified to support your mail server if the new message counts are incorrect."));
+        g_warning("Mailwatch: Odd response to SEARCH UNSEEN");
+        return 0;
+    }
     
+    if(strstr(buf, tmp))
+        return 0;
+    p = strstr(buf, "(UNSEEN ");
+    if(!p)
+        return 0;
     q = strchr(p, ')');
     if(!q)
         return 0;
@@ -660,26 +501,11 @@ imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
     
     /* make sure we got the entire command; it should end with "##### OK" in it */
     g_snprintf(tmp, sizeof(tmp), "%05d OK", imailbox->imap_tag);
-    while(!got_OK && !got_LF) {
-        DBG("looking for end, got: %s", buf);
-        
-        if(!got_OK) {
-            gchar *p = strstr(buf, tmp);
-            if(p) {
-                DBG("got OK");
-                got_OK = TRUE;
-                got_LF = !!strchr(p, '\n');
-                DBG("%s LF after getting OK", got_LF?"got":"didn't get");
-            } else
-                DBG("didn't get OK");
-        } else {
-            got_LF = !!strchr(buf, '\n');
-            DBG("%s LF", got_LF?"got":"didn't get");
-        }
-        
-        if(!got_OK && !got_LF && imap_recv(imailbox, buf, sizeof(buf)-1) <= 0)
-            break;
-    }
+    do {
+        bin = imap_recv(imailbox, net_conn, buf, sizeof(buf)-1);
+        if(bin < 0)
+            return (guint)new_messages;
+    } while(!strstr(buf, tmp));
     
     DBG("new message count in mailbox '%s' is %d", mailbox_name, new_messages);
     
@@ -724,21 +550,37 @@ imap_escape_string(gchar *buf, gssize buflen)
     }
 }
 
-static void
-imap_check_mail(XfceMailwatchIMAPMailbox *imailbox)
+static gpointer
+imap_check_mail_th(gpointer user_data)
 {
 #define BUFSIZE 1024
+    XfceMailwatchIMAPMailbox *imailbox = user_data;
     gchar host[BUFSIZE], username[BUFSIZE], password[BUFSIZE];
     guint new_messages = 0;
     GList *mailboxes_to_check = NULL, *l;
     XfceMailwatchAuthType auth_type;
     gint nonstandard_port = -1;
-    
+    XfceMailwatchNetConn *net_conn;
+
+    /* wait for the main thread to set the thread pointer.  this is
+     * not the most elegant way to do this, but it works. */
+    while(!g_atomic_pointer_get(&imailbox->th)
+          && g_atomic_int_get(&imailbox->running))
+    {
+        g_thread_yield();
+    }
+
+    if(!g_atomic_int_get(&imailbox->running)) {
+        g_atomic_pointer_set(&imailbox->th, NULL);
+        return NULL;
+    }
+
     g_mutex_lock(imailbox->config_mx);
     
     if(!imailbox->host || !imailbox->username || !imailbox->password) {
         g_mutex_unlock(imailbox->config_mx);
-        return;
+        g_atomic_pointer_set(&imailbox->th, NULL);
+        return NULL;
     }
     
     g_strlcpy(host, imailbox->host, BUFSIZE);
@@ -758,81 +600,36 @@ imap_check_mail(XfceMailwatchIMAPMailbox *imailbox)
     imap_escape_string(username, BUFSIZE);
     imap_escape_string(password, BUFSIZE);
     
-    if(!imap_authenticate(imailbox, host, username, password, auth_type,
-            nonstandard_port))
+    net_conn = xfce_mailwatch_net_conn_new(host, NULL);
+    xfce_mailwatch_net_conn_set_should_continue_func(net_conn,
+                                                     imap_should_continue,
+                                                     imailbox);
+    if(imap_authenticate(imailbox, net_conn, host, username, password,
+                          auth_type, nonstandard_port))
     {
-        DBG("failed to connect to imap server");
-        goto cleanup;
+        new_messages = imap_check_mailbox(imailbox, net_conn, "INBOX");
+        DBG("checked inbox, %d new messages", new_messages);
+        for(l = mailboxes_to_check; l; l = l->next) {
+            new_messages += imap_check_mailbox(imailbox, net_conn, l->data);
+            DBG("checked mail folder %s, total is now %d new messages", (gchar *)l->data, new_messages);
+        }
+        
+        xfce_mailwatch_signal_new_messages(imailbox->mailwatch,
+                XFCE_MAILWATCH_MAILBOX(imailbox), new_messages);
     }
-    
-    new_messages = imap_check_mailbox(imailbox, "INBOX");
-    DBG("checked inbox, %d new messages", new_messages);
-    for(l = mailboxes_to_check; l; l = l->next) {
-        new_messages += imap_check_mailbox(imailbox, l->data);
-        DBG("checked mail folder %s, total is now %d new messages", (gchar *)l->data, new_messages);
-    }
-    
-    xfce_mailwatch_signal_new_messages(imailbox->mailwatch,
-            XFCE_MAILWATCH_MAILBOX(imailbox), new_messages);
-    
-    cleanup:
-    
-    imap_do_logout(imailbox);
+
+    imap_send(imailbox, net_conn, "ABCD LOGOUT\r\n");
     
     if(mailboxes_to_check) {
         g_list_foreach(mailboxes_to_check, (GFunc)g_free, NULL);
         g_list_free(mailboxes_to_check);
     }
     
-    xfce_mailwatch_net_tls_teardown(&imailbox->security_info);
-    
-#undef BUFSIZE
-}
+    xfce_mailwatch_net_conn_destroy(net_conn);
+    g_atomic_pointer_set(&imailbox->th, NULL);
 
-static gpointer
-imap_check_mail_th(gpointer user_data)
-{
-    XfceMailwatchIMAPMailbox *imailbox = user_data;
-    gboolean running = FALSE;
-    GTimeVal start, now;
-    guint timeout = 0, delta = 0;
-    
-    g_async_queue_ref(imailbox->aqueue);
-    
-    g_get_current_time(&start);
-    
-    for(;;) {
-        gpointer msg = g_async_queue_try_pop(imailbox->aqueue);
-        
-        if(msg) {
-            if(msg == IMAP_CMD_START) {
-                g_get_current_time(&start);;
-                running = TRUE;
-            } else if(msg == IMAP_CMD_PAUSE)
-                running = FALSE;
-            else if(msg == IMAP_CMD_TIMEOUT)
-                timeout = GPOINTER_TO_UINT(g_async_queue_pop(imailbox->aqueue));
-            else if(msg == IMAP_CMD_QUIT) {
-                g_async_queue_unref(imailbox->aqueue);
-                g_thread_exit(NULL);
-            }
-        }
-        
-        g_get_current_time(&now);
-        
-        if(running && (msg == IMAP_CMD_UPDATE
-                || now.tv_sec - start.tv_sec >= timeout - delta))
-        {
-            imap_check_mail(imailbox);
-            g_get_current_time(&start);
-            delta = (gint)start.tv_sec - now.tv_sec;
-        } else
-            g_usleep(250000);
-    }
-    
-    /* NOTREACHED */
-    g_async_queue_unref(imailbox->aqueue);
     return NULL;
+#undef BUFSIZE
 }
 
 static XfceMailwatchMailbox *
@@ -844,24 +641,48 @@ imap_mailbox_new(XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type)
     imailbox->timeout = XFCE_MAILWATCH_DEFAULT_TIMEOUT;
     imailbox->use_standard_port = TRUE;
     imailbox->config_mx = g_mutex_new();
-    /* init the queue */
-    imailbox->aqueue = g_async_queue_new();
-    /* and init the timeout */
-    g_async_queue_push(imailbox->aqueue, IMAP_CMD_TIMEOUT);
-    g_async_queue_push(imailbox->aqueue, 
-                       GUINT_TO_POINTER(XFCE_MAILWATCH_DEFAULT_TIMEOUT));
-    /* create checker thread */
-    imailbox->th = g_thread_create(imap_check_mail_th, imailbox, TRUE, NULL);
     
-    return (XfceMailwatchMailbox *)imailbox;
+    return XFCE_MAILWATCH_MAILBOX(imailbox);
+}
+
+static gboolean
+imap_check_mail_timeout(gpointer data)
+{
+    XfceMailwatchIMAPMailbox *imailbox = data;
+    GThread *th;
+
+    if(g_atomic_pointer_get(&imailbox->th)) {
+        xfce_mailwatch_log_message(imailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(imailbox),
+                                   XFCE_MAILWATCH_LOG_WARNING,
+                                   _("Previous thread hasn't exited yet, not checking mail this time."));
+        return TRUE;
+    }
+
+    th = g_thread_create(imap_check_mail_th, imailbox, FALSE, NULL);
+    g_atomic_pointer_set(&imailbox->th, th);
+
+    return TRUE;
 }
 
 static void
 imap_set_activated(XfceMailwatchMailbox *mailbox, gboolean activated)
 {
     XfceMailwatchIMAPMailbox *imailbox = XFCE_MAILWATCH_IMAP_MAILBOX(mailbox);
-    
-    g_async_queue_push(imailbox->aqueue, activated ? IMAP_CMD_START : IMAP_CMD_PAUSE);
+
+    if(activated == g_atomic_int_get(&imailbox->running))
+        return;
+
+    if(activated) {
+        g_atomic_int_set(&imailbox->running, TRUE);
+        imailbox->check_id = g_timeout_add(imailbox->timeout * 1000,
+                                           imap_check_mail_timeout,
+                                           imailbox);
+    } else {
+        g_atomic_int_set(&imailbox->running, FALSE);
+        g_source_remove(imailbox->check_id);
+        imailbox->check_id = 0;
+    }
 }
 
 static void
@@ -869,7 +690,22 @@ imap_force_update_cb(XfceMailwatchMailbox *mailbox)
 {
     XfceMailwatchIMAPMailbox *imailbox = XFCE_MAILWATCH_IMAP_MAILBOX(mailbox);
     
-    g_async_queue_push(imailbox->aqueue, IMAP_CMD_UPDATE);
+    if(!g_atomic_pointer_get(&imailbox->th)) {
+        gboolean restart = FALSE;
+
+        if(imailbox->check_id) {
+            g_source_remove(imailbox->check_id);
+            restart = TRUE;
+        }
+
+        imap_check_mail_timeout(imailbox);
+
+        if(restart) {
+            imailbox->check_id = g_timeout_add(imailbox->timeout * 1000,
+                                               imap_check_mail_timeout,
+                                               imailbox);
+        }
+    }
 }
 
 static gboolean
@@ -941,7 +777,7 @@ imap_password_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
     return FALSE;
 }
 
-static gboolean
+static void
 imap_config_timeout_spinbutton_changed_cb(GtkSpinButton *sb,
                                           gpointer user_data)
 {
@@ -949,10 +785,15 @@ imap_config_timeout_spinbutton_changed_cb(GtkSpinButton *sb,
     gint value = gtk_spin_button_get_value_as_int(sb) * 60;
     
     imailbox->timeout = value;
-    g_async_queue_push(imailbox->aqueue, IMAP_CMD_TIMEOUT);
-    g_async_queue_push(imailbox->aqueue, GUINT_TO_POINTER(value));
-    
-    return FALSE;
+
+    if(g_atomic_int_get(&imailbox->running)) {
+        /* probably shouldn't do this so frequently */
+        if(imailbox->check_id)
+            g_source_remove(imailbox->check_id);
+        imailbox->check_id = g_timeout_add(imailbox->timeout * 1000,
+                                           imap_check_mail_timeout,
+                                           imailbox);
+    }
 }
 
 static GNode *
@@ -979,7 +820,9 @@ my_g_node_insert_data_sorted(GNode *parent, gpointer data)
 
 static gboolean
 imap_populate_folder_tree(XfceMailwatchIMAPMailbox *imailbox,
-        const gchar *cur_folder, GNode *parent)
+                          XfceMailwatchNetConn *net_conn,
+                          const gchar *cur_folder,
+                          GNode *parent)
 {
 #define BUFSIZE 16383
     gboolean ret = TRUE;
@@ -996,7 +839,7 @@ imap_populate_folder_tree(XfceMailwatchIMAPMailbox *imailbox,
     
     g_snprintf(buf, BUFSIZE, "%05d LIST \"%s\" \"%%\"\r\n",
             ++imailbox->imap_tag, cur_folder);
-    if(imap_send(imailbox, buf) != strlen(buf))
+    if(imap_send(imailbox, net_conn, buf) != strlen(buf))
         return FALSE;
     DBG("sent LIST: '%s'", buf);
     
@@ -1004,7 +847,7 @@ imap_populate_folder_tree(XfceMailwatchIMAPMailbox *imailbox,
     while(!strstr(buf, " OK") && bin_tot < BUFSIZE) {
         /* this is probably a bad idea... */
     
-        bin = imap_recv(imailbox, buf+bin_tot, BUFSIZE);
+        bin = imap_recv(imailbox, net_conn, buf+bin_tot, BUFSIZE);
         if(bin < 0) {
             DBG("imap_recv() failed");
             return FALSE;
@@ -1017,9 +860,6 @@ imap_populate_folder_tree(XfceMailwatchIMAPMailbox *imailbox,
             return FALSE;
     }
     
-    if(g_async_queue_try_pop(imailbox->folder_tree_aqueue) == IMAP_CMD_QUIT)
-        return FALSE;
-    
     if(!strstr(buf, " OK"))
         return FALSE;
     
@@ -1029,6 +869,9 @@ imap_populate_folder_tree(XfceMailwatchIMAPMailbox *imailbox,
         resp_lines = g_strsplit(buf, "\n", -1);
     
     for(i = 0; resp_lines[i]; i++) {
+        if(!imap_folder_tree_should_continue(net_conn, imailbox))
+            return FALSE;
+
         if(*resp_lines[i] != '*')
             continue;
         
@@ -1057,7 +900,6 @@ imap_populate_folder_tree(XfceMailwatchIMAPMailbox *imailbox,
             
             continue;
         }
-            
         
         /* first quote before separator */
         p = strstr(resp_lines[i], "\"");
@@ -1131,12 +973,9 @@ imap_populate_folder_tree(XfceMailwatchIMAPMailbox *imailbox,
         
         if(has_children) {
             g_strlcat(fullpath, separator, (BUFSIZE+1)/8);
-            if(!imap_populate_folder_tree(imailbox, fullpath, node))
+            if(!imap_populate_folder_tree(imailbox, net_conn, fullpath, node))
                 return FALSE;
         }
-        
-        if(g_async_queue_try_pop(imailbox->folder_tree_aqueue) == IMAP_CMD_QUIT)
-            return FALSE;
     }
     
     g_strfreev(resp_lines);
@@ -1186,12 +1025,9 @@ imap_populate_folder_tree_nodes(gpointer user_data)
     GList *l;
     GNode *n;
     
-    if(imailbox->folder_tree_th) {
-        g_thread_join(imailbox->folder_tree_th);
-        imailbox->folder_tree_th = NULL;
-        g_async_queue_unref(imailbox->folder_tree_aqueue);
-        imailbox->folder_tree_aqueue = NULL;
-    }
+    g_atomic_int_set(&imailbox->folder_tree_running, FALSE);
+    while(g_atomic_pointer_get(&imailbox->folder_tree_th))
+        g_thread_yield();
     
     if(!imailbox->folder_tree_dialog)
         return FALSE;
@@ -1229,13 +1065,10 @@ imap_populate_folder_tree_failed(gpointer user_data)
     XfceMailwatchIMAPMailbox *imailbox = user_data;
     GtkTreeIter itr;
     
-    if(imailbox->folder_tree_th) {
-        g_thread_join(imailbox->folder_tree_th);
-        imailbox->folder_tree_th = NULL;
-        g_async_queue_unref(imailbox->folder_tree_aqueue);
-        imailbox->folder_tree_aqueue = NULL;
-    }
-    
+    g_atomic_int_set(&imailbox->folder_tree_running, FALSE);
+    while(g_atomic_pointer_get(&imailbox->folder_tree_th))
+        g_thread_yield();
+
     if(!imailbox->folder_tree_dialog)
         return FALSE;
     
@@ -1256,13 +1089,11 @@ imap_folder_tree_th_join(gpointer user_data)
 {
     XfceMailwatchIMAPMailbox *imailbox = user_data;
     
-    if(imailbox->folder_tree_th) {
-        g_thread_join(imailbox->folder_tree_th);
-        imailbox->folder_tree_th = NULL;
-        g_async_queue_unref(imailbox->folder_tree_aqueue);
-        imailbox->folder_tree_aqueue = NULL;
-    }
-    
+    /* this should never really end up spinning even once */
+    g_atomic_int_set(&imailbox->folder_tree_running, FALSE);
+    while(g_atomic_pointer_get(&imailbox->folder_tree_th))
+        g_thread_yield();
+
     if(imailbox->folder_tree_dialog)
         gtk_widget_set_sensitive(imailbox->refresh_btn, TRUE);
     
@@ -1292,16 +1123,28 @@ imap_populate_folder_tree_th(gpointer data)
     gchar host[BUFSIZE], username[BUFSIZE], password[BUFSIZE];
     XfceMailwatchAuthType auth_type;
     gint nonstandard_port = -1;
+    XfceMailwatchNetConn *net_conn;
     
     TRACE("entering");
-    
-    g_async_queue_ref(imailbox->folder_tree_aqueue);
+
+    /* wait for caller to set thread pointer */
+    while(!g_atomic_pointer_get(&imailbox->folder_tree_th)
+          && g_atomic_int_get(&imailbox->folder_tree_running))
+    {
+        g_thread_yield();
+    }
+
+    if(!g_atomic_int_get(&imailbox->folder_tree_running)) {
+        g_atomic_pointer_set(&imailbox->folder_tree_th, NULL);
+        return NULL;
+    }
     
     g_mutex_lock(imailbox->config_mx);
     
     if(!imailbox->host || !imailbox->username || !imailbox->password) {
         g_mutex_unlock(imailbox->config_mx);
         g_idle_add(imap_folder_tree_th_join, imailbox);
+        g_atomic_pointer_set(&imailbox->folder_tree_th, NULL);
         return NULL;
     }
     
@@ -1317,12 +1160,16 @@ imap_populate_folder_tree_th(gpointer data)
     imap_escape_string(username, BUFSIZE);
     imap_escape_string(password, BUFSIZE);
     
-    if(imap_authenticate(imailbox, host, username, password, auth_type,
-            nonstandard_port))
+    net_conn = xfce_mailwatch_net_conn_new(host, NULL);
+    xfce_mailwatch_net_conn_set_should_continue_func(net_conn,
+                                                     imap_folder_tree_should_continue,
+                                                     imailbox);
+    if(imap_authenticate(imailbox, net_conn, host, username,
+                         password, auth_type, nonstandard_port))
     {
-       if(g_async_queue_try_pop(imailbox->folder_tree_aqueue) != IMAP_CMD_QUIT) {
+       if(g_atomic_int_get(&imailbox->folder_tree_running)) {
            imailbox->folder_tree = g_node_new((gpointer)0xdeadbeef);
-           if(imap_populate_folder_tree(imailbox, "", imailbox->folder_tree))
+           if(imap_populate_folder_tree(imailbox, net_conn, "", imailbox->folder_tree))
                g_idle_add(imap_populate_folder_tree_nodes, imailbox);
            else {
                g_node_traverse(imailbox->folder_tree, G_IN_ORDER,
@@ -1336,8 +1183,9 @@ imap_populate_folder_tree_th(gpointer data)
         DBG("failed to connect to imap server to probe folders");
         g_idle_add(imap_populate_folder_tree_failed, imailbox);
     }
-    
-    g_async_queue_unref(imailbox->folder_tree_aqueue);
+
+    xfce_mailwatch_net_conn_destroy(net_conn);
+    g_atomic_pointer_set(&imailbox->folder_tree_th, NULL);
     
     return NULL;
 #undef BUFSIZE
@@ -1350,8 +1198,7 @@ imap_config_newmailfolders_destroy_cb(GtkWidget *w, gpointer user_data)
     
     imailbox->folder_tree_dialog = NULL;
     
-    if(imailbox->folder_tree_aqueue)
-        g_async_queue_push(imailbox->folder_tree_aqueue, IMAP_CMD_QUIT);
+    g_atomic_pointer_set(&imailbox->folder_tree_th, NULL);
 }
 
 static void
@@ -1359,9 +1206,15 @@ imap_config_refresh_btn_clicked_cb(GtkWidget *w, gpointer user_data)
 {
     XfceMailwatchIMAPMailbox *imailbox = user_data;
     GtkTreeIter itr;
+    GThread *th;
     
     if(!imailbox->host || !imailbox->username)
         return;
+
+    if(g_atomic_int_get(&imailbox->folder_tree_running)) {
+        g_critical("Attempt to refresh folder tree while tree fetch is in process");
+        return;
+    }
     
     gtk_widget_set_sensitive(imailbox->refresh_btn, FALSE);
     
@@ -1372,10 +1225,11 @@ imap_config_refresh_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     g_object_set(G_OBJECT(imailbox->render),
                 "foreground-set", TRUE,
                 "style-set", TRUE, NULL);
-    
-    imailbox->folder_tree_aqueue = g_async_queue_new();
-    imailbox->folder_tree_th = g_thread_create(imap_populate_folder_tree_th,
-                                               imailbox, TRUE, NULL);
+
+    g_atomic_int_set(&imailbox->folder_tree_running, TRUE);
+    th = g_thread_create(imap_populate_folder_tree_th,
+                         imailbox, FALSE, NULL);
+    g_atomic_pointer_set(&imailbox->folder_tree_th, th);
 }
 
 static gboolean
@@ -1458,27 +1312,36 @@ imap_config_newmailfolders_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     GtkCellRenderer *render;
     GtkTreeViewColumn *col;
     GtkTreeSelection *sel;
+    GThread *th;
+
+    if(imailbox->folder_tree_dialog) {
+        gtk_window_present(GTK_WINDOW(imailbox->folder_tree_dialog));
+        return;
+    }
     
     xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     
     if(!imailbox->host || !imailbox->username) {
         xfce_message_dialog(toplevel, _("Error"), GTK_STOCK_DIALOG_WARNING,
-                _("No server or username is set."),
-                _("The folder list cannot be retrieved until a server, username, and probably password are set.  Also be sure to check any security settings in the Advanced dialog."),
-                GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
+                            _("No server or username is set."),
+                            _("The folder list cannot be retrieved until a server, username, and probably password are set.  Also be sure to check any security settings in the Advanced dialog."),
+                            GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
         return;
     }
     
     dlg = gtk_dialog_new_with_buttons(_("Set New Mail Folders"), toplevel,
-            GTK_DIALOG_DESTROY_WITH_PARENT|GTK_DIALOG_NO_SEPARATOR,
-            GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
+                                      GTK_DIALOG_DESTROY_WITH_PARENT
+                                      | GTK_DIALOG_NO_SEPARATOR,
+                                      GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT,
+                                      NULL);
     imailbox->folder_tree_dialog = dlg;
     topvbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_container_set_border_width(GTK_CONTAINER(topvbox), BORDER/2);
     gtk_widget_show(topvbox);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), topvbox, TRUE, TRUE, 0);
     g_signal_connect(G_OBJECT(dlg), "destroy",
-            G_CALLBACK(imap_config_newmailfolders_destroy_cb), imailbox);
+                     G_CALLBACK(imap_config_newmailfolders_destroy_cb),
+                     imailbox);
     
     frame = xfce_mailwatch_create_framebox(_("New Mail Folders"), &frame_bin);
     gtk_widget_show(frame);
@@ -1490,14 +1353,15 @@ imap_config_newmailfolders_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     
     sw = gtk_scrolled_window_new(NULL, NULL);
     gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw), GTK_POLICY_NEVER,
-            GTK_POLICY_AUTOMATIC);
+                                   GTK_POLICY_AUTOMATIC);
     gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(sw),
-            GTK_SHADOW_ETCHED_IN);
+                                        GTK_SHADOW_ETCHED_IN);
     gtk_widget_show(sw);
     gtk_box_pack_start(GTK_BOX(hbox), sw, TRUE, TRUE, 0);
     
     imailbox->ts = ts = gtk_tree_store_new(IMAP_FOLDERS_N_COLUMNS,
-            G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_STRING);
+                                           G_TYPE_STRING, G_TYPE_BOOLEAN,
+                                           G_TYPE_BOOLEAN, G_TYPE_STRING);
     
     treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(ts));
     gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(treeview), FALSE);
@@ -1510,8 +1374,10 @@ imap_config_newmailfolders_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     render = gtk_cell_renderer_pixbuf_new();
     gtk_tree_view_column_pack_start(col, render, FALSE);
 #if GTK_CHECK_VERSION(2, 6, 0)
-    g_object_set(G_OBJECT(render), "stock-id", GTK_STOCK_DIRECTORY,
-            "stock-size", GTK_ICON_SIZE_MENU, NULL);
+    g_object_set(G_OBJECT(render),
+                 "stock-id", GTK_STOCK_DIRECTORY,
+                 "stock-size", GTK_ICON_SIZE_MENU,
+                 NULL);
 #else
     {
         gint iw, ih;
@@ -1538,30 +1404,33 @@ imap_config_newmailfolders_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     imailbox->render = render = gtk_cell_renderer_text_new();
     gtk_tree_view_column_pack_start(col, render, TRUE);
     gtk_tree_view_column_set_attributes(col, render,
-            "text", IMAP_FOLDERS_NAME, NULL);
+                                        "text", IMAP_FOLDERS_NAME,
+                                        NULL);
     {
         GtkStyle *style;
         gtk_widget_realize(topvbox);
         style = gtk_widget_get_style(topvbox);
         g_object_set(G_OBJECT(render), "foreground-gdk",
-                &style->fg[GTK_STATE_INSENSITIVE],
-                "foreground-set", TRUE,
-                "style", PANGO_STYLE_ITALIC,
-                "style-set", TRUE, NULL);
+                     &style->fg[GTK_STATE_INSENSITIVE],
+                     "foreground-set", TRUE,
+                     "style", PANGO_STYLE_ITALIC,
+                     "style-set", TRUE,
+                     NULL);
     }
     
     gtk_tree_view_append_column(GTK_TREE_VIEW(treeview), col);
     gtk_tree_view_set_expander_column(GTK_TREE_VIEW(treeview), col);
     
     render = gtk_cell_renderer_toggle_new();
-    col = gtk_tree_view_column_new_with_attributes("watching", render, "active",
-            IMAP_FOLDERS_WATCHING, NULL);
+    col = gtk_tree_view_column_new_with_attributes("watching", render,
+                                                   "active", IMAP_FOLDERS_WATCHING,
+                                                   NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW(treeview), col);
     
     gtk_widget_show(treeview);
     gtk_container_add(GTK_CONTAINER(sw), treeview);
     g_signal_connect(G_OBJECT(treeview), "button-press-event",
-            G_CALLBACK(imap_config_treeview_btnpress_cb), imailbox);
+                     G_CALLBACK(imap_config_treeview_btnpress_cb), imailbox);
     
     sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview));
     gtk_tree_selection_set_mode(sel, GTK_SELECTION_MULTIPLE);
@@ -1576,14 +1445,16 @@ imap_config_newmailfolders_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     gtk_box_pack_start(GTK_BOX(vbox), btn, FALSE, FALSE, 0);
     g_object_set_data(G_OBJECT(btn), "mailwatch-treeview", treeview);
     g_signal_connect(G_OBJECT(btn), "clicked",
-            G_CALLBACK(imap_config_refresh_btn_clicked_cb), imailbox);
+                     G_CALLBACK(imap_config_refresh_btn_clicked_cb), imailbox);
     
     gtk_tree_store_append(ts, &itr, NULL);
     gtk_tree_store_set(ts, &itr, IMAP_FOLDERS_NAME, _("Please wait..."), -1);
     gtk_widget_set_sensitive(btn, FALSE);
-    imailbox->folder_tree_aqueue = g_async_queue_new();
-    imailbox->folder_tree_th = g_thread_create(imap_populate_folder_tree_th,
-                                               imailbox, TRUE, NULL);
+
+    g_atomic_int_set(&imailbox->folder_tree_running, TRUE);
+    th = g_thread_create(imap_populate_folder_tree_th,
+                         imailbox, FALSE, NULL);
+    g_atomic_pointer_set(&imailbox->folder_tree_th, th);
     
     gtk_dialog_run(GTK_DIALOG(dlg));
     gtk_widget_destroy(dlg);
@@ -1911,12 +1782,9 @@ imap_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
             imailbox->use_standard_port = *(param->value) == '0' ? FALSE : TRUE;
         else if(!strcmp(param->key, "nonstandard_port"))
             imailbox->nonstandard_port = atoi(param->value);
-        else if(!strcmp(param->key, "timeout")) {
+        else if(!strcmp(param->key, "timeout"))
             imailbox->timeout = atoi(param->value);
-            g_async_queue_push(imailbox->aqueue, IMAP_CMD_TIMEOUT);
-            g_async_queue_push(imailbox->aqueue,
-                    GUINT_TO_POINTER(imailbox->timeout));
-        } else if(!strcmp(param->key, "n_newmail_boxes"))
+        else if(!strcmp(param->key, "n_newmail_boxes"))
             n_newmail_boxes = atoi(param->value);
     }
     
@@ -2011,9 +1879,18 @@ imap_mailbox_free(XfceMailwatchMailbox *mailbox)
 {
     XfceMailwatchIMAPMailbox *imailbox = XFCE_MAILWATCH_IMAP_MAILBOX(mailbox);
     
-    g_async_queue_push(imailbox->aqueue, IMAP_CMD_QUIT);
-    g_thread_join(imailbox->th);
-    g_async_queue_unref(imailbox->aqueue);
+    if(imailbox->check_id) {
+        g_source_remove(imailbox->check_id);
+        imailbox->check_id = 0;
+    }
+
+    g_atomic_int_set(&imailbox->folder_tree_running, FALSE);
+    while(g_atomic_pointer_get(&imailbox->folder_tree_th))
+        g_thread_yield();
+
+    g_atomic_int_set(&imailbox->running, FALSE);
+    while(g_atomic_pointer_get(&imailbox->th))
+        g_thread_yield();
     
     g_mutex_free(imailbox->config_mx);
     

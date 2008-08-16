@@ -78,17 +78,12 @@
 
 #include "mailwatch-utils.h"
 #include "mailwatch.h"
+#include "mailwatch-net-conn.h"
 
 #define BORDER         8
 #define GMAIL_HOST     "mail.google.com"
 #define GMAIL_ATOMURI  "/mail/feed/atom"
 #define XFCE_MAILWATCH_GMAIL_MAILBOX(ptr)  ((XfceMailwatchGMailMailbox *)ptr)
-
-#define GMAIL_CMD_START    GINT_TO_POINTER(1)
-#define GMAIL_CMD_PAUSE    GINT_TO_POINTER(2)
-#define GMAIL_CMD_TIMEOUT  GINT_TO_POINTER(3)
-#define GMAIL_CMD_QUIT     GINT_TO_POINTER(4)
-#define GMAIL_CMD_UPDATE   GINT_TO_POINTER(5)
 
 typedef struct
 {
@@ -100,16 +95,23 @@ typedef struct
     gchar *password;
     guint timeout;
     
-    GThread *th;
-    GAsyncQueue *aqueue;
-    
     XfceMailwatch *mailwatch;
     
     /* current connection state */
-    gint sockfd;
-    XfceMailwatchSecurityInfo security_info;
+    gint running;
+    gpointer th;
+    XfceMailwatchNetConn *net_conn;
+    guint check_id;
 } XfceMailwatchGMailMailbox;
 
+
+static gboolean
+gmail_should_continue(XfceMailwatchNetConn *net_conn,
+                      gpointer user_data)
+{
+    XfceMailwatchGMailMailbox *gmailbox = user_data;
+    return g_atomic_int_get(&gmailbox->running);
+}
 
 static gssize
 gmail_send(XfceMailwatchGMailMailbox *gmailbox, const gchar *buf)
@@ -117,10 +119,9 @@ gmail_send(XfceMailwatchGMailMailbox *gmailbox, const gchar *buf)
     GError *error = NULL;
     gssize sent;
     
-    sent = xfce_mailwatch_net_send(gmailbox->sockfd,
-                                   &gmailbox->security_info,
-                                   buf,
-                                   &error);
+    sent = xfce_mailwatch_net_conn_send_data(gmailbox->net_conn,
+                                             (const guchar *)buf, -1,
+                                             &error);
     if(sent < 0) {
         xfce_mailwatch_log_message(gmailbox->mailwatch,
                                    XFCE_MAILWATCH_MAILBOX(gmailbox),
@@ -138,12 +139,8 @@ gmail_recv(XfceMailwatchGMailMailbox *gmailbox, gchar *buf, gsize len)
     GError *error = NULL;
     gssize recvd;
     
-    recvd = xfce_mailwatch_net_recv(gmailbox->sockfd,
-                                    &gmailbox->security_info,
-                                    buf,
-                                    len,
-                                    &error);
-    
+    recvd = xfce_mailwatch_net_conn_recv_data(gmailbox->net_conn,
+                                              (guchar *)buf, len, &error);
     if(recvd < 0) {
         xfce_mailwatch_log_message(gmailbox->mailwatch,
                                    XFCE_MAILWATCH_MAILBOX(gmailbox),
@@ -156,161 +153,30 @@ gmail_recv(XfceMailwatchGMailMailbox *gmailbox, gchar *buf, gsize len)
 }
 
 static gboolean
-gmail_get_addrinfo(XfceMailwatchGMailMailbox *gmailbox, const gchar *host,
-                  const gchar *service, struct addrinfo **addresses)
+gmail_connect(XfceMailwatchGMailMailbox *gmailbox, gint *port)
 {
     GError *error = NULL;
+
+    TRACE("entering");
     
-    TRACE("entering (%s, %s, %p)", host, service, addresses);
+    g_return_val_if_fail(port, FALSE);
     
-    g_return_val_if_fail(host && service && addresses, FALSE);
+    gmailbox->net_conn = xfce_mailwatch_net_conn_new(GMAIL_HOST, "https");
+    xfce_mailwatch_net_conn_set_should_continue_func(gmailbox->net_conn,
+                                                     gmail_should_continue,
+                                                     gmailbox);
     
-    if(!xfce_mailwatch_net_get_addrinfo(host, service, addresses, &error)) {
+    if(xfce_mailwatch_net_conn_connect(gmailbox->net_conn, &error)) {
+        *port = xfce_mailwatch_net_conn_get_port(gmailbox->net_conn);
+        return TRUE;
+    } else {
         xfce_mailwatch_log_message(gmailbox->mailwatch,
                                    XFCE_MAILWATCH_MAILBOX(gmailbox),
                                    XFCE_MAILWATCH_LOG_ERROR,
-                                   error->message);
+                                   "%s", error->message);
         g_error_free(error);
         return FALSE;
     }
-    
-    return TRUE;
-}
-
-
-static gboolean
-gmail_connect(XfceMailwatchGMailMailbox *gmailbox, gint *port)
-{
-    struct addrinfo *addresses = NULL, *ai;
-    gpointer msg = NULL;
-    
-    if(!gmail_get_addrinfo(gmailbox, GMAIL_HOST, "https", &addresses)) {
-        DBG("failed to get sockaddr");
-        return FALSE;
-    }
-    
-    for(ai = addresses; ai; ai = ai->ai_next) {
-        gchar portstr[16];
-        
-        *port = 0;
-        if(!getnameinfo(ai->ai_addr, ai->ai_addrlen, NULL, 0,
-                        portstr, sizeof(portstr), NI_NUMERICSERV))
-        {
-            *port = atoi(portstr);
-        }
-    
-        gmailbox->sockfd = socket(ai->ai_family, ai->ai_socktype,
-                                  ai->ai_protocol);
-        if(gmailbox->sockfd < 0)
-            continue;
-#if 0
-        if(gmailbox->sockfd < 0) {
-            xfce_mailwatch_log_message(gmailbox->mailwatch,
-                                       XFCE_MAILWATCH_MAILBOX(gmailbox),
-                                       XFCE_MAILWATCH_LOG_WARNING,
-                                       "socket(): %s",
-                                       strerror(errno));
-            DBG("failed to open socket");
-            return FALSE;
-        }
-#endif
-        /* this next batch of crap is necessary because it seems like a failed
-         * connection (that is, one that isn't ECONNREFUSED) takes over 3 minutes
-         * to fail!  if the panel is trying to quit, that's just unacceptable.
-         */
-        
-        if(fcntl(gmailbox->sockfd, F_SETFL,
-                 fcntl(gmailbox->sockfd, F_GETFL) | O_NONBLOCK))
-        {
-            xfce_mailwatch_log_message(gmailbox->mailwatch,
-                                       XFCE_MAILWATCH_MAILBOX(gmailbox),
-                                       XFCE_MAILWATCH_LOG_WARNING,
-                                       _("Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."));
-        }
-        
-        if(connect(gmailbox->sockfd, ai->ai_addr, ai->ai_addrlen) < 0) {
-            gboolean failed = TRUE;
-            
-            if(errno == EINPROGRESS) {
-                gint iters_left;
-                for(iters_left = 25; iters_left >= 0; iters_left--) {
-                    fd_set wfd;
-                    struct timeval tv = { 2, 0 };
-                    int sock_err = 0;
-                    socklen_t sock_err_len = sizeof(int);
-                    
-                    FD_ZERO(&wfd);
-                    FD_SET(gmailbox->sockfd, &wfd);
-                    
-                    DBG("checking for a connection...");
-                    
-                    /* wait until the connect attempt finishes */
-                    if(select(FD_SETSIZE, NULL, &wfd, NULL, &tv) < 0)
-                        break;
-                    
-                    /* check to see if it finished, and, if so, if there was an
-                     * error, or if it completed successfully */
-                    if(FD_ISSET(gmailbox->sockfd, &wfd)) {
-                        if(!getsockopt(gmailbox->sockfd, SOL_SOCKET, SO_ERROR,
-                                       &sock_err, &sock_err_len)
-                           && !sock_err)
-                        {
-                            DBG("    connection succeeded");
-                            failed = FALSE;
-                        } else {
-#if 0
-                            xfce_mailwatch_log_message(gmailbox->mailwatch,
-                                                       XFCE_MAILWATCH_MAILBOX(gmailbox),
-                                                       XFCE_MAILWATCH_LOG_ERROR,
-                                                       _("Failed to connect to server: %s"),
-                                                       strerror(sock_err));
-#endif
-                            DBG("    connection failed: sock_err is (%d) %s",
-                                sock_err, strerror(sock_err));
-                        }
-                        break;
-                    }
-                    
-                    /* check the main thread to see if we're supposed to quit */
-                    msg = g_async_queue_try_pop(gmailbox->aqueue);
-                    if(msg) {
-                        /* put it back so pop3_check_mail_th() can read it */
-                        g_async_queue_push(gmailbox->aqueue, msg);
-                        if(msg == GMAIL_CMD_QUIT) {
-                            failed = TRUE;
-                            break;
-                        }
-                        msg = NULL;
-                    }
-                }
-            }
-            
-            if(failed) {
-                DBG("failed to connect");
-                close(gmailbox->sockfd);
-                gmailbox->sockfd = -1;
-                continue;
-            } else
-                break;
-        }
-        
-        if(fcntl(gmailbox->sockfd, F_SETFL,
-                 fcntl(gmailbox->sockfd, F_GETFL) & ~(O_NONBLOCK)))
-        {
-            xfce_mailwatch_log_message(gmailbox->mailwatch,
-                                       XFCE_MAILWATCH_MAILBOX(gmailbox),
-                                       XFCE_MAILWATCH_LOG_WARNING,
-                                       _("Unable to return socket to blocking mode.  Data may not be retreived correctly."));
-        }
-        
-        if(msg && msg == GMAIL_CMD_QUIT)
-            break;
-    }
-    
-    if(addresses)
-        freeaddrinfo(addresses);
-    
-    return (gmailbox->sockfd >= 0);
 }
 
 static gboolean
@@ -330,11 +196,7 @@ gmail_check_atom_feed(XfceMailwatchGMailMailbox *gmailbox,
         return FALSE;
     }
     
-    gmailbox->security_info.using_tls = TRUE;
-    if(!xfce_mailwatch_net_negotiate_tls(gmailbox->sockfd,
-                                         &gmailbox->security_info, GMAIL_HOST,
-                                         &error))
-    {
+    if(!xfce_mailwatch_net_conn_make_secure(gmailbox->net_conn, &error)) {
         xfce_mailwatch_log_message(gmailbox->mailwatch,
                                    XFCE_MAILWATCH_MAILBOX(gmailbox),
                                    XFCE_MAILWATCH_LOG_ERROR,
@@ -365,6 +227,9 @@ gmail_check_atom_feed(XfceMailwatchGMailMailbox *gmailbox,
     }
     
     for(;;) {
+        if(!gmail_should_continue(gmailbox->net_conn, gmailbox))
+            break;
+
         bin = gmail_recv(gmailbox, buf, BUFSIZE);
         if(bin <= 0) {
             DBG("failed to recv response (%d)", bin);
@@ -451,11 +316,12 @@ gmail_check_atom_feed(XfceMailwatchGMailMailbox *gmailbox,
         break;
     }
     
-    cleanup:
+cleanup:
     
-    shutdown(gmailbox->sockfd, SHUT_RDWR);
-    close(gmailbox->sockfd);
-    gmailbox->sockfd = -1;
+    if(gmailbox->net_conn) {
+        xfce_mailwatch_net_conn_destroy(gmailbox->net_conn);
+        gmailbox->net_conn = NULL;
+    }
     
     return ret;
 #undef BUFSIZE
@@ -488,8 +354,6 @@ gmail_check_mail(XfceMailwatchGMailMailbox *gmailbox)
     } else {
         DBG("failed to connect to gmail server");
     }
-    
-    xfce_mailwatch_net_tls_teardown(&gmailbox->security_info);
 #undef BUFSIZE
 }
 
@@ -497,46 +361,43 @@ static gpointer
 gmail_check_mail_th(gpointer data)
 {
     XfceMailwatchGMailMailbox *gmailbox = XFCE_MAILWATCH_GMAIL_MAILBOX(data);
-    gboolean running = FALSE;
-    GTimeVal start, now;
-    guint timeout = 0, delta = 0;
     
-    g_async_queue_ref(gmailbox->aqueue);
-    
-    g_get_current_time(&start);
-    
-    for(;;) {
-        gpointer msg = g_async_queue_try_pop(gmailbox->aqueue);
-        
-        if(msg) {
-            if(msg == GMAIL_CMD_START) {
-                g_get_current_time(&start);
-                running = TRUE;
-            } else if(msg == GMAIL_CMD_PAUSE)
-                running = FALSE;
-            else if(msg == GMAIL_CMD_TIMEOUT)
-                timeout = GPOINTER_TO_UINT(g_async_queue_pop(gmailbox->aqueue));
-            else if(msg == GMAIL_CMD_QUIT) {
-                g_async_queue_unref(gmailbox->aqueue);
-                g_thread_exit(NULL);
-            }
-        }
-        
-        g_get_current_time(&now);
-        
-        if(running && (msg == GMAIL_CMD_UPDATE
-                || now.tv_sec - start.tv_sec >= timeout - delta))
-        {
-            gmail_check_mail(gmailbox);
-            g_get_current_time(&start);
-            delta = (gint)start.tv_sec - now.tv_sec;
-        } else
-            g_usleep(250000);
+    while(!g_atomic_pointer_get(&gmailbox->th)
+          && g_atomic_int_get(&gmailbox->running))
+    {
+        g_thread_yield();
+    }
+
+    if(!g_atomic_int_get(&gmailbox->running)) {
+        g_atomic_pointer_set(&gmailbox->th, NULL);
+        return NULL;
     }
     
-    /* NOTREACHED */
-    g_async_queue_unref(gmailbox->aqueue);
+    gmail_check_mail(gmailbox);
+
+    g_atomic_pointer_set(&gmailbox->th, NULL);
     return NULL;
+}
+
+static gboolean
+gmail_check_mail_timeout(gpointer data)
+{
+    XfceMailwatchGMailMailbox *gmailbox = XFCE_MAILWATCH_GMAIL_MAILBOX(data);
+
+    GThread *th;
+
+    if(g_atomic_pointer_get(&gmailbox->th)) {
+        xfce_mailwatch_log_message(gmailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(gmailbox),
+                                   XFCE_MAILWATCH_LOG_WARNING,
+                                   _("Previous thread hasn't exited yet, not checking mail this time."));
+        return TRUE;
+    }
+
+    th = g_thread_create(gmail_check_mail_th, gmailbox, FALSE, NULL);
+    g_atomic_pointer_set(&gmailbox->th, th);
+
+    return TRUE;
 }
 
 static XfceMailwatchMailbox *
@@ -547,13 +408,6 @@ gmail_mailbox_new(XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type)
     gmailbox->mailwatch = mailwatch;
     gmailbox->timeout = XFCE_MAILWATCH_DEFAULT_TIMEOUT;
     gmailbox->config_mx = g_mutex_new();
-    gmailbox->aqueue = g_async_queue_new();
-    
-    g_async_queue_push(gmailbox->aqueue, GMAIL_CMD_TIMEOUT);
-    g_async_queue_push(gmailbox->aqueue,
-                       GUINT_TO_POINTER(XFCE_MAILWATCH_DEFAULT_TIMEOUT));
-    
-    gmailbox->th = g_thread_create(gmail_check_mail_th, gmailbox, TRUE, NULL);
     
     return (XfceMailwatchMailbox *)gmailbox;
 }
@@ -562,15 +416,43 @@ static void
 gmail_set_activated(XfceMailwatchMailbox *mailbox, gboolean activated)
 {
     XfceMailwatchGMailMailbox *gmailbox = XFCE_MAILWATCH_GMAIL_MAILBOX(mailbox);
-    g_async_queue_push(gmailbox->aqueue,
-                       activated ? GMAIL_CMD_START : GMAIL_CMD_PAUSE);
+
+    if(activated == g_atomic_int_get(&gmailbox->running))
+        return;
+
+    if(activated) {
+        g_atomic_int_set(&gmailbox->running, TRUE);
+        gmailbox->check_id = g_timeout_add(gmailbox->timeout * 1000,
+                                           gmail_check_mail_timeout,
+                                           gmailbox);
+    } else {
+        g_atomic_int_set(&gmailbox->running, FALSE);
+        g_source_remove(gmailbox->check_id);
+        gmailbox->check_id = 0;
+    }
 }
 
 static void
 gmail_force_update_cb(XfceMailwatchMailbox *mailbox)
 {
     XfceMailwatchGMailMailbox *gmailbox = XFCE_MAILWATCH_GMAIL_MAILBOX(mailbox);
-    g_async_queue_push(gmailbox->aqueue, GMAIL_CMD_UPDATE);
+
+    if(!g_atomic_pointer_get(&gmailbox->th)) {
+        gboolean restart = FALSE;
+
+        if(gmailbox->check_id) {
+            g_source_remove(gmailbox->check_id);
+            restart = TRUE;
+        }
+
+        gmail_check_mail_timeout(gmailbox);
+
+        if(restart) {
+            gmailbox->check_id = g_timeout_add(gmailbox->timeout * 1000,
+                                               gmail_check_mail_timeout,
+                                               gmailbox);
+        }
+    }
 }
 
 static gboolean
@@ -614,10 +496,20 @@ gmail_config_timeout_spinbutton_changed_cb(GtkSpinButton *sb,
     XfceMailwatchGMailMailbox *gmailbox = XFCE_MAILWATCH_GMAIL_MAILBOX(user_data);
     gint value = gtk_spin_button_get_value_as_int(sb) * 60;
     
+    if(value == gmailbox->timeout)
+        return FALSE;
+
     gmailbox->timeout = value;
-    g_async_queue_push(gmailbox->aqueue, GMAIL_CMD_TIMEOUT);
-    g_async_queue_push(gmailbox->aqueue, GUINT_TO_POINTER(value));
-    
+
+    if(g_atomic_int_get(&gmailbox->running)) {
+        /* probably shouldn't do this so frequently */
+        if(gmailbox->check_id)
+            g_source_remove(gmailbox->check_id);
+        gmailbox->check_id = g_timeout_add(gmailbox->timeout * 1000,
+                                           gmail_check_mail_timeout,
+                                           gmailbox);
+    }
+
     return FALSE;
 }
 
@@ -715,12 +607,8 @@ gmail_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
             gmailbox->username = g_strdup(param->value);
         else if(!strcmp(param->key, "password"))
             gmailbox->password = g_strdup(param->value);
-        else if(!strcmp(param->key, "timeout")) {
+        else if(!strcmp(param->key, "timeout"))
             gmailbox->timeout = atoi(param->value);
-            g_async_queue_push(gmailbox->aqueue, GMAIL_CMD_TIMEOUT);
-            g_async_queue_push(gmailbox->aqueue,
-                               GUINT_TO_POINTER(gmailbox->timeout));
-        }
     }
     
     g_mutex_unlock(gmailbox->config_mx);
@@ -760,9 +648,14 @@ gmail_mailbox_free(XfceMailwatchMailbox *mailbox)
 {
     XfceMailwatchGMailMailbox *gmailbox = XFCE_MAILWATCH_GMAIL_MAILBOX(mailbox);
     
-    g_async_queue_push(gmailbox->aqueue, GMAIL_CMD_QUIT);
-    g_thread_join(gmailbox->th);
-    g_async_queue_unref(gmailbox->aqueue);
+    if(gmailbox->check_id) {
+        g_source_remove(gmailbox->check_id);
+        gmailbox->check_id = 0;
+    }
+
+    g_atomic_int_set(&gmailbox->running, FALSE);
+    while(g_atomic_pointer_get(&gmailbox->th))
+        g_thread_yield();
     
     g_mutex_free(gmailbox->config_mx);
     

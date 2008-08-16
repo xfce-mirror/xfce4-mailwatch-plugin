@@ -38,38 +38,6 @@
 #include <sys/types.h>
 #endif
 
-#ifdef HAVE_SYS_SOCKET_H
-#include <sys/socket.h>
-#endif
-
-#if HAVE_NETINET_IN_H
-#include <netinet/in.h>
-#endif
-
-#ifdef HAVE_NETDB_H
-#include <netdb.h>
-#endif
-
-#ifdef HAVE_SYS_SELECT_H
-#include <sys/select.h>
-#endif
-
-#ifdef HAVE_SYS_WAIT_H
-#include <sys/wait.h>
-#endif
-
-#ifdef HAVE_FCNTL_H
-#include <fcntl.h>
-#endif
-
-#ifdef HAVE_ERRNO_H
-#include <errno.h>
-#endif
-
-#ifndef MSG_NOSIGNAL
-#define MSG_NOSIGNAL 0
-#endif
-
 #include <glib.h>
 #include <gtk/gtk.h>
 
@@ -78,6 +46,7 @@
 
 #include "mailwatch-utils.h"
 #include "mailwatch.h"
+#include "mailwatch-net-conn.h"
 
 #define BORDER                   8
 
@@ -85,12 +54,6 @@
 #define POP3S_PORT_S             "995"
 
 #define XFCE_MAILWATCH_POP3_MAILBOX(ptr) ((XfceMailwatchPOP3Mailbox *)ptr)
-
-#define POP3_CMD_START           GINT_TO_POINTER(1)
-#define POP3_CMD_PAUSE           GINT_TO_POINTER(2)
-#define POP3_CMD_TIMEOUT         GINT_TO_POINTER(3)
-#define POP3_CMD_QUIT            GINT_TO_POINTER(4)
-#define POP3_CMD_UPDATE          GINT_TO_POINTER(5)
 
 typedef struct
 {
@@ -107,16 +70,24 @@ typedef struct
     gint nonstandard_port;
     XfceMailwatchAuthType auth_type;
     
-    GThread *th;
-    GAsyncQueue *aqueue;
+    gint running;
+    guint check_id;
+    gpointer th;  /* really a GThread *, but avoids casts later */
     
     XfceMailwatch *mailwatch;
     
     /* state related to the current connection (if any) */
-    gint sockfd;
-    /* secure this, dude */
-    XfceMailwatchSecurityInfo security_info;
+    XfceMailwatchNetConn *net_conn;
 } XfceMailwatchPOP3Mailbox;
+
+
+static gboolean
+pop3_should_continue(XfceMailwatchNetConn *net_conn,
+                     gpointer user_data)
+{
+    XfceMailwatchPOP3Mailbox *pmailbox = user_data;
+    return g_atomic_int_get(&pmailbox->running);
+}
 
 static gssize
 pop3_send(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *buf)
@@ -124,10 +95,9 @@ pop3_send(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *buf)
     GError *error = NULL;
     gssize sent;
     
-    sent = xfce_mailwatch_net_send(pmailbox->sockfd,
-                                   &pmailbox->security_info,
-                                   buf,
-                                   &error);
+    sent = xfce_mailwatch_net_conn_send_data(pmailbox->net_conn,
+                                             (guchar *)buf, strlen(buf),
+                                             &error);
     if(sent < 0) {
         xfce_mailwatch_log_message(pmailbox->mailwatch,
                                    XFCE_MAILWATCH_MAILBOX(pmailbox),
@@ -145,11 +115,8 @@ pop3_recv(XfceMailwatchPOP3Mailbox *pmailbox, gchar *buf, gsize len)
     GError *error = NULL;
     gssize recvd;
     
-    recvd = xfce_mailwatch_net_recv(pmailbox->sockfd,
-                                    &pmailbox->security_info,
-                                    buf,
-                                    len,
-                                    &error);
+    recvd = xfce_mailwatch_net_conn_recv_line(pmailbox->net_conn,
+                                              buf, len, &error);
     
     if(recvd < 0) {
         xfce_mailwatch_log_message(pmailbox->mailwatch,
@@ -160,38 +127,6 @@ pop3_recv(XfceMailwatchPOP3Mailbox *pmailbox, gchar *buf, gsize len)
     }
     
     return recvd;
-}
-
-static void
-pop3_do_logout(XfceMailwatchPOP3Mailbox *pmailbox)
-{
-    pop3_send(pmailbox, "QUIT\r\n");
-    
-    shutdown(pmailbox->sockfd, SHUT_RDWR);
-    close(pmailbox->sockfd);
-    pmailbox->sockfd = -1;
-}
-
-static gboolean
-pop3_get_addrinfo(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
-                  const gchar *service, struct addrinfo **addresses)
-{
-    GError *error = NULL;
-    
-    TRACE("entering (%s, %s, %p)", host, service, addresses);
-    
-    g_return_val_if_fail(host && service && addresses, FALSE);
-    
-    if(!xfce_mailwatch_net_get_addrinfo(host, service, addresses, &error)) {
-        xfce_mailwatch_log_message(pmailbox->mailwatch,
-                                   XFCE_MAILWATCH_MAILBOX(pmailbox),
-                                   XFCE_MAILWATCH_LOG_ERROR,
-                                   error->message);
-        g_error_free(error);
-        return FALSE;
-    }
-    
-    return TRUE;
 }
 
 static gboolean
@@ -210,7 +145,7 @@ pop3_send_login_info(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *username,
     g_strlcpy(buf, "CAPA\r\n", BUFSIZE);
     bout = pop3_send(pmailbox, buf);
     if(bout != strlen(buf))
-        goto cleanuperr;
+        return FALSE;
 
     off = 0;
     do {
@@ -219,7 +154,7 @@ pop3_send_login_info(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *username,
             off += bin;
     } while(bin > 0 && !strstr(buf, ".\r\n"));
     if(bin < 0)
-        goto cleanuperr;
+        return FALSE;
 
     if((p = strstr(buf, "SASL ")) && (q = strstr(p, "\r\n"))
        && (p = strstr(p, "CRAM-MD5")) && p < q)
@@ -228,11 +163,11 @@ pop3_send_login_info(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *username,
         g_strlcpy(buf, "AUTH CRAM-MD5\r\n", BUFSIZE);
         bout = pop3_send(pmailbox, buf);
         if(bout != strlen(buf))
-            goto cleanuperr;
+            return FALSE;
 
         bin = pop3_recv(pmailbox, buf, BUFSIZE);
         if(bin <= 0)
-            goto cleanuperr;
+            return FALSE;
         DBG("got cram-md5 challenge: %s\n", buf);
 
         if(*buf == '+' && *(buf+1) == ' ' && *(buf+2)) {
@@ -243,27 +178,27 @@ pop3_send_login_info(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *username,
                 p = strstr(buf, "\n");
             if(!p) {
                 DBG("cram-md5 challenge wasn't a full line?");
-                goto cleanuperr;
+                return FALSE;
             }
             *p = 0;
 
             response_base64 = xfce_mailwatch_cram_md5(username, password,
                                                       buf + 2);
             if(!response_base64)
-                goto cleanuperr;
+                return FALSE;
             g_strlcpy(buf, response_base64, BUFSIZE);
             g_strlcat(buf, "\r\n", BUFSIZE);
             g_free(response_base64);
             bout = pop3_send(pmailbox, buf);
             if(bout != strlen(buf))
-                goto cleanuperr;
+                return FALSE;
 
             bin = pop3_recv(pmailbox, buf, BUFSIZE);
             if(bin <= 0)
-                goto cleanuperr;
+                return FALSE;
             DBG("got response to cram-md5 auth: %s", buf);
             if(strncmp(buf, "+OK", 3))
-                goto cleanuperr;
+                return FALSE;
 
             TRACE("leaving (success)");
 
@@ -277,44 +212,36 @@ pop3_send_login_info(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *username,
     bout = pop3_send(pmailbox, buf);
     DBG("sent user (%d)", bout);
     if(bout != strlen(buf))
-        goto cleanuperr;
+        return FALSE;
     
     /* check for OK response */
     bin = pop3_recv(pmailbox, buf, BUFSIZE);
     DBG("response from USER (%d): %s", bin, bin>0?buf:"(nada)");
     if(bin <= 0)
-        goto cleanuperr;
+        return FALSE;
     DBG("strstr() returns %p", strstr(buf, "+OK"));
     if(g_ascii_strncasecmp(buf, "+OK", 3))
-        goto cleanuperr;
+        return FALSE;
     
     /* send the password */
     g_snprintf(buf, BUFSIZE, "PASS %s\r\n", password);
     bout = pop3_send(pmailbox, buf);
     DBG("sent password (%d)", bout);
     if(bout != strlen(buf))
-        goto cleanuperr;
+        return FALSE;
     
     /* check for OK response */
     bin = pop3_recv(pmailbox, buf, BUFSIZE);
     DBG("response from USER (%d): %s", bin, bin>0?buf:"(nada)");
     if(bin <= 0)
-        goto cleanuperr;
+        return FALSE;
     DBG("strstr() returns %p", strstr(buf, "OK"));
     if(g_ascii_strncasecmp(buf, "+OK", 3))
-        goto cleanuperr;
+        return FALSE;
     
     TRACE("leaving (success)");
     
     return TRUE;
-    
-cleanuperr:
-    
-    shutdown(pmailbox->sockfd, SHUT_RDWR);
-    close(pmailbox->sockfd);
-    pmailbox->sockfd = -1;
-    
-    return FALSE;
 #undef BUFSIZE
 }
 
@@ -324,8 +251,7 @@ pop3_negotiate_ssl(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host)
     gboolean ret;
     GError *error = NULL;
     
-    ret = xfce_mailwatch_net_negotiate_tls(pmailbox->sockfd,
-            &pmailbox->security_info, host, &error);
+    ret = xfce_mailwatch_net_conn_make_secure(pmailbox->net_conn, &error);
     
     if(!ret) {
         xfce_mailwatch_log_message(pmailbox->mailwatch,
@@ -334,9 +260,6 @@ pop3_negotiate_ssl(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host)
                                    _("TLS handshake failed: %s"),
                                    error->message);
         g_error_free(error);
-        shutdown(pmailbox->sockfd, SHUT_RDWR);
-        close(pmailbox->sockfd);
-        pmailbox->sockfd = -1;
     }
     
     return ret;
@@ -353,35 +276,24 @@ pop3_do_stls(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
     TRACE("entering");
     
     if(pop3_send(pmailbox, "CAPA\r\n") != 6)
-        goto cleanuperr;
+        return FALSE;
     
     bin = pop3_recv(pmailbox, buf, BUFSIZE);
     DBG("checking for STLS caps (%d): %s", bin, bin>0?buf:"(nada)");
     if(bin <= 0)
-        goto cleanuperr;
+        return FALSE;
     if(!strstr(buf, "\r\nSTLS\r\n"))
-        goto cleanuperr;
+        return FALSE;
     
     if(pop3_send(pmailbox, "STLS\r\n") != 6)
-        goto cleanuperr;
+        return FALSE;
     
     if(pop3_recv(pmailbox, buf, BUFSIZE) < 0)
-        goto cleanuperr;
+        return FALSE;
     if(g_ascii_strncasecmp(buf, "+OK", 3))
-        goto cleanuperr;
-    
-    /* now that we've negotiated SSL, reenable using_tls */
-    pmailbox->security_info.using_tls = TRUE;
+        return FALSE;
     
     return TRUE;
-    
-    cleanuperr:
-    
-    shutdown(pmailbox->sockfd, SHUT_RDWR);
-    close(pmailbox->sockfd);
-    pmailbox->sockfd = -1;
-    
-    return FALSE;
 #undef BUFSIZE
 }
 
@@ -389,134 +301,27 @@ static gboolean
 pop3_connect(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
         const gchar *service, gint nonstandard_port)
 {
-    struct addrinfo *addresses = NULL, *ai;
-    gchar buf[16] = { 0, };
-    gpointer msg = NULL;
+    GError *error = NULL;
     
     TRACE("entering (%s)", service);
     
+    pmailbox->net_conn = xfce_mailwatch_net_conn_new(host, service);
     if(nonstandard_port > 0)
-        g_snprintf(buf, sizeof(buf), "%d", nonstandard_port);
+        xfce_mailwatch_net_conn_set_port(pmailbox->net_conn, nonstandard_port);
+    xfce_mailwatch_net_conn_set_should_continue_func(pmailbox->net_conn,
+                                                     pop3_should_continue,
+                                                     pmailbox);
     
-    if(!pop3_get_addrinfo(pmailbox, host, *buf ? buf : service, &addresses)) {
-        DBG("failed to get sockaddr");
+    if(xfce_mailwatch_net_conn_connect(pmailbox->net_conn, &error))
+        return TRUE;
+    else {
+        xfce_mailwatch_log_message(pmailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(pmailbox),
+                                   XFCE_MAILWATCH_LOG_ERROR,
+                                   "%s", error->message);
+        g_error_free(error);
         return FALSE;
     }
-    
-    for(ai = addresses; ai; ai = ai->ai_next) {
-        pmailbox->sockfd = socket(ai->ai_family, ai->ai_socktype,
-                                  ai->ai_protocol);
-        if(pmailbox->sockfd < 0)
-            continue;
-    
-#if 0
-        if(pmailbox->sockfd < 0) {
-            xfce_mailwatch_log_message(pmailbox->mailwatch,
-                                       XFCE_MAILWATCH_MAILBOX(pmailbox),
-                                       XFCE_MAILWATCH_LOG_WARNING,
-                                       "socket(): %s",
-                                       strerror(errno));
-            DBG("failed to open socket");
-            return FALSE;
-        }
-#endif
-        /* this next batch of crap is necessary because it seems like a failed
-         * connection (that is, one that isn't ECONNREFUSED) takes over 3 minutes
-         * to fail!  if the panel is trying to quit, that's just unacceptable.
-         */
-        
-        if(fcntl(pmailbox->sockfd, F_SETFL,
-                 fcntl(pmailbox->sockfd, F_GETFL) | O_NONBLOCK))
-        {
-            xfce_mailwatch_log_message(pmailbox->mailwatch,
-                                       XFCE_MAILWATCH_MAILBOX(pmailbox),
-                                       XFCE_MAILWATCH_LOG_WARNING,
-                                       _("Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."));
-        }
-        
-        if(connect(pmailbox->sockfd, ai->ai_addr, ai->ai_addrlen) < 0) {
-            gboolean failed = TRUE;
-            
-            if(errno == EINPROGRESS) {
-                gint iters_left;
-                for(iters_left = 25; iters_left >= 0; iters_left--) {
-                    fd_set wfd;
-                    struct timeval tv = { 2, 0 };
-                    int sock_err = 0;
-                    socklen_t sock_err_len = sizeof(int);
-                    
-                    FD_ZERO(&wfd);
-                    FD_SET(pmailbox->sockfd, &wfd);
-                    
-                    DBG("checking for a connection...");
-                    
-                    /* wait until the connect attempt finishes */
-                    if(select(FD_SETSIZE, NULL, &wfd, NULL, &tv) < 0)
-                        break;
-                    
-                    /* check to see if it finished, and, if so, if there was an
-                     * error, or if it completed successfully */
-                    if(FD_ISSET(pmailbox->sockfd, &wfd)) {
-                        if(!getsockopt(pmailbox->sockfd, SOL_SOCKET, SO_ERROR,
-                                       &sock_err, &sock_err_len)
-                           && !sock_err)
-                        {
-                            DBG("    connection succeeded");
-                            failed = FALSE;
-                        } else {
-#if 0
-                            xfce_mailwatch_log_message(pmailbox->mailwatch,
-                                                       XFCE_MAILWATCH_MAILBOX(pmailbox),
-                                                       XFCE_MAILWATCH_LOG_ERROR,
-                                                       _("Failed to connect to server: %s"),
-                                                       strerror(sock_err));
-#endif
-                            DBG("    connection failed: sock_err is (%d) %s",
-                                sock_err, strerror(sock_err));
-                        }
-                        break;
-                    }
-                    
-                    /* check the main thread to see if we're supposed to quit */
-                    msg = g_async_queue_try_pop(pmailbox->aqueue);
-                    if(msg) {
-                        /* put it back so pop3_check_mail_th() can read it */
-                        g_async_queue_push(pmailbox->aqueue, msg);
-                        if(msg == POP3_CMD_QUIT) {
-                            failed = TRUE;
-                            break;
-                        }
-                        msg = NULL;
-                    }
-                }
-            }
-            
-            if(failed) {
-                DBG("failed to connect");
-                close(pmailbox->sockfd);
-                pmailbox->sockfd = -1;
-                continue;
-            } else
-                break;
-        }
-        
-        if(fcntl(pmailbox->sockfd, F_SETFL,
-                 fcntl(pmailbox->sockfd, F_GETFL) & ~(O_NONBLOCK)))
-        {
-            xfce_mailwatch_log_message(pmailbox->mailwatch,
-                                       XFCE_MAILWATCH_MAILBOX(pmailbox),
-                                       XFCE_MAILWATCH_LOG_WARNING,
-                                       _("Unable to return socket to blocking mode.  Data may not be retreived correctly."));
-        }
-        
-        if(msg && msg == POP3_CMD_QUIT)
-            break;
-    }
-    
-    if(addresses)
-        freeaddrinfo(addresses);
-    
-    return (pmailbox->sockfd >= 0);
 }
 
 static inline gboolean
@@ -525,18 +330,13 @@ pop3_slurp_banner(XfceMailwatchPOP3Mailbox *pmailbox)
     gchar buf[2048];
     gint bin;
     
-    do {
-        bin = pop3_recv(pmailbox, buf, sizeof(buf)-1);
-        if(bin < 0) {
-            DBG("failed to get banner");
-            shutdown(pmailbox->sockfd, SHUT_RDWR);
-            close(pmailbox->sockfd);
-            pmailbox->sockfd = -1;
-        } else {
-            buf[bin] = 0;
-            DBG("got banner, discarding: %s\n", buf);
-        }
-    } while(bin != -1 && !strchr(buf, '\n'));
+    bin = pop3_recv(pmailbox, buf, sizeof(buf)-1);
+    if(bin < 0) {
+        DBG("failed to get banner");
+    } else {
+        buf[bin] = 0;
+        DBG("got banner, discarding: %s\n", buf);
+    }
     
     return (bin != -1);
 }
@@ -552,14 +352,12 @@ pop3_authenticate(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
     
     switch(auth_type) {
         case AUTH_NONE:
-            pmailbox->security_info.using_tls = FALSE;
             ret = pop3_connect(pmailbox, host, "pop3", nonstandard_port);
             if(ret)
                 ret = pop3_slurp_banner(pmailbox);
             break;
         
         case AUTH_STARTTLS:
-            pmailbox->security_info.using_tls = FALSE;
             ret = pop3_connect(pmailbox, host, "pop3", nonstandard_port);
             if(ret)
                 ret = pop3_slurp_banner(pmailbox);
@@ -567,11 +365,9 @@ pop3_authenticate(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
                 ret = pop3_do_stls(pmailbox, host, username, password);
             if(ret)
                 ret = pop3_negotiate_ssl(pmailbox, host);
-            pmailbox->security_info.using_tls = TRUE;
             break;
         
         case AUTH_SSL_PORT:
-            pmailbox->security_info.using_tls = TRUE;
             ret = pop3_connect(pmailbox, host, "pop3s", nonstandard_port);
             if(ret)
                 ret = pop3_negotiate_ssl(pmailbox, host);
@@ -584,10 +380,13 @@ pop3_authenticate(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
             return FALSE;
     }
     
-    DBG("using_tls is %s", pmailbox->security_info.using_tls?"TRUE":"FALSE");
-        
-    if(ret && !pop3_send_login_info(pmailbox, username, password))
-        return FALSE;
+    if(ret)
+        ret = pop3_send_login_info(pmailbox, username, password);
+
+    if(!ret) {
+        xfce_mailwatch_net_conn_destroy(pmailbox->net_conn);
+        pmailbox->net_conn = NULL;
+    }
     
     return ret;
 }
@@ -621,20 +420,33 @@ pop3_check_inbox(XfceMailwatchPOP3Mailbox *pmailbox)
     return new_messages;
 }
 
-static void
-pop3_check_mail(XfceMailwatchPOP3Mailbox *pmailbox)
+static gpointer
+pop3_check_mail_th(gpointer user_data)
 {
 #define BUFSIZE 1024
+    XfceMailwatchPOP3Mailbox *pmailbox = user_data;
     gchar host[BUFSIZE], username[BUFSIZE], password[BUFSIZE];
     guint new_messages = 0;
     XfceMailwatchAuthType auth_type;
     gint nonstandard_port = -1;
+
+    while(!g_atomic_pointer_get(&pmailbox->th)
+          && g_atomic_int_get(&pmailbox->running))
+    {
+        g_thread_yield();
+    }
+
+    if(!g_atomic_int_get(&pmailbox->running)) {
+        g_atomic_pointer_set(&pmailbox->th, NULL);
+        return NULL;
+    }
     
     g_mutex_lock(pmailbox->config_mx);
     
     if(!pmailbox->host || !pmailbox->username || !pmailbox->password) {
         g_mutex_unlock(pmailbox->config_mx);
-        return;
+        g_atomic_pointer_set(&pmailbox->th, NULL);
+        return NULL;
     }
     
     g_strlcpy(host, pmailbox->host, BUFSIZE);
@@ -646,72 +458,26 @@ pop3_check_mail(XfceMailwatchPOP3Mailbox *pmailbox)
     
     g_mutex_unlock(pmailbox->config_mx);
     
-    if(!pop3_authenticate(pmailbox, host, username, password, auth_type,
-            nonstandard_port))
+    if(pop3_authenticate(pmailbox, host, username, password, auth_type,
+                         nonstandard_port))
     {
-        DBG("failed to connect to pop3 server");
-        goto cleanup;
+        new_messages = pop3_check_inbox(pmailbox);
+        DBG("checked inbox, %d new messages", new_messages);
+        
+        xfce_mailwatch_signal_new_messages(pmailbox->mailwatch,
+                XFCE_MAILWATCH_MAILBOX(pmailbox), new_messages);
     }
     
-    new_messages = pop3_check_inbox(pmailbox);
-    DBG("checked inbox, %d new messages", new_messages);
+    pop3_send(pmailbox, "QUIT\r\n");
     
-    xfce_mailwatch_signal_new_messages(pmailbox->mailwatch,
-            XFCE_MAILWATCH_MAILBOX(pmailbox), new_messages);
-    
-    cleanup:
-    
-    pop3_do_logout(pmailbox);
-    
-    xfce_mailwatch_net_tls_teardown(&pmailbox->security_info);
-    
-#undef BUFSIZE
-}
+    if(pmailbox->net_conn) {
+        xfce_mailwatch_net_conn_destroy(pmailbox->net_conn);
+        pmailbox->net_conn = NULL;
+    }
 
-static gpointer
-pop3_check_mail_th(gpointer user_data)
-{
-    XfceMailwatchPOP3Mailbox *pmailbox = user_data;
-    gboolean running = FALSE;
-    GTimeVal start, now;
-    guint timeout = 0, delta = 0;
-    
-    g_async_queue_ref(pmailbox->aqueue);
-    
-    g_get_current_time(&start);
-    
-    for(;;) {
-        gpointer msg = g_async_queue_try_pop(pmailbox->aqueue);
-        
-        if(msg) {
-            if(msg == POP3_CMD_START) {
-                g_get_current_time(&start);;
-                running = TRUE;
-            } else if(msg == POP3_CMD_PAUSE)
-                running = FALSE;
-            else if(msg == POP3_CMD_TIMEOUT)
-                timeout = GPOINTER_TO_UINT(g_async_queue_pop(pmailbox->aqueue));
-            else if(msg == POP3_CMD_QUIT) {
-                g_async_queue_unref(pmailbox->aqueue);
-                g_thread_exit(NULL);
-            }
-        }
-        
-        g_get_current_time(&now);
-        
-        if(running && (msg == POP3_CMD_UPDATE
-                || now.tv_sec - start.tv_sec >= timeout - delta))
-        {
-            pop3_check_mail(pmailbox);
-            g_get_current_time(&start);
-            delta = (gint)start.tv_sec - now.tv_sec;
-        } else
-            g_usleep(250000);
-    }
-    
-    /* NOTREACHED */
-    g_async_queue_unref(pmailbox->aqueue);
+    g_atomic_pointer_set(&pmailbox->th, NULL);
     return NULL;
+#undef BUFSIZE
 }
 
 static XfceMailwatchMailbox *
@@ -723,32 +489,71 @@ pop3_mailbox_new(XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type)
     pmailbox->timeout = XFCE_MAILWATCH_DEFAULT_TIMEOUT;
     pmailbox->use_standard_port = TRUE;
     pmailbox->config_mx = g_mutex_new();
-    /* init the queue */
-    pmailbox->aqueue = g_async_queue_new();
-    /* and init the timeout */
-    g_async_queue_push(pmailbox->aqueue, POP3_CMD_TIMEOUT);
-    g_async_queue_push(pmailbox->aqueue,
-            GUINT_TO_POINTER(XFCE_MAILWATCH_DEFAULT_TIMEOUT));
-    /* create checker thread */
-    pmailbox->th = g_thread_create(pop3_check_mail_th, pmailbox, TRUE, NULL);
     
-    return (XfceMailwatchMailbox *)pmailbox;
+    return XFCE_MAILWATCH_MAILBOX(pmailbox);
+}
+
+static gboolean
+pop3_check_mail_timeout(gpointer data)
+{
+    XfceMailwatchPOP3Mailbox *pmailbox = data;
+    GThread *new_th;
+
+    if(g_atomic_pointer_get(&pmailbox->th)) {
+        xfce_mailwatch_log_message(pmailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(pmailbox),
+                                   XFCE_MAILWATCH_LOG_WARNING,
+                                   _("Previous thread hasn't exited yet, not checking mail this time."));
+        return TRUE;
+    }
+
+    new_th = g_thread_create(pop3_check_mail_th, pmailbox, FALSE, NULL);
+    g_atomic_pointer_set(&pmailbox->th, new_th);
+
+    return TRUE;
 }
 
 static void
 pop3_set_activated(XfceMailwatchMailbox *mailbox, gboolean activated)
 {
     XfceMailwatchPOP3Mailbox *pmailbox = XFCE_MAILWATCH_POP3_MAILBOX(mailbox);
-    
-    g_async_queue_push(pmailbox->aqueue, activated ? POP3_CMD_START : POP3_CMD_PAUSE);
+
+    if(activated == g_atomic_int_get(&pmailbox->running))
+        return;
+
+    if(activated) {
+        g_atomic_int_set(&pmailbox->running, TRUE);
+        pmailbox->check_id = g_timeout_add(pmailbox->timeout * 1000,
+                                           pop3_check_mail_timeout,
+                                           pmailbox);
+    } else {
+        g_atomic_int_set(&pmailbox->running, FALSE);
+        g_source_remove(pmailbox->check_id);
+        pmailbox->check_id = 0;
+    }
 }
 
 static void
 pop3_force_update_cb(XfceMailwatchMailbox *mailbox)
 {
     XfceMailwatchPOP3Mailbox *pmailbox = XFCE_MAILWATCH_POP3_MAILBOX(mailbox);
-    
-    g_async_queue_push(pmailbox->aqueue, POP3_CMD_UPDATE);
+
+    if(!g_atomic_pointer_get(&pmailbox->th)) {
+        gboolean restart = FALSE;
+
+        if(pmailbox->check_id) {
+            g_source_remove(pmailbox->check_id);
+            restart = TRUE;
+        }
+
+        pop3_check_mail_timeout(pmailbox);
+
+        if(restart) {
+            pmailbox->check_id = g_timeout_add(pmailbox->timeout * 1000,
+                                               pop3_check_mail_timeout,
+                                               pmailbox);
+        }
+    }
 }
 
 static gboolean
@@ -820,18 +625,24 @@ pop3_password_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
     return FALSE;
 }
 
-static gboolean
+static void
 pop3_config_timeout_spinbutton_changed_cb(GtkSpinButton *sb,
                                           gpointer user_data)
 {
     XfceMailwatchPOP3Mailbox *pmailbox = user_data;
     gint value = gtk_spin_button_get_value_as_int(sb) * 60;
+
+    if(value == pmailbox->timeout)
+        return;
     
     pmailbox->timeout = value;
-    g_async_queue_push(pmailbox->aqueue, POP3_CMD_TIMEOUT);
-    g_async_queue_push(pmailbox->aqueue, GUINT_TO_POINTER(value));
-    
-    return FALSE;
+    if(g_atomic_int_get(&pmailbox->running)) {
+        if(pmailbox->check_id)
+            g_source_remove(pmailbox->check_id);
+        pmailbox->check_id = g_timeout_add(pmailbox->timeout * 1000,
+                                           pop3_check_mail_timeout,
+                                           pmailbox);
+    }
 }
 
 static void
@@ -1107,12 +918,8 @@ pop3_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
             pmailbox->use_standard_port = *(param->value) == '0' ? FALSE : TRUE;
         else if(!strcmp(param->key, "nonstandard_port"))
             pmailbox->nonstandard_port = atoi(param->value);
-        else if(!strcmp(param->key, "timeout")) {
+        else if(!strcmp(param->key, "timeout"))
             pmailbox->timeout = atoi(param->value);
-            g_async_queue_push(pmailbox->aqueue, POP3_CMD_TIMEOUT);
-            g_async_queue_push(pmailbox->aqueue,
-                    GUINT_TO_POINTER(pmailbox->timeout));
-        }
     }
     
     g_mutex_unlock(pmailbox->config_mx);
@@ -1174,9 +981,9 @@ pop3_mailbox_free(XfceMailwatchMailbox *mailbox)
 {
     XfceMailwatchPOP3Mailbox *pmailbox = XFCE_MAILWATCH_POP3_MAILBOX(mailbox);
     
-    g_async_queue_push(pmailbox->aqueue, POP3_CMD_QUIT);
-    g_thread_join(pmailbox->th);
-    g_async_queue_unref(pmailbox->aqueue);
+    g_atomic_int_set(&pmailbox->running, FALSE);
+    while(g_atomic_pointer_get(&pmailbox->th))
+        g_thread_yield();
     
     g_mutex_free(pmailbox->config_mx);
     
