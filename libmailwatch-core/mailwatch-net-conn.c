@@ -545,7 +545,9 @@ xfce_mailwatch_net_conn_make_secure(XfceMailwatchNetConn *net_conn,
     return TRUE;
 
 out_err:
+#if 0
     gnutls_bye(net_conn->gt_session, GNUTLS_SHUT_RDWR);
+#endif
     gnutls_deinit(net_conn->gt_session);
     gnutls_certificate_free_credentials(net_conn->gt_creds);
 
@@ -899,7 +901,9 @@ xfce_mailwatch_net_conn_disconnect(XfceMailwatchNetConn *net_conn)
 
 #ifdef HAVE_SSL_SUPPORT
     if(net_conn->is_secure) {
+#if 0
         gnutls_bye(net_conn->gt_session, GNUTLS_SHUT_RDWR);
+#endif
         gnutls_deinit(net_conn->gt_session);
         gnutls_certificate_free_credentials(net_conn->gt_creds);
         net_conn->is_secure = FALSE;
