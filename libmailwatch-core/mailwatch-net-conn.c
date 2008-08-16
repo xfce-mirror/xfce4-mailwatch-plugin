@@ -472,7 +472,7 @@ xfce_mailwatch_net_conn_connect(XfceMailwatchNetConn *net_conn,
 
 out_err:
     
-    if(net_conn->fd != -1) {  /* needed for the gotos */
+    if(!connect_succeeded && net_conn->fd != -1) {  /* needed for the gotos */
         shutdown(net_conn->fd, SHUT_RDWR);
         close(net_conn->fd);
         net_conn->fd = -1;
