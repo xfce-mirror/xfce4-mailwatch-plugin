@@ -247,23 +247,6 @@ mbox_new( XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type )
     return ( (XfceMailwatchMailbox *) mbox );
 }
 
-static void
-mbox_free( XfceMailwatchMailbox *mailbox )
-{
-    XfceMailwatchMboxMailbox    *mbox = XFCE_MAILWATCH_MBOX_MAILBOX( mailbox );
-
-    g_atomic_int_set( &mbox->running, FALSE );
-    while( g_atomic_pointer_get( &mbox->thread ) )
-        g_thread_yield();
-    
-    g_mutex_free( mbox->settings_mutex );
-
-    if ( mbox->fn ) {
-        g_free( mbox->fn );
-    }
-    g_free( mbox );
-}
-
 static GList *
 mbox_save_settings( XfceMailwatchMailbox *mailbox )
 {
@@ -513,6 +496,23 @@ mbox_force_update( XfceMailwatchMailbox *mailbox )
         if( restart )
             mbox->check_id = g_timeout_add( mbox->interval * 1000, mbox_check_mail_timeout, mbox);
     }
+}
+
+static void
+mbox_free( XfceMailwatchMailbox *mailbox )
+{
+    XfceMailwatchMboxMailbox    *mbox = XFCE_MAILWATCH_MBOX_MAILBOX( mailbox );
+
+    mbox_activate( mailbox, FALSE );
+    while( g_atomic_pointer_get( &mbox->thread ) )
+        g_thread_yield();
+    
+    g_mutex_free( mbox->settings_mutex );
+
+    if ( mbox->fn ) {
+        g_free( mbox->fn );
+    }
+    g_free( mbox );
 }
 
 XfceMailwatchMailboxType    builtin_mailbox_type_mbox = {

@@ -993,8 +993,8 @@ static void
 pop3_mailbox_free(XfceMailwatchMailbox *mailbox)
 {
     XfceMailwatchPOP3Mailbox *pmailbox = XFCE_MAILWATCH_POP3_MAILBOX(mailbox);
-    
-    g_atomic_int_set(&pmailbox->running, FALSE);
+
+    pop3_set_activated(mailbox, FALSE);
     while(g_atomic_pointer_get(&pmailbox->th))
         g_thread_yield();
     

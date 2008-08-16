@@ -1907,16 +1907,12 @@ imap_mailbox_free(XfceMailwatchMailbox *mailbox)
 {
     XfceMailwatchIMAPMailbox *imailbox = XFCE_MAILWATCH_IMAP_MAILBOX(mailbox);
     
-    if(imailbox->check_id) {
-        g_source_remove(imailbox->check_id);
-        imailbox->check_id = 0;
-    }
-
+    imap_set_activated(mailbox, FALSE);
     g_atomic_int_set(&imailbox->folder_tree_running, FALSE);
+
     while(g_atomic_pointer_get(&imailbox->folder_tree_th))
         g_thread_yield();
 
-    g_atomic_int_set(&imailbox->running, FALSE);
     while(g_atomic_pointer_get(&imailbox->th))
         g_thread_yield();
     

@@ -651,12 +651,7 @@ gmail_mailbox_free(XfceMailwatchMailbox *mailbox)
 {
     XfceMailwatchGMailMailbox *gmailbox = XFCE_MAILWATCH_GMAIL_MAILBOX(mailbox);
     
-    if(gmailbox->check_id) {
-        g_source_remove(gmailbox->check_id);
-        gmailbox->check_id = 0;
-    }
-
-    g_atomic_int_set(&gmailbox->running, FALSE);
+    gmail_set_activated(mailbox, FALSE);
     while(g_atomic_pointer_get(&gmailbox->th))
         g_thread_yield();
     
