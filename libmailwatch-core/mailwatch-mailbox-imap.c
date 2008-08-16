@@ -828,6 +828,9 @@ imap_config_timeout_spinbutton_changed_cb(GtkSpinButton *sb,
     XfceMailwatchIMAPMailbox *imailbox = user_data;
     gint value = gtk_spin_button_get_value_as_int(sb) * 60;
     
+    if(imailbox->timeout == value)
+        return;
+
     imailbox->timeout = value;
 
     if(g_atomic_int_get(&imailbox->running)) {

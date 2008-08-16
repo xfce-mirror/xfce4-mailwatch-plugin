@@ -1,6 +1,7 @@
 /*
  *  xfce4-mailwatch-plugin - a mail notification applet for the xfce4 panel
  *  Copyright (c) 2005 Pasi Orovuo <pasi.ov@gmail.com>
+ *  Copyright (c) 2008 Brian Tarricone <bjt23@cornell.edu>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -54,29 +55,21 @@
 #define XFCE_MAILWATCH_MAILDIR_MAILBOX( p ) ( (XfceMailwatchMaildirMailbox *) p )
 #define BORDER                              ( 8 )
 
-typedef enum {
-    MAILDIR_MSG_START = 1,
-    MAILDIR_MSG_PAUSE,
-    MAILDIR_MSG_FORCE_UPDATE,
-    MAILDIR_MSG_INTERVAL_CHANGED,
-    MAILDIR_MSG_QUIT
-} XfceMailwatchMaildirMessage;
-
 typedef struct {
     XfceMailwatchMailbox    xfce_mailwatch_mailbox;
 
     XfceMailwatch           *mailwatch;
 
     gchar                   *path;
-    gboolean                active;
     time_t                  mtime;
 
     guint                   interval;
     guint                   last_update;
 
     GMutex                  *mutex;
-    GThread                 *thread;
-    GAsyncQueue             *aqueue;
+    gboolean                running;
+    gpointer                thread;  /* (GThread *) */
+    guint                   check_id;
 } XfceMailwatchMaildirMailbox;
 
 static void
@@ -123,6 +116,15 @@ maildir_check_mail( XfceMailwatchMaildirMailbox *maildir )
             
             while ( ( entry = g_dir_read_name( dir ) ) ) {
                 count_new++;
+
+                /* only check every 25 entries */
+                if( !( count_new % 25 ) ) {
+                    if( !g_atomic_int_get( &maildir->running ) ) {
+                        g_dir_close( dir );
+                        g_atomic_pointer_set( &maildir->thread, NULL );
+                        return;
+                    }
+                }
             }
             g_dir_close( dir );
 
@@ -151,56 +153,37 @@ out:
 static gpointer
 maildir_main_thread( gpointer data ) {
     XfceMailwatchMaildirMailbox     *maildir = data;
-    GTimeVal                        tv;
 
     DBG( "-->>" );
 
-    g_async_queue_ref( maildir->aqueue );
+    while( !g_atomic_pointer_get( &maildir->thread ) && g_atomic_int_get( &maildir->running ) )
+        g_thread_yield();
 
-    for ( ;; ) {
-        XfceMailwatchMaildirMessage msg;
+    if( g_atomic_int_get( &maildir->running ) )
+        maildir_check_mail( maildir );
 
-        g_get_current_time( &tv );
-        g_time_val_add( &tv, G_USEC_PER_SEC * 5 );
-        
-        msg = GPOINTER_TO_INT( g_async_queue_timed_pop( maildir->aqueue, &tv ) );
-
-        if ( msg ) {
-            switch ( msg ) {
-                case MAILDIR_MSG_START:
-                    maildir->active = TRUE;
-                    break;
-
-                case MAILDIR_MSG_PAUSE:
-                    maildir->active = FALSE;
-                    break;
-
-                case MAILDIR_MSG_FORCE_UPDATE:
-                    maildir->last_update = 0;
-                    break;
-
-                case MAILDIR_MSG_INTERVAL_CHANGED:
-                    maildir->interval = GPOINTER_TO_INT( g_async_queue_pop( maildir->aqueue ) );
-                    break;
-
-                case MAILDIR_MSG_QUIT:
-                    g_async_queue_unref( maildir->aqueue );
-                    g_thread_exit( NULL );
-                    break;
-
-                default:
-                    DBG( "msg: %d", msg );
-                    break;
-            }
-        }
-
-        if ( ( maildir->active )
-                && tv.tv_sec - maildir->last_update > maildir->interval ) {
-            maildir_check_mail( maildir );
-            maildir->last_update = tv.tv_sec;
-        }
-    }
+    g_atomic_pointer_set( &maildir->thread, NULL );
     return ( NULL );
+}
+
+static gboolean
+maildir_check_mail_timeout( gpointer data )
+{
+    XfceMailwatchMaildirMailbox *maildir = XFCE_MAILWATCH_MAILDIR_MAILBOX( data );
+    GThread                     *th;
+
+    if( g_atomic_pointer_get( &maildir->thread ) ) {
+        xfce_mailwatch_log_message( maildir->mailwatch,
+                                    XFCE_MAILWATCH_MAILBOX(maildir),
+                                    XFCE_MAILWATCH_LOG_WARNING,
+                                    _( "Previous thread hasn't exited yet, not checking mail this time." ) );
+        return TRUE;
+    }
+
+    th = g_thread_create( maildir_main_thread, maildir, FALSE, NULL );
+    g_atomic_pointer_set( &maildir->thread, th );
+
+    return TRUE;
 }
 
 static XfceMailwatchMailbox *
@@ -214,32 +197,10 @@ maildir_new( XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type )
     
     maildir->mailwatch      = mailwatch;
     maildir->path           = NULL;
-    maildir->active         = FALSE;
     maildir->interval       = XFCE_MAILWATCH_DEFAULT_TIMEOUT;
     maildir->mutex          = g_mutex_new();
-    maildir->aqueue         = g_async_queue_new();
-    maildir->thread         = g_thread_create( maildir_main_thread, maildir, TRUE, NULL );
     
     return ( (XfceMailwatchMailbox *) maildir );
-}
-
-static void
-maildir_free( XfceMailwatchMailbox *mailbox )
-{
-    XfceMailwatchMaildirMailbox *maildir = XFCE_MAILWATCH_MAILDIR_MAILBOX( mailbox );
-
-    DBG( "-->>" );
-
-    g_async_queue_push( maildir->aqueue, GINT_TO_POINTER( MAILDIR_MSG_QUIT ) );
-    g_thread_join( maildir->thread );
-    g_async_queue_unref( maildir->aqueue );
-
-    if ( maildir->path ) {
-        g_free( maildir->path );
-    }
-    g_free( maildir );
-    
-    DBG( "<<--" );
 }
 
 static GList *
@@ -367,13 +328,22 @@ maildir_browse_button_clicked_cb( GtkWidget *button,
 
 static void
 maildir_interval_changed_cb( GtkWidget *spinner, XfceMailwatchMaildirMailbox *maildir ) {
+    gint value = gtk_spin_button_get_value_as_int( GTK_SPIN_BUTTON( spinner ) ) * 60;
 
     DBG( "-->>" );
 
-    g_async_queue_push( maildir->aqueue,
-                        GINT_TO_POINTER( MAILDIR_MSG_INTERVAL_CHANGED ) );
-    g_async_queue_push( maildir->aqueue,
-        GINT_TO_POINTER( gtk_spin_button_get_value_as_int( GTK_SPIN_BUTTON( spinner ) ) * 60 ) );
+    if( value == maildir->interval )
+        return;
+
+    maildir->interval = value;
+
+    if( g_atomic_int_get( &maildir->running ) ) {
+        if( maildir->check_id )
+            g_source_remove( maildir->check_id );
+        maildir->check_id = g_timeout_add( maildir->interval * 1000,
+                                           maildir_check_mail_timeout,
+                                           maildir );
+    }
 
     DBG( "<<--" );
 }
@@ -466,8 +436,22 @@ maildir_force_update_cb( XfceMailwatchMailbox *mailbox ) {
     XfceMailwatchMaildirMailbox     *maildir = XFCE_MAILWATCH_MAILDIR_MAILBOX( mailbox );
     DBG( "-->>" );
 
-    g_async_queue_push( maildir->aqueue, GINT_TO_POINTER( MAILDIR_MSG_FORCE_UPDATE ) );
+    if( !g_atomic_pointer_get( &maildir->thread ) ) {
+        gboolean restart = FALSE;
 
+        if( maildir->check_id ) {
+            g_source_remove( maildir->check_id );
+            restart = TRUE;
+        }
+
+        maildir_check_mail_timeout( maildir );
+
+        if( restart ) {
+            maildir->check_id = g_timeout_add( maildir->interval * 1000,
+                                               maildir_check_mail_timeout,
+                                               maildir );
+        }
+    }
     DBG( "<<--" );
 }
 
@@ -478,8 +462,36 @@ maildir_set_activated( XfceMailwatchMailbox *mailbox, gboolean activated )
 
     DBG( "-->>" );
 
-    g_async_queue_push( maildir->aqueue,
-                        GINT_TO_POINTER( activated ? MAILDIR_MSG_START : MAILDIR_MSG_PAUSE ) );
+   if( activated == g_atomic_int_get( &maildir->running ) )
+        return;
+
+    if( activated ) {
+        g_atomic_int_set( &maildir->running, TRUE );
+        maildir->check_id = g_timeout_add( maildir->interval * 1000, maildir_check_mail_timeout, maildir );
+    } else {
+        g_atomic_int_set( &maildir->running, FALSE );
+        g_source_remove( maildir->check_id );
+        maildir->check_id = 0;
+    }
+
+    DBG( "<<--" );
+}
+
+static void
+maildir_free( XfceMailwatchMailbox *mailbox )
+{
+    XfceMailwatchMaildirMailbox *maildir = XFCE_MAILWATCH_MAILDIR_MAILBOX( mailbox );
+
+    DBG( "-->>" );
+
+    maildir_set_activated( mailbox, FALSE );
+    while( g_atomic_pointer_get( &maildir->thread ) )
+        g_thread_yield();
+
+    if ( maildir->path ) {
+        g_free( maildir->path );
+    }
+    g_free( maildir );
 
     DBG( "<<--" );
 }
