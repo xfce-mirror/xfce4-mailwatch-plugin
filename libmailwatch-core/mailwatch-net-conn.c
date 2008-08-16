@@ -296,7 +296,9 @@ xfce_mailwatch_net_conn_get_addrinfo(XfceMailwatchNetConn *net_conn,
         if(error) {
             g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
                         _("Could not find host \"%s\": %s"),
-                        net_conn->hostname, gai_strerror(ret));
+                        net_conn->hostname,
+                        EAI_SYSTEM == ret ? strerror(errno)
+                                          : gai_strerror(ret));
         }
         return FALSE;
     }
