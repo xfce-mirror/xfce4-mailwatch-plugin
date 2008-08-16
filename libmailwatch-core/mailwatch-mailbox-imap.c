@@ -183,6 +183,8 @@ imap_recv(XfceMailwatchIMAPMailbox *imailbox,
                                    error->message);
         g_error_free(error);
     }
+    buf[recvd] = '\n';
+    buf[++recvd] = 0;
     
     return recvd;
 }
@@ -297,9 +299,7 @@ imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox,
             gchar *p, *response_base64;
 
             /* we got a challenge */
-            p = strstr(buf, "\r\n");
-            if(!p)
-                p = strstr(buf, "\n");
+            p = strstr(buf, "\n");
             if(!p) {
                 DBG("cram-md5 challenge wasn't a full line?");
                 goto cleanuperr;
