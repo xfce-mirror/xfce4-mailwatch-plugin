@@ -874,6 +874,7 @@ xfce_mailwatch_net_conn_recv_line(XfceMailwatchNetConn *net_conn,
 
     bin = p - (gchar *)net_conn->buffer;
     memcpy(buf, net_conn->buffer, bin);
+    buf[bin] = 0;
 
     net_conn->buffer_len -= bin + strlen(net_conn->line_terminator);
     memmove(net_conn->buffer, p + strlen(net_conn->line_terminator),
