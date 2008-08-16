@@ -408,6 +408,8 @@ gmail_mailbox_new(XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type)
     gmailbox->mailwatch = mailwatch;
     gmailbox->timeout = XFCE_MAILWATCH_DEFAULT_TIMEOUT;
     gmailbox->config_mx = g_mutex_new();
+
+    xfce_mailwatch_net_conn_init();
     
     return (XfceMailwatchMailbox *)gmailbox;
 }

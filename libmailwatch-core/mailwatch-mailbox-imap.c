@@ -641,6 +641,8 @@ imap_mailbox_new(XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type)
     imailbox->timeout = XFCE_MAILWATCH_DEFAULT_TIMEOUT;
     imailbox->use_standard_port = TRUE;
     imailbox->config_mx = g_mutex_new();
+
+    xfce_mailwatch_net_conn_init();
     
     return XFCE_MAILWATCH_MAILBOX(imailbox);
 }

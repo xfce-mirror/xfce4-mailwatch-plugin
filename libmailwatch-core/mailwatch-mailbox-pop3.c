@@ -489,6 +489,8 @@ pop3_mailbox_new(XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type)
     pmailbox->timeout = XFCE_MAILWATCH_DEFAULT_TIMEOUT;
     pmailbox->use_standard_port = TRUE;
     pmailbox->config_mx = g_mutex_new();
+
+    xfce_mailwatch_net_conn_init();
     
     return XFCE_MAILWATCH_MAILBOX(pmailbox);
 }
