@@ -581,6 +581,13 @@ out_err:
 }
 
 gboolean
+xfce_mailwatch_net_conn_is_connected(XfceMailwatchNetConn *net_conn)
+{
+    g_return_val_if_fail(net_conn, FALSE);
+    return net_conn->fd != -1 ? TRUE : FALSE;
+}
+
+gboolean
 xfce_mailwatch_net_conn_make_secure(XfceMailwatchNetConn *net_conn,
                                     GError **error)
 {

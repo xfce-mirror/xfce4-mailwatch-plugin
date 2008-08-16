@@ -54,6 +54,8 @@ gboolean xfce_mailwatch_net_conn_is_secure(XfceMailwatchNetConn *net_conn);
 gboolean xfce_mailwatch_net_conn_connect(XfceMailwatchNetConn *net_conn,
                                          GError **error);
 
+gboolean xfce_mailwatch_net_conn_is_connected(XfceMailwatchNetConn *net_conn);
+
 gboolean xfce_mailwatch_net_conn_make_secure(XfceMailwatchNetConn *net_conn,
                                              GError **error);
 

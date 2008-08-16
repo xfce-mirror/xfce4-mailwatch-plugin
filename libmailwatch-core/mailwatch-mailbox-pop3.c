@@ -486,7 +486,8 @@ pop3_check_mail_th(gpointer user_data)
                 XFCE_MAILWATCH_MAILBOX(pmailbox), new_messages);
     }
     
-    pop3_send(pmailbox, "QUIT\r\n");
+    if(xfce_mailwatch_net_conn_is_connected(pmailbox->net_conn))
+        pop3_send(pmailbox, "QUIT\r\n");
     
     if(pmailbox->net_conn) {
         xfce_mailwatch_net_conn_destroy(pmailbox->net_conn);

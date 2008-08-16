@@ -663,7 +663,8 @@ imap_check_mail_th(gpointer user_data)
                 XFCE_MAILWATCH_MAILBOX(imailbox), new_messages);
     }
 
-    imap_send(imailbox, net_conn, "ABCD LOGOUT\r\n");
+    if(xfce_mailwatch_net_conn_is_connected(net_conn))
+        imap_send(imailbox, net_conn, "ABCD LOGOUT\r\n");
     
     if(mailboxes_to_check) {
         g_list_foreach(mailboxes_to_check, (GFunc)g_free, NULL);
