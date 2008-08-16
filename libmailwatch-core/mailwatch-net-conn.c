@@ -188,10 +188,15 @@ my_g_mutex_unlock(void **priv)
 void
 xfce_mailwatch_net_conn_init()
 {
+    static gboolean __inited = FALSE;
+
+    if(!__inited) {
 #ifdef HAVE_SSL_SUPPORT
-    gcry_control(GCRYCTL_SET_THREAD_CBS, &gcry_threads_gthread);
-    gnutls_global_init();
+        gcry_control(GCRYCTL_SET_THREAD_CBS, &gcry_threads_gthread);
+        gnutls_global_init();
 #endif
+        __inited = TRUE;
+    }
 }
 
 XfceMailwatchNetConn *
