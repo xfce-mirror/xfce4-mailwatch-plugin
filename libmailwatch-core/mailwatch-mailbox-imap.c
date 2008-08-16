@@ -1238,8 +1238,7 @@ imap_config_newmailfolders_destroy_cb(GtkWidget *w, gpointer user_data)
     XfceMailwatchIMAPMailbox *imailbox = user_data;
     
     imailbox->folder_tree_dialog = NULL;
-    
-    g_atomic_pointer_set(&imailbox->folder_tree_th, NULL);
+    g_atomic_int_set(&imailbox->folder_tree_running, FALSE);
 }
 
 static void
@@ -1359,6 +1358,14 @@ imap_config_newmailfolders_btn_clicked_cb(GtkWidget *w, gpointer user_data)
         gtk_window_present(GTK_WINDOW(imailbox->folder_tree_dialog));
         return;
     }
+
+    /* this should happen rarely, only if you're able to open the dialog,
+     * close it quickly while folders are still being fetched, and then
+     * quickly open it again before the original thread quits.  even then,
+     * delay should be minimal */
+    g_atomic_int_set(&imailbox->folder_tree_running, FALSE);
+    while(g_atomic_pointer_get(&imailbox->folder_tree_th))
+        g_thread_yield();
     
     if(!imailbox->host || !imailbox->username) {
         xfce_message_dialog(toplevel, _("Error"), GTK_STOCK_DIALOG_WARNING,
