@@ -148,6 +148,7 @@ gmail_recv(XfceMailwatchGMailMailbox *gmailbox, gchar *buf, gsize len)
                                    error->message);
         g_error_free(error);
     }
+    buf[recvd] = 0;
     
     return recvd;
 }
