@@ -125,8 +125,49 @@ pop3_recv(XfceMailwatchPOP3Mailbox *pmailbox, gchar *buf, gsize len)
                                    error->message);
         g_error_free(error);
     }
+
+    if(recvd == len)
+        return -1;
+
+    buf[recvd] = '\n';
+    buf[++recvd] = 0;
     
     return recvd;
+}
+
+static gssize
+pop3_recv_command(XfceMailwatchPOP3Mailbox *pmailbox,
+                  gchar *buf,
+                  gsize len,
+                  gboolean multiline)
+{
+    gssize bin, tot = 0;
+    gboolean got_ok = FALSE;
+
+    while(len - tot > 0) {
+        DBG("trying to get line");
+        bin = pop3_recv(pmailbox, buf+tot, len-tot);
+        DBG("got line: %s", bin > 0 ? buf+tot : "(nada)");
+        if(bin <= 0)
+            return -1;
+        if(!strncmp(buf+tot, "-ERR", 4))
+            return -1;
+
+        if(multiline && got_ok) {
+            if(!strcmp(buf+tot, ".\n"))
+                return tot + bin;
+        } else if(!strncmp(buf+tot, "+OK", 3)) {
+            if(!multiline)
+                return tot + bin;
+            got_ok = TRUE;
+        }
+
+        tot += bin;
+    }
+
+    g_critical("pop3_recv_command(): buffer full!");
+
+    return -1;
 }
 
 static gboolean
@@ -138,7 +179,6 @@ pop3_send_login_info(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *username,
     gchar buf[BUFSIZE+1];
     
 #ifdef HAVE_SSL_SUPPORT
-    gint off;
     gchar *p, *q;
     
     /* see if CRAM-MD5 is supported */
@@ -147,16 +187,11 @@ pop3_send_login_info(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *username,
     if(bout != strlen(buf))
         return FALSE;
 
-    off = 0;
-    do {
-        bin = pop3_recv(pmailbox, buf + off, BUFSIZE - off);
-        if(bin > 0)
-            off += bin;
-    } while(bin > 0 && !strstr(buf, ".\r\n"));
+    bin = pop3_recv_command(pmailbox, buf, BUFSIZE, TRUE);
     if(bin < 0)
         return FALSE;
 
-    if((p = strstr(buf, "SASL ")) && (q = strstr(p, "\r\n"))
+    if((p = strstr(buf, "SASL ")) && (q = strstr(p, "\n"))
        && (p = strstr(p, "CRAM-MD5")) && p < q)
     {
         /* server supports CRAM-MD5 */
@@ -173,9 +208,7 @@ pop3_send_login_info(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *username,
         if(*buf == '+' && *(buf+1) == ' ' && *(buf+2)) {
             gchar *response_base64;
 
-            p = strstr(buf, "\r\n");
-            if(!p)
-                p = strstr(buf, "\n");
+            p = strstr(buf, "\n");
             if(!p) {
                 DBG("cram-md5 challenge wasn't a full line?");
                 return FALSE;
@@ -193,11 +226,8 @@ pop3_send_login_info(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *username,
             if(bout != strlen(buf))
                 return FALSE;
 
-            bin = pop3_recv(pmailbox, buf, BUFSIZE);
+            bin = pop3_recv_command(pmailbox, buf, BUFSIZE, FALSE);
             if(bin <= 0)
-                return FALSE;
-            DBG("got response to cram-md5 auth: %s", buf);
-            if(strncmp(buf, "+OK", 3))
                 return FALSE;
 
             TRACE("leaving (success)");
@@ -215,12 +245,9 @@ pop3_send_login_info(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *username,
         return FALSE;
     
     /* check for OK response */
-    bin = pop3_recv(pmailbox, buf, BUFSIZE);
+    bin = pop3_recv_command(pmailbox, buf, BUFSIZE, FALSE);
     DBG("response from USER (%d): %s", bin, bin>0?buf:"(nada)");
     if(bin <= 0)
-        return FALSE;
-    DBG("strstr() returns %p", strstr(buf, "+OK"));
-    if(g_ascii_strncasecmp(buf, "+OK", 3))
         return FALSE;
     
     /* send the password */
@@ -231,12 +258,9 @@ pop3_send_login_info(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *username,
         return FALSE;
     
     /* check for OK response */
-    bin = pop3_recv(pmailbox, buf, BUFSIZE);
+    bin = pop3_recv_command(pmailbox, buf, BUFSIZE, FALSE);
     DBG("response from USER (%d): %s", bin, bin>0?buf:"(nada)");
     if(bin <= 0)
-        return FALSE;
-    DBG("strstr() returns %p", strstr(buf, "OK"));
-    if(g_ascii_strncasecmp(buf, "+OK", 3))
         return FALSE;
     
     TRACE("leaving (success)");
@@ -278,19 +302,17 @@ pop3_do_stls(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
     if(pop3_send(pmailbox, "CAPA\r\n") != 6)
         return FALSE;
     
-    bin = pop3_recv(pmailbox, buf, BUFSIZE);
+    bin = pop3_recv_command(pmailbox, buf, BUFSIZE, TRUE);
     DBG("checking for STLS caps (%d): %s", bin, bin>0?buf:"(nada)");
     if(bin <= 0)
         return FALSE;
-    if(!strstr(buf, "\r\nSTLS\r\n"))
+    if(!strstr(buf, "\nSTLS\n"))
         return FALSE;
     
     if(pop3_send(pmailbox, "STLS\r\n") != 6)
         return FALSE;
     
-    if(pop3_recv(pmailbox, buf, BUFSIZE) < 0)
-        return FALSE;
-    if(g_ascii_strncasecmp(buf, "+OK", 3))
+    if(pop3_recv_command(pmailbox, buf, BUFSIZE, FALSE) < 0)
         return FALSE;
     
     return TRUE;
@@ -305,12 +327,9 @@ pop3_connect(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
     
     TRACE("entering (%s)", service);
     
-    pmailbox->net_conn = xfce_mailwatch_net_conn_new(host, service);
+    xfce_mailwatch_net_conn_set_service(pmailbox->net_conn, service);
     if(nonstandard_port > 0)
         xfce_mailwatch_net_conn_set_port(pmailbox->net_conn, nonstandard_port);
-    xfce_mailwatch_net_conn_set_should_continue_func(pmailbox->net_conn,
-                                                     pop3_should_continue,
-                                                     pmailbox);
     
     if(xfce_mailwatch_net_conn_connect(pmailbox->net_conn, &error))
         return TRUE;
@@ -330,11 +349,10 @@ pop3_slurp_banner(XfceMailwatchPOP3Mailbox *pmailbox)
     gchar buf[2048];
     gint bin;
     
-    bin = pop3_recv(pmailbox, buf, sizeof(buf)-1);
+    bin = pop3_recv_command(pmailbox, buf, sizeof(buf)-1, FALSE);
     if(bin < 0) {
         DBG("failed to get banner");
     } else {
-        buf[bin] = 0;
         DBG("got banner, discarding: %s\n", buf);
     }
     
@@ -383,11 +401,6 @@ pop3_authenticate(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *host,
     if(ret)
         ret = pop3_send_login_info(pmailbox, username, password);
 
-    if(!ret) {
-        xfce_mailwatch_net_conn_destroy(pmailbox->net_conn);
-        pmailbox->net_conn = NULL;
-    }
-    
     return ret;
 }
 
@@ -401,14 +414,12 @@ pop3_check_inbox(XfceMailwatchPOP3Mailbox *pmailbox)
     if(pop3_send(pmailbox, "STAT\r\n") != 6)
         return 0;
     
-    bin = pop3_recv(pmailbox, buf, 1023);
+    bin = pop3_recv_command(pmailbox, buf, 1023, FALSE);
     if(bin <= 0)
         return 0;
     DBG("got response from STAT (%d): %s", bin, buf);
-    if(g_ascii_strncasecmp(buf, "+OK", 3))
-        return 0;
     
-    p = strstr(buf, "\r\n");
+    p = strstr(buf, "\n");
     if(!p)
         return 0;
     *p = 0;
@@ -458,6 +469,10 @@ pop3_check_mail_th(gpointer user_data)
     
     g_mutex_unlock(pmailbox->config_mx);
     
+    pmailbox->net_conn = xfce_mailwatch_net_conn_new(host, NULL);
+    xfce_mailwatch_net_conn_set_should_continue_func(pmailbox->net_conn,
+                                                     pop3_should_continue,
+                                                     pmailbox);
     if(pop3_authenticate(pmailbox, host, username, password, auth_type,
                          nonstandard_port))
     {
