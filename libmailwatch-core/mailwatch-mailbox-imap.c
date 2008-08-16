@@ -238,10 +238,6 @@ imap_recv_command(XfceMailwatchIMAPMailbox *imailbox,
         if(imap_response_fatal(buf+tot))
             return -1;
 
-        *(buf+tot+bin) = '\n';
-        ++bin;
-        *(buf+tot+bin) = 0;
-
         p = strstr(buf+tot, "OK");
         if(p && p - (buf+tot) <= 6)
             return tot + bin;
