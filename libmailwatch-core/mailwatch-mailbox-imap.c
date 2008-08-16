@@ -183,6 +183,10 @@ imap_recv(XfceMailwatchIMAPMailbox *imailbox,
                                    error->message);
         g_error_free(error);
     }
+
+    if(recvd == len)
+        return -1;
+
     buf[recvd] = '\n';
     buf[++recvd] = 0;
     
