@@ -703,8 +703,6 @@ pop3_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     GtkWidget *dlg, *topvbox, *vbox, *hbox, *entry, *frame, *frame_bin, *chk,
               *combo;
     
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
-    
     dlg = gtk_dialog_new_with_buttons(_("Advanced POP3 Options"),
             GTK_WINDOW(gtk_widget_get_toplevel(w)),
             GTK_DIALOG_DESTROY_WITH_PARENT|GTK_DIALOG_NO_SEPARATOR,
@@ -784,8 +782,6 @@ pop3_get_setup_page(XfceMailwatchMailbox *mailbox)
     GtkWidget *topvbox, *vbox, *hbox, *frame, *frame_bin, *lbl, *entry, *btn,
               *sbtn;
     GtkSizeGroup *sg;
-    
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     
     topvbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_widget_show(topvbox);

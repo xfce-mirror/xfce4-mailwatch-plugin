@@ -364,8 +364,6 @@ mbox_browse_button_clicked_cb( GtkWidget *button,
     gint            result;
     GtkWidget       *top;
 
-    xfce_textdomain( GETTEXT_PACKAGE, LOCALEDIR, "UTF-8" );
-
     top = gtk_widget_get_toplevel( button );
 
     chooser = gtk_file_chooser_dialog_new( _( "Select mbox file" ),
@@ -403,8 +401,6 @@ mbox_get_setup_page( XfceMailwatchMailbox *mailbox )
     GtkWidget                   *label, *entry;
     GtkWidget                   *button, *image, *spinner;
     GtkSizeGroup                *sg;
-
-    xfce_textdomain( GETTEXT_PACKAGE, LOCALEDIR, "UTF-8" );
 
     vbox = gtk_vbox_new( FALSE, BORDER / 2 );
     gtk_widget_show( vbox );

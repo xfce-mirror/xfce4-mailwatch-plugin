@@ -245,8 +245,6 @@ mailwatch_create(Control *c)
     XfceMailwatchPlugin *mwp = g_new0(XfceMailwatchPlugin, 1);
     c->data = mwp;
     
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
-    
     mwp->mailwatch = xfce_mailwatch_new();
     
     if(G_UNLIKELY(!mwp->mailwatch)) {
@@ -472,8 +470,6 @@ mailwatch_view_log_clicked_cb( GtkWidget *widget, gpointer user_data )
         return;
     }
 
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
-    
     mwp->log_status = 0;
     mailwatch_set_icon( mwp, mwp->newmail_icon_visible );
 
@@ -668,8 +664,6 @@ mailwatch_create_options(Control *c, GtkContainer *con, GtkWidget *done)
     GtkWidget *topvbox, *frame, *hbox, *lbl, *entry, *btn, *vbox, *img;
     GtkContainer *cfg_page;
     GtkSizeGroup *sg;
-    
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     
     topvbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_widget_show(topvbox);

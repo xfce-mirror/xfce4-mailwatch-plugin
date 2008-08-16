@@ -118,12 +118,14 @@ xfce_mailwatch_new()
 {
     XfceMailwatch *mailwatch;
     
-    if(!g_thread_supported())
-        g_thread_init(NULL);
+    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
+
     if(!g_thread_supported()) {
-        xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
-        g_critical(_("xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."));
-        return NULL;
+        g_thread_init(NULL);
+        if(!g_thread_supported()) {
+            g_critical(_("xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."));
+            return NULL;
+        }
     }
     
     mailwatch = g_new0(XfceMailwatch, 1);
@@ -321,8 +323,6 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
     
     g_return_val_if_fail(mailwatch, FALSE);
     g_return_val_if_fail(mailwatch->config_file, FALSE);
-    
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     
     if(*mailwatch->config_file != '/') {
         config_file = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
@@ -601,8 +601,6 @@ config_run_addedit_window(const gchar *title, GtkWindow *parent,
     
     g_return_val_if_fail(title && mailbox && new_mailbox_name, FALSE);
     
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
-    
     cfg_box = mailbox->type->get_setup_page_func(mailbox);
     if(!cfg_box) {
         /* Even the mailboxes that don't have configurable settings need a name */
@@ -685,8 +683,6 @@ config_do_edit_window(GtkTreeSelection *sel, GtkWindow *parent)
     GtkTreeIter itr;
     gboolean ret = FALSE;
     
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
-    
     if(gtk_tree_selection_get_selected(sel, &model, &itr)) {
         gchar *mailbox_name = NULL, *win_title = NULL, *new_mailbox_name = NULL;
         XfceMailwatchMailboxData *mdata = NULL;
@@ -742,8 +738,6 @@ config_ask_combo_changed_cb(GtkComboBox *cb, gpointer user_data)
     if(active_index >= g_list_length(mailwatch->mailbox_types))
         return;
     
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
-    
     mbox_type = g_list_nth_data(mailwatch->mailbox_types, active_index);
     
     gtk_label_set_text(GTK_LABEL(mailwatch->mbox_types_lbl),
@@ -759,8 +753,6 @@ config_ask_new_mailbox_type(XfceMailwatch *mailwatch, GtkWindow *parent)
     XfceMailwatchMailboxType *new_mtype = NULL;
     GtkWidget *dlg, *topvbox, *lbl, *combo;
     GList *l;
-    
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     
     dlg = gtk_dialog_new_with_buttons(_("Select Mailbox Type"), parent,
             GTK_DIALOG_NO_SEPARATOR, GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
@@ -818,8 +810,6 @@ config_add_btn_clicked_cb(GtkWidget *w, XfceMailwatch *mailwatch)
     gchar *new_mailbox_name = NULL;
     GtkWindow *parent = GTK_WINDOW(gtk_widget_get_toplevel(w));
     
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
-    
     mailbox_type = config_ask_new_mailbox_type(mailwatch, parent);
     if(!mailbox_type)
         return;
@@ -864,7 +854,6 @@ config_edit_btn_clicked_cb(GtkWidget *w, XfceMailwatch *mailwatch)
 {
     GtkTreeSelection *sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(mailwatch->config_treeview));
     
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     config_do_edit_window(sel, GTK_WINDOW(gtk_widget_get_toplevel(GTK_WIDGET(w))));
 }
 
@@ -887,8 +876,6 @@ config_remove_btn_clicked_cb(GtkWidget *w, XfceMailwatch *mailwatch)
     if(!mailbox_data)
         return;
     mailbox = mailbox_data->mailbox;
-    
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     
     parent = GTK_WINDOW(gtk_widget_get_toplevel(mailwatch->config_treeview));
     resp = xfce_message_dialog(parent, _("Remove Mailbox"),
@@ -957,8 +944,6 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
     GtkTreeViewColumn *col;
     GtkCellRenderer *render;
     GtkTreeSelection *sel;
-    
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     
     frame = xfce_mailwatch_create_framebox(_("Mailboxes"), &frame_bin);
     gtk_widget_show(frame);

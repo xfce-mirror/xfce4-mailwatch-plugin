@@ -339,8 +339,6 @@ maildir_browse_button_clicked_cb( GtkWidget *button,
 
     DBG( "-->>" );
 
-    xfce_textdomain( GETTEXT_PACKAGE, LOCALEDIR, "UTF-8" );
-
     parent = gtk_widget_get_toplevel( button );
     chooser = gtk_file_chooser_dialog_new( _( "Select Maildir Folder" ),
             GTK_WINDOW( parent ),
@@ -391,8 +389,6 @@ maildir_get_setup_page( XfceMailwatchMailbox *mailbox )
     GtkSizeGroup                *sg;
 
     DBG( "-->>" );
-
-    xfce_textdomain( GETTEXT_PACKAGE, LOCALEDIR, "UTF-8" );
 
     vbox = gtk_vbox_new( FALSE, BORDER / 2 );
     gtk_widget_show( vbox );

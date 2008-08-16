@@ -1353,8 +1353,6 @@ imap_config_newmailfolders_btn_clicked_cb(GtkWidget *w, gpointer user_data)
         return;
     }
     
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
-    
     if(!imailbox->host || !imailbox->username) {
         xfce_message_dialog(toplevel, _("Error"), GTK_STOCK_DIALOG_WARNING,
                             _("No server or username is set."),
@@ -1566,8 +1564,6 @@ imap_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     GtkWidget *dlg, *topvbox, *vbox, *hbox, *lbl, *entry, *frame, *frame_bin,
               *chk, *combo;
     
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
-    
     dlg = gtk_dialog_new_with_buttons(_("Advanced IMAP Options"),
             GTK_WINDOW(gtk_widget_get_toplevel(w)),
             GTK_DIALOG_DESTROY_WITH_PARENT|GTK_DIALOG_NO_SEPARATOR,
@@ -1670,8 +1666,6 @@ imap_get_setup_page(XfceMailwatchMailbox *mailbox)
     GtkWidget *topvbox, *vbox, *hbox, *frame, *frame_bin, *lbl, *entry, *btn,
               *sbtn;
     GtkSizeGroup *sg;
-    
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
     
     topvbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_widget_show(topvbox);
