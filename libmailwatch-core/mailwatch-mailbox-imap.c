@@ -187,6 +187,67 @@ imap_recv(XfceMailwatchIMAPMailbox *imailbox,
     return recvd;
 }
 
+static inline gboolean
+imap_response_fatal(const gchar *msg)
+{
+    gchar *p;
+
+    /* here we assume that our tags are always 5 digits long,
+     * plus a space. */
+
+    /* if NO is untagged, the command can still complete */
+    p = strstr(msg, "NO");
+    if(p && p - msg == 6)
+        return TRUE;
+
+    /* BAD can be tagged or untagged, but is always a failure */
+    p = strstr(msg, "BAD");
+    if(p && p - msg <= 6)
+        return TRUE;
+
+    /* BYE as a reasponse to LOGOUT will wait, otherwise will
+     * disconnect at once */
+    p = strstr(msg, "BYE");
+    if(p && p - msg <= 6)
+        return TRUE;
+
+    return FALSE;
+}
+
+static gssize
+imap_recv_command(XfceMailwatchIMAPMailbox *imailbox,
+                  XfceMailwatchNetConn *net_conn,
+                  gchar *buf,
+                  gsize len)
+{
+    gssize bin, tot = 0;
+    gchar *p;
+
+    while(len - tot > 0) {
+        DBG("trying to get line");
+        bin = imap_recv(imailbox, net_conn, buf+tot, len-tot);
+        DBG("got line: %s", bin > 0 ? buf+tot : "(nada)");
+        if(bin <= 0)
+            return -1;
+        if(imap_response_fatal(buf+tot))
+            return -1;
+
+        *(buf+tot+bin) = '\n';
+        ++bin;
+        *(buf+tot+bin) = 0;
+
+        p = strstr(buf+tot, "OK");
+        if(p && p - (buf+tot) <= 6)
+            return tot + bin;
+
+        tot += bin;
+    }
+
+    g_critical("imap_recv_command(): buffer full!");
+
+    return -1;
+}
+
 static gboolean
 imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox,
                      XfceMailwatchNetConn *net_conn,
@@ -205,14 +266,16 @@ imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox,
     DBG("sent CAPABILITY (%d)", bout);
     if(bout != strlen(buf))
         goto cleanuperr;
-    bin = imap_recv(imailbox, net_conn, buf, BUFSIZE);
+    bin = imap_recv_command(imailbox, net_conn, buf, BUFSIZE);
     DBG("response from CAPABILITY (%d): %s", bin, bin>0?buf:"(nada)");
     if(bin <= 0)
         goto cleanuperr;
     
-    if(strstr(buf, " LOGINDISABLED")) {
-        xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
-        g_warning(_("Secure IMAP is not available, and the IMAP server does not support plaintext logins."));
+    if(strstr(buf, "LOGINDISABLED")) {
+        xfce_mailwatch_log_message(imailbox->mailwatch,
+                                   XFCE_MAILWATCH_MAILBOX(imailbox),
+                                   XFCE_MAILWATCH_LOG_ERROR,
+                                   _("Secure IMAP is not available, and the IMAP server does not support plaintext logins."));
         goto cleanuperr;
     }
     
@@ -254,11 +317,9 @@ imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox,
             if(bout != strlen(buf))
                 goto cleanuperr;
 
-            bin = imap_recv(imailbox, net_conn, buf, BUFSIZE);
+            bin = imap_recv_command(imailbox, net_conn, buf, BUFSIZE);
             DBG("reponse from cram-md5 resp (%d): %s\n", bin, bin>0?buf:"(nada)");
             if(bin <= 0)
-                goto cleanuperr;
-            if(!strstr(buf, "OK"))
                 goto cleanuperr;
 
             /* auth successful */
@@ -268,7 +329,7 @@ imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox,
     }
 #endif
 
-    /* send the creds */
+    /* no cram-md5 support, send the normal creds */
     g_snprintf(buf, BUFSIZE, "%05d LOGIN \"%s\" \"%s\"\r\n",
                ++imailbox->imap_tag, username, password);
     bout = imap_send(imailbox, net_conn, buf);
@@ -277,12 +338,9 @@ imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox,
         goto cleanuperr;
     
     /* and see if we actually got auth-ed */
-    bin = imap_recv(imailbox, net_conn, buf, BUFSIZE);
+    bin = imap_recv_command(imailbox, net_conn, buf, BUFSIZE);
     DBG("response from login (%d): %s", bin, bin>0?buf:"(nada)");
     if(bin <= 0)
-        goto cleanuperr;
-    DBG("strstr() returns %p", strstr(buf, "OK"));
-    if(!strstr(buf, "OK"))
         goto cleanuperr;
     
     TRACE("leaving (success)");
@@ -304,7 +362,6 @@ imap_negotiate_ssl(XfceMailwatchIMAPMailbox *imailbox,
     GError *error = NULL;
     
     ret = xfce_mailwatch_net_conn_make_secure(net_conn, &error);
-    
     if(!ret) {
         xfce_mailwatch_log_message(imailbox->mailwatch,
                                    XFCE_MAILWATCH_MAILBOX(imailbox),
@@ -327,7 +384,6 @@ imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox,
 #define BUFSIZE 8191
     gint bin;
     gchar buf[BUFSIZE+1];
-    gboolean starttls_ok = FALSE;
     
     TRACE("entering");
     
@@ -335,18 +391,12 @@ imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox,
     if(imap_send(imailbox, net_conn, buf) != strlen(buf))
         return FALSE;
 
-    do {
-        bin = imap_recv(imailbox, net_conn, buf, BUFSIZE);
-        DBG("checking for STARTTLS caps (%d): %s", bin, bin>0?buf:"(nada)");
-        if(bin <= 0)
-            return FALSE;
-        if(bin > 6 && (!strncmp(buf+6, "NO", 2) || !strncmp(buf+6, "BAD", 3)))
-            return FALSE;
-        if(strstr(buf, " STARTTLS"))
-            starttls_ok = TRUE;
-    } while(strncmp(buf+6, "OK", 2));
+    bin = imap_recv_command(imailbox, net_conn, buf, BUFSIZE);
+    DBG("checking for STARTTLS caps (%d): %s", bin, bin>0?buf:"(nada)");
+    if(bin <= 0)
+        return FALSE;
 
-    if(!starttls_ok) {
+    if(!strstr(buf, "STARTTLS")) {
         xfce_mailwatch_log_message(imailbox->mailwatch,
                                    XFCE_MAILWATCH_MAILBOX(imailbox),
                                    XFCE_MAILWATCH_LOG_WARNING,
@@ -358,11 +408,9 @@ imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox,
     if(imap_send(imailbox, net_conn, buf) != strlen(buf))
         return FALSE;
     
-    if(imap_recv(imailbox, net_conn, buf, BUFSIZE) < 0)
+    if(imap_recv_command(imailbox, net_conn, buf, BUFSIZE) < 0)
         return FALSE;
     DBG("got STARTLS response: %s", bin>0?buf:"(nada)");
-    if(!strstr(buf, " OK"))
-        return FALSE;
     
     return TRUE;
 #undef BUFSIZE
@@ -404,11 +452,10 @@ imap_slurp_banner(XfceMailwatchIMAPMailbox *imailbox,
     gchar buf[2048];
     gint bin;
     
-    bin = imap_recv(imailbox, net_conn, buf, sizeof(buf)-1);
+    bin = imap_recv_command(imailbox, net_conn, buf, sizeof(buf));
     if(bin < 0) {
         DBG("failed to get banner");
     } else {
-        buf[bin] = 0;
         DBG("got banner, discarding: %s\n", buf);
     }
     
@@ -484,32 +531,23 @@ imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
         return 0;
     DBG("  successfully sent cmd '%s'", buf);
     
-    do {
-        /* grab the response */
-        bin = imap_recv(imailbox, net_conn, buf, sizeof(buf)-1);
-        if(bin <= 0) {
-            xfce_mailwatch_log_message(imailbox->mailwatch,
-                                       XFCE_MAILWATCH_MAILBOX(imailbox),
-                                       XFCE_MAILWATCH_LOG_WARNING,
-                                       _("The IMAP server returned a response we weren't quite expecting.  This might be OK, or this plugin might need to be modified to support your mail server if the new message counts are incorrect."));
-            g_warning("Mailwatch: Odd response to STATUS UNSEEN");
-            return 0;
-        }
-        DBG("response to STATUS UNSEEN: %s", buf);
+    /* grab the response */
+    bin = imap_recv_command(imailbox, net_conn, buf, sizeof(buf));
+    if(bin <= 0) {
+        g_warning("Mailwatch: Bad response to STATUS UNSEEN; possibly just a folder that doesn't exist");
+        return 0;
+    }
+    DBG("response to STATUS UNSEEN: %s", buf);
 
-        if(bin > 6 && (!strncmp(buf+6, "NO", 2) || !strncmp(buf+6, "BAD", 3)))
-            return 0;
-
-        p = strstr(buf, "(UNSEEN ");
-        if(p) {
-            q = strchr(p, ')');
-            if(q) {
-                *q = 0;
-                new_messages = atoi(p+8);
-                *q = ')';
-            }
+    p = strstr(buf, "(UNSEEN ");
+    if(p) {
+        q = strchr(p, ')');
+        if(q) {
+            *q = 0;
+            new_messages = atoi(p+8);
+            *q = ')';
         }
-    } while(bin < 6 || strncmp(buf+6, "OK", 2));
+    }
     
     DBG("new message count in mailbox '%s' is %d", mailbox_name, new_messages);
     
@@ -834,7 +872,7 @@ imap_populate_folder_tree(XfceMailwatchIMAPMailbox *imailbox,
     gboolean ret = TRUE;
     gchar buf[BUFSIZE+1], fullpath[(BUFSIZE+1)/8] = "", separator[2] = { 0, 0 };
     gchar *p, *q, **resp_lines;
-    gint bin_tot = 0, bin, i;
+    gint bin, i;
     gboolean holds_messages = TRUE, has_children = TRUE;
     IMAPFolderData *fdata;
     GNode *node;
@@ -849,25 +887,11 @@ imap_populate_folder_tree(XfceMailwatchIMAPMailbox *imailbox,
         return FALSE;
     DBG("sent LIST: '%s'", buf);
     
-    *buf = 0;
-    while(!strstr(buf, " OK") && bin_tot < BUFSIZE) {
-        /* this is probably a bad idea... */
-    
-        bin = imap_recv(imailbox, net_conn, buf+bin_tot, BUFSIZE);
-        if(bin < 0) {
-            DBG("imap_recv() failed");
-            return FALSE;
-        }
-        bin_tot += bin;
-        
-        DBG("got LIST response (%d): '%s'", bin, buf+bin_tot-bin);
-        
-        if(strstr(buf, " NO ") || strstr(buf, " BAD "))
-            return FALSE;
-    }
-    
-    if(!strstr(buf, " OK"))
+    bin = imap_recv_command(imailbox, net_conn, buf, BUFSIZE);
+    if(bin <= 0) {
+        DBG("LIST failed");
         return FALSE;
+    }
     
     if(strstr(buf, "\r"))
         resp_lines = g_strsplit(buf, "\r\n", -1);
@@ -875,8 +899,10 @@ imap_populate_folder_tree(XfceMailwatchIMAPMailbox *imailbox,
         resp_lines = g_strsplit(buf, "\n", -1);
     
     for(i = 0; resp_lines[i]; i++) {
-        if(!imap_folder_tree_should_continue(net_conn, imailbox))
-            return FALSE;
+        if(!imap_folder_tree_should_continue(net_conn, imailbox)) {
+            ret = FALSE;
+            break;
+        }
 
         if(*resp_lines[i] != '*')
             continue;
@@ -979,8 +1005,10 @@ imap_populate_folder_tree(XfceMailwatchIMAPMailbox *imailbox,
         
         if(has_children) {
             g_strlcat(fullpath, separator, (BUFSIZE+1)/8);
-            if(!imap_populate_folder_tree(imailbox, net_conn, fullpath, node))
-                return FALSE;
+            if(!imap_populate_folder_tree(imailbox, net_conn, fullpath, node)) {
+                ret = FALSE;
+                break;
+            }
         }
     }
     
