@@ -45,6 +45,7 @@
 
 #include "mailwatch.h"
 #include "mailwatch-utils.h"
+#include "mailwatch-common.h"
 
 #define BORDER          8
 
@@ -99,9 +100,6 @@ XfceMailwatchMailboxType *builtin_mailbox_types[] = {
 };
 #define N_BUILTIN_MAILBOX_TYPES (sizeof(builtin_mailbox_types)/sizeof(builtin_mailbox_types[0]))
 
-static GMutex *big_happy_mailwatch_mx = NULL;
-static void xfce_mailwatch_threads_init();
-
 static GList *
 mailwatch_load_mailbox_types()
 {
@@ -113,17 +111,6 @@ mailwatch_load_mailbox_types()
     mailbox_types = g_list_reverse(mailbox_types);
     
     return mailbox_types;
-}
-
-GQuark
-xfce_mailwatch_get_error_quark()
-{
-    static GQuark q = 0;
-    
-    if(!q)
-        q = g_quark_from_string("xfce-mailwatch-error");
-    
-    return q;
 }
 
 XfceMailwatch *
@@ -138,8 +125,6 @@ xfce_mailwatch_new()
         g_critical(_("xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."));
         return NULL;
     }
-    
-    xfce_mailwatch_threads_init();
     
     mailwatch = g_new0(XfceMailwatch, 1);
     mailwatch->mailbox_types = mailwatch_load_mailbox_types();
@@ -1093,34 +1078,3 @@ xfce_mailwatch_signal_disconnect(XfceMailwatch *mailwatch,
     }
 }
 
-static void
-xfce_mailwatch_threads_init()
-{
-    if(!big_happy_mailwatch_mx)
-        big_happy_mailwatch_mx = g_mutex_new();
-}
-
-void
-xfce_mailwatch_threads_enter()
-{
-    g_return_if_fail(big_happy_mailwatch_mx);
-    
-    g_mutex_lock(big_happy_mailwatch_mx);
-}
-
-void xfce_mailwatch_threads_leave()
-{
-    g_return_if_fail(big_happy_mailwatch_mx);
-    
-    g_mutex_unlock(big_happy_mailwatch_mx);
-}
-
-/* this might not be a good idea, but memleaks are bad */
-G_MODULE_EXPORT void
-g_module_unload(GModule *module)
-{
-    if(big_happy_mailwatch_mx) {
-        g_mutex_free(big_happy_mailwatch_mx);
-        big_happy_mailwatch_mx = NULL;
-    }
-}

@@ -83,6 +83,7 @@
 #include <libxfcegui4/libxfcegui4.h>
 
 #include "mailwatch-utils.h"
+#include "mailwatch-common.h"
 #include "mailwatch.h"
 
 #ifdef HAVE_SSL_SUPPORT

@@ -29,7 +29,6 @@ G_BEGIN_DECLS
 
 #define XFCE_MAILWATCH_DEFAULT_TIMEOUT (10*60)  /* in seconds */
 /* keep in sync with mailwatch-utils.c */
-#define XFCE_MAILWATCH_ERROR           xfce_mailwatch_get_error_quark()
 
 typedef struct _XfceMailwatch XfceMailwatch;
 typedef void (*XMCallback)(XfceMailwatch *mailwatch,
@@ -59,8 +58,6 @@ typedef struct {
     gchar                   *mailbox_name;
     gchar                   *message;
 } XfceMailwatchLogEntry;
-
-GQuark xfce_mailwatch_get_error_quark  ();
 
 XfceMailwatch *xfce_mailwatch_new      ();
 void xfce_mailwatch_destroy            (XfceMailwatch *mailwatch);
@@ -104,8 +101,6 @@ void xfce_mailwatch_log_message        (XfceMailwatch *mailwatch,
                                         const gchar *fmt,
                                         ... );
 
-void xfce_mailwatch_threads_enter      ();
-void xfce_mailwatch_threads_leave      ();
 G_END_DECLS
 
 #endif

@@ -5,6 +5,8 @@ EXTRA_DIST = \
 noinst_LTLIBRARIES = libmailwatch-core.la
 
 libmailwatch_core_la_SOURCES = \
+	mailwatch-common.c \
+	mailwatch-common.h \
 	mailwatch-mailbox-imap.c \
 	mailwatch-mailbox-maildir.c \
 	mailwatch-mailbox-mbox.c \
