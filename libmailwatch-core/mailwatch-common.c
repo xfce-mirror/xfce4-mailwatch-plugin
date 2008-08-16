@@ -24,7 +24,7 @@
 
 #include "mailwatch-common.h"
 
-static GMutex *big_happy_mailwatch_mx = NULL;
+static GStaticMutex big_happy_mailwatch_mx = G_STATIC_MUTEX_INIT;
 
 GQuark
 xfce_mailwatch_get_error_quark()
@@ -40,26 +40,10 @@ xfce_mailwatch_get_error_quark()
 void
 xfce_mailwatch_threads_enter()
 {
-    if(G_UNLIKELY(!big_happy_mailwatch_mx))
-        big_happy_mailwatch_mx = g_mutex_new();
-
-    g_mutex_lock(big_happy_mailwatch_mx);
+    g_static_mutex_lock(&big_happy_mailwatch_mx);
 }
 
 void xfce_mailwatch_threads_leave()
 {
-    g_return_if_fail(big_happy_mailwatch_mx);
-    
-    g_mutex_unlock(big_happy_mailwatch_mx);
+    g_static_mutex_unlock(&big_happy_mailwatch_mx);
 }
-
-/* FIXME: this might not be a good idea */
-G_MODULE_EXPORT void
-g_module_unload(GModule *module)
-{
-    if(big_happy_mailwatch_mx) {
-        g_mutex_free(big_happy_mailwatch_mx);
-        big_happy_mailwatch_mx = NULL;
-    }
-}
-
