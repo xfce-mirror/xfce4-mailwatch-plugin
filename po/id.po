@@ -40,8 +40,8 @@ msgid ""
 "Unable to return socket to blocking mode.  Data may not be retreived "
 "correctly."
 msgstr ""
-"Tak dapat mengembalikan soket ke mode blok. Data mungkin tak diterima "
-"secara benar."
+"Tak dapat mengembalikan soket ke mode blok. Data mungkin tak diterima secara "
+"benar."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:341
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:352
@@ -126,9 +126,9 @@ msgid ""
 "be OK, or this plugin might need to be modified to support your mail server "
 "if the new message counts are incorrect."
 msgstr ""
-"Server IMAP membalas dengan pesan yang tidak kami harapkan. Ini mungkin "
-"baik-baik saja, atau plugin ini memerlukan modifikasi agar mendukung "
-"server surat anda jika hitungan pesan baru tidak tepat."
+"Server IMAP membalas dengan pesan yang tidak kami harapkan. Ini mungkin baik-"
+"baik saja, atau plugin ini memerlukan modifikasi agar mendukung server surat "
+"anda jika hitungan pesan baru tidak tepat."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1245
 msgid "Failed to get folder list"
@@ -154,8 +154,8 @@ msgid ""
 "Advanced dialog."
 msgstr ""
 "Senarai folder tak dapat diterima hingga server, nama pengguna, dan mungkin "
-"sandi lewat diatur. Pastikan juga untuk mencek pengaturan keamanan apapun "
-"di dialog Mahir."
+"sandi lewat diatur. Pastikan juga untuk mencek pengaturan keamanan apapun di "
+"dialog Mahir."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1472
 msgid "Set New Mail Folders"
@@ -266,8 +266,8 @@ msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
 msgstr ""
-"Plugin direktori surat dapat mengawasi catatan surat gaya direktori "
-"surat untuk pesan baru."
+"Plugin direktori surat dapat mengawasi catatan surat gaya direktori surat "
+"untuk pesan baru."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Select mbox file"
@@ -283,8 +283,7 @@ msgstr "Catatan Mbox lokal"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:498
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr ""
-"Plugin mbox mengawasi catatan surat tipe mbox lokal untuk pesan baru."
+msgstr "Plugin mbox mengawasi catatan surat tipe mbox lokal untuk pesan baru."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:248
 #, c-format

@@ -41,7 +41,8 @@ msgstr "Huts zerbitzarira konektatzerakoan: %s"
 msgid ""
 "Unable to return socket to blocking mode.  Data may not be retreived "
 "correctly."
-msgstr "Ezin da socket-a blokeo modura itzuli.  Datuak ez dira behar bezala jasoko."
+msgstr ""
+"Ezin da socket-a blokeo modura itzuli.  Datuak ez dira behar bezala jasoko."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:341
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:352
@@ -266,7 +267,8 @@ msgstr "Maildir hilara lokala"
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
-msgstr "Maildir plugin-ak maildir-moduko posta hilara araka dezake mezu berrien bila."
+msgstr ""
+"Maildir plugin-ak maildir-moduko posta hilara araka dezake mezu berrien bila."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Select mbox file"
@@ -492,7 +494,8 @@ msgstr "Ez da SSL/TLS onarpenarekin konpilatu"
 
 #: ../libmailwatch-core/mailwatch-utils.c:262
 msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
-msgstr "XfceMailwatch: TLS agurrak huts egin du: ez dago SSL onarpenaz konpilaturik."
+msgstr ""
+"XfceMailwatch: TLS agurrak huts egin du: ez dago SSL onarpenaz konpilaturik."
 
 #: ../libmailwatch-core/mailwatch-utils.c:285
 #: ../libmailwatch-core/mailwatch-utils.c:358
@@ -573,7 +576,9 @@ msgstr "Ziur al zaude?"
 
 #: ../libmailwatch-core/mailwatch.c:911
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
-msgstr "Postakutxa bat ezabatzeak ezarpen guztiak ezabatzen ditu, eta ezin da desegin."
+msgstr ""
+"Postakutxa bat ezabatzeak ezarpen guztiak ezabatzen ditu, eta ezin da "
+"desegin."
 
 #: ../libmailwatch-core/mailwatch.c:978
 msgid "Mailboxes"
@@ -582,4 +587,3 @@ msgstr "Postakutxak"
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "Postakutxa anitzetako posta arakatu"
-

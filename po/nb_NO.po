@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-mailwatch-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-14 02:43-0700\n"
+"POT-Creation-Date: 2008-03-17 16:51-0700\n"
 "PO-Revision-Date: 2008-03-14 12:58+0100\n"
 "Last-Translator: Terje Uriansrud <ter@operamail.com>\n"
 "Language-Team: Norwegian Bokmal\n"
@@ -23,8 +23,8 @@ msgid ""
 "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 "the panel may hang on close."
 msgstr ""
-"Klarte ikke sette tilkobling i non-blocking modus. Hvis tilkoblingen"
-"låser seg, kan panelet også låse seg når dialogen lukkes."
+"Klarte ikke sette tilkobling i non-blocking modus. Hvis tilkoblingenlåser "
+"seg, kan panelet også låse seg når dialogen lukkes."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:265
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:495
@@ -40,8 +40,8 @@ msgid ""
 "Unable to return socket to blocking mode.  Data may not be retreived "
 "correctly."
 msgstr ""
-"Klarte ikke returnere tilkobling til blocking mode. "
-"Data kan ha blitt overført med feil."
+"Klarte ikke returnere tilkobling til blocking mode. Data kan ha blitt "
+"overført med feil."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:341
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:352
@@ -129,8 +129,8 @@ msgid ""
 "if the new message counts are incorrect."
 msgstr ""
 "IMAP tjeneren returnerte en uventet respons. Dette kan være OK. Hvis ikke "
-"trenger kanskje denne modulen endres for å støtte eposttjeneren din "
-"hvis rapportert antall nye meldinger er feil."
+"trenger kanskje denne modulen endres for å støtte eposttjeneren din hvis "
+"rapportert antall nye meldinger er feil."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1245
 msgid "Failed to get folder list"
@@ -156,8 +156,8 @@ msgid ""
 "Advanced dialog."
 msgstr ""
 "Liste over mapper kan ikke hentes før tjener, brukernavn og sannsynligvis "
-"passord er angitt. Du kan også kontrollere sikkerhetsrelaterte "
-"innstillinger under avanserte innstillinger."
+"passord er angitt. Du kan også kontrollere sikkerhetsrelaterte innstillinger "
+"under avanserte innstillinger."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1472
 msgid "Set New Mail Folders"
@@ -327,7 +327,7 @@ msgstr "Pop3 tjener"
 msgid "Remote POP3 Mailbox"
 msgstr "Ekstern Pop3 epostboks"
 
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1193overvåk
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1193
 msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
@@ -476,13 +476,9 @@ msgstr "Vedlikeholder, opprinnelig utvikler"
 msgid "Developer"
 msgstr "Utvikler"
 
-#: ../panel-plugin/mailwatch-plugin.c:1028
+#: ../panel-plugin/mailwatch-plugin.c:1032
 msgid "Update Now"
 msgstr "Oppdater nå"
-
-#: ../panel-plugin/mailwatch-plugin.c:1037
-msgid "About Mailwatch"
-msgstr "Mailwatch"
 
 #: ../libmailwatch-core/mailwatch-utils.c:250
 #, c-format
@@ -509,8 +505,8 @@ msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
 msgstr ""
-"xfce-mailwatch-plugin: Klarte ikke initialisere GThread støtte.  Dette er"
-"sannsynlig et problem med GLib installasjonen din."
+"xfce-mailwatch-plugin: Klarte ikke initialisere GThread støtte.  Dette "
+"ersannsynlig et problem med GLib installasjonen din."
 
 #: ../libmailwatch-core/mailwatch.c:356 ../libmailwatch-core/mailwatch.c:357
 #, c-format
@@ -584,3 +580,6 @@ msgstr "Epostbokser"
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "Varsle epost fra flere epostbokser"
+
+#~ msgid "About Mailwatch"
+#~ msgstr "Mailwatch"
