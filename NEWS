@@ -2,7 +2,7 @@
 | Mailwatch |
 +-----------+
 
-Version 1.0.2svn:
+Version 1.1.0svn:
 
   Bugfixes:
     * Fix a compiler error on some systems (bug 1822).
@@ -12,6 +12,8 @@ Version 1.0.2svn:
     * Fix buffer size issues when reading IMAP folder contents (bug 2009).
     * Fix mailcheck interval not getting saved if changed using the
       keyboard rather than the mouse (bug 2386).
+    * Fix problems receiving full commands on IMAP accounts (bug 2416).
+    * Fix problems receiving full commands on POP3 accounts (bug 2013).
 
   Features:
     * Update the new message counts for all mailboxes on startup, rather than
@@ -22,6 +24,14 @@ Version 1.0.2svn:
     * Add an 'Update Now' menu item (bug 3908).
     * Add CRAM-MD5 authentication support for POP3 and IMAP (bug 3420).
     * Add about dialog.
+    * Network layer heavily refactored to make code more readable and fix
+      strange timing bugs.  It's much easier to read, maintain, and debug
+      now.  This isn't particularly user-visible, but is notable.
+    * Eliminated periodic wakeups to see if it's time to check mail again,
+      instead using a long-running timeout.  A side-effect of this is that
+      the mail-checking threads no longer run all the time, but only when
+      needed.  Should save a little battery life for laptop users, and
+      just be more resource-friendly in general.
 
 
 Version 1.0.1 (20 Apr 2006):
