@@ -1,6 +1,7 @@
 /*
  *  xfce4-mailwatch-plugin - a mail notification applet for the xfce4 panel
  *  Copyright (c) 2005 Pasi Orovuo <pasi.ov@gmail.com>
+ *  Copyright (c) 2008 Brian Tarricone <bjt23@cornell.edu>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -61,14 +62,6 @@
 #define MH_INBOX        ( "inbox" )
 #define MH_UNSEEN_SEQ   ( "unseen" )
 
-typedef enum {
-    MH_MSG_START = 1,
-    MH_MSG_PAUSE,
-    MH_MSG_FORCE_UPDATE,
-    MH_MSG_TIMEOUT_CHANGED,
-    MH_MSG_QUIT
-} XfceMailwatchMHMessage;
-
 typedef struct {
     XfceMailwatchMailbox    *xfce_mailwatch_mailbox;
     XfceMailwatch           *mailwatch;
@@ -78,13 +71,13 @@ typedef struct {
     gchar                   *mh_sequences_fn;
     time_t                  mh_sequences_ctime;
     gchar                   *unseen_sequence; /* This should be a list as there can be multiple? */
-    gboolean                active;
 
     guint                   timeout;
     guint                   last_update;
 
-    GThread                 *thread;
-    GAsyncQueue             *aqueue;
+    gint                    running;
+    gpointer                thread;  /* (GThread *) */
+    guint                   check_id;
 } XfceMailwatchMHMailbox;
 
 typedef struct {
@@ -470,51 +463,35 @@ static gpointer
 mh_main_thread( gpointer data )
 {
     XfceMailwatchMHMailbox  *mh = XFCE_MAILWATCH_MH_MAILBOX( data );
-    GTimeVal                tv;
 
-    g_async_queue_ref( mh->aqueue );
+    while( !g_atomic_pointer_get( &mh->thread ) && g_atomic_int_get( &mh->running ) )
+        g_thread_yield();
 
-    for ( ;; ) {
-        XfceMailwatchMHMessage  msg;
-        
-        g_get_current_time( &tv );
-        g_time_val_add( &tv, G_USEC_PER_SEC * 5 );
+    if( g_atomic_int_get( &mh->running ) )
+        mh_check_mail( mh );
 
-        msg = GPOINTER_TO_INT( g_async_queue_timed_pop( mh->aqueue, &tv ) );
-
-        if ( msg ) {
-            switch ( msg ) {
-                case MH_MSG_START:
-                    mh->active = TRUE;
-                    break;
-
-                case MH_MSG_PAUSE:
-                    mh->active = FALSE;
-                    break;
-
-                case MH_MSG_TIMEOUT_CHANGED:
-                    mh->timeout = GPOINTER_TO_INT( g_async_queue_pop( mh->aqueue ) );
-                    break;
-
-                case MH_MSG_FORCE_UPDATE:
-                    mh->last_update = 0;
-                    break;
-
-                case MH_MSG_QUIT:
-                    g_async_queue_unref( mh->aqueue );
-                    g_thread_exit( NULL );
-                    break;
-            }
-        }
-
-        if ( mh->active &&
-             tv.tv_sec - mh->last_update > mh->timeout ) {
-            mh_check_mail( mh );
-            mh->last_update = tv.tv_sec;
-        }
-    }
-    
+    g_atomic_pointer_set( &mh->thread, NULL );
     return ( NULL );
+}
+
+static gboolean
+mh_check_mail_timeout(gpointer data)
+{
+    XfceMailwatchMHMailbox *mh = XFCE_MAILWATCH_MH_MAILBOX( data );
+    GThread                *th;
+
+    if( g_atomic_pointer_get( &mh->thread ) ) {
+        xfce_mailwatch_log_message( mh->mailwatch,
+                                    XFCE_MAILWATCH_MAILBOX( mh ),
+                                    XFCE_MAILWATCH_LOG_WARNING,
+                                    _( "Previous thread hasn't exited yet, not checking mail this time." ) );
+        return TRUE;
+    }
+
+    th = g_thread_create( mh_main_thread, mh, FALSE, NULL );
+    g_atomic_pointer_set( &mh->thread, th );
+
+    return TRUE;
 }
 
 static XfceMailwatchMailbox *
@@ -527,36 +504,9 @@ mh_new( XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type )
     mh = g_new0( XfceMailwatchMHMailbox, 1 );
 
     mh->mailwatch       = mailwatch;
-    mh->active          = FALSE;
     mh->timeout         = XFCE_MAILWATCH_DEFAULT_TIMEOUT;
-    mh->aqueue          = g_async_queue_new();
-    mh->thread          = g_thread_create( mh_main_thread, mh, TRUE, NULL );
     
     return ( XFCE_MAILWATCH_MAILBOX( mh ) );
-}
-
-static void
-mh_free( XfceMailwatchMailbox *mailbox )
-{
-    XfceMailwatchMHMailbox  *mh = XFCE_MAILWATCH_MH_MAILBOX( mailbox );
-
-    DBG( "-->>" );
-    
-    g_async_queue_push( mh->aqueue, GINT_TO_POINTER( MH_MSG_QUIT ) );
-    g_thread_join( mh->thread );
-    g_async_queue_unref( mh->aqueue );
-
-    if ( mh->mh_profile_fn ) {
-        g_free( mh->mh_profile_fn );
-    }
-    if ( mh->mh_sequences_fn ) {
-        g_free( mh->mh_sequences_fn );
-    }
-    if ( mh->unseen_sequence ) {
-        g_free( mh->unseen_sequence );
-    }
-
-    g_free( mh );
 }
 
 static void
@@ -596,10 +546,22 @@ mh_save_param_list( XfceMailwatchMailbox *mailbox )
 static void
 mh_timeout_changed_cb( GtkWidget *spinner, XfceMailwatchMHMailbox *mh )
 {
+    gint value = gtk_spin_button_get_value_as_int( GTK_SPIN_BUTTON( spinner ) ) * 60;
+
     DBG( "-->>" );
-    g_async_queue_push( mh->aqueue, GINT_TO_POINTER( MH_MSG_TIMEOUT_CHANGED ) );
-    g_async_queue_push( mh->aqueue,
-            GINT_TO_POINTER( gtk_spin_button_get_value_as_int( GTK_SPIN_BUTTON( spinner ) ) * 60 ) );
+
+    if( value == mh->timeout )
+        return;
+
+    mh->timeout = value;
+
+    if( g_atomic_int_get( &mh->running ) ) {
+        if( mh->check_id )
+            g_source_remove( mh->check_id );
+        mh->check_id = g_timeout_add( mh->timeout * 1000,
+                                      mh_check_mail_timeout,
+                                      mh );
+    }
 }
 
 static GtkContainer *
@@ -650,18 +612,70 @@ mh_get_setup_page( XfceMailwatchMailbox *mailbox )
 static void
 mh_force_update_cb( XfceMailwatchMailbox *mailbox )
 {
+    XfceMailwatchMHMailbox     *mh = XFCE_MAILWATCH_MH_MAILBOX( mailbox );
+
     DBG( " " );
-    
-    g_async_queue_push( XFCE_MAILWATCH_MH_MAILBOX( mailbox )->aqueue, GINT_TO_POINTER( MH_MSG_FORCE_UPDATE ) );
+
+    if( !g_atomic_pointer_get( &mh->thread ) ) {
+        gboolean restart = FALSE;
+
+        if( mh->check_id ) {
+            g_source_remove( mh->check_id );
+            restart = TRUE;
+        }
+
+        mh_check_mail_timeout( mh );
+
+        if( restart ) {
+            mh->check_id = g_timeout_add( mh->timeout * 1000,
+                                          mh_check_mail_timeout,
+                                          mh );
+        }
+    }
 }
 
 static void
 mh_set_activated_cb( XfceMailwatchMailbox *mailbox, gboolean activate )
 {
+    XfceMailwatchMHMailbox *mh = XFCE_MAILWATCH_MH_MAILBOX( mailbox );
+
     DBG( " " );
-    
-    g_async_queue_push( XFCE_MAILWATCH_MH_MAILBOX( mailbox )->aqueue,
-            GINT_TO_POINTER( activate ? MH_MSG_START : MH_MSG_PAUSE ) );
+
+    if( activate == g_atomic_int_get( &mh->running ) )
+        return;
+
+    if( activate ) {
+        g_atomic_int_set( &mh->running, TRUE );
+        mh->check_id = g_timeout_add( mh->timeout * 1000, mh_check_mail_timeout, mh );
+    } else {
+        g_atomic_int_set( &mh->running, FALSE );
+        g_source_remove( mh->check_id );
+        mh->check_id = 0;
+    }
+}
+
+static void
+mh_free( XfceMailwatchMailbox *mailbox )
+{
+    XfceMailwatchMHMailbox  *mh = XFCE_MAILWATCH_MH_MAILBOX( mailbox );
+
+    DBG( "-->>" );
+
+    mh_set_activated_cb( mailbox, FALSE );
+    while( g_atomic_pointer_get( &mh->thread ) )
+        g_thread_yield();
+
+    if ( mh->mh_profile_fn ) {
+        g_free( mh->mh_profile_fn );
+    }
+    if ( mh->mh_sequences_fn ) {
+        g_free( mh->mh_sequences_fn );
+    }
+    if ( mh->unseen_sequence ) {
+        g_free( mh->unseen_sequence );
+    }
+
+    g_free( mh );
 }
 
 XfceMailwatchMailboxType builtin_mailbox_type_mh = {

@@ -174,7 +174,7 @@ maildir_check_mail_timeout( gpointer data )
 
     if( g_atomic_pointer_get( &maildir->thread ) ) {
         xfce_mailwatch_log_message( maildir->mailwatch,
-                                    XFCE_MAILWATCH_MAILBOX(maildir),
+                                    XFCE_MAILWATCH_MAILBOX( maildir ),
                                     XFCE_MAILWATCH_LOG_WARNING,
                                     _( "Previous thread hasn't exited yet, not checking mail this time." ) );
         return TRUE;
