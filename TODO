@@ -1,0 +1,4 @@
+* for the threaded code, use joinable threads rather than waiting on thread
+  pointers.  though the upside of the current approach is that i could
+  process gtk events in that loop if i wanted
+* gamin/fam support for the local mail spool options
