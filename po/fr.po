@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-30 02:02-0700\n"
-"PO-Revision-Date: 2008-03-17 17:21+0100\n"
+"PO-Revision-Date: 2008-08-30 17:22+0200\n"
 "Last-Translator: Mike Massonnet <mmassonnet@xfce.org>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -51,7 +51,7 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:487
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:548
 msgid "Previous thread hasn't exited yet, not checking mail this time."
-msgstr ""
+msgstr "Le thread précédent n'est pas terminé, de ce fait la vérification est annulée."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
@@ -105,7 +105,7 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:242
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
 msgid "Authentication failed.  Perhaps your username or password is incorrect?"
-msgstr ""
+msgstr "L'authentification a échoué.  Peut-être votre nom d'utilisateur ou mot de passe est incorrect ?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
@@ -333,17 +333,17 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-net-conn.c:836
 #, c-format
 msgid "Operation aborted"
-msgstr ""
+msgstr "Opération annulée"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:496
 #, c-format
 msgid "Could not find host \"%s\": %s"
-msgstr ""
+msgstr "Impossible de résourdre l'adresse \"%s\" : %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:580
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to connect to server \"%s\": %s"
-msgstr "Échec à la connexion au serveur : %s"
+msgstr "Échec à la connexion au serveur \"%s\": %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:643
 #, c-format
@@ -351,34 +351,34 @@ msgid "Not compiled with SSL/TLS support"
 msgstr "Compilé sans support SSL/TLS"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:699
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to send encrypted data: %s"
-msgstr "Échec à la connexion au serveur : %s"
+msgstr "Échec à l'envoie des données chiffrées : %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:732
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to send data: %s"
-msgstr "Échec à la connexion au serveur : %s"
+msgstr "Échec à l'envoie des données : %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:813
 #, c-format
 msgid "Failed to receive encrypted data: %s"
-msgstr ""
+msgstr "Échec à la réception des données chiffrées : %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:843
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to receive data: %s"
-msgstr "Échec à la connexion au serveur : %s"
+msgstr "Échec à la réception des données : %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:941
 #, c-format
 msgid "Canceling read: read too many bytes without a newline"
-msgstr ""
+msgstr "Lecture annulée : trop de données sans aucune nouvelle ligne"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:950
 #, c-format
 msgid "Buffer is not large enough to hold a full line (%d < %d)"
-msgstr ""
+msgstr "Le tampon n'est pas suffisamment large pour tenir une ligne enitère (%d < %d)"
 
 #: ../libmailwatch-core/mailwatch.c:126
 msgid ""
