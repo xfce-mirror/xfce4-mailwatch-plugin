@@ -1435,6 +1435,8 @@ imap_config_newmailfolders_btn_clicked_cb(GtkWidget *w, gpointer user_data)
         icons = g_list_prepend(icons, "stock_open");
         icons = g_list_prepend(icons, "stock_folder");
         icons = g_list_prepend(icons, "stock_directory");
+        icons = g_list_prepend(icons, "gnome-fs-directory");
+        icons = g_list_prepend(icons, "folder");
         
         gtk_icon_size_lookup(GTK_ICON_SIZE_MENU, &iw, &ih);
         pix = xfce_icon_theme_load_list(itheme, icons, iw);
