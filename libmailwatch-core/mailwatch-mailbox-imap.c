@@ -229,6 +229,9 @@ imap_recv_command(XfceMailwatchIMAPMailbox *imailbox,
     gssize bin, tot = 0;
     gchar *p;
 
+    if(len)
+        *buf = 0;
+
     while(len - tot > 0) {
         DBG("trying to get line");
         bin = imap_recv(imailbox, net_conn, buf+tot, len-tot);
@@ -322,8 +325,21 @@ imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox,
 
             bin = imap_recv_command(imailbox, net_conn, buf, BUFSIZE);
             DBG("reponse from cram-md5 resp (%d): %s\n", bin, bin>0?buf:"(nada)");
-            if(bin <= 0)
+            if(bin <= 0) {
+                if(bin < 0) {
+                    gchar tmp[16];
+                    g_snprintf(tmp, sizeof(tmp), "%05d NO",
+                               imailbox->imap_tag - 1);
+                    if(strstr(buf, tmp)) {
+                        xfce_mailwatch_log_message(imailbox->mailwatch,
+                                                   XFCE_MAILWATCH_MAILBOX(imailbox),
+                                                   XFCE_MAILWATCH_LOG_ERROR,
+                                                   _("Authentication failed.  Perhaps your username or password is incorrect?"));
+                    }
+                }
+                
                 goto cleanuperr;
+            }
 
             /* auth successful */
             TRACE("leaving (success)");
@@ -343,8 +359,19 @@ imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox,
     /* and see if we actually got auth-ed */
     bin = imap_recv_command(imailbox, net_conn, buf, BUFSIZE);
     DBG("response from login (%d): %s", bin, bin>0?buf:"(nada)");
-    if(bin <= 0)
+    if(bin <= 0) {
+        if(bin < 0) {
+            gchar tmp[16];
+            g_snprintf(tmp, sizeof(tmp), "%05d NO", imailbox->imap_tag - 1);
+            if(strstr(buf, tmp)) {
+                xfce_mailwatch_log_message(imailbox->mailwatch,
+                                           XFCE_MAILWATCH_MAILBOX(imailbox),
+                                           XFCE_MAILWATCH_LOG_ERROR,
+                                           _("Authentication failed.  Perhaps your username or password is incorrect?"));
+            }
+        }
         goto cleanuperr;
+    }
     
     TRACE("leaving (success)");
     

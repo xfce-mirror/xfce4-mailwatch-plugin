@@ -144,6 +144,9 @@ pop3_recv_command(XfceMailwatchPOP3Mailbox *pmailbox,
     gssize bin, tot = 0;
     gboolean got_ok = FALSE;
 
+    if(len)
+        *buf = 0;
+
     while(len - tot > 0) {
         DBG("trying to get line");
         bin = pop3_recv(pmailbox, buf+tot, len-tot);
@@ -230,8 +233,17 @@ pop3_send_login_info(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *username,
                 return FALSE;
 
             bin = pop3_recv_command(pmailbox, buf, BUFSIZE, FALSE);
-            if(bin <= 0)
+            if(bin <= 0) {
+                if(bin < 0) {
+                    if(strstr(buf, "-ERR")) {
+                        xfce_mailwatch_log_message(pmailbox->mailwatch,
+                                                   XFCE_MAILWATCH_MAILBOX(pmailbox),
+                                                   XFCE_MAILWATCH_LOG_ERROR,
+                                                   _("Authentication failed.  Perhaps your username or password is incorrect?"));
+                    }
+                }
                 return FALSE;
+            }
 
             TRACE("leaving (success)");
 
@@ -262,9 +274,18 @@ pop3_send_login_info(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *username,
     
     /* check for OK response */
     bin = pop3_recv_command(pmailbox, buf, BUFSIZE, FALSE);
-    DBG("response from USER (%d): %s", bin, bin>0?buf:"(nada)");
-    if(bin <= 0)
+    DBG("response from PASS (%d): %s", bin, bin>0?buf:"(nada)");
+    if(bin <= 0) {
+        if(bin < 0) {
+            if(strstr(buf, "-ERR")) {
+                xfce_mailwatch_log_message(pmailbox->mailwatch,
+                                           XFCE_MAILWATCH_MAILBOX(pmailbox),
+                                           XFCE_MAILWATCH_LOG_ERROR,
+                                           _("Authentication failed.  Perhaps your username or password is incorrect?"));
+            }
+        }
         return FALSE;
+    }
     
     TRACE("leaving (success)");
     

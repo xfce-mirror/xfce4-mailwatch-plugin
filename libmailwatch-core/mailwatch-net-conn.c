@@ -528,7 +528,7 @@ xfce_mailwatch_net_conn_connect(XfceMailwatchNetConn *net_conn,
         if(fcntl(net_conn->fd, F_SETFL,
                  fcntl(net_conn->fd, F_GETFL) | O_NONBLOCK))
         {
-            g_warning(_("Unable to set socket to non-blocking mode. Things may not work properly from here on out."));
+            g_warning("Unable to set socket to non-blocking mode. Things may not work properly from here on out.");
         }
         
         switch(xfce_mailwatch_net_conn_do_connect(net_conn, ai->ai_addr,
@@ -560,7 +560,7 @@ xfce_mailwatch_net_conn_connect(XfceMailwatchNetConn *net_conn,
                 if(fcntl(net_conn->fd, F_SETFL,
                          fcntl(net_conn->fd, F_GETFL) & ~(O_NONBLOCK)))
                 {
-                    g_warning(_("Unable to return socket to blocking mode.  Data may not be retreived correctly."));
+                    g_warning("Unable to return socket to blocking mode.  Data may not be retreived correctly.");
                 }
 #endif
                 freeaddrinfo(addresses);
