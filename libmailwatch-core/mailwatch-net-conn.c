@@ -397,6 +397,13 @@ xfce_mailwatch_net_conn_set_should_continue_func(XfceMailwatchNetConn *net_conn,
     net_conn->should_continue_user_data = user_data;
 }
 
+gboolean
+xfce_mailwatch_net_conn_should_continue(XfceMailwatchNetConn *net_conn)
+{
+    g_return_val_if_fail(net_conn, FALSE);
+    return SHOULD_CONTINUE(net_conn);
+}
+
 void
 xfce_mailwatch_net_conn_set_service(XfceMailwatchNetConn *net_conn,
                                     const gchar *service)

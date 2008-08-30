@@ -164,7 +164,7 @@ pop3_recv_command(XfceMailwatchPOP3Mailbox *pmailbox,
 
         tot += bin;
 
-        if(!pop3_should_continue(pmailbox->net_conn, pmailbox))
+        if(!xfce_mailwatch_net_conn_should_continue(pmailbox->net_conn))
             return -1;
     }
 

@@ -38,6 +38,8 @@ void xfce_mailwatch_net_conn_set_should_continue_func(XfceMailwatchNetConn *net_
                                                       XMNCShouldContinueFunc func,
                                                       gpointer user_data);
 
+gboolean xfce_mailwatch_net_conn_should_continue(XfceMailwatchNetConn *net_conn);
+
 void xfce_mailwatch_net_conn_set_service(XfceMailwatchNetConn *net_conn,
                                          const gchar *service);
 

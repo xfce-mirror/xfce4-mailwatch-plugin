@@ -228,7 +228,7 @@ gmail_check_atom_feed(XfceMailwatchGMailMailbox *gmailbox,
     }
     
     for(;;) {
-        if(!gmail_should_continue(gmailbox->net_conn, gmailbox))
+        if(!xfce_mailwatch_net_conn_should_continue(gmailbox->net_conn))
             break;
 
         bin = gmail_recv(gmailbox, buf, BUFSIZE);

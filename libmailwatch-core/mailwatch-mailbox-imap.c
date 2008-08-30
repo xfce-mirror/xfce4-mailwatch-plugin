@@ -244,7 +244,7 @@ imap_recv_command(XfceMailwatchIMAPMailbox *imailbox,
 
         tot += bin;
 
-        if(!imap_should_continue(net_conn, imailbox))
+        if(!xfce_mailwatch_net_conn_should_continue(net_conn))
             return -1;
     }
 
