@@ -1,14 +1,14 @@
 # Czech translations for xfce4-mailwatch-plugin package.
 # Copyright (C) 2005-2006 Brian Tarricone, Pasi Orovuo.
 # This file is distributed under the same license as the xfce4-mailwatch-plugin package.
-# Michal Várady <miko.vaji@gmail.com>, 2006.
+# Michal Várady <miko.vaji@gmail.com>, 2006-2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.2svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-30 02:02-0700\n"
-"PO-Revision-Date: 2006-09-23 10:02+0100\n"
+"PO-Revision-Date: 2008-08-30 11:28+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -25,23 +25,13 @@ msgstr "Připojení pomocí TLS selhalo: %s"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:255
 #, c-format
-msgid ""
-"Received HTTP response code %d.  The most likely reason for this is that "
-"your GMail username or password is incorrect."
-msgstr ""
-"Byla přijata odpověď protokolu HTTP s kódem %d. Obvyklý důvod tohoto chování "
-"spočívá v nesprávném zadání uživatelského jména nebo heslo."
+msgid "Received HTTP response code %d.  The most likely reason for this is that your GMail username or password is incorrect."
+msgstr "Byla přijata odpověď protokolu HTTP s kódem %d. Obvyklý důvod tohoto chování spočívá v nesprávném zadání uživatelského jména nebo heslo."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
 #, c-format
-msgid ""
-"Received HTTP response code %d, which should be 200.  There may be a problem "
-"with GMail's servers, or they have incompatibly changed their authentication "
-"method or location of the new messages feed."
-msgstr ""
-"Byla přijata odpověď protokolu HTTP s kódem %d, který by měl mít hodnotu "
-"200. Problém může být na straně serverů GMail nebo byla změněna metoda "
-"ověření nebo umístění novým zpráv."
+msgid "Received HTTP response code %d, which should be 200.  There may be a problem with GMail's servers, or they have incompatibly changed their authentication method or location of the new messages feed."
+msgstr "Byla přijata odpověď protokolu HTTP s kódem %d, který by měl mít hodnotu 200. Problém může být na straně serverů GMail nebo byla změněna metoda ověření nebo umístění novým zpráv."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:735
@@ -50,7 +40,7 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:487
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:548
 msgid "Previous thread hasn't exited yet, not checking mail this time."
-msgstr ""
+msgstr "Předchozí vlákno dosud neexistovalo, pošta se nyní nezkontroluje."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
@@ -84,27 +74,19 @@ msgid "Remote GMail Mailbox"
 msgstr "Vzdálená poštovní schránka GMail"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:669
-msgid ""
-"The GMail plugin can connect to Google's mail service and securely retrieve "
-"the number of new messages."
-msgstr ""
-"Zásuvný modul GMail je schopen spojení se službou elektronické pošty Google "
-"a bezpečně přijmout počet nových zpráv."
+msgid "The GMail plugin can connect to Google's mail service and securely retrieve the number of new messages."
+msgstr "Zásuvný modul GMail je schopen spojení se službou elektronické pošty Google a bezpečně přijmout počet nových zpráv."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
-msgid ""
-"Secure IMAP is not available, and the IMAP server does not support plaintext "
-"logins."
-msgstr ""
-"Zabezpečený protokol IMAP není dostupný, server IMAP nepodporuje přihlášení "
-"nešifrovaným heslem."
+msgid "Secure IMAP is not available, and the IMAP server does not support plaintext logins."
+msgstr "Zabezpečený protokol IMAP není dostupný, server IMAP nepodporuje přihlášení nešifrovaným heslem."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:337
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:370
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:242
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
 msgid "Authentication failed.  Perhaps your username or password is incorrect?"
-msgstr ""
+msgstr "Ověřování se nezdařilo. Ujistěte se, že jste zadali správné přihlašovací jméno a heslo."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
@@ -128,14 +110,8 @@ msgid "No server or username is set."
 msgstr "Není nastaven název serveru nebo uživatelské jméno."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1398
-msgid ""
-"The folder list cannot be retrieved until a server, username, and probably "
-"password are set.  Also be sure to check any security settings in the "
-"Advanced dialog."
-msgstr ""
-"Seznam služeb nebude ze serveru stažen, dokud nenastavíte název serveru, "
-"uživatelské jméno a heslo. Ujistěte se také, že jste nastavili veškerá "
-"nastavení bezpečnosti v dialogu Upřesnit."
+msgid "The folder list cannot be retrieved until a server, username, and probably password are set.  Also be sure to check any security settings in the Advanced dialog."
+msgstr "Seznam služeb nebude ze serveru stažen, dokud nenastavíte název serveru, uživatelské jméno a heslo. Ujistěte se také, že jste nastavili veškerá nastavení bezpečnosti v dialogu Upřesnit."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
@@ -203,12 +179,8 @@ msgid "Remote IMAP Mailbox"
 msgstr "Vzdálená schránka IMAP"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1986
-msgid ""
-"The IMAP plugin can connect to a remote mail server that supports the IMAP "
-"protocol, optionally using SSL for link protection."
-msgstr ""
-"Zásuvný modul IMAP se dokáže připojit ke vzdálenému poštovnímu serveru, "
-"který podporuje protokol IMAP, volitelně se zabezpečením SSL."
+msgid "The IMAP plugin can connect to a remote mail server that supports the IMAP protocol, optionally using SSL for link protection."
+msgstr "Zásuvný modul IMAP se dokáže připojit ke vzdálenému poštovnímu serveru, který podporuje protokol IMAP, volitelně se zabezpečením SSL."
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
@@ -221,8 +193,7 @@ msgstr "Získání informací o souboru %s se nezdařilo: %s"
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:102
 #, c-format
 msgid "%s is not a directory. Is %s really a valid maildir?"
-msgstr ""
-"%s není adresář. Je %s opravdu platný adresář elektronické pošty (maildir)?"
+msgstr "%s není adresář. Je %s opravdu platný adresář elektronické pošty (maildir)?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:304
 msgid "Select Maildir Folder"
@@ -243,12 +214,8 @@ msgid "Local Maildir Spool"
 msgstr "Místní úložiště elektronické pošty typu Maildir"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:502
-msgid ""
-"The Maildir plugin can watch a local maildir-style mail spool for new "
-"messages."
-msgstr ""
-"Zásuvný modul Maildir sleduje nově příchozí zprávy v místním úložišti "
-"elektronické pošty typu maildir"
+msgid "The Maildir plugin can watch a local maildir-style mail spool for new messages."
+msgstr "Zásuvný modul Maildir sleduje nově příchozí zprávy v místním úložišti elektronické pošty typu maildir"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:347
 msgid "Select mbox file"
@@ -264,9 +231,7 @@ msgstr "Místní úložiště elektronické pošty typu Mbox"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:521
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr ""
-"Zásuvný modul leduje nově příchozí zprávy v úložišti elektronické pošty typu "
-"mbox."
+msgstr "Zásuvný modul leduje nově příchozí zprávy v úložišti elektronické pošty typu mbox."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
@@ -288,8 +253,7 @@ msgstr "Místní složka elektronické pošty typu MH"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:684
 msgid "MH plugin watches local MH folders for new mail"
-msgstr ""
-"Zásuvný modul MH sleduje nové zprávy ve složce elektronické pošty typu MH"
+msgstr "Zásuvný modul MH sleduje nové zprávy ve složce elektronické pošty typu MH"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:746
 msgid "Advanced POP3 Options"
@@ -312,12 +276,8 @@ msgid "Remote POP3 Mailbox"
 msgstr "Vzdálená schránka POP3"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1038
-msgid ""
-"The POP3 plugin can connect to a remote mail server that supports the POP3 "
-"protocol, optionally using SSL for link protection."
-msgstr ""
-"Zásuvný modul POP3 se může připojit ke vzdálenému serveru s podporou POP3, "
-"volitelně s zabezpečením SSL."
+msgid "The POP3 plugin can connect to a remote mail server that supports the POP3 protocol, optionally using SSL for link protection."
+msgstr "Zásuvný modul POP3 se může připojit ke vzdálenému serveru s podporou POP3, volitelně s zabezpečením SSL."
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:221
 #: ../libmailwatch-core/mailwatch-net-conn.c:265
@@ -329,17 +289,17 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-net-conn.c:836
 #, c-format
 msgid "Operation aborted"
-msgstr ""
+msgstr "Operace zrušena"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:496
 #, c-format
 msgid "Could not find host \"%s\": %s"
-msgstr ""
+msgstr "Nelze najít server \"%s\": %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:580
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to connect to server \"%s\": %s"
-msgstr "Připojení k serveru se nezdařilo: %s"
+msgstr "Připojení k serveru \"%s\" se nezdařilo: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:643
 #, c-format
@@ -347,58 +307,50 @@ msgid "Not compiled with SSL/TLS support"
 msgstr "Nezkompilováno s podporou protokolu SSL/TLS"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:699
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to send encrypted data: %s"
-msgstr "Připojení k serveru se nezdařilo: %s"
+msgstr "Odeslání šifrovaných dat se nezdařilo: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:732
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to send data: %s"
-msgstr "Připojení k serveru se nezdařilo: %s"
+msgstr "Odeslání dat se nezdařilo: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:813
 #, c-format
 msgid "Failed to receive encrypted data: %s"
-msgstr ""
+msgstr "Přijem šifrovaných dat se nezdařil: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:843
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to receive data: %s"
-msgstr "Připojení k serveru se nezdařilo: %s"
+msgstr "Přijem dat se nezdařil: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:941
 #, c-format
 msgid "Canceling read: read too many bytes without a newline"
-msgstr ""
+msgstr "Čtení se přerušilo: bylo přečteno příliš mnoho bajtů bez ukončení znakem pro novou řádku"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:950
 #, c-format
 msgid "Buffer is not large enough to hold a full line (%d < %d)"
-msgstr ""
+msgstr "Buffer není dostatečně velký, aby mohl obsahovat celý řádek (%d < %d)"
 
 #: ../libmailwatch-core/mailwatch.c:126
-msgid ""
-"xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
-"likely a problem with your GLib install."
-msgstr ""
-"xfce4-mailwatch-plugin: Nelze inicializovat podporu GThread. Toto může být "
-"způsobeno instalací balíku GLib."
+msgid "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."
+msgstr "xfce4-mailwatch-plugin: Nelze inicializovat podporu GThread. Toto může být způsobeno instalací balíku GLib."
 
-#: ../libmailwatch-core/mailwatch.c:341 ../libmailwatch-core/mailwatch.c:342
+#: ../libmailwatch-core/mailwatch.c:341
+#: ../libmailwatch-core/mailwatch.c:342
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "Nelze zapisovat do souboru s nastavením '%s'"
 
-#: ../libmailwatch-core/mailwatch.c:388 ../libmailwatch-core/mailwatch.c:390
+#: ../libmailwatch-core/mailwatch.c:388
+#: ../libmailwatch-core/mailwatch.c:390
 #, c-format
-msgid ""
-"Unable to set permissions on config file '%s'.  If this file contains "
-"passwords or other sensitive information, it may be readable by others on "
-"your system."
-msgstr ""
-"Nelze nastavit přístupová práva pro soubor s nastavením '%s'. Pokud tento "
-"soubor obsahuje hesla nebo jiné citlivé údaje, může být čitelný pro jiné "
-"uživatele Vašeho systému."
+msgid "Unable to set permissions on config file '%s'.  If this file contains passwords or other sensitive information, it may be readable by others on your system."
+msgstr "Nelze nastavit přístupová práva pro soubor s nastavením '%s'. Pokud tento soubor obsahuje hesla nebo jiné citlivé údaje, může být čitelný pro jiné uživatele Vašeho systému."
 
 #: ../libmailwatch-core/mailwatch.c:610
 msgid "This mailbox type does not require any configuration settings."
@@ -414,11 +366,11 @@ msgstr "Sledování elektronické pošty"
 
 #: ../libmailwatch-core/mailwatch.c:656
 msgid "Mailbox name required."
-msgstr "Schránka vyžaduje název."
+msgstr "Je potřeba zadat název schránky."
 
 #: ../libmailwatch-core/mailwatch.c:657
 msgid "Please enter a name for the mailbox."
-msgstr "Vložte prosím název schránky."
+msgstr "Vložte název schránky."
 
 #: ../libmailwatch-core/mailwatch.c:698
 #, c-format
@@ -447,8 +399,7 @@ msgstr "Jste si jisti?"
 
 #: ../libmailwatch-core/mailwatch.c:883
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
-msgstr ""
-"Odebráním schránky zrušíte všechna nastavení, tuto operaci nelze vrátit zpět."
+msgstr "Odebráním schránky zrušíte všechna nastavení, tuto operaci nelze vrátit zpět."
 
 #: ../libmailwatch-core/mailwatch.c:948
 msgid "Mailboxes"
@@ -463,18 +414,18 @@ msgstr "Žádné nové zprávy"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:129
 #: ../panel-plugin/mailwatch-plugin.c:120
-#, fuzzy, c-format
+#, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
-msgstr[0] "Máte %d nových zpráv:"
-msgstr[1] "Máte %d nových zpráv:"
+msgstr[0] "Máte %d novou zpávu:"
+msgstr[1] "Máte %d nové zprávy:"
 msgstr[2] "Máte %d nových zpráv:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:140
 #: ../panel-plugin/mailwatch-plugin.c:131
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr ""
+msgstr "informuje, kolik nových zpráv se nachází v každé schránce|    %d in %s"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:251
 #: ../panel-plugin/mailwatch-plugin.c:387
@@ -536,7 +487,7 @@ msgstr "Spustit při _kliknutí:"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:705
 #: ../panel-plugin/mailwatch-plugin.c:897
 msgid "Run on new _messages:"
-msgstr "Spustit při nových _zprávách:"
+msgstr "Spustit při příjetí nových _zpráv:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:718
 #: ../panel-plugin/mailwatch-plugin.c:910
@@ -573,31 +524,32 @@ msgid "Failed to run xfhelp4"
 msgstr "Spuštění xfhelp4 se nezdařilo"
 
 #: ../panel-plugin/mailwatch-plugin.c:1018
-#, fuzzy
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "Xfce Mailwatch"
+msgstr "Zásuvný modul Xfce4 Mailwatch"
 
 #: ../panel-plugin/mailwatch-plugin.c:1020
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr ""
+msgstr "Applet pro panel Xfce s mnoha funkcemi kontrolující elektronickou poštu"
 
 #: ../panel-plugin/mailwatch-plugin.c:1021
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 msgstr ""
+"Copyright (c) 2005-2008 Brian Tarricone\n"
+"Copyright (c) 2005 Pasi Orovuo"
 
 #: ../panel-plugin/mailwatch-plugin.c:1027
 msgid "Maintainer, Original Author"
-msgstr ""
+msgstr "Správce a původní autor"
 
 #: ../panel-plugin/mailwatch-plugin.c:1029
 msgid "Developer"
-msgstr ""
+msgstr "Vývojář"
 
 #: ../panel-plugin/mailwatch-plugin.c:1074
 msgid "Update Now"
-msgstr ""
+msgstr "Aktualizovat nyní"
 
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
@@ -609,14 +561,12 @@ msgstr "Ověřovat poštu ve více schránkách."
 #~ msgstr ""
 #~ "Nelze nastavit socket do neblokujícího režimu. Pokud pokus o připojení "
 #~ "zamrzne, panel nemusí při zavírání reagovat."
-
 #~ msgid ""
 #~ "Unable to return socket to blocking mode.  Data may not be retreived "
 #~ "correctly."
 #~ msgstr ""
 #~ "Nelze vrátit socket do blokujícího režimu. Data možná nebudou korektně "
 #~ "přijata."
-
 #~ msgid ""
 #~ "The IMAP server returned a response we weren't quite expecting.  This "
 #~ "might be OK, or this plugin might need to be modified to support your "
@@ -625,15 +575,12 @@ msgstr "Ověřovat poštu ve více schránkách."
 #~ "Server IMAP vrátil neočekávanou hodnotu. Toto nemusí znamenat chybu, "
 #~ "pokud se však zobrazuje nesprávný počet nových zpráv, zásuvný modul "
 #~ "pravděpodobně vyžaduje úpravu pro podporu Vašeho poštovního serveru."
-
 #~ msgid "XfceMailwatch: TLS handshake failed: %s"
 #~ msgstr "XfceMailwatch: Přihlášení TLS se nezdařilo: %s"
-
 #~ msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
 #~ msgstr ""
 #~ "XfceMailwatch: Připojení TLS se nezdařilo: program nebyl zkompilován s "
 #~ "podporou protokolu SSL."
-
 #~ msgid "A secure connection was requested, but gnutls was not initialised"
 #~ msgstr ""
 #~ "Bylo požadováno zabezpečené připojení, ale gnutls nebyl inicializován"
@@ -641,18 +588,15 @@ msgstr "Ověřovat poštu ve více schránkách."
 #, fuzzy
 #~ msgid "About Mailwatch"
 #~ msgstr "Sledování elektronické pošty"
-
 #~ msgid "You have 1 new message:"
 #~ msgstr "Máte jednu novou zprávu:"
-
 #~ msgid "You have %d new messages:"
 #~ msgstr "Máte %d nových zpráv:"
-
 #~ msgid "Edit Properties"
 #~ msgstr "Upravit nastavení"
-
 #~ msgid ""
 #~ "A buffer was too small to receive all of an IMAP response.  This is a bug!"
 #~ msgstr ""
 #~ "Vyrovnávací paměť je příliš malá pro načtení odpovědi IMAP. Toto je chyba "
 #~ "programu!"
+
