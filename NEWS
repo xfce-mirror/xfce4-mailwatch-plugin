@@ -32,6 +32,8 @@ Version 1.1.0svn:
       the mail-checking threads no longer run all the time, but only when
       needed.  Should save a little battery life for laptop users, and
       just be more resource-friendly in general.
+    * Allow non-square plugin buttons.
+    * Allow deselecting INBOX in the IMAP folder list (bug 4150).
 
 
 Version 1.0.1 (20 Apr 2006):

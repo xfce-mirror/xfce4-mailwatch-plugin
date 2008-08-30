@@ -652,8 +652,6 @@ imap_check_mail_th(gpointer user_data)
     if(imap_authenticate(imailbox, net_conn, host, username, password,
                           auth_type, nonstandard_port))
     {
-        new_messages = imap_check_mailbox(imailbox, net_conn, "INBOX");
-        DBG("checked inbox, %d new messages", new_messages);
         for(l = mailboxes_to_check; l; l = l->next) {
             new_messages += imap_check_mailbox(imailbox, net_conn, l->data);
             DBG("checked mail folder %s, total is now %d new messages", (gchar *)l->data, new_messages);
@@ -687,6 +685,10 @@ imap_mailbox_new(XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type)
     imailbox->timeout = XFCE_MAILWATCH_DEFAULT_TIMEOUT;
     imailbox->use_standard_port = TRUE;
     imailbox->config_mx = g_mutex_new();
+
+    /* this is a bit of a hack; should really fetch the folder list and
+     * try to find the inbox, as the inbox might not be named "INBOX" */
+    imailbox->mailboxes_to_check = g_list_prepend(NULL, g_strdup("INBOX"));
 
     xfce_mailwatch_net_conn_init();
     
@@ -1032,19 +1034,15 @@ imap_populate_folder_tree_nodes_rec(XfceMailwatchIMAPMailbox *imailbox,
     GtkTreeIter itr;
     GNode *n;
     IMAPFolderData *fdata = node->data;
-    gboolean is_inbox;
     
-    is_inbox = !g_ascii_strcasecmp(fdata->folder_name, "inbox");
-    
-    if(is_inbox)
+    if(!g_ascii_strcasecmp(fdata->folder_name, "inbox"))
         gtk_tree_store_prepend(imailbox->ts, &itr, parent);
     else
         gtk_tree_store_append(imailbox->ts, &itr, parent);
     
     gtk_tree_store_set(imailbox->ts, &itr,
             IMAP_FOLDERS_NAME, fdata->folder_name,
-            IMAP_FOLDERS_WATCHING,
-              (is_inbox || g_hash_table_lookup(mailboxes_to_check, fdata->full_path)),
+            IMAP_FOLDERS_WATCHING, g_hash_table_lookup(mailboxes_to_check, fdata->full_path),
             IMAP_FOLDERS_HOLDS_MESSAGES, fdata->holds_messages,
             IMAP_FOLDERS_FULLPATH, fdata->full_path,
             -1);
@@ -1296,7 +1294,7 @@ imap_config_treeview_btnpress_cb(GtkWidget *w, GdkEventButton *evt,
                     IMAP_FOLDERS_HOLDS_MESSAGES, &holds_messages,
                     IMAP_FOLDERS_FULLPATH, &folder_path, -1);
             
-            if(holds_messages && g_ascii_strcasecmp(folder_name, "inbox")) {
+            if(holds_messages) {
                 gtk_tree_store_set(imailbox->ts, &itr,
                         IMAP_FOLDERS_WATCHING, !watching, -1);
                 
@@ -1305,10 +1303,10 @@ imap_config_treeview_btnpress_cb(GtkWidget *w, GdkEventButton *evt,
                     GList *l;
                     for(l = imailbox->mailboxes_to_check; l; l = l->next) {
                         if(!strcmp(folder_path, l->data)) {
+                            DBG("IMAP: removing %s from the new mail folder list (not saved yet)", (gchar *)l->data);
                             g_free(l->data);
                             imailbox->mailboxes_to_check =
                                     g_list_delete_link(imailbox->mailboxes_to_check, l);
-                            DBG("IMAP: removing %s from the new mail folder list (not saved yet)", (gchar *)l->data);
                             break;
                         }
                     }
@@ -1804,7 +1802,7 @@ static void
 imap_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
 {
     XfceMailwatchIMAPMailbox *imailbox = XFCE_MAILWATCH_IMAP_MAILBOX(mailbox);
-    GList *l;
+    GList *l, *inbox_l;
     gint n_newmail_boxes = -1;
     
     g_mutex_lock(imailbox->config_mx);
@@ -1831,6 +1829,10 @@ imap_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
         else if(!strcmp(param->key, "n_newmail_boxes"))
             n_newmail_boxes = atoi(param->value);
     }
+
+    /* save the dummy 'inbox' item for later */
+    inbox_l = imailbox->mailboxes_to_check;
+    imailbox->mailboxes_to_check = NULL;
     
     for(l = params; l; l = l->next) {
         XfceMailwatchParam *param = l->data;
@@ -1842,8 +1844,13 @@ imap_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
             DBG("IMAP: config: got a new mail folder: %s", param->value);
         }
     }
-    imailbox->mailboxes_to_check = g_list_reverse(imailbox->mailboxes_to_check);
-    
+
+    if(imailbox->mailboxes_to_check) {
+        imailbox->mailboxes_to_check = g_list_reverse(imailbox->mailboxes_to_check);
+        g_list_free(inbox_l);
+    } else
+        imailbox->mailboxes_to_check = inbox_l;
+
     g_mutex_unlock(imailbox->config_mx);
 }
 
