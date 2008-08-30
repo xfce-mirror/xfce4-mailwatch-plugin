@@ -14,6 +14,7 @@ Version 1.1.0svn:
       keyboard rather than the mouse (bug 2386).
     * Fix problems receiving full commands on IMAP accounts (bug 2416).
     * Fix problems receiving full commands on POP3 accounts (bug 2013).
+    * Fix removed new-mail folders sometimes re-adding themselves (bug 2647).
 
   Features:
     * Update the new message counts for all mailboxes on startup, rather than

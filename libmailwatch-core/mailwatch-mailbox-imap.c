@@ -1802,8 +1802,8 @@ static void
 imap_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
 {
     XfceMailwatchIMAPMailbox *imailbox = XFCE_MAILWATCH_IMAP_MAILBOX(mailbox);
-    GList *l, *inbox_l;
-    gint n_newmail_boxes = -1;
+    GList *l;
+    gint n_newmail_boxes = 0;
     
     g_mutex_lock(imailbox->config_mx);
     
@@ -1830,26 +1830,31 @@ imap_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
             n_newmail_boxes = atoi(param->value);
     }
 
-    /* save the dummy 'inbox' item for later */
-    inbox_l = imailbox->mailboxes_to_check;
-    imailbox->mailboxes_to_check = NULL;
-    
-    for(l = params; l; l = l->next) {
-        XfceMailwatchParam *param = l->data;
+    if(n_newmail_boxes > 0) {
+        /* save the dummy 'inbox' item for later */
+        GList *inbox_l = imailbox->mailboxes_to_check;
+        imailbox->mailboxes_to_check = NULL;
         
-        if(!strncmp(param->key, "newmail_box_", 12)) {
-            imailbox->mailboxes_to_check =
-                    g_list_prepend(imailbox->mailboxes_to_check,
-                            g_strdup(param->value));
-            DBG("IMAP: config: got a new mail folder: %s", param->value);
-        }
-    }
+        for(l = params; l; l = l->next) {
+            XfceMailwatchParam *param = l->data;
+            
+            if(!strncmp(param->key, "newmail_box_", 12)) {
+                gint box_index = atoi(param->key + 12);
+                if(box_index >= n_newmail_boxes)
+                    continue;
 
-    if(imailbox->mailboxes_to_check) {
-        imailbox->mailboxes_to_check = g_list_reverse(imailbox->mailboxes_to_check);
-        g_list_free(inbox_l);
-    } else
-        imailbox->mailboxes_to_check = inbox_l;
+                imailbox->mailboxes_to_check = g_list_prepend(imailbox->mailboxes_to_check,
+                                                              g_strdup(param->value));
+                DBG("IMAP: config: got a new mail folder: %s", param->value);
+            }
+        }
+
+        if(imailbox->mailboxes_to_check) {
+            imailbox->mailboxes_to_check = g_list_reverse(imailbox->mailboxes_to_check);
+            g_list_free(inbox_l);
+        } else
+            imailbox->mailboxes_to_check = inbox_l;
+    }
 
     g_mutex_unlock(imailbox->config_mx);
 }
