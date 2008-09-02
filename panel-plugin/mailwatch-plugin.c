@@ -284,10 +284,10 @@ mailwatch_set_size(XfcePanelPlugin *plugin, gint wsize,
                    XfceMailwatchPlugin *mwp)
 {
     gint size, img_width, img_height, width, height, i;
-    gchar *icon;
+    const gchar *icon;
     GdkPixbuf *pb;
     GtkIconTheme *itheme;
-    GtkIconInfo *info;
+    GtkIconInfo *info = NULL;
     
     /* this is such lame lame voodoo magic.  the x/ythickness stuff
      * shouldn't be needed, since i think the panel button convienence
@@ -318,23 +318,33 @@ mailwatch_set_size(XfcePanelPlugin *plugin, gint wsize,
     itheme = gtk_icon_theme_get_for_screen(gtk_widget_get_screen(GTK_WIDGET(plugin)));
 
     icon = mwp->normal_icon ? mwp->normal_icon : DEFAULT_NORMAL_ICON;
-    info = gtk_icon_theme_lookup_icon(itheme, icon, size, 0);
+    if(!g_path_is_absolute(icon)) {
+        info = gtk_icon_theme_lookup_icon(itheme, icon, size, 0);
+        if(info)
+            icon = gtk_icon_info_get_filename(info);
+    }
+
+    mwp->pix_normal = gdk_pixbuf_new_from_file_at_scale(icon, img_width,
+                                                        img_height, TRUE,
+                                                        NULL);
     if(info) {
-        const gchar *file = gtk_icon_info_get_filename(info);
-        mwp->pix_normal = gdk_pixbuf_new_from_file_at_scale(file, img_width,
-                                                            img_height, TRUE,
-                                                            NULL);
         gtk_icon_info_free(info);
+        info = NULL;
     }
 
     icon = mwp->new_mail_icon ? mwp->new_mail_icon : DEFAULT_NEW_MAIL_ICON;
-    info = gtk_icon_theme_lookup_icon(itheme, icon, size, 0);
+    if(!g_path_is_absolute(icon)) {
+        info = gtk_icon_theme_lookup_icon(itheme, icon, size, 0);
+        if(info)
+            icon = gtk_icon_info_get_filename(info);
+    }
+
+    mwp->pix_newmail = gdk_pixbuf_new_from_file_at_scale(icon, img_width,
+                                                        img_height, TRUE,
+                                                        NULL);
     if(info) {
-        const gchar *file = gtk_icon_info_get_filename(info);
-        mwp->pix_newmail = gdk_pixbuf_new_from_file_at_scale(file, img_width,
-                                                            img_height, TRUE,
-                                                            NULL);
         gtk_icon_info_free(info);
+        info = NULL;
     }
 
     /* find the smallest dimensions of the two icons */
