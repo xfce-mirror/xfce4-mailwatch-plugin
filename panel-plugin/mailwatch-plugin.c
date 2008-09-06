@@ -21,6 +21,10 @@
 #include <config.h>
 #endif
 
+#if defined(HAVE_SIGNAL_H) && defined(HAVE_XFCE_POSIX_SIGNAL_HANDLER_INIT)
+#include <signal.h>
+#endif
+
 #include <string.h>
 #include <stdlib.h>
 #include <gtk/gtk.h>
@@ -979,6 +983,10 @@ mailwatch_free(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
 {
     gint i;
 
+#ifdef HAVE_XFCE_POSIX_SIGNAL_HANDLER_INIT
+    xfce_posix_signal_handler_restore_handler(SIGUSR2);
+#endif
+
     if(mwp->about_dialog)
         gtk_widget_destroy(mwp->about_dialog);
     
@@ -1051,6 +1059,16 @@ mailwatch_show_about(XfcePanelPlugin *plugin,
         g_object_unref(G_OBJECT(icon));
 }
 
+#ifdef HAVE_XFCE_POSIX_SIGNAL_HANDLER_INIT
+static void
+mailwatch_handle_sigusr2(gint signal,
+                         gpointer user_data)
+{
+    XfceMailwatchPlugin *mwp = user_data;
+    xfce_mailwatch_force_update(mwp->mailwatch);
+}
+#endif
+
 static void
 mailwatch_construct(XfcePanelPlugin *plugin)
 {
@@ -1063,6 +1081,21 @@ mailwatch_construct(XfcePanelPlugin *plugin)
         exit(1);
     
     mailwatch_read_config(plugin, mwp);
+
+#ifdef HAVE_XFCE_POSIX_SIGNAL_HANDLER_INIT
+    if(xfce_posix_signal_handler_init(NULL)) {
+        GError *error = NULL;
+
+        if(!xfce_posix_signal_handler_set_handler(SIGUSR2,
+                                                  mailwatch_handle_sigusr2,
+                                                  mwp, &error))
+        {
+            g_warning("Failed to set SIGUSR2 handler: %s", error->message);
+            g_error_free(error);
+        }
+    } else
+        g_warning("failed to init POSIX signal handler helper");
+#endif
 
     g_signal_connect(plugin, "free-data", 
                      G_CALLBACK(mailwatch_free), mwp);

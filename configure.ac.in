@@ -66,6 +66,15 @@ if test "x$have_44_panel" != "xyes"; then
 fi
 AM_CONDITIONAL([BUILD_42_PANEL_PLUGIN], [test "x$have_44_panel" != "xyes"])
 
+dnl see if we have a new enough libxfce4util for the posix signal handler stuff
+saved_CFLAGS="$CFLAGS"
+saved_LIBS="$LIBS"
+CFLAGS="$CFLAGS $LIBXFCE4UTIL_CFLAGS"
+LIBS="$LIBS $LIBXFCE4UTIL_LIBS"
+AC_CHECK_FUNCS([xfce_posix_signal_handler_init])
+CFLAGS="$saved_CFLAGS"
+LIBS="$saved_LIBS"
+
 dnl check for gnutls support
 XDT_CHECK_OPTIONAL_PACKAGE([GNUTLS], [gnutls], [1.2.0], [ssl],
 	[gnutls support for secure IMAP/POP3 connections], [yes])
