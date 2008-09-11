@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-30 02:02-0700\n"
+"POT-Creation-Date: 2008-09-10 21:57-0700\n"
 "PO-Revision-Date: 2008-05-01 23:36+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Euskara <debian-l10n-basque@lists.debian.org>\n"
@@ -74,8 +74,8 @@ msgstr "Posta berri bila arakatze aldia"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:591
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1821
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:425
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:456
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:374
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:411
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:605
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:929
 msgid "minute(s)."
@@ -225,44 +225,44 @@ msgstr "Huts %s fitxategiaren egoera eskuratzerakoan: %s"
 msgid "%s is not a directory. Is %s really a valid maildir?"
 msgstr "%s ez da direktorio bat. Benetan %s baliozko posta karpeta bat dela?"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:304
-msgid "Select Maildir Folder"
-msgstr "Hautatu Maildir Karpeta"
-
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:372
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:335
 msgid "Maildir _Path:"
 msgstr "Maildir B_idea:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:409
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:439
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:340
+msgid "Select Maildir Folder"
+msgstr "Hautatu Maildir Karpeta"
+
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:358
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:394
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:590
 msgid "_Interval:"
 msgstr "_Tartea:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:501
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:450
 msgid "Local Maildir Spool"
 msgstr "Maildir hilara lokala"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:502
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:451
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
 msgstr ""
 "Maildir plugin-ak maildir-moduko posta hilara araka dezake mezu berrien bila."
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:347
-msgid "Select mbox file"
-msgstr "Hautatu mbox fitxategia"
-
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:402
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:370
 msgid "Mbox _Filename:"
 msgstr "Mbox _Fitxategi izena"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:520
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:376
+msgid "Select mbox file"
+msgstr "Hautatu mbox fitxategia"
+
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:475
 msgid "Local Mbox spool"
 msgstr "Mbox hilara lokala"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:521
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
 msgstr ""
 "Mbox plugin-ak mbox-moduko posta hilara lokalak arakatzen ditu mezu berrien "
@@ -387,7 +387,7 @@ msgstr ""
 msgid "Unable to write config file '%s'"
 msgstr "Ezinda '%s' konfigurazio fitxategia idatzi"
 
-#: ../libmailwatch-core/mailwatch.c:388 ../libmailwatch-core/mailwatch.c:390
+#: ../libmailwatch-core/mailwatch.c:406 ../libmailwatch-core/mailwatch.c:408
 #, c-format
 msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
@@ -398,72 +398,72 @@ msgstr ""
 "pasahitzak edo datu pribatuak izan ezkero zure sistemako besteek irakurri "
 "ahal izango dute."
 
-#: ../libmailwatch-core/mailwatch.c:610
+#: ../libmailwatch-core/mailwatch.c:628
 msgid "This mailbox type does not require any configuration settings."
 msgstr "Postakutxa mota honek ez du konfigurazio ezarpenik behar."
 
-#: ../libmailwatch-core/mailwatch.c:637
+#: ../libmailwatch-core/mailwatch.c:655
 msgid "Mailbox _Name:"
 msgstr "Postakutxa _Izena:"
 
-#: ../libmailwatch-core/mailwatch.c:655
+#: ../libmailwatch-core/mailwatch.c:673
 msgid "Mailwatch"
 msgstr "Posta arakatzailea"
 
-#: ../libmailwatch-core/mailwatch.c:656
+#: ../libmailwatch-core/mailwatch.c:674
 msgid "Mailbox name required."
 msgstr "Postakutxa izena beharrezkoa da."
 
-#: ../libmailwatch-core/mailwatch.c:657
+#: ../libmailwatch-core/mailwatch.c:675
 msgid "Please enter a name for the mailbox."
 msgstr "Mesedez idatzi postakutxarentzat izen bat."
 
-#: ../libmailwatch-core/mailwatch.c:698
+#: ../libmailwatch-core/mailwatch.c:716
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "Editatu postakutxa: %s"
 
-#: ../libmailwatch-core/mailwatch.c:757
+#: ../libmailwatch-core/mailwatch.c:775
 msgid "Select Mailbox Type"
 msgstr "Hautatu postakutxa mota"
 
-#: ../libmailwatch-core/mailwatch.c:767
+#: ../libmailwatch-core/mailwatch.c:785
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr ""
 "Postakutxa mota hautatu.  Moten deskribapen bat beherago agertu beharko "
 "litzateke."
 
-#: ../libmailwatch-core/mailwatch.c:821
+#: ../libmailwatch-core/mailwatch.c:839
 msgid "Add New Mailbox"
 msgstr "Postakutxa Berria gehitu"
 
-#: ../libmailwatch-core/mailwatch.c:881
+#: ../libmailwatch-core/mailwatch.c:899
 msgid "Remove Mailbox"
 msgstr "Postakutxa Ezabatu"
 
-#: ../libmailwatch-core/mailwatch.c:882
+#: ../libmailwatch-core/mailwatch.c:900
 msgid "Are you sure?"
 msgstr "Ziur al zaude?"
 
-#: ../libmailwatch-core/mailwatch.c:883
+#: ../libmailwatch-core/mailwatch.c:901
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr ""
 "Postakutxa bat ezabatzeak ezarpen guztiak ezabatzen ditu, eta ezin da "
 "desegin."
 
-#: ../libmailwatch-core/mailwatch.c:948
+#: ../libmailwatch-core/mailwatch.c:966
 msgid "Mailboxes"
 msgstr "Postakutxak"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
 #: ../panel-plugin/mailwatch-plugin-4.2.c:269
-#: ../panel-plugin/mailwatch-plugin.c:105
-#: ../panel-plugin/mailwatch-plugin.c:405
+#: ../panel-plugin/mailwatch-plugin.c:109
+#: ../panel-plugin/mailwatch-plugin.c:419
 msgid "No new mail"
 msgstr "Ez dago posta berririk"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:129
-#: ../panel-plugin/mailwatch-plugin.c:120
+#: ../panel-plugin/mailwatch-plugin.c:124
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
@@ -471,116 +471,116 @@ msgstr[0] "mezu berri %d duzu:"
 msgstr[1] "%d mezu berri dituzu:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:140
-#: ../panel-plugin/mailwatch-plugin.c:131
+#: ../panel-plugin/mailwatch-plugin.c:135
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "esan zenbat mezu beri daude postakutxa bakoitzean|    %d %s-etan"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:251
-#: ../panel-plugin/mailwatch-plugin.c:387
+#: ../panel-plugin/mailwatch-plugin.c:401
 msgid "Xfce Mailwatch"
 msgstr "Xfce PostaArakatzailea"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:252
-#: ../panel-plugin/mailwatch-plugin.c:388
+#: ../panel-plugin/mailwatch-plugin.c:402
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Ezin da posta arakatze applet-a panelera gehitu."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:253
-#: ../panel-plugin/mailwatch-plugin.c:389
+#: ../panel-plugin/mailwatch-plugin.c:403
 msgid "It is possible that your version of GLib does not have threads support."
 msgstr "Posible da zure GLib bertsioak ez haririk onartzea."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:476
-#: ../panel-plugin/mailwatch-plugin.c:608
+#: ../panel-plugin/mailwatch-plugin.c:622
 msgid "Mailwatch log"
 msgstr "PostaArakatze erregistroa"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:534
-#: ../panel-plugin/mailwatch-plugin.c:666
+#: ../panel-plugin/mailwatch-plugin.c:680
 msgid "Log _lines:"
 msgstr "Erregistro _lerroak:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:548
-#: ../panel-plugin/mailwatch-plugin.c:680
+#: ../panel-plugin/mailwatch-plugin.c:694
 msgid "Show log _status in icon"
 msgstr "Bistarazi _erregistro egoera ikonoan"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:594
-#: ../panel-plugin/mailwatch-plugin.c:724
+#: ../panel-plugin/mailwatch-plugin.c:738
 msgid "Select Icon"
 msgstr "Hautatu ikonoa"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:624
 #: ../panel-plugin/mailwatch-plugin-4.2.c:744
-#: ../panel-plugin/mailwatch-plugin.c:755
-#: ../panel-plugin/mailwatch-plugin.c:936
+#: ../panel-plugin/mailwatch-plugin.c:769
+#: ../panel-plugin/mailwatch-plugin.c:950
 msgid "_Normal"
 msgstr "_Normala"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:649
-#: ../panel-plugin/mailwatch-plugin.c:781
+#: ../panel-plugin/mailwatch-plugin.c:795
 msgid "Ne_w mail"
 msgstr "Posta b_erria"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:676
-#: ../panel-plugin/mailwatch-plugin.c:868
+#: ../panel-plugin/mailwatch-plugin.c:882
 msgid "External Programs"
 msgstr "Kanpo aplikazioak"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:688
-#: ../panel-plugin/mailwatch-plugin.c:880
+#: ../panel-plugin/mailwatch-plugin.c:894
 msgid "Run _on click:"
 msgstr "Kli_katzean abiarazi"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:705
-#: ../panel-plugin/mailwatch-plugin.c:897
+#: ../panel-plugin/mailwatch-plugin.c:911
 msgid "Run on new _messages:"
 msgstr "Mezu _berriekin abiarazi:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:718
-#: ../panel-plugin/mailwatch-plugin.c:910
+#: ../panel-plugin/mailwatch-plugin.c:924
 msgid "Icons"
 msgstr "Ikonoak"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:764
-#: ../panel-plugin/mailwatch-plugin.c:956
+#: ../panel-plugin/mailwatch-plugin.c:970
 msgid "Ne_w Mail"
 msgstr "Posta be_rria"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:772
-#: ../panel-plugin/mailwatch-plugin.c:847
+#: ../panel-plugin/mailwatch-plugin.c:861
 msgid "_View Log..."
 msgstr "_Erregistroa ikusi..."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:885
-#: ../panel-plugin/mailwatch-plugin.c:828
+#: ../panel-plugin/mailwatch-plugin.c:842
 #: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Mail Watcher"
 msgstr "Posta arakatzailea"
 
-#: ../panel-plugin/mailwatch-plugin.c:799
+#: ../panel-plugin/mailwatch-plugin.c:813
 #, c-format
 msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
 msgstr "Laguntza ezin da eskuratu ezin bait da 'xfhelp4' abiarazi: %s"
 
-#: ../panel-plugin/mailwatch-plugin.c:801
+#: ../panel-plugin/mailwatch-plugin.c:815
 msgid "Help Unavailable"
 msgstr "Laguntza Erabilezina"
 
-#: ../panel-plugin/mailwatch-plugin.c:802
+#: ../panel-plugin/mailwatch-plugin.c:816
 msgid "Failed to run xfhelp4"
 msgstr "Huts xfhelp4 abiaraztean"
 
-#: ../panel-plugin/mailwatch-plugin.c:1018
+#: ../panel-plugin/mailwatch-plugin.c:1036
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Xfce posta arakatzaile plugina"
 
-#: ../panel-plugin/mailwatch-plugin.c:1020
+#: ../panel-plugin/mailwatch-plugin.c:1038
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "Xfce panelerako posta egiaztatze plugin boteretsua"
 
-#: ../panel-plugin/mailwatch-plugin.c:1021
+#: ../panel-plugin/mailwatch-plugin.c:1039
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
@@ -588,15 +588,15 @@ msgstr ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 
-#: ../panel-plugin/mailwatch-plugin.c:1027
+#: ../panel-plugin/mailwatch-plugin.c:1045
 msgid "Maintainer, Original Author"
 msgstr "Mantentzea, jatorrizko garatzailea"
 
-#: ../panel-plugin/mailwatch-plugin.c:1029
+#: ../panel-plugin/mailwatch-plugin.c:1047
 msgid "Developer"
 msgstr "Garatzailea"
 
-#: ../panel-plugin/mailwatch-plugin.c:1074
+#: ../panel-plugin/mailwatch-plugin.c:1117
 msgid "Update Now"
 msgstr "Eguneratu orain"
 

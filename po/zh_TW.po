@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-30 02:02-0700\n"
+"POT-Creation-Date: 2008-09-10 21:57-0700\n"
 "PO-Revision-Date: 2006-06-12 21:36+0800\n"
 "Last-Translator: Hydonsingore Cia <hydonsingore@educities.edu.tw>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -68,8 +68,8 @@ msgstr "檢查訊息間隔時間(_N)"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:591
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1821
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:425
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:456
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:374
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:411
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:605
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:929
 msgid "minute(s)."
@@ -215,44 +215,44 @@ msgstr "無法取得檔案 %s 的狀態：%s"
 msgid "%s is not a directory. Is %s really a valid maildir?"
 msgstr "%s 不是一個目錄。請問 %s 真的是有效的 maildir 嗎？"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:304
-msgid "Select Maildir Folder"
-msgstr "選擇 Maildir 資料夾"
-
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:372
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:335
 msgid "Maildir _Path:"
 msgstr "Maildir 路徑(_P)"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:409
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:439
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:340
+msgid "Select Maildir Folder"
+msgstr "選擇 Maildir 資料夾"
+
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:358
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:394
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:590
 msgid "_Interval:"
 msgstr "間隔(_I)："
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:501
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:450
 msgid "Local Maildir Spool"
 msgstr "本地 Maildir Spool"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:502
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:451
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
 msgstr ""
 "本 Maildir 外掛程式可以監視本地的 maildir 形式的郵件 spool中是否有新訊息"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:347
-msgid "Select mbox file"
-msgstr "選擇 mbox 檔案"
-
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:402
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:370
 msgid "Mbox _Filename:"
 msgstr "Mbox 檔案名稱(_F)"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:520
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:376
+msgid "Select mbox file"
+msgstr "選擇 mbox 檔案"
+
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:475
 msgid "Local Mbox spool"
 msgstr "本地 Mbox spool"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:521
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
 msgstr "Mbox 外掛程式監視本地 mobox 型的郵件 spool 中是否有新訊息。"
 
@@ -375,7 +375,7 @@ msgstr ""
 msgid "Unable to write config file '%s'"
 msgstr "無法寫入設定檔'%s'"
 
-#: ../libmailwatch-core/mailwatch.c:388 ../libmailwatch-core/mailwatch.c:390
+#: ../libmailwatch-core/mailwatch.c:406 ../libmailwatch-core/mailwatch.c:408
 #, c-format
 msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
@@ -385,68 +385,68 @@ msgstr ""
 "無法設定設定檔'%s'的權限。如果這個檔案包含密碼或其他敏感資訊，您系統上的其他"
 "人可能讀得到。"
 
-#: ../libmailwatch-core/mailwatch.c:610
+#: ../libmailwatch-core/mailwatch.c:628
 msgid "This mailbox type does not require any configuration settings."
 msgstr "本類型的信箱不需要任何組態設定。"
 
-#: ../libmailwatch-core/mailwatch.c:637
+#: ../libmailwatch-core/mailwatch.c:655
 msgid "Mailbox _Name:"
 msgstr "信箱名稱(_N)"
 
-#: ../libmailwatch-core/mailwatch.c:655
+#: ../libmailwatch-core/mailwatch.c:673
 msgid "Mailwatch"
 msgstr "Mailwatch"
 
-#: ../libmailwatch-core/mailwatch.c:656
+#: ../libmailwatch-core/mailwatch.c:674
 msgid "Mailbox name required."
 msgstr "需要信箱名稱。"
 
-#: ../libmailwatch-core/mailwatch.c:657
+#: ../libmailwatch-core/mailwatch.c:675
 msgid "Please enter a name for the mailbox."
 msgstr "請鍵入信箱名稱。"
 
-#: ../libmailwatch-core/mailwatch.c:698
+#: ../libmailwatch-core/mailwatch.c:716
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "編輯信箱：%s"
 
-#: ../libmailwatch-core/mailwatch.c:757
+#: ../libmailwatch-core/mailwatch.c:775
 msgid "Select Mailbox Type"
 msgstr "選擇類型"
 
-#: ../libmailwatch-core/mailwatch.c:767
+#: ../libmailwatch-core/mailwatch.c:785
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr "選擇一種類型的信箱。關於類型的描述在下方。"
 
-#: ../libmailwatch-core/mailwatch.c:821
+#: ../libmailwatch-core/mailwatch.c:839
 msgid "Add New Mailbox"
 msgstr "新增信箱"
 
-#: ../libmailwatch-core/mailwatch.c:881
+#: ../libmailwatch-core/mailwatch.c:899
 msgid "Remove Mailbox"
 msgstr "移除信箱"
 
-#: ../libmailwatch-core/mailwatch.c:882
+#: ../libmailwatch-core/mailwatch.c:900
 msgid "Are you sure?"
 msgstr "您確定嗎？"
 
-#: ../libmailwatch-core/mailwatch.c:883
+#: ../libmailwatch-core/mailwatch.c:901
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr "移除一個信箱會廢棄所有的設定，而且不能反悔。"
 
-#: ../libmailwatch-core/mailwatch.c:948
+#: ../libmailwatch-core/mailwatch.c:966
 msgid "Mailboxes"
 msgstr "信箱"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
 #: ../panel-plugin/mailwatch-plugin-4.2.c:269
-#: ../panel-plugin/mailwatch-plugin.c:105
-#: ../panel-plugin/mailwatch-plugin.c:405
+#: ../panel-plugin/mailwatch-plugin.c:109
+#: ../panel-plugin/mailwatch-plugin.c:419
 msgid "No new mail"
 msgstr "無新信件"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:129
-#: ../panel-plugin/mailwatch-plugin.c:120
+#: ../panel-plugin/mailwatch-plugin.c:124
 #, fuzzy, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
@@ -454,131 +454,131 @@ msgstr[0] "您有 %d 封新訊息："
 msgstr[1] "您有 %d 封新訊息："
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:140
-#: ../panel-plugin/mailwatch-plugin.c:131
+#: ../panel-plugin/mailwatch-plugin.c:135
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:251
-#: ../panel-plugin/mailwatch-plugin.c:387
+#: ../panel-plugin/mailwatch-plugin.c:401
 msgid "Xfce Mailwatch"
 msgstr "Xfce Mailwatch"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:252
-#: ../panel-plugin/mailwatch-plugin.c:388
+#: ../panel-plugin/mailwatch-plugin.c:402
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "無法將郵件監視程式新增到面板中。"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:253
-#: ../panel-plugin/mailwatch-plugin.c:389
+#: ../panel-plugin/mailwatch-plugin.c:403
 msgid "It is possible that your version of GLib does not have threads support."
 msgstr "這可能是因為您 GLib 的版本沒有支援執行緒(threads)。"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:476
-#: ../panel-plugin/mailwatch-plugin.c:608
+#: ../panel-plugin/mailwatch-plugin.c:622
 msgid "Mailwatch log"
 msgstr "Mailwatch 記錄"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:534
-#: ../panel-plugin/mailwatch-plugin.c:666
+#: ../panel-plugin/mailwatch-plugin.c:680
 msgid "Log _lines:"
 msgstr "記錄行數(_L)："
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:548
-#: ../panel-plugin/mailwatch-plugin.c:680
+#: ../panel-plugin/mailwatch-plugin.c:694
 msgid "Show log _status in icon"
 msgstr "在圖示中顯示記錄狀態(_S)"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:594
-#: ../panel-plugin/mailwatch-plugin.c:724
+#: ../panel-plugin/mailwatch-plugin.c:738
 msgid "Select Icon"
 msgstr "選擇圖示"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:624
 #: ../panel-plugin/mailwatch-plugin-4.2.c:744
-#: ../panel-plugin/mailwatch-plugin.c:755
-#: ../panel-plugin/mailwatch-plugin.c:936
+#: ../panel-plugin/mailwatch-plugin.c:769
+#: ../panel-plugin/mailwatch-plugin.c:950
 msgid "_Normal"
 msgstr "正常(_N)"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:649
-#: ../panel-plugin/mailwatch-plugin.c:781
+#: ../panel-plugin/mailwatch-plugin.c:795
 msgid "Ne_w mail"
 msgstr "新信件(_W)"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:676
-#: ../panel-plugin/mailwatch-plugin.c:868
+#: ../panel-plugin/mailwatch-plugin.c:882
 msgid "External Programs"
 msgstr "外部程式"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:688
-#: ../panel-plugin/mailwatch-plugin.c:880
+#: ../panel-plugin/mailwatch-plugin.c:894
 msgid "Run _on click:"
 msgstr "按下後啟動(_O)"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:705
-#: ../panel-plugin/mailwatch-plugin.c:897
+#: ../panel-plugin/mailwatch-plugin.c:911
 msgid "Run on new _messages:"
 msgstr "有新訊息時啟動(_M)："
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:718
-#: ../panel-plugin/mailwatch-plugin.c:910
+#: ../panel-plugin/mailwatch-plugin.c:924
 msgid "Icons"
 msgstr "圖示"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:764
-#: ../panel-plugin/mailwatch-plugin.c:956
+#: ../panel-plugin/mailwatch-plugin.c:970
 msgid "Ne_w Mail"
 msgstr "新信件(_W)"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:772
-#: ../panel-plugin/mailwatch-plugin.c:847
+#: ../panel-plugin/mailwatch-plugin.c:861
 msgid "_View Log..."
 msgstr "檢視記錄(_V)"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:885
-#: ../panel-plugin/mailwatch-plugin.c:828
+#: ../panel-plugin/mailwatch-plugin.c:842
 #: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Mail Watcher"
 msgstr "郵件監視器"
 
-#: ../panel-plugin/mailwatch-plugin.c:799
+#: ../panel-plugin/mailwatch-plugin.c:813
 #, c-format
 msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
 msgstr "「說明」無法使用，因為'xfhelp4'無法執行：%s"
 
-#: ../panel-plugin/mailwatch-plugin.c:801
+#: ../panel-plugin/mailwatch-plugin.c:815
 msgid "Help Unavailable"
 msgstr "「說明」無法使用"
 
-#: ../panel-plugin/mailwatch-plugin.c:802
+#: ../panel-plugin/mailwatch-plugin.c:816
 msgid "Failed to run xfhelp4"
 msgstr "執行 xfhelp4 失敗"
 
-#: ../panel-plugin/mailwatch-plugin.c:1018
+#: ../panel-plugin/mailwatch-plugin.c:1036
 #, fuzzy
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Xfce Mailwatch"
 
-#: ../panel-plugin/mailwatch-plugin.c:1020
+#: ../panel-plugin/mailwatch-plugin.c:1038
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:1021
+#: ../panel-plugin/mailwatch-plugin.c:1039
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:1027
+#: ../panel-plugin/mailwatch-plugin.c:1045
 msgid "Maintainer, Original Author"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:1029
+#: ../panel-plugin/mailwatch-plugin.c:1047
 msgid "Developer"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:1074
+#: ../panel-plugin/mailwatch-plugin.c:1117
 msgid "Update Now"
 msgstr ""
 

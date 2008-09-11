@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-mailwatch-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-30 02:02-0700\n"
+"POT-Creation-Date: 2008-09-10 21:57-0700\n"
 "PO-Revision-Date: 2007-05-20 00:26+0200\n"
 "Last-Translator: Fabio Riga <usul@aruba.it>\n"
 "Language-Team: Italian <xfce-i18n@xfce.org>\n"
@@ -73,8 +73,8 @@ msgstr "Controlla _nuovi messaggi ogni"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:591
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1821
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:425
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:456
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:374
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:411
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:605
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:929
 msgid "minute(s)."
@@ -225,25 +225,25 @@ msgstr "Impossibile ottenere lo stato del file %s: %s"
 msgid "%s is not a directory. Is %s really a valid maildir?"
 msgstr "%s non è una directory. %s è davvero una maildir valida?"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:304
-msgid "Select Maildir Folder"
-msgstr "Selezionare la cartella Maildir"
-
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:372
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:335
 msgid "Maildir _Path:"
 msgstr "_Percorso Maildir:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:409
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:439
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:340
+msgid "Select Maildir Folder"
+msgstr "Selezionare la cartella Maildir"
+
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:358
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:394
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:590
 msgid "_Interval:"
 msgstr "_Intervallo:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:501
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:450
 msgid "Local Maildir Spool"
 msgstr "Spola Maildir locale"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:502
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:451
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
@@ -251,19 +251,19 @@ msgstr ""
 "L'estensione Maildir può controllare la presenza di nuovi messaggi in una "
 "spola di posta locale in stile maildir."
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:347
-msgid "Select mbox file"
-msgstr "Seleziona il file mbox"
-
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:402
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:370
 msgid "Mbox _Filename:"
 msgstr "Nome del _file mbox:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:520
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:376
+msgid "Select mbox file"
+msgstr "Seleziona il file mbox"
+
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:475
 msgid "Local Mbox spool"
 msgstr "Spola mbox locale"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:521
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
 msgstr ""
 "L'estensione Mbox controlla la presenza di nuovi messaggi in una spola "
@@ -390,7 +390,7 @@ msgstr ""
 msgid "Unable to write config file '%s'"
 msgstr "Impossibile scrivere nel file di configurazione \"%s\""
 
-#: ../libmailwatch-core/mailwatch.c:388 ../libmailwatch-core/mailwatch.c:390
+#: ../libmailwatch-core/mailwatch.c:406 ../libmailwatch-core/mailwatch.c:408
 #, c-format
 msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
@@ -401,70 +401,70 @@ msgstr ""
 "file contiene password o altre informazioni sensibili, saranno leggibili da "
 "altri utenti del sistema."
 
-#: ../libmailwatch-core/mailwatch.c:610
+#: ../libmailwatch-core/mailwatch.c:628
 msgid "This mailbox type does not require any configuration settings."
 msgstr "Questo tipo di casella non richiede impostazioni di configurazione."
 
-#: ../libmailwatch-core/mailwatch.c:637
+#: ../libmailwatch-core/mailwatch.c:655
 msgid "Mailbox _Name:"
 msgstr "_Nome della casella:"
 
-#: ../libmailwatch-core/mailwatch.c:655
+#: ../libmailwatch-core/mailwatch.c:673
 msgid "Mailwatch"
 msgstr "Guardaposta"
 
-#: ../libmailwatch-core/mailwatch.c:656
+#: ../libmailwatch-core/mailwatch.c:674
 msgid "Mailbox name required."
 msgstr "È necessario un nome per la casella."
 
-#: ../libmailwatch-core/mailwatch.c:657
+#: ../libmailwatch-core/mailwatch.c:675
 msgid "Please enter a name for the mailbox."
 msgstr "Inserire un nome per la casella."
 
-#: ../libmailwatch-core/mailwatch.c:698
+#: ../libmailwatch-core/mailwatch.c:716
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "Modifica la casella: %s"
 
-#: ../libmailwatch-core/mailwatch.c:757
+#: ../libmailwatch-core/mailwatch.c:775
 msgid "Select Mailbox Type"
 msgstr "Seleziona il tipo di casella"
 
-#: ../libmailwatch-core/mailwatch.c:767
+#: ../libmailwatch-core/mailwatch.c:785
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr ""
 "Selezionare un tipo di casella.  Una descrizione del tipo apparirà sotto."
 
-#: ../libmailwatch-core/mailwatch.c:821
+#: ../libmailwatch-core/mailwatch.c:839
 msgid "Add New Mailbox"
 msgstr "Aggiungi una nuova casella"
 
-#: ../libmailwatch-core/mailwatch.c:881
+#: ../libmailwatch-core/mailwatch.c:899
 msgid "Remove Mailbox"
 msgstr "Rimuovi casella"
 
-#: ../libmailwatch-core/mailwatch.c:882
+#: ../libmailwatch-core/mailwatch.c:900
 msgid "Are you sure?"
 msgstr "Procedere?"
 
-#: ../libmailwatch-core/mailwatch.c:883
+#: ../libmailwatch-core/mailwatch.c:901
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr ""
 "La rimozione della casella scarterà tutte le impostazioni, è irreversibile."
 
-#: ../libmailwatch-core/mailwatch.c:948
+#: ../libmailwatch-core/mailwatch.c:966
 msgid "Mailboxes"
 msgstr "Caselle di posta"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
 #: ../panel-plugin/mailwatch-plugin-4.2.c:269
-#: ../panel-plugin/mailwatch-plugin.c:105
-#: ../panel-plugin/mailwatch-plugin.c:405
+#: ../panel-plugin/mailwatch-plugin.c:109
+#: ../panel-plugin/mailwatch-plugin.c:419
 msgid "No new mail"
 msgstr "Non ci sono nuovi messaggi"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:129
-#: ../panel-plugin/mailwatch-plugin.c:120
+#: ../panel-plugin/mailwatch-plugin.c:124
 #, fuzzy, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
@@ -472,134 +472,134 @@ msgstr[0] "Ci sono %d nuovi messaggi:"
 msgstr[1] "Ci sono %d nuovi messaggi:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:140
-#: ../panel-plugin/mailwatch-plugin.c:131
+#: ../panel-plugin/mailwatch-plugin.c:135
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:251
-#: ../panel-plugin/mailwatch-plugin.c:387
+#: ../panel-plugin/mailwatch-plugin.c:401
 msgid "Xfce Mailwatch"
 msgstr "Guardaposta di Xfce"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:252
-#: ../panel-plugin/mailwatch-plugin.c:388
+#: ../panel-plugin/mailwatch-plugin.c:402
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Impossibile aggiungere l'estensione guardaposta al pannello."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:253
-#: ../panel-plugin/mailwatch-plugin.c:389
+#: ../panel-plugin/mailwatch-plugin.c:403
 msgid "It is possible that your version of GLib does not have threads support."
 msgstr "La versione installata di Glib potrebbe non supportare il thread."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:476
-#: ../panel-plugin/mailwatch-plugin.c:608
+#: ../panel-plugin/mailwatch-plugin.c:622
 msgid "Mailwatch log"
 msgstr "Registro del guardaposta"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:534
-#: ../panel-plugin/mailwatch-plugin.c:666
+#: ../panel-plugin/mailwatch-plugin.c:680
 msgid "Log _lines:"
 msgstr "_Linee del registro:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:548
-#: ../panel-plugin/mailwatch-plugin.c:680
+#: ../panel-plugin/mailwatch-plugin.c:694
 msgid "Show log _status in icon"
 msgstr "Mostra lo _stato del registro nell'icona"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:594
-#: ../panel-plugin/mailwatch-plugin.c:724
+#: ../panel-plugin/mailwatch-plugin.c:738
 msgid "Select Icon"
 msgstr "Selezionare l'icona"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:624
 #: ../panel-plugin/mailwatch-plugin-4.2.c:744
-#: ../panel-plugin/mailwatch-plugin.c:755
-#: ../panel-plugin/mailwatch-plugin.c:936
+#: ../panel-plugin/mailwatch-plugin.c:769
+#: ../panel-plugin/mailwatch-plugin.c:950
 msgid "_Normal"
 msgstr "_Normale"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:649
-#: ../panel-plugin/mailwatch-plugin.c:781
+#: ../panel-plugin/mailwatch-plugin.c:795
 msgid "Ne_w mail"
 msgstr "Nuova _posta"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:676
-#: ../panel-plugin/mailwatch-plugin.c:868
+#: ../panel-plugin/mailwatch-plugin.c:882
 msgid "External Programs"
 msgstr "Programmi esterni"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:688
-#: ../panel-plugin/mailwatch-plugin.c:880
+#: ../panel-plugin/mailwatch-plugin.c:894
 msgid "Run _on click:"
 msgstr "Quando premuto _esegui:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:705
-#: ../panel-plugin/mailwatch-plugin.c:897
+#: ../panel-plugin/mailwatch-plugin.c:911
 msgid "Run on new _messages:"
 msgstr ""
 "All'arrivo di nuovi\n"
 "_messaggi esegui:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:718
-#: ../panel-plugin/mailwatch-plugin.c:910
+#: ../panel-plugin/mailwatch-plugin.c:924
 msgid "Icons"
 msgstr "Icone"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:764
-#: ../panel-plugin/mailwatch-plugin.c:956
+#: ../panel-plugin/mailwatch-plugin.c:970
 msgid "Ne_w Mail"
 msgstr "Nuova _posta"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:772
-#: ../panel-plugin/mailwatch-plugin.c:847
+#: ../panel-plugin/mailwatch-plugin.c:861
 msgid "_View Log..."
 msgstr "_Vista registro..."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:885
-#: ../panel-plugin/mailwatch-plugin.c:828
+#: ../panel-plugin/mailwatch-plugin.c:842
 #: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Mail Watcher"
 msgstr "Guardaposta"
 
-#: ../panel-plugin/mailwatch-plugin.c:799
+#: ../panel-plugin/mailwatch-plugin.c:813
 #, c-format
 msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
 msgstr ""
 "L'aiuto non è disponibile perché \"xfhelp4\" non può essere eseguito: %s"
 
-#: ../panel-plugin/mailwatch-plugin.c:801
+#: ../panel-plugin/mailwatch-plugin.c:815
 msgid "Help Unavailable"
 msgstr "L'aiuto non è disponibile"
 
-#: ../panel-plugin/mailwatch-plugin.c:802
+#: ../panel-plugin/mailwatch-plugin.c:816
 msgid "Failed to run xfhelp4"
 msgstr "Esecuzione di xfhelp4 fallita"
 
-#: ../panel-plugin/mailwatch-plugin.c:1018
+#: ../panel-plugin/mailwatch-plugin.c:1036
 #, fuzzy
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Guardaposta di Xfce"
 
-#: ../panel-plugin/mailwatch-plugin.c:1020
+#: ../panel-plugin/mailwatch-plugin.c:1038
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:1021
+#: ../panel-plugin/mailwatch-plugin.c:1039
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:1027
+#: ../panel-plugin/mailwatch-plugin.c:1045
 msgid "Maintainer, Original Author"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:1029
+#: ../panel-plugin/mailwatch-plugin.c:1047
 msgid "Developer"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:1074
+#: ../panel-plugin/mailwatch-plugin.c:1117
 msgid "Update Now"
 msgstr ""
 
