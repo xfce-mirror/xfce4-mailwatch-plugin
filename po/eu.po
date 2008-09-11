@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-10 21:57-0700\n"
-"PO-Revision-Date: 2008-05-01 23:36+0200\n"
+"PO-Revision-Date: 2008-09-11 10:29+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Euskara <debian-l10n-basque@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:487
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:548
 msgid "Previous thread hasn't exited yet, not checking mail this time."
-msgstr ""
+msgstr "Aurreko aria ez da itxi oraindik, ez da posta egiaztatuko orain"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
@@ -106,7 +106,7 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:242
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
 msgid "Authentication failed.  Perhaps your username or password is incorrect?"
-msgstr ""
+msgstr "Autentifikazio erroea. Agian zure erabiltzaile-izen edo pasahitza okerrak da?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
@@ -227,11 +227,11 @@ msgstr "%s ez da direktorio bat. Benetan %s baliozko posta karpeta bat dela?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:335
 msgid "Maildir _Path:"
-msgstr "Maildir B_idea:"
+msgstr "Maildir b_idea:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:340
 msgid "Select Maildir Folder"
-msgstr "Hautatu Maildir Karpeta"
+msgstr "Hautatu maildir karpeta"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:358
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:394
@@ -241,18 +241,17 @@ msgstr "_Tartea:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:450
 msgid "Local Maildir Spool"
-msgstr "Maildir hilara lokala"
+msgstr "Maildir ilara lokala"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:451
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
-msgstr ""
-"Maildir plugin-ak maildir-moduko posta hilara araka dezake mezu berrien bila."
+msgstr "Maildir plugin-ak maildir-moduko posta ilara araka dezake mezu berrien bila."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:370
 msgid "Mbox _Filename:"
-msgstr "Mbox _Fitxategi izena"
+msgstr "Mbox _fitxategi-izena:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:376
 msgid "Select mbox file"
@@ -260,12 +259,12 @@ msgstr "Hautatu mbox fitxategia"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:475
 msgid "Local Mbox spool"
-msgstr "Mbox hilara lokala"
+msgstr "Mbox ilara lokala"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
 msgstr ""
-"Mbox plugin-ak mbox-moduko posta hilara lokalak arakatzen ditu mezu berrien "
+"Mbox plugin-ak mbox-moduko posta ilara lokalak arakatzen ditu mezu berrien "
 "bila."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
@@ -327,17 +326,17 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-net-conn.c:836
 #, c-format
 msgid "Operation aborted"
-msgstr ""
+msgstr "Ekintza utzia"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:496
 #, c-format
 msgid "Could not find host \"%s\": %s"
-msgstr ""
+msgstr "Ezin da \"%s\" ostalaria aurkitu: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:580
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to connect to server \"%s\": %s"
-msgstr "Huts zerbitzarira konektatzerakoan: %s"
+msgstr "Huts \"%s\" zerbitzarira konektatzerakoan: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:643
 #, c-format
@@ -345,34 +344,34 @@ msgid "Not compiled with SSL/TLS support"
 msgstr "Ez da SSL/TLS onarpenarekin konpilatu"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:699
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to send encrypted data: %s"
-msgstr "Huts zerbitzarira konektatzerakoan: %s"
+msgstr "Huts enkriptatutako datuak bidaltzerakoan: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:732
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to send data: %s"
-msgstr "Huts zerbitzarira konektatzerakoan: %s"
+msgstr "Huts datuak bidaltzerakoan: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:813
 #, c-format
 msgid "Failed to receive encrypted data: %s"
-msgstr ""
+msgstr "Huts enkriptatutako datuak jasotzerakoan: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:843
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to receive data: %s"
-msgstr "Huts zerbitzarira konektatzerakoan: %s"
+msgstr "Huts datuak jasotzerakoan: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:941
 #, c-format
 msgid "Canceling read: read too many bytes without a newline"
-msgstr ""
+msgstr "Irakurketa uzten: byte gehiegi irakurri dira lerro berri gabe"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:950
 #, c-format
 msgid "Buffer is not large enough to hold a full line (%d < %d)"
-msgstr ""
+msgstr "Bufferra ez da gai lerro oso bat mantentzeko (%d < %d)"
 
 #: ../libmailwatch-core/mailwatch.c:126
 msgid ""
@@ -604,36 +603,3 @@ msgstr "Eguneratu orain"
 msgid "Check mail from multiple mailboxes"
 msgstr "Postakutxa anitzetako posta arakatu"
 
-#~ msgid ""
-#~ "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
-#~ "the panel may hang on close."
-#~ msgstr ""
-#~ "Ezin da socket-a ez-blokeatu egoeran ezarri. Konexio eten ezkero panela "
-#~ "izoztu egin daiteke ixterakoan."
-
-#~ msgid ""
-#~ "Unable to return socket to blocking mode.  Data may not be retreived "
-#~ "correctly."
-#~ msgstr ""
-#~ "Ezin da socket-a blokeo modura itzuli.  Datuak ez dira behar bezala "
-#~ "jasoko."
-
-#~ msgid ""
-#~ "The IMAP server returned a response we weren't quite expecting.  This "
-#~ "might be OK, or this plugin might need to be modified to support your "
-#~ "mail server if the new message counts are incorrect."
-#~ msgstr ""
-#~ "IMAP zerbitzariak espero ez genuen erantzun bat eman du.  Hau agian ondo "
-#~ "egon liteke, edo plugin hau eraldatua izan behar da zure zerbitzaria "
-#~ "onartzeko mezu berri kopurua ez bada zuzena."
-
-#~ msgid "XfceMailwatch: TLS handshake failed: %s"
-#~ msgstr "XfceMailwatch: TLS agurrak huts egin du: %s"
-
-#~ msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
-#~ msgstr ""
-#~ "XfceMailwatch: TLS agurrak huts egin du: ez dago SSL onarpenaz "
-#~ "konpilaturik."
-
-#~ msgid "A secure connection was requested, but gnutls was not initialised"
-#~ msgstr "Konexio seguru bat eskatu da, baina gnutls ez dago abiarazirik"
