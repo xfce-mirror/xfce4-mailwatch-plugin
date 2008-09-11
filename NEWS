@@ -37,6 +37,8 @@ Version 1.1.0svn:
       just be more resource-friendly in general.
     * Allow non-square plugin buttons.
     * Allow deselecting INBOX in the IMAP folder list (bug 4150).
+    * Use GtkFileChooserButton for mbox and maildir file/dir entries rather
+      than a GtkEntry+GtkButton.
 
 
 Version 1.0.1 (20 Apr 2006):

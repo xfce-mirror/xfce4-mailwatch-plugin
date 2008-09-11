@@ -312,58 +312,26 @@ mbox_restore_settings( XfceMailwatchMailbox *mailbox, GList *settings )
     g_mutex_unlock( mbox->settings_mutex );
 }
 
-static gboolean
-mbox_path_entry_changed_cb( GtkWidget *widget, XfceMailwatchMboxMailbox *mbox )
+static void
+mbox_file_set_cb( GtkWidget *button,
+        XfceMailwatchMboxMailbox *mbox )
 {
-    const gchar     *text;
+    gchar *text;
+
+    text = gtk_file_chooser_get_filename( GTK_FILE_CHOOSER( button ) );
 
     g_mutex_lock( mbox->settings_mutex );
     if ( mbox->fn ) {
         g_free( mbox->fn );
     }
 
-    text = gtk_entry_get_text( GTK_ENTRY( widget ) );
     if ( text ) {
-        mbox->fn = g_strdup( text );
+        mbox->fn = text;
     }
     else {
         mbox->fn = g_strdup( "" );
     }
     g_mutex_unlock( mbox->settings_mutex );
-
-    return ( FALSE );
-}
-
-static void
-mbox_browse_button_clicked_cb( GtkWidget *button,
-        XfceMailwatchMboxMailbox *mbox )
-{
-    GtkWidget       *chooser;
-    gint            result;
-    GtkWidget       *top;
-
-    top = gtk_widget_get_toplevel( button );
-
-    chooser = gtk_file_chooser_dialog_new( _( "Select mbox file" ),
-            GTK_WINDOW( top ),
-            GTK_FILE_CHOOSER_ACTION_OPEN,
-            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-            GTK_STOCK_OK, GTK_RESPONSE_OK,
-            NULL );
-    if ( mbox->fn ) {
-        gtk_file_chooser_set_filename( GTK_FILE_CHOOSER( chooser ), mbox->fn );
-    }
-
-    result = gtk_dialog_run( GTK_DIALOG( chooser ) );
-    if ( result == GTK_RESPONSE_OK ) {
-        gchar       *fn =
-            gtk_file_chooser_get_filename( GTK_FILE_CHOOSER( chooser ) );
-        GtkWidget   *entry = g_object_get_data( G_OBJECT( button ), "mbox_entry" );
-
-        gtk_entry_set_text( GTK_ENTRY( entry ), ( fn ) ? fn : "" );
-        g_free( fn );
-    }
-    gtk_widget_destroy( chooser );
 }
 
 static void
@@ -386,8 +354,8 @@ mbox_get_setup_page( XfceMailwatchMailbox *mailbox )
 {
     XfceMailwatchMboxMailbox    *mbox = XFCE_MAILWATCH_MBOX_MAILBOX( mailbox );
     GtkWidget                   *vbox, *hbox;
-    GtkWidget                   *label, *entry;
-    GtkWidget                   *button, *image, *spinner;
+    GtkWidget                   *label;
+    GtkWidget                   *button, *spinner;
     GtkSizeGroup                *sg;
 
     vbox = gtk_vbox_new( FALSE, BORDER / 2 );
@@ -405,32 +373,19 @@ mbox_get_setup_page( XfceMailwatchMailbox *mailbox )
 
     gtk_size_group_add_widget( GTK_SIZE_GROUP( sg ), label );
 
-    entry = gtk_entry_new();
-    gtk_entry_set_activates_default( GTK_ENTRY( entry ), TRUE );
+    button = gtk_file_chooser_button_new( _("Select mbox file"),
+                                          GTK_FILE_CHOOSER_ACTION_OPEN );
     g_mutex_lock( mbox->settings_mutex );
     if ( mbox->fn ) {
-        gtk_entry_set_text( GTK_ENTRY( entry ), mbox->fn );
+        gtk_file_chooser_set_filename( GTK_FILE_CHOOSER( button ), mbox->fn );
     }
     g_mutex_unlock( mbox->settings_mutex );
-    gtk_widget_show( entry );
-    gtk_box_pack_start( GTK_BOX( hbox ), entry, FALSE, FALSE, 0 );
-    gtk_label_set_mnemonic_widget( GTK_LABEL( label ), entry );
-
-    g_signal_connect( G_OBJECT( entry ), "changed",
-            G_CALLBACK( mbox_path_entry_changed_cb ), mbox );
-    
-    button = gtk_button_new();
     gtk_widget_show( button );
+    gtk_box_pack_start( GTK_BOX( hbox ), button, TRUE, TRUE, 0 );
+    g_signal_connect( G_OBJECT( button ), "file-set",
+            G_CALLBACK( mbox_file_set_cb ), mbox );
 
-    image = gtk_image_new_from_stock( GTK_STOCK_OPEN, GTK_ICON_SIZE_LARGE_TOOLBAR );
-    gtk_widget_show( image );
-
-    gtk_container_add( GTK_CONTAINER( button ), image );
-    gtk_box_pack_start( GTK_BOX( hbox ), button, FALSE, FALSE, 0 );
-
-    g_object_set_data( G_OBJECT( button ), "mbox_entry", entry );
-    g_signal_connect( G_OBJECT( button ), "clicked",
-            G_CALLBACK( mbox_browse_button_clicked_cb ), mbox );
+    gtk_label_set_mnemonic_widget( GTK_LABEL( label ), button );
 
     hbox = gtk_hbox_new( FALSE, BORDER );
     gtk_widget_show( hbox );

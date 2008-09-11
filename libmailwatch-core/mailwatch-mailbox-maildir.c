@@ -268,60 +268,23 @@ maildir_restore_param_list( XfceMailwatchMailbox *mailbox, GList *params )
     DBG( "<<--" );
 }
 
-static gboolean
-maildir_path_entry_changed_cb( GtkWidget *widget, XfceMailwatchMaildirMailbox *maildir )
-{
-    const gchar                 *text;
-
-    DBG( "-->>" );
-
-    g_mutex_lock( maildir->mutex );
-    if ( maildir->path ) {
-        g_free( maildir->path );
-    }
-    
-    text = gtk_entry_get_text( GTK_ENTRY( widget ) );
-    maildir->path = g_strdup( text ? text : "" );
-
-    g_mutex_unlock( maildir->mutex );
-
-    DBG( "<<--" );
-
-    return ( FALSE );
-}
-
 static void
-maildir_browse_button_clicked_cb( GtkWidget *button,
+maildir_folder_set_cb( GtkWidget *button,
         XfceMailwatchMaildirMailbox *maildir )
 {
-    GtkWidget       *chooser;
-    gint            result;
-    GtkWidget       *parent;
+    gchar *folder;
 
     DBG( "-->>" );
 
-    parent = gtk_widget_get_toplevel( button );
-    chooser = gtk_file_chooser_dialog_new( _( "Select Maildir Folder" ),
-            GTK_WINDOW( parent ),
-            GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
-            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-            GTK_STOCK_OPEN, GTK_RESPONSE_OK,
-            NULL );
-    if ( maildir->path ) {
-        gtk_file_chooser_set_filename( GTK_FILE_CHOOSER( chooser ), maildir->path );
+    folder = gtk_file_chooser_get_filename( GTK_FILE_CHOOSER( button ) );
+    g_mutex_lock( maildir->mutex );
+    g_free( maildir->path );
+    if( folder ) {
+        maildir->path = folder;
+    } else {
+        maildir->path = g_strdup( "" );
     }
-    
-    result = gtk_dialog_run( GTK_DIALOG( chooser ) );
-    if ( result == GTK_RESPONSE_OK ) {
-        gchar       *path =
-            gtk_file_chooser_get_filename( GTK_FILE_CHOOSER( chooser ) );
-        GtkWidget   *entry = g_object_get_data( G_OBJECT( button ), "maildir_entry" );
-        
-        gtk_entry_set_text( GTK_ENTRY( entry ), ( path ) ? path : "" );
-        g_free( path );
-    }
-
-    gtk_widget_destroy( chooser );
+    g_mutex_unlock( maildir->mutex );
 
     DBG( "<<--" );
 }
@@ -353,8 +316,8 @@ maildir_get_setup_page( XfceMailwatchMailbox *mailbox )
 {
     XfceMailwatchMaildirMailbox *maildir = XFCE_MAILWATCH_MAILDIR_MAILBOX( mailbox );
     GtkWidget                   *vbox, *hbox;
-    GtkWidget                   *label, *entry;
-    GtkWidget                   *button, *image;
+    GtkWidget                   *label;
+    GtkWidget                   *button;
     GtkWidget                   *spin;
     GtkSizeGroup                *sg;
 
@@ -374,33 +337,19 @@ maildir_get_setup_page( XfceMailwatchMailbox *mailbox )
     gtk_box_pack_start( GTK_BOX( hbox ), label, FALSE, FALSE, 0 );
     gtk_size_group_add_widget( sg, label );
 
-    entry = gtk_entry_new();
-    gtk_entry_set_activates_default( GTK_ENTRY ( entry ), TRUE );
+    button = gtk_file_chooser_button_new( _("Select Maildir Folder"),
+                                          GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER );
     g_mutex_lock( maildir->mutex );
     if ( maildir->path ) {
-        gtk_entry_set_text( GTK_ENTRY( entry ), maildir->path );
+        gtk_file_chooser_set_filename( GTK_FILE_CHOOSER( button ), maildir->path );
     }
     g_mutex_unlock( maildir->mutex );
-    
-    gtk_widget_show( entry );
-    gtk_box_pack_start( GTK_BOX( hbox ), entry, FALSE, FALSE, 0 );
-    gtk_label_set_mnemonic_widget( GTK_LABEL( label ), entry );
-
-    g_signal_connect( G_OBJECT( entry ), "changed",
-            G_CALLBACK( maildir_path_entry_changed_cb ), maildir );
-
-    button = gtk_button_new();
     gtk_widget_show( button );
+    gtk_box_pack_start( GTK_BOX( hbox ), button, TRUE, TRUE, 0 );
+    g_signal_connect( G_OBJECT( button ), "file-set",
+            G_CALLBACK( maildir_folder_set_cb ), maildir );
 
-    image = gtk_image_new_from_stock( GTK_STOCK_OPEN, GTK_ICON_SIZE_LARGE_TOOLBAR );
-    gtk_widget_show( image );
-
-    gtk_container_add( GTK_CONTAINER( button ), image );
-    gtk_box_pack_start( GTK_BOX( hbox ), button, FALSE, FALSE, 0 );
-
-    g_object_set_data( G_OBJECT( button ), "maildir_entry", entry );
-    g_signal_connect( G_OBJECT( button ), "clicked",
-            G_CALLBACK( maildir_browse_button_clicked_cb ), maildir );
+    gtk_label_set_mnemonic_widget( GTK_LABEL( label ), button );
 
     hbox = gtk_hbox_new( FALSE, BORDER );
     gtk_widget_show( hbox );
