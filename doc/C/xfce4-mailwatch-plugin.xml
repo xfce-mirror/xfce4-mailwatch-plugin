@@ -2,7 +2,7 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
           "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd"
 [
-    <!ENTITY date "September 2005">
+    <!ENTITY date "September 2008">
     <!ENTITY version SYSTEM "../version">
     <!ENTITY app "<application>Xfce4 Mailwatch Plugin</application>">
     <!ENTITY sapp "<application>Mailwatch</application>">
@@ -36,7 +36,7 @@
   </copyright>
 
   <copyright>
-    <year>2005-2006</year> <holder>Brian Tarricone</holder>
+    <year>2005-2008</year> <holder>Brian Tarricone</holder>
   </copyright>
 
   <authorgroup>
@@ -83,14 +83,15 @@
 <sect1 id="mailwatch-usage">
   <title>Usage</title>
 
-  <para>The &sapp; icon remains gray (default color) as long as it does 
+  <para>The &sapp; icon remains grey (default color) as long as it does 
 	not detect any new mail. As soon as it checks, and there is new mail, 
 	the mail icon will turn gold (default color). By clicking on the mail 
-	icon, a command, to be defined in the properties dialog box, will be 
-	launched. A forced mail check can be obtained by middle-clicking
+	icon, a command, which can be defined in the properties dialog box,
+    will be launched. A mail check can be forced by middle-clicking
 	the &sapp; icon in the panel. Right-clicking on the &sapp; icon
 	shows a context menu from which you can choose <guimenuitem>Properties</guimenuitem>
-	to access the configuration options.	
+	to access the configuration options.  There are also menu items
+    for forcing an update and the about box.
   </para>
 </sect1>
 
@@ -321,11 +322,10 @@
     </variablelist>
 
     <para>The default setup uses unencrypted connections and the
-      default &imap; folder. For most users this is enough, and everything
-      should work now. Mail server implementations differ, and this
-      setup might not work for you. For example, you service provider
-      might require encrypted connections (which you should use wherever
-      possible). For that there's the advanced settings dialog.
+      default &imap; folder. It is highly recommended that you select
+      an encrypted connection type if your mail provider supports it.
+      Others may require an encrypted connection. For that there's the
+      advanced settings dialog.
     </para>
 
     <sect3 id="mailwatch-mailbox-imap-advanced">
@@ -355,21 +355,20 @@
           
           <listitem>
             <para>If your &imap; service provider supports encryption
-              for client connections, you should take advantage of that.
+              for client connections, you should take advantage of it.
               There are generally two implementations of encrypted
-              connections. The most common one, even though it's against
-              the &imap; RFC uses the port 993 for client connections.
-              In this scheme, the connection is encrypted from the
-              beginning, as the encryption is initialized before the
-              actual &imap; traffic. The other, less common method, uses
-              the ordinary &imap; port for initializing
-              the connection and then, before any sensitive data is
-              transmitted, initializes the encryption with the
-              <emphasis>STARTTLS</emphasis> command. &sapp; provides
+              connections. The most common one uses port 993 for client
+              connections and encrypts the connection from the start.
+              The other, less common method, uses the ordinary &imap; port
+              for initializing the connection and then, before any
+              sensitive data is transmitted, initializes the encryption
+              with the <emphasis>STARTTLS</emphasis> command. &sapp; provides
               default settings for these setups, which are
               <guimenuitem>Use SSL/TLS on alternate port</guimenuitem> and
               <guimenuitem>Use SSL/TLS via STARTTLS</guimenuitem>
-              respectively.
+              respectively.  If you're not sure which option your mail
+              provider supports, you can test via trial and error by using
+              each setting, and then checking the log viewer for errors.
             </para>
 
             <para>There's also the possibility of using a non-standard &imap;
@@ -417,7 +416,9 @@
         possible that you'd receive new mail in folders other than your
         inbox.  If that's the case, you can use the <guilabel>New Mail
         Folders</guilabel>  dialog to instruct &sapp; to check mail in
-        multiple folders.
+        multiple folders.  The dialog will connect to your mail server
+        and fetch a list of folders for you to select.  Of course, you'll
+        need to enter the server information first.
       </para>
     </sect3>
 
@@ -427,9 +428,9 @@
     <title>POP3</title>
     
     <para>&pop;, short for <emphasis>Post Office Protocol Version 3
-      </emphasis>, is another common type of remote mailboxes. Because
+      </emphasis>, is another common type of remote mailbox. Because
       of its remote nature, the settings for &pop; are almost the same
-      as &imap;, with some omissions as, &pop; isn't as advanced a protocol
+      as &imap;, with some omissions, as &pop; isn't as advanced a protocol
       as &imap;.
     </para>
 
@@ -523,26 +524,21 @@
           <term>Connection</term>
 
           <listitem>
-            <para>
-              By default, due common practice, &sapp; attempts
-              to access the mailbox without encrypting the traffic
-              between the local host and the mail server. For those,
-              whose service provider supports encrypted connections,
-              &sapp; supports two different methods of encryption. 
-              First one, quite commonly used, is to use an alternate
-              port (default: 995) for encrypted connections. This way,
-              the connection is encrypted from the beginning. The
-              setting to choose from the dropdown list is
-              <guimenuitem>Use SSL/TLS on alternate port</guimenuitem>
-              for this method. The other, that uses the default &pop;
-              port 110 and takes advantage of the
-              <emphasis>STARTTLS</emphasis> method of the protocol,
-              is chosen with
-              <guimenuitem>Use SSL/TLS via STARTTLS</guimenuitem>.
-              If your service provider requires a port that is different
-              of the defaults provided, you may define it by checking
-              the <guilabel>Use non-standard POP3 port</guilabel>
-              checkbox, and typing in the correct port number.
+            <para>If your &pop; service provider supports encryption
+              for client connections, you should take advantage of it.
+              There are generally two implementations of encrypted
+              connections. The most common one uses port 995 for client
+              connections and encrypts the connection from the start.
+              The other, less common method, uses the ordinary &pop; port
+              for initializing the connection and then, before any
+              sensitive data is transmitted, initializes the encryption
+              with the <emphasis>STLS</emphasis> command. &sapp; provides
+              default settings for these setups, which are
+              <guimenuitem>Use SSL/TLS on alternate port</guimenuitem> and
+              <guimenuitem>Use SSL/TLS via STARTTLS</guimenuitem>
+              respectively.  If you're not sure which option your mail
+              provider supports, you can test via trial and error by using
+              each setting, and then checking the log viewer for errors.
             </para>
           </listitem>
         </varlistentry>
@@ -729,8 +725,8 @@
     <title>MH Maildir</title>
     
     <para>MH Maildir is a variant of the Maildir format.  For a MH
-      Maildir, &sapp; reads your
-      <envar>$HOME</envar><filename>/.mh_profile</filename> for its
+      Maildir mailbox, &sapp; reads your
+      <envar>$HOME</envar><filename>/.mh_profile</filename> file for its
       configuration, so there are no actual settings specific to MH
       mailboxes.
     </para>

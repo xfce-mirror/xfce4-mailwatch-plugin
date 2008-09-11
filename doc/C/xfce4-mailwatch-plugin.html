@@ -1,115 +1,116 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Xfce 4 Mailwatch Plugin</title><link rel="stylesheet" href="../xfce.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.69.1"><link rel="start" href="#xfce4-mailwatch-plugin" title="Xfce 4 Mailwatch Plugin"><link rel="next" href="#mailwatch-introduction" title="Introduction"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="article" lang="en"><div class="titlepage"><div><div><h1 class="title"><a name="xfce4-mailwatch-plugin"></a>Xfce 4 Mailwatch Plugin</h1></div><div><div class="authorgroup"><div class="author"><h3 class="author"><span class="firstname">Pasi</span> <span class="surname">Orovuo</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a href="mailto:pasi.ov@gmail.com">pasi.ov@gmail.com</a>&gt;</code></p></div></div></div><div class="author"><h3 class="author"><span class="firstname">Brian</span> <span class="surname">Tarricone</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a href="mailto:bjt23@cornell.edu">bjt23@cornell.edu</a>&gt;</code></p></div></div></div></div></div><div><span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="releaseinfo">This manual describes <span xmlns="" class="emphasis"><em><strong class="application"><code>Xfce4 Mailwatch Plugin</code></strong></em></span>
-    version 1.0.2svn.
-  <br></br></span></div><div><p class="copyright">Copyright © 2005-2006 Pasi Orovuo</p></div><div><p class="copyright">Copyright © 2005-2006 Brian Tarricone</p></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="sect1"><a href="#mailwatch-introduction">Introduction</a></span></dt><dt><span class="sect1"><a href="#mailwatch-usage">Usage</a></span></dt><dt><span class="sect1"><a href="#mailwatch-properties">Properties</a></span></dt><dt><span class="sect1"><a href="#mailwatch-mailboxes">Mailbox configuration</a></span></dt><dd><dl><dt><span class="sect2"><a href="#mailwatch-mailbox-imap">IMAP</a></span></dt><dt><span class="sect2"><a href="#mailwatch-mailbox-pop3">POP3</a></span></dt><dt><span class="sect2"><a href="#mailwatch-mailbox-gmail">GMail</a></span></dt><dt><span class="sect2"><a href="#mailwatch-mailbox-maildir">Maildir</a></span></dt><dt><span class="sect2"><a href="#mailwatch-mailbox-mbox">Mbox</a></span></dt><dt><span class="sect2"><a href="#mailwatch-mailbox-mh">MH Maildir</a></span></dt></dl></dd><dt><span class="sect1"><a href="#mailwatch-about">About <strong class="application"><code>Mailwatch</code></strong></a></span></dt></dl></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="mailwatch-introduction"></a>Introduction</h2></div></div></div><p><strong class="application"><code>Xfce4 Mailwatch Plugin</code></strong> is a multi-protocol, multi-mailbox mail watcher for the
-    <a href="xfce4-panel.html" target="_top">Xfce4 panel</a>.
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Xfce 4 Mailwatch Plugin</title><link rel="stylesheet" href="../xfce.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="#xfce4-mailwatch-plugin" title="Xfce 4 Mailwatch Plugin"><link rel="next" href="#mailwatch-introduction" title="Introduction"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="article" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="xfce4-mailwatch-plugin"></a>Xfce 4 Mailwatch Plugin</h2></div><div><div class="authorgroup"><div class="author"><h3 class="author"><span class="firstname">Pasi</span> <span class="surname">Orovuo</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a class="email" href="mailto:pasi.ov@gmail.com">pasi.ov@gmail.com</a>&gt;</code></p></div></div></div><div class="author"><h3 class="author"><span class="firstname">Brian</span> <span class="surname">Tarricone</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a class="email" href="mailto:bjt23@cornell.edu">bjt23@cornell.edu</a>&gt;</code></p></div></div></div></div></div><div><span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="releaseinfo">This manual describes <span xmlns="" class="emphasis"><em><strong class="application"><code>Xfce4 Mailwatch Plugin</code></strong></em></span>
+    version 1.1.0svn-r5341.
+  <br></br></span></div><div><p class="copyright">Copyright © 2005-2006 Pasi Orovuo</p></div><div><p class="copyright">Copyright © 2005-2008 Brian Tarricone</p></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="sect1"><a href="#mailwatch-introduction">Introduction</a></span></dt><dt><span class="sect1"><a href="#mailwatch-usage">Usage</a></span></dt><dt><span class="sect1"><a href="#mailwatch-properties">Properties</a></span></dt><dt><span class="sect1"><a href="#mailwatch-mailboxes">Mailbox configuration</a></span></dt><dd><dl><dt><span class="sect2"><a href="#mailwatch-mailbox-imap">IMAP</a></span></dt><dt><span class="sect2"><a href="#mailwatch-mailbox-pop3">POP3</a></span></dt><dt><span class="sect2"><a href="#mailwatch-mailbox-gmail">GMail</a></span></dt><dt><span class="sect2"><a href="#mailwatch-mailbox-maildir">Maildir</a></span></dt><dt><span class="sect2"><a href="#mailwatch-mailbox-mbox">Mbox</a></span></dt><dt><span class="sect2"><a href="#mailwatch-mailbox-mh">MH Maildir</a></span></dt></dl></dd><dt><span class="sect1"><a href="#mailwatch-about">About <strong class="application"><code>Mailwatch</code></strong></a></span></dt></dl></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="mailwatch-introduction"></a>Introduction</h2></div></div></div><p><strong class="application"><code>Xfce4 Mailwatch Plugin</code></strong> is a multi-protocol, multi-mailbox mail watcher for the
+    <a class="ulink" href="xfce4-panel.html" target="_top">Xfce4 panel</a>.
     Currently, the protocols supported are:
     
     </p><div class="itemizedlist"><ul type="disc"><li><p>IMAP (SSL/TLS and cleartext)</p></li><li><p>POP3 (SSL/TLS and cleartext)</p></li><li><p>GMail mailbox (HTTPS)</p></li><li><p>Mbox mail spool (local)</p></li><li><p>Maildir mail spool (local)</p></li><li><p>MH-Maildir mail spool (local)</p></li></ul></div><p>
     
-  </p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="mailwatch-usage"></a>Usage</h2></div></div></div><p>The <strong class="application"><code>Mailwatch</code></strong> icon remains gray (default color) as long as it does 
+  </p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="mailwatch-usage"></a>Usage</h2></div></div></div><p>The <strong class="application"><code>Mailwatch</code></strong> icon remains grey (default color) as long as it does 
 	not detect any new mail. As soon as it checks, and there is new mail, 
 	the mail icon will turn gold (default color). By clicking on the mail 
-	icon, a command, to be defined in the properties dialog box, will be 
-	launched. A forced mail check can be obtained by middle-clicking
+	icon, a command, which can be defined in the properties dialog box,
+    will be launched. A mail check can be forced by middle-clicking
 	the <strong class="application"><code>Mailwatch</code></strong> icon in the panel. Right-clicking on the <strong class="application"><code>Mailwatch</code></strong> icon
-	shows a context menu from which you can choose <span><strong class="guimenuitem">Properties</strong></span>
-	to access the configuration options.	
+	shows a context menu from which you can choose <span class="guimenuitem"><strong>Properties</strong></span>
+	to access the configuration options.  There are also menu items
+    for forcing an update and the about box.
   </p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="mailwatch-properties"></a>Properties</h2></div></div></div><p><strong class="application"><code>Xfce4 Mailwatch Plugin</code></strong> has a variety of configuration options. Access to the
     configuration is gained by right-clicking the panel icon, and by
-    choosing <span><strong class="guimenuitem">Properties</strong></span>.
-  </p><div class="figure"><a name="mailwatch-properties-fig"></a><p class="title"><b>Figure 1. <code class="application">Mailwatch</code> main settings</b></p><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-properties.png" alt="Mailwatch properties dialog"></div></div></div><div class="variablelist"><dl><dt><span class="term">Mailboxes</span></dt><dd><p>The main controls for managing mailboxes are
-          <span><strong class="guibutton">Add</strong></span>, <span><strong class="guibutton">Edit</strong></span>,
-          and <span><strong class="guibutton">Remove</strong></span>. At later stage, we'll walk
+    choosing <span class="guimenuitem"><strong>Properties</strong></span>.
+  </p><div class="figure"><a name="mailwatch-properties-fig"></a><p class="title"><b>Figure 1. <code class="application">Mailwatch</code> main settings</b></p><div class="figure-contents"><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-properties.png" alt="Mailwatch properties dialog"></div></div></div></div><br class="figure-break"><div class="variablelist"><dl><dt><span class="term">Mailboxes</span></dt><dd><p>The main controls for managing mailboxes are
+          <span class="guibutton"><strong>Add</strong></span>, <span class="guibutton"><strong>Edit</strong></span>,
+          and <span class="guibutton"><strong>Remove</strong></span>. At later stage, we'll walk
           through adding and configuring each mailbox type.
         </p></dd><dt><span class="term">External Programs</span></dt><dd><p><strong class="application"><code>Mailwatch</code></strong> can launch your mail user agent (or any other
           program) when the panel icon is clicked. The name of the
           executable together with possible startup parameters goes
-          in the <span><strong class="guilabel">Run on click</strong></span> entry field. You can
+          in the <span class="guilabel"><strong>Run on click</strong></span> entry field. You can
           also define the command to be executed when <strong class="application"><code>Mailwatch</code></strong> detects
-          new mail by typing the desired command in the <span><strong class="guilabel">Run on
+          new mail by typing the desired command in the <span class="guilabel"><strong>Run on
           new messages</strong></span> entry field. Note that the command
           is executed once for each time <strong class="application"><code>Mailwatch</code></strong> detects new mail,
           regardless of the number of new messages received.
         </p></dd><dt><span class="term">Icons</span></dt><dd><p>The icons that <strong class="application"><code>Mailwatch</code></strong> displays in the panel are configurable.
-          Both the <span><strong class="guiicon">Normal</strong></span> and <span><strong class="guiicon">New Mail</strong></span>
+          Both the <span class="guiicon"><strong>Normal</strong></span> and <span class="guiicon"><strong>New Mail</strong></span>
           buttons present a file chooser dialog, which you can use to select
           your preferred icons.
         </p></dd><dt><span class="term">Logging</span></dt><dd><p><strong class="application"><code>Mailwatch</code></strong> includes a logging mechanism as well. It provides
           information about errors and other noteworthy events that take
-          place. The log is accessible via the <span><strong class="guibutton">View Log</strong></span>
-          button. There's also a setting to <span><strong class="guilabel">Show log status
+          place. The log is accessible via the <span class="guibutton"><strong>View Log</strong></span>
+          button. There's also a setting to <span class="guilabel"><strong>Show log status
           in icon</strong></span> in the log dialog which, if enabled, provides
           a visual indication of new log events in the panel.
-        </p><div class="figure"><a name="mailwatch-log-window-fig"></a><p class="title"><b>Figure 2. Log Window</b></p><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-log-window.png" alt="Mailwatch log window"></div></div></div><div class="figure"><a name="mailwatch-panel-indicator-fig"></a><p class="title"><b>Figure 3. Panel Indicator</b></p><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-panel-indicator.png" alt="Panel indicator"></div></div></div></dd></dl></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="mailwatch-mailboxes"></a>Mailbox configuration</h2></div></div></div><p>In this section we walk through adding and configuring each
+        </p><div class="figure"><a name="mailwatch-log-window-fig"></a><p class="title"><b>Figure 2. Log Window</b></p><div class="figure-contents"><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-log-window.png" alt="Mailwatch log window"></div></div></div></div><br class="figure-break"><div class="figure"><a name="mailwatch-panel-indicator-fig"></a><p class="title"><b>Figure 3. Panel Indicator</b></p><div class="figure-contents"><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-panel-indicator.png" alt="Panel indicator"></div></div></div></div><br class="figure-break"></dd></dl></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="mailwatch-mailboxes"></a>Mailbox configuration</h2></div></div></div><p>In this section we walk through adding and configuring each
     type of mailbox.
-  </p><p>To add a new mailbox, click <span><strong class="guibutton">Add</strong></span> in the
+  </p><p>To add a new mailbox, click <span class="guibutton"><strong>Add</strong></span> in the
     main configuration dialog and a mailbox type selection dialog will
     appear. The dialog presents each supported mailbox type in the
     dropdown list, as well as an informative description of the mailbox
     in the label below.
-  </p><div class="figure"><a name="mailwatch-mailbox-type-fig"></a><p class="title"><b>Figure 4. Mailbox type selection</b></p><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-mailbox-type.png" alt="Mailbox type selection dialog"></div></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="mailwatch-mailbox-imap"></a>IMAP</h3></div></div></div><p><span class="acronym">IMAP</span>, acronym for <span class="emphasis"><em>Internet Message Access
-      Protocol</em></span>, is a quite common mailbox format. An <span class="acronym">IMAP</span>
+  </p><div class="figure"><a name="mailwatch-mailbox-type-fig"></a><p class="title"><b>Figure 4. Mailbox type selection</b></p><div class="figure-contents"><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-mailbox-type.png" alt="Mailbox type selection dialog"></div></div></div></div><br class="figure-break"><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="mailwatch-mailbox-imap"></a>IMAP</h3></div></div></div><p><acronym class="acronym">IMAP</acronym>, acronym for <span class="emphasis"><em>Internet Message Access
+      Protocol</em></span>, is a quite common mailbox format. An <acronym class="acronym">IMAP</acronym>
       mailbox is a remote mailbox, so it requires various configuration
-      options to be able to contact the remote <span class="acronym">IMAP</span> server and get
+      options to be able to contact the remote <acronym class="acronym">IMAP</acronym> server and get
       information on the mailbox.      
-    </p><p>To create an <span class="acronym">IMAP</span> account in <strong class="application"><code>Mailwatch</code></strong>, choose <span class="emphasis"><em>
+    </p><p>To create an <acronym class="acronym">IMAP</acronym> account in <strong class="application"><code>Mailwatch</code></strong>, choose <span class="emphasis"><em>
       Remote IMAP Mailbox</em></span> in the mailbox type chooser dialog,
-      and you will be presented with the <span class="acronym">IMAP</span> settings dialog.
-    </p><div class="figure"><a name="mailwatch-imap-settings-fig"></a><p class="title"><b>Figure 5. IMAP Settings Dialog</b></p><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-imap-settings.png" alt="Mailwatch IMAP Settings"></div></div></div><div class="variablelist"><dl><dt><span class="term">Mailbox Name</span></dt><dd><p>A descriptive name for the mailbox.
+      and you will be presented with the <acronym class="acronym">IMAP</acronym> settings dialog.
+    </p><div class="figure"><a name="mailwatch-imap-settings-fig"></a><p class="title"><b>Figure 5. IMAP Settings Dialog</b></p><div class="figure-contents"><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-imap-settings.png" alt="Mailwatch IMAP Settings"></div></div></div></div><br class="figure-break"><div class="variablelist"><dl><dt><span class="term">Mailbox Name</span></dt><dd><p>A descriptive name for the mailbox.
              The name entered here will appear on the <strong class="application"><code>Mailwatch</code></strong> icon
              tooltip, which indicates mailboxes that have new mail.
-             This setting is required, regardless of the mailbox type.</p></dd><dt><span class="term"><span class="acronym">IMAP</span> Server</span></dt><dd><div class="itemizedlist"><ul type="disc"><li><p>Mail server - The hostname of the remote mail server.</p></li><li><p>Username - The username to use while accessing the mailbox.</p></li><li><p>Password - The password to use.</p></li></ul></div></dd><dt><span class="term">Interval</span></dt><dd><p>Defines how often <strong class="application"><code>Mailwatch</code></strong> accesses
+             This setting is required, regardless of the mailbox type.</p></dd><dt><span class="term"><acronym class="acronym">IMAP</acronym> Server</span></dt><dd><div class="itemizedlist"><ul type="disc"><li><p>Mail server - The hostname of the remote mail server.</p></li><li><p>Username - The username to use while accessing the mailbox.</p></li><li><p>Password - The password to use.</p></li></ul></div></dd><dt><span class="term">Interval</span></dt><dd><p>Defines how often <strong class="application"><code>Mailwatch</code></strong> accesses
              the mailbox to see if there's new mail. You shouldn't set
              this too low, as it will create unnecessary network traffic.
              It's not recommended to set this lower than 5 minutes,
              unless you're really sure your service provider
              is okay with that.</p></dd></dl></div><p>The default setup uses unencrypted connections and the
-      default <span class="acronym">IMAP</span> folder. For most users this is enough, and everything
-      should work now. Mail server implementations differ, and this
-      setup might not work for you. For example, you service provider
-      might require encrypted connections (which you should use wherever
-      possible). For that there's the advanced settings dialog.
-    </p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="mailwatch-mailbox-imap-advanced"></a>Advanced Settings</h4></div></div></div><div class="figure"><a name="mailwatch-mailbox-imap-advanced-fig"></a><p class="title"><b>Figure 6. Advanced <span class="acronym">IMAP</span> settings</b></p><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-imap-advanced.png" alt="Advanced IMAP settings"></div></div></div><div class="variablelist"><dl><dt><span class="term">Connection</span></dt><dd><p>If your <span class="acronym">IMAP</span> service provider supports encryption
-              for client connections, you should take advantage of that.
+      default <acronym class="acronym">IMAP</acronym> folder. It is highly recommended that you select
+      an encrypted connection type if your mail provider supports it.
+      Others may require an encrypted connection. For that there's the
+      advanced settings dialog.
+    </p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="mailwatch-mailbox-imap-advanced"></a>Advanced Settings</h4></div></div></div><div class="figure"><a name="mailwatch-mailbox-imap-advanced-fig"></a><p class="title"><b>Figure 6. Advanced <acronym class="acronym">IMAP</acronym> settings</b></p><div class="figure-contents"><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-imap-advanced.png" alt="Advanced IMAP settings"></div></div></div></div><br class="figure-break"><div class="variablelist"><dl><dt><span class="term">Connection</span></dt><dd><p>If your <acronym class="acronym">IMAP</acronym> service provider supports encryption
+              for client connections, you should take advantage of it.
               There are generally two implementations of encrypted
-              connections. The most common one, even though it's against
-              the <span class="acronym">IMAP</span> RFC uses the port 993 for client connections.
-              In this scheme, the connection is encrypted from the
-              beginning, as the encryption is initialized before the
-              actual <span class="acronym">IMAP</span> traffic. The other, less common method, uses
-              the ordinary <span class="acronym">IMAP</span> port for initializing
-              the connection and then, before any sensitive data is
-              transmitted, initializes the encryption with the
-              <span class="emphasis"><em>STARTTLS</em></span> command. <strong class="application"><code>Mailwatch</code></strong> provides
+              connections. The most common one uses port 993 for client
+              connections and encrypts the connection from the start.
+              The other, less common method, uses the ordinary <acronym class="acronym">IMAP</acronym> port
+              for initializing the connection and then, before any
+              sensitive data is transmitted, initializes the encryption
+              with the <span class="emphasis"><em>STARTTLS</em></span> command. <strong class="application"><code>Mailwatch</code></strong> provides
               default settings for these setups, which are
-              <span><strong class="guimenuitem">Use SSL/TLS on alternate port</strong></span> and
-              <span><strong class="guimenuitem">Use SSL/TLS via STARTTLS</strong></span>
-              respectively.
-            </p><p>There's also the possibility of using a non-standard <span class="acronym">IMAP</span>
+              <span class="guimenuitem"><strong>Use SSL/TLS on alternate port</strong></span> and
+              <span class="guimenuitem"><strong>Use SSL/TLS via STARTTLS</strong></span>
+              respectively.  If you're not sure which option your mail
+              provider supports, you can test via trial and error by using
+              each setting, and then checking the log viewer for errors.
+            </p><p>There's also the possibility of using a non-standard <acronym class="acronym">IMAP</acronym>
               port, if your service provider so requires. Just check the
               box, and type in the appropriate port.  The box will pre-fill
               the default port for the selected connection type.
             </p></dd><dt><span class="term">Folders</span></dt><dd><p>In addition of the connection related settings, you can
               set the directory on the server where your mail is stored using
-              the <span><strong class="guilabel">IMAP server directory</strong></span> text box.  This
+              the <span class="guilabel"><strong>IMAP server directory</strong></span> text box.  This
               setting may not be necessary on some systems.  If you see a large
-              number of strange folder names when looking in the <span><strong class="guilabel">New
+              number of strange folder names when looking in the <span class="guilabel"><strong>New
               mail folders</strong></span> dialog box, you may need to set this,
               often to something like "mail", "Mail", or "Maildir".
-            </p></dd></dl></div></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="mailwatch-mailbox-imap-folders"></a>New mail folders</h4></div></div></div><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-imap-new-folders.png" alt="IMAP new mail folders settings"></div></div><p>Since <span class="acronym">IMAP</span> supports viewing mail in multiple folders, it's
+            </p></dd></dl></div></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="mailwatch-mailbox-imap-folders"></a>New mail folders</h4></div></div></div><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-imap-new-folders.png" alt="IMAP new mail folders settings"></div></div><p>Since <acronym class="acronym">IMAP</acronym> supports viewing mail in multiple folders, it's
         possible that you'd receive new mail in folders other than your
-        inbox.  If that's the case, you can use the <span><strong class="guilabel">New Mail
+        inbox.  If that's the case, you can use the <span class="guilabel"><strong>New Mail
         Folders</strong></span>  dialog to instruct <strong class="application"><code>Mailwatch</code></strong> to check mail in
-        multiple folders.
-      </p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="mailwatch-mailbox-pop3"></a>POP3</h3></div></div></div><p><span class="acronym">POP3</span>, short for <span class="emphasis"><em>Post Office Protocol Version 3
-      </em></span>, is another common type of remote mailboxes. Because
-      of its remote nature, the settings for <span class="acronym">POP3</span> are almost the same
-      as <span class="acronym">IMAP</span>, with some omissions as, <span class="acronym">POP3</span> isn't as advanced a protocol
-      as <span class="acronym">IMAP</span>.
-    </p><div class="figure"><a name="mailwatch-mailbox-pop3-fig"></a><p class="title"><b>Figure 7. POP3 Settings</b></p><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-pop3-settings.png" alt="Mailwatch POP3 settings"></div></div></div><div class="variablelist"><dl><dt><span class="term">Mailbox Name</span></dt><dd><p>A descriptive name for the mailbox.
+        multiple folders.  The dialog will connect to your mail server
+        and fetch a list of folders for you to select.  Of course, you'll
+        need to enter the server information first.
+      </p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="mailwatch-mailbox-pop3"></a>POP3</h3></div></div></div><p><acronym class="acronym">POP3</acronym>, short for <span class="emphasis"><em>Post Office Protocol Version 3
+      </em></span>, is another common type of remote mailbox. Because
+      of its remote nature, the settings for <acronym class="acronym">POP3</acronym> are almost the same
+      as <acronym class="acronym">IMAP</acronym>, with some omissions, as <acronym class="acronym">POP3</acronym> isn't as advanced a protocol
+      as <acronym class="acronym">IMAP</acronym>.
+    </p><div class="figure"><a name="mailwatch-mailbox-pop3-fig"></a><p class="title"><b>Figure 7. POP3 Settings</b></p><div class="figure-contents"><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-pop3-settings.png" alt="Mailwatch POP3 settings"></div></div></div></div><br class="figure-break"><div class="variablelist"><dl><dt><span class="term">Mailbox Name</span></dt><dd><p>A descriptive name for the mailbox.
              The name entered here will appear on the <strong class="application"><code>Mailwatch</code></strong> icon
              tooltip, which indicates mailboxes that have new mail.
-             This setting is required, regardless of the mailbox type.</p></dd><dt><span class="term"><span class="acronym">POP3</span> Server</span></dt><dd><div class="itemizedlist"><ul type="disc"><li><p>Mail server - Hostname of the <span class="acronym">POP3</span> server.</p></li><li><p>Username - Username to authenticate with.</p></li><li><p>Password - Password to use in authentication.</p></li></ul></div></dd><dt><span class="term">Interval</span></dt><dd><p>Defines how often <strong class="application"><code>Mailwatch</code></strong> accesses
+             This setting is required, regardless of the mailbox type.</p></dd><dt><span class="term"><acronym class="acronym">POP3</acronym> Server</span></dt><dd><div class="itemizedlist"><ul type="disc"><li><p>Mail server - Hostname of the <acronym class="acronym">POP3</acronym> server.</p></li><li><p>Username - Username to authenticate with.</p></li><li><p>Password - Password to use in authentication.</p></li></ul></div></dd><dt><span class="term">Interval</span></dt><dd><p>Defines how often <strong class="application"><code>Mailwatch</code></strong> accesses
              the mailbox to see if there's new mail. You shouldn't set
              this too low, as it will create unnecessary network traffic.
              It's not recommended to set this lower than 5 minutes,
@@ -117,30 +118,25 @@
              is okay with that.</p></dd></dl></div><p>While for most users providing these settings should be enough,
       there are also advanced settings for those who need additional
       features.
-    </p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="mailwatch-mailbox-pop3-advanced"></a>Advanced Settings</h4></div></div></div><div class="figure"><a name="mailwatch-mailbox-pop3-advanced-fig"></a><p class="title"><b>Figure 8. <span class="acronym">POP3</span> Advanced Settings</b></p><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-pop3-advanced.png" alt="POP3 Advanced Settings dialog"></div></div></div><div class="variablelist"><dl><dt><span class="term">Connection</span></dt><dd><p>
-              By default, due common practice, <strong class="application"><code>Mailwatch</code></strong> attempts
-              to access the mailbox without encrypting the traffic
-              between the local host and the mail server. For those,
-              whose service provider supports encrypted connections,
-              <strong class="application"><code>Mailwatch</code></strong> supports two different methods of encryption. 
-              First one, quite commonly used, is to use an alternate
-              port (default: 995) for encrypted connections. This way,
-              the connection is encrypted from the beginning. The
-              setting to choose from the dropdown list is
-              <span><strong class="guimenuitem">Use SSL/TLS on alternate port</strong></span>
-              for this method. The other, that uses the default <span class="acronym">POP3</span>
-              port 110 and takes advantage of the
-              <span class="emphasis"><em>STARTTLS</em></span> method of the protocol,
-              is chosen with
-              <span><strong class="guimenuitem">Use SSL/TLS via STARTTLS</strong></span>.
-              If your service provider requires a port that is different
-              of the defaults provided, you may define it by checking
-              the <span><strong class="guilabel">Use non-standard POP3 port</strong></span>
-              checkbox, and typing in the correct port number.
+    </p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="mailwatch-mailbox-pop3-advanced"></a>Advanced Settings</h4></div></div></div><div class="figure"><a name="mailwatch-mailbox-pop3-advanced-fig"></a><p class="title"><b>Figure 8. <acronym class="acronym">POP3</acronym> Advanced Settings</b></p><div class="figure-contents"><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-pop3-advanced.png" alt="POP3 Advanced Settings dialog"></div></div></div></div><br class="figure-break"><div class="variablelist"><dl><dt><span class="term">Connection</span></dt><dd><p>If your <acronym class="acronym">POP3</acronym> service provider supports encryption
+              for client connections, you should take advantage of it.
+              There are generally two implementations of encrypted
+              connections. The most common one uses port 995 for client
+              connections and encrypts the connection from the start.
+              The other, less common method, uses the ordinary <acronym class="acronym">POP3</acronym> port
+              for initializing the connection and then, before any
+              sensitive data is transmitted, initializes the encryption
+              with the <span class="emphasis"><em>STLS</em></span> command. <strong class="application"><code>Mailwatch</code></strong> provides
+              default settings for these setups, which are
+              <span class="guimenuitem"><strong>Use SSL/TLS on alternate port</strong></span> and
+              <span class="guimenuitem"><strong>Use SSL/TLS via STARTTLS</strong></span>
+              respectively.  If you're not sure which option your mail
+              provider supports, you can test via trial and error by using
+              each setting, and then checking the log viewer for errors.
             </p></dd></dl></div></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="mailwatch-mailbox-gmail"></a>GMail</h3></div></div></div><p>Mailwatch can also watch your
-      <a href="http://gmail.com/" target="_top">GMail</a> mailbox.
+      <a class="ulink" href="http://gmail.com/" target="_top">GMail</a> mailbox.
       Mailwatch does this securely by using HTTPS and GMail's RSS feed.
-    </p><div class="figure"><a name="mailwatch-mailbox-gmail-fig"></a><p class="title"><b>Figure 9. GMail Settings</b></p><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-gmail-settings.png" alt="GMail Settings"></div></div></div><div class="variablelist"><dl><dt><span class="term">GMail Server</span></dt><dd><div class="itemizedlist"><ul type="disc"><li><p>Username - Your GMail username.</p></li><li><p>Password - Your GMail password.</p></li></ul></div></dd></dl></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="mailwatch-mailbox-maildir"></a>Maildir</h3></div></div></div><p>Maildir is a mailbox format for local mailboxes and thus
+    </p><div class="figure"><a name="mailwatch-mailbox-gmail-fig"></a><p class="title"><b>Figure 9. GMail Settings</b></p><div class="figure-contents"><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-gmail-settings.png" alt="GMail Settings"></div></div></div></div><br class="figure-break"><div class="variablelist"><dl><dt><span class="term">GMail Server</span></dt><dd><div class="itemizedlist"><ul type="disc"><li><p>Username - Your GMail username.</p></li><li><p>Password - Your GMail password.</p></li></ul></div></dd></dl></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="mailwatch-mailbox-maildir"></a>Maildir</h3></div></div></div><p>Maildir is a mailbox format for local mailboxes and thus
       there is no hostname, etc. to configure, but merely a directory
       where your mail is stored. A Maildir mailbox has a certain
       distinguishable hierarchy, which defines the mailbox (and which
@@ -150,7 +146,7 @@
       (<code class="filename">cur</code>,
       <code class="filename">new</code>,
       <code class="filename">tmp</code>).
-    </p><div class="figure"><a name="mailwatch-mailbox-maildir-fig"></a><p class="title"><b>Figure 10. Maildir Settings</b></p><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-maildir-settings.png" alt="Mailwatch Maildir Settings"></div></div></div><div class="variablelist"><dl><dt><span class="term">Mailbox Name</span></dt><dd><p>A descriptive name for the mailbox.
+    </p><div class="figure"><a name="mailwatch-mailbox-maildir-fig"></a><p class="title"><b>Figure 10. Maildir Settings</b></p><div class="figure-contents"><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-maildir-settings.png" alt="Mailwatch Maildir Settings"></div></div></div></div><br class="figure-break"><div class="variablelist"><dl><dt><span class="term">Mailbox Name</span></dt><dd><p>A descriptive name for the mailbox.
              The name entered here will appear on the <strong class="application"><code>Mailwatch</code></strong> icon
              tooltip, which indicates mailboxes that have new mail.
              This setting is required, regardless of the mailbox type.</p></dd><dt><span class="term">Maildir Path</span></dt><dd><p>The toplevel directory of your Maildir.  (Note: This is the
@@ -162,7 +158,7 @@
       folder is a single, large file that contains all your messages.
       Because of this, Mbox expects to find a specially-formatted Mbox
       file instead of a directory tree.
-    </p><div class="figure"><a name="mailwatch-mailbox-mbox-fig"></a><p class="title"><b>Figure 11. Mbox Settings</b></p><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-mbox-settings.png" alt="Mbox Settings Dialog"></div></div></div><div class="variablelist"><dl><dt><span class="term">Mailbox Name</span></dt><dd><p>A descriptive name for the mailbox.
+    </p><div class="figure"><a name="mailwatch-mailbox-mbox-fig"></a><p class="title"><b>Figure 11. Mbox Settings</b></p><div class="figure-contents"><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-mbox-settings.png" alt="Mbox Settings Dialog"></div></div></div></div><br class="figure-break"><div class="variablelist"><dl><dt><span class="term">Mailbox Name</span></dt><dd><p>A descriptive name for the mailbox.
              The name entered here will appear on the <strong class="application"><code>Mailwatch</code></strong> icon
              tooltip, which indicates mailboxes that have new mail.
              This setting is required, regardless of the mailbox type.</p></dd><dt><span class="term">Mbox Filename</span></dt><dd><p>The location of your Mbox file (often
@@ -171,29 +167,29 @@
              mailbox for new mail. It is safe to set a value as low as
              1 minute, as this is presumably on a local filesystem, or
              at least a local network.</p></dd></dl></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="mailwatch-mailbox-mh"></a>MH Maildir</h3></div></div></div><p>MH Maildir is a variant of the Maildir format.  For a MH
-      Maildir, <strong class="application"><code>Mailwatch</code></strong> reads your
-      <code class="envar">$HOME</code><code class="filename">/.mh_profile</code> for its
+      Maildir mailbox, <strong class="application"><code>Mailwatch</code></strong> reads your
+      <code class="envar">$HOME</code><code class="filename">/.mh_profile</code> file for its
       configuration, so there are no actual settings specific to MH
       mailboxes.
-    </p><div class="figure"><a name="mailwatch-mailbox-mh-fig"></a><p class="title"><b>Figure 12. MH Maildir Settings</b></p><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-mh-settings.png" alt="MH Settings Dialog"></div></div></div><div class="variablelist"><dl><dt><span class="term">Mailbox Name</span></dt><dd><p>A descriptive name for the mailbox.
+    </p><div class="figure"><a name="mailwatch-mailbox-mh-fig"></a><p class="title"><b>Figure 12. MH Maildir Settings</b></p><div class="figure-contents"><div class="screenshot"><div class="mediaobject"><img src="images/mailwatch-mh-settings.png" alt="MH Settings Dialog"></div></div></div></div><br class="figure-break"><div class="variablelist"><dl><dt><span class="term">Mailbox Name</span></dt><dd><p>A descriptive name for the mailbox.
              The name entered here will appear on the <strong class="application"><code>Mailwatch</code></strong> icon
              tooltip, which indicates mailboxes that have new mail.
              This setting is required, regardless of the mailbox type.</p></dd><dt><span class="term">Interval</span></dt><dd><p>Defines how often <strong class="application"><code>Mailwatch</code></strong> checks the
              mailbox for new mail. It is safe to set a value as low as
              1 minute, as this is presumably on a local filesystem, or
              at least a local network.</p></dd></dl></div></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="mailwatch-about"></a>About <strong class="application"><code>Mailwatch</code></strong></h2></div></div></div><p><strong class="application"><code>Xfce4 Mailwatch Plugin</code></strong> is written and maintained by Brian Tarricone
-    <code class="email">&lt;<a href="mailto:bjt23@cornell.edu">bjt23@cornell.edu</a>&gt;</code> and Pasi Orovuo
-    <code class="email">&lt;<a href="mailto:pasi.ov@gmail.com">pasi.ov@gmail.com</a>&gt;</code>. For more information,
-    please visit the <a href="http://spuriousinterrupt.org/projects/mailwatch" target="_top">
+    <code class="email">&lt;<a class="email" href="mailto:bjt23@cornell.edu">bjt23@cornell.edu</a>&gt;</code> and Pasi Orovuo
+    <code class="email">&lt;<a class="email" href="mailto:pasi.ov@gmail.com">pasi.ov@gmail.com</a>&gt;</code>. For more information,
+    please visit the <a class="ulink" href="http://spuriousinterrupt.org/projects/mailwatch" target="_top">
     <strong class="application"><code>Mailwatch</code></strong> website</a>.
   </p><p>All <strong class="application"><code>Mailwatch</code></strong> related bugs should be reported on
-    <a href="http://bugzilla.xfce.org/" target="_top">Xfce
+    <a class="ulink" href="http://bugzilla.xfce.org/" target="_top">Xfce
     Bugzilla</a>, under the Xfce Panel Plugins product, mailwatch component.
   </p><p>If you have problems using <strong class="application"><code>Mailwatch</code></strong>, use the
-    <a href="http://foo-projects.org/mailman/listinfo/xfce" target="_top">
+    <a class="ulink" href="http://foo-projects.org/mailman/listinfo/xfce" target="_top">
     Xfce general discussion list</a> for questions. Development
     discussion takes place on the
-    <a href="http://foo-projects.org/mailman/listinfo/xfce4-dev" target="_top">Xfce4-dev mailing list</a>.
+    <a class="ulink" href="http://foo-projects.org/mailman/listinfo/xfce4-dev" target="_top">Xfce4-dev mailing list</a>.
   </p><p><strong class="application"><code>Xfce4 Mailwatch Plugin</code></strong> is free software; you can redistribute it and/or
     modify it under the terms of the GNU General Public License
     as published by the Free Software Foundation; either version 2
