@@ -17,6 +17,7 @@ Version 1.1.0svn:
     * Fix removed new-mail folders sometimes re-adding themselves (bug 2647).
     * Display message in log about possible incorrect username/password
       when IMAP or POP3 authentication fails (bug 4344).
+    * Clean out stale mailbox data when a mailbox is removed.
 
   Features:
     * Update the new message counts for all mailboxes on startup, rather than

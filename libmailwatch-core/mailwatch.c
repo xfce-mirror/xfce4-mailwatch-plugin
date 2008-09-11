@@ -351,10 +351,19 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
     for(l = mailwatch->mailboxes, i = 0; l; l = l->next, i++) {
         XfceMailwatchMailboxData *mdata = l->data;
         
-        g_snprintf(buf, 32, "mailbox%d", i);
+        g_snprintf(buf, sizeof(buf), "mailbox%d", i);
         xfce_rc_write_entry(rcfile, buf, mdata->mailbox->type->id);
-        g_snprintf(buf, 32, "mailbox_name%d", i);
+        g_snprintf(buf, sizeof(buf), "mailbox_name%d", i);
         xfce_rc_write_entry(rcfile, buf, mdata->mailbox_name);
+    }
+    /* clear out stale entries */
+    while(g_snprintf(buf, sizeof(buf), "mailbox%d", i)
+          && xfce_rc_has_entry(rcfile, buf))
+    {
+        xfce_rc_delete_entry(rcfile, buf, FALSE);
+        g_snprintf(buf, sizeof(buf), "mailbox_name%d", i);
+        xfce_rc_delete_entry(rcfile, buf, FALSE);
+        ++i;
     }
     
     /* write out config data for each mailbox */
@@ -362,7 +371,9 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
         XfceMailwatchMailboxData *mdata = l->data;
         GList *config_data, *m;
         
-        g_snprintf(buf, 32, "mailbox%d", i);
+        g_snprintf(buf, sizeof(buf), "mailbox%d", i);
+        if(xfce_rc_has_group(rcfile, buf))
+            xfce_rc_delete_group(rcfile, buf, FALSE);
         xfce_rc_set_group(rcfile, buf);
         
         config_data = mdata->mailbox->type->save_param_list_func(mdata->mailbox);
@@ -378,6 +389,13 @@ xfce_mailwatch_save_config(XfceMailwatch *mailwatch)
         }
         if(config_data)
             g_list_free(config_data);
+    }
+    /* clear out stale groups */
+    while(g_snprintf(buf, sizeof(buf), "mailbox%d", i)
+          && xfce_rc_has_group(rcfile, buf))
+    {
+        xfce_rc_delete_group(rcfile, buf, FALSE);
+        ++i;
     }
     
     xfce_rc_close(rcfile);
