@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-10 21:57-0700\n"
-"PO-Revision-Date: 2008-03-14 21:32+0200\n"
+"PO-Revision-Date: 2008-09-11 17:40+0200\n"
 "Last-Translator: Stavros Giannouris <stavrosg@hellug.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
@@ -55,6 +55,8 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:548
 msgid "Previous thread hasn't exited yet, not checking mail this time."
 msgstr ""
+"Το προηγούμενο νήμα δεν τερματίστηκε ακόμα, δεν γίνεται έλεγχος για "
+"αλληλογραφία τώρα."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
@@ -109,6 +111,7 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
 msgid "Authentication failed.  Perhaps your username or password is incorrect?"
 msgstr ""
+"Η πιστοποίηση απέτυχε.Πιθανόν είναι λάθος το όνομα χρήστη ή το συνθηματικό."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
@@ -333,17 +336,17 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-net-conn.c:836
 #, c-format
 msgid "Operation aborted"
-msgstr ""
+msgstr "Η ενέργεια ακυρώθηκε"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:496
 #, c-format
 msgid "Could not find host \"%s\": %s"
-msgstr ""
+msgstr "Δεν είναι δυνατή η εύρεση του διακομιστή \"%s\": %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:580
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to connect to server \"%s\": %s"
-msgstr "Αδυναμία σύνδεσης στον εξυπηρετητή: %s"
+msgstr "H σύνδεση στον εξυπηρετητή \"%s\" απέτυχε: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:643
 #, c-format
@@ -351,34 +354,38 @@ msgid "Not compiled with SSL/TLS support"
 msgstr "Δε μεταγλωττίστηκε με υποστήριξη για SSL/TLS"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:699
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to send encrypted data: %s"
-msgstr "Αδυναμία σύνδεσης στον εξυπηρετητή: %s"
+msgstr "Η αποστολή κρυπτογραφημένων δεδομένων απέτυχε: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:732
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to send data: %s"
-msgstr "Αδυναμία σύνδεσης στον εξυπηρετητή: %s"
+msgstr "Η αποστολή δεδομένων απέτυχε: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:813
 #, c-format
 msgid "Failed to receive encrypted data: %s"
-msgstr ""
+msgstr "Η λήψη κρυπτογραφημένων δεδομένων απέτυχε: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:843
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to receive data: %s"
-msgstr "Αδυναμία σύνδεσης στον εξυπηρετητή: %s"
+msgstr "Η λήψη δεδομένων απέτυχε: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:941
 #, c-format
 msgid "Canceling read: read too many bytes without a newline"
 msgstr ""
+"Ακύρωση ανάγνωσης: αναγνώστηκαν υπερβολικά πολλοί χαρακτήρες χωρίς αλλαγή "
+"γραμμής"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:950
 #, c-format
 msgid "Buffer is not large enough to hold a full line (%d < %d)"
 msgstr ""
+"Η ενδιάμεση μνήμη δεν είναι αρκετά μεγάλη ώστε να κρατήσει μια πλήρη γραμμή "
+"(%d < %d)"
 
 #: ../libmailwatch-core/mailwatch.c:126
 msgid ""
