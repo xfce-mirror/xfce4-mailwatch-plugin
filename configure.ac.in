@@ -8,7 +8,7 @@ m4_define([mailwatch_version_major], [1])
 m4_define([mailwatch_version_minor], [1])
 m4_define([mailwatch_version_micro], [0])
 m4_define([mailwatch_version_build], [r@REVISION@])
-m4_define([mailwatch_version_tag], [])
+m4_define([mailwatch_version_tag], [svn])
 m4_define([mailwatch_version], [mailwatch_version_major().mailwatch_version_minor().mailwatch_version_micro()ifelse(mailwatch_version_tag(), [svn], [mailwatch_version_tag()-mailwatch_version_build()], [mailwatch_version_tag()])])
 
 dnl init autoconf
