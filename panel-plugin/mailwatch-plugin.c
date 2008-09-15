@@ -21,7 +21,7 @@
 #include <config.h>
 #endif
 
-#if defined(HAVE_SIGNAL_H) && defined(HAVE_XFCE_POSIX_SIGNAL_HANDLER_INIT)
+#ifdef HAVE_SIGNAL_H 
 #include <signal.h>
 #endif
 
@@ -1074,6 +1074,12 @@ mailwatch_construct(XfcePanelPlugin *plugin)
 {
     XfceMailwatchPlugin *mwp;
     GtkWidget *mi, *img;
+    struct sigaction sa = {
+        .sa_handler = SIG_IGN,
+#ifdef SA_RESTART
+        .sa_flags = SA_RESTART,
+#endif
+    };
 
     xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
@@ -1092,10 +1098,14 @@ mailwatch_construct(XfcePanelPlugin *plugin)
         {
             g_warning("Failed to set SIGUSR2 handler: %s", error->message);
             g_error_free(error);
+            sigaction(SIGUSR2, &sa, NULL);
         }
     } else
-        g_warning("failed to init POSIX signal handler helper");
 #endif
+    {
+        g_warning("failed to init POSIX signal handler helper");
+        sigaction(SIGUSR2, &sa, NULL);
+    }
 
     g_signal_connect(plugin, "free-data", 
                      G_CALLBACK(mailwatch_free), mwp);
