@@ -1,0 +1,57 @@
++-----------+
+| Mailwatch |
++-----------+
+
+Version 1.1.0 (14 Sep 2008):
+
+  Bugfixes:
+    * Fix a compiler error on some systems (bug 1822).
+    * Fix incorrect getaddrinfo() usage breaking use on NetBSD (bug 3767).
+    * Fix possible hang when reading IMAP responses when a selected folder
+      is later deleted or unsubscribed.
+    * Fix buffer size issues when reading IMAP folder contents (bug 2009).
+    * Fix mailcheck interval not getting saved if changed using the
+      keyboard rather than the mouse (bug 2386).
+    * Fix problems receiving full commands on IMAP accounts (bug 2416).
+    * Fix problems receiving full commands on POP3 accounts (bug 2013).
+    * Fix removed new-mail folders sometimes re-adding themselves (bug 2647).
+    * Display message in log about possible incorrect username/password
+      when IMAP or POP3 authentication fails (bug 4344).
+    * Clean out stale mailbox data when a mailbox is removed.
+
+  Features:
+    * Update the new message counts for all mailboxes on startup, rather than
+      waiting for the first interval timeout.
+    * Document the behavior of forcing a new messsage count update when the
+      user double-clicks the icon (patch from Maximilian Schleiss).
+    * Add experimental IPv6 support.
+    * Add an 'Update Now' menu item (bug 3908).
+    * Add CRAM-MD5 authentication support for POP3 and IMAP (bug 3420).
+    * Add about dialog.
+    * Network layer heavily refactored to make code more readable and fix
+      strange timing bugs.  It's much easier to read, maintain, and debug
+      now.  This isn't particularly user-visible, but is notable.
+    * Eliminated periodic wakeups to see if it's time to check mail again,
+      instead using a long-running timeout.  A side-effect of this is that
+      the mail-checking threads no longer run all the time, but only when
+      needed.  Should save a little battery life for laptop users, and
+      just be more resource-friendly in general.
+    * Allow non-square plugin buttons.
+    * Allow deselecting INBOX in the IMAP folder list (bug 4150).
+    * Use GtkFileChooserButton for mbox and maildir file/dir entries rather
+      than a GtkEntry+GtkButton.
+
+
+Version 1.0.1 (20 Apr 2006):
+
+  Bugfixes:
+    * Fix a possible connection failure when using IMAPS or POP3S.
+    * Don't compile in the GMail mailbox type if GNUTLS is not available,
+      as GMail requires an SSL HTTP connection.
+
+
+Version 1.0.0 (31 Jan 2006):
+
+  Initial release.  I feel pretty good about it, thus the 1.0.0
+  designation.  That means there are no bugs.  Seriously.  Ok, not
+  really.
