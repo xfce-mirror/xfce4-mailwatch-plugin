@@ -2,7 +2,7 @@
 | Mailwatch |
 +-----------+
 
-Version 1.1.0svn:
+Version 1.1.0 (14 Sep 2008):
 
   Bugfixes:
     * Fix a compiler error on some systems (bug 1822).
