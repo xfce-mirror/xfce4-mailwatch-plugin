@@ -1,4 +1,9 @@
-2008-09-14  Brian J. Tarricone <bjt23@cornell.edu>
+2008-09-15  Brian Tarricone <bjt23@cornell.edu>
+
+  	* ChangeLog, NEWS, configure.ac.in,
+	  doc/C/xfce4-mailwatch-plugin.html: release 1.1.0
+
+  2008-09-15  Brian Tarricone <bjt23@cornell.edu>
 
   	* panel-plugin/mailwatch-plugin.c: set SIGUSR2 to SIG_IGN if setting
 	  a handler fails
