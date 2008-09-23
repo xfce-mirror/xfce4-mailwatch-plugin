@@ -199,6 +199,7 @@ my_g_mutex_unlock(void **priv)
 
 
 
+#ifdef HAVE_SSL_SUPPORT
 static gboolean
 xfce_mailwatch_net_conn_tls_handshake(XfceMailwatchNetConn *net_conn,
                                       GError **error)
@@ -234,6 +235,7 @@ xfce_mailwatch_net_conn_tls_handshake(XfceMailwatchNetConn *net_conn,
 
     return TRUE;
 }
+#endif
 
 static XfceMailwatchNetConnStatus
 xfce_mailwatch_net_conn_do_connect(XfceMailwatchNetConn *net_conn,
