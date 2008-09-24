@@ -186,7 +186,7 @@ xfce_mailwatch_cram_md5(const gchar *username,
     return response_base64;
 #else
     g_warning("CRAM-MD5 computation unavailable: libmailwatch was not compiled with gnutls support.");
-    return NULL
+    return NULL;
 #endif
 }
 
