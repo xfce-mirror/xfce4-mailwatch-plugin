@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-10 21:57-0700\n"
-"PO-Revision-Date: 2008-09-04 13:38+0300\n"
+"POT-Creation-Date: 2008-11-04 17:10+0200\n"
+"PO-Revision-Date: 2008-11-04 17:14+0200\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -179,7 +179,7 @@ msgstr "Kansiot"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1684
 msgid "IMAP server _directory:"
-msgstr "IMAP-palvelimen _hakemisto:"
+msgstr "IMAP-palvelimen _kansio:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1714
 msgid "IMAP Server"
@@ -222,7 +222,7 @@ msgstr "Tiedoston %s tilan selvitys epäonnistui: %s"
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:102
 #, c-format
 msgid "%s is not a directory. Is %s really a valid maildir?"
-msgstr "%s ei ole hakemisto. Onko %s todellakin kelvollinen postihakemisto?"
+msgstr "%s ei ole kansio. Onko %s todellakin kelvollinen maildir-kansio?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:335
 msgid "Maildir _Path:"
@@ -230,7 +230,7 @@ msgstr "_Maildir-polku:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:340
 msgid "Select Maildir Folder"
-msgstr "Valitse Maildir-hakemisto"
+msgstr "Valitse Maildir-kansio"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:358
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:394
@@ -283,11 +283,11 @@ msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:683
 msgid "Local MH mail folder"
-msgstr "Paikallinen MH-postihakemisto"
+msgstr "Paikallinen MH-postikansio"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:684
 msgid "MH plugin watches local MH folders for new mail"
-msgstr "MH-liitännäinen vahtii paikallisia MH-hakemistoja uuden postin varalta"
+msgstr "MH-liitännäinen vahtii paikallisia MH-kansioita uuden postin varalta"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:746
 msgid "Advanced POP3 Options"
@@ -317,59 +317,59 @@ msgstr ""
 "POP3-liitännäinen voi yhdistää POP3-protokollaa tukevaan etäpostipalvelimeen "
 "käyttäen halutessasi SSL-protokollaa yhteyden suojaamiseen."
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:221
-#: ../libmailwatch-core/mailwatch-net-conn.c:265
-#: ../libmailwatch-core/mailwatch-net-conn.c:347
-#: ../libmailwatch-core/mailwatch-net-conn.c:692
-#: ../libmailwatch-core/mailwatch-net-conn.c:725
-#: ../libmailwatch-core/mailwatch-net-conn.c:774
-#: ../libmailwatch-core/mailwatch-net-conn.c:806
-#: ../libmailwatch-core/mailwatch-net-conn.c:836
+#: ../libmailwatch-core/mailwatch-net-conn.c:222
+#: ../libmailwatch-core/mailwatch-net-conn.c:267
+#: ../libmailwatch-core/mailwatch-net-conn.c:349
+#: ../libmailwatch-core/mailwatch-net-conn.c:694
+#: ../libmailwatch-core/mailwatch-net-conn.c:727
+#: ../libmailwatch-core/mailwatch-net-conn.c:776
+#: ../libmailwatch-core/mailwatch-net-conn.c:808
+#: ../libmailwatch-core/mailwatch-net-conn.c:838
 #, c-format
 msgid "Operation aborted"
 msgstr "Toiminto peruutettu"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:496
+#: ../libmailwatch-core/mailwatch-net-conn.c:498
 #, c-format
 msgid "Could not find host \"%s\": %s"
 msgstr "Isäntäkonetta \"%s\" ei löydy: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:580
+#: ../libmailwatch-core/mailwatch-net-conn.c:582
 #, c-format
 msgid "Failed to connect to server \"%s\": %s"
 msgstr "Palvelimeen \"%s\" ei voi yhdistää: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:643
+#: ../libmailwatch-core/mailwatch-net-conn.c:645
 #, c-format
 msgid "Not compiled with SSL/TLS support"
 msgstr "SSL/TLS-tuki jätetty pois kääntäessä"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:699
+#: ../libmailwatch-core/mailwatch-net-conn.c:701
 #, c-format
 msgid "Failed to send encrypted data: %s"
 msgstr "Salatun tiedon lähetys epäonnistui: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:732
+#: ../libmailwatch-core/mailwatch-net-conn.c:734
 #, c-format
 msgid "Failed to send data: %s"
 msgstr "Tiedon lähetys epäonnistui: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:813
+#: ../libmailwatch-core/mailwatch-net-conn.c:815
 #, c-format
 msgid "Failed to receive encrypted data: %s"
 msgstr "Salatun tiedon vastaanotto epäonnistui: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:843
+#: ../libmailwatch-core/mailwatch-net-conn.c:845
 #, c-format
 msgid "Failed to receive data: %s"
 msgstr "Tiedon vastaanotto epäonnistui: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:941
+#: ../libmailwatch-core/mailwatch-net-conn.c:943
 #, c-format
 msgid "Canceling read: read too many bytes without a newline"
 msgstr "Luku peruutettu: Liian monta tavua ilman rivinvaihtoa"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:950
+#: ../libmailwatch-core/mailwatch-net-conn.c:952
 #, c-format
 msgid "Buffer is not large enough to hold a full line (%d < %d)"
 msgstr "Välimuisti ei riitä täydelle riville (%d < %d)"
@@ -594,7 +594,7 @@ msgstr "Ylläpitäjä, projektin alkuunpanija"
 msgid "Developer"
 msgstr "Kehittäjä"
 
-#: ../panel-plugin/mailwatch-plugin.c:1117
+#: ../panel-plugin/mailwatch-plugin.c:1127
 msgid "Update Now"
 msgstr "Päivitä nyt"
 
