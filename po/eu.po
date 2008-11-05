@@ -70,7 +70,7 @@ msgstr "_Pasahitza:"
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1807
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:915
 msgid "Check for _new messages every"
-msgstr "Posta berri bila arakatze aldia"
+msgstr "Posta _berri bila arakatze aldia"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:591
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1821
