@@ -1,8 +1,7 @@
 # English/GB translation of xfce4-mailwatch-plugin.
 # Copyright (C) 2007 THE xfce4-mailwatch-plugin'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfce4-mailwatch-plugin package.
-# Jeff Bailes <thepizzaking@gmail.com>, 2007.
-# , fuzzy
+# Abel Martín <abel.martin.ruiz@gmail.com>, 2008
 #
 #
 msgid ""
@@ -10,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-10 21:57-0700\n"
-"PO-Revision-Date: 2008-09-12 17:46+0100\n"
+"PO-Revision-Date: 2008-11-02 20:46+0100\n"
 "Last-Translator: Abel Martín <abel.martin.ruiz@gmail.com>\n"
 "Language-Team: Spanish/ES\n"
 "MIME-Version: 1.0\n"
@@ -507,9 +506,8 @@ msgstr "_Ver Registro..."
 #: ../panel-plugin/mailwatch-plugin-4.2.c:885
 #: ../panel-plugin/mailwatch-plugin.c:842
 #: ../panel-plugin/mailwatch.desktop.in.in.h:2
-#, fuzzy
 msgid "Mail Watcher"
-msgstr "Aviso de Correos"
+msgstr "Aviso de nuevos correos"
 
 #: ../panel-plugin/mailwatch-plugin.c:813
 #, c-format

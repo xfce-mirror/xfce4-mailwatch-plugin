@@ -2,16 +2,16 @@
 # Copyright (C) 2005-2006 Brian Tarricone, Pasi Orovuo.
 # This file is distributed under the same license as the xfce4-mailwatch-plugin package.
 # Bernhard Walle <bernhard.walle@gmx.de>, 2005.
-# Fabian Nowak <timystery@arcor.de>, 2005.
+# Fabian Nowak <timystery@arcor.de>, 2005, 2008.
 # Enrico Tröger <enrico.troeger@uvena.de>, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-10 21:57-0700\n"
-"PO-Revision-Date: 2008-03-18 16:46+0100\n"
-"Last-Translator: Enrico Tröger <enrico.troeger@uvena.de>\n"
+"POT-Creation-Date: 2008-11-03 21:52+0100\n"
+"PO-Revision-Date: 2008-11-03 21:36+0100\n"
+"Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +23,7 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:308
 #, c-format
 msgid "TLS handshake failed: %s"
-msgstr "TLS Verbindungsaufbau fehlgeschlagen: %s"
+msgstr "TLS-Verbindungsaufbau fehlgeschlagen: %s"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:255
 #, c-format
@@ -31,7 +31,7 @@ msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
 msgstr ""
-"HTTP Antwort %d erhalten. Wahrscheinlich ist Ihr GoogleMail Passwort oder "
+"HTTP-Antwort %d erhalten. Wahrscheinlich ist Ihr GoogleMail Passwort oder "
 "Benutzername inkorrekt."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
@@ -41,7 +41,7 @@ msgid ""
 "with GMail's servers, or they have incompatibly changed their authentication "
 "method or location of the new messages feed."
 msgstr ""
-"HTTP Antwort %d erhalten, welche eigentlich 200 sein sollte. Wahrscheinlich "
+"HTTP-Antwort %d erhalten, welche eigentlich 200 sein sollte. Wahrscheinlich "
 "gibt es Probleme mit den GoogleMail Servern (Änderung des Loginvorgangs, "
 "Verschiebung der Seite mit den Informationen über neue Nachrichten)."
 
@@ -53,6 +53,7 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:548
 msgid "Previous thread hasn't exited yet, not checking mail this time."
 msgstr ""
+"Der vorherige Thread ist noch nicht beendet, prüfe diesmal keine E-Mail."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
@@ -107,6 +108,8 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
 msgid "Authentication failed.  Perhaps your username or password is incorrect?"
 msgstr ""
+"Die Anmeldung ist fehlgeschlagen. Vielleicht ist Ihr Benutzername oder Ihr "
+"Passwort falsch?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
@@ -138,16 +141,16 @@ msgid ""
 "Advanced dialog."
 msgstr ""
 "Die Ordnerliste kann nicht empfangen werden, bis ein Server, Benutzer und "
-"wahrscheinlich Passwort eingegeben wurden. Bitte sehen Sie sich auch im "
-"Dialog \"Erweitert\" die Sicherheitseinstellungen an."
+"wahrscheinlich auch ein Passwort eingegeben werden. Bitte sehen Sie sich "
+"auch im Dialog \"Erweitert\" die Sicherheitseinstellungen an."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
-msgstr "Ordner für neue Emails eingeben"
+msgstr "Ordner für neue E-Mails eingeben"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1417
 msgid "New Mail Folders"
-msgstr "Ordner für neue Emails"
+msgstr "Ordner für neue E-Mails"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1608
 msgid "Advanced IMAP Options"
@@ -200,7 +203,7 @@ msgstr "_Erweitert..."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1796
 msgid "New mail _folders..."
-msgstr "Ordner _für neue Emails..."
+msgstr "Ordner _für neue E-Mails..."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1985
 msgid "Remote IMAP Mailbox"
@@ -220,13 +223,13 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:403
 #, c-format
 msgid "Failed to get status of file %s: %s"
-msgstr "Konnte Status von Datei %s nicht feststellen: %s"
+msgstr "Konnte Status von Datei »%s« nicht feststellen: %s"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:102
 #, c-format
 msgid "%s is not a directory. Is %s really a valid maildir?"
 msgstr ""
-"%s ist kein Verzeichnis. Ist %s wirklich ein gültiges Maildir-Verzeichnis?"
+"»%s« ist kein Verzeichnis. Ist »%s« wirklich ein gültiges Maildir-Verzeichnis?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:335
 msgid "Maildir _Path:"
@@ -274,7 +277,7 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
 msgid "Malformed line %s in %s ignored."
-msgstr "Ungültige Zeile %s in %s wird ignoriert."
+msgstr "Ungültige Zeile »%s« in »%s« wird ignoriert."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:581
 msgid ""
@@ -321,62 +324,63 @@ msgstr ""
 "Das POP3-Plugin kann sich mit einem entfernten Server verbinden, auch mit "
 "SSL-Verschlüsselung für mehr Verbindungssicherheit."
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:221
-#: ../libmailwatch-core/mailwatch-net-conn.c:265
-#: ../libmailwatch-core/mailwatch-net-conn.c:347
-#: ../libmailwatch-core/mailwatch-net-conn.c:692
-#: ../libmailwatch-core/mailwatch-net-conn.c:725
-#: ../libmailwatch-core/mailwatch-net-conn.c:774
-#: ../libmailwatch-core/mailwatch-net-conn.c:806
-#: ../libmailwatch-core/mailwatch-net-conn.c:836
+#: ../libmailwatch-core/mailwatch-net-conn.c:222
+#: ../libmailwatch-core/mailwatch-net-conn.c:267
+#: ../libmailwatch-core/mailwatch-net-conn.c:349
+#: ../libmailwatch-core/mailwatch-net-conn.c:694
+#: ../libmailwatch-core/mailwatch-net-conn.c:727
+#: ../libmailwatch-core/mailwatch-net-conn.c:776
+#: ../libmailwatch-core/mailwatch-net-conn.c:808
+#: ../libmailwatch-core/mailwatch-net-conn.c:838
 #, c-format
 msgid "Operation aborted"
-msgstr ""
+msgstr "Vorgang abgebrochen"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:496
+#: ../libmailwatch-core/mailwatch-net-conn.c:498
 #, c-format
 msgid "Could not find host \"%s\": %s"
-msgstr ""
+msgstr "Konnte Server »%s« nicht finden: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:580
-#, fuzzy, c-format
+#: ../libmailwatch-core/mailwatch-net-conn.c:582
+#, c-format
 msgid "Failed to connect to server \"%s\": %s"
-msgstr "Verbindungsaufbau zu Server %s fehlgeschlagen"
+msgstr "Verbindungsaufbau zu Server »%s« fehlgeschlagen: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:643
+#: ../libmailwatch-core/mailwatch-net-conn.c:645
 #, c-format
 msgid "Not compiled with SSL/TLS support"
 msgstr "Nicht mit SSL-Unterstützung kompiliert"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:699
-#, fuzzy, c-format
+#: ../libmailwatch-core/mailwatch-net-conn.c:701
+#, c-format
 msgid "Failed to send encrypted data: %s"
-msgstr "Verbindungsaufbau zu Server %s fehlgeschlagen"
+msgstr "Konnte keine verschlüsselten Daten senden: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:732
-#, fuzzy, c-format
+#: ../libmailwatch-core/mailwatch-net-conn.c:734
+#, c-format
 msgid "Failed to send data: %s"
-msgstr "Verbindungsaufbau zu Server %s fehlgeschlagen"
+msgstr "Konnte keine Daten senden: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:813
+#: ../libmailwatch-core/mailwatch-net-conn.c:815
 #, c-format
 msgid "Failed to receive encrypted data: %s"
-msgstr ""
+msgstr "Konnte keine verschlüsselten Daten empfangen: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:843
-#, fuzzy, c-format
+#: ../libmailwatch-core/mailwatch-net-conn.c:845
+#, c-format
 msgid "Failed to receive data: %s"
-msgstr "Verbindungsaufbau zu Server %s fehlgeschlagen"
+msgstr "Konnte keine Daten empfangen: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:941
+#: ../libmailwatch-core/mailwatch-net-conn.c:943
 #, c-format
 msgid "Canceling read: read too many bytes without a newline"
-msgstr ""
+msgstr "Lesevorgang abgebrochen: Zuviele Bytes ohne Zeilenumbruch gelesen"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:950
+#: ../libmailwatch-core/mailwatch-net-conn.c:952
 #, c-format
 msgid "Buffer is not large enough to hold a full line (%d < %d)"
 msgstr ""
+"Der Puffer ist nicht groß genug, eine ganze Zeile aufzunehmen (%d < %d)"
 
 #: ../libmailwatch-core/mailwatch.c:126
 msgid ""
@@ -390,7 +394,7 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch.c:341 ../libmailwatch-core/mailwatch.c:342
 #, c-format
 msgid "Unable to write config file '%s'"
-msgstr "Fehler beim Schreiben der Konfigurationsdatei '%s'"
+msgstr "Fehler beim Schreiben der Konfigurationsdatei »%s«"
 
 #: ../libmailwatch-core/mailwatch.c:406 ../libmailwatch-core/mailwatch.c:408
 #, c-format
@@ -399,7 +403,7 @@ msgid ""
 "passwords or other sensitive information, it may be readable by others on "
 "your system."
 msgstr ""
-"Fehler beim Setzen der Zugriffsrechte für die Konfigurationsdatei '%s'. Wenn "
+"Fehler beim Setzen der Zugriffsrechte für die Konfigurationsdatei »%s«. Wenn "
 "die Datei Passwörter oder andere sensible Informationen beinhaltet, ist sie "
 "nun möglicherweise von anderen Benutzern auf Ihrem System lesbar."
 
@@ -478,17 +482,17 @@ msgstr[1] "Sie haben %d neue Nachrichten:"
 #: ../panel-plugin/mailwatch-plugin.c:135
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "tells how many new messages in each mailbox|    %d in %s"
+msgstr "    %d in %s"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:251
 #: ../panel-plugin/mailwatch-plugin.c:401
 msgid "Xfce Mailwatch"
-msgstr "Xfce Mailwatch"
+msgstr "Xfce-E-Mail-Überwachung"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:252
 #: ../panel-plugin/mailwatch-plugin.c:402
 msgid "The mailwatch applet cannot be added to the panel."
-msgstr "Die Mailüberwachung kann nicht zur Leiste hinzugefügt werden."
+msgstr "Die E-Mail-Überwachung kann nicht zur Leiste hinzugefügt werden."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:253
 #: ../panel-plugin/mailwatch-plugin.c:403
@@ -498,7 +502,7 @@ msgstr "Es ist möglich, dass Ihre Glib-Version Threads nicht unterstützt."
 #: ../panel-plugin/mailwatch-plugin-4.2.c:476
 #: ../panel-plugin/mailwatch-plugin.c:622
 msgid "Mailwatch log"
-msgstr "Mailwatch Logdatei"
+msgstr "Logdatei der E-Mail-Überwachung"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:534
 #: ../panel-plugin/mailwatch-plugin.c:680
@@ -561,14 +565,13 @@ msgstr "_Logdatei betrachten..."
 #: ../panel-plugin/mailwatch-plugin.c:842
 #: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Mail Watcher"
-msgstr "Mail Watcher"
+msgstr "E-Mail-Überwachung"
 
 #: ../panel-plugin/mailwatch-plugin.c:813
 #, c-format
 msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
 msgstr ""
-"Die Hilfe ist nicht verfügbar, da 'xfhelp4' nicht ausgeführt werden konnte: %"
-"s"
+"Die Hilfe ist nicht verfügbar, da »xfhelp4« nicht ausgeführt werden konnte: %s"
 
 #: ../panel-plugin/mailwatch-plugin.c:815
 msgid "Help Unavailable"
@@ -580,11 +583,11 @@ msgstr "Konnte xfhelp4 nicht ausführen"
 
 #: ../panel-plugin/mailwatch-plugin.c:1036
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "Xfce4 Mailwatch-Plugin"
+msgstr "Xfce4-E-Mail-Überwachung"
 
 #: ../panel-plugin/mailwatch-plugin.c:1038
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr "Ein funktionsreiches Mail-Prüf-Plugin für die Xfce-Leiste"
+msgstr "Ein funktionsreiches Plugin zur E-Mail-Überwachung für die Xfce-Leiste"
 
 #: ../panel-plugin/mailwatch-plugin.c:1039
 msgid ""
@@ -602,7 +605,7 @@ msgstr "Ursprünglicher Autor/Maintainer"
 msgid "Developer"
 msgstr "Entwickler"
 
-#: ../panel-plugin/mailwatch-plugin.c:1117
+#: ../panel-plugin/mailwatch-plugin.c:1127
 msgid "Update Now"
 msgstr "Aktualisieren"
 
