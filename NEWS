@@ -2,6 +2,14 @@
 | Mailwatch |
 +-----------+
 
+Version 1.1.0svn:
+
+  Bugfixes:
+    * Fix build when SSL is disabled.
+    * Also support gtk-2.12-style tooltips, and make the tooltip auto-update
+      in place if the status changes while the tooltip is active.
+
+
 Version 1.1.0 (14 Sep 2008):
 
   Bugfixes:
