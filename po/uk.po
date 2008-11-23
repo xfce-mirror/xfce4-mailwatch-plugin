@@ -9,15 +9,14 @@ msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-10 21:57-0700\n"
-"PO-Revision-Date: 2008-07-08 18:01+0300\n"
+"PO-Revision-Date: 2008-11-17 12:47+0200\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:204
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:399
@@ -53,7 +52,7 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:487
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:548
 msgid "Previous thread hasn't exited yet, not checking mail this time."
-msgstr ""
+msgstr "Попередній ланцюжок ще не завершився, не перевіряти пошту зараз."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
@@ -107,7 +106,7 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:242
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
 msgid "Authentication failed.  Perhaps your username or password is incorrect?"
-msgstr ""
+msgstr "Невдала авторизація.  Можливо неправильне ім'я або пароль?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
@@ -327,17 +326,17 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-net-conn.c:836
 #, c-format
 msgid "Operation aborted"
-msgstr ""
+msgstr "Операцію скасовано"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:496
 #, c-format
 msgid "Could not find host \"%s\": %s"
-msgstr ""
+msgstr "Не можу знайти хост \"%s\": %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:580
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to connect to server \"%s\": %s"
-msgstr "Не вдається з'єднатись з сервером: %s"
+msgstr "Невдача з'єднання з сервером \"%s\": %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:643
 #, c-format
@@ -345,34 +344,34 @@ msgid "Not compiled with SSL/TLS support"
 msgstr "Зібрано без підтримки SSL/TLS"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:699
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to send encrypted data: %s"
-msgstr "Не вдається з'єднатись з сервером: %s"
+msgstr "Невдача відсилання зашифрованих даних: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:732
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to send data: %s"
-msgstr "Не вдається з'єднатись з сервером: %s"
+msgstr "Невдача відсилання даних: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:813
 #, c-format
 msgid "Failed to receive encrypted data: %s"
-msgstr ""
+msgstr "Невдача приймання зашифрованих даних: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:843
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to receive data: %s"
-msgstr "Не вдається з'єднатись з сервером: %s"
+msgstr "Невдача приймання даних: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:941
 #, c-format
 msgid "Canceling read: read too many bytes without a newline"
-msgstr ""
+msgstr "Припинення перегляду: прочитано забагато байт без переходу на нову стрічку"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:950
 #, c-format
 msgid "Buffer is not large enough to hold a full line (%d < %d)"
-msgstr ""
+msgstr "Буфер недостатньо великий, щоб отримати всю стрічку (%d < %d)"
 
 #: ../libmailwatch-core/mailwatch.c:126
 msgid ""
@@ -603,36 +602,3 @@ msgstr "Оновити зараз"
 msgid "Check mail from multiple mailboxes"
 msgstr "Перевіряти пошту з кількох поштових скриньок"
 
-#~ msgid ""
-#~ "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
-#~ "the panel may hang on close."
-#~ msgstr ""
-#~ "Не вдається встановити сокет в неблокуючий режим. Якщо програма зависає "
-#~ "при спробі з'єднання, панель може зависнути при закритті."
-
-#~ msgid ""
-#~ "Unable to return socket to blocking mode.  Data may not be retreived "
-#~ "correctly."
-#~ msgstr ""
-#~ "Не вдається повернути сокет у блокуючий режим.  Дані можуть бути отримані "
-#~ "некоректно."
-
-#~ msgid ""
-#~ "The IMAP server returned a response we weren't quite expecting.  This "
-#~ "might be OK, or this plugin might need to be modified to support your "
-#~ "mail server if the new message counts are incorrect."
-#~ msgstr ""
-#~ "Сервер IMAP повернув відповідь - ми зовсім не очікували. Це ймовірно є "
-#~ "нормальним, але це розширення мабуть потребує змін для підтримки вашого "
-#~ "поштового серверу якщо нове враховане повідомлення є неправильним."
-
-#~ msgid "XfceMailwatch: TLS handshake failed: %s"
-#~ msgstr "XfceMailwatch: помилка встановлення з'єднання TLS: %s"
-
-#~ msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
-#~ msgstr ""
-#~ "XfceMailwatch: помилка встановлення з'єднання TLS: програму зібрано без "
-#~ "підтримки SSL."
-
-#~ msgid "A secure connection was requested, but gnutls was not initialised"
-#~ msgstr "Вимагається безпечне з'єднання, але gnutls не ініціалізована"
