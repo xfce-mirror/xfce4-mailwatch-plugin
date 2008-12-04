@@ -767,10 +767,16 @@ xfce_mailwatch_net_conn_recv_internal(XfceMailwatchNetConn *net_conn,
             return -1;
         } else if(!block)
             return 0;
-    } while(ret < 0 && EINTR == errno && !TIMER_EXPIRED(RECV_TIMEOUT)
-            && SHOULD_CONTINUE(net_conn));
+    } while((ret == 0 || (ret < 0 && EINTR == errno))
+            && !TIMER_EXPIRED(RECV_TIMEOUT) && SHOULD_CONTINUE(net_conn));
 
-    if(!SHOULD_CONTINUE(net_conn)) {
+    if(ret < 0 && EINTR != errno) {
+        if(error) {
+            g_set_error(error, XFCE_MAILWATCH_ERROR,
+                        XFCE_MAILWATCH_ERROR_FAILED, strerror(errno));
+        }
+        return -1;
+    } else if(!SHOULD_CONTINUE(net_conn)) {
         if(error) {
             g_set_error(error, XFCE_MAILWATCH_ERROR,
                         XFCE_MAILWATCH_ERROR_ABORTED, _("Operation aborted"));
