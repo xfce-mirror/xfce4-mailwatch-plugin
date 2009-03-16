@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfce 4-mailwatch-plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-10 21:57-0700\n"
-"PO-Revision-Date: 2009-03-03 21:49+0100\n"
+"PO-Revision-Date: 2009-03-13 15:30+0100\n"
 "Last-Translator: Piotr Sokół <piotr.sokol@10g.pl>\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -40,8 +40,9 @@ msgstr "Odebrano kod zwrotny HTTP %d, który "
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:225
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:487
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:548
+#, fuzzy
 msgid "Previous thread hasn't exited yet, not checking mail this time."
-msgstr ""
+msgstr "Poprzedni wątek nie został jeszcze zakończony. Poczta nie zostanie sprawdzona."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
@@ -155,8 +156,9 @@ msgid "Folders"
 msgstr "Katalogi"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1684
+#, fuzzy
 msgid "IMAP server _directory:"
-msgstr ""
+msgstr "_Katalog serwera IMAP:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1714
 msgid "IMAP Server"
@@ -528,8 +530,9 @@ msgid "Failed to run xfhelp4"
 msgstr "Nie udało się uruchomić programu „xfhelp4”"
 
 #: ../panel-plugin/mailwatch-plugin.c:1036
+#, fuzzy
 msgid "Xfce4 Mailwatch Plugin"
-msgstr ""
+msgstr "Xfce4 Mailwatch Plugin"
 
 #: ../panel-plugin/mailwatch-plugin.c:1038
 msgid "A featureful mail-checker applet for the Xfce Panel"
