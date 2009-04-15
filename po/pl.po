@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfce 4-mailwatch-plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-10 21:57-0700\n"
-"PO-Revision-Date: 2009-03-13 15:30+0100\n"
+"PO-Revision-Date: 2009-04-10 10:56+0100\n"
 "Last-Translator: Piotr Sokół <piotr.sokol@10g.pl>\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -25,14 +25,14 @@ msgid "TLS handshake failed: %s"
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:255
-#, fuzzy, c-format
+#, c-format
 msgid "Received HTTP response code %d.  The most likely reason for this is that your GMail username or password is incorrect."
-msgstr "Odebrano kod zwrotny HTTP %d. Najczęstszą tego przyczyną jest niepoprawna nazwa użytkownika lub hasło."
+msgstr "Odebrano kod zwrotny HTTP %d. Przyczyną może być niepoprawna nazwa użytkownika lub hasło."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
-#, fuzzy, c-format
+#, c-format
 msgid "Received HTTP response code %d, which should be 200.  There may be a problem with GMail's servers, or they have incompatibly changed their authentication method or location of the new messages feed."
-msgstr "Odebrano kod zwrotny HTTP %d, który "
+msgstr "Odebrano kod zwrotny HTTP %d, który powinien wynosić 200. Przyczyną mogą być problemy z funkcjonowaniem serwerów Gmail lub zmiana metody uwierzytelniania bądź położenia kanału nowych wiadomości."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:735
@@ -60,7 +60,7 @@ msgstr "_Hasło:"
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1807
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:915
 msgid "Check for _new messages every"
-msgstr "Sprawdzanie _zawartości co"
+msgstr "Okres sprawdzania _zawartości:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:591
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1821
@@ -69,7 +69,7 @@ msgstr "Sprawdzanie _zawartości co"
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:605
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:929
 msgid "minute(s)."
-msgstr "minut."
+msgstr "minut"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:668
 msgid "Remote GMail Mailbox"
@@ -77,23 +77,22 @@ msgstr "Zdalna skrzynka pocztowa Gmail"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:669
 msgid "The GMail plugin can connect to Google's mail service and securely retrieve the number of new messages."
-msgstr "Łączy z usługą poczty Google i w bezpieczny sposób pobiera ilość nowych wiadomości."
+msgstr "Łączy z usługą poczty Google i w bezpieczny sposób pobiera ilość nowych wiadomości"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
 msgid "Secure IMAP is not available, and the IMAP server does not support plaintext logins."
-msgstr ""
+msgstr "Bezpieczne połączenie IMAP nie jest dostępne, a serwer IMAP nie obsługuje przesyłania nieszyfrowanych haseł."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:337
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:370
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:242
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
-#, fuzzy
 msgid "Authentication failed.  Perhaps your username or password is incorrect?"
-msgstr "Nie udało się uwierzytelnić. Możliwe, że nazwa użytkownika lub hasło jest niepoprawne."
+msgstr "Nie udało się uwierzytelnić. Proszę upewnić się, że nazwa użytkownika i hasło jest poprawne."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
-msgstr ""
+msgstr "Serwer nie obsługuje bezpiecznych połączeń STARTTLS."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1144
 msgid "Failed to get folder list"
@@ -118,15 +117,15 @@ msgstr "Lista katalogów nie może zostać pobrana bez wprowadzenia uprzednio se
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
-msgstr ""
+msgstr "Wybór katalogów poczty"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1417
 msgid "New Mail Folders"
-msgstr ""
+msgstr "Katalogi"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1608
 msgid "Advanced IMAP Options"
-msgstr "Zaawansowane opcje IMAPI"
+msgstr "Ustawienia zaawansowane"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1619
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:757
@@ -149,16 +148,15 @@ msgstr "SSL/TLS przez STARTTLS"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1646
 msgid "Use non-standard IMAP _port:"
-msgstr "Własny _port IMAP:"
+msgstr "Niestandardowy _port IMAP:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1676
 msgid "Folders"
 msgstr "Katalogi"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1684
-#, fuzzy
 msgid "IMAP server _directory:"
-msgstr "_Katalog serwera IMAP:"
+msgstr "_Katalog serwera poczty:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1714
 msgid "IMAP Server"
@@ -176,7 +174,7 @@ msgstr "_Zaawansowane..."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1796
 msgid "New mail _folders..."
-msgstr ""
+msgstr "Wybierz _katalogi..."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1985
 msgid "Remote IMAP Mailbox"
@@ -197,12 +195,11 @@ msgstr "Nie udało się uzyskać stanu pliku „%s”: %s"
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:102
 #, c-format
 msgid "%s is not a directory. Is %s really a valid maildir?"
-msgstr ""
+msgstr "„%s” nie jest katalogiem. Proszę upewnić się, czy „%s” jest poprawnym katalogiem maildir."
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:335
-#, fuzzy
 msgid "Maildir _Path:"
-msgstr "_Położenie Maildir:"
+msgstr "Ś_cieżka Maildir:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:340
 msgid "Select Maildir Folder"
@@ -212,16 +209,15 @@ msgstr "Wybór katalogu"
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:394
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:590
 msgid "_Interval:"
-msgstr "Sprawdzanie _zawartości co"
+msgstr "Okres sprawdzania _zawartości:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:450
-#, fuzzy
 msgid "Local Maildir Spool"
 msgstr "Lokalny bufor Maildir"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:451
 msgid "The Maildir plugin can watch a local maildir-style mail spool for new messages."
-msgstr ""
+msgstr "Poszukuje nowej poczty w lokalnym buforze maildir"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:370
 msgid "Mbox _Filename:"
@@ -258,11 +254,11 @@ msgstr "Lokalny katalog poczty MH"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:684
 msgid "MH plugin watches local MH folders for new mail"
-msgstr "Poszukuje nowej poczty w lokalnych katalogach MH "
+msgstr "Poszukuje nowej poczty w lokalnych katalogach MH"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:746
 msgid "Advanced POP3 Options"
-msgstr "Zaawansowane opcje POP3"
+msgstr "Ustawienia zaawansowane"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:768
 msgid "Use SSL/TLS via STLS"
@@ -332,9 +328,9 @@ msgid "Failed to receive data: %s"
 msgstr "Nie udało się odebrać danych: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:941
-#, c-format
+#, fuzzy, c-format
 msgid "Canceling read: read too many bytes without a newline"
-msgstr ""
+msgstr "Anulowanie odczytywania: wczytano za dużo bajtów bez nowego wiersza"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:950
 #, c-format
@@ -355,7 +351,7 @@ msgstr "Nie można zapisać pliku konfiguracji „%s”"
 #: ../libmailwatch-core/mailwatch.c:408
 #, c-format
 msgid "Unable to set permissions on config file '%s'.  If this file contains passwords or other sensitive information, it may be readable by others on your system."
-msgstr ""
+msgstr "Nie można ustawić uprawnień dla pliku konfiguracyjnego „%s”. Jeśli plik zawiera hasła lub inne ważne informacje, inni użytkownicy tego systemu mogą posiadać uprawnienia do jego odczytu."
 
 #: ../libmailwatch-core/mailwatch.c:628
 msgid "This mailbox type does not require any configuration settings."
@@ -384,11 +380,11 @@ msgstr "Edycja skrzynki pocztowej „%s”"
 
 #: ../libmailwatch-core/mailwatch.c:775
 msgid "Select Mailbox Type"
-msgstr "Wybór skrzynki pocztowej"
+msgstr "Nowa skrzynka pocztowa"
 
 #: ../libmailwatch-core/mailwatch.c:785
 msgid "Select a mailbox type.  A description of the type will appear below."
-msgstr "Proszę wybrać typ skrzynki pocztowej. Jej opis zostanie wyświetlony poniżej."
+msgstr "Proszę wybrać typ skrzynki pocztowej:"
 
 #: ../libmailwatch-core/mailwatch.c:839
 msgid "Add New Mailbox"
@@ -404,7 +400,7 @@ msgstr "Kontynuować?"
 
 #: ../libmailwatch-core/mailwatch.c:901
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
-msgstr ""
+msgstr "Wraz ze skrzynką pocztową zostaną usunięte wszystkie jej ustawienia i nie będą mogły zostać przywrócone."
 
 #: ../libmailwatch-core/mailwatch.c:966
 msgid "Mailboxes"
@@ -422,15 +418,15 @@ msgstr "Brak nowej poczty"
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
-msgstr[0] "%d nowa wiadomość:"
-msgstr[1] "%d nowe wiadomości:"
-msgstr[2] "%d nowych wiadomości:"
+msgstr[0] "Odebrano %d nową wiadomość:"
+msgstr[1] "Odebrano %d nowe wiadomości:"
+msgstr[2] "Odebrano %d nowych wiadomości:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:140
 #: ../panel-plugin/mailwatch-plugin.c:135
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "    %d w %s"
+msgstr "%d w skrzynce pocztowej %s"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:251
 #: ../panel-plugin/mailwatch-plugin.c:401
@@ -473,12 +469,12 @@ msgstr "Wybór pliku"
 #: ../panel-plugin/mailwatch-plugin.c:769
 #: ../panel-plugin/mailwatch-plugin.c:950
 msgid "_Normal"
-msgstr "_Normalna"
+msgstr "_Zwykła"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:649
 #: ../panel-plugin/mailwatch-plugin.c:795
 msgid "Ne_w mail"
-msgstr "_Nowa poczta"
+msgstr "Nowa _poczta"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:676
 #: ../panel-plugin/mailwatch-plugin.c:882
@@ -548,18 +544,17 @@ msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin.c:1045
 msgid "Maintainer, Original Author"
-msgstr ""
+msgstr "Opiekun, autor"
 
 #: ../panel-plugin/mailwatch-plugin.c:1047
 msgid "Developer"
-msgstr ""
+msgstr "Programista"
 
 #: ../panel-plugin/mailwatch-plugin.c:1117
 msgid "Update Now"
 msgstr "Odśwież"
 
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
-#, fuzzy
 msgid "Check mail from multiple mailboxes"
-msgstr "Powiadamia o nowej poczcie z wielu skrzynek pocztowych"
+msgstr "Powiadamia o nowej poczcie w wielu skrzynkach pocztowych"
 
