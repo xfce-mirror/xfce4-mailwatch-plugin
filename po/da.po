@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce-mailwatch-plugin 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-10 21:57-0700\n"
+"POT-Creation-Date: 2009-07-15 22:43-0700\n"
 "PO-Revision-Date: 2008-10-14 19:47+0200\n"
 "Last-Translator: Lars Jensen <lars@jink.dk>\n"
 "Language-Team: Dansk <dansk@dansk-gruppen.dk>\n"
@@ -40,8 +40,9 @@ msgid ""
 "with GMail's servers, or they have incompatibly changed their authentication "
 "method or location of the new messages feed."
 msgstr ""
-"Modtog HTTP reaktionskode %d, som skulle være 200.  Der er muligvis et problem "
-"med Gmail's servere, eller de har på en uforenelig måde ændret deres " "godkendelsesmetode eller placering af deres beskedstrøm."
+"Modtog HTTP reaktionskode %d, som skulle være 200.  Der er muligvis et "
+"problem med Gmail's servere, eller de har på en uforenelig måde ændret deres "
+"godkendelsesmetode eller placering af deres beskedstrøm."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:735
@@ -50,7 +51,9 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:487
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:548
 msgid "Previous thread hasn't exited yet, not checking mail this time."
-msgstr "Tidligere tråd er endnu ikke afsluttet, vil ikke kontrollere post på nuværende tidspunkt."
+msgstr ""
+"Tidligere tråd er endnu ikke afsluttet, vil ikke kontrollere post på "
+"nuværende tidspunkt."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
@@ -88,8 +91,8 @@ msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
 msgstr ""
-"Gmail-udvidelsesmodulet kan forbinde til Google's posttjeneste og sikkert hente "
-"antallet af nye beskeder."
+"Gmail-udvidelsesmodulet kan forbinde til Google's posttjeneste og sikkert "
+"hente antallet af nye beskeder."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
 msgid ""
@@ -104,7 +107,8 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:242
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
 msgid "Authentication failed.  Perhaps your username or password is incorrect?"
-msgstr "Godkendelsen mislykkedes. Måske var dit brugernavn eller adgangskode forkert?"
+msgstr ""
+"Godkendelsen mislykkedes. Måske var dit brugernavn eller adgangskode forkert?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
@@ -133,9 +137,9 @@ msgid ""
 "password are set.  Also be sure to check any security settings in the "
 "Advanced dialog."
 msgstr ""
-"Mappelisten kan ikke hentes før en server, brugernavn og muligvis "
-"adgangkode er angivet. Kontrollér også sikkerhedsindstillingerne under "
-"menupunktet avanceret."
+"Mappelisten kan ikke hentes før en server, brugernavn og muligvis adgangkode "
+"er angivet. Kontrollér også sikkerhedsindstillingerne under menupunktet "
+"avanceret."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
@@ -207,7 +211,8 @@ msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
 msgstr ""
-"IMAP-udvidelsen kan forbinde til en ekstern postserver der understøtter " "IMAP-protokollen, og kan derudover bruge SSL til opkoblingssikkerhed."
+"IMAP-udvidelsen kan forbinde til en ekstern postserver der understøtter IMAP-"
+"protokollen, og kan derudover bruge SSL til opkoblingssikkerhed."
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
@@ -310,63 +315,64 @@ msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
 msgstr ""
-"POP3-udvidelsen kan forbinde til en ekstern mailserver der understøtter " "POP3-protokollen, og kan derudover bruge SSL for opkoblingssikkerhed."
+"POP3-udvidelsen kan forbinde til en ekstern mailserver der understøtter POP3-"
+"protokollen, og kan derudover bruge SSL for opkoblingssikkerhed."
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:221
-#: ../libmailwatch-core/mailwatch-net-conn.c:265
-#: ../libmailwatch-core/mailwatch-net-conn.c:347
-#: ../libmailwatch-core/mailwatch-net-conn.c:692
-#: ../libmailwatch-core/mailwatch-net-conn.c:725
-#: ../libmailwatch-core/mailwatch-net-conn.c:774
-#: ../libmailwatch-core/mailwatch-net-conn.c:806
-#: ../libmailwatch-core/mailwatch-net-conn.c:836
+#: ../libmailwatch-core/mailwatch-net-conn.c:222
+#: ../libmailwatch-core/mailwatch-net-conn.c:267
+#: ../libmailwatch-core/mailwatch-net-conn.c:349
+#: ../libmailwatch-core/mailwatch-net-conn.c:694
+#: ../libmailwatch-core/mailwatch-net-conn.c:727
+#: ../libmailwatch-core/mailwatch-net-conn.c:783
+#: ../libmailwatch-core/mailwatch-net-conn.c:816
+#: ../libmailwatch-core/mailwatch-net-conn.c:846
 #, c-format
 msgid "Operation aborted"
 msgstr "Handling afbrudt"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:496
+#: ../libmailwatch-core/mailwatch-net-conn.c:498
 #, c-format
 msgid "Could not find host \"%s\": %s"
 msgstr "Kunne ikke finde vært \"%s\". %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:580
+#: ../libmailwatch-core/mailwatch-net-conn.c:582
 #, c-format
 msgid "Failed to connect to server \"%s\": %s"
 msgstr "Kunne ikke forbinde til server \"%s\": %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:643
+#: ../libmailwatch-core/mailwatch-net-conn.c:645
 #, c-format
 msgid "Not compiled with SSL/TLS support"
 msgstr "Ikke kompileret med SSL/TLS-understøttelse"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:699
+#: ../libmailwatch-core/mailwatch-net-conn.c:701
 #, c-format
 msgid "Failed to send encrypted data: %s"
 msgstr "Kunne ikke afsende krypteret data forslag: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:732
+#: ../libmailwatch-core/mailwatch-net-conn.c:734
 #, c-format
 msgid "Failed to send data: %s"
 msgstr "Kunne ikke afsende data: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:813
+#: ../libmailwatch-core/mailwatch-net-conn.c:823
 #, c-format
 msgid "Failed to receive encrypted data: %s"
 msgstr "Kunne ikke modtage krypteret data: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:843
+#: ../libmailwatch-core/mailwatch-net-conn.c:853
 #, c-format
 msgid "Failed to receive data: %s"
 msgstr "Modtagelse mislykkedes af data: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:941
+#: ../libmailwatch-core/mailwatch-net-conn.c:951
 #, c-format
 msgid "Canceling read: read too many bytes without a newline"
 msgstr "Afbryder læsning: læst for mange bytes uden et linjeskift"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:950
-#, c-format
-msgid "Buffer is not large enough to hold a full line (%d < %d)"
+#: ../libmailwatch-core/mailwatch-net-conn.c:960
+#, fuzzy
+msgid "Buffer is not large enough to hold a full line (%"
 msgstr "Mellemlager er ikke stort nok til at indeholde en hel linje (%d < %d)"
 
 #: ../libmailwatch-core/mailwatch.c:126
@@ -374,8 +380,8 @@ msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
 msgstr ""
-"xfce4-mailwatch-plugin: Ikke istand til at starte GThreadunderstøttelse. Dette er "
-"højst sandsynligt et problem med din GLib-installation."
+"xfce4-mailwatch-plugin: Ikke istand til at starte GThreadunderstøttelse. "
+"Dette er højst sandsynligt et problem med din GLib-installation."
 
 #: ../libmailwatch-core/mailwatch.c:341 ../libmailwatch-core/mailwatch.c:342
 #, c-format
@@ -389,9 +395,9 @@ msgid ""
 "passwords or other sensitive information, it may be readable by others on "
 "your system."
 msgstr ""
-"Kunne ikke angive tilladelser på konfigurationsfilen '%s'.  Hvis denne fil indeholder "
-"adgangskoder eller andre følsomme oplysninger, kan de være læsbare for andre på "
-"dit system."
+"Kunne ikke angive tilladelser på konfigurationsfilen '%s'.  Hvis denne fil "
+"indeholder adgangskoder eller andre følsomme oplysninger, kan de være "
+"læsbare for andre på dit system."
 
 #: ../libmailwatch-core/mailwatch.c:628
 msgid "This mailbox type does not require any configuration settings."
@@ -440,7 +446,9 @@ msgstr "Er du sikker?"
 
 #: ../libmailwatch-core/mailwatch.c:901
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
-msgstr "Ved sletning af en postkasse fjernes alle indstillinger, og handlingen kan ikke fortrydes."
+msgstr ""
+"Ved sletning af en postkasse fjernes alle indstillinger, og handlingen kan "
+"ikke fortrydes."
 
 #: ../libmailwatch-core/mailwatch.c:966
 msgid "Mailboxes"
@@ -448,13 +456,15 @@ msgstr "Postkasser"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:114
 #: ../panel-plugin/mailwatch-plugin-4.2.c:269
-#: ../panel-plugin/mailwatch-plugin.c:109
-#: ../panel-plugin/mailwatch-plugin.c:419
+#: ../panel-plugin/mailwatch-plugin.c:112
+#: ../panel-plugin/mailwatch-plugin.c:115
+#: ../panel-plugin/mailwatch-plugin.c:431
+#: ../panel-plugin/mailwatch-plugin.c:434
 msgid "No new mail"
 msgstr "Ingen ny post"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:129
-#: ../panel-plugin/mailwatch-plugin.c:124
+#: ../panel-plugin/mailwatch-plugin.c:131
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
@@ -462,116 +472,116 @@ msgstr[0] "Du har %d ny meddelelse:"
 msgstr[1] "Du har %d nye meddelelser:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:140
-#: ../panel-plugin/mailwatch-plugin.c:135
+#: ../panel-plugin/mailwatch-plugin.c:142
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "    %d i %s"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:251
-#: ../panel-plugin/mailwatch-plugin.c:401
+#: ../panel-plugin/mailwatch-plugin.c:413
 msgid "Xfce Mailwatch"
 msgstr "Xfce Mailwatch"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:252
-#: ../panel-plugin/mailwatch-plugin.c:402
+#: ../panel-plugin/mailwatch-plugin.c:414
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Mailwatch-programmet kan ikke tilføjes panelet."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:253
-#: ../panel-plugin/mailwatch-plugin.c:403
+#: ../panel-plugin/mailwatch-plugin.c:415
 msgid "It is possible that your version of GLib does not have threads support."
 msgstr "Det er muligt at din version af GLib har ikke understøttelse af tråde."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:476
-#: ../panel-plugin/mailwatch-plugin.c:622
+#: ../panel-plugin/mailwatch-plugin.c:638
 msgid "Mailwatch log"
 msgstr "Mailwatch-log"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:534
-#: ../panel-plugin/mailwatch-plugin.c:680
+#: ../panel-plugin/mailwatch-plugin.c:696
 msgid "Log _lines:"
 msgstr "Log_linjer:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:548
-#: ../panel-plugin/mailwatch-plugin.c:694
+#: ../panel-plugin/mailwatch-plugin.c:710
 msgid "Show log _status in icon"
 msgstr "Vis log _status på ikon"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:594
-#: ../panel-plugin/mailwatch-plugin.c:738
+#: ../panel-plugin/mailwatch-plugin.c:754
 msgid "Select Icon"
 msgstr "Vælg ikon"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:624
 #: ../panel-plugin/mailwatch-plugin-4.2.c:744
-#: ../panel-plugin/mailwatch-plugin.c:769
-#: ../panel-plugin/mailwatch-plugin.c:950
+#: ../panel-plugin/mailwatch-plugin.c:785
+#: ../panel-plugin/mailwatch-plugin.c:966
 msgid "_Normal"
 msgstr "_Normal"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:649
-#: ../panel-plugin/mailwatch-plugin.c:795
+#: ../panel-plugin/mailwatch-plugin.c:811
 msgid "Ne_w mail"
 msgstr "N_y post"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:676
-#: ../panel-plugin/mailwatch-plugin.c:882
+#: ../panel-plugin/mailwatch-plugin.c:898
 msgid "External Programs"
 msgstr "Eksterne programmer"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:688
-#: ../panel-plugin/mailwatch-plugin.c:894
+#: ../panel-plugin/mailwatch-plugin.c:910
 msgid "Run _on click:"
 msgstr "Kør _ved klik:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:705
-#: ../panel-plugin/mailwatch-plugin.c:911
+#: ../panel-plugin/mailwatch-plugin.c:927
 msgid "Run on new _messages:"
 msgstr "Kør på nye _beskeder:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:718
-#: ../panel-plugin/mailwatch-plugin.c:924
+#: ../panel-plugin/mailwatch-plugin.c:940
 msgid "Icons"
 msgstr "Ikoner"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:764
-#: ../panel-plugin/mailwatch-plugin.c:970
+#: ../panel-plugin/mailwatch-plugin.c:986
 msgid "Ne_w Mail"
 msgstr "N_y post"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:772
-#: ../panel-plugin/mailwatch-plugin.c:861
+#: ../panel-plugin/mailwatch-plugin.c:877
 msgid "_View Log..."
 msgstr "_Se log..."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:885
-#: ../panel-plugin/mailwatch-plugin.c:842
+#: ../panel-plugin/mailwatch-plugin.c:858
 #: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Mail Watcher"
 msgstr "Mail Watcher"
 
-#: ../panel-plugin/mailwatch-plugin.c:813
+#: ../panel-plugin/mailwatch-plugin.c:829
 #, c-format
 msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
 msgstr "Hjælp er ikke tilgængelig, da 'xfhelp4' ikke kunne køres: %s"
 
-#: ../panel-plugin/mailwatch-plugin.c:815
+#: ../panel-plugin/mailwatch-plugin.c:831
 msgid "Help Unavailable"
 msgstr "Hjælp er ikke tilgængelig"
 
-#: ../panel-plugin/mailwatch-plugin.c:816
+#: ../panel-plugin/mailwatch-plugin.c:832
 msgid "Failed to run xfhelp4"
 msgstr "Kunne ikke køre xfhelp4"
 
-#: ../panel-plugin/mailwatch-plugin.c:1036
+#: ../panel-plugin/mailwatch-plugin.c:1054
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Xfce4 Mailwatch program"
 
-#: ../panel-plugin/mailwatch-plugin.c:1038
+#: ../panel-plugin/mailwatch-plugin.c:1056
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "Et funktionsfyldigt minipostovervågerprogram til Xfce panelet"
 
-#: ../panel-plugin/mailwatch-plugin.c:1039
+#: ../panel-plugin/mailwatch-plugin.c:1057
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
@@ -579,19 +589,18 @@ msgstr ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 
-#: ../panel-plugin/mailwatch-plugin.c:1045
+#: ../panel-plugin/mailwatch-plugin.c:1063
 msgid "Maintainer, Original Author"
 msgstr "Vedligeholder, oprindelig forfatter"
 
-#: ../panel-plugin/mailwatch-plugin.c:1047
+#: ../panel-plugin/mailwatch-plugin.c:1065
 msgid "Developer"
 msgstr "Udvikler"
 
-#: ../panel-plugin/mailwatch-plugin.c:1117
+#: ../panel-plugin/mailwatch-plugin.c:1145
 msgid "Update Now"
 msgstr "Opdatér nu"
 
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "Kontrollér post fra flere postkasser"
-
