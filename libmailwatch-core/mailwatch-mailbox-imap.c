@@ -184,7 +184,7 @@ imap_recv(XfceMailwatchIMAPMailbox *imailbox,
         g_error_free(error);
     }
 
-    if(recvd == len)
+    if((gsize)recvd == len)
         return -1;
 
     buf[recvd] = '\n';
@@ -272,7 +272,7 @@ imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox,
     g_snprintf(buf, BUFSIZE, "%05d CAPABILITY\r\n", ++imailbox->imap_tag);
     bout = imap_send(imailbox, net_conn, buf);
     DBG("sent CAPABILITY (%d)", bout);
-    if(bout != strlen(buf))
+    if(bout != (gint)strlen(buf))
         goto cleanuperr;
     bin = imap_recv_command(imailbox, net_conn, buf, BUFSIZE);
     DBG("response from CAPABILITY (%d): %s", bin, bin>0?buf:"(nada)");
@@ -353,7 +353,7 @@ imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox,
                ++imailbox->imap_tag, username, password);
     bout = imap_send(imailbox, net_conn, buf);
     DBG("sent login (%d)", bout);
-    if(bout != strlen(buf))
+    if(bout != (gint)strlen(buf))
         goto cleanuperr;
     
     /* and see if we actually got auth-ed */
@@ -418,7 +418,7 @@ imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox,
     TRACE("entering");
     
     g_snprintf(buf, BUFSIZE, "%05d CAPABILITY\r\n", ++imailbox->imap_tag);
-    if(imap_send(imailbox, net_conn, buf) != strlen(buf))
+    if(imap_send(imailbox, net_conn, buf) != (gint)strlen(buf))
         return FALSE;
 
     bin = imap_recv_command(imailbox, net_conn, buf, BUFSIZE);
@@ -435,7 +435,7 @@ imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox,
     }
     
     g_snprintf(buf, BUFSIZE, "%05d STARTTLS\r\n", ++imailbox->imap_tag);
-    if(imap_send(imailbox, net_conn, buf) != strlen(buf))
+    if(imap_send(imailbox, net_conn, buf) != (gint)strlen(buf))
         return FALSE;
     
     if(imap_recv_command(imailbox, net_conn, buf, BUFSIZE) < 0)
@@ -557,7 +557,7 @@ imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
     g_snprintf(buf, sizeof(buf), "%05d STATUS %s (UNSEEN)\r\n",
                ++imailbox->imap_tag, mailbox_name);
 
-    if(imap_send(imailbox, net_conn, buf) != strlen(buf))
+    if(imap_send(imailbox, net_conn, buf) != (gint)strlen(buf))
         return 0;
     DBG("  successfully sent cmd '%s'", buf);
     
@@ -859,7 +859,7 @@ imap_config_timeout_spinbutton_changed_cb(GtkSpinButton *sb,
                                           gpointer user_data)
 {
     XfceMailwatchIMAPMailbox *imailbox = user_data;
-    gint value = gtk_spin_button_get_value_as_int(sb) * 60;
+    guint value = gtk_spin_button_get_value_as_int(sb) * 60;
     
     if(imailbox->timeout == value)
         return;
@@ -919,7 +919,7 @@ imap_populate_folder_tree(XfceMailwatchIMAPMailbox *imailbox,
     
     g_snprintf(buf, BUFSIZE, "%05d LIST \"%s\" \"%%\"\r\n",
             ++imailbox->imap_tag, cur_folder);
-    if(imap_send(imailbox, net_conn, buf) != strlen(buf))
+    if(imap_send(imailbox, net_conn, buf) != (gint)strlen(buf))
         return FALSE;
     DBG("sent LIST: '%s'", buf);
     
@@ -1892,7 +1892,7 @@ imap_save_param_list(XfceMailwatchMailbox *mailbox)
     XfceMailwatchIMAPMailbox *imailbox = XFCE_MAILWATCH_IMAP_MAILBOX(mailbox);
     GList *params = NULL;
     XfceMailwatchParam *param;
-    gint i;
+    guint i;
     
     g_mutex_lock(imailbox->config_mx);
     

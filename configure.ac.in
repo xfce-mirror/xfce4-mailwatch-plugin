@@ -95,6 +95,9 @@ if test "x$enable_ipv6_support" = "xyes"; then
               [Define if IPv6 support should be enabled])
 fi
 
+dnl suppress warnings related to GStaticMutexes
+XDT_SUPPORTED_FLAGS([CFLAGS], [-fno-strict-aliasing])
+
 dnl check for debugging support
 XDT_FEATURE_DEBUG
 

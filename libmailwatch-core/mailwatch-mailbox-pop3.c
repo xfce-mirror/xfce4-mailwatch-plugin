@@ -126,7 +126,7 @@ pop3_recv(XfceMailwatchPOP3Mailbox *pmailbox, gchar *buf, gsize len)
         g_error_free(error);
     }
 
-    if(recvd == len)
+    if((gsize)recvd == len)
         return -1;
 
     buf[recvd] = '\n';
@@ -256,7 +256,7 @@ pop3_send_login_info(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *username,
     g_snprintf(buf, BUFSIZE, "USER %s\r\n", username);
     bout = pop3_send(pmailbox, buf);
     DBG("sent user (%d)", bout);
-    if(bout != strlen(buf))
+    if(bout != (gint)strlen(buf))
         return FALSE;
     
     /* check for OK response */
@@ -269,7 +269,7 @@ pop3_send_login_info(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *username,
     g_snprintf(buf, BUFSIZE, "PASS %s\r\n", password);
     bout = pop3_send(pmailbox, buf);
     DBG("sent password (%d)", bout);
-    if(bout != strlen(buf))
+    if(bout != (gint)strlen(buf))
         return FALSE;
     
     /* check for OK response */
@@ -672,7 +672,7 @@ pop3_config_timeout_spinbutton_changed_cb(GtkSpinButton *sb,
                                           gpointer user_data)
 {
     XfceMailwatchPOP3Mailbox *pmailbox = user_data;
-    gint value = gtk_spin_button_get_value_as_int(sb) * 60;
+    guint value = gtk_spin_button_get_value_as_int(sb) * 60;
 
     if(value == pmailbox->timeout)
         return;

@@ -291,7 +291,7 @@ maildir_folder_set_cb( GtkWidget *button,
 
 static void
 maildir_interval_changed_cb( GtkWidget *spinner, XfceMailwatchMaildirMailbox *maildir ) {
-    gint value = gtk_spin_button_get_value_as_int( GTK_SPIN_BUTTON( spinner ) ) * 60;
+    guint value = gtk_spin_button_get_value_as_int( GTK_SPIN_BUTTON( spinner ) ) * 60;
 
     DBG( "-->>" );
 

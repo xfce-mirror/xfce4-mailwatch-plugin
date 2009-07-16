@@ -240,7 +240,7 @@ mailwatch_log_message_cb(XfceMailwatch *mailwatch,
                            mwp);
     }
     
-    while(gtk_tree_model_iter_n_children(GTK_TREE_MODEL(mwp->loglist), NULL) > mwp->log_lines) {
+    while(gtk_tree_model_iter_n_children(GTK_TREE_MODEL(mwp->loglist), NULL) > (gint)mwp->log_lines) {
         if(gtk_tree_model_iter_nth_child(GTK_TREE_MODEL(mwp->loglist), &iter, NULL, 0))
             gtk_list_store_remove(mwp->loglist, &iter);
     }
@@ -1079,7 +1079,7 @@ mailwatch_show_about(XfcePanelPlugin *plugin,
 
 #ifdef HAVE_XFCE_POSIX_SIGNAL_HANDLER_INIT
 static void
-mailwatch_handle_sigusr2(gint signal,
+mailwatch_handle_sigusr2(gint signal_,
                          gpointer user_data)
 {
     XfceMailwatchPlugin *mwp = user_data;

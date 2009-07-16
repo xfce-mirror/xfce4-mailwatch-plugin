@@ -546,7 +546,7 @@ mh_save_param_list( XfceMailwatchMailbox *mailbox )
 static void
 mh_timeout_changed_cb( GtkWidget *spinner, XfceMailwatchMHMailbox *mh )
 {
-    gint value = gtk_spin_button_get_value_as_int( GTK_SPIN_BUTTON( spinner ) ) * 60;
+    guint value = gtk_spin_button_get_value_as_int( GTK_SPIN_BUTTON( spinner ) ) * 60;
 
     DBG( "-->>" );
 

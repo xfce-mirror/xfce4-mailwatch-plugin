@@ -127,7 +127,7 @@ mbox_check_mail( XfceMailwatchMboxMailbox *mbox )
             error = NULL;
         }
        
-        if ( mbox->size && st.st_size > mbox->size ) {
+        if ( mbox->size && st.st_size > (guint)mbox->size ) {
             /* G_SEEK_CUR is same as G_SEEK_SET in this context. */
             if ( g_io_channel_seek_position( ioc, mbox->size, G_SEEK_CUR, &error ) !=  G_IO_STATUS_NORMAL ) {
                 xfce_mailwatch_log_message( mbox->mailwatch,
@@ -181,7 +181,7 @@ mbox_check_mail( XfceMailwatchMboxMailbox *mbox )
         }
         g_io_channel_unref( ioc );
         
-        if ( st.st_size > mbox->size && num_new <= mbox->new_messages ) {
+        if ( st.st_size > (guint)mbox->size && num_new <= mbox->new_messages ) {
             /* Assume mailbox opened and some headers added by client */
             num_new = mbox->new_messages = 0;
         }
@@ -197,7 +197,7 @@ mbox_check_mail( XfceMailwatchMboxMailbox *mbox )
     g_free( mailbox );
 }
 
-gpointer
+static gpointer
 mbox_check_mail_thread( gpointer data )
 {
     XfceMailwatchMboxMailbox    *mbox = XFCE_MAILWATCH_MBOX_MAILBOX( data );
@@ -336,7 +336,7 @@ mbox_file_set_cb( GtkWidget *button,
 
 static void
 mbox_interval_changed_cb( GtkWidget *spinner, XfceMailwatchMboxMailbox *mbox ) {
-    gint val = gtk_spin_button_get_value_as_int( GTK_SPIN_BUTTON( spinner ) ) * 60;
+    guint val = gtk_spin_button_get_value_as_int( GTK_SPIN_BUTTON( spinner ) ) * 60;
 
     if( val == mbox->interval )
         return;

@@ -237,7 +237,7 @@ xfce_mailwatch_base64_encode(const guint8 *data,
                              gchar **str)
 {
   gchar *s, *p;
-  gint i;
+  guint i;
   gint c;
   const guchar *q;
 

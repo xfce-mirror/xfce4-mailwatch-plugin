@@ -96,7 +96,7 @@ struct _XfceMailwatchNetConn
     const gchar *line_terminator;
 
     gint fd;
-    guint actual_port;
+    gint actual_port;
 
     guchar *buffer;
     gsize buffer_len;
@@ -358,7 +358,7 @@ xfce_mailwatch_net_conn_get_connect_status(XfceMailwatchNetConn *net_conn,
 
 
 void
-xfce_mailwatch_net_conn_init()
+xfce_mailwatch_net_conn_init(void)
 {
     static gboolean __inited = FALSE;
 
@@ -763,7 +763,7 @@ xfce_mailwatch_net_conn_recv_internal(XfceMailwatchNetConn *net_conn,
             break;
         else if(ret < 0 && EINTR != errno) {
             g_set_error(error, XFCE_MAILWATCH_ERROR,
-                        XFCE_MAILWATCH_ERROR_FAILED, strerror(errno));
+                        XFCE_MAILWATCH_ERROR_FAILED, "%s", strerror(errno));
             return -1;
         } else if(!block)
             return 0;
@@ -773,41 +773,43 @@ xfce_mailwatch_net_conn_recv_internal(XfceMailwatchNetConn *net_conn,
     if(ret < 0 && EINTR != errno) {
         if(error) {
             g_set_error(error, XFCE_MAILWATCH_ERROR,
-                        XFCE_MAILWATCH_ERROR_FAILED, strerror(errno));
+                        XFCE_MAILWATCH_ERROR_FAILED, "%s", strerror(errno));
         }
         return -1;
     } else if(!SHOULD_CONTINUE(net_conn)) {
         if(error) {
             g_set_error(error, XFCE_MAILWATCH_ERROR,
-                        XFCE_MAILWATCH_ERROR_ABORTED, _("Operation aborted"));
+                        XFCE_MAILWATCH_ERROR_ABORTED, "%s",
+                        _("Operation aborted"));
         }
         return -1;
     } else if(TIMER_EXPIRED(RECV_TIMEOUT)) {
         if(error) {
             g_set_error(error, XFCE_MAILWATCH_ERROR,
-                        XFCE_MAILWATCH_ERROR_FAILED, strerror(ETIMEDOUT));
+                        XFCE_MAILWATCH_ERROR_FAILED, "%s",
+                        strerror(ETIMEDOUT));
         }
         return -1;
     }
 
 #ifdef HAVE_SSL_SUPPORT
     if(net_conn->is_secure) {
-        gint ret;
+        gint gret;
         code = XFCE_MAILWATCH_ERROR_FAILED;
 
         TIMER_START;
         do {
-            ret = gnutls_record_recv(net_conn->gt_session, buf, buf_len);
+            gret = gnutls_record_recv(net_conn->gt_session, buf, buf_len);
 
-            if(GNUTLS_E_REHANDSHAKE == ret) {
+            if(GNUTLS_E_REHANDSHAKE == gret) {
                 if(!xfce_mailwatch_net_conn_tls_handshake(net_conn, error))
                     return -1;
-                ret = GNUTLS_E_AGAIN;
+                gret = GNUTLS_E_AGAIN;
             }
-        } while((GNUTLS_E_INTERRUPTED == ret || GNUTLS_E_AGAIN == ret)
+        } while((GNUTLS_E_INTERRUPTED == gret || GNUTLS_E_AGAIN == gret)
                 && !TIMER_EXPIRED(RECV_TIMEOUT) && SHOULD_CONTINUE(net_conn));
         
-        if(ret < 0) {
+        if(gret < 0) {
             if(error) {
                 if(!SHOULD_CONTINUE(net_conn)) {
                     code = XFCE_MAILWATCH_ERROR_ABORTED;
@@ -815,7 +817,7 @@ xfce_mailwatch_net_conn_recv_internal(XfceMailwatchNetConn *net_conn,
                 } else if(TIMER_EXPIRED(RECV_TIMEOUT))
                     reason = strerror(ETIMEDOUT);
                 else
-                    reason = gnutls_strerror(ret);
+                    reason = gnutls_strerror(gret);
 
                 g_set_error(error, XFCE_MAILWATCH_ERROR, code,
                             _("Failed to receive encrypted data: %s"),
@@ -824,20 +826,20 @@ xfce_mailwatch_net_conn_recv_internal(XfceMailwatchNetConn *net_conn,
 
             bin = -1;
         } else
-            bin = ret;
+            bin = gret;
     } else
 #endif
     {
-        gint ret;
+        gint pret;
         code = XFCE_MAILWATCH_ERROR_FAILED;
 
         TIMER_START;
         do {
-            ret = recv(net_conn->fd, buf, buf_len, MSG_NOSIGNAL);
-        } while(ret < 0 && (EINTR == errno || EAGAIN == errno)
+            pret = recv(net_conn->fd, buf, buf_len, MSG_NOSIGNAL);
+        } while(pret < 0 && (EINTR == errno || EAGAIN == errno)
                 && !TIMER_EXPIRED(RECV_TIMEOUT) && SHOULD_CONTINUE(net_conn));
 
-        if(ret < 0) {
+        if(pret < 0) {
             if(error) {
                 if(!SHOULD_CONTINUE(net_conn)) {
                     code = XFCE_MAILWATCH_ERROR_ABORTED;
@@ -852,7 +854,7 @@ xfce_mailwatch_net_conn_recv_internal(XfceMailwatchNetConn *net_conn,
             }
             bin = -1;
         } else
-            bin = ret;
+            bin = pret;
     }
 
     return bin;
@@ -877,7 +879,7 @@ xfce_mailwatch_net_conn_recv_data(XfceMailwatchNetConn *net_conn,
             net_conn->buffer = NULL;
             net_conn->buffer_len = 0;
 
-            if(bin == buf_len)
+            if(bin == (gint)buf_len)
                 return bin;
             else {
                 buf += bin;
@@ -952,11 +954,11 @@ xfce_mailwatch_net_conn_recv_line(XfceMailwatchNetConn *net_conn,
         }
     } while(!p);
 
-    if(buf_len < p - (gchar *)net_conn->buffer) {
+    if((gint)buf_len < p - (gchar *)net_conn->buffer) {
         if(error) {
             g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                        _("Buffer is not large enough to hold a full line (%d < %d)"),
-                        buf_len, p - (gchar *)net_conn->buffer);
+                        _("Buffer is not large enough to hold a full line (%" G_GSIZE_FORMAT " < %d)"),
+                        buf_len, (gint)(p - (gchar *)net_conn->buffer));
         }
         return -1;
     }

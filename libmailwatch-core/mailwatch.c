@@ -101,7 +101,7 @@ XfceMailwatchMailboxType *builtin_mailbox_types[] = {
 #define N_BUILTIN_MAILBOX_TYPES (sizeof(builtin_mailbox_types)/sizeof(builtin_mailbox_types[0]))
 
 static GList *
-mailwatch_load_mailbox_types()
+mailwatch_load_mailbox_types(void)
 {
     GList *mailbox_types = NULL;
     gint i;
@@ -114,7 +114,7 @@ mailwatch_load_mailbox_types()
 }
 
 XfceMailwatch *
-xfce_mailwatch_new()
+xfce_mailwatch_new(void)
 {
     XfceMailwatch *mailwatch;
     
@@ -753,7 +753,7 @@ config_ask_combo_changed_cb(GtkComboBox *cb, gpointer user_data)
     XfceMailwatchMailboxType *mbox_type;
     GtkRequisition req;
     
-    if(active_index >= g_list_length(mailwatch->mailbox_types))
+    if(active_index >= (gint)g_list_length(mailwatch->mailbox_types))
         return;
     
     mbox_type = g_list_nth_data(mailwatch->mailbox_types, active_index);
@@ -812,7 +812,7 @@ config_ask_new_mailbox_type(XfceMailwatch *mailwatch, GtkWindow *parent)
     if(gtk_dialog_run(GTK_DIALOG(dlg)) == GTK_RESPONSE_ACCEPT) {
         gint active = gtk_combo_box_get_active(GTK_COMBO_BOX(combo));
         
-        if(active >= 0 && active < g_list_length(mailwatch->mailbox_types))
+        if(active >= 0 && (guint)active < g_list_length(mailwatch->mailbox_types))
             new_mtype = g_list_nth_data(mailwatch->mailbox_types, active);
     }
     gtk_widget_destroy(dlg);
@@ -1046,36 +1046,36 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
 
 void
 xfce_mailwatch_signal_connect(XfceMailwatch *mailwatch,
-        XfceMailwatchSignal signal, XMCallback callback, gpointer user_data)
+        XfceMailwatchSignal signal_, XMCallback callback, gpointer user_data)
 {
     g_return_if_fail(mailwatch && callback
-            && signal < XFCE_MAILWATCH_NUM_SIGNALS);
+            && signal_ < XFCE_MAILWATCH_NUM_SIGNALS);
     
-    mailwatch->xm_callbacks[signal] =
-            g_list_append(mailwatch->xm_callbacks[signal], callback);
-    mailwatch->xm_data[signal] = g_list_append(mailwatch->xm_data[signal],
+    mailwatch->xm_callbacks[signal_] =
+            g_list_append(mailwatch->xm_callbacks[signal_], callback);
+    mailwatch->xm_data[signal_] = g_list_append(mailwatch->xm_data[signal_],
             user_data);
 }
 
 void
 xfce_mailwatch_signal_disconnect(XfceMailwatch *mailwatch,
-        XfceMailwatchSignal signal, XMCallback callback, gpointer user_data)
+        XfceMailwatchSignal signal_, XMCallback callback, gpointer user_data)
 {
     GList *cl, *dl;
     g_return_if_fail(mailwatch && callback
-            && signal < XFCE_MAILWATCH_NUM_SIGNALS);
+            && signal_ < XFCE_MAILWATCH_NUM_SIGNALS);
     
-    for(cl = mailwatch->xm_callbacks[signal], dl = mailwatch->xm_data[signal];
+    for(cl = mailwatch->xm_callbacks[signal_], dl = mailwatch->xm_data[signal_];
         cl && dl;
         cl = cl->next, dl = dl->next)
     {
         XMCallback a_callback = cl->data;
         
         if(callback == a_callback) {
-            mailwatch->xm_callbacks[signal] =
-                    g_list_delete_link(mailwatch->xm_callbacks[signal], cl);
-            mailwatch->xm_data[signal] =
-                    g_list_delete_link(mailwatch->xm_data[signal], dl);
+            mailwatch->xm_callbacks[signal_] =
+                    g_list_delete_link(mailwatch->xm_callbacks[signal_], cl);
+            mailwatch->xm_data[signal_] =
+                    g_list_delete_link(mailwatch->xm_data[signal_], dl);
             break;
         }
     }

@@ -27,7 +27,7 @@
 static GStaticMutex big_happy_mailwatch_mx = G_STATIC_MUTEX_INIT;
 
 GQuark
-xfce_mailwatch_get_error_quark()
+xfce_mailwatch_get_error_quark(void)
 {
     static GQuark q = 0;
     
@@ -38,12 +38,12 @@ xfce_mailwatch_get_error_quark()
 }
 
 void
-xfce_mailwatch_threads_enter()
+xfce_mailwatch_threads_enter(void)
 {
     g_static_mutex_lock(&big_happy_mailwatch_mx);
 }
 
-void xfce_mailwatch_threads_leave()
+void xfce_mailwatch_threads_leave(void)
 {
     g_static_mutex_unlock(&big_happy_mailwatch_mx);
 }
