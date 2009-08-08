@@ -4,13 +4,13 @@
 # This file is distributed under the same license as the xfce4-mailwatch-plugin
 # package.
 # Pau Rul·lan Ferragut <paurullan@bulma.net> 2005, 2006.
-# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2006, 2008.
+# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2006, 2008-2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.2svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-07-15 22:43-0700\n"
-"PO-Revision-Date: 2008-09-11 12:08+0100\n"
+"PO-Revision-Date: 2009-07-26 18:52+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -374,11 +374,9 @@ msgid "Canceling read: read too many bytes without a newline"
 msgstr "Lectura canceŀlada: S'han llegit massa bytes sense cap línia nova"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:960
-#, fuzzy
 msgid "Buffer is not large enough to hold a full line (%"
 msgstr ""
-"La memòria intermèdia no és prou gran i no hi cap pas un línia sencera (%d < "
-"%d)"
+"La memòria intermèdia no és prou gran per que hi càpiga tota una línia (%"
 
 #: ../libmailwatch-core/mailwatch.c:126
 msgid ""

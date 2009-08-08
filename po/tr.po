@@ -21,23 +21,13 @@ msgstr "TLS handshake işlemi başarısız oldu: %s"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:255
 #, c-format
-msgid ""
-"Received HTTP response code %d.  The most likely reason for this is that "
-"your GMail username or password is incorrect."
-msgstr ""
-"HTTP yanıt kodu %d alındı. Genellikle GMail kullanıcı adı veya parolası "
-"hatalı olduğunda bu yanıt alınır."
+msgid "Received HTTP response code %d.  The most likely reason for this is that your GMail username or password is incorrect."
+msgstr "HTTP yanıt kodu %d alındı. Genellikle GMail kullanıcı adı veya parolası hatalı olduğunda bu yanıt alınır."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
 #, c-format
-msgid ""
-"Received HTTP response code %d, which should be 200.  There may be a problem "
-"with GMail's servers, or they have incompatibly changed their authentication "
-"method or location of the new messages feed."
-msgstr ""
-"HTTP yanıt kodu 200 olması gerekirken %d alındı. GMail sunucularında bir "
-"problem olabilir veya oturum açma yöntemini değiştirmiş olabilirler ya da "
-"yeni mesaj kaynağı konumunu değiştirmiş olabilirler. "
+msgid "Received HTTP response code %d, which should be 200.  There may be a problem with GMail's servers, or they have incompatibly changed their authentication method or location of the new messages feed."
+msgstr "HTTP yanıt kodu 200 olması gerekirken %d alındı. GMail sunucularında bir problem olabilir veya oturum açma yöntemini değiştirmiş olabilirler ya da yeni mesaj kaynağı konumunu değiştirmiş olabilirler. "
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:735
@@ -80,29 +70,19 @@ msgid "Remote GMail Mailbox"
 msgstr "Uzak GMail Posta Kutusu"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:669
-msgid ""
-"The GMail plugin can connect to Google's mail service and securely retrieve "
-"the number of new messages."
-msgstr ""
-"GMail eklentisi Google'ın posta servisine erişebilir ve güvenli bir biçimde "
-"yeni mesaj sayısını öğrenebilir."
+msgid "The GMail plugin can connect to Google's mail service and securely retrieve the number of new messages."
+msgstr "GMail eklentisi Google'ın posta servisine erişebilir ve güvenli bir biçimde yeni mesaj sayısını öğrenebilir."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
-msgid ""
-"Secure IMAP is not available, and the IMAP server does not support plaintext "
-"logins."
-msgstr ""
-"Güvenli IMAP mevcut değil ve IMAP sunucusu düz metin girişlerini "
-"desteklememektedir."
+msgid "Secure IMAP is not available, and the IMAP server does not support plaintext logins."
+msgstr "Güvenli IMAP mevcut değil ve IMAP sunucusu düz metin girişlerini desteklememektedir."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:337
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:370
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:242
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
 msgid "Authentication failed.  Perhaps your username or password is incorrect?"
-msgstr ""
-"Oturum açma işlemi başarısız oldu. Kullanıcı adı ve parolanızı yanlış girmiş "
-"olabilir misiniz?"
+msgstr "Oturum açma işlemi başarısız oldu. Kullanıcı adı ve parolanızı yanlış girmiş olabilir misiniz?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
@@ -126,13 +106,8 @@ msgid "No server or username is set."
 msgstr "Sunucu veya kullanıcı adı belirlenmedi."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1398
-msgid ""
-"The folder list cannot be retrieved until a server, username, and probably "
-"password are set.  Also be sure to check any security settings in the "
-"Advanced dialog."
-msgstr ""
-"Dizin listesi, sunucu, kullanıcı adı ve parola belirlenene kadar alınamaz. "
-"Ayrıca güvenlik ayarlarını da Gelişmiş menüsünden yapabilirsiniz."
+msgid "The folder list cannot be retrieved until a server, username, and probably password are set.  Also be sure to check any security settings in the Advanced dialog."
+msgstr "Dizin listesi, sunucu, kullanıcı adı ve parola belirlenene kadar alınamaz. Ayrıca güvenlik ayarlarını da Gelişmiş menüsünden yapabilirsiniz."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
@@ -200,12 +175,8 @@ msgid "Remote IMAP Mailbox"
 msgstr "Uzak IMAP Posta Kutusu"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1986
-msgid ""
-"The IMAP plugin can connect to a remote mail server that supports the IMAP "
-"protocol, optionally using SSL for link protection."
-msgstr ""
-"IMAP eklentisi uzaktaki IMAP destekleyen posta sunucusuna, tercihen SSL de "
-"kullanarak, bağlanabilir."
+msgid "The IMAP plugin can connect to a remote mail server that supports the IMAP protocol, optionally using SSL for link protection."
+msgstr "IMAP eklentisi uzaktaki IMAP destekleyen posta sunucusuna, tercihen SSL de kullanarak, bağlanabilir."
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
@@ -239,12 +210,8 @@ msgid "Local Maildir Spool"
 msgstr "Yerel Maildir Kuyruğu"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:451
-msgid ""
-"The Maildir plugin can watch a local maildir-style mail spool for new "
-"messages."
-msgstr ""
-"Maildir eklentisi yerel bir maildir türündeki posta kuyruğunu yeni e-posta "
-"için takip eder."
+msgid "The Maildir plugin can watch a local maildir-style mail spool for new messages."
+msgstr "Maildir eklentisi yerel bir maildir türündeki posta kuyruğunu yeni e-posta için takip eder."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:370
 msgid "Mbox _Filename:"
@@ -260,9 +227,7 @@ msgstr "Yerel Mbox kuyruğu"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr ""
-"Mbox eklentisi yerel bir mbox türündeki posta kuyruğunu yeni e-posta için "
-"takip eder."
+msgstr "Mbox eklentisi yerel bir mbox türündeki posta kuyruğunu yeni e-posta için takip eder."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
@@ -306,12 +271,8 @@ msgid "Remote POP3 Mailbox"
 msgstr "Uzak POP3 Posta Kutusu"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1038
-msgid ""
-"The POP3 plugin can connect to a remote mail server that supports the POP3 "
-"protocol, optionally using SSL for link protection."
-msgstr ""
-"POP3 eklentisi uzaktaki POP3 destekleyen posta sunucusuna, tercihen SSL de "
-"kullanarak, bağlanabilir. "
+msgid "The POP3 plugin can connect to a remote mail server that supports the POP3 protocol, optionally using SSL for link protection."
+msgstr "POP3 eklentisi uzaktaki POP3 destekleyen posta sunucusuna, tercihen SSL de kullanarak, bağlanabilir. "
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
@@ -366,38 +327,28 @@ msgid "Canceling read: read too many bytes without a newline"
 msgstr "Okuma iptal ediliyor: yeni satır olmadan çok fazla bayt okundu"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:960
-#, fuzzy
 msgid "Buffer is not large enough to hold a full line (%"
-msgstr "Hafıza tam satır tutacak kadar geniş değil (%d < %d)"
+msgstr "Hafıza tam satır tutacak kadar geniş değil (%"
 
 #: ../libmailwatch-core/mailwatch.c:126
-msgid ""
-"xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
-"likely a problem with your GLib install."
-msgstr ""
-"xfce4-mailwatch-plugin: GThread desteği başlatılamadı. Genellikle "
-"sisteminizdeki GLib ile ilgili bir problemden kaynaklanmaktadır."
+msgid "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."
+msgstr "xfce4-mailwatch-plugin: GThread desteği başlatılamadı. Genellikle sisteminizdeki GLib ile ilgili bir problemden kaynaklanmaktadır."
 
-#: ../libmailwatch-core/mailwatch.c:341 ../libmailwatch-core/mailwatch.c:342
+#: ../libmailwatch-core/mailwatch.c:341
+#: ../libmailwatch-core/mailwatch.c:342
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "Yapılandırma '%s' dosyasına yazılamadı"
 
-#: ../libmailwatch-core/mailwatch.c:406 ../libmailwatch-core/mailwatch.c:408
+#: ../libmailwatch-core/mailwatch.c:406
+#: ../libmailwatch-core/mailwatch.c:408
 #, c-format
-msgid ""
-"Unable to set permissions on config file '%s'.  If this file contains "
-"passwords or other sensitive information, it may be readable by others on "
-"your system."
-msgstr ""
-"Yapılandırma dosyası '%s' için izinler belirlenemiyor. Eğer bu dosya "
-"parolalar ve diğer hassas bilgileri taşıyorsa, diğer şahıslar bu dosyayı "
-"okuyabilir."
+msgid "Unable to set permissions on config file '%s'.  If this file contains passwords or other sensitive information, it may be readable by others on your system."
+msgstr "Yapılandırma dosyası '%s' için izinler belirlenemiyor. Eğer bu dosya parolalar ve diğer hassas bilgileri taşıyorsa, diğer şahıslar bu dosyayı okuyabilir."
 
 #: ../libmailwatch-core/mailwatch.c:628
 msgid "This mailbox type does not require any configuration settings."
-msgstr ""
-"Bu posta kutusu türü herhangi bir yapılandırmaya ihtiyaç duymamaktadır."
+msgstr "Bu posta kutusu türü herhangi bir yapılandırmaya ihtiyaç duymamaktadır."
 
 #: ../libmailwatch-core/mailwatch.c:655
 msgid "Mailbox _Name:"
@@ -442,9 +393,7 @@ msgstr "Emin misiniz?"
 
 #: ../libmailwatch-core/mailwatch.c:901
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
-msgstr ""
-"Bir posta kutusunu kaldırmak bütün ayarları kaldıracaktır ve geri "
-"alınamayacak bir işlemdir."
+msgstr "Bir posta kutusunu kaldırmak bütün ayarları kaldıracaktır ve geri alınamayacak bir işlemdir."
 
 #: ../libmailwatch-core/mailwatch.c:966
 msgid "Mailboxes"
@@ -471,8 +420,7 @@ msgstr[1] "%d tane yeni mesajınız var:"
 #: ../panel-plugin/mailwatch-plugin.c:142
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr ""
-"her posta kutusunda kaç tane e-posta olduğunu gösterir| %d tane %s üzerinde"
+msgstr "her posta kutusunda kaç tane e-posta olduğunu gösterir| %d tane %s üzerinde"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:251
 #: ../panel-plugin/mailwatch-plugin.c:413
@@ -487,9 +435,7 @@ msgstr "Mailwatch eklentisi panele eklenemedi."
 #: ../panel-plugin/mailwatch-plugin-4.2.c:253
 #: ../panel-plugin/mailwatch-plugin.c:415
 msgid "It is possible that your version of GLib does not have threads support."
-msgstr ""
-"GLib sürümünüzün thread desteği olmaması nedeniyle bu hatayı alıyor "
-"olabilirsiniz."
+msgstr "GLib sürümünüzün thread desteği olmaması nedeniyle bu hatayı alıyor olabilirsiniz."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:476
 #: ../panel-plugin/mailwatch-plugin.c:638
@@ -603,3 +549,4 @@ msgstr "Şimdi Güncelle"
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "Posta kutularını yeni e-postalar için takip edin"
+
