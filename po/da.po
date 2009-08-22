@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfce-mailwatch-plugin 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-07-15 22:43-0700\n"
-"PO-Revision-Date: 2009-08-22 17:09+0100\n"
+"PO-Revision-Date: 2009-08-22 17:10+0100\n"
 "Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -334,7 +334,6 @@ msgid "Canceling read: read too many bytes without a newline"
 msgstr "Afbryder læsning: læst for mange bytes uden et linjeskift"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:960
-#, fuzzy
 msgid "Buffer is not large enough to hold a full line (%"
 msgstr "Mellemlager er ikke stort nok til at indeholde en hel linje (%d < %d)"
 
