@@ -334,9 +334,8 @@ msgid "Canceling read: read too many bytes without a newline"
 msgstr "Lesevorgang abgebrochen: Zuviele Bytes ohne Zeilenumbruch gelesen"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:960
-#, fuzzy
 msgid "Buffer is not large enough to hold a full line (%"
-msgstr "Der Puffer ist nicht groß genug, eine ganze Zeile aufzunehmen (%d < %d)"
+msgstr "Der Puffer ist nicht groß genug, eine ganze Zeile aufzunehmen (%"
 
 #: ../libmailwatch-core/mailwatch.c:126
 msgid "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."
