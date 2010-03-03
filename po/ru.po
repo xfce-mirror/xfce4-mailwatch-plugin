@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-07-15 22:43-0700\n"
-"PO-Revision-Date: 2010-03-03 20:57+0300\n"
+"PO-Revision-Date: 2010-03-03 21:10+0300\n"
 "Last-Translator: Dima Smirnov <arch@cnc-parts.info>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr "Получен HTTP код %d. Скорее всего вы ввели �
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
 #, c-format
 msgid "Received HTTP response code %d, which should be 200.  There may be a problem with GMail's servers, or they have incompatibly changed their authentication method or location of the new messages feed."
-msgstr ""
+msgstr "Получена HTTP ошибка %d, вероятно это ошибка 200. Эта проблема вероятно связана с проблемами на Gmail сервере, или же с они сменили метод авторизации"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:735
@@ -90,7 +90,7 @@ msgstr "Не удалось авторизоваться. Проверьте л�
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
-msgstr ""
+msgstr "Сервер не поддерживает авторизацию STARTTLS"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1144
 msgid "Failed to get folder list"
@@ -274,7 +274,7 @@ msgstr "Удалённый почтовый ящик POP3"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1038
 msgid "The POP3 plugin can connect to a remote mail server that supports the POP3 protocol, optionally using SSL for link protection."
-msgstr ""
+msgstr "POP3 плагин может соединяться с удаленным почтовым сервером, поддерживающим POP3 протокол, дополнительно можно использовать защиту с помощью SSL"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
