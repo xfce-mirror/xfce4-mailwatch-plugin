@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-07-15 22:43-0700\n"
-"PO-Revision-Date: 2010-03-01 11:04+0200\n"
+"PO-Revision-Date: 2010-03-03 20:57+0300\n"
 "Last-Translator: Dima Smirnov <arch@cnc-parts.info>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr "Ошибка TLS: %s"
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:255
 #, c-format
 msgid "Received HTTP response code %d.  The most likely reason for this is that your GMail username or password is incorrect."
-msgstr ""
+msgstr "Получен HTTP код %d. Скорее всего вы ввели неверный логин или пароль GMail"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
 #, c-format
@@ -79,14 +79,14 @@ msgstr "Плагин GMail может соединяться с почтовым
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
 msgid "Secure IMAP is not available, and the IMAP server does not support plaintext logins."
-msgstr ""
+msgstr "Шифрованный IMAP не поддерживается, также сервер не поддерживает авторизацию plaintext"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:337
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:370
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:242
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
 msgid "Authentication failed.  Perhaps your username or password is incorrect?"
-msgstr ""
+msgstr "Не удалось авторизоваться. Проверьте логин и пароль"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
@@ -250,7 +250,7 @@ msgstr "Локальная папка почты MH"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:684
 msgid "MH plugin watches local MH folders for new mail"
-msgstr ""
+msgstr "Плагин MH обнаружил локальную папку MH для новой почты"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:746
 msgid "Advanced POP3 Options"
@@ -294,9 +294,9 @@ msgid "Could not find host \"%s\": %s"
 msgstr "Не удалось найти адрес \"%s\": %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:582
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to connect to server \"%s\": %s"
-msgstr "Не удалось соединиться с сервером: %s"
+msgstr "Не удалось соединиться с сервером \"%s\": %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:645
 #, c-format
@@ -304,14 +304,14 @@ msgid "Not compiled with SSL/TLS support"
 msgstr "Собрано без поддержки SSL/TLS"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:701
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to send encrypted data: %s"
-msgstr "Не удалось соединиться с сервером: %s"
+msgstr "Не удалось отправить шифрованные данные: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to send data: %s"
-msgstr "Не удалось соединиться с сервером: %s"
+msgstr "Не удалось отправить данные: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:823
 #, c-format
@@ -319,9 +319,9 @@ msgid "Failed to receive encrypted data: %s"
 msgstr "Ошибка при получении шифрованных данных: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:853
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to receive data: %s"
-msgstr "Не удалось соединиться с сервером: %s"
+msgstr "Не удалось принять данные: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:951
 #, c-format
@@ -334,7 +334,7 @@ msgstr "Не хватает буфера для запоминания всей 
 
 #: ../libmailwatch-core/mailwatch.c:126
 msgid "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."
-msgstr ""
+msgstr "xfce4-mailwatch-plugin: не удалось инициализировать поддержку Gthread. Скорее всего проблема связана с неверной установкой Glib."
 
 #: ../libmailwatch-core/mailwatch.c:341
 #: ../libmailwatch-core/mailwatch.c:342
@@ -346,7 +346,7 @@ msgstr "Не удалось записать файл конфигурации '
 #: ../libmailwatch-core/mailwatch.c:408
 #, c-format
 msgid "Unable to set permissions on config file '%s'.  If this file contains passwords or other sensitive information, it may be readable by others on your system."
-msgstr ""
+msgstr "Не удалось установить права доступа для файла конфигурации '%s'. Если этот файл содержит пароли или другую важную информацию, он может быть прочитан другими пользователями"
 
 #: ../libmailwatch-core/mailwatch.c:628
 msgid "This mailbox type does not require any configuration settings."
@@ -412,17 +412,15 @@ msgstr "Нет новых писем"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:129
 #: ../panel-plugin/mailwatch-plugin.c:131
-#, fuzzy, c-format
+#, c-format
 msgid "You have %d new message:"
-msgid_plural "You have %d new messages:"
-msgstr[0] "У вас %d новых писем:"
-msgstr[1] "У вас %d новых писем:"
+msgstr "У вас %d новых писем:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:140
 #: ../panel-plugin/mailwatch-plugin.c:142
-#, c-format
+#, fuzzy, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr ""
+msgstr "сколько новых писем в каждом ящике|    %d в %s"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:251
 #: ../panel-plugin/mailwatch-plugin.c:413
@@ -431,7 +429,6 @@ msgstr "Проверка почты Xfce"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:252
 #: ../panel-plugin/mailwatch-plugin.c:414
-#, fuzzy
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Не удалось добавить апплет проверки почты на панель."
 
@@ -522,7 +519,6 @@ msgid "Failed to run xfhelp4"
 msgstr "Не удалось запустить xfhelp4"
 
 #: ../panel-plugin/mailwatch-plugin.c:1054
-#, fuzzy
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Проверка почты Xfce"
 
@@ -554,15 +550,12 @@ msgstr "Обновить"
 msgid "Check mail from multiple mailboxes"
 msgstr "Проверять почту из нескольких ящиков"
 
-#, fuzzy
 #~ msgid "About Mailwatch"
 #~ msgstr "Проверка почты"
-
 #~ msgid "You have 1 new message:"
 #~ msgstr "У вас 1 новое письмо:"
-
 #~ msgid "You have %d new messages:"
 #~ msgstr "У вас %d новых писем:"
-
 #~ msgid "Edit Properties"
 #~ msgstr "Редактировать настройки"
+
