@@ -3,7 +3,7 @@
 # This file is distributed under the same license as
 #  the xfce4-mailwatch-plugin package.
 # Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
@@ -110,8 +110,9 @@ msgid "No server or username is set."
 msgstr "Не задан сервер или имя пользователя."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1398
+#, fuzzy
 msgid "The folder list cannot be retrieved until a server, username, and probably password are set.  Also be sure to check any security settings in the Advanced dialog."
-msgstr ""
+msgstr "Список папок не может быть восстановлен до тех пор, пока не заданы имя пользователя и пароль. Также проверьте настройки безопасности"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
@@ -214,8 +215,9 @@ msgid "Local Maildir Spool"
 msgstr "Локальный каталог почты"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:451
+#, fuzzy
 msgid "The Maildir plugin can watch a local maildir-style mail spool for new messages."
-msgstr ""
+msgstr "Модуль Maildir проверяет локальные папки maildir на наличие новых сообщений"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:370
 msgid "Mbox _Filename:"
@@ -230,8 +232,9 @@ msgid "Local Mbox spool"
 msgstr "Локальная папка Mbox"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
+#, fuzzy
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr ""
+msgstr "Модуль Mbox следит за новыми сообщениями в локальных mbox-папках"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
@@ -239,10 +242,13 @@ msgid "Malformed line %s in %s ignored."
 msgstr "Некорректная строка %s в %s проигнорирована."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:581
+#, fuzzy
 msgid ""
 "The configuration of this plugin is read from\n"
 "the default mh maildir profile file ~/.mh_profile"
 msgstr ""
+"Конфигурация этого модуля читается из \n"
+"файла профиля ~/.mh_profile, установленного по умолчанию"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:683
 msgid "Local MH mail folder"
@@ -336,14 +342,12 @@ msgstr "Не хватает буфера для запоминания всей 
 msgid "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."
 msgstr "xfce4-mailwatch-plugin: не удалось инициализировать поддержку Gthread. Скорее всего проблема связана с неверной установкой Glib."
 
-#: ../libmailwatch-core/mailwatch.c:341
-#: ../libmailwatch-core/mailwatch.c:342
+#: ../libmailwatch-core/mailwatch.c:341 ../libmailwatch-core/mailwatch.c:342
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "Не удалось записать файл конфигурации '%s'"
 
-#: ../libmailwatch-core/mailwatch.c:406
-#: ../libmailwatch-core/mailwatch.c:408
+#: ../libmailwatch-core/mailwatch.c:406 ../libmailwatch-core/mailwatch.c:408
 #, c-format
 msgid "Unable to set permissions on config file '%s'.  If this file contains passwords or other sensitive information, it may be readable by others on your system."
 msgstr "Не удалось установить права доступа для файла конфигурации '%s'. Если этот файл содержит пароли или другую важную информацию, он может быть прочитан другими пользователями"
@@ -552,10 +556,12 @@ msgstr "Проверять почту из нескольких ящиков"
 
 #~ msgid "About Mailwatch"
 #~ msgstr "Проверка почты"
+
 #~ msgid "You have 1 new message:"
 #~ msgstr "У вас 1 новое письмо:"
+
 #~ msgid "You have %d new messages:"
 #~ msgstr "У вас %d новых писем:"
+
 #~ msgid "Edit Properties"
 #~ msgstr "Редактировать настройки"
-
