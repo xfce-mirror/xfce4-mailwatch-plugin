@@ -425,7 +425,7 @@ msgstr[1] "Sie haben %d neue Nachrichten:"
 #: ../panel-plugin/mailwatch-plugin.c:142
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "gibt an, wie viele neue Nachrichten in jedem Postfach sind| %d in %s"
+msgstr "%d in %s"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:251
 #: ../panel-plugin/mailwatch-plugin.c:413
@@ -450,7 +450,7 @@ msgstr "Logdatei der E-Mail-Überwachung"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:534
 #: ../panel-plugin/mailwatch-plugin.c:696
 msgid "Log _lines:"
-msgstr "Logzei_len"
+msgstr "Logzei_len:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:548
 #: ../panel-plugin/mailwatch-plugin.c:710
