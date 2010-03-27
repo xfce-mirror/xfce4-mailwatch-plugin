@@ -75,7 +75,7 @@ msgstr "Удаленный почтовый ящик GMail"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:669
 msgid "The GMail plugin can connect to Google's mail service and securely retrieve the number of new messages."
-msgstr "Плагин GMail может соединяться с почтовым сервером Google и получать список новых сообщений."
+msgstr "Модуль GMail может соединяться с почтовым сервером Google и получать список новых сообщений."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
 msgid "Secure IMAP is not available, and the IMAP server does not support plaintext logins."
@@ -256,7 +256,7 @@ msgstr "Локальная папка почты MH"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:684
 msgid "MH plugin watches local MH folders for new mail"
-msgstr "Плагин MH обнаружил локальную папку MH для новой почты"
+msgstr "Модуль MH обнаружил локальную папку MH для новой почты"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:746
 msgid "Advanced POP3 Options"
@@ -280,7 +280,7 @@ msgstr "Удалённый почтовый ящик POP3"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1038
 msgid "The POP3 plugin can connect to a remote mail server that supports the POP3 protocol, optionally using SSL for link protection."
-msgstr "POP3 плагин может соединяться с удаленным почтовым сервером, поддерживающим POP3 протокол, дополнительно можно использовать защиту с помощью SSL"
+msgstr "Модуль POP3 может соединяться с удаленным почтовым сервером, поддерживающим POP3 протокол, дополнительно можно использовать защиту с помощью SSL"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
