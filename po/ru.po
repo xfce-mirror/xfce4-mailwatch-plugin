@@ -40,7 +40,7 @@ msgstr "Получена HTTP ошибка %d, вероятно это ошиб�
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:487
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:548
 msgid "Previous thread hasn't exited yet, not checking mail this time."
-msgstr ""
+msgstr "Предыдущее соединение не завершено. Вы не можете проверить почту в это время."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
@@ -110,9 +110,8 @@ msgid "No server or username is set."
 msgstr "Не задан сервер или имя пользователя."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1398
-#, fuzzy
 msgid "The folder list cannot be retrieved until a server, username, and probably password are set.  Also be sure to check any security settings in the Advanced dialog."
-msgstr "Список папок не может быть восстановлен до тех пор, пока не заданы имя пользователя и пароль. Также проверьте настройки безопасности"
+msgstr "Список папок не может быть восстановлен до тех пор, пока не заданы имя пользователя и пароль. Также проверьте настройки безопасности в диалоге \"Дополнительно...\""
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
@@ -181,7 +180,7 @@ msgstr "Удалённый почтовый ящик IMAP"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1986
 msgid "The IMAP plugin can connect to a remote mail server that supports the IMAP protocol, optionally using SSL for link protection."
-msgstr ""
+msgstr "Модуль IMAP соединяется с удаленным почтовым сервером, который поддерживает протокол IMAP, возможно также защищенное соединение по SSL"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
@@ -215,9 +214,8 @@ msgid "Local Maildir Spool"
 msgstr "Локальный каталог почты"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:451
-#, fuzzy
 msgid "The Maildir plugin can watch a local maildir-style mail spool for new messages."
-msgstr "Модуль Maildir проверяет локальные папки maildir на наличие новых сообщений"
+msgstr "Модуль Maildir проверяет локальные папки maildir на наличие новых сообщений."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:370
 msgid "Mbox _Filename:"
@@ -232,9 +230,8 @@ msgid "Local Mbox spool"
 msgstr "Локальная папка Mbox"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
-#, fuzzy
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr "Модуль Mbox следит за новыми сообщениями в локальных mbox-папках"
+msgstr "Модуль Mbox следит за новыми сообщениями в локальных mbox-папках."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
@@ -242,7 +239,6 @@ msgid "Malformed line %s in %s ignored."
 msgstr "Некорректная строка %s в %s проигнорирована."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:581
-#, fuzzy
 msgid ""
 "The configuration of this plugin is read from\n"
 "the default mh maildir profile file ~/.mh_profile"
@@ -422,7 +418,7 @@ msgstr "У вас %d новых писем:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:140
 #: ../panel-plugin/mailwatch-plugin.c:142
-#, fuzzy, c-format
+#, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "сколько новых писем в каждом ящике|    %d в %s"
 
