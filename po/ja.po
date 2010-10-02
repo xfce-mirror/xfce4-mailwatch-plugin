@@ -109,7 +109,7 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:242
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
 msgid "Authentication failed.  Perhaps your username or password is incorrect?"
-msgstr "認証は失敗しました。ユーザ名かパスワードが間違ってませんか？"
+msgstr "認証は失敗しました。ユーザ名かパスワードが間違ってませんか?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
@@ -228,7 +228,7 @@ msgstr "ファイル %s のステータス取得に失敗しました: %s"
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:102
 #, c-format
 msgid "%s is not a directory. Is %s really a valid maildir?"
-msgstr "%s はフォルダではありません。%s は本当に適切な maildir ですか？"
+msgstr "%s はフォルダではありません。%s は本当に適切な maildir ですか?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:335
 msgid "Maildir _Path:"
@@ -651,4 +651,4 @@ msgstr "様々なタイプのメールボックスに届くメールをチェッ
 #~ msgid ""
 #~ "A buffer was too small to receive all of an IMAP response.  This is a bug!"
 #~ msgstr ""
-#~ "IMAP の応答すべてを受信するにはバッファが小さすぎました。これはバグです！"
+#~ "IMAP の応答すべてを受信するにはバッファが小さすぎました。これはバグです!"
