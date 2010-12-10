@@ -2,7 +2,7 @@
 # Copyright (C) 2008 THE xfce'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfce package.
 # Terje Uriansrud <ter@operamail.com>, 2008.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-mailwatch-plugin\n"
@@ -25,23 +25,13 @@ msgstr "TLS handshake feilet: %s"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:255
 #, c-format
-msgid ""
-"Received HTTP response code %d.  The most likely reason for this is that "
-"your GMail username or password is incorrect."
-msgstr ""
-"Mottok HTTP responskode %d. Mest sannsynligvis er årsaken at GMail "
-"brukernavn eller passord er feil."
+msgid "Received HTTP response code %d.  The most likely reason for this is that your GMail username or password is incorrect."
+msgstr "Mottok HTTP responskode %d. Mest sannsynligvis er årsaken at GMail brukernavn eller passord er feil."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
 #, c-format
-msgid ""
-"Received HTTP response code %d, which should be 200.  There may be a problem "
-"with GMail's servers, or they have incompatibly changed their authentication "
-"method or location of the new messages feed."
-msgstr ""
-"Mottok HTTP responskode %d, hvilket burde vært 200. Det kan være et problem "
-"med GMail sine tjenere, eller de har endret påloggingsmetode eller endret "
-"plassering av ny meldingstjeneste."
+msgid "Received HTTP response code %d, which should be 200.  There may be a problem with GMail's servers, or they have incompatibly changed their authentication method or location of the new messages feed."
+msgstr "Mottok HTTP responskode %d, hvilket burde vært 200. Det kan være et problem med GMail sine tjenere, eller de har endret påloggingsmetode eller endret plassering av ny meldingstjeneste."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:735
@@ -50,8 +40,7 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:487
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:548
 msgid "Previous thread hasn't exited yet, not checking mail this time."
-msgstr ""
-"Forrige programtråd har ikke fullført ennå, sjekker ikke epost denne gang"
+msgstr "Forrige programtråd har ikke fullført ennå, sjekker ikke epost denne gang"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
@@ -85,20 +74,12 @@ msgid "Remote GMail Mailbox"
 msgstr "GMail epostboks"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:669
-msgid ""
-"The GMail plugin can connect to Google's mail service and securely retrieve "
-"the number of new messages."
-msgstr ""
-"GMail modulen kan koble seg til Google's epost tjeneste og hente antall nye "
-"meldinger."
+msgid "The GMail plugin can connect to Google's mail service and securely retrieve the number of new messages."
+msgstr "GMail modulen kan koble seg til Google's epost tjeneste og hente antall nye meldinger."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
-msgid ""
-"Secure IMAP is not available, and the IMAP server does not support plaintext "
-"logins."
-msgstr ""
-"Sikker IMAP er ikke tilgjengelig og IMAP tjeneren støtter ikke innlogging "
-"via klartekst."
+msgid "Secure IMAP is not available, and the IMAP server does not support plaintext logins."
+msgstr "Sikker IMAP er ikke tilgjengelig og IMAP tjeneren støtter ikke innlogging via klartekst."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:337
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:370
@@ -109,8 +90,7 @@ msgstr "Autentisering feilet. Kanskje brukernavn eller passord er feil?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
-msgstr ""
-"STARTTLS sikkerhet ble forsøkt, men denne tjeneren har ikke støtte for dette."
+msgstr "STARTTLS sikkerhet ble forsøkt, men denne tjeneren har ikke støtte for dette."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1144
 msgid "Failed to get folder list"
@@ -130,14 +110,8 @@ msgid "No server or username is set."
 msgstr "Tjenernavn eller brukernavn er ikke angitt."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1398
-msgid ""
-"The folder list cannot be retrieved until a server, username, and probably "
-"password are set.  Also be sure to check any security settings in the "
-"Advanced dialog."
-msgstr ""
-"Liste over mapper kan ikke hentes før tjener, brukernavn og sannsynligvis "
-"passord er angitt. Du kan også kontrollere sikkerhetsrelaterte innstillinger "
-"under avanserte innstillinger."
+msgid "The folder list cannot be retrieved until a server, username, and probably password are set.  Also be sure to check any security settings in the Advanced dialog."
+msgstr "Liste over mapper kan ikke hentes før tjener, brukernavn og sannsynligvis passord er angitt. Du kan også kontrollere sikkerhetsrelaterte innstillinger under avanserte innstillinger."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
@@ -205,12 +179,8 @@ msgid "Remote IMAP Mailbox"
 msgstr "IMAP epostboks"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1986
-msgid ""
-"The IMAP plugin can connect to a remote mail server that supports the IMAP "
-"protocol, optionally using SSL for link protection."
-msgstr ""
-"IMAP modulen kan koble seg til en eposttjener som støtter IMAP protokollen, "
-"med muligheter for å bruke SSL kryptering"
+msgid "The IMAP plugin can connect to a remote mail server that supports the IMAP protocol, optionally using SSL for link protection."
+msgstr "IMAP modulen kan koble seg til en eposttjener som støtter IMAP protokollen, med muligheter for å bruke SSL kryptering"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
@@ -244,11 +214,8 @@ msgid "Local Maildir Spool"
 msgstr "Lokal epostmappe"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:451
-msgid ""
-"The Maildir plugin can watch a local maildir-style mail spool for new "
-"messages."
-msgstr ""
-"Epostmappe modulen kan overvåke lokale epostkontoer etter nye meldinger."
+msgid "The Maildir plugin can watch a local maildir-style mail spool for new messages."
+msgstr "Epostmappe modulen kan overvåke lokale epostkontoer etter nye meldinger."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:370
 msgid "Mbox _Filename:"
@@ -308,12 +275,8 @@ msgid "Remote POP3 Mailbox"
 msgstr "Ekstern Pop3 epostboks"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1038
-msgid ""
-"The POP3 plugin can connect to a remote mail server that supports the POP3 "
-"protocol, optionally using SSL for link protection."
-msgstr ""
-"Pop3 modulen kan koble seg til eksterne tjenere som støtter POP3 "
-"protokollen, med mulighet for å bruke kryptert forbindelse"
+msgid "The POP3 plugin can connect to a remote mail server that supports the POP3 protocol, optionally using SSL for link protection."
+msgstr "Pop3 modulen kan koble seg til eksterne tjenere som støtter POP3 protokollen, med mulighet for å bruke kryptert forbindelse"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
@@ -368,17 +331,12 @@ msgid "Canceling read: read too many bytes without a newline"
 msgstr "Avbryter lesing: leste for mange tegn uten å motta et linjeskift"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:960
-#, fuzzy
 msgid "Buffer is not large enough to hold a full line (%"
-msgstr "Buffer er ikke stort nok til å holde hele linjen (%d < %d)"
+msgstr "Buffer er ikke stort nok til å lagre en full linje (%"
 
 #: ../libmailwatch-core/mailwatch.c:126
-msgid ""
-"xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
-"likely a problem with your GLib install."
-msgstr ""
-"xfce-mailwatch-plugin: Klarte ikke initialisere GThread støtte.  Dette "
-"ersannsynlig et problem med GLib installasjonen din."
+msgid "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."
+msgstr "xfce-mailwatch-plugin: Klarte ikke initialisere GThread støtte.  Dette ersannsynlig et problem med GLib installasjonen din."
 
 #: ../libmailwatch-core/mailwatch.c:341 ../libmailwatch-core/mailwatch.c:342
 #, c-format
@@ -387,14 +345,8 @@ msgstr "Klarte ikke skrive konfigurasjonsfil '%s'"
 
 #: ../libmailwatch-core/mailwatch.c:406 ../libmailwatch-core/mailwatch.c:408
 #, c-format
-msgid ""
-"Unable to set permissions on config file '%s'.  If this file contains "
-"passwords or other sensitive information, it may be readable by others on "
-"your system."
-msgstr ""
-"Klarte ikke sette rettighetene til konfigurasjonsfilen '%s'. Hvis denne "
-"filen inneholder passord eller annen konfidensiell informasjon, kan dette "
-"leses av andre som bruker denne maskinen."
+msgid "Unable to set permissions on config file '%s'.  If this file contains passwords or other sensitive information, it may be readable by others on your system."
+msgstr "Klarte ikke sette rettighetene til konfigurasjonsfilen '%s'. Hvis denne filen inneholder passord eller annen konfidensiell informasjon, kan dette leses av andre som bruker denne maskinen."
 
 #: ../libmailwatch-core/mailwatch.c:628
 msgid "This mailbox type does not require any configuration settings."
