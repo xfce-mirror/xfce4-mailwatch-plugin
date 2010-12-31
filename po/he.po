@@ -4,7 +4,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
 # Dotan Kamber <kamberd@yahoo.com>, 2006.
 # Yuval Tanny <tanai@int.gov.il>, 2006.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: he\n"
@@ -27,22 +27,13 @@ msgstr "לחיצת-יד TLS כשלה: %s"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:255
 #, c-format
-msgid ""
-"Received HTTP response code %d.  The most likely reason for this is that "
-"your GMail username or password is incorrect."
-msgstr ""
-"התקבל קוד %d מתגובת HTTP. כנראה משום ששם המשתמש או הססמה שלך ב-GMail אינה "
-"נכונים."
+msgid "Received HTTP response code %d.  The most likely reason for this is that your GMail username or password is incorrect."
+msgstr "התקבל קוד %d מתגובת HTTP. כנראה משום ששם המשתמש או הססמה שלך ב-GMail אינה נכונים."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
 #, c-format
-msgid ""
-"Received HTTP response code %d, which should be 200.  There may be a problem "
-"with GMail's servers, or they have incompatibly changed their authentication "
-"method or location of the new messages feed."
-msgstr ""
-"התקבל קוד %d מתגובת HTTP במקום קוד 200. ייתכן כי קיימת בעיה עם שרתי GMail או "
-"שהשתנו אופן ההזדהות שלהם או מיקומם באופן שאינו מאפשר עוד לקבל הודעות חדשות."
+msgid "Received HTTP response code %d, which should be 200.  There may be a problem with GMail's servers, or they have incompatibly changed their authentication method or location of the new messages feed."
+msgstr "התקבל קוד %d מתגובת HTTP במקום קוד 200. ייתכן כי קיימת בעיה עם שרתי GMail או שהשתנו אופן ההזדהות שלהם או מיקומם באופן שאינו מאפשר עוד לקבל הודעות חדשות."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:735
@@ -51,7 +42,7 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:487
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:548
 msgid "Previous thread hasn't exited yet, not checking mail this time."
-msgstr ""
+msgstr "התהליך הקודם עדיין לא הסתיים, לא ייבדקו הודעות חדשות הפעם."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
@@ -85,17 +76,11 @@ msgid "Remote GMail Mailbox"
 msgstr "תיבת דוא\"ל GMail מרוחקת"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:669
-msgid ""
-"The GMail plugin can connect to Google's mail service and securely retrieve "
-"the number of new messages."
-msgstr ""
-"התוסף ל-GMail יכול להתחבר לשירות הדוא\"ל של Google ולאחזר באופן מאובטח את "
-"מספר ההודעות החדשות."
+msgid "The GMail plugin can connect to Google's mail service and securely retrieve the number of new messages."
+msgstr "התוסף ל-GMail יכול להתחבר לשירות הדוא\"ל של Google ולאחזר באופן מאובטח את מספר ההודעות החדשות."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
-msgid ""
-"Secure IMAP is not available, and the IMAP server does not support plaintext "
-"logins."
+msgid "Secure IMAP is not available, and the IMAP server does not support plaintext logins."
 msgstr "IMAP מאובטח אינו זמין ושרת ה-IMAP אינו תומך בכניסות עם טקסט פשוט."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:337
@@ -103,7 +88,7 @@ msgstr "IMAP מאובטח אינו זמין ושרת ה-IMAP אינו תומך �
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:242
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
 msgid "Authentication failed.  Perhaps your username or password is incorrect?"
-msgstr ""
+msgstr "האימות נכשל. יתכן ששם המשתמש או הססמה שלך אינם נכונים?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
@@ -127,13 +112,8 @@ msgid "No server or username is set."
 msgstr "לא הוגדר שרת או שם משתמש."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1398
-msgid ""
-"The folder list cannot be retrieved until a server, username, and probably "
-"password are set.  Also be sure to check any security settings in the "
-"Advanced dialog."
-msgstr ""
-"אין אפשרות לאחזר את רשימת התיקיות עד ששרת, שם משתמש וכנראה גם ססמה יוגדרו. "
-"נא לבדוק גם את הגדרות האבטחה בתיבת הדו-שיח המתקדמת."
+msgid "The folder list cannot be retrieved until a server, username, and probably password are set.  Also be sure to check any security settings in the Advanced dialog."
+msgstr "אין אפשרות לאחזר את רשימת התיקיות עד ששרת, שם משתמש וכנראה גם ססמה יוגדרו. נא לבדוק גם את הגדרות האבטחה בתיבת הדו-שיח המתקדמת."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
@@ -201,12 +181,8 @@ msgid "Remote IMAP Mailbox"
 msgstr "תיבת דוא\"ל IMAP מרוחקת"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1986
-msgid ""
-"The IMAP plugin can connect to a remote mail server that supports the IMAP "
-"protocol, optionally using SSL for link protection."
-msgstr ""
-"תוסף ה-IMAP יכול להתחבר לשרת דוא\"ל מרוחק התומך בפרוטוקולIMAP אפשרי גם עם "
-"SSL להגנת קישור."
+msgid "The IMAP plugin can connect to a remote mail server that supports the IMAP protocol, optionally using SSL for link protection."
+msgstr "תוסף ה-IMAP יכול להתחבר לשרת דוא\"ל מרוחק התומך בפרוטוקולIMAP אפשרי גם עם SSL להגנת קישור."
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
@@ -240,12 +216,8 @@ msgid "Local Maildir Spool"
 msgstr "מיכל Maildir מקומי"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:451
-msgid ""
-"The Maildir plugin can watch a local maildir-style mail spool for new "
-"messages."
-msgstr ""
-"תוסף ה-Maildir יכול לעקוב אחר מיכל דוא\"ל מקומי בסגנון Maildir לקבלת הודעות "
-"חדשות."
+msgid "The Maildir plugin can watch a local maildir-style mail spool for new messages."
+msgstr "תוסף ה-Maildir יכול לעקוב אחר מיכל דוא\"ל מקומי בסגנון Maildir לקבלת הודעות חדשות."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:370
 msgid "Mbox _Filename:"
@@ -305,12 +277,8 @@ msgid "Remote POP3 Mailbox"
 msgstr "תיבת דוא\"ל POP3 מרוחקת"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1038
-msgid ""
-"The POP3 plugin can connect to a remote mail server that supports the POP3 "
-"protocol, optionally using SSL for link protection."
-msgstr ""
-"תוסף ה-POP3 יכול להתחבר לשרת מרוחק התומך בפרוטוקול POP3 אפשרי גם עם SSL "
-"להגנת קישור."
+msgid "The POP3 plugin can connect to a remote mail server that supports the POP3 protocol, optionally using SSL for link protection."
+msgstr "תוסף ה-POP3 יכול להתחבר לשרת מרוחק התומך בפרוטוקול POP3 אפשרי גם עם SSL להגנת קישור."
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
@@ -322,17 +290,17 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-net-conn.c:846
 #, c-format
 msgid "Operation aborted"
-msgstr ""
+msgstr "הפעולה בוטלה"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:498
 #, c-format
 msgid "Could not find host \"%s\": %s"
-msgstr ""
+msgstr "לא ניתן למצוא את המארח \"%s\": %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:582
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to connect to server \"%s\": %s"
-msgstr "כשל בהתחברות לשרת: %s"
+msgstr "אירע כשל בהתחברות לשרת: \"%s\": %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:645
 #, c-format
@@ -340,41 +308,37 @@ msgid "Not compiled with SSL/TLS support"
 msgstr "לא מהודר עם תמיכת SSL/TLS"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:701
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to send encrypted data: %s"
-msgstr "כשל בהתחברות לשרת: %s"
+msgstr "אירע כשל בשליחת נתונים מוצפנים: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to send data: %s"
-msgstr "כשל בהתחברות לשרת: %s"
+msgstr "אירע כשל בשליחת נתונים: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:823
 #, c-format
 msgid "Failed to receive encrypted data: %s"
-msgstr ""
+msgstr "אירע כשל בקבלת נתונים מוצפנים: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:853
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to receive data: %s"
-msgstr "כשל בהתחברות לשרת: %s"
+msgstr "אירע כשל בקבלת נתונים: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:951
 #, c-format
 msgid "Canceling read: read too many bytes without a newline"
-msgstr ""
+msgstr "הקריאה מבוטלת: נקראו יותר מדי בתים ללא תו שורה חדשה"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:960
 msgid "Buffer is not large enough to hold a full line (%"
-msgstr ""
+msgstr "האוגר לא מספיק גדול כדי להחזיק שורה מלאה (%"
 
 #: ../libmailwatch-core/mailwatch.c:126
-msgid ""
-"xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
-"likely a problem with your GLib install."
-msgstr ""
-"תוסף xfce4-mailwatch: אין אפשרות לאתחל תמיכה ב-GThread. כנראה מדובר בבעיה "
-"בהתקנת ה-GLib שלך."
+msgid "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."
+msgstr "תוסף xfce4-mailwatch: אין אפשרות לאתחל תמיכה ב-GThread. כנראה מדובר בבעיה בהתקנת ה-GLib שלך."
 
 #: ../libmailwatch-core/mailwatch.c:341 ../libmailwatch-core/mailwatch.c:342
 #, c-format
@@ -383,13 +347,8 @@ msgstr "אין אפשרות לכתוב קובץ הגדרות %s"
 
 #: ../libmailwatch-core/mailwatch.c:406 ../libmailwatch-core/mailwatch.c:408
 #, c-format
-msgid ""
-"Unable to set permissions on config file '%s'.  If this file contains "
-"passwords or other sensitive information, it may be readable by others on "
-"your system."
-msgstr ""
-"אין אפשרות להגדיר הרשאות בקובץ ההגדרות %s. אם קובץ זה מכיל ססמאות או מידע "
-"רגיש אחר ייתכן כי הוא בר קריאה על ידי אחרים במערכת שלך."
+msgid "Unable to set permissions on config file '%s'.  If this file contains passwords or other sensitive information, it may be readable by others on your system."
+msgstr "אין אפשרות להגדיר הרשאות בקובץ ההגדרות %s. אם קובץ זה מכיל ססמאות או מידע רגיש אחר ייתכן כי הוא בר קריאה על ידי אחרים במערכת שלך."
 
 #: ../libmailwatch-core/mailwatch.c:628
 msgid "This mailbox type does not require any configuration settings."
@@ -564,48 +523,42 @@ msgid "Failed to run xfhelp4"
 msgstr "כשל בהרצת xfhelp4"
 
 #: ../panel-plugin/mailwatch-plugin.c:1054
-#, fuzzy
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "Xfce Mailwatch"
+msgstr "תוסף מעקב דוא״ל של Xfce4"
 
 #: ../panel-plugin/mailwatch-plugin.c:1056
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr ""
+msgstr "יישומון בדיקת דוא״ל עשיר בתכונות עבור הלוח של Xfce"
 
 #: ../panel-plugin/mailwatch-plugin.c:1057
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 msgstr ""
+"כל הזכויות שמורות (c) 2005-2008 Brian Tarricone\n"
+"כל הזכויות שמורות (c) 2005 Pasi Orovuo"
 
 #: ../panel-plugin/mailwatch-plugin.c:1063
 msgid "Maintainer, Original Author"
-msgstr ""
+msgstr "המתחזק, היוצר המקורי"
 
 #: ../panel-plugin/mailwatch-plugin.c:1065
 msgid "Developer"
-msgstr ""
+msgstr "מתכנת"
 
 #: ../panel-plugin/mailwatch-plugin.c:1145
 msgid "Update Now"
-msgstr ""
+msgstr "עדכון כעת"
 
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "בדוק דוא\"ל ממספר תיבות"
 
-#~ msgid ""
-#~ "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
-#~ "the panel may hang on close."
-#~ msgstr ""
-#~ "אין אפשרות להגדיר את השקע למצב לא-חוסם. אם יתנתק ניסיון ההתחברות ייתכן כי "
-#~ "הלוח יתנתק ביציאה."
+#~ msgid "Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."
+#~ msgstr "אין אפשרות להגדיר את השקע למצב לא-חוסם. אם יתנתק ניסיון ההתחברות ייתכן כי הלוח יתנתק ביציאה."
 
-#~ msgid ""
-#~ "Unable to return socket to blocking mode.  Data may not be retreived "
-#~ "correctly."
-#~ msgstr ""
-#~ "אין אפשרות להחזיר את השקע למצב לא-חסימה. ייתכן כי מידע לא יאוחזר כראוי."
+#~ msgid "Unable to return socket to blocking mode.  Data may not be retreived correctly."
+#~ msgstr "אין אפשרות להחזיר את השקע למצב לא-חסימה. ייתכן כי מידע לא יאוחזר כראוי."
 
 #~ msgid "XfceMailwatch: TLS handshake failed: %s"
 #~ msgstr "XfceMailwatch: לחיצת יד TLS כשלה: %s"
@@ -616,7 +569,6 @@ msgstr "בדוק דוא\"ל ממספר תיבות"
 #~ msgid "A secure connection was requested, but gnutls was not initialised"
 #~ msgstr "התבקש חיבור מאובטח אך gnutls לא אותחל"
 
-#, fuzzy
 #~ msgid "About Mailwatch"
 #~ msgstr "Mailwatch"
 
@@ -629,6 +581,5 @@ msgstr "בדוק דוא\"ל ממספר תיבות"
 #~ msgid "Edit Properties"
 #~ msgstr "עריכת מאפיינים"
 
-#~ msgid ""
-#~ "A buffer was too small to receive all of an IMAP response.  This is a bug!"
+#~ msgid "A buffer was too small to receive all of an IMAP response.  This is a bug!"
 #~ msgstr "האוגר היה קטן מכדי לקבל את מלוא תגובת ה-IMAP. זהו באג!"
