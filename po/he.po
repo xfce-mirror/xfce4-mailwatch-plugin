@@ -4,6 +4,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
 # Dotan Kamber <kamberd@yahoo.com>, 2006.
 # Yuval Tanny <tanai@int.gov.il>, 2006.
+# Yaron Shaharbani <sh.yaron@gmail.com>, 2010
 # 
 msgid ""
 msgstr ""
@@ -11,11 +12,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-07-15 22:43-0700\n"
 "PO-Revision-Date: 2006-04-28 13:28+0300\n"
-"Last-Translator: Yuval Tanny <tanai@int.gov.il>\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: KBabel 1.10.2\n"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:204
@@ -73,11 +75,11 @@ msgstr "דקות."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:668
 msgid "Remote GMail Mailbox"
-msgstr "תיבת דוא\"ל GMail מרוחקת"
+msgstr "תיבת דוא״ל GMail מרוחקת"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:669
 msgid "The GMail plugin can connect to Google's mail service and securely retrieve the number of new messages."
-msgstr "התוסף ל-GMail יכול להתחבר לשירות הדוא\"ל של Google ולאחזר באופן מאובטח את מספר ההודעות החדשות."
+msgstr "התוסף ל-GMail יכול להתחבר לשירות הדוא״ל של Google ולאחזר באופן מאובטח את מספר ההודעות החדשות."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
 msgid "Secure IMAP is not available, and the IMAP server does not support plaintext logins."
@@ -117,11 +119,11 @@ msgstr "אין אפשרות לאחזר את רשימת התיקיות עד שש�
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
-msgstr "הגדרת תיקיות דוא\"ל חדשות"
+msgstr "הגדרת תיקיות דוא״ל חדשות"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1417
 msgid "New Mail Folders"
-msgstr "תיקיות דוא\"ל חדשות"
+msgstr "תיקיות דוא״ל חדשות"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1608
 msgid "Advanced IMAP Options"
@@ -140,15 +142,15 @@ msgstr "השתמש בחיבור שאינו מאובטח"
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1629
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:767
 msgid "Use SSL/TLS on alternate port"
-msgstr "השתמש ב-SSL/TLS בערוץ חלופי"
+msgstr "שימוש ב־SSL/TLS בערוץ חלופי"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1630
 msgid "Use SSL/TLS via STARTTLS"
-msgstr "השתמש ב-SSL/TLS דרך STARTTLS"
+msgstr "שימוש ב־SSL/TLS דרך STARTTLS"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1646
 msgid "Use non-standard IMAP _port:"
-msgstr "השתמש בערוץ IMAP _לא תקני"
+msgstr "שימוש בערוץ IMAP _לא תקני"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1676
 msgid "Folders"
@@ -156,7 +158,7 @@ msgstr "תיקיות"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1684
 msgid "IMAP server _directory:"
-msgstr "_ספרית IMAP בשרת:"
+msgstr "_ספריית IMAP בשרת:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1714
 msgid "IMAP Server"
@@ -165,7 +167,7 @@ msgstr "שרת IMAP"
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1728
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:843
 msgid "_Mail server:"
-msgstr "_שרת דוא\"ל:"
+msgstr "_שרת דוא״ל:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1789
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:904
@@ -174,15 +176,15 @@ msgstr "_מתקדם..."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1796
 msgid "New mail _folders..."
-msgstr "תיקיות דוא\"ל ֹחדשות..."
+msgstr "תיקיות דוא״ל ֹחדשות..."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1985
 msgid "Remote IMAP Mailbox"
-msgstr "תיבת דוא\"ל IMAP מרוחקת"
+msgstr "תיבת דוא״ל IMAP מרוחקת"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1986
 msgid "The IMAP plugin can connect to a remote mail server that supports the IMAP protocol, optionally using SSL for link protection."
-msgstr "תוסף ה-IMAP יכול להתחבר לשרת דוא\"ל מרוחק התומך בפרוטוקולIMAP אפשרי גם עם SSL להגנת קישור."
+msgstr "תוסף ה־IMAP יכול להתחבר לשרת דוא״ל מרוחק התומך בפרוטוקולIMAP אפשרי גם עם SSL להגנת קישור."
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
@@ -190,12 +192,12 @@ msgstr "תוסף ה-IMAP יכול להתחבר לשרת דוא\"ל מרוחק ה
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:403
 #, c-format
 msgid "Failed to get status of file %s: %s"
-msgstr "כשל בקבלת מצב של קובץ %s: %s"
+msgstr "אירע בקבלת מצב הקובץ %s: %s"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:102
 #, c-format
 msgid "%s is not a directory. Is %s really a valid maildir?"
-msgstr "%s אינה ספריה. האם באמת %s היא ספריית maildir תקינה?"
+msgstr "%s אינה תיקייה. האם באמת %s היא תיקיית maildir תקינה?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:335
 msgid "Maildir _Path:"
@@ -213,11 +215,11 @@ msgstr "_מרווח זמן:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:450
 msgid "Local Maildir Spool"
-msgstr "מיכל Maildir מקומי"
+msgstr "מאגר Maildir מקומי"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:451
 msgid "The Maildir plugin can watch a local maildir-style mail spool for new messages."
-msgstr "תוסף ה-Maildir יכול לעקוב אחר מיכל דוא\"ל מקומי בסגנון Maildir לקבלת הודעות חדשות."
+msgstr "תוסף ה-Maildir יכול לעקוב אחר מאגר דוא״ל מקומי בסגנון Maildir לקבלת הודעות חדשות."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:370
 msgid "Mbox _Filename:"
@@ -229,32 +231,32 @@ msgstr "בחירת קובץ Mbox"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:475
 msgid "Local Mbox spool"
-msgstr "מיכל Mbox מקומי"
+msgstr "מאגר Mbox מקומי"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr "תוסף ה-Mbox עוקב אחר מיכל דוא\"ל מקומי בסגנון Mbox לקבלת הודעות חדשות."
+msgstr "תוסף ה־Mbox עוקב אחר מאגר דוא״ל מקומי בסגנון Mbox לקבלת הודעות חדשות."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
 msgid "Malformed line %s in %s ignored."
-msgstr "התעלם משורה לא תקינה %s ב-%s."
+msgstr "התעלמות משורה לא תקינה %s ב־%s."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:581
 msgid ""
 "The configuration of this plugin is read from\n"
 "the default mh maildir profile file ~/.mh_profile"
 msgstr ""
-"ההגדרות לתוסף זה נקראות מקובץ ברירת המחדל\n"
-"של mh maildir ב ~/.mh_profile"
+"ההגדרות לתוסף זה נקראות מקובץ בררת המחדל\n"
+"של mh maildir ב‎ ~/.mh_profile"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:683
 msgid "Local MH mail folder"
-msgstr "תיקיית דוא\"ל MH מקומית"
+msgstr "תיקיית דוא״ל MH מקומית"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:684
 msgid "MH plugin watches local MH folders for new mail"
-msgstr "תוסף ה-MH בודק אם יש הודעות חדשות בתיקיות MH מקומיות"
+msgstr "תוסף ה־MH בודק אם יש הודעות חדשות בתיקיות MH מקומיות"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:746
 msgid "Advanced POP3 Options"
@@ -262,11 +264,11 @@ msgstr "אפשרויות POP3 מתקדמות"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:768
 msgid "Use SSL/TLS via STLS"
-msgstr "השתמש ב-SSL/TLS דרך STLS"
+msgstr "שימוש ב־SSL/TLS דרך STLS"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:784
 msgid "Use non-standard POP3 _port:"
-msgstr "השתמש בערוץ POP3 _לא תקני:"
+msgstr "שימוש בערוץ POP3 _לא תקני:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:829
 msgid "POP3 Server"
@@ -274,11 +276,11 @@ msgstr "שרת POP3"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1037
 msgid "Remote POP3 Mailbox"
-msgstr "תיבת דוא\"ל POP3 מרוחקת"
+msgstr "תיבת דוא״ל POP3 מרוחקת"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1038
 msgid "The POP3 plugin can connect to a remote mail server that supports the POP3 protocol, optionally using SSL for link protection."
-msgstr "תוסף ה-POP3 יכול להתחבר לשרת מרוחק התומך בפרוטוקול POP3 אפשרי גם עם SSL להגנת קישור."
+msgstr "תוסף ה־POP3 יכול להתחבר לשרת מרוחק התומך בפרוטוקול POP3 אפשרי גם עם SSL להגנת קישור."
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
@@ -356,7 +358,7 @@ msgstr "סוג זה של תיבת דוא\"ל אינו דורש הגדרות."
 
 #: ../libmailwatch-core/mailwatch.c:655
 msgid "Mailbox _Name:"
-msgstr "_שם תיבת הדוא\"ל:"
+msgstr "_שם תיבת הדוא״ל:"
 
 #: ../libmailwatch-core/mailwatch.c:673
 msgid "Mailwatch"
@@ -414,10 +416,9 @@ msgstr "אין הודעות חדש"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:129
 #: ../panel-plugin/mailwatch-plugin.c:131
-#, fuzzy, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
-msgstr[0] "יש לך %d הודעות חדשות:"
+msgstr[0] "יש לך הודעה חדשה אחת:"
 msgstr[1] "יש לך %d הודעות חדשות:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:140
@@ -434,22 +435,22 @@ msgstr "Xfce Mailwatch"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:252
 #: ../panel-plugin/mailwatch-plugin.c:414
 msgid "The mailwatch applet cannot be added to the panel."
-msgstr "אין אפשרות להוסיף את יישומון ה-mailwatch ללוח."
+msgstr "אין אפשרות להוסיף את יישומון ה־mailwatch ללוח."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:253
 #: ../panel-plugin/mailwatch-plugin.c:415
 msgid "It is possible that your version of GLib does not have threads support."
-msgstr "ייתכן שגרסת ה-GLib שלך אינה תומכת בפתילים."
+msgstr "יתכן שגרסת ה־GLib שלך אינה תומכת בפתילים."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:476
 #: ../panel-plugin/mailwatch-plugin.c:638
 msgid "Mailwatch log"
-msgstr "דו\"ח mailwatch"
+msgstr "יומן mailwatch"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:534
 #: ../panel-plugin/mailwatch-plugin.c:696
 msgid "Log _lines:"
-msgstr "_שורות דו\"ח:"
+msgstr "_שורות ביומן:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:548
 #: ../panel-plugin/mailwatch-plugin.c:710
@@ -471,7 +472,7 @@ msgstr "_רגיל"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:649
 #: ../panel-plugin/mailwatch-plugin.c:811
 msgid "Ne_w mail"
-msgstr "הודעה _חדש"
+msgstr "הודעה _חדשה"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:676
 #: ../panel-plugin/mailwatch-plugin.c:898
@@ -481,12 +482,12 @@ msgstr "תכניות חיצוניות"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:688
 #: ../panel-plugin/mailwatch-plugin.c:910
 msgid "Run _on click:"
-msgstr "הרץ _בלחיצה:"
+msgstr "הפעלה ב_לחיצה:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:705
 #: ../panel-plugin/mailwatch-plugin.c:927
 msgid "Run on new _messages:"
-msgstr "הרץ בקבלת _דוא\"ל חדש:"
+msgstr "הרצה בעת קבלת הודעות _חדשות:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:718
 #: ../panel-plugin/mailwatch-plugin.c:940
@@ -496,18 +497,18 @@ msgstr "סמלים"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:764
 #: ../panel-plugin/mailwatch-plugin.c:986
 msgid "Ne_w Mail"
-msgstr "הודעה חדשה"
+msgstr "הוד_עה חדשה"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:772
 #: ../panel-plugin/mailwatch-plugin.c:877
 msgid "_View Log..."
-msgstr "_הצגת דו\"כ..."
+msgstr "_הצגת יומן..."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:885
 #: ../panel-plugin/mailwatch-plugin.c:858
 #: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Mail Watcher"
-msgstr "בודק דוא\"ל"
+msgstr "בודק דוא״ל"
 
 #: ../panel-plugin/mailwatch-plugin.c:829
 #, c-format
@@ -552,7 +553,7 @@ msgstr "עדכון כעת"
 
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
-msgstr "בדוק דוא\"ל ממספר תיבות"
+msgstr "בדיקת דוא״ל במספר תיבות"
 
 #~ msgid "Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."
 #~ msgstr "אין אפשרות להגדיר את השקע למצב לא-חוסם. אם יתנתק ניסיון ההתחברות ייתכן כי הלוח יתנתק ביציאה."
