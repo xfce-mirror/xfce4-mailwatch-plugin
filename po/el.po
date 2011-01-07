@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the xfce4-mailwatch-plugin package.
 # Stavros Giannouris <stavrosg@hellug.gr>, 2005-2006, 2008.
 # Stathis Kamperis <ekamperi@auth.gr>, 2006.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-07-15 22:43-0700\n"
-"PO-Revision-Date: 2008-09-11 17:40+0200\n"
-"Last-Translator: Stavros Giannouris <stavrosg@hellug.gr>\n"
+"PO-Revision-Date: 2011-01-07 18:29+0200\n"
+"Last-Translator: Spiros Georgaras <sng@hellug.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -341,12 +341,14 @@ msgstr "Η ενδιάμεση μνήμη δεν είναι αρκετά μεγά
 msgid "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."
 msgstr "xfce4-mailwatch-plugin: Δεν ήταν δυνατή η ενεργοποίηση υποστήριξης GThread. Αυτό είναι ένα πιθανό πρόβλημα με την εγκατάσταση της  GLib σας."
 
-#: ../libmailwatch-core/mailwatch.c:341 ../libmailwatch-core/mailwatch.c:342
+#: ../libmailwatch-core/mailwatch.c:341
+#: ../libmailwatch-core/mailwatch.c:342
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "Αδυναμία εγγραφής στο αρχείο ρυθμίσεων '%s'"
 
-#: ../libmailwatch-core/mailwatch.c:406 ../libmailwatch-core/mailwatch.c:408
+#: ../libmailwatch-core/mailwatch.c:406
+#: ../libmailwatch-core/mailwatch.c:408
 #, c-format
 msgid "Unable to set permissions on config file '%s'.  If this file contains passwords or other sensitive information, it may be readable by others on your system."
 msgstr "Αδύνατος ο ορισμός των δικαιωμάτων στο αρχείο ρυθμίσεων '%s'. Εάν αυτό το αρχείο περιέχει κωδικούς ή άλλες ευαίσθητες πληροφορίες, μπορεί να είναι προσβάσιμο και από άλλους στο σύστημα σας."
@@ -455,7 +457,7 @@ msgstr "Γραμμές κατα_γραφής:"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:548
 #: ../panel-plugin/mailwatch-plugin.c:710
 msgid "Show log _status in icon"
-msgstr "Εμφάνιση κατάστασης της καταγραφής στο εικονίδιο"
+msgstr "Εμφάνιση κατά_στασης της καταγραφής στο εικονίδιο"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:594
 #: ../panel-plugin/mailwatch-plugin.c:754
@@ -557,33 +559,24 @@ msgstr "Έλεγχος πολλαπλών γραμματοκιβωτίων"
 
 #~ msgid "Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."
 #~ msgstr "Unable to set socket to non-blocking mode.  Εάν κρεμάσει η προσπάθεια σύνδεσης. το ταμπλό μπορεί να κρεμάσει κατά το κλείσιμο."
-
 #~ msgid "Unable to return socket to blocking mode.  Data may not be retreived correctly."
 #~ msgstr "Unable to return socket to blocking mode.  Τα δεδομένα μπορεί να μην διαβαστούν σωστά."
-
 #~ msgid "The IMAP server returned a response we weren't quite expecting.  This might be OK, or this plugin might need to be modified to support your mail server if the new message counts are incorrect."
 #~ msgstr "Ο εξυπηρετητής IMAP αποκρίθηκε με μη αναμενόνεμο τρόπο. Αυτό μπορεί να είναι εντάξει, ή θα πρέπει αυτό το πρόσθετο να τροποποιηθεί για να υποστηρίξει τον εξυπηρετητή αλληλογραφίας σας αν η μέτρηση νέας αλληλογραφίας δεν είναι σωστή."
-
 #~ msgid "XfceMailwatch: TLS handshake failed: %s"
 #~ msgstr "XfceMailwatch: Η χειραψία TLS απέτυχε: %s"
-
 #~ msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
 #~ msgstr "XfceMailwatch: Η χειραψία TLS απέτυχε: δε μεταγλωττίστηκε με υποστήριξη SSL."
-
 #~ msgid "A secure connection was requested, but gnutls was not initialised"
 #~ msgstr "Απαιτήθηκε ασφαλής σύνδεση, αλλά δεν ξεκίνησε το gnutls"
-
 #~ msgid "About Mailwatch"
 #~ msgstr "Περί του Mailwatch"
-
 #~ msgid "You have 1 new message:"
 #~ msgstr "Έχετε 1 νέο μήνυμα:"
-
 #~ msgid "You have %d new messages:"
 #~ msgstr "Έχετε %d νέα μηνύματά:"
-
 #~ msgid "Edit Properties"
 #~ msgstr "Επεξεργασία ιδιοτήτων"
-
 #~ msgid "A buffer was too small to receive all of an IMAP response.  This is a bug!"
 #~ msgstr "Η προσωρινή μνήμη ήταν πολύ μικρή για να ληφθεί όλη η απάντηση από το IMAP. Αυτό είναι bug!"
+
