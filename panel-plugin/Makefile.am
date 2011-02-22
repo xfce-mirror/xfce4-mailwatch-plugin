@@ -50,20 +50,22 @@ xfce4_mailwatch_plugin_CFLAGS = \
 	-I$(top_srcdir)/libmailwatch-core \
 	@GTHREAD_CFLAGS@ \
 	@LIBXFCE4PANEL_CFLAGS@ \
+	@LIBXFCEGUI4_CFLAGS@ \
 	-DDATADIR=\"$(datadir)\" \
 	-DLOCALEDIR=\"$(localedir)\"
 
 xfce4_mailwatch_plugin_DEPENDENCIES = \
 	$(top_builddir)/libmailwatch-core/libmailwatch-core.la
 
-xfce4_mailwatch_plugin_LDFLAGS = \
+xfce4_mailwatch_plugin_LDADD = \
 	$(top_builddir)/libmailwatch-core/libmailwatch-core.la \
 	@GTHREAD_LIBS@ \
 	@LIBXFCE4PANEL_LIBS@ \
+	@LIBXFCEGUI4_LIBS@ \
 	@GNUTLS_LIBS@
 
 if HAVE_CYGWIN
-  xfce4_mailwatch_plugin_LDFLAGS += \
+  xfce4_mailwatch_plugin_LDFLAGS = \
 	-no-undefined
 endif
 
