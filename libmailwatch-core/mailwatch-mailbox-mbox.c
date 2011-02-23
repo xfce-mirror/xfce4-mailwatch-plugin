@@ -347,6 +347,7 @@ mbox_interval_changed_cb( GtkWidget *spinner, XfceMailwatchMboxMailbox *mbox ) {
             g_source_remove( mbox->check_id );
         mbox->check_id = g_timeout_add( mbox->interval * 1000, mbox_check_mail_timeout, mbox );
     }
+    mbox->interval = val;
 }
     
 static GtkContainer *
