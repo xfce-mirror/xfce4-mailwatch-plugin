@@ -11,9 +11,9 @@
 
   <maintainer>
     <foaf:Person>
-      <foaf:name>Brian Tarricone</foaf:name>
-      <foaf:mbox>mailto:kelnos@xfce.org</foaf:mbox>
-      <gnome:userid>kelnos</gnome:userid>
+      <foaf:name>Florian Rivoal</foaf:name>
+      <foaf:mbox>mailto:frivoal@xfce.org</foaf:mbox>
+      <gnome:userid>frivoal</gnome:userid>
     </foaf:Person>
   </maintainer>
 </Project>
