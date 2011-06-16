@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-27 04:04+0000\n"
-"PO-Revision-Date: 2011-05-25 11:34+0200\n"
+"POT-Creation-Date: 2011-06-16 10:07+0000\n"
+"PO-Revision-Date: 2011-06-15 11:34+0200\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch (Flemish)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl\n"
+"Language: nl (Dutch)\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:204
@@ -31,8 +31,8 @@ msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
 msgstr ""
-"HTTP-antwoordcode %d ontvangen. De meest waarschijnlijke reden hiervoor, "
-"is dat uw GMail-gebruikersnaam of -wachtwoord onjuist is."
+"HTTP-antwoordcode %d ontvangen. De meest waarschijnlijke reden hiervoor, is "
+"dat uw GMail-gebruikernaam of -wachtwoord onjuist is."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
 #, c-format
@@ -41,9 +41,10 @@ msgid ""
 "with GMail's servers, or they have incompatibly changed their authentication "
 "method or location of the new messages feed."
 msgstr ""
-"HTTP-antwoordcode %d ontvangen, welke 200 zou moeten zijn. Er zou een probleem "
-"kunnen zijn met de servers van GMail, of ze hebben hun authenticatiemethode of "
-"locatie van de nieuwe-berichten-voeding onverenigbaar veranderd."
+"HTTP-antwoordcode %d ontvangen, welke 200 zou moeten zijn. Er zou een "
+"probleem kunnen zijn met de servers van GMail, of ze hebben hun "
+"authenticatiemethode of locatie van de nieuwe-berichten-voeding "
+"onverenigbaar veranderd."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:735
@@ -52,14 +53,15 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:487
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:548
 msgid "Previous thread hasn't exited yet, not checking mail this time."
-msgstr "Vorige draad is nog niet beëindigd, dit keer wordt er geen post "
+msgstr ""
+"Vorige draad is nog niet beëindigd, dit keer wordt er geen post "
 "gecontroleerd."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:863
 msgid "_Username:"
-msgstr "_Gebruikersnaam:"
+msgstr "_Gebruikernaam:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:555
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1768
@@ -91,8 +93,8 @@ msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
 msgstr ""
-"De GMail-plugin kan verbinden met Googles e-mail-dienst en veilig het "
-"aantal nieuwe berichten ophalen."
+"De GMail-plugin kan verbinden met Googles e-mail-dienst en veilig het aantal "
+"nieuwe berichten ophalen."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
 msgid ""
@@ -107,11 +109,13 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:242
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
 msgid "Authentication failed.  Perhaps your username or password is incorrect?"
-msgstr "Authenticatie mislukt. Wellicht is uw gebruikersnaam of wachtwoord onjuist?"
+msgstr ""
+"Authenticatie mislukt. Wellicht is uw gebruikernaam of wachtwoord onjuist?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
-msgstr "STARTTLS-veiligheid werd verzocht, maar deze server ondersteunt het niet."
+msgstr ""
+"STARTTLS-veiligheid werd verzocht, maar deze server ondersteunt het niet."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1144
 msgid "Failed to get folder list"
@@ -128,7 +132,7 @@ msgstr "Fout"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1397
 msgid "No server or username is set."
-msgstr "Er is geen server of gebruikersnaam ingesteld."
+msgstr "Er is geen server of gebruikernaam ingesteld."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1398
 msgid ""
@@ -136,9 +140,9 @@ msgid ""
 "password are set.  Also be sure to check any security settings in the "
 "Advanced dialog."
 msgstr ""
-"De mappenlijst kan niet worden opgehaald voordat een server, gebruikersnaam "
+"De mappenlijst kan niet worden opgehaald voordat een server, gebruikernaam "
 "en vermoedelijk ook een wachtwoord zijn ingesteld. Vergewis u er ook van, "
-"dat de veiligheidsinstellingen in de Geavanceerd-dialoog goed staan."
+"dat de veiligheidinstellingen in de Geavanceerd-dialoog goed staan."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
@@ -211,7 +215,8 @@ msgid ""
 "protocol, optionally using SSL for link protection."
 msgstr ""
 "De IMAP-plugin kan verbinden met een mailserver-op-afstand, die het IMAP- "
-"protocol ondersteunt, desgewenst met gebruik van SSL voor koppelingsbescherming."
+"protocol ondersteunt, desgewenst met gebruik van SSL voor "
+"koppelingbescherming."
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
@@ -249,8 +254,8 @@ msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
 msgstr ""
-"De Maildir-plugin kan een plaatselijke postspoel (maildir-stijl) "
-"bewaken op nieuwe berichten."
+"De Maildir-plugin kan een plaatselijke postspoel (maildir-stijl) bewaken op "
+"nieuwe berichten."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Mbox _Filename:"
@@ -266,8 +271,9 @@ msgstr "Plaatselijke Mbox-spoel"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr "Mbox-plugin bewaakt een plaatselijke postspoel (mbox-type) op "
-"nieuwe berichten."
+msgstr ""
+"Mbox-plugin bewaakt een plaatselijke postspoel (mbox-type) op nieuwe "
+"berichten."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
@@ -317,7 +323,8 @@ msgid ""
 "protocol, optionally using SSL for link protection."
 msgstr ""
 "De POP3-plugin kan verbinden met een mailserver-op-afstand die het POP3- "
-"protocol ondersteunt, desgewenst met gebruik van SSL voor koppelingsbescherming."
+"protocol ondersteunt, desgewenst met gebruik van SSL voor "
+"koppelingbescherming."
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
@@ -401,7 +408,7 @@ msgstr ""
 
 #: ../libmailwatch-core/mailwatch.c:628
 msgid "This mailbox type does not require any configuration settings."
-msgstr "Dit postbus-type vereist geen configuratie-instellingen."
+msgstr "Dit postbustype vereist geen configuratie-instellingen."
 
 #: ../libmailwatch-core/mailwatch.c:655
 msgid "Mailbox _Name:"
@@ -430,7 +437,8 @@ msgstr "Kies postbustype"
 
 #: ../libmailwatch-core/mailwatch.c:785
 msgid "Select a mailbox type.  A description of the type will appear below."
-msgstr "Kies een postbustype. Een beschrijving van het type zal beneden verschijnen."
+msgstr ""
+"Kies een postbustype. Een beschrijving van het type zal beneden verschijnen."
 
 #: ../libmailwatch-core/mailwatch.c:839
 msgid "Add New Mailbox"
@@ -446,7 +454,8 @@ msgstr "Weet u het zeker?"
 
 #: ../libmailwatch-core/mailwatch.c:901
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
-msgstr "Een postbus verwijderen zal alle instellingen wissen, en is onomkeerbaar."
+msgstr ""
+"Een postbus verwijderen zal alle instellingen wissen, en is onomkeerbaar."
 
 #: ../libmailwatch-core/mailwatch.c:966
 msgid "Mailboxes"
@@ -483,13 +492,14 @@ msgstr "Xfce Mailwatch"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:252
 #: ../panel-plugin/mailwatch-plugin.c:414
 msgid "The mailwatch applet cannot be added to the panel."
-msgstr "Het mailwatch-programmaatje kan niet worden "
-"toegevoegd aan de werkbalk."
+msgstr ""
+"Het mailwatch-programmaatje kan niet worden toegevoegd aan de werkbalk."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:253
 #: ../panel-plugin/mailwatch-plugin.c:415
 msgid "It is possible that your version of GLib does not have threads support."
-msgstr "Het is mogelijk dat uw versie van Glib geen ondersteuning heeft voor draden."
+msgstr ""
+"Het is mogelijk dat uw versie van Glib geen ondersteuning heeft voor draden."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:476
 #: ../panel-plugin/mailwatch-plugin.c:638
@@ -578,7 +588,7 @@ msgstr "Xfce4 Mailwatch-plugin"
 
 #: ../panel-plugin/mailwatch-plugin.c:1056
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr "Een functierijk postbewakingsprogrammaatje voor de Xfce-werkbalk"
+msgstr "Een functierijk postbewakingprogrammaatje voor de Xfce-werkbalk"
 
 #: ../panel-plugin/mailwatch-plugin.c:1057
 msgid ""
