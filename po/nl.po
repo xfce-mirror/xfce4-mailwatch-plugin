@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-16 10:07+0000\n"
-"PO-Revision-Date: 2011-06-15 11:34+0200\n"
+"POT-Creation-Date: 2011-09-09 04:07+0000\n"
+"PO-Revision-Date: 2011-09-09 11:34+0200\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch (Flemish)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgid ""
 "your GMail username or password is incorrect."
 msgstr ""
 "HTTP-antwoordcode %d ontvangen. De meest waarschijnlijke reden hiervoor, is "
-"dat uw GMail-gebruikernaam of -wachtwoord onjuist is."
+"dat uw GMail-gebruikersnaam of -wachtwoord onjuist is."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
 #, c-format
@@ -61,7 +61,7 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:863
 msgid "_Username:"
-msgstr "_Gebruikernaam:"
+msgstr "_Gebruikersnaam:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:555
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1768
@@ -86,7 +86,7 @@ msgstr "minu(u)t(en)."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:668
 msgid "Remote GMail Mailbox"
-msgstr "GMail Postbus-Op-Afstand"
+msgstr "GMail postbus-op-afstand"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:669
 msgid ""
@@ -94,7 +94,7 @@ msgid ""
 "the number of new messages."
 msgstr ""
 "De GMail-plugin kan verbinden met Googles e-mail-dienst en veilig het aantal "
-"nieuwe berichten ophalen."
+"van de nieuwe berichten ophalen."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
 msgid ""
@@ -110,7 +110,7 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
 msgid "Authentication failed.  Perhaps your username or password is incorrect?"
 msgstr ""
-"Authenticatie mislukt. Wellicht is uw gebruikernaam of wachtwoord onjuist?"
+"Authenticatie mislukt. Wellicht is uw gebruikersnaam of wachtwoord onjuist?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
@@ -132,7 +132,7 @@ msgstr "Fout"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1397
 msgid "No server or username is set."
-msgstr "Er is geen server of gebruikernaam ingesteld."
+msgstr "Er is geen server of gebruikersnaam ingesteld."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1398
 msgid ""
@@ -140,9 +140,9 @@ msgid ""
 "password are set.  Also be sure to check any security settings in the "
 "Advanced dialog."
 msgstr ""
-"De mappenlijst kan niet worden opgehaald voordat een server, gebruikernaam "
+"De mappenlijst kan niet worden opgehaald voordat een server, gebruikersnaam "
 "en vermoedelijk ook een wachtwoord zijn ingesteld. Vergewis u er ook van, "
-"dat de veiligheidinstellingen in de Geavanceerd-dialoog goed staan."
+"dat de veiligheidsinstellingen in de Geavanceerd-dialoog goed staan."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
@@ -216,7 +216,7 @@ msgid ""
 msgstr ""
 "De IMAP-plugin kan verbinden met een mailserver-op-afstand, die het IMAP- "
 "protocol ondersteunt, desgewenst met gebruik van SSL voor "
-"koppelingbescherming."
+"koppelingsbescherming."
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
@@ -324,7 +324,7 @@ msgid ""
 msgstr ""
 "De POP3-plugin kan verbinden met een mailserver-op-afstand die het POP3- "
 "protocol ondersteunt, desgewenst met gebruik van SSL voor "
-"koppelingbescherming."
+"koppelingsbescherming."
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
@@ -376,7 +376,7 @@ msgstr "Kon geen gegevens ontvangen: %s"
 #: ../libmailwatch-core/mailwatch-net-conn.c:951
 #, c-format
 msgid "Canceling read: read too many bytes without a newline"
-msgstr "Lezen aan het afbreken: lees teveel bytes zonder een nieuwregel"
+msgstr "Lezen aan het afbreken: teveel bytes zonder een nieuwregel gelezen"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:960
 msgid "Buffer is not large enough to hold a full line (%"
@@ -487,13 +487,13 @@ msgstr "vertelt hoeveel nieuwe berichten er in elke postbus|   %d in %s"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:251
 #: ../panel-plugin/mailwatch-plugin.c:413
 msgid "Xfce Mailwatch"
-msgstr "Xfce Mailwatch"
+msgstr "Xfce Postbewaker"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:252
 #: ../panel-plugin/mailwatch-plugin.c:414
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr ""
-"Het mailwatch-programmaatje kan niet worden toegevoegd aan de werkbalk."
+"Het Postbewaker-programmaatje kan niet worden toegevoegd aan de werkbalk."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:253
 #: ../panel-plugin/mailwatch-plugin.c:415
@@ -504,7 +504,7 @@ msgstr ""
 #: ../panel-plugin/mailwatch-plugin-4.2.c:476
 #: ../panel-plugin/mailwatch-plugin.c:638
 msgid "Mailwatch log"
-msgstr "Mailwatch-logboek"
+msgstr "Postbewaker-logboek"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:534
 #: ../panel-plugin/mailwatch-plugin.c:696
@@ -584,11 +584,11 @@ msgstr "Kon xhelp4 niet draaien"
 
 #: ../panel-plugin/mailwatch-plugin.c:1054
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "Xfce4 Mailwatch-plugin"
+msgstr "Xfce4 Postbewaker-plugin"
 
 #: ../panel-plugin/mailwatch-plugin.c:1056
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr "Een functierijk postbewakingprogrammaatje voor de Xfce-werkbalk"
+msgstr "Een functierijk postbewakingsprogrammaatje voor de Xfce-werkbalk"
 
 #: ../panel-plugin/mailwatch-plugin.c:1057
 msgid ""
@@ -600,7 +600,7 @@ msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin.c:1063
 msgid "Maintainer, Original Author"
-msgstr "Onderhouder, Oorspronkelijke Maker"
+msgstr "Onderhouder, oorspronkelijke maker"
 
 #: ../panel-plugin/mailwatch-plugin.c:1065
 msgid "Developer"
