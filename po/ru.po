@@ -3,18 +3,20 @@
 # This file is distributed under the same license as
 #  the xfce4-mailwatch-plugin package.
 # Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-15 22:43-0700\n"
-"PO-Revision-Date: 2010-03-03 21:10+0300\n"
-"Last-Translator: Dima Smirnov <arch@cnc-parts.info>\n"
+"POT-Creation-Date: 2011-11-06 11:04+0000\n"
+"PO-Revision-Date: 2011-11-06 21:51+0600\n"
+"Last-Translator: Urmas D. <davian818@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:204
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:399
@@ -63,7 +65,7 @@ msgstr "Проверять наличие новых сообщений кажд
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:591
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1821
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:374
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:411
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:412
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:605
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:929
 msgid "minute(s)."
@@ -204,7 +206,7 @@ msgid "Select Maildir Folder"
 msgstr "Выберите папку maildir"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:358
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:394
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:395
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:590
 msgid "_Interval:"
 msgstr "Интервал:"
@@ -217,19 +219,19 @@ msgstr "Локальный каталог почты"
 msgid "The Maildir plugin can watch a local maildir-style mail spool for new messages."
 msgstr "Модуль Maildir проверяет локальные папки maildir на наличие новых сообщений."
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:370
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Mbox _Filename:"
 msgstr "Имя файла mbox:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:376
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:377
 msgid "Select mbox file"
 msgstr "Выберите файл mbox"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:475
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
 msgid "Local Mbox spool"
 msgstr "Локальная папка Mbox"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
 msgstr "Модуль Mbox следит за новыми сообщениями в локальных mbox-папках."
 
@@ -338,12 +340,14 @@ msgstr "Не хватает буфера для запоминания всей 
 msgid "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."
 msgstr "xfce4-mailwatch-plugin: не удалось инициализировать поддержку Gthread. Скорее всего проблема связана с неверной установкой Glib."
 
-#: ../libmailwatch-core/mailwatch.c:341 ../libmailwatch-core/mailwatch.c:342
+#: ../libmailwatch-core/mailwatch.c:341
+#: ../libmailwatch-core/mailwatch.c:342
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "Не удалось записать файл конфигурации '%s'"
 
-#: ../libmailwatch-core/mailwatch.c:406 ../libmailwatch-core/mailwatch.c:408
+#: ../libmailwatch-core/mailwatch.c:406
+#: ../libmailwatch-core/mailwatch.c:408
 #, c-format
 msgid "Unable to set permissions on config file '%s'.  If this file contains passwords or other sensitive information, it may be readable by others on your system."
 msgstr "Не удалось установить права доступа для файла конфигурации '%s'. Если этот файл содержит пароли или другую важную информацию, он может быть прочитан другими пользователями"
@@ -414,7 +418,10 @@ msgstr "Нет новых писем"
 #: ../panel-plugin/mailwatch-plugin.c:131
 #, c-format
 msgid "You have %d new message:"
-msgstr "У вас %d новых писем:"
+msgid_plural "You have %d new messages:"
+msgstr[0] "У вас %d новое письмо:"
+msgstr[1] "У вас %d новых письма:"
+msgstr[2] "У вас %d новых писем:"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:140
 #: ../panel-plugin/mailwatch-plugin.c:142
