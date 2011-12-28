@@ -237,7 +237,7 @@ msgstr "间隔(_I)："
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:450
 msgid "Local Maildir Spool"
-msgstr "本地邮件文件夹盒"
+msgstr "本地 Maildir 池"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:451
 msgid ""
@@ -256,7 +256,7 @@ msgstr "选择 mbox 文件"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
 msgid "Local Mbox spool"
-msgstr "本地 Mbox 盒"
+msgstr "本地 Mbox 池"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
@@ -265,7 +265,7 @@ msgstr "Mbox 插件监视本地 mbox 类型的邮件盒中是否有新邮件。"
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
 msgid "Malformed line %s in %s ignored."
-msgstr "已忽略 %2$d 中的不正常行 %1$d。"
+msgstr "已忽略 %2$s 中的不正常行 %1$s。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:581
 msgid ""
