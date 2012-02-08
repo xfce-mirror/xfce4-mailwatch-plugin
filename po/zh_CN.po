@@ -4,15 +4,15 @@
 # the xfce4-mailwatch-plugin package.
 # Hydonsingore Cia <hydonsingore@mail.educities.edu.tw>, 2006.
 # Hunt Xu <huntxu@live.cn>, 2009.
-# Chipong Luo <chipong_l@yahoo.com>, 2011.
+# Chipong Luo <chipong.luo@yahoo.com>, 2011, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-09 04:03+0000\n"
+"POT-Creation-Date: 2012-02-08 06:00+0000\n"
 "PO-Revision-Date: 2009-07-19 02:07+0800\n"
-"Last-Translator: Chipong Luo <chipong_l@yahoo.com>\n"
+"Last-Translator: Chipong Luo <chipong.luo@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <xfce-i18n@xfce.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -42,8 +42,10 @@ msgid ""
 "with GMail's servers, or they have incompatibly changed their authentication "
 "method or location of the new messages feed."
 msgstr ""
-"收到 HTTP 回复代码 %d，本来应该是 200。可能是 GMail 服务器有问题，"
-"或者是他们更改成了不相容的认证方式或更改了新邮件的投送位置。"
+"收到了 HTTP 回复代码 %d，本应该是 200。"
+"可能是 GMail 服务器有问题，或是他们更改"
+"成了不相容的认证方式或是更改了新邮件的投送"
+"位置。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:735
@@ -90,20 +92,23 @@ msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
 msgstr ""
-"GMail 插件无法连接到 Goolge 的邮件服务并安全地获取新邮件的数目。"
+"GMail 插件可以连接到 Goolge 的邮件服务并"
+"安全地获取新邮件的数目。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
 msgid ""
 "Secure IMAP is not available, and the IMAP server does not support plaintext "
 "logins."
-msgstr "安全 IMAP 不可用，而且此 IMAP 服务器不支持明文登录。"
+msgstr ""
+"安全 IMAP 不可用，而且此 IMAP 服务器不支持"
+"明文登录。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:337
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:370
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:242
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
 msgid "Authentication failed.  Perhaps your username or password is incorrect?"
-msgstr "认证失败。或许您的用户名或密码有误？"
+msgstr "无法认证。或许您的用户名或密码有误？"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
@@ -132,8 +137,9 @@ msgid ""
 "password are set.  Also be sure to check any security settings in the "
 "Advanced dialog."
 msgstr ""
-"在服务器、用户名、还可能是密码设置之前，无法获取文件夹列表。"
-"还要确保在高级对话框中检查任何安全设置。"
+"未能获取文件夹列表，直至设置了服务器、用户名、"
+"还可能是密码。还要确保在高级对话框中检查任何"
+"安全设置。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
@@ -205,8 +211,8 @@ msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
 msgstr ""
-"此 IMAP 插件能够连接支持 IMAP 协定的远程邮件服务器，可选用 SSL 进行"
-"连接保护。"
+"此 IMAP 插件能够连接支持 IMAP 协定的远程"
+"邮件服务器，可选用 SSL 进行连接保护。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
@@ -219,15 +225,15 @@ msgstr "无法获取文件 %s 的状态：%s"
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:102
 #, c-format
 msgid "%s is not a directory. Is %s really a valid maildir?"
-msgstr "%s 不是目录。%s 真的是有效的邮件目录吗？"
+msgstr "%s 不是目录。%s 真的是有效的 maildir 吗？"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:335
 msgid "Maildir _Path:"
-msgstr "邮件目录路径(_P)："
+msgstr "Maildir 路径(_P)："
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:340
 msgid "Select Maildir Folder"
-msgstr "选择邮件目录文件夹"
+msgstr "选择 Maildir 文件夹"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:358
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:395
@@ -237,14 +243,15 @@ msgstr "间隔(_I)："
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:450
 msgid "Local Maildir Spool"
-msgstr "本地 Maildir 池"
+msgstr "本地 Maildir 盒"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:451
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
 msgstr ""
-"此邮件文件夹插件可以监视本地邮件文件夹样式的邮件盒中是否有新邮件。"
+"此 Maildir 插件可以监视本地 Maildir 样式的"
+"邮件盒中是否有新邮件。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Mbox _Filename:"
@@ -256,11 +263,13 @@ msgstr "选择 mbox 文件"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
 msgid "Local Mbox spool"
-msgstr "本地 Mbox 池"
+msgstr "本地 Mbox 盒"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr "Mbox 插件监视本地 mbox 类型的邮件盒中是否有新邮件。"
+msgstr ""
+"Mbox 插件监视本地 mbox 类型的邮件盒中是否"
+"有新邮件。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
@@ -271,7 +280,9 @@ msgstr "已忽略 %2$s 中的不正常行 %1$s。"
 msgid ""
 "The configuration of this plugin is read from\n"
 "the default mh maildir profile file ~/.mh_profile"
-msgstr "此插件的配置读自默认的 mh 邮件目录概况文件 ~/.mhprofile(_P)。"
+msgstr ""
+"此插件的配置读自默认的 mh Maildir 概况\n"
+"文件 ~/.mhprofile。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:683
 msgid "Local MH mail folder"
@@ -306,8 +317,8 @@ msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
 msgstr ""
-"此 POP3 插件可以连接支持 POP3 协议的远程邮件服务器，可选用 SSL "
-"进行连接保护。"
+"此 POP3 插件可以连接支持 POP3 协议的远程"
+"邮件服务器，可选用 SSL 进行连接保护。"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
@@ -324,7 +335,7 @@ msgstr "操作中止"
 #: ../libmailwatch-core/mailwatch-net-conn.c:498
 #, c-format
 msgid "Could not find host \"%s\": %s"
-msgstr "找不到主机 “%s”：%s"
+msgstr "未能找到主机 “%s”：%s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:582
 #, c-format
@@ -359,7 +370,7 @@ msgstr "无法接收数据：%s"
 #: ../libmailwatch-core/mailwatch-net-conn.c:951
 #, c-format
 msgid "Canceling read: read too many bytes without a newline"
-msgstr "取消读取：无新行时读取数据太多字节"
+msgstr "取消读取：无新行时读取了太多字节"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:960
 msgid "Buffer is not large enough to hold a full line (%"
@@ -370,8 +381,8 @@ msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
 msgstr ""
-"xfce4-mailwatch-plugin：未能初始化 GThread 支持。这可能是您的 "
-"GLib 安装问题。"
+"xfce4-mailwatch-plugin：未能初始化 "
+"GThread 支持。这可能是您的 GLib 安装问题。"
 
 #: ../libmailwatch-core/mailwatch.c:341 ../libmailwatch-core/mailwatch.c:342
 #, c-format
@@ -385,8 +396,9 @@ msgid ""
 "passwords or other sensitive information, it may be readable by others on "
 "your system."
 msgstr ""
-"未能在配置文件 ‘%s’ 中设置权限。如果此文件包含密码或其它敏感信息，"
-"您系统上的其他人应该可以读取它。"
+"未能在配置文件 ‘%s’ 中设置权限。如果此文件"
+"包含密码或其它敏感信息，您系统上的其他人应该"
+"可以读取它。"
 
 #: ../libmailwatch-core/mailwatch.c:628
 msgid "This mailbox type does not require any configuration settings."
@@ -406,7 +418,7 @@ msgstr "需要邮箱名。"
 
 #: ../libmailwatch-core/mailwatch.c:675
 msgid "Please enter a name for the mailbox."
-msgstr "请输入邮箱名。"
+msgstr "请输入邮箱的名称。"
 
 #: ../libmailwatch-core/mailwatch.c:716
 #, c-format
@@ -419,7 +431,7 @@ msgstr "选择邮箱类型"
 
 #: ../libmailwatch-core/mailwatch.c:785
 msgid "Select a mailbox type.  A description of the type will appear below."
-msgstr "选择邮箱类型。此类型的描述在下显示。"
+msgstr "选择邮箱类型。此类型的描述会在下方显示。"
 
 #: ../libmailwatch-core/mailwatch.c:839
 msgid "Add New Mailbox"
@@ -461,7 +473,7 @@ msgstr[0] "您有 %d 个新邮件："
 #: ../panel-plugin/mailwatch-plugin.c:142
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "%2$s 中的 %1$d"
+msgstr "    %2$s 中的 %1$d"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:251
 #: ../panel-plugin/mailwatch-plugin.c:413
@@ -491,7 +503,7 @@ msgstr "日志行数(_L)："
 #: ../panel-plugin/mailwatch-plugin-4.2.c:548
 #: ../panel-plugin/mailwatch-plugin.c:710
 msgid "Show log _status in icon"
-msgstr "在日志中显示状态图标(_S)"
+msgstr "在图标中显示日志图标(_S)"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:594
 #: ../panel-plugin/mailwatch-plugin.c:754
@@ -572,8 +584,8 @@ msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 msgstr ""
-"版权 (c) 2005-2008 Brian Tarricone\n"
-"版权 (c) 2005 Pasi Orovuo"
+"版权 2005-2008 Brian Tarricone\n"
+"版权 2005 Pasi Orovuo"
 
 #: ../panel-plugin/mailwatch-plugin.c:1063
 msgid "Maintainer, Original Author"
