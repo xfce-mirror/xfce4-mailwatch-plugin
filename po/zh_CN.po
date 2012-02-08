@@ -503,7 +503,7 @@ msgstr "日志行数(_L)："
 #: ../panel-plugin/mailwatch-plugin-4.2.c:548
 #: ../panel-plugin/mailwatch-plugin.c:710
 msgid "Show log _status in icon"
-msgstr "在图标中显示日志图标(_S)"
+msgstr "在图标中显示日志状态(_S)"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:594
 #: ../panel-plugin/mailwatch-plugin.c:754
