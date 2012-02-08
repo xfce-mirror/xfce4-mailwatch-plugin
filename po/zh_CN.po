@@ -138,7 +138,7 @@ msgid ""
 "Advanced dialog."
 msgstr ""
 "未能获取文件夹列表，直至设置了服务器、用户名、"
-"还可能是密码。还要确保在高级对话框中检查任何"
+"还可能是密码。还要确保在高级对话框中检查全部"
 "安全设置。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
@@ -345,7 +345,7 @@ msgstr "无法与服务器 “%s” 连接：%s"
 #: ../libmailwatch-core/mailwatch-net-conn.c:645
 #, c-format
 msgid "Not compiled with SSL/TLS support"
-msgstr "没有编译 SSL/TLS 支持"
+msgstr "没有编译支持 SSL/TLS"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:701
 #, c-format
@@ -397,8 +397,8 @@ msgid ""
 "your system."
 msgstr ""
 "未能在配置文件 ‘%s’ 中设置权限。如果此文件"
-"包含密码或其它敏感信息，您系统上的其他人应该"
-"可以读取它。"
+"包含密码或其它敏感信息，对于您系统上的其他人"
+"它应该可读的。"
 
 #: ../libmailwatch-core/mailwatch.c:628
 msgid "This mailbox type does not require any configuration settings."
@@ -431,7 +431,7 @@ msgstr "选择邮箱类型"
 
 #: ../libmailwatch-core/mailwatch.c:785
 msgid "Select a mailbox type.  A description of the type will appear below."
-msgstr "选择邮箱类型。此类型的描述会在下方显示。"
+msgstr "选择邮箱类型。此类型的描述会在下方出现。"
 
 #: ../libmailwatch-core/mailwatch.c:839
 msgid "Add New Mailbox"
