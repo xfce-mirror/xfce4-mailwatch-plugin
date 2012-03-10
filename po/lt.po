@@ -548,12 +548,12 @@ msgstr "Piktogramos"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:764
 #: ../panel-plugin/mailwatch-plugin.c:986
 msgid "Ne_w Mail"
-msgstr "Naujas paštas"
+msgstr "Naujas _paštas"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:772
 #: ../panel-plugin/mailwatch-plugin.c:877
 msgid "_View Log..."
-msgstr "Žiūrėti žurnalą..."
+msgstr "Žiūrėti ž_urnalą..."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:885
 #: ../panel-plugin/mailwatch-plugin.c:858
