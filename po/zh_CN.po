@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-mailwatch-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-08 06:00+0000\n"
+"POT-Creation-Date: 2012-03-14 10:42+0000\n"
 "PO-Revision-Date: 2009-07-19 02:07+0800\n"
 "Last-Translator: Chipong Luo <chipong.luo@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <xfce-i18n@xfce.org>\n"
@@ -18,6 +18,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:204
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:399
@@ -31,9 +32,7 @@ msgstr "无法进行 TLS 交接：%s"
 msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
-msgstr ""
-"收到 HTTP 回复代码 %d。最可能的原因是您的 "
-"GMail 用户名或是密码不正确。"
+msgstr "收到 HTTP 回复代码 %d。最可能的原因是您的 GMail 用户名或是密码不正确。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
 #, c-format
@@ -42,10 +41,8 @@ msgid ""
 "with GMail's servers, or they have incompatibly changed their authentication "
 "method or location of the new messages feed."
 msgstr ""
-"收到了 HTTP 回复代码 %d，本应该是 200。"
-"可能是 GMail 服务器有问题，或是他们更改"
-"成了不相容的认证方式或是更改了新邮件的投送"
-"位置。"
+"收到了 HTTP 回复代码 %d，本应该是 200。可能是 GMail 服务器有问题，或是他们更"
+"改成了不相容的认证方式或是更改了新邮件的投送位置。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:735
@@ -91,17 +88,13 @@ msgstr "远程 GMail 邮箱"
 msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
-msgstr ""
-"GMail 插件可以连接到 Goolge 的邮件服务并"
-"安全地获取新邮件的数目。"
+msgstr "GMail 插件可以连接到 Goolge 的邮件服务并安全地获取新邮件的数目。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
 msgid ""
 "Secure IMAP is not available, and the IMAP server does not support plaintext "
 "logins."
-msgstr ""
-"安全 IMAP 不可用，而且此 IMAP 服务器不支持"
-"明文登录。"
+msgstr "安全 IMAP 不可用，而且此 IMAP 服务器不支持明文登录。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:337
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:370
@@ -137,9 +130,8 @@ msgid ""
 "password are set.  Also be sure to check any security settings in the "
 "Advanced dialog."
 msgstr ""
-"未能获取文件夹列表，直至设置了服务器、用户名、"
-"还可能是密码。还要确保在高级对话框中检查全部"
-"安全设置。"
+"未能获取文件夹列表，直至设置了服务器、用户名、还可能是密码。还要确保在高级对"
+"话框中检查全部安全设置。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
@@ -211,8 +203,7 @@ msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
 msgstr ""
-"此 IMAP 插件能够连接支持 IMAP 协定的远程"
-"邮件服务器，可选用 SSL 进行连接保护。"
+"此 IMAP 插件能够连接支持 IMAP 协定的远程邮件服务器，可选用 SSL 进行连接保护。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
@@ -249,9 +240,7 @@ msgstr "本地 Maildir 盒"
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
-msgstr ""
-"此 Maildir 插件可以监视本地 Maildir 样式的"
-"邮件盒中是否有新邮件。"
+msgstr "此 Maildir 插件可以监视本地 Maildir 样式的邮件盒中是否有新邮件。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Mbox _Filename:"
@@ -267,9 +256,7 @@ msgstr "本地 Mbox 盒"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr ""
-"Mbox 插件监视本地 mbox 类型的邮件盒中是否"
-"有新邮件。"
+msgstr "Mbox 插件监视本地 mbox 类型的邮件盒中是否有新邮件。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
@@ -317,8 +304,7 @@ msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
 msgstr ""
-"此 POP3 插件可以连接支持 POP3 协议的远程"
-"邮件服务器，可选用 SSL 进行连接保护。"
+"此 POP3 插件可以连接支持 POP3 协议的远程邮件服务器，可选用 SSL 进行连接保护。"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
@@ -381,8 +367,7 @@ msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
 msgstr ""
-"xfce4-mailwatch-plugin：未能初始化 "
-"GThread 支持。这可能是您的 GLib 安装问题。"
+"xfce4-mailwatch-plugin：未能初始化 GThread 支持。这可能是您的 GLib 安装问题。"
 
 #: ../libmailwatch-core/mailwatch.c:341 ../libmailwatch-core/mailwatch.c:342
 #, c-format
@@ -396,9 +381,8 @@ msgid ""
 "passwords or other sensitive information, it may be readable by others on "
 "your system."
 msgstr ""
-"未能在配置文件 ‘%s’ 中设置权限。如果此文件"
-"包含密码或其它敏感信息，对于您系统上的其他人"
-"它应该可读的。"
+"未能在配置文件 ‘%s’ 中设置权限。如果此文件包含密码或其它敏感信息，对于您系统"
+"上的其他人它应该可读的。"
 
 #: ../libmailwatch-core/mailwatch.c:628
 msgid "This mailbox type does not require any configuration settings."
