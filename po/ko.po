@@ -531,7 +531,7 @@ msgstr "Xfce4 메일감시 플러그인"
 
 #: ../panel-plugin/mailwatch-plugin.c:1056
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr "Xfce 패널을 위한 기능성 메일 확인 애플릿"
+msgstr "Xfce 패널의 기능성 메일 확인 애플릿"
 
 #: ../panel-plugin/mailwatch-plugin.c:1057
 msgid ""
