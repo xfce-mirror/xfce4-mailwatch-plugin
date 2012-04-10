@@ -510,7 +510,7 @@ msgstr "로그 보기(_V)..."
 #: ../panel-plugin/mailwatch-plugin.c:858
 #: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Mail Watcher"
-msgstr "메일 감시자"
+msgstr "메일 감시기"
 
 #: ../panel-plugin/mailwatch-plugin.c:829
 #, c-format
