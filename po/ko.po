@@ -555,5 +555,5 @@ msgstr "지금 업데이트"
 
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
-msgstr "여러 개의 메일함으로부터 메일을 확인합니다"
+msgstr "여러 개의 메일함에서 메일을 확인합니다"
 
