@@ -96,7 +96,7 @@ msgstr "بىخەتەر  IMAP  نى ئىشلەتكىلى بولمايدۇ. IMAP �
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:242
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
 msgid "Authentication failed.  Perhaps your username or password is incorrect?"
-msgstr "دەلىللەش مەغلۇپ بولدى. ئىشلەتكۈچى ئاتى ياكى ئىم خاتا ئەمەستۇ؟"
+msgstr "كىملىك دەلىللەش مەغلۇپ بولدى. ئىشلەتكۈچى ئاتى ياكى ئىم خاتا ئەمەستۇ؟"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
@@ -311,7 +311,7 @@ msgstr "مەشغۇلات توختىتىلدى"
 #: ../libmailwatch-core/mailwatch-net-conn.c:498
 #, c-format
 msgid "Could not find host \"%s\": %s"
-msgstr "host \"%s\" تېپىلمىدى: %s"
+msgstr "كومپيۇتېر \"%s\" تېپىلمىدى: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:582
 #, c-format
@@ -321,7 +321,7 @@ msgstr "مۇلازىمېتىر \"%s\" ئۇلىنىش مەغلۇپ بولدى: %s
 #: ../libmailwatch-core/mailwatch-net-conn.c:645
 #, c-format
 msgid "Not compiled with SSL/TLS support"
-msgstr "SSL/TLS ئىشلەتكىلى بولىدىغان قىلىپ compile قىلىنمىغان"
+msgstr "SSL/TLS ئىشلەتكىلى بولىدىغان قىلىپ يۇغۇرۇلمىغان"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:701
 #, c-format
@@ -356,12 +356,12 @@ msgstr "يىغلەك قۇرنى تولۇق سىغدۇرغۇدەك چوڭلۇقت
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
-msgstr "xfce4-mailwatch-plugin: GThread サポートを初期化できません。GLib のインストールに問題があるようです。"
+msgstr "xfce4-mailwatch-plugin: ھازىر GThread قوللاشنى دەسلەپلەشتۈرگىلى بولمىدى. ئورنىتىلغان GLib دا مەسىلە باردەك قىلىدۇ."
 
 #: ../libmailwatch-core/mailwatch.c:341 ../libmailwatch-core/mailwatch.c:342
 #, c-format
 msgid "Unable to write config file '%s'"
-msgstr "سەپلىمە ھۆججەت '%s' نىنغا يازغىلى بولمىدى"
+msgstr "سەپلىمە ھۆججەت ‹%s› نىڭغا يازغىلى بولمىدى"
 
 #: ../libmailwatch-core/mailwatch.c:406 ../libmailwatch-core/mailwatch.c:408
 #, c-format
@@ -369,11 +369,11 @@ msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
 "passwords or other sensitive information, it may be readable by others on "
 "your system."
-msgstr "設定ファイル '%s' のアクセス権を設定できません。このファイルがパスワードや他の機密情報を含んでいる場合、あなたと同じシステムを使う他の人達に見られてしまうかもしれません。"
+msgstr "سەپلىمە ھۆججەت ‹%s› نىڭ ئىمتىيازلىرىنى بەلگىلىگىلى بولمىدى،  ھۆججەت تەركىبىدە ئىم قاتارلىق مۇھىم ئۇچۇرلار بار بولسا، مۇشۇ سىستېمىدىكى باشقا ئىشلەتكۈچىلەر كۆرۈۋېلىشى مۇمكىن."
 
 #: ../libmailwatch-core/mailwatch.c:628
 msgid "This mailbox type does not require any configuration settings."
-msgstr "このタイプのメールボックスはいずれの設定も必要ありません。"
+msgstr "بۇ تىپتىكى خەت ساندۇقىغا ھېچقانداق سەپلىمە كېرەك ئەمەس."
 
 #: ../libmailwatch-core/mailwatch.c:655
 msgid "Mailbox _Name:"
@@ -454,7 +454,7 @@ msgstr "Xfce ئېلخەت كۆزەتكۈ"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:252
 #: ../panel-plugin/mailwatch-plugin.c:414
 msgid "The mailwatch applet cannot be added to the panel."
-msgstr "ئېلخەت كۆزەتكۈنى panel غا قوشقىلى بولمىدى."
+msgstr "ئېلخەت كۆزەتكۈنى كۆزنەككە قوشقىلى بولمىدى."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:253
 #: ../panel-plugin/mailwatch-plugin.c:415
@@ -479,7 +479,7 @@ msgstr "خاتىرە ھالىتىنى سىنبەلگىدە كۆرسەت(_S)"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:594
 #: ../panel-plugin/mailwatch-plugin.c:754
 msgid "Select Icon"
-msgstr "سىنبەلگە تاللا"
+msgstr "سىنبەلگە تاللاش"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:624
 #: ../panel-plugin/mailwatch-plugin-4.2.c:744
@@ -496,7 +496,7 @@ msgstr "يېڭى ئېلخەت(_W)"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:676
 #: ../panel-plugin/mailwatch-plugin.c:898
 msgid "External Programs"
-msgstr "سىرتقى پروگرامما"
+msgstr "سىرتقى پروگراممىلار"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:688
 #: ../panel-plugin/mailwatch-plugin.c:910
@@ -548,14 +548,14 @@ msgstr "Xfce ئېلخەت كۆزەتكۈ قىستۇرمىسى"
 
 #: ../panel-plugin/mailwatch-plugin.c:1056
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr "Xfce Panel دا ئىشلەيدىغان كوپ ئىقتىدارلىق ئېلخەت كۆزىتىش applet پروگراممىسى"
+msgstr "Xfce كۆزنەكتە ئىشلەيدىغان كوپ ئىقتىدارلىق ئېلخەت كۆزىتىش قوللانچىقى"
 
 #: ../panel-plugin/mailwatch-plugin.c:1057
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
-msgstr "Copyright (c) 2005-2008 Brian Tarricone\n"
-"Copyright (c) 2005 Pasi Orovuo"
+msgstr "نەشر ھوقۇقى (c) 2005-2008 Brian Tarricone غا تەۋە\n"
+"نەشر ھوقۇقى  (c) 2005 Pasi Orovuo غا تەۋە"
 
 #: ../panel-plugin/mailwatch-plugin.c:1063
 msgid "Maintainer, Original Author"
@@ -572,46 +572,3 @@ msgstr "ھازىر يېڭىلا"
 #: ../panel-plugin/mailwatch.desktop.in.in.h:1
 msgid "Check mail from multiple mailboxes"
 msgstr "ھەر خىل خەت ساندۇقلىرىغا كەلگەن يېڭى ئېلخەتلەرنى كۆزىتىدۇ"
-
-#~ msgid ""
-#~ "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
-#~ "the panel may hang on close."
-#~ msgstr ""
-#~ "ソケットを非停止モードにセットできません。接続しようとしてハングするなら、"
-#~ "この接続を閉じる場合にパネルがハングするかもしれません。"
-
-#~ msgid ""
-#~ "Unable to return socket to blocking mode.  Data may not be retreived "
-#~ "correctly."
-#~ msgstr ""
-#~ "ソケットを停止モードに戻せません。データを正確に取得できない可能性がありま"
-#~ "す。"
-
-#~ msgid "XfceMailwatch: TLS handshake failed: %s"
-#~ msgstr "XfceMailwatch: TLS ハンドシェイクに失敗: %s"
-
-#~ msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
-#~ msgstr ""
-#~ "XfceMailwatch: TLS ハンドシェイク失敗: SSL サポートでコンパイルされていま"
-#~ "せん。"
-
-#~ msgid "A secure connection was requested, but gnutls was not initialised"
-#~ msgstr ""
-#~ "安全な接続がリクエストされましたが、GnuTLS が初期化されませんでした。"
-
-#~ msgid "About Mailwatch"
-#~ msgstr "メールウォッチ"
-
-#~ msgid "You have 1 new message:"
-#~ msgstr "一通の新着メールが届いています:"
-
-#~ msgid "You have %d new messages:"
-#~ msgstr "%d 通の新着メールが届いています:"
-
-#~ msgid "Edit Properties"
-#~ msgstr "プロパティの編集"
-
-#~ msgid ""
-#~ "A buffer was too small to receive all of an IMAP response.  This is a bug!"
-#~ msgstr ""
-#~ "IMAP の応答すべてを受信するにはバッファが小さすぎました。これはバグです！"
