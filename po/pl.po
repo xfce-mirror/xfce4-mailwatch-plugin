@@ -274,7 +274,7 @@ msgstr "Poszukuje nowej poczty w lokalnym buforze mbox"
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
 msgid "Malformed line %s in %s ignored."
-msgstr ""
+msgstr "Ignorowany nieprawidłowo sformatowany wiersz %s w %s."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:581
 msgid ""
