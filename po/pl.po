@@ -3,20 +3,20 @@
 # Copyright (C) 2009 THE xfce'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfce package.
 #  <piotr.sokol@10g.pl>, 2009.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-mailwatch-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-15 22:43-0700\n"
+"POT-Creation-Date: 2012-09-24 11:33+0000\n"
 "PO-Revision-Date: 2009-04-10 10:56+0100\n"
 "Last-Translator: Piotr Sokół <piotr.sokol@10g.pl>\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
+"Language: \n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:204
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:399
@@ -78,7 +78,7 @@ msgstr "Okres sprawdzania _zawartości:"
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:591
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1821
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:374
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:411
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:412
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:605
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:929
 msgid "minute(s)."
@@ -241,7 +241,7 @@ msgid "Select Maildir Folder"
 msgstr "Wybór katalogu"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:358
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:394
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:395
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:590
 msgid "_Interval:"
 msgstr "Okres sprawdzania _zawartości:"
@@ -256,19 +256,19 @@ msgid ""
 "messages."
 msgstr "Poszukuje nowej poczty w lokalnym buforze maildir"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:370
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Mbox _Filename:"
 msgstr "_Plik mbox:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:376
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:377
 msgid "Select mbox file"
 msgstr "Wybór pliku"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:475
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
 msgid "Local Mbox spool"
 msgstr "Lokalny bufor Mbox"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
 msgstr "Poszukuje nowej poczty w lokalnym buforze mbox"
 
@@ -482,9 +482,8 @@ msgstr "%d w skrzynce pocztowej %s"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:251
 #: ../panel-plugin/mailwatch-plugin.c:413
-#, fuzzy
 msgid "Xfce Mailwatch"
-msgstr "Powiadamianie o poczcie dla środowiska Xfce"
+msgstr "Sprawdzanie poczty dla środowiska Xfce"
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:252
 #: ../panel-plugin/mailwatch-plugin.c:414
@@ -578,13 +577,12 @@ msgid "Failed to run xfhelp4"
 msgstr "Nie udało się uruchomić programu „xfhelp4”"
 
 #: ../panel-plugin/mailwatch-plugin.c:1054
-#, fuzzy
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "Xfce4 Mailwatch Plugin"
+msgstr "Wtyczka sprawdzania poczty Xfce4"
 
 #: ../panel-plugin/mailwatch-plugin.c:1056
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr ""
+msgstr "Bogaty w możliwości aplet sprawdzania poczty dla panelu Xfce"
 
 #: ../panel-plugin/mailwatch-plugin.c:1057
 msgid ""
