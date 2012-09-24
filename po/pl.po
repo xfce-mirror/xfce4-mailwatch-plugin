@@ -51,7 +51,6 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:225
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:487
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:548
-#, fuzzy
 msgid "Previous thread hasn't exited yet, not checking mail this time."
 msgstr ""
 "Poprzedni wątek nie został jeszcze zakończony. Poczta nie zostanie "
@@ -369,13 +368,13 @@ msgid "Failed to receive data: %s"
 msgstr "Nie udało się odebrać danych: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:951
-#, fuzzy, c-format
+#, c-format
 msgid "Canceling read: read too many bytes without a newline"
 msgstr "Anulowanie odczytywania: wczytano za dużo bajtów bez nowego wiersza"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:960
 msgid "Buffer is not large enough to hold a full line (%"
-msgstr ""
+msgstr "Pamięć podręczna nie jest wystarczająco pojemna, by zachować pełen wiersz (%"
 
 #: ../libmailwatch-core/mailwatch.c:126
 msgid ""
