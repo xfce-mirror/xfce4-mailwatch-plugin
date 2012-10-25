@@ -1,17 +1,17 @@
-# Uyghur translations for xfce4-mailwatch-plugin package.
-# Copyright (C) 2005-2006 Brian Tarricone, Pasi Orovuo.
-# This file is distributed under the same license as
-#   the xfce4-mailwatch-plugin package.
-# Gheyret T.Kenji <gheyret@gmail.com>, 2010.
+# Uyghur translation for xfce4-mailwatch-plugin.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Gheyret Kenji <gheyret@gmail.com>, YEAR.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
+"Project-Id-Version: xfce4-mailwatch-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-19 15:24+0900\n"
-"PO-Revision-Date: 2009-07-19 02:17+0900\n"
-"Last-Translator: Gheyret T.Kenji <gheyret@gmail.com>\n"
+"POT-Creation-Date: 2012-10-24 03:06+0000\n"
+"PO-Revision-Date: 2011-11-09 16:10+0900\n"
+"Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -69,7 +69,7 @@ msgstr "يېڭى خەتنى تەكشۈر(_N)"
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:591
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1821
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:374
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:411
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:412
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:605
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:929
 msgid "minute(s)."
@@ -219,7 +219,7 @@ msgid "Select Maildir Folder"
 msgstr "Maildir مۇندەرىجىسىنى تاللاڭ"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:358
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:394
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:395
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:590
 msgid "_Interval:"
 msgstr "ئىنتېرۋال(_I):"
@@ -234,19 +234,19 @@ msgid ""
 "messages."
 msgstr "Maildir قىستۇرمىسى، Maildir ئۇسلۇبىدىكى يەرلىك ئېلخەت كۆلچىكىدىكى يېڭى خەتلەرنى كۆزىتىپ تۇرىدۇ."
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:370
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Mbox _Filename:"
 msgstr "mbox ھۆججەت ئاتى(_F):"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:376
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:377
 msgid "Select mbox file"
 msgstr "mbox ھۆججىتىنى تاللايدۇ"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:475
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
 msgid "Local Mbox spool"
 msgstr "يەرلىك mbox كۆلچىكى"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
 msgstr "mbox قىستۇرمىسى mbox تىپىدىكى يەرلىك ئېلخەت كۆلچىكىدىكى يېڭى خەتلەرنى كۆزىتىپ تۇرىدۇ."
 
@@ -521,7 +521,7 @@ msgstr "يېڭى ئېلخەت(_W)"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:772
 #: ../panel-plugin/mailwatch-plugin.c:877
 msgid "_View Log..."
-msgstr "خاتىرە كور(_V)..."
+msgstr "خاتىرە كۆر(_V)..."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:885
 #: ../panel-plugin/mailwatch-plugin.c:858
@@ -548,7 +548,7 @@ msgstr "Xfce ئېلخەت كۆزەتكۈ قىستۇرمىسى"
 
 #: ../panel-plugin/mailwatch-plugin.c:1056
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr "Xfce كۆزنەكتە ئىشلەيدىغان كوپ ئىقتىدارلىق ئېلخەت كۆزىتىش قوللانچىقى"
+msgstr "Xfce كۆزنەكتە ئىشلەيدىغان كۆپ ئىقتىدارلىق ئېلخەت كۆزىتىش قوللانچىقى"
 
 #: ../panel-plugin/mailwatch-plugin.c:1057
 msgid ""
