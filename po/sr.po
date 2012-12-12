@@ -1,0 +1,601 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Саша Петровић <salepetronije@gmail.com>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-30 03:33+0000\n"
+"PO-Revision-Date: 2012-12-12 08:49+0200\n"
+"Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
+"Language-Team: sr\n"
+"Language: sr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Virtaal 0.7.0\n"
+
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:204
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:399
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:308
+#, c-format
+msgid "TLS handshake failed: %s"
+msgstr "Поље руковања ТЛС: %s"
+
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:255
+#, c-format
+msgid ""
+"Received HTTP response code %d.  The most likely reason for this is that "
+"your GMail username or password is incorrect."
+msgstr ""
+"Примен је код одговорa ХТТП %d.  Највероватнији разлог за ово је зато што "
+"ваше корисничко име или лозинка Гмеила није тачно."
+
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
+#, c-format
+msgid ""
+"Received HTTP response code %d, which should be 200.  There may be a problem "
+"with GMail's servers, or they have incompatibly changed their authentication "
+"method or location of the new messages feed."
+msgstr ""
+"Примљен је ХТТП код одговора %d, који би требао бити 200.  Могуће је да је "
+"проблем са даваоцем услуга Гмеила или су изменили њихов начин провере "
+"пријаве у неодговарајући, или место чувања нових порука."
+
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:735
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:179
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:225
+#: ../libmailwatch-core/mailwatch-mailbox-mh.c:487
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:548
+msgid "Previous thread hasn't exited yet, not checking mail this time."
+msgstr "Претходи примерак још увек није изашао, не проверавам пошту овог пута."
+
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:863
+msgid "_Username:"
+msgstr "_Корисничко име:"
+
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:555
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1768
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:883
+msgid "_Password:"
+msgstr "_Лозинка:"
+
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:576
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1807
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:915
+msgid "Check for _new messages every"
+msgstr "Проверa _новe поштe сваких"
+
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:591
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1821
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:374
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:412
+#: ../libmailwatch-core/mailwatch-mailbox-mh.c:605
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:929
+msgid "minute(s)."
+msgstr "минут(а)"
+
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:668
+msgid "Remote GMail Mailbox"
+msgstr "Удаљено сандуче Гмеила"
+
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:669
+msgid ""
+"The GMail plugin can connect to Google's mail service and securely retrieve "
+"the number of new messages."
+msgstr ""
+"Прикључак Гмеила се није могао повезати са Гугловом услугом поште, и "
+"безбедно примити број нових порука."
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
+msgid ""
+"Secure IMAP is not available, and the IMAP server does not support plaintext "
+"logins."
+msgstr ""
+"Безбедни ИМАП није доступан, и Имап даваоци услуга не подржавају пријаву "
+"обичним тeкстом."
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:337
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:370
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:242
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
+msgid "Authentication failed.  Perhaps your username or password is incorrect?"
+msgstr ""
+"Препознавање није успело.   Можда су вам корисничко име или лозинка нетачни?"
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
+msgid "STARTTLS security was requested, but this server does not support it."
+msgstr ""
+"Захтевана је безбедност СТАРТТЛС, али, овај давалац услуга је не подржава. "
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1144
+msgid "Failed to get folder list"
+msgstr "Нисам успео да прибавим списак фасцикли"
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1289
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1524
+msgid "Please wait..."
+msgstr "Молим, сачекајте..."
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1396
+msgid "Error"
+msgstr "Грешка"
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1397
+msgid "No server or username is set."
+msgstr "Није поставен давалац услуга или корисничко име."
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1398
+msgid ""
+"The folder list cannot be retrieved until a server, username, and probably "
+"password are set.  Also be sure to check any security settings in the "
+"Advanced dialog."
+msgstr ""
+"Списак фасцикли не може бити прибављен док давалац услуга, корисничко име, "
+"и, могуће, лозинка не буду постављени.  Такође, проверите све сигурносне "
+"поставке у окну Напредно."
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
+msgid "Set New Mail Folders"
+msgstr "Постави нове фасцикле поште"
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1417
+msgid "New Mail Folders"
+msgstr "Нове фасцикле поште"
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1608
+msgid "Advanced IMAP Options"
+msgstr "Напредне ИМАП могућности"
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1619
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:757
+msgid "Connection"
+msgstr "Веза"
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1628
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:766
+msgid "Use unsecured connection"
+msgstr "Користи небезбедну везу"
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1629
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:767
+msgid "Use SSL/TLS on alternate port"
+msgstr "Користи ССЛ/ТСЛ заменски прикључник"
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1630
+msgid "Use SSL/TLS via STARTTLS"
+msgstr "Користи ССЛ/ТЛС преко СТАРТТЛС"
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1646
+msgid "Use non-standard IMAP _port:"
+msgstr "Користи неуобичајени ИМАП прикључник:"
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1676
+msgid "Folders"
+msgstr "Фасцикле"
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1684
+msgid "IMAP server _directory:"
+msgstr "_Фасцикла ИМАП даваоца услуга: "
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1714
+msgid "IMAP Server"
+msgstr "ИМАП давалац услуга"
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1728
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:843
+msgid "_Mail server:"
+msgstr "_Давалац услуга поште:"
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1789
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:904
+msgid "_Advanced..."
+msgstr "_Напредно..."
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1796
+msgid "New mail _folders..."
+msgstr "Нове _фасцикле поште..."
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1985
+msgid "Remote IMAP Mailbox"
+msgstr "Удаљена ИМАП сандучад"
+
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1986
+msgid ""
+"The IMAP plugin can connect to a remote mail server that supports the IMAP "
+"protocol, optionally using SSL for link protection."
+msgstr ""
+"ИМАП прикључак се не може повезати са удаљеним даваоцем услуга поште који "
+"подржава ИМАП протокол, заменски користим ССЛ за заштиту везе."
+
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
+#: ../libmailwatch-core/mailwatch-mailbox-mh.c:392
+#: ../libmailwatch-core/mailwatch-mailbox-mh.c:403
+#, c-format
+msgid "Failed to get status of file %s: %s"
+msgstr "Нисам успео да добијем стање датотеке %s: %s"
+
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:102
+#, c-format
+msgid "%s is not a directory. Is %s really a valid maildir?"
+msgstr "%s није фасцикла. Да ли је %s стварно исправна фасцикла поште?"
+
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:335
+msgid "Maildir _Path:"
+msgstr "_Путања фасцикле поште:"
+
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:340
+msgid "Select Maildir Folder"
+msgstr "Означити фасциклу поште"
+
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:358
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:395
+#: ../libmailwatch-core/mailwatch-mailbox-mh.c:590
+msgid "_Interval:"
+msgstr "Учесталост освежавања:"
+
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:450
+msgid "Local Maildir Spool"
+msgstr "Месни Мејлдир(Maildir) разводник"
+
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:451
+msgid ""
+"The Maildir plugin can watch a local maildir-style mail spool for new "
+"messages."
+msgstr ""
+"Прикључак Мејлдир може пратити нове поруке месног мејлдир разводника поште."
+
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
+msgid "Mbox _Filename:"
+msgstr "_Назив Мбокс датотеке:"
+
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:377
+msgid "Select mbox file"
+msgstr "Одаберите Мбокс датотеку"
+
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
+msgid "Local Mbox spool"
+msgstr "Месни Мбокс разводник "
+
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
+msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
+msgstr "Мбокс прикључак прати нове поруке месног разводника поште врсте мбокса."
+
+#: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
+#, c-format
+msgid "Malformed line %s in %s ignored."
+msgstr "Лоше обликована линија %s у %s је занемарена."
+
+#: ../libmailwatch-core/mailwatch-mailbox-mh.c:581
+msgid ""
+"The configuration of this plugin is read from\n"
+"the default mh maildir profile file ~/.mh_profile"
+msgstr ""
+"Поставке овог прикучка се читају из\n"
+"профила задате МХ фасцикле ~/.mh_profile"
+
+#: ../libmailwatch-core/mailwatch-mailbox-mh.c:683
+msgid "Local MH mail folder"
+msgstr "Месно МХ сандуче поште"
+
+#: ../libmailwatch-core/mailwatch-mailbox-mh.c:684
+msgid "MH plugin watches local MH folders for new mail"
+msgstr "МХ прикучак прати нову пошту МХ фасцикли"
+
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:746
+msgid "Advanced POP3 Options"
+msgstr "Напредне ПОП3 могућности"
+
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:768
+msgid "Use SSL/TLS via STLS"
+msgstr "Користи ССЛ/ТЛС преко СТЛС"
+
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:784
+msgid "Use non-standard POP3 _port:"
+msgstr "Користи неуобичајен ПОП3 _прикључник:"
+
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:829
+msgid "POP3 Server"
+msgstr "ПОП3 давалац услуга"
+
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1037
+msgid "Remote POP3 Mailbox"
+msgstr "Удаљено ПОП3 сандуче поште"
+
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1038
+msgid ""
+"The POP3 plugin can connect to a remote mail server that supports the POP3 "
+"protocol, optionally using SSL for link protection."
+msgstr ""
+"ПОП3 прикључак може повезати удаљеног даваоца поште који подржава ПОП3 "
+"протокол, и може користити ССЛ за заштиту везе."
+
+#: ../libmailwatch-core/mailwatch-net-conn.c:222
+#: ../libmailwatch-core/mailwatch-net-conn.c:267
+#: ../libmailwatch-core/mailwatch-net-conn.c:349
+#: ../libmailwatch-core/mailwatch-net-conn.c:694
+#: ../libmailwatch-core/mailwatch-net-conn.c:727
+#: ../libmailwatch-core/mailwatch-net-conn.c:783
+#: ../libmailwatch-core/mailwatch-net-conn.c:816
+#: ../libmailwatch-core/mailwatch-net-conn.c:846
+#, c-format
+msgid "Operation aborted"
+msgstr "Захват је обустављен"
+
+#: ../libmailwatch-core/mailwatch-net-conn.c:498
+#, c-format
+msgid "Could not find host \"%s\": %s"
+msgstr "Нисам успео да пронађем домаћина „%s“: %s"
+
+#: ../libmailwatch-core/mailwatch-net-conn.c:582
+#, c-format
+msgid "Failed to connect to server \"%s\": %s"
+msgstr "Нисам успео да се повежем са даваоцем услуга „%s“: %s"
+
+#: ../libmailwatch-core/mailwatch-net-conn.c:645
+#, c-format
+msgid "Not compiled with SSL/TLS support"
+msgstr "Није састављено са ССЛ/ТСЛ подршком"
+
+#: ../libmailwatch-core/mailwatch-net-conn.c:701
+#, c-format
+msgid "Failed to send encrypted data: %s"
+msgstr "Нисам успео да пошаљем шифроване податке: %s"
+
+#: ../libmailwatch-core/mailwatch-net-conn.c:734
+#, c-format
+msgid "Failed to send data: %s"
+msgstr "Нисам успео да пошаљем податке: %s"
+
+#: ../libmailwatch-core/mailwatch-net-conn.c:823
+#, c-format
+msgid "Failed to receive encrypted data: %s"
+msgstr "Нисам успео да примим шифроване податке: %s"
+
+#: ../libmailwatch-core/mailwatch-net-conn.c:853
+#, c-format
+msgid "Failed to receive data: %s"
+msgstr "Нисам успео да примим податак: %s"
+
+#: ../libmailwatch-core/mailwatch-net-conn.c:951
+#, c-format
+msgid "Canceling read: read too many bytes without a newline"
+msgstr "Опозвано читање: читам превише бајтова без нове линије"
+
+#: ../libmailwatch-core/mailwatch-net-conn.c:960
+msgid "Buffer is not large enough to hold a full line (%"
+msgstr "Међуспремник није довољно велик да задржи целу линију (%"
+
+#: ../libmailwatch-core/mailwatch.c:126
+msgid ""
+"xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
+"likely a problem with your GLib install."
+msgstr ""
+
+#: ../libmailwatch-core/mailwatch.c:341 ../libmailwatch-core/mailwatch.c:342
+#, c-format
+msgid "Unable to write config file '%s'"
+msgstr "Нисам успео да упишем датотеку поставки „%s“"
+
+#: ../libmailwatch-core/mailwatch.c:406 ../libmailwatch-core/mailwatch.c:408
+#, c-format
+msgid ""
+"Unable to set permissions on config file '%s'.  If this file contains "
+"passwords or other sensitive information, it may be readable by others on "
+"your system."
+msgstr ""
+"Нисам успео да поставим дозволе на датотеку поставки „%s“. Ако ова датотека "
+"садржи лозинке или друге осетљиве податке, може бити читљива другима на "
+"вашем систему."
+
+#: ../libmailwatch-core/mailwatch.c:628
+msgid "This mailbox type does not require any configuration settings."
+msgstr "Ова врста сандучета поште не захтева било каква подешавања поставки."
+
+#: ../libmailwatch-core/mailwatch.c:655
+msgid "Mailbox _Name:"
+msgstr "_Назив сандучета поште:"
+
+#: ../libmailwatch-core/mailwatch.c:673
+msgid "Mailwatch"
+msgstr "Поштоглед"
+
+#: ../libmailwatch-core/mailwatch.c:674
+msgid "Mailbox name required."
+msgstr "Потребан је назив сандучета поште."
+
+#: ../libmailwatch-core/mailwatch.c:675
+msgid "Please enter a name for the mailbox."
+msgstr "Молим, унесите назив за сандуче поште."
+
+#: ../libmailwatch-core/mailwatch.c:716
+#, c-format
+msgid "Edit Mailbox: %s"
+msgstr "Уређује сандуче поште: %s"
+
+#: ../libmailwatch-core/mailwatch.c:775
+msgid "Select Mailbox Type"
+msgstr "Означи врсту сандучета поште"
+
+#: ../libmailwatch-core/mailwatch.c:785
+msgid "Select a mailbox type.  A description of the type will appear below."
+msgstr "Одредите врсту сандучета поште. Опис врсти ће се појавити испод."
+
+#: ../libmailwatch-core/mailwatch.c:839
+msgid "Add New Mailbox"
+msgstr "Додај нову фасциклу поште"
+
+#: ../libmailwatch-core/mailwatch.c:899
+msgid "Remove Mailbox"
+msgstr "Уклони фасциклу поште"
+
+#: ../libmailwatch-core/mailwatch.c:900
+msgid "Are you sure?"
+msgstr "Да ли сте сигурни?"
+
+#: ../libmailwatch-core/mailwatch.c:901
+msgid "Removing a mailbox will discard all settings, and cannot be undone."
+msgstr ""
+"Уклањање сандучића ће поништити сва подешавања која се не могу повратити."
+
+#: ../libmailwatch-core/mailwatch.c:966
+msgid "Mailboxes"
+msgstr "Сандучићи"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:114
+#: ../panel-plugin/mailwatch-plugin-4.2.c:269
+#: ../panel-plugin/mailwatch-plugin.c:112
+#: ../panel-plugin/mailwatch-plugin.c:115
+#: ../panel-plugin/mailwatch-plugin.c:431
+#: ../panel-plugin/mailwatch-plugin.c:434
+msgid "No new mail"
+msgstr "Нема нове поште"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:129
+#: ../panel-plugin/mailwatch-plugin.c:131
+#, c-format
+msgid "You have %d new message:"
+msgid_plural "You have %d new messages:"
+msgstr[0] "Имате %d нову поруку"
+msgstr[1] "Имате %d нове поруке"
+msgstr[2] "Имате %d нових порука"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:140
+#: ../panel-plugin/mailwatch-plugin.c:142
+#, c-format
+msgid "tells how many new messages in each mailbox|    %d in %s"
+msgstr "казује колико је нових порука у сваком сандучету|    %d in %s"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:251
+#: ../panel-plugin/mailwatch-plugin.c:413
+msgid "Xfce Mailwatch"
+msgstr "ИксФЦЕ Поштоглед"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:252
+#: ../panel-plugin/mailwatch-plugin.c:414
+msgid "The mailwatch applet cannot be added to the panel."
+msgstr "Програмче Поштоглед не може бити додато на панел."
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:253
+#: ../panel-plugin/mailwatch-plugin.c:415
+msgid "It is possible that your version of GLib does not have threads support."
+msgstr "Могуће је да ваше Глиб издање (Glib) нема подршку за низове."
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:476
+#: ../panel-plugin/mailwatch-plugin.c:638
+msgid "Mailwatch log"
+msgstr "Дневник Поштогледа"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:534
+#: ../panel-plugin/mailwatch-plugin.c:696
+msgid "Log _lines:"
+msgstr "_Линије дневника:"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:548
+#: ../panel-plugin/mailwatch-plugin.c:710
+msgid "Show log _status in icon"
+msgstr "Прикажи стање дневника на икони"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:594
+#: ../panel-plugin/mailwatch-plugin.c:754
+msgid "Select Icon"
+msgstr "Одреди икону"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:624
+#: ../panel-plugin/mailwatch-plugin-4.2.c:744
+#: ../panel-plugin/mailwatch-plugin.c:785
+#: ../panel-plugin/mailwatch-plugin.c:966
+msgid "_Normal"
+msgstr "_Обично"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:649
+#: ../panel-plugin/mailwatch-plugin.c:811
+msgid "Ne_w mail"
+msgstr "_Нова порука"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:676
+#: ../panel-plugin/mailwatch-plugin.c:898
+msgid "External Programs"
+msgstr "Спољни програми"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:688
+#: ../panel-plugin/mailwatch-plugin.c:910
+msgid "Run _on click:"
+msgstr "Покрени _на клик:"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:705
+#: ../panel-plugin/mailwatch-plugin.c:927
+msgid "Run on new _messages:"
+msgstr "Покрени са новом поруком:"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:718
+#: ../panel-plugin/mailwatch-plugin.c:940
+msgid "Icons"
+msgstr "Иконе"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:764
+#: ../panel-plugin/mailwatch-plugin.c:986
+msgid "Ne_w Mail"
+msgstr "Нов_а пошта"
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:772
+#: ../panel-plugin/mailwatch-plugin.c:877
+msgid "_View Log..."
+msgstr "_Прегледајте дневник..."
+
+#: ../panel-plugin/mailwatch-plugin-4.2.c:885
+#: ../panel-plugin/mailwatch-plugin.c:858
+#: ../panel-plugin/mailwatch.desktop.in.in.h:2
+msgid "Mail Watcher"
+msgstr "Посматрач поште"
+
+#: ../panel-plugin/mailwatch-plugin.c:829
+#, c-format
+msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
+msgstr "Помоћ није доступна јер нисам успео покренути „xfhelp4“: %s"
+
+#: ../panel-plugin/mailwatch-plugin.c:831
+msgid "Help Unavailable"
+msgstr "Помоћ није доступна"
+
+#: ../panel-plugin/mailwatch-plugin.c:832
+msgid "Failed to run xfhelp4"
+msgstr "Нисам успео да покренем помоћ xfhelp4"
+
+#: ../panel-plugin/mailwatch-plugin.c:1054
+msgid "Xfce4 Mailwatch Plugin"
+msgstr "ИксФЦЕ4 прикључак Поштоглед"
+
+#: ../panel-plugin/mailwatch-plugin.c:1056
+msgid "A featureful mail-checker applet for the Xfce Panel"
+msgstr "Програмче за проверу поште ИксФЦЕ панела, са пуно могућности"
+
+#: ../panel-plugin/mailwatch-plugin.c:1057
+msgid ""
+"Copyright (c) 2005-2008 Brian Tarricone\n"
+"Copyright (c) 2005 Pasi Orovuo"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-plugin.c:1063
+msgid "Maintainer, Original Author"
+msgstr "Одржавалац, изворни стваралац"
+
+# :)
+#: ../panel-plugin/mailwatch-plugin.c:1065
+msgid "Developer"
+msgstr "Развијач"
+
+#: ../panel-plugin/mailwatch-plugin.c:1145
+msgid "Update Now"
+msgstr "Освежи сада"
+
+#: ../panel-plugin/mailwatch.desktop.in.in.h:1
+msgid "Check mail from multiple mailboxes"
+msgstr "Освежи пошту на вишеструким поштанским сандучићима"
