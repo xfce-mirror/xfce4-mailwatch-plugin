@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-03 11:06+0000\n"
+"POT-Creation-Date: 2013-03-06 10:24+0000\n"
 "PO-Revision-Date: 2012-12-12 08:49+0200\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
 "Language-Team: sr\n"
@@ -14,8 +14,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sr\n"
-"X-Generator: Virtaal 0.7.0\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Virtaal 0.7.0\n"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:204
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:399
@@ -377,7 +377,7 @@ msgstr "Међуспремник није довољно велик да зад�
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
-msgstr ""
+msgstr "ИксФЦЕ прикључак поштоглед: Нисам успео да покренем GThread подршку. Вероватно потешкоћа у уградњи GLib-а."
 
 #: ../libmailwatch-core/mailwatch.c:341 ../libmailwatch-core/mailwatch.c:342
 #, c-format
@@ -481,7 +481,7 @@ msgstr "ИксФЦЕ Поштоглед"
 #: ../panel-plugin/mailwatch-plugin-4.2.c:252
 #: ../panel-plugin/mailwatch-plugin.c:414
 msgid "The mailwatch applet cannot be added to the panel."
-msgstr "Програмче Поштоглед не може бити додато на панел."
+msgstr "Програмче Поштоглед не може бити додато на полицу."
 
 #: ../panel-plugin/mailwatch-plugin-4.2.c:253
 #: ../panel-plugin/mailwatch-plugin.c:415
@@ -554,7 +554,7 @@ msgstr "_Прегледајте дневник..."
 #: ../panel-plugin/mailwatch-plugin.c:858
 #: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Mail Watcher"
-msgstr "Посматрач поште"
+msgstr "Осматрач поште"
 
 #: ../panel-plugin/mailwatch-plugin.c:829
 #, c-format
@@ -575,7 +575,7 @@ msgstr "ИксФЦЕ4 прикључак Поштоглед"
 
 #: ../panel-plugin/mailwatch-plugin.c:1056
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr "Програмче за проверу поште ИксФЦЕ панела, са пуно могућности"
+msgstr "Програмче за проверу поште ИксФЦЕ полице, са пуно могућности"
 
 #: ../panel-plugin/mailwatch-plugin.c:1057
 msgid ""
