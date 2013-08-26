@@ -67,13 +67,18 @@ AC_CHECK_FUNCS([xfce_posix_signal_handler_init])
 CFLAGS="$saved_CFLAGS"
 LIBS="$saved_LIBS"
 
-dnl check for gnutls support
+dnl check for gnutls and libgcrypt support
 XDT_CHECK_OPTIONAL_PACKAGE([GNUTLS], [gnutls], [1.2.0], [ssl],
-	[gnutls support for secure IMAP/POP3 connections], [yes])
+    [gnutls and libgcrypt support for secure IMAP/POP3 connections], [yes])
 if test "x$GNUTLS_FOUND" = "xyes"; then
-	AC_DEFINE([HAVE_SSL_SUPPORT], [1], [Define if SSL support is enabled])
+    dnl libgcrypt does not provide a pkg-config file
+    AM_PATH_LIBGCRYPT([1.2.0], LIBGCRYPT_FOUND=yes, LIBGCRYPT_FOUND=no)
+    if test "x$LIBGCRYPT_FOUND" = "xyes"; then
+        AC_DEFINE([HAVE_SSL_SUPPORT], [1], [Define if SSL support is enabled])
+    fi
 fi
-AM_CONDITIONAL([HAVE_SSL_SUPPORT], [test "x$GNUTLS_FOUND" = "xyes"])
+AM_CONDITIONAL([HAVE_SSL_SUPPORT],
+               [test "x$GNUTLS_FOUND" = "xyes" -a "x$LIBGCRYPT_FOUND" = "xyes"])
 
 dnl to ipv6, or to not ipv6
 AC_MSG_CHECKING([whether to support IPv6])

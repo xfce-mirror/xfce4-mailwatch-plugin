@@ -20,7 +20,8 @@ xfce4_mailwatch_plugin_LDADD = \
 	@GTHREAD_LIBS@ \
 	@LIBXFCE4PANEL_LIBS@ \
 	@LIBXFCEGUI4_LIBS@ \
-	@GNUTLS_LIBS@
+	@GNUTLS_LIBS@ \
+	@LIBGCRYPT_LIBS@
 
 if HAVE_CYGWIN
   xfce4_mailwatch_plugin_LDFLAGS = \

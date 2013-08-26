@@ -29,5 +29,6 @@ libmailwatch_core_la_CFLAGS = \
 	@GTK_CFLAGS@ \
 	@LIBXFCEGUI4_CFLAGS@ \
 	@GNUTLS_CFLAGS@ \
+	@LIBGCRYPT_CFLAGS@ \
 	-DDATADIR=\"$(datadir)\" \
 	-DLOCALEDIR=\"$(localedir)\"
