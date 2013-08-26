@@ -623,9 +623,11 @@ xfce_mailwatch_net_conn_make_secure(XfceMailwatchNetConn *net_conn,
                            net_conn->gt_creds);
     gnutls_transport_set_ptr(net_conn->gt_session,
                              (gnutls_transport_ptr_t)net_conn->fd);
+#if GNUTLS_VERSION_NUMBER < 0x020c00 
     if(fcntl(net_conn->fd, F_GETFL) & O_NONBLOCK)
         gnutls_transport_set_lowat(net_conn->gt_session, 0);
-    
+#endif    
+
     if(!xfce_mailwatch_net_conn_tls_handshake(net_conn, error)) {
 #if 0
         gnutls_bye(net_conn->gt_session, GNUTLS_SHUT_RDWR);
