@@ -56,15 +56,7 @@ XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.4.0])
 XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.6.0])
 XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.2.0])
 XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.2.0])
-
-XDT_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.3.20],
-                  [have_44_panel=yes], [
-echo "*** Package libxfce4panel not found.  Looking for old-style 4.2 panel"
-])
-if test "x$have_44_panel" != "xyes"; then
-    XDT_XFCE_PANEL_PLUGIN([XFCE4_PANEL], [4.2.0])
-fi
-AM_CONDITIONAL([BUILD_42_PANEL_PLUGIN], [test "x$have_44_panel" != "xyes"])
+XDT_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.3.20])
 
 dnl see if we have a new enough libxfce4util for the posix signal handler stuff
 saved_CFLAGS="$CFLAGS"
