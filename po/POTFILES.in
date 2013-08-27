@@ -8,7 +8,6 @@ libmailwatch-core/mailwatch-mailbox-mh.c
 libmailwatch-core/mailwatch-mailbox-pop3.c
 libmailwatch-core/mailwatch-net-conn.c
 libmailwatch-core/mailwatch.c
-panel-plugin/mailwatch-plugin-4.2.c
 panel-plugin/mailwatch-plugin.c
 
 # files added by intltool-prepare.
