@@ -33,6 +33,7 @@ AM_PROG_CC_C_O
 AC_PROG_INSTALL
 AC_PROG_INTLTOOL([0.31], [no-xml])
 LT_PREREQ([2.2.6])
+LT_INIT([disable-static])
 
 dnl check for standard header files
 AC_HEADER_STDC
