@@ -30,9 +30,8 @@
 #include <gtk/gtk.h>
 
 #include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
-#include <libxfce4panel/xfce-panel-plugin.h>
-#include <libxfce4panel/xfce-panel-convenience.h>
+#include <libxfce4ui/libxfce4ui.h>
+#include <libxfce4panel/libxfce4panel.h>
 
 #include "mailwatch.h"
 #include "mailwatch-mailbox.h"
@@ -157,7 +156,9 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg,
             g_string_free(ttip_str, TRUE);
             
             if(mwp->new_messages_command)
-                xfce_exec(mwp->new_messages_command, FALSE, FALSE, NULL);
+                xfce_spawn_command_line_on_screen(gdk_screen_get_default(),
+                                                  mwp->new_messages_command,
+                                                  FALSE, FALSE, NULL);
         }
     }
 }
@@ -187,7 +188,9 @@ mailwatch_button_release_cb(GtkWidget *w, GdkEventButton *evt,
         switch(evt->button) {
             case 1:  /* left */
                 if(mwp->click_command && *mwp->click_command)
-                    xfce_exec(mwp->click_command, FALSE, FALSE, NULL);
+                    xfce_spawn_command_line_on_screen(gdk_screen_get_default(),
+                                                      mwp->click_command,
+                                                      FALSE, FALSE, NULL);
                 break;
         
             case 2:  /* middle */
@@ -825,7 +828,9 @@ mailwatch_help_clicked_cb(GtkWidget *w,
 {
     GError *err = NULL;
     
-    if(!xfce_exec("xfhelp4 xfce4-mailwatch-plugin.html", FALSE, FALSE, &err)) {
+    if(!xfce_spawn_command_line_on_screen(gdk_screen_get_default(),
+                                          "xfhelp4 xfce4-mailwatch-plugin.html",
+                                          FALSE, FALSE, &err)) {
         gchar *secondary = g_strdup_printf(_("Help is unavailable because 'xfhelp4' could not be run: %s"),
                                            err->message);
         xfce_message_dialog(NULL, _("Help Unavailable"), GTK_STOCK_DIALOG_ERROR,
@@ -1043,35 +1048,25 @@ mailwatch_show_about(XfcePanelPlugin *plugin,
                      gpointer user_data)
 {
     XfceMailwatchPlugin *mwp = user_data;
-    XfceAboutInfo *ainfo;
     GdkPixbuf *icon;
 
-    if(G_UNLIKELY(mwp->about_dialog)) {
-        gtk_window_present(GTK_WINDOW(mwp->about_dialog));
-        return;
-    }
+    const gchar *auth[] = { "Brian J. Tarricone bjt23@cornell.edu Maintainer, Original Author",
+                            "Pasi Orovuo pasi.ov@gmail.com Developer",
+                            NULL };
 
-    ainfo = xfce_about_info_new(_("Xfce4 Mailwatch Plugin"),
-                                VERSION,
-                                _("A featureful mail-checker applet for the Xfce Panel"),
-                                _("Copyright (c) 2005-2008 Brian Tarricone\n"
-                                  "Copyright (c) 2005 Pasi Orovuo"),
-                                  XFCE_LICENSE_GPL);
-    xfce_about_info_set_homepage(ainfo, WEBSITE);
-    xfce_about_info_add_credit(ainfo, "Brian J. Tarricone",
-                               "bjt23@cornell.edu",
-                               _("Maintainer, Original Author"));
-    xfce_about_info_add_credit(ainfo, "Pasi Orovuo", "pasi.ov@gmail.com",
-                               _("Developer"));
-    
-    icon = xfce_themed_icon_load("xfce-mail", 32);
-    
-    mwp->about_dialog = xfce_about_dialog_new_with_values(NULL, ainfo, icon);
-    g_object_add_weak_pointer(G_OBJECT(mwp->about_dialog),
-                              (gpointer)&mwp->about_dialog);
-    gtk_widget_show_all(mwp->about_dialog);
-    g_signal_connect(G_OBJECT(mwp->about_dialog), "response",
-                     G_CALLBACK(gtk_widget_destroy), NULL);
+    icon = xfce_panel_pixbuf_from_source("xfce-mail", NULL, 32);
+
+    gtk_show_about_dialog(NULL,
+                          "logo", icon,
+                          "program-name", _("Xfce4 Mailwatch Plugin"),
+                          "license", xfce_get_license_text (XFCE_LICENSE_TEXT_GPL),
+                          "version", VERSION,
+                          "comments", _("A featureful mail-checker applet for the Xfce Panel"),
+                          "website", WEBSITE,
+                          "copyright", _("Copyright (c) 2005-2008 Brian Tarricone\n"
+                                         "Copyright (c) 2005 Pasi Orovuo"),
+                          "authors", auth,
+                          NULL);
 
     if(icon)
         g_object_unref(G_OBJECT(icon));

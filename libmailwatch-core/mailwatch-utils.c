@@ -52,7 +52,7 @@
 
 #include <gtk/gtk.h>
 
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 #include "mailwatch-utils.h"
 #include "mailwatch-common.h"
@@ -78,7 +78,8 @@ xfce_mailwatch_custom_button_new(const gchar *text, const gchar *icon)
         img = gtk_image_new_from_stock(icon, GTK_ICON_SIZE_BUTTON);
         if(!img || gtk_image_get_storage_type(GTK_IMAGE(img)) == GTK_IMAGE_EMPTY) {
             gtk_icon_size_lookup(GTK_ICON_SIZE_BUTTON, &iw, &ih);
-            pix = xfce_themed_icon_load(icon, iw);
+            pix = gtk_icon_theme_load_icon (gtk_icon_theme_get_default(), icon,
+                                            iw, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
             if(pix) {
                 if(img)
                     gtk_image_set_from_pixbuf(GTK_IMAGE(img), pix);
@@ -106,13 +107,7 @@ xfce_mailwatch_custom_button_new(const gchar *text, const gchar *icon)
 GtkWidget *
 xfce_mailwatch_create_framebox(const gchar *title, GtkWidget **frame_bin)
 {
-#if LIBXFCEGUI4_CHECK_VERSION(4, 3, 4)
-    return xfce_create_framebox(title, frame_bin);
-#else
-    GtkWidget *frame = xfce_framebox_new(title, TRUE);
-    *frame_bin = XFCE_FRAMEBOX(frame)->hbox;
-    return frame;
-#endif
+    return xfce_gtk_frame_box_new(title, frame_bin);
 }
 
 #ifdef HAVE_SSL_SUPPORT

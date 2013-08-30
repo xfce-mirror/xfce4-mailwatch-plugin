@@ -27,7 +27,7 @@ endif
 libmailwatch_core_la_CFLAGS = \
 	@GTHREAD_CFLAGS@ \
 	@GTK_CFLAGS@ \
-	@LIBXFCEGUI4_CFLAGS@ \
+	@LIBXFCE4UI_CFLAGS@ \
 	@GNUTLS_CFLAGS@ \
 	@LIBGCRYPT_CFLAGS@ \
 	-DDATADIR=\"$(datadir)\" \
