@@ -210,7 +210,7 @@ xfce_mailwatch_net_conn_tls_handshake(XfceMailwatchNetConn *net_conn,
     TIMER_START;
     do {
         ret = gnutls_handshake(net_conn->gt_session);
-    } while((GNUTLS_E_AGAIN == ret || GNUTLS_E_INTERRUPTED == ret)
+    } while((ret == GNUTLS_E_AGAIN || ret == GNUTLS_E_INTERRUPTED)
             && !TIMER_EXPIRED(RECV_TIMEOUT) && SHOULD_CONTINUE(net_conn));
 
     if(ret != GNUTLS_E_SUCCESS) {
@@ -220,7 +220,7 @@ xfce_mailwatch_net_conn_tls_handshake(XfceMailwatchNetConn *net_conn,
         if(!SHOULD_CONTINUE(net_conn)) {
             code = XFCE_MAILWATCH_ERROR_ABORTED;
             reason = _("Operation aborted");
-        } else if(GNUTLS_E_AGAIN == ret || GNUTLS_E_INTERRUPTED == ret)
+        } else if(ret == GNUTLS_E_AGAIN || ret == GNUTLS_E_INTERRUPTED)
             reason = strerror(ETIMEDOUT);
         else
             reason = gnutls_strerror(ret);
@@ -249,10 +249,10 @@ xfce_mailwatch_net_conn_do_connect(XfceMailwatchNetConn *net_conn,
     TIMER_START;
     do {
         ret = connect(net_conn->fd, addr, addrlen);
-    } while(ret < 0 && (EINTR == errno || EAGAIN == errno)
+    } while(ret < 0 && (errno == EINTR || errno == EAGAIN)
             && !TIMER_EXPIRED(RECV_TIMEOUT) && SHOULD_CONTINUE(net_conn));
 
-    if(!ret || (ret < 0 && EINPROGRESS == errno))  /* we're done here */
+    if(!ret || (ret < 0 && errno == EINPROGRESS))  /* we're done here */
         return XFCE_MAILWATCH_NET_CONN_SUCCESS;
 
     /* this is a little different.  the only 'fatal' error at this
@@ -294,7 +294,7 @@ xfce_mailwatch_net_conn_get_connect_status(XfceMailwatchNetConn *net_conn,
 
         /* wait until the connect attempt finishes */
         if(select(FD_SETSIZE, NULL, &wfd, NULL, &tv) < 0) {
-            if(EINTR == errno)
+            if(errno == EINTR)
                 continue;
             /* FIXME: should a select() failure actually be fatal? */
             return XFCE_MAILWATCH_NET_CONN_ERROR;
@@ -497,7 +497,7 @@ xfce_mailwatch_net_conn_get_addrinfo(XfceMailwatchNetConn *net_conn,
             g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
                         _("Could not find host \"%s\": %s"),
                         net_conn->hostname,
-                        EAI_SYSTEM == ret ? strerror(errno)
+                        ret == EAI_SYSTEM ? strerror(errno)
                                           : gai_strerror(ret));
         }
         return FALSE;
@@ -679,12 +679,12 @@ xfce_mailwatch_net_conn_send_data(XfceMailwatchNetConn *net_conn,
                                          buf + totallen - bytesleft,
                                          bytesleft);
 
-                if(GNUTLS_E_REHANDSHAKE == ret) {
+                if(ret == GNUTLS_E_REHANDSHAKE) {
                     if(!xfce_mailwatch_net_conn_tls_handshake(net_conn, error))
                         return -1;
                     ret = GNUTLS_E_AGAIN;
                 }
-            } while((GNUTLS_E_INTERRUPTED == ret || GNUTLS_E_AGAIN == ret)
+            } while((ret == GNUTLS_E_INTERRUPTED || ret == GNUTLS_E_AGAIN)
                     && !TIMER_EXPIRED(RECV_TIMEOUT) && SHOULD_CONTINUE(net_conn));
 
             if(ret < 0) {
@@ -716,7 +716,7 @@ xfce_mailwatch_net_conn_send_data(XfceMailwatchNetConn *net_conn,
         TIMER_START;
         do {
             bout = send(net_conn->fd, buf, buf_len, MSG_NOSIGNAL);
-        } while(bout < 0 && (EINTR == errno || EAGAIN == errno)
+        } while(bout < 0 && (errno == EINTR || errno == EAGAIN)
                 && !TIMER_EXPIRED(RECV_TIMEOUT) && SHOULD_CONTINUE(net_conn));
     }
 
@@ -727,7 +727,7 @@ xfce_mailwatch_net_conn_send_data(XfceMailwatchNetConn *net_conn,
         if(!SHOULD_CONTINUE(net_conn)) {
             code = XFCE_MAILWATCH_ERROR_ABORTED;
             reason = _("Operation aborted");
-        } else if(EINTR == errno || EAGAIN == errno)
+        } else if(errno == EINTR || errno == EAGAIN)
             reason = strerror(ETIMEDOUT);
         else
             reason = strerror(errno);
@@ -763,16 +763,16 @@ xfce_mailwatch_net_conn_recv_internal(XfceMailwatchNetConn *net_conn,
         ret = select(FD_SETSIZE, &rfd, NULL, NULL, &tv);
         if(ret > 0 && FD_ISSET(net_conn->fd, &rfd))
             break;
-        else if(ret < 0 && EINTR != errno) {
+        else if(ret < 0 && errno != EINTR) {
             g_set_error(error, XFCE_MAILWATCH_ERROR,
                         XFCE_MAILWATCH_ERROR_FAILED, "%s", strerror(errno));
             return -1;
         } else if(!block)
             return 0;
-    } while((ret == 0 || (ret < 0 && EINTR == errno))
+    } while((ret == 0 || (ret < 0 && errno == EINTR))
             && !TIMER_EXPIRED(RECV_TIMEOUT) && SHOULD_CONTINUE(net_conn));
 
-    if(ret < 0 && EINTR != errno) {
+    if(ret < 0 && errno != EINTR) {
         if(error) {
             g_set_error(error, XFCE_MAILWATCH_ERROR,
                         XFCE_MAILWATCH_ERROR_FAILED, "%s", strerror(errno));
@@ -803,12 +803,12 @@ xfce_mailwatch_net_conn_recv_internal(XfceMailwatchNetConn *net_conn,
         do {
             gret = gnutls_record_recv(net_conn->gt_session, buf, buf_len);
 
-            if(GNUTLS_E_REHANDSHAKE == gret) {
+            if(gret == GNUTLS_E_REHANDSHAKE) {
                 if(!xfce_mailwatch_net_conn_tls_handshake(net_conn, error))
                     return -1;
                 gret = GNUTLS_E_AGAIN;
             }
-        } while((GNUTLS_E_INTERRUPTED == gret || GNUTLS_E_AGAIN == gret)
+        } while((gret == GNUTLS_E_INTERRUPTED || gret == GNUTLS_E_AGAIN)
                 && !TIMER_EXPIRED(RECV_TIMEOUT) && SHOULD_CONTINUE(net_conn));
         
         if(gret < 0) {
@@ -838,7 +838,7 @@ xfce_mailwatch_net_conn_recv_internal(XfceMailwatchNetConn *net_conn,
         TIMER_START;
         do {
             pret = recv(net_conn->fd, buf, buf_len, MSG_NOSIGNAL);
-        } while(pret < 0 && (EINTR == errno || EAGAIN == errno)
+        } while(pret < 0 && (errno == EINTR || errno == EAGAIN)
                 && !TIMER_EXPIRED(RECV_TIMEOUT) && SHOULD_CONTINUE(net_conn));
 
         if(pret < 0) {
