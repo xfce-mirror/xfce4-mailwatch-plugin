@@ -39,9 +39,10 @@
 
 #define BORDER                             8
 #define DEFAULT_LOG_LINES                500
-#define XFCE_MAILWATCH_RESPONSE_CLEAR  72347
 #define DEFAULT_NORMAL_ICON            "xfce-nomail"
 #define DEFAULT_NEW_MAIL_ICON          "xfce-newmail"
+#define MOUSE_BUTTON_LEFT                  1
+#define MOUSE_BUTTON_MIDDLE                2
 
 typedef struct
 {
@@ -71,6 +72,12 @@ typedef struct
 
     GtkWidget *about_dialog;
 } XfceMailwatchPlugin;
+
+enum {
+    ICON_TYPE_NORMAL,
+    ICON_TYPE_NEW_MAIL,
+    XFCE_MAILWATCH_RESPONSE_CLEAR
+};
 
 enum {
     LOGLIST_COLUMN_PIXBUF = 0,
@@ -174,14 +181,14 @@ mailwatch_button_release_cb(GtkWidget *w, GdkEventButton *evt,
        && evt->y < w->allocation.y + w->allocation.height)
     {
         switch(evt->button) {
-            case 1:  /* left */
+            case MOUSE_BUTTON_LEFT:
                 if(mwp->click_command && *mwp->click_command)
                     xfce_spawn_command_line_on_screen(gdk_screen_get_default(),
                                                       mwp->click_command,
                                                       FALSE, FALSE, NULL);
                 break;
         
-            case 2:  /* middle */
+            case MOUSE_BUTTON_MIDDLE:
                 xfce_mailwatch_force_update(mwp->mailwatch);
                 break;
         }
@@ -734,7 +741,7 @@ mailwatch_iconbtn_clicked_cb(GtkWidget *w, XfceMailwatchPlugin *mwp)
                                                        "mailwatch-icontype"));
     GtkWidget *chooser, *toplevel;
     
-    g_return_if_fail(icon_type == 1 || icon_type == 2);
+    g_return_if_fail(icon_type == ICON_TYPE_NORMAL || icon_type == ICON_TYPE_NEW_MAIL);
     
     toplevel = gtk_widget_get_toplevel(w);
     chooser = gtk_file_chooser_dialog_new(_("Select Icon"),
@@ -748,7 +755,7 @@ mailwatch_iconbtn_clicked_cb(GtkWidget *w, XfceMailwatchPlugin *mwp)
         gchar *filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(chooser));
         if(filename) {
             switch(icon_type) {
-                case 1:
+                case ICON_TYPE_NORMAL:
                     {
                         GtkWidget *vbox, *img, *lbl;
                         
@@ -774,7 +781,7 @@ mailwatch_iconbtn_clicked_cb(GtkWidget *w, XfceMailwatchPlugin *mwp)
                     }
                     break;
                 
-                case 2:
+                case ICON_TYPE_NEW_MAIL:
                     {
                         GtkWidget *vbox, *img, *lbl;
                         
@@ -936,7 +943,8 @@ mailwatch_create_options(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
     gtk_container_add(GTK_CONTAINER(frame_bin), hbox);
     
     btn = gtk_button_new();
-    g_object_set_data(G_OBJECT(btn), "mailwatch-icontype", GINT_TO_POINTER(1));
+    g_object_set_data(G_OBJECT(btn), "mailwatch-icontype",
+                      GINT_TO_POINTER(ICON_TYPE_NORMAL));
     gtk_widget_show(btn);
     gtk_box_pack_start(GTK_BOX(hbox), btn, FALSE, FALSE, 0);
     g_signal_connect(G_OBJECT(btn), "clicked",
@@ -956,7 +964,8 @@ mailwatch_create_options(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
     gtk_box_pack_start(GTK_BOX(vbox), lbl, FALSE, FALSE, 0);
     
     btn = gtk_button_new();
-    g_object_set_data(G_OBJECT(btn), "mailwatch-icontype", GINT_TO_POINTER(2));
+    g_object_set_data(G_OBJECT(btn), "mailwatch-icontype",
+                      GINT_TO_POINTER(ICON_TYPE_NEW_MAIL));
     gtk_widget_show(btn);
     gtk_box_pack_start(GTK_BOX(hbox), btn, FALSE, FALSE, 0);
     g_signal_connect(G_OBJECT(btn), "clicked",
