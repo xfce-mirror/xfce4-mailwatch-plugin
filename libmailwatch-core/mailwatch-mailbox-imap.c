@@ -1444,36 +1444,11 @@ imap_config_newmailfolders_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     
     render = gtk_cell_renderer_pixbuf_new();
     gtk_tree_view_column_pack_start(col, render, FALSE);
-#if GTK_CHECK_VERSION(2, 6, 0)
     g_object_set(G_OBJECT(render),
                  "stock-id", GTK_STOCK_DIRECTORY,
                  "stock-size", GTK_ICON_SIZE_MENU,
                  NULL);
-#else
-    {
-        gint iw, ih;
-        GdkPixbuf *pix;
-        GList *icons = NULL;
-        GdkScreen *gscreen = gtk_widget_get_screen(treeview);
-        XfceIconTheme *itheme = xfce_icon_theme_get_for_screen(gscreen);
-        
-        icons = g_list_prepend(icons, "stock_open");
-        icons = g_list_prepend(icons, "stock_folder");
-        icons = g_list_prepend(icons, "stock_directory");
-        icons = g_list_prepend(icons, "gnome-fs-directory");
-        icons = g_list_prepend(icons, "folder");
-        
-        gtk_icon_size_lookup(GTK_ICON_SIZE_MENU, &iw, &ih);
-        pix = xfce_icon_theme_load_list(itheme, icons, iw);
-        if(pix) {
-            g_object_set(G_OBJECT(render), "pixbuf", pix, NULL);
-            g_object_unref(G_OBJECT(pix));
-        }
-        
-        g_list_free(icons);
-    }
-#endif
-    
+
     imailbox->render = render = gtk_cell_renderer_text_new();
     gtk_tree_view_column_pack_start(col, render, TRUE);
     gtk_tree_view_column_set_attributes(col, render,

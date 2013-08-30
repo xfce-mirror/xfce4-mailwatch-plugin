@@ -49,10 +49,6 @@
 
 #define BORDER          8
 
-#if !GTK_CHECK_VERSION(2, 6, 0)
-#define GTK_STOCK_EDIT GTK_STOCK_PROPERTIES
-#endif
-
 typedef struct
 {
     XfceMailwatchMailbox *mailbox;

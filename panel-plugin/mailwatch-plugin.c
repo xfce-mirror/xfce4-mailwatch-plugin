@@ -56,10 +56,6 @@ typedef struct
     GdkPixbuf *pix_normal;
     GdkPixbuf *pix_newmail;
     
-#if !GTK_CHECK_VERSION(2, 12, 0)
-    GtkTooltips *tooltip;
-#endif
-    
     gchar *click_command;
     gchar *new_messages_command;
     
@@ -107,12 +103,8 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg,
         mailwatch_set_size(mwp->plugin,
                            xfce_panel_plugin_get_size(mwp->plugin),
                            mwp);
-#if GTK_CHECK_VERSION(2, 12, 0)
         gtk_widget_set_tooltip_text(mwp->button, _("No new mail"));
         gtk_widget_trigger_tooltip_query(mwp->button);
-#else
-        gtk_tooltips_set_tip(mwp->tooltip, mwp->button, _("No new mail"), NULL);
-#endif
     } else if(new_messages > 0) {
         if(!mwp->newmail_icon_visible) {
             mwp->newmail_icon_visible = TRUE;
@@ -147,12 +139,8 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch, gpointer arg,
             g_strfreev(mailbox_names);
             g_free(new_message_counts);
             
-#if GTK_CHECK_VERSION(2, 12, 0)
             gtk_widget_set_tooltip_text(mwp->button, ttip_str->str);
             gtk_widget_trigger_tooltip_query(mwp->button);
-#else
-            gtk_tooltips_set_tip(mwp->tooltip, mwp->button, ttip_str->str, NULL);
-#endif
             g_string_free(ttip_str, TRUE);
             
             if(mwp->new_messages_command)
@@ -430,12 +418,7 @@ mailwatch_create(XfcePanelPlugin *plugin)
     g_signal_connect(mwp->button, "button-release-event",
             G_CALLBACK(mailwatch_button_release_cb), mwp);
     
-#if GTK_CHECK_VERSION(2, 12, 0)
     gtk_widget_set_tooltip_text(mwp->button, _("No new mail"));
-#else
-    mwp->tooltip = gtk_tooltips_new();
-    gtk_tooltips_set_tip(mwp->tooltip, mwp->button, _("No new mail"), NULL);
-#endif
     
     xfce_panel_plugin_add_action_widget(plugin, mwp->button);
     
@@ -1027,10 +1010,6 @@ mailwatch_free(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
     }
 
     g_object_unref(G_OBJECT(mwp->loglist));
-    
-#if !GTK_CHECK_VERSION(2, 12, 0)
-    gtk_object_sink(GTK_OBJECT(mwp->tooltip));
-#endif
     
     g_free(mwp);
 }
