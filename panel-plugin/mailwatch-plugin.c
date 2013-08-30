@@ -69,8 +69,6 @@ typedef struct
     GdkPixbuf               *pix_log[XFCE_MAILWATCH_N_LOG_LEVELS];
     XfceMailwatchLogLevel   log_status;
     GtkListStore            *loglist;
-
-    GtkWidget *about_dialog;
 } XfceMailwatchPlugin;
 
 enum {
@@ -999,9 +997,6 @@ mailwatch_free(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
 #ifdef HAVE_XFCE_POSIX_SIGNAL_HANDLER_INIT
     xfce_posix_signal_handler_restore_handler(SIGUSR2);
 #endif
-
-    if(mwp->about_dialog)
-        gtk_widget_destroy(mwp->about_dialog);
     
     xfce_mailwatch_destroy(mwp->mailwatch);
     
@@ -1035,7 +1030,6 @@ static void
 mailwatch_show_about(XfcePanelPlugin *plugin,
                      gpointer user_data)
 {
-    XfceMailwatchPlugin *mwp = user_data;
     GdkPixbuf *icon;
 
     const gchar *auth[] = { "Brian J. Tarricone bjt23@cornell.edu Maintainer, Original Author",
