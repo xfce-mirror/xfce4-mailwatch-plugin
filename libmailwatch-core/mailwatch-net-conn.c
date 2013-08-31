@@ -225,7 +225,7 @@ xfce_mailwatch_net_conn_tls_handshake(XfceMailwatchNetConn *net_conn,
         else
             reason = gnutls_strerror(ret);
         if(error)
-            g_set_error(error, XFCE_MAILWATCH_ERROR, code, reason);
+            g_set_error(error, XFCE_MAILWATCH_ERROR, code, "%s", reason);
         g_critical("XfceMailwatch: TLS handshake failed: %s", reason);
 
         return FALSE;
