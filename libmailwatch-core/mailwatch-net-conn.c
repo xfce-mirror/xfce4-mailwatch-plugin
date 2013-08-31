@@ -965,9 +965,11 @@ xfce_mailwatch_net_conn_recv_line(XfceMailwatchNetConn *net_conn,
 
     if((gint)buf_len < p - (gchar *)net_conn->buffer) {
         if(error) {
+            gchar *bl = g_strdup_printf("%" G_GSIZE_FORMAT, buf_len);
             g_set_error(error, XFCE_MAILWATCH_ERROR, 0,
-                        _("Buffer is not large enough to hold a full line (%" G_GSIZE_FORMAT " < %d)"),
-                        buf_len, (gint)(p - (gchar *)net_conn->buffer));
+                        _("Buffer is not large enough to hold a full line (%s < %d)"),
+                        bl, (gint)(p - (gchar *)net_conn->buffer));
+            g_free(bl);
         }
         return -1;
     }
