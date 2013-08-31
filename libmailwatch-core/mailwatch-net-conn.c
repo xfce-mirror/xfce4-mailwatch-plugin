@@ -760,6 +760,13 @@ xfce_mailwatch_net_conn_recv_internal(XfceMailwatchNetConn *net_conn,
         if(!block)
             tv.tv_sec = 0;
 
+#ifdef HAVE_SSL_SUPPORT
+        /* Read data from the gnutls read buffer, first. */
+        if (net_conn->is_secure
+            && (ret = gnutls_record_check_pending(net_conn->gt_session)) > 0) {
+            break;
+        }
+#endif
         ret = select(FD_SETSIZE, &rfd, NULL, NULL, &tv);
         if(ret > 0 && FD_ISSET(net_conn->fd, &rfd))
             break;
