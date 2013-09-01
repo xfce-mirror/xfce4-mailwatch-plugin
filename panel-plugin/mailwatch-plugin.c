@@ -1131,5 +1131,4 @@ mailwatch_construct(XfcePanelPlugin *plugin)
     xfce_mailwatch_force_update(mwp->mailwatch);
 }
 
-XFCE_PANEL_PLUGIN_REGISTER_EXTERNAL(mailwatch_construct);
-
+XFCE_PANEL_PLUGIN_REGISTER(mailwatch_construct);

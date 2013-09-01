@@ -1,10 +1,18 @@
-plugindir = $(libexecdir)/xfce4/panel-plugins
-plugin_PROGRAMS = xfce4-mailwatch-plugin
+#
+# Mailwatch plugin
+#
+plugindir = $(libdir)/xfce4/panel-plugins
 
-xfce4_mailwatch_plugin_SOURCES = \
+plugin_LTLIBRARIES = \
+	libmailwatch-plugin.la
+
+libmailwatch_plugin_la_SOURCES = \
 	mailwatch-plugin.c
 
-xfce4_mailwatch_plugin_CFLAGS = \
+libmailwatch_plugin_la_DEPENDENCIES = \
+	$(top_builddir)/libmailwatch-core/libmailwatch-core.la
+
+libmailwatch_plugin_la_CFLAGS = \
 	-I$(top_srcdir)/libmailwatch-core \
 	@GTHREAD_CFLAGS@ \
 	@LIBXFCE4PANEL_CFLAGS@ \
@@ -12,10 +20,13 @@ xfce4_mailwatch_plugin_CFLAGS = \
 	-DDATADIR=\"$(datadir)\" \
 	-DLOCALEDIR=\"$(localedir)\"
 
-xfce4_mailwatch_plugin_DEPENDENCIES = \
-	$(top_builddir)/libmailwatch-core/libmailwatch-core.la
+libmailwatch_plugin_la_LDFLAGS = \
+	-avoid-version \
+	-module \
+	-no-undefined \
+	-export-symbols-regex '^xfce_panel_module_(preinit|init|construct)'
 
-xfce4_mailwatch_plugin_LDADD = \
+libmailwatch_plugin_la_LIBADD = \
 	$(top_builddir)/libmailwatch-core/libmailwatch-core.la \
 	@GTHREAD_LIBS@ \
 	@LIBXFCE4PANEL_LIBS@ \
@@ -23,31 +34,15 @@ xfce4_mailwatch_plugin_LDADD = \
 	@GNUTLS_LIBS@ \
 	@LIBGCRYPT_LIBS@
 
-if HAVE_CYGWIN
-  xfce4_mailwatch_plugin_LDFLAGS = \
-	-no-undefined
-endif
-
-# .desktop file
 #
-# Some automake trickery here. Because we cannot use $(libexecdir) in the
-# automake stage, we'll use sed to get the full path into the .desktop file.
-# We also need to let intltool merge the translated fields, so we add an
-# additional level of indirection: a <name>.desktop.in.in file.
-# 
-desktop_in_in_files = mailwatch.desktop.in.in
-desktop_in_files = $(desktop_in_in_files:.desktop.in.in=.desktop.in)
-
-desktopdir = $(datadir)/xfce4/panel-plugins
-desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+# Desktop file
+#
+desktopdir = $(datadir)/xfce4/panel/plugins
+desktop_DATA = mailwatch.desktop
 @INTLTOOL_DESKTOP_RULE@
 
-# get full path into .desktop file
-%.desktop.in: %.desktop.in.in
-	sed -e "s^@PLUGIN_PATH@^$(libexecdir)/xfce4/panel-plugins^" \
-		$< > $@
-
-EXTRA_DIST = $(desktop_in_in_files)
+EXTRA_DIST = \
+	mailwatch.desktop.in
 
 DISTCLEANFILES = \
-	$(desktop_DATA) $(desktop_in_files)
+	$(desktop_DATA)
