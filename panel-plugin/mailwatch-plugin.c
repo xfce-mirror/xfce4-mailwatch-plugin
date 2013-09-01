@@ -192,7 +192,7 @@ mailwatch_button_release_cb(GtkWidget *w, GdkEventButton *evt,
         }
     }
     
-    if(evt->button == 2)
+    if(evt->button == MOUSE_BUTTON_MIDDLE)
         gtk_button_released(GTK_BUTTON(w));
     
     return FALSE;
