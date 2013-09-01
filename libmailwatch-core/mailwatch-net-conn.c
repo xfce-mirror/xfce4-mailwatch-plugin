@@ -600,10 +600,6 @@ gboolean
 xfce_mailwatch_net_conn_make_secure(XfceMailwatchNetConn *net_conn,
                                     GError **error)
 {
-#ifdef HAVE_SSL_SUPPORT
-    const int cert_type_prio[2] = { GNUTLS_CRT_X509, 0 };
-#endif
-
     g_return_val_if_fail(net_conn && (!error || !*error), FALSE);
     g_return_val_if_fail(net_conn->fd != -1, FALSE);
     g_return_val_if_fail(!net_conn->is_secure, TRUE);
@@ -618,7 +614,6 @@ xfce_mailwatch_net_conn_make_secure(XfceMailwatchNetConn *net_conn,
     /* init the session and set it up */
     gnutls_init(&net_conn->gt_session, GNUTLS_CLIENT);
     gnutls_set_default_priority(net_conn->gt_session);
-    gnutls_certificate_type_set_priority(net_conn->gt_session, cert_type_prio);
     gnutls_credentials_set(net_conn->gt_session, GNUTLS_CRD_CERTIFICATE,
                            net_conn->gt_creds);
     gnutls_transport_set_ptr(net_conn->gt_session,
