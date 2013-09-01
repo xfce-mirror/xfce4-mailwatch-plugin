@@ -613,7 +613,7 @@ xfce_mailwatch_net_conn_make_secure(XfceMailwatchNetConn *net_conn,
     
     /* init the session and set it up */
     gnutls_init(&net_conn->gt_session, GNUTLS_CLIENT);
-    gnutls_set_default_priority(net_conn->gt_session);
+    gnutls_priority_set_direct (net_conn->gt_session, "NORMAL", NULL); 
     gnutls_credentials_set(net_conn->gt_session, GNUTLS_CRD_CERTIFICATE,
                            net_conn->gt_creds);
     gnutls_transport_set_ptr(net_conn->gt_session,
