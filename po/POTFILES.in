@@ -11,4 +11,4 @@ libmailwatch-core/mailwatch.c
 panel-plugin/mailwatch-plugin.c
 
 # files added by intltool-prepare.
-panel-plugin/mailwatch.desktop.in.in
+panel-plugin/mailwatch.desktop.in
