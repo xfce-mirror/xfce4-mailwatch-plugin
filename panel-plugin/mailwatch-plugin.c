@@ -598,11 +598,10 @@ static void
 mailwatch_log_status_toggled_cb(GtkToggleButton *tb, gpointer user_data)
 {
     XfceMailwatchPlugin *mwp = user_data;
-    gboolean have_new_msgs;
     
     mwp->show_log_status = gtk_toggle_button_get_active(tb);
     
-    have_new_msgs = !!xfce_mailwatch_get_new_messages(mwp->mailwatch);
+    xfce_mailwatch_get_new_messages(mwp->mailwatch);
     mailwatch_set_size(mwp->plugin,
                        xfce_panel_plugin_get_size(mwp->plugin),
                        mwp);
