@@ -734,9 +734,9 @@ mailwatch_newmsg_command_focusout_cb(GtkWidget *w, GdkEventFocus *evt,
 static void
 mailwatch_iconbtn_clicked_cb(GtkWidget *w, XfceMailwatchPlugin *mwp)
 {
+    GtkWidget *chooser, *toplevel;
     gint icon_type = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(w),
                                                        "mailwatch-icontype"));
-    GtkWidget *chooser, *toplevel;
     
     g_return_if_fail(icon_type == ICON_TYPE_NORMAL || icon_type == ICON_TYPE_NEW_MAIL);
     
@@ -751,59 +751,40 @@ mailwatch_iconbtn_clicked_cb(GtkWidget *w, XfceMailwatchPlugin *mwp)
     if(gtk_dialog_run(GTK_DIALOG(chooser)) == GTK_RESPONSE_ACCEPT) {
         gchar *filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(chooser));
         if(filename) {
+            GtkWidget *label, *image, *vbox;
+            GdkPixbuf **icon_pix;
+            gchar **icon_path;
+
             switch(icon_type) {
-                case ICON_TYPE_NORMAL:
-                    {
-                        GtkWidget *vbox, *img, *lbl;
-                        
-                        g_free(mwp->normal_icon);
-                        mwp->normal_icon = filename;
-                        mailwatch_set_size(mwp->plugin, 
-                                xfce_panel_plugin_get_size(mwp->plugin), mwp);
-                        
-                        gtk_container_remove(GTK_CONTAINER(w),
-                                             gtk_bin_get_child(GTK_BIN(w)));
-                        
-                        vbox = gtk_vbox_new(FALSE, BORDER/2);
-                        gtk_widget_show(vbox);
-                        gtk_container_add(GTK_CONTAINER(w), vbox);
-                        
-                        img = gtk_image_new_from_pixbuf(mwp->pix_normal);
-                        gtk_widget_show(img);
-                        gtk_box_pack_start(GTK_BOX(vbox), img, TRUE, TRUE, 0);
-                        
-                        lbl = gtk_label_new_with_mnemonic(_("_Normal"));
-                        gtk_widget_show(lbl);
-                        gtk_box_pack_start(GTK_BOX(vbox), lbl, FALSE, FALSE, 0);
-                    }
-                    break;
-                
-                case ICON_TYPE_NEW_MAIL:
-                    {
-                        GtkWidget *vbox, *img, *lbl;
-                        
-                        g_free(mwp->new_mail_icon);
-                        mwp->new_mail_icon = filename;
-                        mailwatch_set_size(mwp->plugin, 
-                                xfce_panel_plugin_get_size(mwp->plugin), mwp);
-                        
-                        gtk_container_remove(GTK_CONTAINER(w),
-                                             gtk_bin_get_child(GTK_BIN(w)));
-                        
-                        vbox = gtk_vbox_new(FALSE, BORDER/2);
-                        gtk_widget_show(vbox);
-                        gtk_container_add(GTK_CONTAINER(w), vbox);
-                        
-                        img = gtk_image_new_from_pixbuf(mwp->pix_newmail);
-                        gtk_widget_show(img);
-                        gtk_box_pack_start(GTK_BOX(vbox), img, TRUE, TRUE, 0);
-                        
-                        lbl = gtk_label_new_with_mnemonic(_("Ne_w mail"));
-                        gtk_widget_show(lbl);
-                        gtk_box_pack_start(GTK_BOX(vbox), lbl, FALSE, FALSE, 0);
-                    }
-                    break;
+            case ICON_TYPE_NORMAL:
+                icon_path = &(mwp->normal_icon);
+                icon_pix = &(mwp->pix_normal);
+                label = gtk_label_new_with_mnemonic(_("_Normal"));
+                break;
+            case ICON_TYPE_NEW_MAIL:
+                icon_path = &(mwp->new_mail_icon);
+                icon_pix = &(mwp->pix_newmail);
+                label = gtk_label_new_with_mnemonic(_("Ne_w mail"));
+                break;
             }
+
+            g_free(*icon_path);
+            *icon_path = filename;
+            mailwatch_set_size(mwp->plugin, 
+                               xfce_panel_plugin_get_size(mwp->plugin), mwp);
+            
+            gtk_container_remove(GTK_CONTAINER(w), gtk_bin_get_child(GTK_BIN(w)));
+            
+            vbox = gtk_vbox_new(FALSE, BORDER / 2);
+            gtk_widget_show(vbox);
+            gtk_container_add(GTK_CONTAINER(w), vbox);
+            
+            image = gtk_image_new_from_pixbuf(*icon_pix);
+            gtk_widget_show(image);
+            gtk_box_pack_start(GTK_BOX(vbox), image, TRUE, TRUE, 0);
+            
+            gtk_widget_show(label);
+            gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 0);
         }
     }
     gtk_widget_destroy(chooser);
