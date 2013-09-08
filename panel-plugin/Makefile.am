@@ -1,7 +1,7 @@
 #
 # Mailwatch plugin
 #
-plugindir = $(libdir)/xfce4/panel-plugins
+plugindir = $(libdir)/xfce4/panel/plugins
 
 plugin_LTLIBRARIES = \
 	libmailwatch-plugin.la
