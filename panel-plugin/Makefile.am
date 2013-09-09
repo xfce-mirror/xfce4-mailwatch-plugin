@@ -1,3 +1,7 @@
+AM_CPPFLAGS = \
+	-DG_LOG_DOMAIN=\"libmailwatch\" \
+	-DPACKAGE_LOCALE_DIR=\"$(localedir)\" \
+	$(PLATFORM_CPPFLAGS)
 #
 # Mailwatch plugin
 #
@@ -14,25 +18,25 @@ libmailwatch_plugin_la_DEPENDENCIES = \
 
 libmailwatch_plugin_la_CFLAGS = \
 	-I$(top_srcdir)/libmailwatch-core \
-	@GTHREAD_CFLAGS@ \
-	@LIBXFCE4PANEL_CFLAGS@ \
-	@LIBXFCE4UI_CFLAGS@ \
-	-DDATADIR=\"$(datadir)\" \
-	-DLOCALEDIR=\"$(localedir)\"
+	$(GTHREAD_CFLAGS) \
+	$(LIBXFCE4PANEL_CFLAGS) \
+	$(LIBXFCE4UI_CFLAGS) \
+	$(PLATFORM_CFLAGS)
 
 libmailwatch_plugin_la_LDFLAGS = \
 	-avoid-version \
 	-module \
 	-no-undefined \
-	-export-symbols-regex '^xfce_panel_module_(preinit|init|construct)'
+	-export-symbols-regex '^xfce_panel_module_(preinit|init|construct)' \
+	$(PLATFORM_LDFLAGS)
 
 libmailwatch_plugin_la_LIBADD = \
 	$(top_builddir)/libmailwatch-core/libmailwatch-core.la \
-	@GTHREAD_LIBS@ \
-	@LIBXFCE4PANEL_LIBS@ \
-	@LIBXFCE4UI_LIBS@ \
-	@GNUTLS_LIBS@ \
-	@LIBGCRYPT_LIBS@
+	$(GTHREAD_LIBS) \
+	$(LIBXFCE4PANEL_LIBS) \
+	$(LIBXFCE4UI_LIBS) \
+	$(GNUTLS_LIBS) \
+	$(LIBGCRYPT_LIBS)
 
 #
 # Desktop file
