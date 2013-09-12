@@ -21,6 +21,7 @@ libmailwatch_plugin_la_CFLAGS = \
 	$(GTHREAD_CFLAGS) \
 	$(LIBXFCE4PANEL_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
+	$(EXO_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
 libmailwatch_plugin_la_LDFLAGS = \
@@ -36,7 +37,8 @@ libmailwatch_plugin_la_LIBADD = \
 	$(LIBXFCE4PANEL_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
 	$(GNUTLS_LIBS) \
-	$(LIBGCRYPT_LIBS)
+	$(LIBGCRYPT_LIBS) \
+	$(EXO_LIBS)
 
 #
 # Desktop file

@@ -32,6 +32,7 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4panel/libxfce4panel.h>
+#include <exo/exo.h>
 
 #include "mailwatch.h"
 #include "mailwatch-mailbox.h"
@@ -741,15 +742,28 @@ mailwatch_iconbtn_clicked_cb(GtkWidget *w, XfceMailwatchPlugin *mwp)
     g_return_if_fail(icon_type == ICON_TYPE_NORMAL || icon_type == ICON_TYPE_NEW_MAIL);
     
     toplevel = gtk_widget_get_toplevel(w);
-    chooser = gtk_file_chooser_dialog_new(_("Select Icon"),
-                                          GTK_WINDOW(toplevel),
-                                          GTK_FILE_CHOOSER_ACTION_OPEN,
-                                          GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                          GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
-                                          NULL);
+    chooser = exo_icon_chooser_dialog_new (_("Select Icon"),
+					   GTK_WINDOW(gtk_widget_get_toplevel(toplevel)),
+					   GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+					   GTK_STOCK_OK, GTK_RESPONSE_ACCEPT,
+					   NULL);
+    gtk_dialog_set_default_response(GTK_DIALOG(chooser), GTK_RESPONSE_ACCEPT);
+    /* Preselect actually used icon */
+    switch(icon_type) {
+    case ICON_TYPE_NORMAL:
+        exo_icon_chooser_dialog_set_icon (EXO_ICON_CHOOSER_DIALOG (chooser),
+					  exo_str_is_empty (mwp->normal_icon) ? 
+					  DEFAULT_NORMAL_ICON : mwp->normal_icon);
+        break;
+    case ICON_TYPE_NEW_MAIL:
+        exo_icon_chooser_dialog_set_icon (EXO_ICON_CHOOSER_DIALOG (chooser),
+					  exo_str_is_empty (mwp->new_mail_icon) ?
+					  DEFAULT_NEW_MAIL_ICON : mwp->new_mail_icon);
+        break;
+    }
     
     if(gtk_dialog_run(GTK_DIALOG(chooser)) == GTK_RESPONSE_ACCEPT) {
-        gchar *filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(chooser));
+        gchar *filename = exo_icon_chooser_dialog_get_icon(EXO_ICON_CHOOSER_DIALOG(chooser));
         if(filename) {
             GtkWidget *label, *image, *vbox;
             GdkPixbuf **icon_pix;
