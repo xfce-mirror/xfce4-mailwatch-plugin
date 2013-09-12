@@ -1056,7 +1056,7 @@ mailwatch_construct(XfcePanelPlugin *plugin)
 #endif
     };
 
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
+    xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
     if(!(mwp = mailwatch_create(plugin)))
         exit(1);

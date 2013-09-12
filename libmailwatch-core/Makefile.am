@@ -1,8 +1,14 @@
+AM_CPPFLAGS = \
+	-DG_LOG_DOMAIN=\"libmailwatch-core\" \
+	-DPACKAGE_LOCALE_DIR=\"$(localedir)\" \
+	$(PLATFORM_CPPFLAGS)
+
 # gmail is not always built
 EXTRA_DIST = \
 	mailwatch-mailbox-gmail.c
 
-noinst_LTLIBRARIES = libmailwatch-core.la
+noinst_LTLIBRARIES = \
+	libmailwatch-core.la
 
 libmailwatch_core_la_SOURCES = \
 	mailwatch-common.c \
@@ -21,14 +27,14 @@ libmailwatch_core_la_SOURCES = \
 	mailwatch.h
 
 if HAVE_SSL_SUPPORT
-libmailwatch_core_la_SOURCES += mailwatch-mailbox-gmail.c
+libmailwatch_core_la_SOURCES += \
+	mailwatch-mailbox-gmail.c
 endif
 
 libmailwatch_core_la_CFLAGS = \
-	@GTHREAD_CFLAGS@ \
-	@GTK_CFLAGS@ \
-	@LIBXFCE4UI_CFLAGS@ \
-	@GNUTLS_CFLAGS@ \
-	@LIBGCRYPT_CFLAGS@ \
-	-DDATADIR=\"$(datadir)\" \
-	-DLOCALEDIR=\"$(localedir)\"
+	$(GTHREAD_CFLAGS) \
+	$(GTK_CFLAGS) \
+	$(LIBXFCE4UI_CFLAGS) \
+	$(GNUTLS_CFLAGS) \
+	$(LIBGCRYPT_CFLAGS) \
+	$(PLATFORM_CFLAGS)

@@ -114,7 +114,7 @@ xfce_mailwatch_new(void)
 {
     XfceMailwatch *mailwatch;
     
-    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
+    xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
     if(!g_thread_supported()) {
         g_thread_init(NULL);
