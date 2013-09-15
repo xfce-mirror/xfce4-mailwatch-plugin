@@ -132,10 +132,6 @@ AC_DEFINE_UNQUOTED([WEBSITE],
 
 AC_OUTPUT([
 Makefile
-doc/Makefile
-doc/C/Makefile
-doc/C/images/Makefile
-doc/version
 icons/Makefile
 icons/48x48/Makefile
 icons/scalable/Makefile
