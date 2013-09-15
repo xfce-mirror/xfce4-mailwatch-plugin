@@ -1,5 +1,4 @@
 SUBDIRS = \
-	doc \
 	icons \
 	libmailwatch-core \
 	panel-plugin \
