@@ -4,5 +4,5 @@ Encoding=UTF-8
 _Name=Mail Watcher
 _Comment=Check mail from multiple mailboxes
 Icon=xfce-mail
-X-XFCE-Module=mailwatch-plugin
+X-XFCE-Module=mailwatch
 X-XFCE-Internal=false

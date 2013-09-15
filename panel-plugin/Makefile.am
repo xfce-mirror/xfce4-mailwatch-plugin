@@ -8,15 +8,15 @@ AM_CPPFLAGS = \
 plugindir = $(libdir)/xfce4/panel/plugins
 
 plugin_LTLIBRARIES = \
-	libmailwatch-plugin.la
+	libmailwatch.la
 
-libmailwatch_plugin_la_SOURCES = \
+libmailwatch_la_SOURCES = \
 	mailwatch-plugin.c
 
-libmailwatch_plugin_la_DEPENDENCIES = \
+libmailwatch_la_DEPENDENCIES = \
 	$(top_builddir)/libmailwatch-core/libmailwatch-core.la
 
-libmailwatch_plugin_la_CFLAGS = \
+libmailwatch_la_CFLAGS = \
 	-I$(top_srcdir)/libmailwatch-core \
 	$(GTHREAD_CFLAGS) \
 	$(LIBXFCE4PANEL_CFLAGS) \
@@ -24,14 +24,14 @@ libmailwatch_plugin_la_CFLAGS = \
 	$(EXO_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
-libmailwatch_plugin_la_LDFLAGS = \
+libmailwatch_la_LDFLAGS = \
 	-avoid-version \
 	-module \
 	-no-undefined \
 	-export-symbols-regex '^xfce_panel_module_(preinit|init|construct)' \
 	$(PLATFORM_LDFLAGS)
 
-libmailwatch_plugin_la_LIBADD = \
+libmailwatch_la_LIBADD = \
 	$(top_builddir)/libmailwatch-core/libmailwatch-core.la \
 	$(GTHREAD_LIBS) \
 	$(LIBXFCE4PANEL_LIBS) \
