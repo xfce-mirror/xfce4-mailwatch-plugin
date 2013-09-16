@@ -497,7 +497,7 @@ gmail_config_timeout_spinbutton_changed_cb(GtkSpinButton *sb,
                                            gpointer user_data)
 {
     XfceMailwatchGMailMailbox *gmailbox = XFCE_MAILWATCH_GMAIL_MAILBOX(user_data);
-    gint value = gtk_spin_button_get_value_as_int(sb) * 60;
+    guint value = (guint) gtk_spin_button_get_value_as_int(sb) * 60;
     
     if(value == gmailbox->timeout)
         return FALSE;
