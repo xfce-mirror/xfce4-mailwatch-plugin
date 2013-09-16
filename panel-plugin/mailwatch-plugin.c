@@ -765,9 +765,10 @@ mailwatch_iconbtn_clicked_cb(GtkWidget *w, XfceMailwatchPlugin *mwp)
     if(gtk_dialog_run(GTK_DIALOG(chooser)) == GTK_RESPONSE_ACCEPT) {
         gchar *filename = exo_icon_chooser_dialog_get_icon(EXO_ICON_CHOOSER_DIALOG(chooser));
         if(filename) {
-            GtkWidget *label, *image, *vbox;
-            GdkPixbuf **icon_pix;
-            gchar **icon_path;
+            GtkWidget *image, *vbox;
+            GtkWidget *label = NULL;
+            GdkPixbuf **icon_pix = NULL;
+            gchar **icon_path = NULL;
 
             switch(icon_type) {
             case ICON_TYPE_NORMAL:
