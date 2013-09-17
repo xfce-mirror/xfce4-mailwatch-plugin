@@ -885,49 +885,60 @@ mailwatch_create_options(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
     cfg_page = xfce_mailwatch_get_configuration_page(mwp->mailwatch);
     if(cfg_page)
         gtk_box_pack_start(GTK_BOX(topvbox), GTK_WIDGET(cfg_page), TRUE, TRUE, 0);
-    
+    /* External programs. */
+    GtkWidget *table;
+    GtkWidget *lbl_onclick;
+    GtkWidget *lbl_onnewmessages;
+    GtkWidget *halign;
+
     frame = xfce_mailwatch_create_framebox(_("External Programs"), &frame_bin);
     gtk_widget_show(frame);
     gtk_box_pack_start(GTK_BOX(topvbox), frame, FALSE, FALSE, 0);
-    
-    vbox = gtk_vbox_new(FALSE, BORDER/2);
-    gtk_widget_show(vbox);
-    gtk_container_add(GTK_CONTAINER(frame_bin), vbox);
-    
-    hbox = gtk_hbox_new(FALSE, BORDER/2);
-    gtk_widget_show(hbox);
-    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-    
-    lbl = gtk_label_new_with_mnemonic(_("Run _on click:"));
-    gtk_widget_show(lbl);
-    gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
-    
+
+    table = gtk_table_new(2, 2, FALSE);
+    gtk_widget_show(table);
+    gtk_container_add(GTK_CONTAINER(frame_bin), table);
+    /* External programs - Labels. */
+    lbl_onclick = gtk_label_new_with_mnemonic(_("Run _on click:"));
+    gtk_widget_show(lbl_onclick);
+
+    halign = gtk_alignment_new(0, 0.5, 0, 0);
+    gtk_widget_show(halign);
+    gtk_container_add(GTK_CONTAINER(halign), lbl_onclick);
+    gtk_table_attach(GTK_TABLE(table), halign, 0, 1, 0, 1,
+    		     GTK_FILL, GTK_FILL, BORDER / 4, BORDER / 4);
+
+    lbl_onnewmessages = gtk_label_new_with_mnemonic(_("Run on new _messages:"));
+    gtk_widget_show(lbl_onnewmessages);
+
+    halign = gtk_alignment_new(0, 0.5, 0, 0);
+    gtk_widget_show(halign);
+    gtk_container_add(GTK_CONTAINER(halign), lbl_onnewmessages);
+    gtk_table_attach(GTK_TABLE(table), halign, 0, 1, 1, 2,
+    		     GTK_FILL, GTK_FILL, BORDER / 4, BORDER / 4);
+    /* External programs - Entries. */
     entry = gtk_entry_new();
     if(mwp->click_command)
         gtk_entry_set_text(GTK_ENTRY(entry), mwp->click_command);
     gtk_widget_show(entry);
-    gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
-    gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), entry);
+    gtk_box_pack_start(GTK_BOX(vbox), entry, TRUE, TRUE, 0);
+    gtk_label_set_mnemonic_widget(GTK_LABEL(lbl_onclick), entry);
     g_signal_connect(G_OBJECT(entry), "focus-out-event",
             G_CALLBACK(mailwatch_click_command_focusout_cb), mwp);
-    
-    hbox = gtk_hbox_new(FALSE, BORDER/2);
-    gtk_widget_show(hbox);
-    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-    
-    lbl = gtk_label_new_with_mnemonic(_("Run on new _messages:"));
-    gtk_widget_show(lbl);
-    gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
-    
+    gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 0, 1,
+    		     GTK_FILL | GTK_EXPAND, GTK_FILL, BORDER / 4, BORDER / 4);
+
     entry = gtk_entry_new();
     if(mwp->new_messages_command)
         gtk_entry_set_text(GTK_ENTRY(entry), mwp->new_messages_command);
     gtk_widget_show(entry);
-    gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
-    gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), entry);
+    gtk_box_pack_start(GTK_BOX(vbox), entry, TRUE, TRUE, 0);
+    gtk_label_set_mnemonic_widget(GTK_LABEL(lbl_onnewmessages), entry);
     g_signal_connect(G_OBJECT(entry), "focus-out-event",
             G_CALLBACK(mailwatch_newmsg_command_focusout_cb), mwp);
-    
+    gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 1, 2,
+    		     GTK_FILL | GTK_EXPAND, GTK_FILL, BORDER / 4, BORDER / 4);
+    /* Icons. */
     frame = xfce_mailwatch_create_framebox(_("Icons"), &frame_bin);
     gtk_widget_show(frame);
     gtk_box_pack_start(GTK_BOX(topvbox), frame, FALSE, FALSE, 0);
