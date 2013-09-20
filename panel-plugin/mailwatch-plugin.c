@@ -908,7 +908,6 @@ mailwatch_create_options(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
     entry = gtk_entry_new();
     if(mwp->click_command)
         gtk_entry_set_text(GTK_ENTRY(entry), mwp->click_command);
-    gtk_box_pack_start(GTK_BOX(vbox), entry, TRUE, TRUE, 0);
     gtk_label_set_mnemonic_widget(GTK_LABEL(lbl_onclick), entry);
     g_signal_connect(G_OBJECT(entry), "focus-out-event",
             G_CALLBACK(mailwatch_click_command_focusout_cb), mwp);
@@ -918,7 +917,6 @@ mailwatch_create_options(XfcePanelPlugin *plugin, XfceMailwatchPlugin *mwp)
     entry = gtk_entry_new();
     if(mwp->new_messages_command)
         gtk_entry_set_text(GTK_ENTRY(entry), mwp->new_messages_command);
-    gtk_box_pack_start(GTK_BOX(vbox), entry, TRUE, TRUE, 0);
     gtk_label_set_mnemonic_widget(GTK_LABEL(lbl_onnewmessages), entry);
     g_signal_connect(G_OBJECT(entry), "focus-out-event",
             G_CALLBACK(mailwatch_newmsg_command_focusout_cb), mwp);
