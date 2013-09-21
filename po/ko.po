@@ -1,24 +1,22 @@
-# Korean translation for the xfce4-mailwatch-plugin package.
-# Copyright (C) 2005-2012 Brian Tarricone et al.
-# This file is distributed under the same license as the xfce4-mailwatch-plugin package.
-# Seong-ho Cho <darkcircle.0426@gmail.com
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Darkcircle <darkcircle.0426@gmail.com>, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-mailwatch-plugin.master\n"
-"Report-Msgid-Bugs-To: xfce4-users-kr-i18n <xfce4-users-kr-i18n@lists.sourceforge.net>\n"
-"POT-Creation-Date: 2012-02-28 10:00+0000\n"
-"PO-Revision-Date: 2012-02-29 03:28+0900\n"
-"Last-Translator: Seong-ho, Cho <darkcircle.0426@gmail.com>\n"
-"Language-Team: xfce4-users-kr-i18n <xfce4-users-kr-i18n@lists.sourceforge.net>\n"
-"Language: ko\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-01 00:31+0200\n"
+"PO-Revision-Date: 2013-09-21 06:25+0000\n"
+"Last-Translator: Darkcircle <darkcircle.0426@gmail.com>\n"
+"Language-Team: Korean (http://www.transifex.com/projects/p/xfce/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Poedit-Language: Korean\n"
-"X-Poedit-Country: KOREA, REPUBLIC OF\n"
-"X-Poedit-SourceCharset: utf-8\n"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:204
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:399
@@ -29,12 +27,17 @@ msgstr "TLS 교환 실패: %s"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:255
 #, c-format
-msgid "Received HTTP response code %d.  The most likely reason for this is that your GMail username or password is incorrect."
+msgid ""
+"Received HTTP response code %d.  The most likely reason for this is that "
+"your GMail username or password is incorrect."
 msgstr "HTTP 응답 코드 %d을(를) 받았습니다. 대부분의 이유는 GMail 사용자이름 또는 암호가 잘못되었기 때문입니다."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
 #, c-format
-msgid "Received HTTP response code %d, which should be 200.  There may be a problem with GMail's servers, or they have incompatibly changed their authentication method or location of the new messages feed."
+msgid ""
+"Received HTTP response code %d, which should be 200.  There may be a problem"
+" with GMail's servers, or they have incompatibly changed their "
+"authentication method or location of the new messages feed."
 msgstr "200이어야 할 HTTP 응답 코드를 %d(으)로 받았습니다. 아마도 GMail 서버에 문제가 있거나, 호환되지 않은 인증 방식 또는 새 메시지 저장 위치가 바뀌었기 때문일지도 모릅니다."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
@@ -47,25 +50,25 @@ msgid "Previous thread hasn't exited yet, not checking mail this time."
 msgstr "이전 스레드를 끝내지 않아, 지금은 메일을 확인하지 않습니다."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1723
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:863
 msgid "_Username:"
 msgstr "사용자이름(_U):"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:555
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1768
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1743
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:883
 msgid "_Password:"
 msgstr "암호(_P):"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:576
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1807
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1782
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:915
 msgid "Check for _new messages every"
 msgstr "새 메시지 확인 시간 간격(_N)"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:591
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1821
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1796
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:374
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:412
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:605
@@ -78,18 +81,23 @@ msgid "Remote GMail Mailbox"
 msgstr "원격 GMail 메일함"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:669
-msgid "The GMail plugin can connect to Google's mail service and securely retrieve the number of new messages."
+msgid ""
+"The GMail plugin can connect to Google's mail service and securely retrieve "
+"the number of new messages."
 msgstr "GMail 플러그인은 구글 메일 서비스에 연결하고 새로운 메시지를 안전하게 전송할 수 있습니다."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
-msgid "Secure IMAP is not available, and the IMAP server does not support plaintext logins."
+msgid ""
+"Secure IMAP is not available, and the IMAP server does not support plaintext"
+" logins."
 msgstr "보안 IMAP을 사용할 수 없고, IMAP 서버가 평문 로그인을 지원하지 않습니다."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:337
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:370
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:242
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
-msgid "Authentication failed.  Perhaps your username or password is incorrect?"
+msgid ""
+"Authentication failed.  Perhaps your username or password is incorrect?"
 msgstr "인증에 실패했습니다. 아마도 사용자이름과 암호가 잘못된 것이 아닙니까?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
@@ -101,7 +109,7 @@ msgid "Failed to get folder list"
 msgstr "폴더 목록을 가져오는데 실패했습니다"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1289
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1524
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1499
 msgid "Please wait..."
 msgstr "잠시만 기다려 주십시오..."
 
@@ -114,7 +122,10 @@ msgid "No server or username is set."
 msgstr "지정된 서버나 사용자이름이 없습니다."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1398
-msgid "The folder list cannot be retrieved until a server, username, and probably password are set.  Also be sure to check any security settings in the Advanced dialog."
+msgid ""
+"The folder list cannot be retrieved until a server, username, and probably "
+"password are set.  Also be sure to check any security settings in the "
+"Advanced dialog."
 msgstr "서버, 사용자이름, 그리고 아마 암호까지 설정하지 않는다면 폴더 목록을 가져올 수 없습니다. 또한 고급 대화상자에서 보안 설정을 확인해보시기 바랍니다."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
@@ -125,65 +136,67 @@ msgstr "새 메일 폴더 지정"
 msgid "New Mail Folders"
 msgstr "새 메일 폴더"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1608
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1583
 msgid "Advanced IMAP Options"
 msgstr "고급 IMAP 옵션"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1619
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1594
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:757
 msgid "Connection"
 msgstr "연력"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1628
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1603
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:766
 msgid "Use unsecured connection"
 msgstr "안전하지 않은 연결 사용"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1629
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1604
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:767
 msgid "Use SSL/TLS on alternate port"
 msgstr "대체 포트상에서 SSL/TLS 사용"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1630
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1605
 msgid "Use SSL/TLS via STARTTLS"
 msgstr "STARTTLS를 통해 SSL/TLS 사용"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1646
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1621
 msgid "Use non-standard IMAP _port:"
 msgstr "비표준 IMAP 포트 사용(_P):"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1676
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1651
 msgid "Folders"
 msgstr "폴더"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1684
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1659
 msgid "IMAP server _directory:"
 msgstr "IMAP 서버 디렉터리(_D):"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1714
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1689
 msgid "IMAP Server"
 msgstr "IMAP 서버"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1728
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1703
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:843
 msgid "_Mail server:"
 msgstr "메일 서버(_M):"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1789
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1764
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:904
 msgid "_Advanced..."
 msgstr "고급(_A)..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1796
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1771
 msgid "New mail _folders..."
 msgstr "새 메일 폴더(_F)..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1985
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1960
 msgid "Remote IMAP Mailbox"
 msgstr "원격 IMAP 메일함"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1986
-msgid "The IMAP plugin can connect to a remote mail server that supports the IMAP protocol, optionally using SSL for link protection."
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1961
+msgid ""
+"The IMAP plugin can connect to a remote mail server that supports the IMAP "
+"protocol, optionally using SSL for link protection."
 msgstr "IMAP 플러그인이 IMAP 프로토콜을 지원하고 추가적으로 연결 보호를 위한 SSL을 사용하는 원격 메일 서버에 연결할 수 없습니다."
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
@@ -218,7 +231,9 @@ msgid "Local Maildir Spool"
 msgstr "지역 메일 디렉터리 스풀"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:451
-msgid "The Maildir plugin can watch a local maildir-style mail spool for new messages."
+msgid ""
+"The Maildir plugin can watch a local maildir-style mail spool for new "
+"messages."
 msgstr "메일 디렉토리 플러그인은 새 메시지에 대한 지역 메일디렉토리-방식의 메일 스풀을 감시할 수 있습니다."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
@@ -246,9 +261,7 @@ msgstr "잘못된 줄 %s(%s에 있음)을 무시했습니다."
 msgid ""
 "The configuration of this plugin is read from\n"
 "the default mh maildir profile file ~/.mh_profile"
-msgstr ""
-"이 플러그인의 설정은 기본 mh 메일 디렉터리 프로파일\n"
-"파일 ~/.mh_profile로 부터 읽어옵니다"
+msgstr "이 플러그인의 설정은 기본 mh 메일 디렉터리 프로파일\n파일 ~/.mh_profile로 부터 읽어옵니다"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:683
 msgid "Local MH mail folder"
@@ -279,17 +292,19 @@ msgid "Remote POP3 Mailbox"
 msgstr "원격 POP3 메일함"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1038
-msgid "The POP3 plugin can connect to a remote mail server that supports the POP3 protocol, optionally using SSL for link protection."
+msgid ""
+"The POP3 plugin can connect to a remote mail server that supports the POP3 "
+"protocol, optionally using SSL for link protection."
 msgstr "POP3 플러그인은 POP3 프로토콜을 지원하고 추가적으로 연결 보호를 위해 SSL을 사용하는 원격 메일서버에 연결할 수 있습니다."
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
 #: ../libmailwatch-core/mailwatch-net-conn.c:349
-#: ../libmailwatch-core/mailwatch-net-conn.c:694
-#: ../libmailwatch-core/mailwatch-net-conn.c:727
-#: ../libmailwatch-core/mailwatch-net-conn.c:783
-#: ../libmailwatch-core/mailwatch-net-conn.c:816
-#: ../libmailwatch-core/mailwatch-net-conn.c:846
+#: ../libmailwatch-core/mailwatch-net-conn.c:696
+#: ../libmailwatch-core/mailwatch-net-conn.c:729
+#: ../libmailwatch-core/mailwatch-net-conn.c:792
+#: ../libmailwatch-core/mailwatch-net-conn.c:825
+#: ../libmailwatch-core/mailwatch-net-conn.c:855
 #, c-format
 msgid "Operation aborted"
 msgstr "처리를 중지했습니다"
@@ -304,256 +319,227 @@ msgstr "\"%s\" 호스트를 찾을 수 없습니다: %s"
 msgid "Failed to connect to server \"%s\": %s"
 msgstr "\"%s\" 서버에 연결하는데 실패했습니다: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:645
+#: ../libmailwatch-core/mailwatch-net-conn.c:647
 #, c-format
 msgid "Not compiled with SSL/TLS support"
 msgstr "SSL/TLS 지원과 함께 컴파일 하지 않았습니다"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:701
+#: ../libmailwatch-core/mailwatch-net-conn.c:703
 #, c-format
 msgid "Failed to send encrypted data: %s"
 msgstr "암호화한 데이터를 전송하는데 실패했습니다: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:734
+#: ../libmailwatch-core/mailwatch-net-conn.c:736
 #, c-format
 msgid "Failed to send data: %s"
 msgstr "데이터를 전송하는데 실패했습니다: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:823
+#: ../libmailwatch-core/mailwatch-net-conn.c:832
 #, c-format
 msgid "Failed to receive encrypted data: %s"
 msgstr "암호화된 데이터를 전송받는데 실패했습니다: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:853
+#: ../libmailwatch-core/mailwatch-net-conn.c:862
 #, c-format
 msgid "Failed to receive data: %s"
 msgstr "데이터를 전송받는데 실패했습니다: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:951
+#: ../libmailwatch-core/mailwatch-net-conn.c:960
 #, c-format
 msgid "Canceling read: read too many bytes without a newline"
 msgstr "읽기 취소중: 줄바꿈 문자 없이 너무 많은 바이트가 읽혔습니다"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:960
-msgid "Buffer is not large enough to hold a full line (%"
-msgstr "버퍼가 완전한 줄을 유지하기 위해 충분히 크지 않습니다 (%"
+#: ../libmailwatch-core/mailwatch-net-conn.c:970
+#, c-format
+msgid "Buffer is not large enough to hold a full line (%s < %d)"
+msgstr "전체 라인을 유지하는데 버퍼가 충분히 크지 않습니다(%s < %d)"
 
-#: ../libmailwatch-core/mailwatch.c:126
-msgid "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."
+#: ../libmailwatch-core/mailwatch.c:122
+msgid ""
+"xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
+"likely a problem with your GLib install."
 msgstr "xfce4-mailwatch-plugin: GThread 지원을 초기화 할 수 없습니다. 아마도 GLib 설치에 문제가 있는 것 같습니다."
 
-#: ../libmailwatch-core/mailwatch.c:341
-#: ../libmailwatch-core/mailwatch.c:342
+#: ../libmailwatch-core/mailwatch.c:337 ../libmailwatch-core/mailwatch.c:338
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "설정 파일 '%s'에 기록할 수 없습니다"
 
-#: ../libmailwatch-core/mailwatch.c:406
-#: ../libmailwatch-core/mailwatch.c:408
+#: ../libmailwatch-core/mailwatch.c:402 ../libmailwatch-core/mailwatch.c:404
 #, c-format
-msgid "Unable to set permissions on config file '%s'.  If this file contains passwords or other sensitive information, it may be readable by others on your system."
+msgid ""
+"Unable to set permissions on config file '%s'.  If this file contains "
+"passwords or other sensitive information, it may be readable by others on "
+"your system."
 msgstr "설정 파일 '%s'에 권한을 설정할 수 없습니다. 만약 이 파일에 암호나 기타 민감한 정보가 있다면, 여러분의 시스템에서 다른 사람이 볼 수도 있습니다."
 
-#: ../libmailwatch-core/mailwatch.c:628
+#: ../libmailwatch-core/mailwatch.c:624
 msgid "This mailbox type does not require any configuration settings."
 msgstr "메일함 유형은 어떤 환경설정도 필요로 하지 않습니다."
 
-#: ../libmailwatch-core/mailwatch.c:655
+#: ../libmailwatch-core/mailwatch.c:651
 msgid "Mailbox _Name:"
 msgstr "메일함 이름(_N):"
 
-#: ../libmailwatch-core/mailwatch.c:673
+#: ../libmailwatch-core/mailwatch.c:669
 msgid "Mailwatch"
 msgstr "메일 감시"
 
-#: ../libmailwatch-core/mailwatch.c:674
+#: ../libmailwatch-core/mailwatch.c:670
 msgid "Mailbox name required."
 msgstr "메일함 이름이 필요합니다."
 
-#: ../libmailwatch-core/mailwatch.c:675
+#: ../libmailwatch-core/mailwatch.c:671
 msgid "Please enter a name for the mailbox."
 msgstr "메일함의 이름을 입력하여 주시기 바랍니다."
 
-#: ../libmailwatch-core/mailwatch.c:716
+#: ../libmailwatch-core/mailwatch.c:712
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "메일함 편집: %s"
 
-#: ../libmailwatch-core/mailwatch.c:775
+#: ../libmailwatch-core/mailwatch.c:771
 msgid "Select Mailbox Type"
 msgstr "메일함 유형 선택"
 
-#: ../libmailwatch-core/mailwatch.c:785
+#: ../libmailwatch-core/mailwatch.c:781
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr "메일함 유형을 선택합니다. 유형에 대한 설명은 아래에 나타날 것입니다."
 
-#: ../libmailwatch-core/mailwatch.c:839
+#: ../libmailwatch-core/mailwatch.c:835
 msgid "Add New Mailbox"
 msgstr "새 메일함 추가"
 
-#: ../libmailwatch-core/mailwatch.c:899
+#: ../libmailwatch-core/mailwatch.c:895
 msgid "Remove Mailbox"
 msgstr "메일함 제거"
 
-#: ../libmailwatch-core/mailwatch.c:900
+#: ../libmailwatch-core/mailwatch.c:896
 msgid "Are you sure?"
 msgstr "정말로 하시렵니까?"
 
-#: ../libmailwatch-core/mailwatch.c:901
+#: ../libmailwatch-core/mailwatch.c:897
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr "메일함을 제거하면 모든 설정을 무시할 것이며, 되돌릴 수 없습니다."
 
-#: ../libmailwatch-core/mailwatch.c:966
+#: ../libmailwatch-core/mailwatch.c:962
 msgid "Mailboxes"
 msgstr "메일함"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:114
-#: ../panel-plugin/mailwatch-plugin-4.2.c:269
-#: ../panel-plugin/mailwatch-plugin.c:112
-#: ../panel-plugin/mailwatch-plugin.c:115
-#: ../panel-plugin/mailwatch-plugin.c:431
-#: ../panel-plugin/mailwatch-plugin.c:434
+#: ../panel-plugin/mailwatch-plugin.c:111
+#: ../panel-plugin/mailwatch-plugin.c:426
 msgid "No new mail"
 msgstr "새 메일 없음"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:129
-#: ../panel-plugin/mailwatch-plugin.c:131
+#: ../panel-plugin/mailwatch-plugin.c:127
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
 msgstr[0] "%d개의 새로운 메시지가 있습니다:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:140
-#: ../panel-plugin/mailwatch-plugin.c:142
+#: ../panel-plugin/mailwatch-plugin.c:138
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "각각의 메일함에 새 메시지가 얼마나 있는지 알립니다|   %d (%s에서)"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:251
-#: ../panel-plugin/mailwatch-plugin.c:413
+#: ../panel-plugin/mailwatch-plugin.c:409
 msgid "Xfce Mailwatch"
 msgstr "Xfce 메일 감시"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:252
-#: ../panel-plugin/mailwatch-plugin.c:414
+#: ../panel-plugin/mailwatch-plugin.c:410
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "메일 감시 애플릿을 패널에 추가할 수 없습니다."
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:253
-#: ../panel-plugin/mailwatch-plugin.c:415
-msgid "It is possible that your version of GLib does not have threads support."
+#: ../panel-plugin/mailwatch-plugin.c:411
+msgid ""
+"It is possible that your version of GLib does not have threads support."
 msgstr "보유하신 GLib의 버전이 스레드를 지원하지 않을 가능성이 있습니다."
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:476
-#: ../panel-plugin/mailwatch-plugin.c:638
+#: ../panel-plugin/mailwatch-plugin.c:629
 msgid "Mailwatch log"
 msgstr "메일감시 로그"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:534
-#: ../panel-plugin/mailwatch-plugin.c:696
+#: ../panel-plugin/mailwatch-plugin.c:687
 msgid "Log _lines:"
 msgstr "로그 줄 수(_L):"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:548
-#: ../panel-plugin/mailwatch-plugin.c:710
+#: ../panel-plugin/mailwatch-plugin.c:701
 msgid "Show log _status in icon"
 msgstr "아이콘에 로그 상태 표시(_S)"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:594
-#: ../panel-plugin/mailwatch-plugin.c:754
+#: ../panel-plugin/mailwatch-plugin.c:745
 msgid "Select Icon"
 msgstr "아이콘 선택"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:624
-#: ../panel-plugin/mailwatch-plugin-4.2.c:744
-#: ../panel-plugin/mailwatch-plugin.c:785
-#: ../panel-plugin/mailwatch-plugin.c:966
+#: ../panel-plugin/mailwatch-plugin.c:776
+#: ../panel-plugin/mailwatch-plugin.c:960
 msgid "_Normal"
 msgstr "보통(_N)"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:649
-#: ../panel-plugin/mailwatch-plugin.c:811
+#: ../panel-plugin/mailwatch-plugin.c:802
 msgid "Ne_w mail"
 msgstr "새 메일(_W)"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:676
-#: ../panel-plugin/mailwatch-plugin.c:898
-msgid "External Programs"
-msgstr "외부 프로그램"
-
-#: ../panel-plugin/mailwatch-plugin-4.2.c:688
-#: ../panel-plugin/mailwatch-plugin.c:910
-msgid "Run _on click:"
-msgstr "누를 때 실행(_O):"
-
-#: ../panel-plugin/mailwatch-plugin-4.2.c:705
-#: ../panel-plugin/mailwatch-plugin.c:927
-msgid "Run on new _messages:"
-msgstr "새 메시지일 때 실행(_M):"
-
-#: ../panel-plugin/mailwatch-plugin-4.2.c:718
-#: ../panel-plugin/mailwatch-plugin.c:940
-msgid "Icons"
-msgstr "아이콘"
-
-#: ../panel-plugin/mailwatch-plugin-4.2.c:764
-#: ../panel-plugin/mailwatch-plugin.c:986
-msgid "Ne_w Mail"
-msgstr "새 메일(_W)"
-
-#: ../panel-plugin/mailwatch-plugin-4.2.c:772
-#: ../panel-plugin/mailwatch-plugin.c:877
-msgid "_View Log..."
-msgstr "로그 보기(_V)..."
-
-#: ../panel-plugin/mailwatch-plugin-4.2.c:885
-#: ../panel-plugin/mailwatch-plugin.c:858
-#: ../panel-plugin/mailwatch.desktop.in.in.h:2
-msgid "Mail Watcher"
-msgstr "메일 감시기"
-
-#: ../panel-plugin/mailwatch-plugin.c:829
+#: ../panel-plugin/mailwatch-plugin.c:822
 #, c-format
 msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
 msgstr "'xfhelp4'를 실행할 수 없어 도움말을 사용할 수 없습니다: %s"
 
-#: ../panel-plugin/mailwatch-plugin.c:831
+#: ../panel-plugin/mailwatch-plugin.c:824
 msgid "Help Unavailable"
 msgstr "도움말을 사용할 수 없습니다"
 
-#: ../panel-plugin/mailwatch-plugin.c:832
+#: ../panel-plugin/mailwatch-plugin.c:825
 msgid "Failed to run xfhelp4"
 msgstr "xfhelp4를 실행하는데 실패했습니다"
 
-#: ../panel-plugin/mailwatch-plugin.c:1054
+#: ../panel-plugin/mailwatch-plugin.c:851
+#: ../panel-plugin/mailwatch.desktop.in.in.h:1
+msgid "Mail Watcher"
+msgstr "메일 감시기"
+
+#: ../panel-plugin/mailwatch-plugin.c:870
+msgid "_View Log..."
+msgstr "로그 보기(_V)..."
+
+#: ../panel-plugin/mailwatch-plugin.c:891
+msgid "External Programs"
+msgstr "외부 프로그램"
+
+#: ../panel-plugin/mailwatch-plugin.c:903
+msgid "Run _on click:"
+msgstr "누를 때 실행(_O):"
+
+#: ../panel-plugin/mailwatch-plugin.c:920
+msgid "Run on new _messages:"
+msgstr "새 메시지일 때 실행(_M):"
+
+#: ../panel-plugin/mailwatch-plugin.c:933
+msgid "Icons"
+msgstr "아이콘"
+
+#: ../panel-plugin/mailwatch-plugin.c:981
+msgid "Ne_w Mail"
+msgstr "새 메일(_W)"
+
+#: ../panel-plugin/mailwatch-plugin.c:1043
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Xfce4 메일감시 플러그인"
 
-#: ../panel-plugin/mailwatch-plugin.c:1056
+#: ../panel-plugin/mailwatch-plugin.c:1046
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "Xfce 패널의 기능성 메일 확인 애플릿"
 
-#: ../panel-plugin/mailwatch-plugin.c:1057
+#: ../panel-plugin/mailwatch-plugin.c:1048
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
-msgstr ""
-"Copyright (c) 2005-2008 Brian Tarricone\n"
-"Copyright (c) 2005 Pasi Orovuo"
+msgstr "Copyright (c) 2005-2008 Brian Tarricone\nCopyright (c) 2005 Pasi Orovuo"
 
-#: ../panel-plugin/mailwatch-plugin.c:1063
-msgid "Maintainer, Original Author"
-msgstr "메인테이너, 원 저작자"
-
-#: ../panel-plugin/mailwatch-plugin.c:1065
-msgid "Developer"
-msgstr "개발자"
-
-#: ../panel-plugin/mailwatch-plugin.c:1145
+#: ../panel-plugin/mailwatch-plugin.c:1122
 msgid "Update Now"
 msgstr "지금 업데이트"
 
-#: ../panel-plugin/mailwatch.desktop.in.in.h:1
+#: ../panel-plugin/mailwatch.desktop.in.in.h:2
 msgid "Check mail from multiple mailboxes"
 msgstr "여러 개의 메일함에서 메일을 확인합니다"
-
