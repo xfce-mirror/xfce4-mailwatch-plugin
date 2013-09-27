@@ -48,28 +48,27 @@
 typedef struct
 {
     XfcePanelPlugin *plugin;
-    XfceMailwatch *mailwatch;
+    XfceMailwatch   *mailwatch;
     
     GtkWidget *button;
     GtkWidget *image;
     
     gboolean newmail_icon_visible;
-    guint new_messages;
-    GdkPixbuf *pix_normal;
-    GdkPixbuf *pix_newmail;
+    guint    new_messages;
     
     gchar *click_command;
     gchar *new_messages_command;
-    
-    gchar *normal_icon;
-    gchar *new_mail_icon;
-    
-    guint log_lines;
-    gboolean show_log_status;
 
-    GdkPixbuf               *pix_log[XFCE_MAILWATCH_N_LOG_LEVELS];
-    XfceMailwatchLogLevel   log_status;
-    GtkListStore            *loglist;
+    GdkPixbuf *pix_normal;
+    GdkPixbuf *pix_newmail;    
+    gchar     *normal_icon;
+    gchar     *new_mail_icon;
+    
+    guint                 log_lines;
+    gboolean              show_log_status;
+    GdkPixbuf             *pix_log[XFCE_MAILWATCH_N_LOG_LEVELS];
+    XfceMailwatchLogLevel log_status;
+    GtkListStore          *loglist;
 } XfceMailwatchPlugin;
 
 enum {
