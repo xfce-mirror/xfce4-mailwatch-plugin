@@ -63,7 +63,8 @@ typedef struct
     GdkPixbuf *pix_newmail;    
     gchar     *normal_icon;
     gchar     *new_mail_icon;
-    
+
+    GtkWidget             *log_dialog;
     guint                 log_lines;
     gboolean              show_log_status;
     GdkPixbuf             *pix_log[XFCE_MAILWATCH_N_LOG_LEVELS];
@@ -431,6 +432,7 @@ mailwatch_create(XfcePanelPlugin *plugin)
     gtk_widget_show(mwp->image);
     gtk_container_add(GTK_CONTAINER(mwp->button), mwp->image);
 
+    mwp->log_dialog = NULL;
     mwp->loglist = gtk_list_store_new(LOGLIST_N_COLUMNS,
                                       GDK_TYPE_PIXBUF,
                                       G_TYPE_STRING,
@@ -614,12 +616,11 @@ static void
 mailwatch_view_log_clicked_cb( GtkWidget *widget, gpointer user_data )
 {
     XfceMailwatchPlugin     *mwp = user_data;
-    static GtkWidget        *dialog = NULL;
     GtkWidget               *vbox, *hbox, *scrollw, *treeview, *button, *lbl,
                             *sbtn, *chk;
     
-    if(dialog) {
-        gtk_window_present(GTK_WINDOW(dialog));
+    if (mwp->log_dialog) {
+        gtk_window_present(GTK_WINDOW(mwp->log_dialog));
         return;
     }
 
@@ -628,22 +629,22 @@ mailwatch_view_log_clicked_cb( GtkWidget *widget, gpointer user_data )
                        xfce_panel_plugin_get_size(mwp->plugin),
                        mwp);
 
-    dialog = gtk_dialog_new_with_buttons(_( "Mailwatch log" ),
-                                         GTK_WINDOW(gtk_widget_get_toplevel(widget)),
-                                         GTK_DIALOG_MODAL
-                                         | GTK_DIALOG_DESTROY_WITH_PARENT
-                                         | GTK_DIALOG_NO_SEPARATOR,
-                                         NULL);
-    gtk_widget_set_size_request(dialog, 480, 240 );
-    g_signal_connect(G_OBJECT(dialog), "response",
+    mwp->log_dialog = gtk_dialog_new_with_buttons(_( "Mailwatch log" ),
+						  GTK_WINDOW(gtk_widget_get_toplevel(widget)),
+						  GTK_DIALOG_MODAL
+						  | GTK_DIALOG_DESTROY_WITH_PARENT
+						  | GTK_DIALOG_NO_SEPARATOR,
+						  NULL);
+    gtk_widget_set_size_request(mwp->log_dialog, 480, 240 );
+    g_signal_connect(G_OBJECT(mwp->log_dialog), "response",
                      G_CALLBACK(mailwatch_log_window_response_cb), mwp->loglist);
-    g_signal_connect_swapped(G_OBJECT(dialog), "destroy",
-                     G_CALLBACK(mailwatch_zero_pointer), &dialog);
+    g_signal_connect_swapped(G_OBJECT(mwp->log_dialog), "destroy",
+                     G_CALLBACK(mailwatch_zero_pointer), &mwp->log_dialog);
     
     vbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_container_set_border_width(GTK_CONTAINER(vbox), BORDER/2);
     gtk_widget_show(vbox);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog)->vbox), vbox, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(mwp->log_dialog)->vbox), vbox, TRUE, TRUE, 0);
 
     scrollw = gtk_scrolled_window_new( NULL, NULL );
     gtk_widget_show( scrollw );
@@ -709,14 +710,15 @@ mailwatch_view_log_clicked_cb( GtkWidget *widget, gpointer user_data )
     
     button = gtk_button_new_from_stock(GTK_STOCK_CLEAR);
     gtk_widget_show( button );
-    gtk_dialog_add_action_widget(GTK_DIALOG(dialog), button,
+    gtk_dialog_add_action_widget(GTK_DIALOG(mwp->log_dialog), button,
                                  XFCE_MAILWATCH_RESPONSE_CLEAR);
     
     button = gtk_button_new_from_stock(GTK_STOCK_CLOSE);
     gtk_widget_show( button );
-    gtk_dialog_add_action_widget(GTK_DIALOG(dialog), button, GTK_RESPONSE_ACCEPT);
+    gtk_dialog_add_action_widget(GTK_DIALOG(mwp->log_dialog), button,
+				 GTK_RESPONSE_ACCEPT);
     
-    gtk_widget_show(dialog);
+    gtk_widget_show(mwp->log_dialog);
 }
 
 static gboolean
