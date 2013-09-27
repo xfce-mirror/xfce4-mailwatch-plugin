@@ -98,8 +98,8 @@ mailwatch_set_default_config(XfceMailwatchPlugin *mwp)
         
 static void
 mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch,
-				  gpointer       new_message_count,
-				  gpointer       user_data)
+                                  gpointer       new_message_count,
+                                  gpointer       user_data)
 {
     XfceMailwatchPlugin *mwp = user_data;
     guint                new_messages = GPOINTER_TO_UINT(new_message_count);
@@ -171,8 +171,8 @@ mailwatch_button_press_cb(GtkWidget      *w,
 
 static gboolean
 mailwatch_button_release_cb(GtkWidget      *w,
-			    GdkEventButton *evt,
-			    gpointer        user_data)
+                            GdkEventButton *evt,
+                            gpointer        user_data)
 {
     XfceMailwatchPlugin *mwp = user_data;
     
@@ -247,8 +247,8 @@ mailwatch_log_message_cb(XfceMailwatch *mailwatch,
 
 static GdkPixbuf *
 mailwatch_get_mini_icon(GtkWidget   *dummy,
-			const gchar *icon_name,
-			gint         size)
+                        const gchar *icon_name,
+                        gint         size)
 {
     GdkPixbuf *pix;
     
@@ -298,7 +298,7 @@ mailwatch_build_icon(XfceMailwatchPlugin *mwp,
 
 static gboolean
 mailwatch_set_size(XfcePanelPlugin     *plugin,
-		   gint                 wsize, 
+                   gint                 wsize, 
                    XfceMailwatchPlugin *mwp)
 {
     gint size, img_width, img_height, width, height, i;
@@ -455,7 +455,7 @@ mailwatch_create(XfcePanelPlugin *plugin)
 
 static void
 mailwatch_read_config(XfcePanelPlugin     *plugin,
-		      XfceMailwatchPlugin *mwp)
+                      XfceMailwatchPlugin *mwp)
 {
     const char *value;
     gchar *file;
@@ -522,7 +522,7 @@ mailwatch_read_config(XfcePanelPlugin     *plugin,
 
 static void
 mailwatch_write_config(XfcePanelPlugin     *plugin, 
-		       XfceMailwatchPlugin *mwp)
+                       XfceMailwatchPlugin *mwp)
 {
     gchar *file;
     XfceRc *rc;
@@ -565,8 +565,8 @@ mailwatch_write_config(XfcePanelPlugin     *plugin,
 
 static gboolean
 mailwatch_click_command_focusout_cb(GtkWidget     *w,
-				    GdkEventFocus *evt,
-				    gpointer       user_data)
+                                    GdkEventFocus *evt,
+                                    gpointer       user_data)
 {
     XfceMailwatchPlugin *mwp = user_data;
     gchar *command;
@@ -601,7 +601,7 @@ mailwatch_zero_pointer(GtkWidget **w)
 
 static void
 mailwatch_log_lines_changed_cb(GtkWidget *w,
-			       gpointer   user_data)
+                               gpointer   user_data)
 {
     XfceMailwatchPlugin *mwp = user_data;
     
@@ -610,7 +610,7 @@ mailwatch_log_lines_changed_cb(GtkWidget *w,
 
 static void
 mailwatch_log_status_toggled_cb(GtkToggleButton *tb,
-				gpointer         user_data)
+                                gpointer         user_data)
 {
     XfceMailwatchPlugin *mwp = user_data;
     
@@ -624,7 +624,7 @@ mailwatch_log_status_toggled_cb(GtkToggleButton *tb,
 
 static void
 mailwatch_view_log_clicked_cb(GtkWidget *widget,
-			      gpointer   user_data )
+                              gpointer   user_data )
 {
     XfceMailwatchPlugin     *mwp = user_data;
     GtkWidget               *vbox, *hbox, *scrollw, *treeview, *button, *lbl,
@@ -641,11 +641,11 @@ mailwatch_view_log_clicked_cb(GtkWidget *widget,
                        mwp);
 
     mwp->log_dialog = gtk_dialog_new_with_buttons(_( "Mailwatch log" ),
-						  GTK_WINDOW(gtk_widget_get_toplevel(widget)),
-						  GTK_DIALOG_MODAL
-						  | GTK_DIALOG_DESTROY_WITH_PARENT
-						  | GTK_DIALOG_NO_SEPARATOR,
-						  NULL);
+                                                  GTK_WINDOW(gtk_widget_get_toplevel(widget)),
+                                                  GTK_DIALOG_MODAL
+                                                  | GTK_DIALOG_DESTROY_WITH_PARENT
+                                                  | GTK_DIALOG_NO_SEPARATOR,
+                                                  NULL);
     gtk_widget_set_size_request(mwp->log_dialog, 480, 240 );
     g_signal_connect(G_OBJECT(mwp->log_dialog), "response",
                      G_CALLBACK(mailwatch_log_window_response_cb), mwp->loglist);
@@ -727,15 +727,15 @@ mailwatch_view_log_clicked_cb(GtkWidget *widget,
     button = gtk_button_new_from_stock(GTK_STOCK_CLOSE);
     gtk_widget_show( button );
     gtk_dialog_add_action_widget(GTK_DIALOG(mwp->log_dialog), button,
-				 GTK_RESPONSE_ACCEPT);
+                                 GTK_RESPONSE_ACCEPT);
     
     gtk_widget_show(mwp->log_dialog);
 }
 
 static gboolean
 mailwatch_newmsg_command_focusout_cb(GtkWidget     *w,
-				     GdkEventFocus *evt,
-				     gpointer       user_data)
+                                     GdkEventFocus *evt,
+                                     gpointer       user_data)
 {
     XfceMailwatchPlugin *mwp = user_data;
     gchar *command;
@@ -750,7 +750,7 @@ mailwatch_newmsg_command_focusout_cb(GtkWidget     *w,
 
 static void
 mailwatch_iconbtn_clicked_cb(GtkWidget           *w,
-			     XfceMailwatchPlugin *mwp)
+                             XfceMailwatchPlugin *mwp)
 {
     GtkWidget *chooser, *toplevel;
     gint icon_type = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(w),
@@ -760,22 +760,22 @@ mailwatch_iconbtn_clicked_cb(GtkWidget           *w,
     
     toplevel = gtk_widget_get_toplevel(w);
     chooser = exo_icon_chooser_dialog_new (_("Select Icon"),
-					   GTK_WINDOW(gtk_widget_get_toplevel(toplevel)),
-					   GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-					   GTK_STOCK_OK, GTK_RESPONSE_ACCEPT,
-					   NULL);
+                                           GTK_WINDOW(gtk_widget_get_toplevel(toplevel)),
+                                           GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                           GTK_STOCK_OK, GTK_RESPONSE_ACCEPT,
+                                           NULL);
     gtk_dialog_set_default_response(GTK_DIALOG(chooser), GTK_RESPONSE_ACCEPT);
     /* Preselect actually used icon */
     switch(icon_type) {
     case ICON_TYPE_NORMAL:
         exo_icon_chooser_dialog_set_icon (EXO_ICON_CHOOSER_DIALOG (chooser),
-					  exo_str_is_empty (mwp->normal_icon) ? 
-					  DEFAULT_NORMAL_ICON : mwp->normal_icon);
+                                          exo_str_is_empty (mwp->normal_icon) ? 
+                                          DEFAULT_NORMAL_ICON : mwp->normal_icon);
         break;
     case ICON_TYPE_NEW_MAIL:
         exo_icon_chooser_dialog_set_icon (EXO_ICON_CHOOSER_DIALOG (chooser),
-					  exo_str_is_empty (mwp->new_mail_icon) ?
-					  DEFAULT_NEW_MAIL_ICON : mwp->new_mail_icon);
+                                          exo_str_is_empty (mwp->new_mail_icon) ?
+                                          DEFAULT_NEW_MAIL_ICON : mwp->new_mail_icon);
         break;
     }
     
@@ -843,8 +843,8 @@ mailwatch_help_clicked_cb(GtkWidget *w,
 
 static void
 mailwatch_dialog_response(GtkWidget           *dlg, 
-			  int                  response, 
-			  XfceMailwatchPlugin *mwp)
+                          int                  response, 
+                          XfceMailwatchPlugin *mwp)
 {
     gtk_widget_destroy(dlg);
     xfce_panel_plugin_unblock_menu(mwp->plugin);
@@ -853,7 +853,7 @@ mailwatch_dialog_response(GtkWidget           *dlg,
 
 static void
 mailwatch_create_options(XfcePanelPlugin     *plugin,
-			 XfceMailwatchPlugin *mwp)
+                         XfceMailwatchPlugin *mwp)
 {
     GtkWidget *dlg, *topvbox, *frame, *frame_bin, *hbox, *lbl, *entry, *btn,
               *vbox, *img;
@@ -913,13 +913,13 @@ mailwatch_create_options(XfcePanelPlugin     *plugin,
     halign = gtk_alignment_new(0, 0.5, 0, 0);
     gtk_container_add(GTK_CONTAINER(halign), lbl_onclick);
     gtk_table_attach(GTK_TABLE(table), halign, 0, 1, 0, 1,
-    		     GTK_FILL, GTK_FILL, BORDER / 4, BORDER / 4);
+                     GTK_FILL, GTK_FILL, BORDER / 4, BORDER / 4);
 
     lbl_onnewmessages = gtk_label_new_with_mnemonic(_("Run on new _messages:"));
     halign = gtk_alignment_new(0, 0.5, 0, 0);
     gtk_container_add(GTK_CONTAINER(halign), lbl_onnewmessages);
     gtk_table_attach(GTK_TABLE(table), halign, 0, 1, 1, 2,
-    		     GTK_FILL, GTK_FILL, BORDER / 4, BORDER / 4);
+                     GTK_FILL, GTK_FILL, BORDER / 4, BORDER / 4);
     /* External programs - Entries. */
     entry = gtk_entry_new();
     if(mwp->click_command)
@@ -928,7 +928,7 @@ mailwatch_create_options(XfcePanelPlugin     *plugin,
     g_signal_connect(G_OBJECT(entry), "focus-out-event",
             G_CALLBACK(mailwatch_click_command_focusout_cb), mwp);
     gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 0, 1,
-    		     GTK_FILL | GTK_EXPAND, GTK_FILL, BORDER / 4, BORDER / 4);
+                     GTK_FILL | GTK_EXPAND, GTK_FILL, BORDER / 4, BORDER / 4);
 
     entry = gtk_entry_new();
     if(mwp->new_messages_command)
@@ -937,7 +937,7 @@ mailwatch_create_options(XfcePanelPlugin     *plugin,
     g_signal_connect(G_OBJECT(entry), "focus-out-event",
             G_CALLBACK(mailwatch_newmsg_command_focusout_cb), mwp);
     gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 1, 2,
-    		     GTK_FILL | GTK_EXPAND, GTK_FILL, BORDER / 4, BORDER / 4);
+                     GTK_FILL | GTK_EXPAND, GTK_FILL, BORDER / 4, BORDER / 4);
     /* Icons. */
     frame = xfce_mailwatch_create_framebox(_("Icons"), &frame_bin);
     gtk_box_pack_start(GTK_BOX(topvbox), frame, FALSE, FALSE, 0);
@@ -989,7 +989,7 @@ mailwatch_create_options(XfcePanelPlugin     *plugin,
 
 static void
 mailwatch_free(XfcePanelPlugin     *plugin,
-	       XfceMailwatchPlugin *mwp)
+               XfceMailwatchPlugin *mwp)
 {
     gint i;
 
