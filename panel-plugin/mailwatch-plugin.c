@@ -1,5 +1,6 @@
 /*
  *  xfce4-mailwatch-plugin - a mail notification applet for the xfce4 panel
+ *  Copyright (c) 2013 Ján Sučan <sucan@runbox.com>
  *  Copyright (c) 2005-2008 Brian Tarricone <bjt23@cornell.edu>
  *  Copyright (c) 2005 Jasper Huijsmans <jasper@xfce.org>
  *
