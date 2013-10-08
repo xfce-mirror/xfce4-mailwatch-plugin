@@ -1056,7 +1056,6 @@ mailwatch_show_about(XfcePanelPlugin *plugin,
         g_object_unref(G_OBJECT(icon));
 }
 
-#ifdef HAVE_XFCE_POSIX_SIGNAL_HANDLER_INIT
 static void
 mailwatch_handle_sigusr2(gint     signal_,
                          gpointer user_data)
@@ -1064,7 +1063,6 @@ mailwatch_handle_sigusr2(gint     signal_,
     XfceMailwatchPlugin *mwp = user_data;
     xfce_mailwatch_force_update(mwp->mailwatch);
 }
-#endif
 
 static void
 mailwatch_construct(XfcePanelPlugin *plugin)
@@ -1085,7 +1083,6 @@ mailwatch_construct(XfcePanelPlugin *plugin)
     
     mailwatch_read_config(plugin, mwp);
 
-#ifdef HAVE_XFCE_POSIX_SIGNAL_HANDLER_INIT
     if(xfce_posix_signal_handler_init(NULL)) {
         GError *error = NULL;
 
@@ -1097,9 +1094,7 @@ mailwatch_construct(XfcePanelPlugin *plugin)
             g_error_free(error);
             sigaction(SIGUSR2, &sa, NULL);
         }
-    } else
-#endif
-    {
+    } else {
         g_warning("failed to init POSIX signal handler helper");
         sigaction(SIGUSR2, &sa, NULL);
     }
