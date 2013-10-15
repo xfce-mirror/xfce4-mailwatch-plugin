@@ -127,7 +127,7 @@ AC_MSG_RESULT([$PLATFORM_LDFLAGS])
 AC_SUBST([PLATFORM_LDFLAGS])
 
 AC_DEFINE_UNQUOTED([WEBSITE],
-                   ["http://spuriousinterrupt.org/projects/mailwatch"],
+                   ["http://goodies.xfce.org/projects/panel-plugins/xfce4-mailwatch-plugin"],
                    [The Mailwatch website])
 
 AC_OUTPUT([
