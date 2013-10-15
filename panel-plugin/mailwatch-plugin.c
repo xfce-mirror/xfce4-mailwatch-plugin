@@ -18,6 +18,35 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+/*
+ * Source code of functions mailwatch_help_auto_toggled_cb,
+ * mailwatch_help_show_uri, mailwatch_help_response_cb and
+ * mailwatch_help_clicked_cb was taken from the xfce-dialogs.c file of
+ * libxfce4ui library and modified on (dd-mm-yyyy):
+ *
+ *   15-10-2013
+ *
+ * Below is the copyright notice of the xfce-dialogs.c code.
+ *
+ * Copyright (c) 2006-2007 Benedikt Meurer <benny@xfce.org>
+ * Copyright (c) 2007      The Xfce Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
+ */
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -71,6 +100,8 @@ typedef struct
     GdkPixbuf             *pix_log[XFCE_MAILWATCH_N_LOG_LEVELS];
     XfceMailwatchLogLevel log_status;
     GtkListStore          *loglist;
+
+    gboolean auto_open_online_doc;
 } XfceMailwatchPlugin;
 
 enum {
@@ -512,7 +543,9 @@ mailwatch_read_config(XfcePanelPlugin     *plugin,
     mwp->log_lines = xfce_rc_read_int_entry(rc, "log_lines", DEFAULT_LOG_LINES);
     
     mwp->show_log_status = xfce_rc_read_bool_entry(rc, "show_log_status", TRUE);
-    
+
+    mwp->auto_open_online_doc = xfce_rc_read_bool_entry(rc, "auto_open_online_doc", FALSE);
+
     xfce_rc_close(rc);
     
     xfce_mailwatch_set_config_file(mwp->mailwatch, file);
@@ -555,7 +588,8 @@ mailwatch_write_config(XfcePanelPlugin     *plugin,
                         mwp->new_mail_icon?mwp->new_mail_icon:DEFAULT_NEW_MAIL_ICON);
     xfce_rc_write_int_entry(rc, "log_lines", mwp->log_lines);
     xfce_rc_write_bool_entry(rc, "show_log_status", mwp->show_log_status);
-    
+    xfce_rc_write_bool_entry(rc, "auto_open_online_doc", mwp->auto_open_online_doc);
+
     xfce_rc_close(rc);
     
     xfce_mailwatch_set_config_file(mwp->mailwatch, file);
@@ -824,22 +858,110 @@ mailwatch_iconbtn_clicked_cb(GtkWidget           *w,
 }
 
 static void
+mailwatch_help_auto_toggled_cb(GtkWidget *button,
+                               gpointer   user_data)
+{
+    XfceMailwatchPlugin *mwp = user_data;
+
+    if (button != NULL)
+        mwp->auto_open_online_doc = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button));
+    else
+        mwp->auto_open_online_doc = FALSE;
+}
+
+static void
+mailwatch_help_show_uri(GdkScreen *screen,
+                        GtkWindow *parent)
+{
+    GError *error = NULL;
+
+    g_return_if_fail(GDK_IS_SCREEN(screen));
+    g_return_if_fail(parent == NULL || GTK_IS_WINDOW(parent));
+
+    if (!gtk_show_uri(screen, WEBSITE, gtk_get_current_event_time(), &error)) {
+        xfce_dialog_show_error(parent, error,
+                               _("Failed to open web browser for online documentation"));
+        g_error_free(error);
+    }
+}
+
+static void
+mailwatch_help_response_cb(GtkWidget *dialog,
+                           gint       response_id,
+                           gpointer   user_data)
+{
+    XfceMailwatchPlugin *mwp = user_data;
+
+    gtk_widget_hide(dialog);
+
+    if (response_id == GTK_RESPONSE_YES) {
+        mailwatch_help_show_uri(gtk_widget_get_screen(dialog),
+                                gtk_window_get_transient_for(GTK_WINDOW(dialog)));
+    } else {
+        /* Unset auto. */
+        mailwatch_help_auto_toggled_cb(NULL, mwp);
+    }
+
+    gtk_widget_destroy(dialog);
+}
+
+static void
 mailwatch_help_clicked_cb(GtkWidget *w,
                           gpointer   user_data)
 {
-    GError *err = NULL;
-    
-    if(!xfce_spawn_command_line_on_screen(gdk_screen_get_default(),
-                                          "xfhelp4 xfce4-mailwatch-plugin.html",
-                                          FALSE, FALSE, &err)) {
-        gchar *secondary = g_strdup_printf(_("Help is unavailable because 'xfhelp4' could not be run: %s"),
-                                           err->message);
-        xfce_message_dialog(NULL, _("Help Unavailable"), GTK_STOCK_DIALOG_ERROR,
-                            _("Failed to run xfhelp4"), secondary,
-                            GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
-        g_free(secondary);
-        g_error_free(err);
+    GtkWidget   *dialog;
+    GtkWidget   *message_box;
+    GtkWidget   *button;
+    GdkScreen   *screen;
+    GtkWidget   *toplevel;
+    GtkWindow   *parent;
+    XfceMailwatchPlugin *mwp = user_data;
+
+    toplevel = gtk_widget_get_toplevel(w);
+    g_return_if_fail(gtk_widget_is_toplevel(toplevel) &&  GTK_IS_WINDOW(toplevel));
+    parent = (GtkWindow *) toplevel;
+    /* Check if we should automatically go online. */
+    if (mwp->auto_open_online_doc) {
+        screen = gtk_window_get_screen (GTK_WINDOW (parent));
+        mailwatch_help_show_uri (screen, parent);
+        return;
     }
+
+    dialog = xfce_message_dialog_new (parent,
+                                      _("Online Documentation"),
+                                      GTK_STOCK_DIALOG_QUESTION,
+                                      _("Do you want to read the manual online?"),
+                                      _("You will be redirected to the documentation website "
+                                        "where the help pages are maintained."),
+                                      GTK_STOCK_CANCEL, GTK_RESPONSE_NO,
+                                      XFCE_BUTTON_TYPE_MIXED,
+                                      GTK_STOCK_HELP, _("_Read Online"),
+                                      GTK_RESPONSE_YES,
+                                      NULL);
+
+#if GTK_CHECK_VERSION(2, 22, 0)
+    message_box = gtk_message_dialog_get_message_area (GTK_MESSAGE_DIALOG (dialog));
+#else
+    message_box = gtk_widget_get_parent (GTK_MESSAGE_DIALOG (dialog)->label);
+    g_return_if_fail (GTK_IS_VBOX (message_box));
+#endif
+
+    button = gtk_check_button_new_with_mnemonic (_("_Always go directly to the online documentation"));
+    gtk_box_pack_end (GTK_BOX (message_box), button, FALSE, TRUE, 0);
+    g_signal_connect (G_OBJECT (button), "toggled",
+                      G_CALLBACK (mailwatch_help_auto_toggled_cb), mwp);
+    gtk_widget_show (button);
+
+    /* Don't focus the checkbutton. */
+    gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_YES);
+    button = gtk_dialog_get_widget_for_response (GTK_DIALOG (dialog), GTK_RESPONSE_YES);
+    gtk_widget_grab_focus (button);
+
+    /* Show the dialog without locking the mainloop. */
+    gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
+    g_signal_connect (G_OBJECT (dialog), "response",
+        G_CALLBACK (mailwatch_help_response_cb), mwp);
+    gtk_window_present (GTK_WINDOW (dialog));
 }
 
 static void
