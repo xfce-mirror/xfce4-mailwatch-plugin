@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-01 00:31+0200\n"
-"PO-Revision-Date: 2013-10-04 23:11+0000\n"
+"POT-Creation-Date: 2013-10-16 00:31+0200\n"
+"PO-Revision-Date: 2013-10-17 06:46+0000\n"
 "Last-Translator: k3lt01 <keltoiboy@gmail.com>\n"
 "Language-Team: English (Australia) (http://www.transifex.com/projects/p/xfce/language/en_AU/)\n"
 "MIME-Version: 1.0\n"
@@ -426,121 +426,134 @@ msgstr "Removing a mailbox will discard all settings, and cannot be undone."
 msgid "Mailboxes"
 msgstr "Mailboxes"
 
-#: ../panel-plugin/mailwatch-plugin.c:114
-#: ../panel-plugin/mailwatch-plugin.c:433
+#: ../panel-plugin/mailwatch-plugin.c:145
+#: ../panel-plugin/mailwatch-plugin.c:464
 msgid "No new mail"
 msgstr "No new mail"
 
-#: ../panel-plugin/mailwatch-plugin.c:130
+#: ../panel-plugin/mailwatch-plugin.c:161
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
 msgstr[0] "You have %d new message:"
 msgstr[1] "You have %d new messages:"
 
-#: ../panel-plugin/mailwatch-plugin.c:141
+#: ../panel-plugin/mailwatch-plugin.c:172
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "    %d in %s"
 
-#: ../panel-plugin/mailwatch-plugin.c:416
+#: ../panel-plugin/mailwatch-plugin.c:447
 msgid "Xfce Mailwatch"
 msgstr "Xfce Mailwatch"
 
-#: ../panel-plugin/mailwatch-plugin.c:417
+#: ../panel-plugin/mailwatch-plugin.c:448
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "The mailwatch applet cannot be added to the panel."
 
-#: ../panel-plugin/mailwatch-plugin.c:418
+#: ../panel-plugin/mailwatch-plugin.c:449
 msgid ""
 "It is possible that your version of GLib does not have threads support."
 msgstr "It is possible that your version of GLib does not have threads support."
 
-#: ../panel-plugin/mailwatch-plugin.c:644
+#: ../panel-plugin/mailwatch-plugin.c:678
 msgid "Mailwatch log"
 msgstr "Mailwatch log"
 
-#: ../panel-plugin/mailwatch-plugin.c:702
+#: ../panel-plugin/mailwatch-plugin.c:736
 msgid "Log _lines:"
 msgstr "Log _lines:"
 
-#: ../panel-plugin/mailwatch-plugin.c:716
+#: ../panel-plugin/mailwatch-plugin.c:750
 msgid "Show log _status in icon"
 msgstr "Show log _status in icon"
 
-#: ../panel-plugin/mailwatch-plugin.c:763
+#: ../panel-plugin/mailwatch-plugin.c:797
 msgid "Select Icon"
 msgstr "Select Icon"
 
-#: ../panel-plugin/mailwatch-plugin.c:795
-#: ../panel-plugin/mailwatch-plugin.c:965
+#: ../panel-plugin/mailwatch-plugin.c:829
+#: ../panel-plugin/mailwatch-plugin.c:1087
 msgid "_Normal"
 msgstr "_Normal"
 
-#: ../panel-plugin/mailwatch-plugin.c:800
+#: ../panel-plugin/mailwatch-plugin.c:834
 msgid "Ne_w mail"
 msgstr "Ne_w mail"
 
-#: ../panel-plugin/mailwatch-plugin.c:835
-#, c-format
-msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
-msgstr "Help is unavailable because 'xfhelp4' could not be run: %s"
+#: ../panel-plugin/mailwatch-plugin.c:883
+msgid "Failed to open web browser for online documentation"
+msgstr "Failed to open web browser for online documentation"
 
-#: ../panel-plugin/mailwatch-plugin.c:837
-msgid "Help Unavailable"
-msgstr "Help Unavailable"
+#: ../panel-plugin/mailwatch-plugin.c:931
+msgid "Online Documentation"
+msgstr "Online Documentation"
 
-#: ../panel-plugin/mailwatch-plugin.c:838
-msgid "Failed to run xfhelp4"
-msgstr "Failed to run xfhelp4"
+#: ../panel-plugin/mailwatch-plugin.c:933
+msgid "Do you want to read the manual online?"
+msgstr "Do you want to read the manual online?"
 
-#: ../panel-plugin/mailwatch-plugin.c:866
+#: ../panel-plugin/mailwatch-plugin.c:934
+msgid ""
+"You will be redirected to the documentation website where the help pages are"
+" maintained."
+msgstr "You will be redirected to the documentation website where the help pages are maintained."
+
+#: ../panel-plugin/mailwatch-plugin.c:938
+msgid "_Read Online"
+msgstr "_Read Online"
+
+#: ../panel-plugin/mailwatch-plugin.c:949
+msgid "_Always go directly to the online documentation"
+msgstr "_Always go directly to the online documentation"
+
+#: ../panel-plugin/mailwatch-plugin.c:988
 #: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "Mail Watcher"
 
-#: ../panel-plugin/mailwatch-plugin.c:884
+#: ../panel-plugin/mailwatch-plugin.c:1006
 msgid "_View Log..."
 msgstr "_View Log..."
 
-#: ../panel-plugin/mailwatch-plugin.c:907
+#: ../panel-plugin/mailwatch-plugin.c:1029
 msgid "External Programs"
 msgstr "External Programs"
 
 #. External programs - Labels.
-#: ../panel-plugin/mailwatch-plugin.c:913
+#: ../panel-plugin/mailwatch-plugin.c:1035
 msgid "Run _on click:"
 msgstr "Run _on click:"
 
-#: ../panel-plugin/mailwatch-plugin.c:919
+#: ../panel-plugin/mailwatch-plugin.c:1041
 msgid "Run on new _messages:"
 msgstr "Run on new _messages:"
 
 #. Icons.
-#: ../panel-plugin/mailwatch-plugin.c:943
+#: ../panel-plugin/mailwatch-plugin.c:1065
 msgid "Icons"
 msgstr "Icons"
 
-#: ../panel-plugin/mailwatch-plugin.c:982
+#: ../panel-plugin/mailwatch-plugin.c:1104
 msgid "Ne_w Mail"
 msgstr "Ne_w Mail"
 
-#: ../panel-plugin/mailwatch-plugin.c:1044
+#: ../panel-plugin/mailwatch-plugin.c:1166
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Xfce4 Mailwatch Plugin"
 
-#: ../panel-plugin/mailwatch-plugin.c:1047
+#: ../panel-plugin/mailwatch-plugin.c:1169
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "A full-featured mail-checker applet for the Xfce Panel"
 
-#: ../panel-plugin/mailwatch-plugin.c:1049
+#: ../panel-plugin/mailwatch-plugin.c:1171
 msgid ""
 "Copyright (c) 2013 Ján Sučan\n"
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 msgstr "Copyright (c) 2013 Ján Sučan\nCopyright (c) 2005-2008 Brian Tarricone\nCopyright (c) 2005 Pasi Orovuo"
 
-#: ../panel-plugin/mailwatch-plugin.c:1124
+#: ../panel-plugin/mailwatch-plugin.c:1241
 msgid "Update Now"
 msgstr "Update Now"
 
