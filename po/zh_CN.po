@@ -8,13 +8,15 @@
 # Hydonsingore Cia <hydonsingore@mail.educities.edu.tw>, 2006
 # 玉堂白鹤 <yjwork@qq.com>, 2013
 # 潇波 周 <zhouxiaobo.500@gmail.com>, 2013
+# 潇波 周 <zhouxiaobo.500@gmail.com>, 2013
+# 玉堂白鹤 <yjwork@qq.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-01 00:31+0200\n"
-"PO-Revision-Date: 2013-10-06 09:55+0000\n"
-"Last-Translator: 潇波 周 <zhouxiaobo.500@gmail.com>\n"
+"POT-Creation-Date: 2013-10-16 00:31+0200\n"
+"PO-Revision-Date: 2013-10-17 12:21+0000\n"
+"Last-Translator: Chipong <chipong.luo@yahoo.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/xfce/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,7 +53,7 @@ msgstr "收到了 HTTP 回复代码 %d，本应该是 200。可能是 GMail 服�
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:488
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:549
 msgid "Previous thread hasn't exited yet, not checking mail this time."
-msgstr "之前的线程尚未结束，此次不检查新邮件。"
+msgstr "之前的主线尚未结束，此次不检查新邮件。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:536
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1724
@@ -356,7 +358,7 @@ msgstr "取消读取：无新行时读取了太多字节"
 #: ../libmailwatch-core/mailwatch-net-conn.c:966
 #, c-format
 msgid "Buffer is not large enough to hold a full line (%s < %d)"
-msgstr "缓冲区不足以容纳整行  (%s < %d)"
+msgstr "缓冲区不足以容纳整行(%s < %d)"
 
 #: ../libmailwatch-core/mailwatch.c:123
 msgid ""
@@ -430,120 +432,133 @@ msgstr "移除邮箱会丢弃所有设置，而且不能撤销。"
 msgid "Mailboxes"
 msgstr "邮箱"
 
-#: ../panel-plugin/mailwatch-plugin.c:114
-#: ../panel-plugin/mailwatch-plugin.c:433
+#: ../panel-plugin/mailwatch-plugin.c:145
+#: ../panel-plugin/mailwatch-plugin.c:464
 msgid "No new mail"
 msgstr "无新邮件"
 
-#: ../panel-plugin/mailwatch-plugin.c:130
+#: ../panel-plugin/mailwatch-plugin.c:161
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
 msgstr[0] "您有 %d 个新邮件："
 
-#: ../panel-plugin/mailwatch-plugin.c:141
+#: ../panel-plugin/mailwatch-plugin.c:172
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "    %2$s 中的 %1$d"
 
-#: ../panel-plugin/mailwatch-plugin.c:416
+#: ../panel-plugin/mailwatch-plugin.c:447
 msgid "Xfce Mailwatch"
 msgstr "Xfce 邮件监视"
 
-#: ../panel-plugin/mailwatch-plugin.c:417
+#: ../panel-plugin/mailwatch-plugin.c:448
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "未能在面板中添加此邮件监视小程序。"
 
-#: ../panel-plugin/mailwatch-plugin.c:418
+#: ../panel-plugin/mailwatch-plugin.c:449
 msgid ""
 "It is possible that your version of GLib does not have threads support."
 msgstr "这可能是因为您的 GLib 版本不支持多线程。"
 
-#: ../panel-plugin/mailwatch-plugin.c:644
+#: ../panel-plugin/mailwatch-plugin.c:678
 msgid "Mailwatch log"
 msgstr "邮件监视日志"
 
-#: ../panel-plugin/mailwatch-plugin.c:702
+#: ../panel-plugin/mailwatch-plugin.c:736
 msgid "Log _lines:"
 msgstr "日志行数(_L)："
 
-#: ../panel-plugin/mailwatch-plugin.c:716
+#: ../panel-plugin/mailwatch-plugin.c:750
 msgid "Show log _status in icon"
 msgstr "在图标中显示日志状态(_S)"
 
-#: ../panel-plugin/mailwatch-plugin.c:763
+#: ../panel-plugin/mailwatch-plugin.c:797
 msgid "Select Icon"
 msgstr "选择图标"
 
-#: ../panel-plugin/mailwatch-plugin.c:795
-#: ../panel-plugin/mailwatch-plugin.c:965
+#: ../panel-plugin/mailwatch-plugin.c:829
+#: ../panel-plugin/mailwatch-plugin.c:1087
 msgid "_Normal"
 msgstr "正常(_N)"
 
-#: ../panel-plugin/mailwatch-plugin.c:800
+#: ../panel-plugin/mailwatch-plugin.c:834
 msgid "Ne_w mail"
 msgstr "新邮件(_W)"
 
-#: ../panel-plugin/mailwatch-plugin.c:835
-#, c-format
-msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
-msgstr "因为 ‘xfhelp4’ 未能运行所以帮助不可用：%s"
+#: ../panel-plugin/mailwatch-plugin.c:883
+msgid "Failed to open web browser for online documentation"
+msgstr "无法打开网络浏览器获取在线文档"
 
-#: ../panel-plugin/mailwatch-plugin.c:837
-msgid "Help Unavailable"
-msgstr "帮助不可用"
+#: ../panel-plugin/mailwatch-plugin.c:931
+msgid "Online Documentation"
+msgstr "在线文档"
 
-#: ../panel-plugin/mailwatch-plugin.c:838
-msgid "Failed to run xfhelp4"
-msgstr "无法运行 xfhelp4"
+#: ../panel-plugin/mailwatch-plugin.c:933
+msgid "Do you want to read the manual online?"
+msgstr "您要阅读在线手册吗？"
 
-#: ../panel-plugin/mailwatch-plugin.c:866
+#: ../panel-plugin/mailwatch-plugin.c:934
+msgid ""
+"You will be redirected to the documentation website where the help pages are"
+" maintained."
+msgstr "将把您带到帮助文档网址"
+
+#: ../panel-plugin/mailwatch-plugin.c:938
+msgid "_Read Online"
+msgstr "在线阅读(_R)"
+
+#: ../panel-plugin/mailwatch-plugin.c:949
+msgid "_Always go directly to the online documentation"
+msgstr "总是直接到在线文档(_A)"
+
+#: ../panel-plugin/mailwatch-plugin.c:988
 #: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "邮件监视器"
 
-#: ../panel-plugin/mailwatch-plugin.c:884
+#: ../panel-plugin/mailwatch-plugin.c:1006
 msgid "_View Log..."
 msgstr "查看日志(_V)..."
 
-#: ../panel-plugin/mailwatch-plugin.c:907
+#: ../panel-plugin/mailwatch-plugin.c:1029
 msgid "External Programs"
 msgstr "外部程序"
 
 #. External programs - Labels.
-#: ../panel-plugin/mailwatch-plugin.c:913
+#: ../panel-plugin/mailwatch-plugin.c:1035
 msgid "Run _on click:"
 msgstr "点击时运行(_O)："
 
-#: ../panel-plugin/mailwatch-plugin.c:919
+#: ../panel-plugin/mailwatch-plugin.c:1041
 msgid "Run on new _messages:"
 msgstr "有新邮件时运行(_M)："
 
 #. Icons.
-#: ../panel-plugin/mailwatch-plugin.c:943
+#: ../panel-plugin/mailwatch-plugin.c:1065
 msgid "Icons"
 msgstr "图标"
 
-#: ../panel-plugin/mailwatch-plugin.c:982
+#: ../panel-plugin/mailwatch-plugin.c:1104
 msgid "Ne_w Mail"
 msgstr "新邮件(_W)"
 
-#: ../panel-plugin/mailwatch-plugin.c:1044
+#: ../panel-plugin/mailwatch-plugin.c:1166
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Xfce4 邮件监视插件"
 
-#: ../panel-plugin/mailwatch-plugin.c:1047
+#: ../panel-plugin/mailwatch-plugin.c:1169
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "Xfce 面板的一个功能强大的邮件检查小程序"
 
-#: ../panel-plugin/mailwatch-plugin.c:1049
+#: ../panel-plugin/mailwatch-plugin.c:1171
 msgid ""
 "Copyright (c) 2013 Ján Sučan\n"
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 msgstr "版权所有 (c) 2013 Ján Sučan⏎\n版权所有 (c) 2005-2008 Brian Tarricone⏎\n版权所有 (c) 2005 Pasi Orovuo"
 
-#: ../panel-plugin/mailwatch-plugin.c:1124
+#: ../panel-plugin/mailwatch-plugin.c:1241
 msgid "Update Now"
 msgstr "现在更新"
 
