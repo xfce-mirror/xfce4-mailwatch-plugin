@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-01 00:31+0200\n"
-"PO-Revision-Date: 2013-10-03 11:11+0000\n"
+"POT-Creation-Date: 2013-10-16 00:31+0200\n"
+"PO-Revision-Date: 2013-10-22 13:31+0000\n"
 "Last-Translator: Necdet Yücel <necdetyucel@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/xfce/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -426,121 +426,134 @@ msgstr "Bir posta kutusunu kaldırmak bütün ayarları kaldıracaktır ve geri 
 msgid "Mailboxes"
 msgstr "Posta Kutuları"
 
-#: ../panel-plugin/mailwatch-plugin.c:114
-#: ../panel-plugin/mailwatch-plugin.c:433
+#: ../panel-plugin/mailwatch-plugin.c:145
+#: ../panel-plugin/mailwatch-plugin.c:464
 msgid "No new mail"
 msgstr "Yeni e-posta yok"
 
-#: ../panel-plugin/mailwatch-plugin.c:130
+#: ../panel-plugin/mailwatch-plugin.c:161
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
 msgstr[0] "%d tane yeni mesajınız var:"
 msgstr[1] "%d tane yeni mesajınız var:"
 
-#: ../panel-plugin/mailwatch-plugin.c:141
+#: ../panel-plugin/mailwatch-plugin.c:172
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "her posta kutusunda kaç tane e-posta olduğunu gösterir| %d tane %s üzerinde"
 
-#: ../panel-plugin/mailwatch-plugin.c:416
+#: ../panel-plugin/mailwatch-plugin.c:447
 msgid "Xfce Mailwatch"
 msgstr "Xfce Mailwatch"
 
-#: ../panel-plugin/mailwatch-plugin.c:417
+#: ../panel-plugin/mailwatch-plugin.c:448
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Mailwatch eklentisi panele eklenemedi."
 
-#: ../panel-plugin/mailwatch-plugin.c:418
+#: ../panel-plugin/mailwatch-plugin.c:449
 msgid ""
 "It is possible that your version of GLib does not have threads support."
 msgstr "GLib sürümünüzün thread desteği olmaması nedeniyle bu hatayı alıyor olabilirsiniz."
 
-#: ../panel-plugin/mailwatch-plugin.c:644
+#: ../panel-plugin/mailwatch-plugin.c:678
 msgid "Mailwatch log"
 msgstr "Mailwatch kayıtları"
 
-#: ../panel-plugin/mailwatch-plugin.c:702
+#: ../panel-plugin/mailwatch-plugin.c:736
 msgid "Log _lines:"
 msgstr "Kayıt satır_ları:"
 
-#: ../panel-plugin/mailwatch-plugin.c:716
+#: ../panel-plugin/mailwatch-plugin.c:750
 msgid "Show log _status in icon"
 msgstr "Simgede kayıt durumunu gö_ster"
 
-#: ../panel-plugin/mailwatch-plugin.c:763
+#: ../panel-plugin/mailwatch-plugin.c:797
 msgid "Select Icon"
 msgstr "Simge seçin"
 
-#: ../panel-plugin/mailwatch-plugin.c:795
-#: ../panel-plugin/mailwatch-plugin.c:965
+#: ../panel-plugin/mailwatch-plugin.c:829
+#: ../panel-plugin/mailwatch-plugin.c:1087
 msgid "_Normal"
 msgstr "_Normal"
 
-#: ../panel-plugin/mailwatch-plugin.c:800
+#: ../panel-plugin/mailwatch-plugin.c:834
 msgid "Ne_w mail"
 msgstr "Yeni _Posta"
 
-#: ../panel-plugin/mailwatch-plugin.c:835
-#, c-format
-msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
-msgstr "Yardım mevcut değil çünkü 'xfhelp4' çalıştırılamadı: %s"
+#: ../panel-plugin/mailwatch-plugin.c:883
+msgid "Failed to open web browser for online documentation"
+msgstr "Çevrimiçi belgelendirmeler için web tarayıcısı açılamadı"
 
-#: ../panel-plugin/mailwatch-plugin.c:837
-msgid "Help Unavailable"
-msgstr "Yardım Mevcut Değil"
+#: ../panel-plugin/mailwatch-plugin.c:931
+msgid "Online Documentation"
+msgstr "Çevrimiçi Belgelendirme"
 
-#: ../panel-plugin/mailwatch-plugin.c:838
-msgid "Failed to run xfhelp4"
-msgstr "xfhelp4 çalıştırılamadı"
+#: ../panel-plugin/mailwatch-plugin.c:933
+msgid "Do you want to read the manual online?"
+msgstr "Kılavuzu çevrimiçi okumak ister misiniz?"
 
-#: ../panel-plugin/mailwatch-plugin.c:866
+#: ../panel-plugin/mailwatch-plugin.c:934
+msgid ""
+"You will be redirected to the documentation website where the help pages are"
+" maintained."
+msgstr "Yardım sayfalarının sağlandığı web adresine yönlendirileceksiniz."
+
+#: ../panel-plugin/mailwatch-plugin.c:938
+msgid "_Read Online"
+msgstr "Çevrimiçi _Oku"
+
+#: ../panel-plugin/mailwatch-plugin.c:949
+msgid "_Always go directly to the online documentation"
+msgstr "_Her zaman doğrudan çevrimiçi belgelendirmeye git"
+
+#: ../panel-plugin/mailwatch-plugin.c:988
 #: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "E-Posta İzleyici"
 
-#: ../panel-plugin/mailwatch-plugin.c:884
+#: ../panel-plugin/mailwatch-plugin.c:1006
 msgid "_View Log..."
 msgstr "_Kayıtları Görüntüle..."
 
-#: ../panel-plugin/mailwatch-plugin.c:907
+#: ../panel-plugin/mailwatch-plugin.c:1029
 msgid "External Programs"
 msgstr "Harici Uygulamalar"
 
 #. External programs - Labels.
-#: ../panel-plugin/mailwatch-plugin.c:913
+#: ../panel-plugin/mailwatch-plugin.c:1035
 msgid "Run _on click:"
 msgstr "Tıklandığında _çalıştır:"
 
-#: ../panel-plugin/mailwatch-plugin.c:919
+#: ../panel-plugin/mailwatch-plugin.c:1041
 msgid "Run on new _messages:"
 msgstr "Yeni posta bildiri_minde çalıştır:"
 
 #. Icons.
-#: ../panel-plugin/mailwatch-plugin.c:943
+#: ../panel-plugin/mailwatch-plugin.c:1065
 msgid "Icons"
 msgstr "Simgeler"
 
-#: ../panel-plugin/mailwatch-plugin.c:982
+#: ../panel-plugin/mailwatch-plugin.c:1104
 msgid "Ne_w Mail"
 msgstr "Y_eni Posta"
 
-#: ../panel-plugin/mailwatch-plugin.c:1044
+#: ../panel-plugin/mailwatch-plugin.c:1166
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Xfce4 Mailwatch Eklentisi"
 
-#: ../panel-plugin/mailwatch-plugin.c:1047
+#: ../panel-plugin/mailwatch-plugin.c:1169
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "Xfce Paneli için bir çok özelliğe sahip bir e-posta kontrolörü"
 
-#: ../panel-plugin/mailwatch-plugin.c:1049
+#: ../panel-plugin/mailwatch-plugin.c:1171
 msgid ""
 "Copyright (c) 2013 Ján Sučan\n"
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 msgstr "Copyright (c) 2013 Ján Sučan\nCopyright (c) 2005-2008 Brian Tarricone\nCopyright (c) 2005 Pasi Orovuo"
 
-#: ../panel-plugin/mailwatch-plugin.c:1124
+#: ../panel-plugin/mailwatch-plugin.c:1241
 msgid "Update Now"
 msgstr "Şimdi Güncelle"
 
