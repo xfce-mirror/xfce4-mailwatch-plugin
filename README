@@ -4,6 +4,7 @@
 
 The Xfce4 Mailwatch Plugin is a multi-protocol, multi-mailbox mail watcher.
 Currently, the protocols supported are:
+
   * IMAP (SSL/TLS and cleartext, CRAM-MD5)
   * POP3 (SSL/TLS and cleartext, CRAM-MD5)
   * Mbox mail spool (local)
@@ -12,6 +13,7 @@ Currently, the protocols supported are:
   * Google Mail (GMail) mailbox (remote) (requires gnutls)
 
 Random list of features:
+
   * Multiple folder checking support for IMAP.
   * Independent check intervals for each mailbox.
   * Threaded design; xfce4-panel UI should never freeze or block.
@@ -23,16 +25,18 @@ Random list of features:
     overlay icon to inform the user of errors at a glance.
   * Custom button icons.
 
-gnutls 1.2.0 or greater is optional, but required for SSL/TLS support.  GMail
-requires gnutls.  Sending cleartext passwords across unsecured networks is not
-recommended.  This plugin should work with any Xfce version from 4.2.0 onwards.
+gnutls 1.2.0 or greater and libgcrypt, version 1.2.0 or greater, are optional,
+but required for SSL/TLS support. GMail requires this support. Sending
+cleartext passwords across unsecured networks is not recommended. This plugin
+should work with any Xfce version from 4.8.0 onwards.
 
 See the Mailwatch website for more information and the latest release:
-http://spuriousinterrupt.org/projects/mailwatch
+http://goodies.xfce.org/projects/panel-plugins/xfce4-mailwatch-plugin
 
 Please use the Xfce general discussion list if you have problems:
-http://foo-projects.org/mailman/listinfo/xfce
-Development discussion (if any) takes place on the xfce4-dev list:
-http://foo-projects.org/mailman/listinfo/xfce4-dev
+https://mail.xfce.org/mailman/listinfo/xfce
+Development discussion (if any) takes place on the goodies-dev list:
+https://mail.xfce.org/mailman/listinfo/goodies-dev
 
-The Xfce4 Mailwatch Plugin was written by Brian Tarricone and Pasi Orovuo.
+The Xfce4 Mailwatch Plugin was written by Brian Tarricone, Pasi Orovuo
+and Ján Sučan.
