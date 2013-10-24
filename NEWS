@@ -1,10 +1,26 @@
-1.1.0svn
-========
+1.2.0 (24 Oct 2013)
+===================
 
+ - Fix recieving data from multiple packets.
+ - Port to libxfce4ui.
+ - Fix compilation and linking with libgcrypt.
+ - Fix compilation error when using gnutls >= 3.0.3.
  - Fix build when SSL is disabled.
  - Also support gtk-2.12-style tooltips, and make the tooltip auto-update
    in place if the status changes while the tooltip is active.
- - Fix high CPU usage while checking mail (bug 4494).
+ - Fix high CPU usage while checking mail (bug #4494).
+
+ - Add new help dialog with redirection.
+ - Remove a moved documentation.
+ - Add configured features to print.
+ - Use exo icon chooser dialog for icon selection.
+ - Drop the old panel support.
+
+ - Translation updates: Arabic, German, English (Australian), Spanish,
+   French, Croatian, Hungarian, Italian, Japanese, Korean, Dutch, Polish,
+   Portuguese, Portuguese (Brazilian), Russian, Serbian, Turkish, Ukranian,
+   Chinese (China), Chinese (Taiwan).
+ - Translation additions: Bulgarian.
 
 
 1.1.0 (14 Sep 2008)
