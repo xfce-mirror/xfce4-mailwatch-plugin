@@ -1,0 +1,592 @@
+# Created with: git log --pretty=format:"%ad  %h  %s" --no-merges --date=short
+2013-10-24  5c5f6d3  Update NEWS file
+2013-10-24  da0d8ce  Refactor NEWS file
+2013-10-24  edd4747  I18n: Update translation pl (100%).
+2013-10-24  180bb80  Update AUTHORS file
+2013-10-24  614bff3  Update README file
+2013-10-24  5c04bb0  I18n: Update translation ar (100%).
+2013-10-22  412c9a5  I18n: Update translation tr (100%).
+2013-10-18  a129270  I18n: Update translation uk (95%).
+2013-10-17  6e02af6  I18n: Update translation zh_CN (100%).
+2013-10-17  405dd15  I18n: Update translation sr (100%).
+2013-10-17  3664381  I18n: Update translation en_AU (100%).
+2013-10-17  3765312  I18n: Update translation ru (100%).
+2013-10-17  ee109b3  I18n: Update translation hr (100%).
+2013-10-16  79dbaac  I18n: Update translation pt (100%).
+2013-10-16  b4b6775  I18n: Update translation pt_BR (100%).
+2013-10-16  b85f61d  I18n: Update translation ja (100%).
+2013-10-16  d20f092  I18n: Update translation it (100%).
+2013-10-16  9e1da06  I18n: Update translation nl (100%).
+2013-10-16  5a752aa  I18n: Update translation fr (100%).
+2013-10-16  3845c37  I18n: Update translation bg (100%).
+2013-10-15  25d379c  Add new help dialog with redirection
+2013-10-15  037a7df  Change the plugin website
+2013-10-12  1fde33c  I18n: Update translation zh_TW (100%).
+2013-10-11  9c72919  I18n: Update translation sr (100%).
+2013-10-10  2566c46  I18n: Update translation ru (100%).
+2013-10-10  6c6a56f  I18n: Update translation pt (100%).
+2013-10-10  df140e8  I18n: Update translation es (100%).
+2013-10-08  ea8a853  Fix SIGUSR2 signal handling
+2013-10-07  32d3845  I18n: Update translation pt_BR (100%).
+2013-10-06  fe3ddc3  I18n: Update translation zh_CN (100%).
+2013-10-05  6847097  I18n: Update translation en_AU (100%).
+2013-10-04  277f240  I18n: Update translation hu (100%).
+2013-10-04  fdf1d60  I18n: Update translation it (100%).
+2013-10-03  556335b  I18n: Update translation tr (100%).
+2013-10-02  29636ae  I18n: Update translation ko (100%).
+2013-10-02  8f058a9  I18n: Update translation de (100%).
+2013-10-02  02a00a5  I18n: Update translation fr (100%).
+2013-10-02  9294a48  I18n: Update translation ar (100%).
+2013-10-01  ebc3acd  I18n: Update translation nl (100%).
+2013-10-01  03dced7  I18n: Update translation bg (100%).
+2013-09-30  11f3181  Add information to the about dialog
+2013-09-30  9b9c63c  Add copyright information
+2013-09-30  c4f0cf1  I18n: Add new translation bg (100%).
+2013-09-27  82d9251  Refactor the code
+2013-09-27  7d714c7  Refactor the code
+2013-09-27  18336f6  Do not use static variable in callback function
+2013-09-27  6ba6bd2  Refactor the code
+2013-09-23  eb4ee4d  I18n: Update translation hr (62%).
+2013-09-21  4c67727  I18n: Update translation ko (100%).
+2013-09-20  18ac7b6  Delete useless statements
+2013-09-17  c03a673  Show widgets after constructing a whole dialog
+2013-09-17  baf0bcd  Change width of the text entries
+2013-09-17  e287bb9  Use identifiers instead of magic numbers
+2013-09-17  6ea4f47  Refactor the code
+2013-09-16  e5a1b9c  Fix 'uninitialized variable' warnings
+2013-09-16  c1151eb  Fix comparing of signed and unsigned integer
+2013-09-16  c08e320  Update TODO list
+2013-09-15  ca47c0a  Use more standard plugin library file name
+2013-09-15  5caeff4  Fix makefile subdirs list
+2013-09-15  ed7208d  Remove a moved documentation
+2013-09-15  52bed2f  Add configured features to print
+2013-09-15  6c841f7  I18n: Update translation hu (100%).
+2013-09-12  6b1da56  I18n: Update translation ar (100%).
+2013-09-12  5908aa7  Use exo icon chooser dialog for icon selection
+2013-09-09  c9aa7a4  Update build files and layout of the files
+2013-09-09  da287e6  I18n: Update translation zh_CN (100%).
+2013-09-09  a823536  Change plugindir location
+2013-09-07  0370085  I18n: Update translation ru (100%).
+2013-09-06  8383963  I18n: Update translation tr (100%).
+2013-09-06  168b29b  I18n: Update translation sr (100%).
+2013-09-03  24d5092  I18n: Update translation ja (100%).
+2013-09-02  a5fbafe  Refactor the code
+2013-09-02  b5fdda1  I18n: Update translation pt (100%).
+2013-09-02  6cb400d  I18n: Update translation es (100%).
+2013-09-02  e962a81  I18n: Update translation uk (100%).
+2013-09-02  5096456  I18n: Update translation pt_BR (100%).
+2013-09-02  0621ac2  I18n: Update translation it (100%).
+2013-09-02  0266901  I18n: Update translation fr (100%).
+2013-09-01  03a3a1d  Remove set but unused variable
+2013-09-01  c16fa74  Replace backwards compatibility function call
+2013-09-01  bccd352  Remove deprecated gnutls function
+2013-09-01  71deaf6  Fix the list of translatable source files
+2013-09-01  bdcb0b2  I18n: Update translation nl (100%).
+2013-09-01  1532580  Update to the new panel plugin model
+2013-09-01  7c65553  I18n: Update translation en_AU (100%).
+2013-09-01  7f30e1f  Use identifiers instead of magic numbers
+2013-08-31  fc9c9f7  Fix gettext translatable string
+2013-08-31  a3059a2  Fix format string of printf-like function
+2013-08-31  19be343  Fix recieving data from multiple packets
+2013-08-31  d271a1a  Fix Yoda Conditions
+2013-08-30  6602a2e  Delete unused variables and code
+2013-08-30  2bc3ecf  Use identifiers instead of magic numbers
+2013-08-30  4b2e4b7  Delete unnecessary #if/#else/#endif code
+2013-08-30  5c2ae42  Port to libxfce4ui
+2013-08-30  47da4a9  Disable static libs by default at libtool init
+2013-08-30  686c45a  Use libtool of version 2.2.6 or later
+2013-08-27  0b2e4f3  Move version information format from SVN to Git
+2013-08-27  3aaaadc  Fix the list of translatable source files
+2013-08-27  ea3109e  Fix compilation and linking with libgcrypt
+2013-08-26  aaac9b0  Delete spare tab characters on blank lines
+2013-08-26  73836bb  Drop the old panel support
+2013-08-26  5c19dd1  Fix compilation error when using gnutls >= 3.0.3
+2013-08-05  e19717d  I18n: Update translation vi (95%).
+2013-08-04  00fe23f  I18n: Update translation fr (100%).
+2013-07-29  e1c4257  I18n: Add new translation en_AU (100%).
+2013-07-13  7083634  Drop needed files.
+2013-07-12  fae25c0  I18n: Update translation ja (100%).
+2013-07-03  c71b0b9  I18n: Remove broken / unsupported translations.
+2013-04-26  976e047  l10n: Updated Dutch (Flemish) (nl) translation to 100%
+2013-03-06  93ec880  l10n: Updated Serbian (sr) translation to 100%
+2013-01-03  9b788a4  l10n: Updated Serbian (sr) translation to 99%
+2012-12-12  4f906c1  l10n: Serbian translation
+2012-10-25  6a47d5e  l10n: Updated Uyghur (ug) translation to 100%
+2012-09-24  f7f58b1  l10n: Updated Polish (pl) translation to 100%
+2012-09-24  fa8db9f  l10n: Updated Polish (pl) translation to 99%
+2012-09-24  0f20f1c  l10n: Updated Polish (pl) translation to 98%
+2012-09-24  d59a8b2  l10n: Updated Polish (pl) translation to 95%
+2012-07-03  301dcc4  l10n: fyrsta sending
+2012-06-04  2990631  l10n: Updated Uyghur (ug) translation to 100%
+2012-05-15  b086e7a  l10n: Updated Croatian (hr) translation to 49%
+2012-05-03  1ecab13  l10n: Initial Croatian (hr) translation
+2012-04-20  e15bb7b  l10n: Updated Chinese (China) (zh_CN) translation to 100%
+2012-04-17  10633b2  l10n: Updated Korean (ko) translation to 100%
+2012-04-15  8356c08  l10n: Updated Portuguese (pt) translation to 100%
+2012-04-10  f23fa80  l10n: Updated Korean (ko) translation to 100%
+2012-04-08  b6b5498  l10n: Updated Korean (ko) translation to 100%
+2012-04-05  73ad849  l10n: Updated Korean (ko) translation to 100%
+2012-04-05  eb2e002  l10n: Updated Korean (ko) translation to 100%
+2012-04-01  9bafb80  l10n: Updated Korean (ko) translation to 100%
+2012-03-14  d6faef2  l10n: Updated Chinese (China) (zh_CN) translation to 100%
+2012-03-10  0870c90  l10n: Updated Lithuanian (lt) translation to 100%
+2012-02-28  8319694  l10n: initial commit for Korean translation.
+2012-02-08  3acc125  l10n: Updated Chinese (China) (zh_CN) translation to 100%
+2012-02-08  ca99f5e  l10n: Updated Chinese (China) (zh_CN) translation to 100%
+2012-02-08  a1aabdb  l10n: Updated Chinese (China) (zh_CN) translation to 100%
+2012-02-05  41a3822  l10n: Updated German (de) translation to 100%
+2012-02-04  c1f09a1  l10n: Updated Arabic (ar) translation to 100%
+2012-01-24  7a49ad3  l10n: Added Lithuanian language
+2012-01-15  beee9dd  l10n: Updated Chinese (Taiwan) (zh_TW) translation to 100%
+2012-01-09  94d5a0f  l10n: Updated Portuguese (pt) translation to 100%
+2011-12-28  399cb42  l10n: Updated Chinese (China) (zh_CN) translation to 100%
+2011-12-09  015c67a  l10n: Updated Chinese (China) (zh_CN) translation to 100%
+2011-11-15  623137d  l10n: Updated Chinese (China) (zh_CN) translation to 100%
+2011-11-06  994b7f6  l10n: Updated Russian (ru) translation to 100%
+2011-09-09  4c54d89  l10n: Updated Dutch (Flemish) (nl) translation to 100%
+2011-07-16  6019631  l10n: Updated Portuguese (Brazilian) (pt_BR) translation to 100%
+2011-06-16  dfaaef5  l10n: Updated Dutch (Flemish) (nl) translation to 100%
+2011-06-03  b4a365b  l10n: New Slovak translation
+2011-05-28  7c1bd72  l10n: New Dutch translation
+2011-03-12  6141606  l10n: Updated Indonesian (id) translation to 100%
+2011-02-26  176fa4b  Update the module.xml file
+2011-02-26  3e64a20  Set up the changelog to be automatically generated
+2011-02-26  445618f  Update to a newer version of autogen.sh
+2011-02-26  a91e8bf  Delete the pot file, since it can be regenerated
+2011-02-23  3472148  Fix interval edit for mbox
+2011-02-23  0ab411d  Explicitly list libxfcegui4 in the makefile
+2011-01-07  b9abc8f  l10n: Updated Greek (el) translation to 100%
+2011-01-03  a155e62  l10n: Updated Portuguese (pt) translation to 100%
+2010-12-31  1310595  l10n: Updated Hebrew (he) translation to 100%
+2010-12-31  c7eb60a  l10n: Updated Hebrew (he) translation to 99%
+2010-12-31  60f9ebb  l10n: Updated Hebrew (he) translation to 98%
+2010-12-11  00d63d0  l10n: Updated Norwegian Bokmal (nb) translation to 100%
+2010-11-17  316dd64  l10n: Updated Portuguese (pt) translation to 100%
+2010-10-02  95feae2  l10n: Updated Japanese (ja) translation to 100%
+2010-08-05  a156427  l10n: Updated Uyghur (ug) translation to 100%
+2010-07-30  b4af229  l10n: Uyghur translation
+2010-06-16  38107db  l10n: Updated Greek (el) translation to 100%
+2010-04-23  6ea5022  l10n: Updated Russian (ru) translation to 100%
+2010-04-11  bc239b5  l10n: Updated French (fr) translation to 100%
+2010-04-11  a56e674  l10n: Updated French (fr) translation to 98%
+2010-04-06  f7303bf  l10n: Updated Finnish (fi) translation to 100%
+2010-03-27  43036ed  l10n: Updated German (de) translation to 100%
+2010-03-27  1b590c2  l10n: Updated Russian (ru) translation to 93%
+2010-03-21  3334240  l10n: Updated Russian (ru) translation to 93%
+2010-03-17  8c69e75  l10n: Updated Ukrainian (uk) translation to 100%
+2010-03-03  dde0645  l10n: Updated Russian (ru) translation to 93%
+2010-03-03  a02f018  l10n: Updated Russian (ru) translation to 90%
+2010-03-02  db58cf5  l10n: Updated Russian (ru) translation to 79%
+2010-02-27  b950c0a  l10n: Updated German (de) translation to 100%
+2010-02-22  06b3f84  l10n: Updated German (de) translation to 99%
+2010-01-04  d17455a  l10n: Updates to Czech (cs) translation
+2009-12-11  475a387  l10n: Updates to Italian (it) translation
+2009-10-01  654744b  l10n: Updates to Galician (gl) translation
+2009-09-18  29320f7  l10n: Updates to Latvian (lv) translation
+2009-08-22  0c06f7e  l10n: Updates to Danish (da) translation
+2009-08-22  73bfa11  l10n: Updates to Danish (da) translation
+2009-08-21  ca32f13  l10n: Updates to Spanish (Castilian) (es) translation
+2009-08-18  b4ede50  l10n: Updates to English (United Kingdom) (en_GB) translation
+2009-08-17  586f5e0  l10n: Updates to Portuguese (pt) translation
+2009-08-11  3dda820  add module description file
+2009-08-08  0ef84d2  update goodies translation
+2009-07-24  6598d08  	* zh_CN.po: Simplified Chinese translation update 	* zh_CN.po: Simplified Chinese translation update
+2009-07-24  154e2ca  2009-07-24  Gabor Kelemen  <kelemeng@gnome.hu>
+2009-07-22  ff85171  sensors and mailwatch basque translation updates
+2009-07-19  b44e125  ja translation update
+2009-07-16  e9956f9  update-po
+2009-07-16  ea05528  fix/suppress a bunch of warnings
+2009-06-09  2e2b5ea  Drop svn:executable bit from po files
+2009-05-29  fe25cb4  update goodies translations
+2009-05-11  82daa07  update translations
+2009-04-20  9aa5b01  goodies translation update (galician only)
+2009-04-16  861747a  goodies translation update
+2009-04-15  237f499  Updated Polish translations
+2009-03-16  5bf71b1  Updated Polish translations
+2009-03-15  89977ed  Translation update - tr
+2009-03-14  81a6397  Translations updates - es fr gl it tr
+2009-03-08  2c80059  Updated Polish translations
+2009-03-05  c0c142c  Fix the renaming of the pt nb files -- thanks to jerome who noticed this problem
+2009-03-05  3024393  Renamed pt_PT to pt and nb_NO to nb (bug #4574)
+2009-01-12  6b34e9c  thunar-svn-plugin/trunk/po: 	* sv.po, LINGUAS: Swedish translation added (Daniel Nylander) xfce4-cddrive-plugin/trunk/po: 	* sv.po, LINGUAS: Swedish translation added (Daniel Nylander) xfce4-weather-plugin/trunk/po: 	* sv.po, LINGUAS: Swedish translation added (Daniel Nylander) xfce4-volstatus-icon/trunk/po: 	* sv.po, LINGUAS: Swedish translation added (Daniel Nylander) xfce4-quicklauncher-plugin/trunk/po: 	* sv.po, LINGUAS: Swedish translation added (Daniel Nylander) xfce4-timer-plugin/trunk/po: 	* sv.po, LINGUAS: Swedish translation added (Daniel Nylander) xfce4-clipman-plugin/trunk/po: 	* sv.po, LINGUAS: Swedish translation added (Daniel Nylander) xfce4-diskperf-plugin/trunk/po: 	* sv.po, LINGUAS: Swedish translation added (Daniel Nylander) xfce4-mailwatch-plugin/trunk/po: 	* sv.po, LINGUAS: Swedish translation added (Daniel Nylander) ristretto/trunk/po: 	* sv.po, LINGUAS: Swedish translation added (Daniel Nylander) xfce4-sensors-plugin/trunk/po: 	* sv.po, LINGUAS: Swedish translation added (Daniel Nylander) xfce4-mount-plugin/trunk/po: 	* sv.po, LINGUAS: Swedish translation added (Daniel Nylander) xfce4-genmon-plugin/trunk/po: 	* sv.po, LINGUAS: Swedish translation added (Daniel Nylander) thunar-volman/trunk/po: 	* sv.po, LINGUAS: Swedish translation added (Daniel Nylander) notification-daemon-xfce/trunk/po: 	* sv.po, LINGUAS: Swedish translation added (Daniel Nylander) xfce4-power-manager/trunk/po: 	* sv.po, LINGUAS: Swedish translation added (Daniel Nylander) xfce4-dict/trunk/po: 	* sv.po, LINGUAS: Swedish translation added (Daniel Nylander) xfce4-cellmodem-plugin/trunk/po: 	* sv.po, LINGUAS: Swedish translation added (Daniel Nylander) xfce4-battery-plugin/trunk/po: 	* sv.po, LINGUAS: Swedish translation added (Daniel Nylander)
+2008-12-13  7f1cf36  Translations updates - ja uk zh_CN
+2008-12-04  491acb3  fix 100% cpu usage issue while checking mail (bug 4494)
+2008-11-23  676b590  Translations updates - ca id nb sq uk
+2008-11-16  a68fe62  Translations updates and additions - ca, nb_NO, uk, zh_CN
+2008-11-11  218b8e8  update NEWS
+2008-11-11  e86a0d5  support gtk 2.12-style tooltips, and trigger a tooltip re-query when it changes
+2008-11-09  cb71ef2  Translations updates for a lot of languages in a lot of packages
+2008-11-06  1813fd9  Some goodies Basque translation updates
+2008-11-05  cecc50a  Some goodies Basque translations
+2008-11-04  027e496  Update Finnish translations.
+2008-10-20  fb68084  Translation udpates for German and Japanese
+2008-10-15  1dd71dc  	* da.po,LINGUAS: Danish translation added
+2008-10-05  f2cc8f5  Updated Indonesian translation for the xfburn and dict modules Updated Norwegian Bokmal translation for the mailwatch module and added one for the dict module Added Japanese translation for the thunar-volman module Updated European Portuguese translation for the smartbookmark, mpc and dict modules Added Spanish translation for the mailwatch module
+2008-09-24  c757dd3  another ssl-disabled fix
+2008-09-23  0d0fd52  fix build with ssl disabled
+2008-09-15  b552b57  <Corsac> this is code from the future!
+2008-09-15  23769a5  no, really, fix the goddamned changelog.  still 1.1.0.
+2008-09-15  49bb37a  fix changelog, meh... still 1.1.0 release
+2008-09-15  4e1a39b  release 1.1.0
+2008-09-15  48acf23  set SIGUSR2 to SIG_IGN if setting a handler fails
+2008-09-11  42cb57a  Greek translation update for mailwatch
+2008-09-11  15979ab  Basque translation update
+2008-09-11  1d1cd26  update docs and screenshots
+2008-09-11  22302dc  update-po
+2008-09-11  b7f1d20  clean out stale mailbox data while saving config file
+2008-09-11  66123d2  use GtkFileChooserButton for file/dir selection for mbox/maildir
+2008-09-08  8fac66b  Translations update for id and fr
+2008-09-08  a4ad67c  Updated European Portuguese translation.
+2008-09-06  6396751  force mailbox update on SIGUSR2
+2008-09-04  4c10cf9  Updated Finnish translation.
+2008-09-02  3e5ad5b  fix loading icons with absolute paths
+2008-09-01  2ff8ca8  [intl:hu] little updates
+2008-08-30  740df20  Updated Brazilian Portuguese translation.
+2008-08-30  c88bd2a  update french mailwatch translation
+2008-08-30  a002e49  Updated Czech translations
+2008-08-30  8ac1817  update todo
+2008-08-30  9fd209b  update-po
+2008-08-30  9b46a76  put useful msg about auth failure in the log (bug 4344)
+2008-08-30  4fd41ad  fix deleted new-mail folders sometimes showing up later (bug 2647)
+2008-08-30  b25ea24  fix fetching new mail folders on imap
+2008-08-30  a5dd259  allow INBOX folder to be deselected
+2008-08-30  2221c2f  first try icon naming spec's 'folder' icon, then old gnome-fs-directory icon
+2008-08-30  c5e69c4  allow non-square images in button
+2008-08-17  af78598  update NEWS, bump version to 1.1.0svn; i think all this warrants a new minor
+2008-08-17  a4fd64a  use new timeout model for mh-maildir plugin
+2008-08-17  26a440e  fetch revision from git properly
+2008-08-17  f4c751f  add TODO file
+2008-08-16  e54dea2  fix folder tree thread quit on dialog close, etc.
+2008-08-16  cd9b17c  fix crash when connection fails/times out
+2008-08-16  ac0fc66  add another 'cancellation point'
+2008-08-16  a7f3bbd  new connection model for maildir, misc fixes
+2008-08-16  3df585f  simplify, fix crash on pop3 mailbox remove
+2008-08-16  44504c5  make pop3 bits more robust for multi-line responses, just like imap
+2008-08-16  1e8a5f8  gah, and now that imap_recv() puts the \n back, we don't need an extra
+2008-08-16  b12c55b  ... and don't let the buffer overflow
+2008-08-16  7cd2750  fix cram-md5 support
+2008-08-16  728692b  use a timeout instead of a semi-polling thread
+2008-08-16  e0db033  update-po
+2008-08-16  5708643  do some serious refactoring, and use non-blocking sockets for everything
+2008-08-16  9dcf70a  don't call gnutls_bye() for now; it's hanging for some reason
+2008-08-16  7367ab6  be sure to null-temrinate response from gmail
+2008-08-16  608f3b4  remove spurious instances of xfce_textdomain()
+2008-08-16  4408083  properly receive imap responses, rather than just parsing lines as they come in
+2008-08-16  19ec671  be sure to receive all of some responses before moving on
+2008-08-16  1780f9b  remember to init XfceMailwatchNetConn
+2008-08-16  ad9a7c5  make sure init only happens once
+2008-08-16  5f5723a  null-terminate string returned by xfce_mailwatch_net_conn_recv_line()
+2008-08-16  baa10a9  don't close the socket if we successfully connected
+2008-08-16  0d8680c  port imap, pop3, and gmail mailboxes to use new network stack
+2008-08-16  679a7a9  remove all network/security code from mailwatch-utils.[ch]
+2008-08-16  1221848  use a GStaticMutex instead of GMutex to simplify some code and memory handling
+2008-08-16  a296fc9  allow setting service after creation, allow getting actual port after connect
+2008-08-16  dfb44d1  report getaddrinfo() error correctly
+2008-08-16  37150d7  XfceMailwatchNetConn: a buffered possibly-encrypted net connection handler
+2008-08-16  f0a4ffc  move error stuff and the threads locking stuff into a separate file
+2008-07-22  743c52f  Updated Brazilian Portuguese translation.
+2008-07-16  3230efb  Update Arabic translations
+2008-07-15  e0d587c  Update Arabic translations
+2008-07-14  d8eadd0  Translations added and updated for most goodies (gl;pt_PT;zh_CN)
+2008-07-09  77de24e  Maxim Dziumanenko <dziumanenko@gmail.com>
+2008-06-26  a775d48  Translations added and updated for most goodies (gl)
+2008-06-25  fe5b8c5  Translations added for most goodies (id)
+2008-05-13  6cf4d5c  update en_GB translations
+2008-05-02  78831fa  xfce4-mailwatch BAsque translation update
+2008-04-17  0e89a5a  little hungarian updates
+2008-04-11  de3c3d6  Updated Brazilian Portuguese translations
+2008-03-30  9488444  Update Catalan translation
+2008-03-30  e5be36f  Add Chinese Traditional translation
+2008-03-18  6244f5a  Update German translation
+2008-03-18  dd5f453  Update Norwegian translation
+2008-03-18  568d24d  Update Portuguese translation
+2008-03-18  c9eca35  mailwatch-plugin: Update Catalan translation
+2008-03-17  c18cd2d  use xfce_panel_plugin_menu_show_about() and the XfcePanelPlugin::about signal instead of adding a menu item manually (mmassonnet's idea)
+2008-03-17  16c7527  fr.po: Fix some strings after having a look at runtime
+2008-03-14  9f3f0d0  	* el.po: Greek translation updated
+2008-03-14  b2fb1b5  attempt to shut up a few more warnings (linux/amd64 this time)
+2008-03-14  1cca287  revert part of a cleanup commit; fix mailwatch.desktop generation
+2008-03-14  c72ea36  mailwatch: Update French translation
+2008-03-14  58310b4  update-po
+2008-03-14  e9defca  suppress the last of the openbsd warnings
+2008-03-14  df7e8e0  fix config dialog button sensitive state, change button order
+2008-03-14  031a849  hopefully fix icon sizing.  it looks a little less tiny now.
+2008-03-14  6e86993  suppress useless warnings
+2008-03-14  4dce77f  define AI_ADDRCONFIG to 0 for systems that lack it (like openbsd)
+2008-03-14  ad28726  update NEWS and README
+2008-03-14  c228873  Updated Finnish translation.
+2008-03-14  3214cce  add about dialog
+2008-03-14  9fba463  clean up autogen and configure.ac, track svn revision in version tag
+2008-03-14  b36a1cd  update NEWS
+2008-03-14  0aefebc  fix mailcheck interval not getting saved when changed with keyboard
+2008-03-14  b46b54b  add CRAM-MD5 authentication support for imap and pop3 (bug 3420)
+2008-03-12  8641342  add 'Update Now' menu item (bug 3908), tidy things up a bit
+2008-03-12  0030e4d  use LINGUAS file
+2008-03-12  0edd416  update copyright dates, do network i/o properly to restart from interruptions
+2008-03-12  e3e5087  oops, fix use of deprecated enum
+2008-03-12  b12a485  update NEWS
+2008-02-28  bfb6d28  Brazilian Portuguese translation updated by Fábio Nogueira <deb-user-ba@ubuntu.com>.
+2008-02-04  7c83943  use STATUS instead of EXAMINE+SEARCH for IMAP.
+2008-02-04  42a05cf  missing string that should be translated
+2008-02-04  056aeea  use ngettext() for singular/plural translation, avoid an extra string alloc
+2008-01-31  5defda5  memleaks are bad.  freeaddrinfo() is good.
+2008-01-31  456ae5d  use --(enable|disable)-ipv6 rather than --with(out)?-ipv6
+2008-01-31  e07326c  use getaddrinfo() properly and add (untested) support for ipv6
+2008-01-31  f56bc75  coding style fixes
+2008-01-31  a46c480  fix connection failures on NetBSD
+2008-01-31  22ca651  clean up some code, fix banner not getting completely read on connect sometimes
+2008-01-31  f6dc39e  ensure plugin is rebuilt if libmailwatch-core is changed
+2008-01-31  fca1ac7  fix spurious configure switch without a name
+2008-01-23  dead6ab  xfce4-mailwatch-plugin: Update french translation
+2008-01-21  b829228  Updated Brazilian Portuguese translations by Fábio Nogueira <deb-user-ba@ubuntu.com>.
+2007-11-19  23e3653  Latvian translations added to most goodies.
+2007-11-15  0906c86  Fix changelogs for updated ur.po files, and add thunar-archive-plugin
+2007-11-15  41c5ebf  Rename pk.po to ur.po
+2007-11-04  5e392ed  Updated Brazilian Portuguese translation and added new LINGUAS file.
+2007-10-28  d3fe6d3  Add new translation by محمد علي المكي <makki.ma@gmail.com>
+2007-07-08  400407a  Last bunch of pt_PT and nb_NO files to be added.
+2007-06-13  7f074fb  * it.po: Updated translations for the verve, thunar-media-tags, thunar-archive, battery, clipman, netload thunar-volman, eyes, cpufrew, notification-daemon and mailwatch plugins. * *.po: Fixed some headers
+2007-03-31  9d7126f  i18n british translation
+2007-03-28  0736250  2007-03-28 Maxim Dziumanenko <dziumanenko@gmail.com>
+2007-02-20  0097881  * fr.po: Updated some French translations. * ja.po: Updated and added the Japanese translations by Nobuhiro Iwamatsu in the   xkb and the volstatus-icon plugins respectively. * sq.po: Updated the headers of most plugins by Besnik Bleta.
+2007-02-02  8d08c1c  Added the Albanian translations by Besnik Bleta for all the goodies.
+2006-12-17  565bea1  little header fixes
+2006-12-15  5a83afc  i18n update
+2006-12-09  297b997  * use XfceTitledDialog for config window * set all GtkEntry widgets to activate the default button in dialogs
+2006-12-06  6d823c2  add some debugging printfs to help with bug #2647
+2006-12-05  11a7db4  add some messaging if the config file can't be found/opened on save, set the mailwatch core's config file name unconditionally on write.  maybe this fixes moe's problem
+2006-11-03  bdd5c97  Updated brazilian portuguese translations.
+2006-09-27  63d3b2b  hu trunk: updates
+2006-09-23  2b6d423  various translations updates
+2006-09-17  526f9c7  updated French and Czech translations
+2006-09-13  3f295aa  Updated Finnish translations.
+2006-09-12  6b587bb  Some godies basque translation update
+2006-09-12  ad65b5b  hu trunk: updates
+2006-09-10  7af2d14  * Regenerated all *.po files
+2006-09-10  97cab20  * Created new pot files for all goodies
+2006-08-27  19b333e  Updated German translations
+2006-08-27  7894512  Add/Update Czech translations
+2006-08-20  ccc53d1  add Galician translations
+2006-07-11  9a8b899  loop on recv() when checking the new message count to ensure we get all the data (bug 2009)
+2006-07-11  6ccfad1  fix gcc4 complaining about signedness (and a good test commit in the new repo)
+2006-06-29  5704c64  hu trunk: terminal + mailwatch update
+2006-06-12  84e703d  Update traditional Chinese translations; Modify personal e-mail address.
+2006-05-29  1bf0ba0  update news
+2006-05-29  38f45c8  add "Usage" section contributed by maximilian schleiss (maxschleiss@bluewin.ch) which describes (among other things) the ability to middle-click on the icon to force an update
+2006-05-29  1b505c6  force a new mail count update right after startup
+2006-05-29  cfcac8b  this reorg is totally unnecessary, but i did it anyway because i felt like it.
+2006-05-23  9004d90  include gmodule.h to avoid a compile error on some systems (bug 1822)
+2006-05-23  e0e3512  Changed an address.
+2006-05-13  f280462  Added/Updated Czech translations by Michal Varady <miko.vaji@gmail.com>.
+2006-05-09  bf56ee7  [i18n] catalan update mailwatch plugin, mixer
+2006-05-06  38c229d  Greek translations update.
+2006-05-05  203fe3b  Bump.
+2006-05-02  206e7f8  Removed timestamps so that a translator isn't bothered:   "Then, what time is it now in UTC?"
+2006-05-01  2ba296c  Updated.
+2006-04-29  c638aae  Added `uk' to XDT_I18N().
+2006-04-28  d780603  Hebrew translation update
+2006-04-26  c6cf25f  2006-04-26  Maxim Dziumanenko <mvd@mylinux.ua>
+2006-04-23  3db8832  Updated Russian translations by Sergey Fedoseev <fedoseev.sergey@gmail.com>.
+2006-04-21  21a061a  Hebrew translations update
+2006-04-20  8ede659  meh, fix EXTRA_DIST
+2006-04-20  b9513fb  bump svn version
+2006-04-20  05df1a6  update cl
+2006-04-20  c3bf9cf  * don't compile in gmail mailbox support if gnutls is missing, as it won't   work without SSL anyway * bump version to 1.0.1 and prepare for release
+2006-04-20  f4be7d7  update news
+2006-04-20  1be2e68  run gtk-update-icon-cache after installing icons
+2006-04-15  85de86c  * properly shut down the gnutls connection * recover from interrupts during tls handshaking
+2006-04-15  daa4b72  Update ChangeLog
+2006-04-15  c6d37ac  Bump, etc.
+2006-04-02  9dc3eba  Give credit where credit is due.
+2006-04-01  b943812  Greek translations update & polish by Stathis Kamperis <ekamperi@auth.gr>
+2006-03-27  2874597  Added/Updated Russian translations by   Andrey Fedoseev <andrey.fedoseev@gmail.com> and   Sergey Fedoseev <fedoseev.sergey@gmail.com>.
+2006-03-19  35a0b19  [i18n] catalan seems a lot of work but they all are fuzzy
+2006-03-18  52e97c2  [i18n] catalan typos on the xfce4-mailwatch. But the file is not ended, I will continue on it another day.
+2006-03-18  27e7bec  Added/Updated Russian translations by Andrey Fedoseev <andrey.fedoseev@gmail.com>, Sergey Fedoseev <fedoseev.sergey@gmail.com>.
+2006-02-18  a4bf374  Updated.
+2006-02-08  6de5bda  Add zh_TW translation for mailwatch-plugin.
+2006-02-05  360c9fd  Updated Greek translations
+2006-01-31  3794961  bump version
+2006-01-31  10a8c0c  update changelog for 1.0.0, add release target to makefile
+2006-01-31  b2087a5  1.0, baby
+2006-01-29  f1cf1b7  Updated Japanese translations.
+2006-01-29  3bbd4c9  * Updated. * Discarded obsolete translations.
+2006-01-27  ec195a1  update VI translations
+2006-01-25  750e039  updated FI and FR translations
+2006-01-25  c227531  fixup some docs stuff
+2006-01-25  d549bff  Updated pt_BR translations for xfce4-mailwatch-plugin.
+2006-01-24  80fe7a3  Better double check next time
+2006-01-24  76a393e  Updating german translation for the final release. As always, I don't touch the ChangeLog. Go ahead Brian ^_~
+2006-01-24  26b9358  Basque translation upgrade
+2006-01-24  08ae7de  whoops, it really IS in the xfce panel plugins product
+2006-01-24  63e65b1  fix failure to understand SEARCH response with some imap servers (notably, dovecot in this case)
+2006-01-24  8fc6601  have automake do the dist-bzip2 target
+2006-01-24  6aa62da  update-po
+2006-01-24  a8b6999  add button in settings to open help file
+2006-01-24  8bbe99f  tweak docs a bit, add stuff about gmail and imap new mail folders, add screenies
+2006-01-23  577e0d1  fix build since docs aren't generated automatically
+2006-01-22  07d40c0  Make profile reading a bit nicer.
+2006-01-22  fc1eedb  backport button press/release fix to 4.2 plugin
+2006-01-21  220ec57  * fix problem where clicking the button, and releasing the mouse outside the   button still generates a click (patch from pasi, bug 1336) * make the button actually show the pressing action when pressed with the   middle button as well
+2006-01-19  97183b4  fix build in docs dir.  duh, me.
+2006-01-18  0799d62  Updated.
+2006-01-08  57a2e6c  catalan translation: little heading fixing but in every trunk file Created the xfmedia translation
+2006-01-07  b4ebe97  Updated copyright information.
+2006-01-01  2978ac6  Added translators.
+2006-01-01  f438729  revert my changes, daichi was quicker than I :)
+2006-01-01  f35c538  update french translations
+2006-01-01  e705a39  Added French translations by Stephane Roy <sroy@j2n.net>.
+2005-12-20  31b5305  Updated.
+2005-12-11  a9f49b2  * move "view log" button to left of close button (4.3 panel only) * move gmail at the end of the list of remote mailbox types
+2005-12-07  8938ed4  [i18n] Basque translation update
+2005-11-29  51443df  Fixed mistranslations. Revised some translations.
+2005-11-28  55305ac  Updated.
+2005-11-27  5ac79eb  Updated Greek translation
+2005-11-21  8a6ca59  Updated.
+2005-11-21  3102ff4  Updated POTFILES.in files.
+2005-11-15  da2ccab  Yes, we do require Gtk+ 2.4
+2005-11-12  69d177c  Prefer Gtk+ file chooser over Xfce file chooser.
+2005-11-12  ccf877b  Move Gmail to top of the list to make it nicer.
+2005-11-04  cebb8cc  Updated.
+2005-11-04  400a9ec  Added missing file reported by Fabian Nowak.
+2005-11-03  34e0526  Updated.
+2005-10-31  78140b0  Trimmed and updated.
+2005-10-31  3b3cd88  fix reading back log lines/show log icon pref
+2005-10-31  872f66d  set default options properly on creation
+2005-10-29  229a230  Updated Japanese translations.
+2005-10-28  8b4b270  fix pt_BR header
+2005-10-28  cbd925b  add pt_BR translation from adriano winter bess
+2005-10-28  800d648  Added `ca' at the XDT_I18N().
+2005-10-28  6ee3780  add gmail mailbox support, update-po
+2005-10-27  941ed2d  begin process to 4.4 work autotranslation of most of the actual po
+2005-10-21  69dfd70  Updated with the latest POT file.
+2005-10-21  96299f5  Updated with the latest sources.
+2005-10-21  db2a414  Updated.
+2005-10-20  3b20ab4  * Modified initial header strings using template by `msginit'.
+2005-10-20  70f5396  Added `eu' at XDT_I18N().
+2005-10-20  fda14c9  xfce4-mailwatch basque translation
+2005-10-17  5311a1b  make mailwatch use the same config file as the panel plugin in the 4.3 panel
+2005-10-16  149079d  Updated.
+2005-10-15  ccc5fb0  initial checkin of english documentation, sans images.  docs written by pasi; i started cleaning up a little, but i haven't gotten so far yet.
+2005-10-09  429831a  Keyword `Id' expansion, hope this works.
+2005-10-07  52ab698  * Modified initial header strings using template by "msginit".
+2005-10-07  44480e8  Updated Japanese translations.
+2005-10-06  05ef8e1          Minor updates & polishing for the Greek translations
+2005-09-29  683e294  update copyright
+2005-09-29  0d78668  merge in plugin for new panel, fix a nice crash bug from jasper (^_~), and update the .po files
+2005-09-29  b20d2af  fix build with --enable-debug=full against newer libxfcegui
+2005-09-29  845c4ba  prepare to merge new panel plugin code with the old.  no, it won't compile with the new panel yet, but it will in a few minutes...
+2005-09-24  69d5ebc  * Added initial "$Id$".
+2005-09-13  e3230eb  Updated Japanese translations.
+2005-08-28  ddee1ea  Updated Gujarati Translations
+2005-08-28  fd28735  plug memleak
+2005-08-28  6d198dc  rearrange settings panel, add ability for user-supplied button icons make update-po
+2005-08-26  347891a  add GU in configure.ac where needed
+2005-08-26  318fbe4  Added Gujarati Translations
+2005-08-23  6b3bd80  Updated Japanese translations.
+2005-08-20  7b35a38  Updated Greek translation for xfce4-mailwatch-plugin_
+2005-08-18  6038b24  Updated Japanese translations.
+2005-08-16  60ce0d9  Fix some strings for translation.
+2005-08-15  24b838e  * Maildir log message changed. * make update-po. * Update Finnish translation.
+2005-08-15  a25aa57  * Reorganize maildir so each instance runs on it's own. * Add maildir logging.
+2005-08-15  f5289cf  fix segfault - error is NULL if recvd/sent is 0, but we still try to read it.  error only gets set if recvd/sent is -1
+2005-08-14  a855934  Don't lock the mailboxes mutex in xfce_mailwatch_save_config().  Pasi says this can cause a deadlock in some cases, depending on how many times it gets called on panel startup.  As my original comment says, it doesn't really need locking there anyway.
+2005-08-13  5a0af81  Added Finnish translations by Jari Rahkonen.
+2005-08-11  c43cd28  this is probably a bit safer: use a global lock that's created before any threads are created, and use xfce_mailwatch_threads_enter/leave(), analogous to GDK.
+2005-08-11  cc8235a  attempt to fix segfaults.  the getaddrinfo() manpage says it's reentrant, but it definitely crashes with two threads in the function at the same time.  it's possible i'm doing something evil, but i don't think so, and this will ensure only one thread is calling getaddrinfo() at a time.  well, unless another panel plugin calls it... *sigh*
+2005-08-06  36fbf44  Initial addition of Greek language files for xfcalendar, xfce4-mailwatch plugin and mousepad in trunk.
+2005-07-30  ea634c8  add option to not show the error/warning/info icon in the main icon.  it's a cool feature, but espresso periodically screws up the TLS handshake, and the icon annoys the hell out of me after a while.
+2005-07-25  becbf67  add some log messages, add a check on plugin creation for a valid XfceMailwatch instance.  make update-po
+2005-07-22  348519b  update ja translations (daichi kawahata)
+2005-07-18  5ee1ff6  hmmm... increase buffer size.  seems to fix a gnutls crash bug, which is kinda bad, but i'm not sure what else could be causing this.
+2005-07-12  013609f  fix possible crash on error
+2005-07-09  938e527  * Add logging * Fix a bug where new mail status wasn't reported correctly.
+2005-07-09  32a0eed  update-po
+2005-07-09  8f053ca  * fix a possible dangling file desc bug * fix behavior when a thread is gathering a list of folders, and the dialog   is destroyed
+2005-07-09  dba740e  fix a possible dangling file desc bug
+2005-07-09  0c91b02  add some logging, fix a string
+2005-07-08  e2d8762  * Add log messages to mbox * Fix GdkPixbuf warnings
+2005-07-08  0294edd  plug memleak
+2005-07-08  7a45e35  lots of stuff: * add support for displaying the mailbox name and a timestamp in the message   log. * add pref for # of lines to remember in the log before discarding old   messages. * add a bunch of logging messages to the IMAP and POP3 protocols. * make liberal use of GError in the xfce_mailwatch_net_() functions. * cleanup some pixbuf-related stuff. * probably other stuff i can't remember.
+2005-07-07  1052465  Implement a simple "logging" mechanism for plugins.
+2005-07-02  8b99b50  update trans stuff
+2005-07-02  e2f3efb  make gnutls support optional (disabling is not recommended =p)
+2005-06-28  4c2e47d  Re-read configuration on profile change.
+2005-06-26  44cbb7b  fix distcheck
+2005-06-26  8f5c677  set svn:ignore
+2005-06-26  f23fb70  add pixmaps to hicolor/ so we have icons if Rodent isn't the selected icon theme
+2005-06-26  c1fac39  yeah, i'm nitpicky.  not sure where those two spaces went...
+2005-06-26  6a77c22  * move 'use nonstandard port' chk/entry below the secuity combo to help   avoid confusion as to the need for port entry * if using the standard port, display the port in the insensitised entry
+2005-06-26  d1d4e89  fix 'use nonstandard port' entry box not getting en/disabled properly when the checkbox is toggled
+2005-06-26  9b7225b  fire the new messages changed signal when a mailbox is deleted
+2005-06-26  7cb4702  fix gtk 2.4 compilation (bug 1040)
+2005-06-26  1a749d6  add dist-bz2 and distcheck-bz2
+2005-06-26  6bec898  stuff.
+2005-06-26  e921fbd  update authors file
+2005-06-26  787f31c  actually add the pop3 file.  yeah, baby.
+2005-06-26  cdcc532  add POP3/POP3s support.  yeah, baby.
+2005-06-26  c1e8215  actually implement the support for using a nonstandard port
+2005-06-26  bc70bfe  move some common net stuff and gnutls auth stuff into mailwatch-utils
+2005-06-26  4d22131  reorganise security settings for imap
+2005-06-01  d116c40  er, whoops.  GtkLabels are not GtkContainers.  heh.
+2005-06-01  e88c051  heh, actually adding the file helps.
+2005-06-01  3033f76  even configurationless mailbox types need a name...
+2005-06-01  1111ba6  add mh-maildir support (from Pasi)
+2005-06-01  d7736f1  fix timeouts (from Pasi)
+2005-05-23  d09193b  add japanese translation from daichi
+2005-05-23  4234ff9  add de translation from bernhard
+2005-05-20  2e1b796  add pot file
+2005-05-09  030cb0b  add X-Mozilla-Status patch from Pasi (bug 942)
+2005-05-08  17bdd0c  escape '\' chars in usernames and passwords; fix problems receiving data from retarded MS exchange IMAP servers.
+2005-05-08  751a2fd  lots of IMAP overhauling.  the prefs dialog now queries the server for a folder tree.  connections time out after 50 seconds, regardless of what the OS wants to do (this may or may not be a good thing).
+2005-05-06  3ec0447  add define for gcrypt.h versions that don't have it (?)
+2005-05-06  d8acff7  dude, that TimeoutChangedCallback is SO 2004.
+2005-05-06  c21365e  (from Pasi) fix a bunch of interval stuff and add the new callback thingy
+2005-05-06  f533a2d  (from Pasi) fix missing mnemonic
+2005-05-05  74498d7  add stuff.
+2005-05-05  9eac128  large behavior change here.  i found that if the IMAP server is *dropping* packets on port 143 (e.g., like espresso.foo-projects.org does), it takes over three minutes for the connection to time out.  this is unacceptable: if the panel tries to quit during this time, it'll hang until the connection times out (while in g_thread_join()).  so now we set the socket non-blocking before connect(), and then select() on the socket with a low timeout, over and over, until either the connection succeeds or fails.  we also check the GAsyncQueue between each select() to see if we've been instructed to quit.
+2005-05-05  bbc753f  gee, that was dumb.  fix default timeout #define
+2005-05-05  a7f7169  fix generally large amounts of stupidity on my part (hint: the IMAP timeout actually works, and doesn't take 1000 times as long to actually happen)
+2005-05-04  72261d3  update changelog, because that's what all the cool kids are doing
+2005-05-04  1f27f57  useful readmes are... useful.
+2005-05-04  6bef324  fix tooltip formatting
+2005-05-04  acf9ed1  plug memleak, only put mailbox names in the tooltip if they have new messages
+2005-05-04  b3d6d12  use SEARCH UNSEEN to find unread messages, rather than relying on ## RECENT on EXAMINE, as the latter is quite unreliable.
+2005-05-04  8235a3d  * fix a config reading issue that made it only read back one mailbox * make the tooltip more detailed * fix some keyboard mnemonics
+2005-05-04  5b518b9  * make middle-clicking on the plugin icon update the message count immediately * make it so each mailbox has its own update interval (only done for IMAP)
+2005-05-03  f86552d  fix chmod() on settings file
+2005-05-03  71c23d9  tweak box packing
+2005-05-03  738b355  add 'run on new messages' command, update translatable stuff
+2005-05-03  24b13b9  do a little rearchitecting with pseudo-signals, add a 'run command on click' box for the applet
+2005-05-03  50aa9df  imap works!  needed to mess with the 'RECENT' response parsing code
+2005-05-03  d1b5f2a  don't allow adding INBOX/inbox to the new mail folders list
+2005-05-03  0544012  remove some useless debugging, fix a possible crash when writing settings, fix buggy settings restore since i misinterpreted an API
+2005-05-03  f714ddc  use type->id for the config file
+2005-05-03  03048b2  add 'type' field to XfceMailwatchMailboxType since using the 'name' as the cfg file identifier is somewhat awkward
+2005-05-03  0b4275a  add UI for checking in different IMAP mail folders
+2005-05-03  7ab36be  fix range on timeout spinbutton
+2005-04-30  7b368bc  fix some crashes and some inconsistencies, add some debugging.  it still doesn't completely work, but at least it can successfully log in via STARTTLS.  crashes the panel on config load/save for some reason.  need to look into this tomorrow.
+2005-04-30  bb55288  fix a crash bug on mailbox removal due to how Pasi changed the list store layout
+2005-04-30  eaf8f16  ok, we now require gnutls 1.2.0 or later.  hopefully i'll be able to make this optional later.  in theory, IMAP checking should work, but of course i'm sure it doesn't because i haven't tested it yet.
+2005-04-30  2b5b008  er, yeah.  need this stuff.
+2005-04-30  fe041d2  a lot of imap code that still really doesn't do much of anything.  but at least it compiles.
+2005-04-28  fada087  add some more stuff to IMAP that doesn't do anything yet, add mbox support from Pasi, also a bugfix from Pasi to fix the icon updating
+2005-04-24  c97ef27  maildir plugin patch from Pasi, along with a fix for the plugin not saving mailbox name edits
+2005-04-23  c824e60  * add maildir protocol support from pasi orovuo * fix problem with displaying protocol descriptions in the 'add mailbox'   dialog
+2005-04-23  bd694f1  some GUI work.  still doesn't really do anything.
+2005-04-23  62f34e5  not sure why the panel calls write_config before read_config, but this should kill a couple warnings
+2005-04-23  dfa67f2  less ugliness
+2005-04-23  732acb0  avoid possible deadlock
+2005-04-23  3f70d2a  heh, make the remove button in the mailwatch plugin prefs actually do something
+2005-04-23  90a508c  add imap plugin (doesn't do anything yet), minor fixes to mailwatch core
+2005-04-23  e53f0bb  change description label when the combo changes, and i18n-ise the text
+2005-04-23  0355af7  fix typo
+2005-04-21  abf5557  provide a means for the plugin portion to be notified of changes in the watch timeout.  i suppose it would be cleaner to use a GSignal, but that would mean making XfceMailwatch into a GObject, which can be messy with unloadable modules. it's easier and safer this way...
+2005-04-19  84735b0  allow multiple mailwatch plugins per panel without overwriting configs (not really sure why you'd need that, but whatever).
+2005-04-19  941ab15  * add most of the configuration GUI, at least on the plugin side * change the interface slightly to make things a bit more sane
+2005-04-18  bd9e1fd  add configuration page to plugin.  the buttons don't do anything yet, but it's a start.
+2005-04-17  cbe9bcf  whew.  the main XfceMailwatch object/interface should be basically done, barring bugs.  tinker with the interface slightly, but nothing major.  it all compiles and maybe even works, though there's no way to test it without writing unit tests, and everyone should know by now that i'm far too lazy to do something so productive.  sleep time.
+2005-04-17  1b84e08  changed the mailbox interface a bit so displaying configuration can be controlled better (otherwise we'd just have bad UI), and handling e.g. arrays of parameters isn't incredibly complex.  also documented the interface.
+2005-04-16  f6cc7ee  ok, so now it compiles.  still doesn't do anything.
+2005-04-16  40f8843  "automake annoys me", and "oops, how did that get there"
+2005-04-16  6236f44  this code totally doesn't do anything yet.  it probably doesn't even compile. but it's a start, and putting it up in svn means i have to follow through with it.  the architecture isn't completely fleshed out; i'm prototyping as i go along.  comments welcome.
