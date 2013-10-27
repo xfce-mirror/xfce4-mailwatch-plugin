@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-16 00:31+0200\n"
-"PO-Revision-Date: 2013-10-17 22:54+0000\n"
+"PO-Revision-Date: 2013-10-27 13:09+0000\n"
 "Last-Translator: zubr139 <zubr139@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/xfce/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -487,7 +487,7 @@ msgstr "_Нова пошта"
 
 #: ../panel-plugin/mailwatch-plugin.c:883
 msgid "Failed to open web browser for online documentation"
-msgstr ""
+msgstr "Не вдалося відкрити переглядач для онлайн-документації"
 
 #: ../panel-plugin/mailwatch-plugin.c:931
 msgid "Online Documentation"
@@ -501,15 +501,15 @@ msgstr "Бажаєте ознайомитися з відомостями дов
 msgid ""
 "You will be redirected to the documentation website where the help pages are"
 " maintained."
-msgstr ""
+msgstr "Ви будете перенаправлені на сайт документації, де знаходяться сторінки допомоги."
 
 #: ../panel-plugin/mailwatch-plugin.c:938
 msgid "_Read Online"
-msgstr ""
+msgstr "_Читати онлайн"
 
 #: ../panel-plugin/mailwatch-plugin.c:949
 msgid "_Always go directly to the online documentation"
-msgstr ""
+msgstr "_Завжди переходити до онлайн документації"
 
 #: ../panel-plugin/mailwatch-plugin.c:988
 #: ../panel-plugin/mailwatch.desktop.in.h:1
@@ -555,7 +555,7 @@ msgid ""
 "Copyright (c) 2013 Ján Sučan\n"
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
-msgstr ""
+msgstr "Авторське право (c) 2013 Ján Sučan\nАвторське право (c) 2005-2008 Brian Tarricone\nАвторське право (c) 2005 Pasi Orovuo"
 
 #: ../panel-plugin/mailwatch-plugin.c:1241
 msgid "Update Now"
