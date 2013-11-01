@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-01 00:31+0200\n"
-"PO-Revision-Date: 2013-10-12 12:47+0000\n"
+"POT-Creation-Date: 2013-10-16 00:31+0200\n"
+"PO-Revision-Date: 2013-11-01 01:08+0000\n"
 "Last-Translator: Walter Cheuk <wwycheuk@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/xfce/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -427,120 +427,133 @@ msgstr "移除一個信箱會廢棄所有的設定，而且不能反悔。"
 msgid "Mailboxes"
 msgstr "信箱"
 
-#: ../panel-plugin/mailwatch-plugin.c:114
-#: ../panel-plugin/mailwatch-plugin.c:433
+#: ../panel-plugin/mailwatch-plugin.c:145
+#: ../panel-plugin/mailwatch-plugin.c:464
 msgid "No new mail"
 msgstr "無新信件"
 
-#: ../panel-plugin/mailwatch-plugin.c:130
+#: ../panel-plugin/mailwatch-plugin.c:161
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
 msgstr[0] "您有 %d 封新訊息:"
 
-#: ../panel-plugin/mailwatch-plugin.c:141
+#: ../panel-plugin/mailwatch-plugin.c:172
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "表示每個收信匣有多少個新訊息|    %d 於 %s"
 
-#: ../panel-plugin/mailwatch-plugin.c:416
+#: ../panel-plugin/mailwatch-plugin.c:447
 msgid "Xfce Mailwatch"
 msgstr "Xfce Mailwatch 郵箱監察"
 
-#: ../panel-plugin/mailwatch-plugin.c:417
+#: ../panel-plugin/mailwatch-plugin.c:448
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "無法將郵件監視程式新增到面板中。"
 
-#: ../panel-plugin/mailwatch-plugin.c:418
+#: ../panel-plugin/mailwatch-plugin.c:449
 msgid ""
 "It is possible that your version of GLib does not have threads support."
 msgstr "這可能是因為您 GLib 的版本沒有支援執行緒(threads)。"
 
-#: ../panel-plugin/mailwatch-plugin.c:644
+#: ../panel-plugin/mailwatch-plugin.c:678
 msgid "Mailwatch log"
 msgstr "Mailwatch 記錄"
 
-#: ../panel-plugin/mailwatch-plugin.c:702
+#: ../panel-plugin/mailwatch-plugin.c:736
 msgid "Log _lines:"
 msgstr "記錄行數(_L)："
 
-#: ../panel-plugin/mailwatch-plugin.c:716
+#: ../panel-plugin/mailwatch-plugin.c:750
 msgid "Show log _status in icon"
 msgstr "在圖示中顯示記錄狀態(_S)"
 
-#: ../panel-plugin/mailwatch-plugin.c:763
+#: ../panel-plugin/mailwatch-plugin.c:797
 msgid "Select Icon"
 msgstr "選擇圖示"
 
-#: ../panel-plugin/mailwatch-plugin.c:795
-#: ../panel-plugin/mailwatch-plugin.c:965
+#: ../panel-plugin/mailwatch-plugin.c:829
+#: ../panel-plugin/mailwatch-plugin.c:1087
 msgid "_Normal"
 msgstr "正常(_N)"
 
-#: ../panel-plugin/mailwatch-plugin.c:800
+#: ../panel-plugin/mailwatch-plugin.c:834
 msgid "Ne_w mail"
 msgstr "新信件(_W)"
 
-#: ../panel-plugin/mailwatch-plugin.c:835
-#, c-format
-msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
-msgstr "「說明」無法使用，因為'xfhelp4'無法執行：%s"
+#: ../panel-plugin/mailwatch-plugin.c:883
+msgid "Failed to open web browser for online documentation"
+msgstr "未能開啟網頁瀏覽器閱讀線上說明文件"
 
-#: ../panel-plugin/mailwatch-plugin.c:837
-msgid "Help Unavailable"
-msgstr "「說明」無法使用"
+#: ../panel-plugin/mailwatch-plugin.c:931
+msgid "Online Documentation"
+msgstr "線上說明文件"
 
-#: ../panel-plugin/mailwatch-plugin.c:838
-msgid "Failed to run xfhelp4"
-msgstr "執行 xfhelp4 失敗"
+#: ../panel-plugin/mailwatch-plugin.c:933
+msgid "Do you want to read the manual online?"
+msgstr "是否閱讀線上手冊？"
 
-#: ../panel-plugin/mailwatch-plugin.c:866
+#: ../panel-plugin/mailwatch-plugin.c:934
+msgid ""
+"You will be redirected to the documentation website where the help pages are"
+" maintained."
+msgstr "會重定向至說明文件網站；該處的文件是最新最齊全的。"
+
+#: ../panel-plugin/mailwatch-plugin.c:938
+msgid "_Read Online"
+msgstr "閱讀線上手冊(_R)"
+
+#: ../panel-plugin/mailwatch-plugin.c:949
+msgid "_Always go directly to the online documentation"
+msgstr "必定直接閱讀線上手冊(_A)"
+
+#: ../panel-plugin/mailwatch-plugin.c:988
 #: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "郵件監視器"
 
-#: ../panel-plugin/mailwatch-plugin.c:884
+#: ../panel-plugin/mailwatch-plugin.c:1006
 msgid "_View Log..."
 msgstr "檢視記錄(_V)"
 
-#: ../panel-plugin/mailwatch-plugin.c:907
+#: ../panel-plugin/mailwatch-plugin.c:1029
 msgid "External Programs"
 msgstr "外部程式"
 
 #. External programs - Labels.
-#: ../panel-plugin/mailwatch-plugin.c:913
+#: ../panel-plugin/mailwatch-plugin.c:1035
 msgid "Run _on click:"
 msgstr "按下後啟動(_O)"
 
-#: ../panel-plugin/mailwatch-plugin.c:919
+#: ../panel-plugin/mailwatch-plugin.c:1041
 msgid "Run on new _messages:"
 msgstr "有新訊息時啟動(_M)："
 
 #. Icons.
-#: ../panel-plugin/mailwatch-plugin.c:943
+#: ../panel-plugin/mailwatch-plugin.c:1065
 msgid "Icons"
 msgstr "圖示"
 
-#: ../panel-plugin/mailwatch-plugin.c:982
+#: ../panel-plugin/mailwatch-plugin.c:1104
 msgid "Ne_w Mail"
 msgstr "新信件(_W)"
 
-#: ../panel-plugin/mailwatch-plugin.c:1044
+#: ../panel-plugin/mailwatch-plugin.c:1166
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Xfce Mailwatch 郵箱監察插件"
 
-#: ../panel-plugin/mailwatch-plugin.c:1047
+#: ../panel-plugin/mailwatch-plugin.c:1169
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "功能全備郵件檢查器面板程式，供 Xfce 面板使用"
 
-#: ../panel-plugin/mailwatch-plugin.c:1049
+#: ../panel-plugin/mailwatch-plugin.c:1171
 msgid ""
 "Copyright (c) 2013 Ján Sučan\n"
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 msgstr "Copyright (c) 2013 Ján Sučan\nCopyright (c) 2005-2008 Brian Tarricone\nCopyright (c) 2005 Pasi Orovuo"
 
-#: ../panel-plugin/mailwatch-plugin.c:1124
+#: ../panel-plugin/mailwatch-plugin.c:1241
 msgid "Update Now"
 msgstr "立刻更新"
 
