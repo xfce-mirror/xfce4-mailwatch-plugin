@@ -36,9 +36,13 @@ libmailwatch_la_LIBADD = \
 	$(GTHREAD_LIBS) \
 	$(LIBXFCE4PANEL_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
-	$(GNUTLS_LIBS) \
-	$(LIBGCRYPT_LIBS) \
 	$(EXO_LIBS)
+
+if HAVE_SSL_SUPPORT
+libmailwatch_la_LIBADD += \
+	$(GNUTLS_LIBS) \
+	$(LIBGCRYPT_LIBS)
+endif
 
 #
 # Desktop file

@@ -26,15 +26,17 @@ libmailwatch_core_la_SOURCES = \
 	mailwatch.c \
 	mailwatch.h
 
-if HAVE_SSL_SUPPORT
-libmailwatch_core_la_SOURCES += \
-	mailwatch-mailbox-gmail.c
-endif
-
 libmailwatch_core_la_CFLAGS = \
 	$(GTHREAD_CFLAGS) \
 	$(GTK_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
-	$(GNUTLS_CFLAGS) \
-	$(LIBGCRYPT_CFLAGS) \
 	$(PLATFORM_CFLAGS)
+
+if HAVE_SSL_SUPPORT
+libmailwatch_core_la_SOURCES += \
+	mailwatch-mailbox-gmail.c
+
+libmailwatch_core_la_CFLAGS += \
+	$(GNUTLS_CFLAGS) \
+	$(LIBGCRYPT_CFLAGS)
+endif
