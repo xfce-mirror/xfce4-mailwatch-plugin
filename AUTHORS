@@ -1,17 +1,4 @@
-Code:
-    Brian Tarricone <bjt23@cornell.edu>  (core, plugin, IMAP, POP3, GMail)
-    Pasi Orovuo <pasi.ov@gmail.com>  (mbox, {mh-,}maildir, bugfixes, logging)
-    Ján Sučan <sucan@runbox.com>
+Brian Tarricone <bjt23@cornell.edu>  (core, plugin, IMAP, POP3, GMail)
+Pasi Orovuo <pasi.ov@gmail.com>  (mbox, {mh-,}maildir, bugfixes, logging)
+Ján Sučan <sucan@runbox.com>
 
-Translations:
-    Pau Rullan Ferragut <paurullan@bulma.net>  (ca)
-    Bernhard Walle <bernhard@bwalle.de>  (de)
-    Fabian Nowak <timystery@aarcor.de>  (de)
-    Stavros Giannouris <stavrosg2002@freemail.gr>  (el)
-    Piarres Beobide <pi@beobide.net>  (eu)
-    Jari Rahkonen <jari.rahkonen@pp1.inet.fi>  (fi)
-    Stephane Roy <sroy@j2n.net>  (fr)
-    Ankit Patel <ankit644@yahoo.com>  (gu)
-    Daichi Kawahata <daichi@xfce.org>  (ja)
-    Adriano Winter Bess <awbess@gmail.com>  (pt_BR)
-    Phan Vĩnh Thịnh <teppi@vnlinux.org>  (vi)
