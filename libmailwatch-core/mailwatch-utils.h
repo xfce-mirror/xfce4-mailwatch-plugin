@@ -32,8 +32,6 @@ typedef enum
 
 GtkWidget *xfce_mailwatch_custom_button_new(const gchar *text,
                                             const gchar *icon);
-GtkWidget *xfce_mailwatch_create_framebox(const gchar *title,
-                                          GtkWidget **frame_bin);
 
 gchar *xfce_mailwatch_cram_md5(const gchar *username,
                                const gchar *password,

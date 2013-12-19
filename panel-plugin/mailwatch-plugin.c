@@ -1026,7 +1026,7 @@ mailwatch_create_options(XfcePanelPlugin     *plugin,
     GtkWidget *lbl_onnewmessages;
     GtkWidget *halign;
 
-    frame = xfce_mailwatch_create_framebox(_("External Programs"), &frame_bin);
+    frame = xfce_gtk_frame_box_new(_("External Programs"), &frame_bin);
     gtk_box_pack_start(GTK_BOX(topvbox), frame, FALSE, FALSE, 0);
 
     table = gtk_table_new(2, 2, FALSE);
@@ -1062,7 +1062,7 @@ mailwatch_create_options(XfcePanelPlugin     *plugin,
     gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 1, 2,
                      GTK_FILL | GTK_EXPAND, GTK_FILL, BORDER / 4, BORDER / 4);
     /* Icons. */
-    frame = xfce_mailwatch_create_framebox(_("Icons"), &frame_bin);
+    frame = xfce_gtk_frame_box_new(_("Icons"), &frame_bin);
     gtk_box_pack_start(GTK_BOX(topvbox), frame, FALSE, FALSE, 0);
     
     sg = gtk_size_group_new(GTK_SIZE_GROUP_BOTH);

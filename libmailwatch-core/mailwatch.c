@@ -960,7 +960,7 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
     GtkCellRenderer *render;
     GtkTreeSelection *sel;
     
-    frame = xfce_mailwatch_create_framebox(_("Mailboxes"), &frame_bin);
+    frame = xfce_gtk_frame_box_new(_("Mailboxes"), &frame_bin);
     gtk_widget_show(frame);
     
     hbox = gtk_hbox_new(FALSE, BORDER/2);

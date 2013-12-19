@@ -105,12 +105,6 @@ xfce_mailwatch_custom_button_new(const gchar *text, const gchar *icon)
     return btn;
 }
 
-GtkWidget *
-xfce_mailwatch_create_framebox(const gchar *title, GtkWidget **frame_bin)
-{
-    return xfce_gtk_frame_box_new(title, frame_bin);
-}
-
 #ifdef HAVE_SSL_SUPPORT
 /* assumes |dest| is allocated 2x |src_len| */
 static void

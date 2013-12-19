@@ -755,7 +755,7 @@ pop3_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     gtk_widget_show(topvbox);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), topvbox, TRUE, TRUE, 0);
     
-    frame = xfce_mailwatch_create_framebox(_("Connection"), &frame_bin);
+    frame = xfce_gtk_frame_box_new(_("Connection"), &frame_bin);
     gtk_widget_show(frame);
     gtk_box_pack_start(GTK_BOX(topvbox), frame, FALSE, FALSE, 0);
     
@@ -827,7 +827,7 @@ pop3_get_setup_page(XfceMailwatchMailbox *mailbox)
     topvbox = gtk_vbox_new(FALSE, BORDER/2);
     gtk_widget_show(topvbox);
     
-    frame = xfce_mailwatch_create_framebox(_("POP3 Server"), &frame_bin);
+    frame = xfce_gtk_frame_box_new(_("POP3 Server"), &frame_bin);
     gtk_widget_show(frame);
     gtk_box_pack_start(GTK_BOX(topvbox), frame, FALSE, FALSE, 0);
     
