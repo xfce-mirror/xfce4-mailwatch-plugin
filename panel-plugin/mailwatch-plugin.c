@@ -88,6 +88,7 @@ typedef struct
     
     gchar *click_command;
     gchar *new_messages_command;
+    gchar *count_changed_command;
 
     GdkPixbuf *pix_normal;
     GdkPixbuf *pix_newmail;    
@@ -161,7 +162,6 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch,
                                    ngettext("You have %d new message:",
                                             "You have %d new messages:",
                                             new_messages), new_messages);
-            mwp->new_messages = new_messages;
             
             xfce_mailwatch_get_new_message_breakdown(mwp->mailwatch,
                     &mailbox_names, &new_message_counts);
@@ -181,11 +181,19 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch,
             gtk_widget_set_tooltip_text(mwp->button, ttip_str->str);
             gtk_widget_trigger_tooltip_query(mwp->button);
             g_string_free(ttip_str, TRUE);
-            
-            if (mwp->new_messages_command)
+            /* Run command when count of new messages changes from
+             * zero to non-zero. */
+            if (mwp->new_messages == 0 && mwp->new_messages_command)
                 xfce_spawn_command_line_on_screen(gdk_screen_get_default(),
                                                   mwp->new_messages_command,
                                                   FALSE, FALSE, NULL);
+            /* Run command on any change of count of new messages. */
+            if (mwp->count_changed_command)
+                xfce_spawn_command_line_on_screen(gdk_screen_get_default(),
+                                                  mwp->count_changed_command,
+                                                  FALSE, FALSE, NULL);
+            /* Save the actual count of new messages.*/
+            mwp->new_messages = new_messages;
         }
     }
 }
@@ -520,6 +528,10 @@ mailwatch_read_config(XfcePanelPlugin     *plugin,
     value = xfce_rc_read_entry(rc, "new_messages_command", NULL);
     if(value)
         mwp->new_messages_command = g_strdup(value);
+
+    value = xfce_rc_read_entry(rc, "count_changed_command", NULL);
+    if(value)
+      mwp->count_changed_command = g_strdup(value);
     
     value = xfce_rc_read_entry(rc, "normal_icon", NULL);
     if (value) {
@@ -582,6 +594,8 @@ mailwatch_write_config(XfcePanelPlugin     *plugin,
                         mwp->click_command?mwp->click_command:"");
     xfce_rc_write_entry(rc, "new_messages_command",
                         mwp->new_messages_command?mwp->new_messages_command:"");
+    xfce_rc_write_entry(rc, "count_changed_command",
+                        mwp->count_changed_command?mwp->count_changed_command:"");
     xfce_rc_write_entry(rc, "normal_icon",
                         mwp->normal_icon?mwp->normal_icon:DEFAULT_NORMAL_ICON);
     xfce_rc_write_entry(rc, "new_mail_icon",
@@ -780,6 +794,22 @@ mailwatch_newmsg_command_focusout_cb(GtkWidget     *w,
     command = gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1);
     mwp->new_messages_command = g_strdup(command ? command : "");
     
+    return FALSE;
+}
+
+static gboolean
+mailwatch_count_changed_command_focusout_cb(GtkWidget     *w,
+                                            GdkEventFocus *evt,
+                                            gpointer       user_data)
+{
+    XfceMailwatchPlugin *mwp = user_data;
+    gchar *command;
+
+    g_free(mwp->count_changed_command);
+
+    command = gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1);
+    mwp->count_changed_command = g_strdup(command ? command : "");
+
     return FALSE;
 }
 
@@ -1024,6 +1054,7 @@ mailwatch_create_options(XfcePanelPlugin     *plugin,
     GtkWidget *table;
     GtkWidget *lbl_onclick;
     GtkWidget *lbl_onnewmessages;
+    GtkWidget *lbl_count_changed_command;
     GtkWidget *halign;
 
     frame = xfce_gtk_frame_box_new(_("External Programs"), &frame_bin);
@@ -1038,10 +1069,17 @@ mailwatch_create_options(XfcePanelPlugin     *plugin,
     gtk_table_attach(GTK_TABLE(table), halign, 0, 1, 0, 1,
                      GTK_FILL, GTK_FILL, BORDER / 4, BORDER / 4);
 
-    lbl_onnewmessages = gtk_label_new_with_mnemonic(_("Run on new _messages:"));
+    lbl_onnewmessages = gtk_label_new_with_mnemonic(_("Run on first new _message:"));
     halign = gtk_alignment_new(0, 0.5, 0, 0);
     gtk_container_add(GTK_CONTAINER(halign), lbl_onnewmessages);
     gtk_table_attach(GTK_TABLE(table), halign, 0, 1, 1, 2,
+                     GTK_FILL, GTK_FILL, BORDER / 4, BORDER / 4);
+
+    lbl_count_changed_command =
+        gtk_label_new_with_mnemonic(_("Run on _each change of new message count:"));
+    halign = gtk_alignment_new(0, 0.5, 0, 0);
+    gtk_container_add(GTK_CONTAINER(halign), lbl_count_changed_command);
+    gtk_table_attach(GTK_TABLE(table), halign, 0, 1, 2, 3,
                      GTK_FILL, GTK_FILL, BORDER / 4, BORDER / 4);
     /* External programs - Entries. */
     entry = gtk_entry_new();
@@ -1060,6 +1098,15 @@ mailwatch_create_options(XfcePanelPlugin     *plugin,
     g_signal_connect(G_OBJECT(entry), "focus-out-event",
             G_CALLBACK(mailwatch_newmsg_command_focusout_cb), mwp);
     gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 1, 2,
+                     GTK_FILL | GTK_EXPAND, GTK_FILL, BORDER / 4, BORDER / 4);
+
+    entry = gtk_entry_new();
+    if(mwp->count_changed_command)
+        gtk_entry_set_text(GTK_ENTRY(entry), mwp->count_changed_command);
+    gtk_label_set_mnemonic_widget(GTK_LABEL(lbl_count_changed_command), entry);
+    g_signal_connect(G_OBJECT(entry), "focus-out-event",
+                     G_CALLBACK(mailwatch_count_changed_command_focusout_cb), mwp);
+    gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 2, 3,
                      GTK_FILL | GTK_EXPAND, GTK_FILL, BORDER / 4, BORDER / 4);
     /* Icons. */
     frame = xfce_gtk_frame_box_new(_("Icons"), &frame_bin);
