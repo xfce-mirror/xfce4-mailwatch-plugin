@@ -792,7 +792,7 @@ mailwatch_newmsg_command_focusout_cb(GtkWidget     *w,
     g_free(mwp->new_messages_command);
     
     command = gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1);
-    mwp->new_messages_command = g_strdup(command ? command : "");
+    mwp->new_messages_command = g_strdup(command ? command : NULL);
     
     return FALSE;
 }
@@ -808,7 +808,7 @@ mailwatch_count_changed_command_focusout_cb(GtkWidget     *w,
     g_free(mwp->count_changed_command);
 
     command = gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1);
-    mwp->count_changed_command = g_strdup(command ? command : "");
+    mwp->count_changed_command = g_strdup(command ? command : NULL);
 
     return FALSE;
 }
