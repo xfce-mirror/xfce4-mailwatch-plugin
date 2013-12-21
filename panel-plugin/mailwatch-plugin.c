@@ -145,6 +145,11 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch,
                            mwp);
         gtk_widget_set_tooltip_text(mwp->button, _("No new mail"));
         gtk_widget_trigger_tooltip_query(mwp->button);
+        /* Run command on any change of count of new messages. */
+        if (mwp->count_changed_command)
+            xfce_spawn_command_line_on_screen(gdk_screen_get_default(),
+                                              mwp->count_changed_command,
+                                              FALSE, FALSE, NULL);
     } else if (new_messages > 0) {
         if (!mwp->newmail_icon_visible) {
             mwp->newmail_icon_visible = TRUE;
