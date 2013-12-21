@@ -80,26 +80,26 @@ typedef struct
     XfcePanelPlugin *plugin;
     XfceMailwatch   *mailwatch;
     
-    GtkWidget *button;
-    GtkWidget *image;
+    GtkWidget       *button;
+    GtkWidget       *image;
     
-    gboolean newmail_icon_visible;
-    guint    new_messages;
+    gboolean         newmail_icon_visible;
+    guint            new_messages;
     
-    gchar *click_command;
-    gchar *new_messages_command;
-    gchar *count_changed_command;
+    gchar           *click_command;
+    gchar           *new_messages_command;
+    gchar           *count_changed_command;
 
-    GdkPixbuf *pix_normal;
-    GdkPixbuf *pix_newmail;    
-    gchar     *normal_icon;
-    gchar     *new_mail_icon;
+    GdkPixbuf       *pix_normal;
+    GdkPixbuf       *pix_newmail;
+    gchar           *normal_icon;
+    gchar           *new_mail_icon;
 
     GtkWidget             *log_dialog;
-    guint                 log_lines;
-    gboolean              show_log_status;
+    guint                  log_lines;
+    gboolean               show_log_status;
     GdkPixbuf             *pix_log[XFCE_MAILWATCH_N_LOG_LEVELS];
-    XfceMailwatchLogLevel log_status;
+    XfceMailwatchLogLevel  log_status;
     GtkListStore          *loglist;
 
     gboolean auto_open_online_doc;
