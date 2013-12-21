@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-16 00:31+0200\n"
-"PO-Revision-Date: 2013-10-16 12:24+0000\n"
+"POT-Creation-Date: 2013-12-21 06:31+0100\n"
+"PO-Revision-Date: 2013-12-21 11:41+0000\n"
 "Last-Translator: Masato HASHIMOTO <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/xfce/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -427,12 +427,12 @@ msgstr "メールボックスを削除するとすべての設定が破棄され
 msgid "Mailboxes"
 msgstr "メールボックス"
 
-#: ../panel-plugin/mailwatch-plugin.c:145
-#: ../panel-plugin/mailwatch-plugin.c:464
+#: ../panel-plugin/mailwatch-plugin.c:146
+#: ../panel-plugin/mailwatch-plugin.c:472
 msgid "No new mail"
 msgstr "新着メールはありません"
 
-#: ../panel-plugin/mailwatch-plugin.c:161
+#: ../panel-plugin/mailwatch-plugin.c:162
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
@@ -443,117 +443,121 @@ msgstr[0] "%d 件の新着メッセージがあります:"
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr " %2$s に %1$d 通"
 
-#: ../panel-plugin/mailwatch-plugin.c:447
+#: ../panel-plugin/mailwatch-plugin.c:455
 msgid "Xfce Mailwatch"
 msgstr "Xfce メールウォッチ"
 
-#: ../panel-plugin/mailwatch-plugin.c:448
+#: ../panel-plugin/mailwatch-plugin.c:456
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "このメールウォッチアプレットはパネルに追加できません。"
 
-#: ../panel-plugin/mailwatch-plugin.c:449
+#: ../panel-plugin/mailwatch-plugin.c:457
 msgid ""
 "It is possible that your version of GLib does not have threads support."
 msgstr "あなたの環境の GLib のバージョンはスレッドをサポートしていないためできません。"
 
-#: ../panel-plugin/mailwatch-plugin.c:678
+#: ../panel-plugin/mailwatch-plugin.c:692
 msgid "Mailwatch log"
 msgstr "メールウォッチログ"
 
-#: ../panel-plugin/mailwatch-plugin.c:736
+#: ../panel-plugin/mailwatch-plugin.c:750
 msgid "Log _lines:"
 msgstr "ログの行数(_L):"
 
-#: ../panel-plugin/mailwatch-plugin.c:750
+#: ../panel-plugin/mailwatch-plugin.c:764
 msgid "Show log _status in icon"
 msgstr "アイコンでログステータスを表示(_S)"
 
-#: ../panel-plugin/mailwatch-plugin.c:797
+#: ../panel-plugin/mailwatch-plugin.c:827
 msgid "Select Icon"
 msgstr "アイコンを選択して下さい"
 
-#: ../panel-plugin/mailwatch-plugin.c:829
-#: ../panel-plugin/mailwatch-plugin.c:1087
+#: ../panel-plugin/mailwatch-plugin.c:859
+#: ../panel-plugin/mailwatch-plugin.c:1134
 msgid "_Normal"
 msgstr "通常(_N)"
 
-#: ../panel-plugin/mailwatch-plugin.c:834
+#: ../panel-plugin/mailwatch-plugin.c:864
 msgid "Ne_w mail"
 msgstr "新着メール(_W)"
 
-#: ../panel-plugin/mailwatch-plugin.c:883
+#: ../panel-plugin/mailwatch-plugin.c:913
 msgid "Failed to open web browser for online documentation"
 msgstr "オンラインドキュメントのためにウェブブラウザー開くことに失敗しました"
 
-#: ../panel-plugin/mailwatch-plugin.c:931
+#: ../panel-plugin/mailwatch-plugin.c:961
 msgid "Online Documentation"
 msgstr "オンラインドキュメント"
 
-#: ../panel-plugin/mailwatch-plugin.c:933
+#: ../panel-plugin/mailwatch-plugin.c:963
 msgid "Do you want to read the manual online?"
 msgstr "オンラインでマニュアルを閲覧しますか?"
 
-#: ../panel-plugin/mailwatch-plugin.c:934
+#: ../panel-plugin/mailwatch-plugin.c:964
 msgid ""
 "You will be redirected to the documentation website where the help pages are"
 " maintained."
-msgstr "ヘルプページがメンテナンス中の場合ドキュメントウェブサイトにリダイレクトされます。"
+msgstr "ヘルプページがメンテナンスされている場合ドキュメントウェブサイトにリダイレクトされます。"
 
-#: ../panel-plugin/mailwatch-plugin.c:938
+#: ../panel-plugin/mailwatch-plugin.c:968
 msgid "_Read Online"
 msgstr "オンラインで読む(_R)"
 
-#: ../panel-plugin/mailwatch-plugin.c:949
+#: ../panel-plugin/mailwatch-plugin.c:979
 msgid "_Always go directly to the online documentation"
 msgstr "常にオンラインドキュメントを閲覧する(_A)"
 
-#: ../panel-plugin/mailwatch-plugin.c:988
+#: ../panel-plugin/mailwatch-plugin.c:1018
 #: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "メールウォッチャー"
 
-#: ../panel-plugin/mailwatch-plugin.c:1006
+#: ../panel-plugin/mailwatch-plugin.c:1036
 msgid "_View Log..."
 msgstr "ログを表示(_V)..."
 
-#: ../panel-plugin/mailwatch-plugin.c:1029
+#: ../panel-plugin/mailwatch-plugin.c:1060
 msgid "External Programs"
 msgstr "外部プログラム"
 
 #. External programs - Labels.
-#: ../panel-plugin/mailwatch-plugin.c:1035
+#: ../panel-plugin/mailwatch-plugin.c:1066
 msgid "Run _on click:"
 msgstr "クリックで実行(_O):"
 
-#: ../panel-plugin/mailwatch-plugin.c:1041
-msgid "Run on new _messages:"
-msgstr "メッセージが来た場合に実行(_M):"
+#: ../panel-plugin/mailwatch-plugin.c:1072
+msgid "Run on first new _message:"
+msgstr "最初の新着メッセージが届いた時に実行(_M):"
+
+#: ../panel-plugin/mailwatch-plugin.c:1079
+msgid "Run on _each change of new message count:"
+msgstr "新着メッセージ数が更新される度に実行(_E):"
 
 #. Icons.
-#: ../panel-plugin/mailwatch-plugin.c:1065
+#: ../panel-plugin/mailwatch-plugin.c:1112
 msgid "Icons"
 msgstr "アイコン"
 
-#: ../panel-plugin/mailwatch-plugin.c:1104
+#: ../panel-plugin/mailwatch-plugin.c:1151
 msgid "Ne_w Mail"
 msgstr "新着メール(_W)"
 
-#: ../panel-plugin/mailwatch-plugin.c:1166
+#: ../panel-plugin/mailwatch-plugin.c:1213
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Xfce メールウォッチプラグイン"
 
-#: ../panel-plugin/mailwatch-plugin.c:1169
+#: ../panel-plugin/mailwatch-plugin.c:1216
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "Xfce パネル向け多機能メールチェッカーアプレット"
 
-#: ../panel-plugin/mailwatch-plugin.c:1171
+#: ../panel-plugin/mailwatch-plugin.c:1218
 msgid ""
 "Copyright (c) 2013 Ján Sučan\n"
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 msgstr "Copyright (c) 2013 Ján Sučan\nCopyright (c) 2005-2008 Brian Tarricone\nCopyright (c) 2005 Pasi Orovuo"
 
-#: ../panel-plugin/mailwatch-plugin.c:1241
+#: ../panel-plugin/mailwatch-plugin.c:1288
 msgid "Update Now"
 msgstr "今すぐチェックする"
 
