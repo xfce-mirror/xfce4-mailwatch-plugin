@@ -4,13 +4,13 @@
 # 
 # Translators:
 # Hydonsingore Cia <hydonsingore@educities.edu.tw>, 2006
-# Walter Cheuk <wwycheuk@gmail.com>, 2013
+# Walter Cheuk <wwycheuk@gmail.com>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-16 00:31+0200\n"
-"PO-Revision-Date: 2013-11-01 01:08+0000\n"
+"POT-Creation-Date: 2013-12-21 06:31+0100\n"
+"PO-Revision-Date: 2014-01-04 14:22+0000\n"
 "Last-Translator: Walter Cheuk <wwycheuk@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/xfce/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgid ""
 "Received HTTP response code %d, which should be 200.  There may be a problem"
 " with GMail's servers, or they have incompatibly changed their "
 "authentication method or location of the new messages feed."
-msgstr "收到 HTTP 回應代碼 %d，本來應該是200。這可能是 GMail 伺服器的問題，或者他們改了一個不相容的認證方式，或是新訊息的 feed 換了位置。"
+msgstr "收到 HTTP 回應代碼 %d，本來應該是200。這可能是 GMail 伺服器的問題，或者他們改了一個不相容的身分核對方式，或是新訊息的 feed 換了位置。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:395
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:736
@@ -162,7 +162,7 @@ msgstr "經由 STARTTLS 使用 SSL/TLS"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1622
 msgid "Use non-standard IMAP _port:"
-msgstr "使用非標準的 IMAP 連接埠："
+msgstr "使用非標準的 IMAP 連接埠(_P)："
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1652
 msgid "Folders"
@@ -211,11 +211,11 @@ msgstr "無法取得檔案 %s 的狀態：%s"
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:103
 #, c-format
 msgid "%s is not a directory. Is %s really a valid maildir?"
-msgstr "%s 不是一個目錄。請問 %s 真的是有效的 maildir 嗎？"
+msgstr "%s 不是目錄。請問 %s 真的是有效的 maildir 嗎？"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:336
 msgid "Maildir _Path:"
-msgstr "Maildir 路徑(_P)"
+msgstr "Maildir 路徑(_P)："
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:341
 msgid "Select Maildir Folder"
@@ -235,7 +235,7 @@ msgstr "本地 Maildir Spool"
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
-msgstr "本 Maildir 外掛程式可以監視本地的 maildir 形式的郵件 spool中是否有新訊息"
+msgstr "本 Maildir 外掛程式可以監視本地的 maildir 形式的郵件 spool 中是否有新訊息"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:372
 msgid "Mbox _Filename:"
@@ -256,13 +256,13 @@ msgstr "Mbox 外掛程式監視本地 mobox 型的郵件 spool 中是否有新�
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:242
 #, c-format
 msgid "Malformed line %s in %s ignored."
-msgstr "第 %s 行( %s )不正常，已忽略。"
+msgstr "第 %s 行 (%s) 不正常，已忽略。"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:582
 msgid ""
 "The configuration of this plugin is read from\n"
 "the default mh maildir profile file ~/.mh_profile"
-msgstr "本外掛程式的組態設定乃讀自預設的 mh maildir 的profile 檔案 ~/.mh_profile。(_P)"
+msgstr "本外掛程式的組態設定乃讀自預設的 mh maildir 的設定組合檔案 ~/.mh_profile"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:684
 msgid "Local MH mail folder"
@@ -405,7 +405,7 @@ msgstr "選擇類型"
 
 #: ../libmailwatch-core/mailwatch.c:782
 msgid "Select a mailbox type.  A description of the type will appear below."
-msgstr "選擇一種類型的信箱。關於類型的描述在下方。"
+msgstr "選擇信箱類型。關於類型的描述在下方。"
 
 #: ../libmailwatch-core/mailwatch.c:836
 msgid "Add New Mailbox"
@@ -421,139 +421,143 @@ msgstr "您確定嗎？"
 
 #: ../libmailwatch-core/mailwatch.c:898
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
-msgstr "移除一個信箱會廢棄所有的設定，而且不能反悔。"
+msgstr "移除信箱會廢棄所有的設定，而且不能反悔。"
 
 #: ../libmailwatch-core/mailwatch.c:963
 msgid "Mailboxes"
 msgstr "信箱"
 
-#: ../panel-plugin/mailwatch-plugin.c:145
-#: ../panel-plugin/mailwatch-plugin.c:464
+#: ../panel-plugin/mailwatch-plugin.c:146
+#: ../panel-plugin/mailwatch-plugin.c:472
 msgid "No new mail"
 msgstr "無新信件"
 
-#: ../panel-plugin/mailwatch-plugin.c:161
+#: ../panel-plugin/mailwatch-plugin.c:162
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
-msgstr[0] "您有 %d 封新訊息:"
+msgstr[0] "您有 %d 封新訊息："
 
 #: ../panel-plugin/mailwatch-plugin.c:172
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "表示每個收信匣有多少個新訊息|    %d 於 %s"
 
-#: ../panel-plugin/mailwatch-plugin.c:447
+#: ../panel-plugin/mailwatch-plugin.c:455
 msgid "Xfce Mailwatch"
 msgstr "Xfce Mailwatch 郵箱監察"
 
-#: ../panel-plugin/mailwatch-plugin.c:448
+#: ../panel-plugin/mailwatch-plugin.c:456
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "無法將郵件監視程式新增到面板中。"
 
-#: ../panel-plugin/mailwatch-plugin.c:449
+#: ../panel-plugin/mailwatch-plugin.c:457
 msgid ""
 "It is possible that your version of GLib does not have threads support."
 msgstr "這可能是因為您 GLib 的版本沒有支援執行緒(threads)。"
 
-#: ../panel-plugin/mailwatch-plugin.c:678
+#: ../panel-plugin/mailwatch-plugin.c:692
 msgid "Mailwatch log"
 msgstr "Mailwatch 記錄"
 
-#: ../panel-plugin/mailwatch-plugin.c:736
+#: ../panel-plugin/mailwatch-plugin.c:750
 msgid "Log _lines:"
 msgstr "記錄行數(_L)："
 
-#: ../panel-plugin/mailwatch-plugin.c:750
+#: ../panel-plugin/mailwatch-plugin.c:764
 msgid "Show log _status in icon"
 msgstr "在圖示中顯示記錄狀態(_S)"
 
-#: ../panel-plugin/mailwatch-plugin.c:797
+#: ../panel-plugin/mailwatch-plugin.c:827
 msgid "Select Icon"
 msgstr "選擇圖示"
 
-#: ../panel-plugin/mailwatch-plugin.c:829
-#: ../panel-plugin/mailwatch-plugin.c:1087
+#: ../panel-plugin/mailwatch-plugin.c:859
+#: ../panel-plugin/mailwatch-plugin.c:1134
 msgid "_Normal"
 msgstr "正常(_N)"
 
-#: ../panel-plugin/mailwatch-plugin.c:834
+#: ../panel-plugin/mailwatch-plugin.c:864
 msgid "Ne_w mail"
 msgstr "新信件(_W)"
 
-#: ../panel-plugin/mailwatch-plugin.c:883
+#: ../panel-plugin/mailwatch-plugin.c:913
 msgid "Failed to open web browser for online documentation"
 msgstr "未能開啟網頁瀏覽器閱讀線上說明文件"
 
-#: ../panel-plugin/mailwatch-plugin.c:931
+#: ../panel-plugin/mailwatch-plugin.c:961
 msgid "Online Documentation"
 msgstr "線上說明文件"
 
-#: ../panel-plugin/mailwatch-plugin.c:933
+#: ../panel-plugin/mailwatch-plugin.c:963
 msgid "Do you want to read the manual online?"
 msgstr "是否閱讀線上手冊？"
 
-#: ../panel-plugin/mailwatch-plugin.c:934
+#: ../panel-plugin/mailwatch-plugin.c:964
 msgid ""
 "You will be redirected to the documentation website where the help pages are"
 " maintained."
 msgstr "會重定向至說明文件網站；該處的文件是最新最齊全的。"
 
-#: ../panel-plugin/mailwatch-plugin.c:938
+#: ../panel-plugin/mailwatch-plugin.c:968
 msgid "_Read Online"
 msgstr "閱讀線上手冊(_R)"
 
-#: ../panel-plugin/mailwatch-plugin.c:949
+#: ../panel-plugin/mailwatch-plugin.c:979
 msgid "_Always go directly to the online documentation"
 msgstr "必定直接閱讀線上手冊(_A)"
 
-#: ../panel-plugin/mailwatch-plugin.c:988
+#: ../panel-plugin/mailwatch-plugin.c:1018
 #: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "郵件監視器"
 
-#: ../panel-plugin/mailwatch-plugin.c:1006
+#: ../panel-plugin/mailwatch-plugin.c:1036
 msgid "_View Log..."
-msgstr "檢視記錄(_V)"
+msgstr "檢視記錄(_V)..."
 
-#: ../panel-plugin/mailwatch-plugin.c:1029
+#: ../panel-plugin/mailwatch-plugin.c:1060
 msgid "External Programs"
 msgstr "外部程式"
 
 #. External programs - Labels.
-#: ../panel-plugin/mailwatch-plugin.c:1035
+#: ../panel-plugin/mailwatch-plugin.c:1066
 msgid "Run _on click:"
-msgstr "按下後啟動(_O)"
+msgstr "按下後啟動(_O)："
 
-#: ../panel-plugin/mailwatch-plugin.c:1041
-msgid "Run on new _messages:"
-msgstr "有新訊息時啟動(_M)："
+#: ../panel-plugin/mailwatch-plugin.c:1072
+msgid "Run on first new _message:"
+msgstr "在首個訊息時啟動(_M)："
+
+#: ../panel-plugin/mailwatch-plugin.c:1079
+msgid "Run on _each change of new message count:"
+msgstr "在每次新訊息數目變更時啟動(_E)："
 
 #. Icons.
-#: ../panel-plugin/mailwatch-plugin.c:1065
+#: ../panel-plugin/mailwatch-plugin.c:1112
 msgid "Icons"
 msgstr "圖示"
 
-#: ../panel-plugin/mailwatch-plugin.c:1104
+#: ../panel-plugin/mailwatch-plugin.c:1151
 msgid "Ne_w Mail"
 msgstr "新信件(_W)"
 
-#: ../panel-plugin/mailwatch-plugin.c:1166
+#: ../panel-plugin/mailwatch-plugin.c:1213
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Xfce Mailwatch 郵箱監察插件"
 
-#: ../panel-plugin/mailwatch-plugin.c:1169
+#: ../panel-plugin/mailwatch-plugin.c:1216
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "功能全備郵件檢查器面板程式，供 Xfce 面板使用"
 
-#: ../panel-plugin/mailwatch-plugin.c:1171
+#: ../panel-plugin/mailwatch-plugin.c:1218
 msgid ""
 "Copyright (c) 2013 Ján Sučan\n"
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 msgstr "Copyright (c) 2013 Ján Sučan\nCopyright (c) 2005-2008 Brian Tarricone\nCopyright (c) 2005 Pasi Orovuo"
 
-#: ../panel-plugin/mailwatch-plugin.c:1241
+#: ../panel-plugin/mailwatch-plugin.c:1288
 msgid "Update Now"
 msgstr "立刻更新"
 
