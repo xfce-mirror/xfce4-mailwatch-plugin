@@ -1,570 +1,566 @@
-# Indonesian translations for xfce4-mailwatch-plugin.
-# Copyright (C) 2005-2006 Brian Tarricone, Pasi Orovuo.
-# This file is distributed under the same license as the xfce4-mailwatch-plugin package.
-# Andhika Padmawan <andhika.padmawan@gmail.com>, 2008.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
+# Translators:
+# Andhika Padmawan <andhika.padmawan@gmail.com>, 2008
+# Ardjuna <Asyura.x@gmail.com>, 2014
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-12 05:06+0000\n"
-"PO-Revision-Date: 2008-09-03 21:57+0700\n"
-"Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
-"Language-Team: Indonesian <id@li.org>\n"
+"POT-Creation-Date: 2013-12-21 06:31+0100\n"
+"PO-Revision-Date: 2014-01-05 07:37+0000\n"
+"Last-Translator: Ardjuna <Asyura.x@gmail.com>\n"
+"Language-Team: Indonesian (http://www.transifex.com/projects/p/xfce/language/id/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:204
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:399
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:308
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:205
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:400
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:309
 #, c-format
 msgid "TLS handshake failed: %s"
-msgstr "Jabat tangan TLS gagal: %s"
+msgstr "TLS gagal saling terkait: %s"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:255
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:256
 #, c-format
-msgid "Received HTTP response code %d.  The most likely reason for this is that your GMail username or password is incorrect."
+msgid ""
+"Received HTTP response code %d.  The most likely reason for this is that "
+"your GMail username or password is incorrect."
 msgstr "Menerima kode balasan HTTP %d. Alasan yang paling memungkinkan untuk ini adalah nama pengguna atau sandi lewat GMail anda salah."
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:262
 #, c-format
-msgid "Received HTTP response code %d, which should be 200.  There may be a problem with GMail's servers, or they have incompatibly changed their authentication method or location of the new messages feed."
+msgid ""
+"Received HTTP response code %d, which should be 200.  There may be a problem"
+" with GMail's servers, or they have incompatibly changed their "
+"authentication method or location of the new messages feed."
 msgstr "Menerima kode balasan HTTP %d, dari yang seharusnya 200. Mungkin ada masalah dengan server GMail, atau mereka telah mengganti metode otentikasi mereka atau lokasi umpan pesan baru sehingga tidak cocok."
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:735
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:179
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:225
-#: ../libmailwatch-core/mailwatch-mailbox-mh.c:487
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:548
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:395
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:736
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:180
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:226
+#: ../libmailwatch-core/mailwatch-mailbox-mh.c:488
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:549
 msgid "Previous thread hasn't exited yet, not checking mail this time."
 msgstr "Benang sebelumnya belum dikeluarkan, tidak memeriksa surat kali ini."
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:863
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:536
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1724
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:864
 msgid "_Username:"
 msgstr "_Nama Pengguna:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:555
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1768
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:883
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:556
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1744
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:884
 msgid "_Password:"
 msgstr "_Sandi Lewat:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:576
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1807
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:915
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:577
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1783
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:916
 msgid "Check for _new messages every"
 msgstr "Cek _pesan baru tiap"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:591
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1821
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:374
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:412
-#: ../libmailwatch-core/mailwatch-mailbox-mh.c:605
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:929
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:592
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1797
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:375
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:413
+#: ../libmailwatch-core/mailwatch-mailbox-mh.c:606
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:930
 msgid "minute(s)."
 msgstr "menit."
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:668
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:669
 msgid "Remote GMail Mailbox"
 msgstr "Kotak Surat Jarak Jauh GMail"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:669
-msgid "The GMail plugin can connect to Google's mail service and securely retrieve the number of new messages."
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:670
+msgid ""
+"The GMail plugin can connect to Google's mail service and securely retrieve "
+"the number of new messages."
 msgstr "Plugin GMail dapat menghubungi layanan surat Google dan menerima sejumlah pesan baru dengan aman."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
-msgid "Secure IMAP is not available, and the IMAP server does not support plaintext logins."
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:287
+msgid ""
+"Secure IMAP is not available, and the IMAP server does not support plaintext"
+" logins."
 msgstr "IMAP aman tak tersedia, dan server IMAP tidak mendukung log masuk teks biasa."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:337
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:370
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:242
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
-msgid "Authentication failed.  Perhaps your username or password is incorrect?"
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:338
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:371
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:243
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:285
+msgid ""
+"Authentication failed.  Perhaps your username or password is incorrect?"
 msgstr "Otentikasi gagal. Mungkin nama pengguna atau sandi lewat anda salah?"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:434
 msgid "STARTTLS security was requested, but this server does not support it."
 msgstr "Keamanan STARTTLS diminta, tapi server ini tidak mendukungnya."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1144
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1145
 msgid "Failed to get folder list"
 msgstr "Gagal mendapatkan senarai folder"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1289
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1524
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1290
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1500
 msgid "Please wait..."
 msgstr "Silakan tunggu..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1396
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1397
 msgid "Error"
 msgstr "Galat"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1397
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1398
 msgid "No server or username is set."
 msgstr "Tak ada server atau nama pengguna yang diatur."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1398
-msgid "The folder list cannot be retrieved until a server, username, and probably password are set.  Also be sure to check any security settings in the Advanced dialog."
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1399
+msgid ""
+"The folder list cannot be retrieved until a server, username, and probably "
+"password are set.  Also be sure to check any security settings in the "
+"Advanced dialog."
 msgstr "Senarai folder tak dapat diterima hingga server, nama pengguna, dan mungkin sandi lewat diatur. Pastikan juga untuk mencek pengaturan keamanan apapun di dialog Mahir."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1404
 msgid "Set New Mail Folders"
 msgstr "Atur Folder Surat Baru"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1417
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1418
 msgid "New Mail Folders"
 msgstr "Folder Surat Baru"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1608
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1584
 msgid "Advanced IMAP Options"
 msgstr "Opsi IMAP Mahir"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1619
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:757
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1595
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:758
 msgid "Connection"
 msgstr "Koneksi"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1628
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:766
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1604
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:767
 msgid "Use unsecured connection"
 msgstr "Gunakan koneksi tidak aman"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1629
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:767
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1605
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:768
 msgid "Use SSL/TLS on alternate port"
 msgstr "Gunakan SSL/TLS pada pangkalan alternatif"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1630
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1606
 msgid "Use SSL/TLS via STARTTLS"
 msgstr "Gunakan SSL/TLS via STARTTLS"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1646
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1622
 msgid "Use non-standard IMAP _port:"
 msgstr "Gunakan _pangkalan IMAP non-standar:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1676
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1652
 msgid "Folders"
 msgstr "Folder"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1684
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1660
 msgid "IMAP server _directory:"
 msgstr "Direktori _server IMAP:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1714
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1690
 msgid "IMAP Server"
 msgstr "Server IMAP"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1728
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:843
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1704
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:844
 msgid "_Mail server:"
 msgstr "_Server surat:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1789
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:904
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1765
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:905
 msgid "_Advanced..."
 msgstr "_Mahir..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1796
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1772
 msgid "New mail _folders..."
 msgstr "Folder surat _baru..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1985
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1961
 msgid "Remote IMAP Mailbox"
 msgstr "Kotak Surat Jarak Jauh IMAP"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1986
-msgid "The IMAP plugin can connect to a remote mail server that supports the IMAP protocol, optionally using SSL for link protection."
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1962
+msgid ""
+"The IMAP plugin can connect to a remote mail server that supports the IMAP "
+"protocol, optionally using SSL for link protection."
 msgstr "Plugin IMAP dapat menghubungi server surat jarak jauh yang mendukung protokol IMAP, dan sebagai tambahan menggunakan SSL untuk proteksi taut."
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
-#: ../libmailwatch-core/mailwatch-mailbox-mh.c:392
-#: ../libmailwatch-core/mailwatch-mailbox-mh.c:403
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:94
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:96
+#: ../libmailwatch-core/mailwatch-mailbox-mh.c:393
+#: ../libmailwatch-core/mailwatch-mailbox-mh.c:404
 #, c-format
 msgid "Failed to get status of file %s: %s"
 msgstr "Gagal mendapatkan status berkas %s: %s"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:102
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:103
 #, c-format
 msgid "%s is not a directory. Is %s really a valid maildir?"
 msgstr "%s bukan direktori. Apakah %s benar-benar direktori surat yang sah?"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:335
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:336
 msgid "Maildir _Path:"
 msgstr "Alamat _Direktori Surat:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:340
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:341
 msgid "Select Maildir Folder"
 msgstr "Pilih Folder Direktori Surat"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:358
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:395
-#: ../libmailwatch-core/mailwatch-mailbox-mh.c:590
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:359
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:396
+#: ../libmailwatch-core/mailwatch-mailbox-mh.c:591
 msgid "_Interval:"
 msgstr "_Interval:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:450
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:451
 msgid "Local Maildir Spool"
 msgstr "Catatan Direktori Surat Lokal"
 
-#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:451
-msgid "The Maildir plugin can watch a local maildir-style mail spool for new messages."
+#: ../libmailwatch-core/mailwatch-mailbox-maildir.c:452
+msgid ""
+"The Maildir plugin can watch a local maildir-style mail spool for new "
+"messages."
 msgstr "Plugin direktori surat dapat mengawasi catatan surat gaya direktori surat untuk pesan baru."
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:372
 msgid "Mbox _Filename:"
 msgstr "Nama Berkas _Mbox:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:377
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:378
 msgid "Select mbox file"
 msgstr "Pilih berkas mbox"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
 msgid "Local Mbox spool"
 msgstr "Catatan Mbox lokal"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:478
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
 msgstr "Plugin mbox mengawasi catatan surat tipe mbox lokal untuk pesan baru."
 
-#: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
+#: ../libmailwatch-core/mailwatch-mailbox-mh.c:242
 #, c-format
 msgid "Malformed line %s in %s ignored."
 msgstr "Baris %s yang salah pada %s diabaikan."
 
-#: ../libmailwatch-core/mailwatch-mailbox-mh.c:581
+#: ../libmailwatch-core/mailwatch-mailbox-mh.c:582
 msgid ""
 "The configuration of this plugin is read from\n"
 "the default mh maildir profile file ~/.mh_profile"
-msgstr ""
-"Konfigurasi plugin ini dibaca dari berkas profil\n"
-"direktori surat mh standar ~/.mh_profile"
+msgstr "Konfigurasi plugin ini dibaca dari berkas profil\ndirektori surat mh standar ~/.mh_profile"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mh.c:683
+#: ../libmailwatch-core/mailwatch-mailbox-mh.c:684
 msgid "Local MH mail folder"
 msgstr "Folder surat MH lokal"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mh.c:684
+#: ../libmailwatch-core/mailwatch-mailbox-mh.c:685
 msgid "MH plugin watches local MH folders for new mail"
 msgstr "Plugin MH mengawasi folder MH lokal untuk pesan baru"
 
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:746
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:747
 msgid "Advanced POP3 Options"
 msgstr "Opsi POP3 Mahir"
 
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:768
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:769
 msgid "Use SSL/TLS via STLS"
 msgstr "Gunakan SSL/TLS via STLS"
 
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:784
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:785
 msgid "Use non-standard POP3 _port:"
 msgstr "Gunakan pangkalan POP3 _non-standar:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:829
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:830
 msgid "POP3 Server"
 msgstr "Server POP3"
 
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1037
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1038
 msgid "Remote POP3 Mailbox"
 msgstr "Kotak Surat POP3 Jarak Jauh"
 
-#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1038
-msgid "The POP3 plugin can connect to a remote mail server that supports the POP3 protocol, optionally using SSL for link protection."
+#: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1039
+msgid ""
+"The POP3 plugin can connect to a remote mail server that supports the POP3 "
+"protocol, optionally using SSL for link protection."
 msgstr "Plugin POP3 dapat menghubungi server surat jarak jauh yang mendukung protokol POP3, dan sebagai tambahan menggunakan SSL untuk proteksi taut."
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:222
-#: ../libmailwatch-core/mailwatch-net-conn.c:267
-#: ../libmailwatch-core/mailwatch-net-conn.c:349
-#: ../libmailwatch-core/mailwatch-net-conn.c:694
-#: ../libmailwatch-core/mailwatch-net-conn.c:727
-#: ../libmailwatch-core/mailwatch-net-conn.c:783
-#: ../libmailwatch-core/mailwatch-net-conn.c:816
-#: ../libmailwatch-core/mailwatch-net-conn.c:846
+#: ../libmailwatch-core/mailwatch-net-conn.c:223
+#: ../libmailwatch-core/mailwatch-net-conn.c:268
+#: ../libmailwatch-core/mailwatch-net-conn.c:350
+#: ../libmailwatch-core/mailwatch-net-conn.c:692
+#: ../libmailwatch-core/mailwatch-net-conn.c:725
+#: ../libmailwatch-core/mailwatch-net-conn.c:788
+#: ../libmailwatch-core/mailwatch-net-conn.c:821
+#: ../libmailwatch-core/mailwatch-net-conn.c:851
 #, c-format
 msgid "Operation aborted"
 msgstr "Operasi dibatalkan"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:498
+#: ../libmailwatch-core/mailwatch-net-conn.c:499
 #, c-format
 msgid "Could not find host \"%s\": %s"
 msgstr "Tak dapat menemukan hos \"%s\": %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:582
+#: ../libmailwatch-core/mailwatch-net-conn.c:583
 #, c-format
 msgid "Failed to connect to server \"%s\": %s"
 msgstr "Gagal menghubungi server \"%s\": %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:645
+#: ../libmailwatch-core/mailwatch-net-conn.c:643
 #, c-format
 msgid "Not compiled with SSL/TLS support"
 msgstr "Tak dikompilasi dengan dukungan SSL/TLS"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:701
+#: ../libmailwatch-core/mailwatch-net-conn.c:699
 #, c-format
 msgid "Failed to send encrypted data: %s"
 msgstr "Gagal mengirim data terenkripsi: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:734
+#: ../libmailwatch-core/mailwatch-net-conn.c:732
 #, c-format
 msgid "Failed to send data: %s"
 msgstr "Gagal mengirim data: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:823
+#: ../libmailwatch-core/mailwatch-net-conn.c:828
 #, c-format
 msgid "Failed to receive encrypted data: %s"
 msgstr "Gagal menerima data terenkripsi: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:853
+#: ../libmailwatch-core/mailwatch-net-conn.c:858
 #, c-format
 msgid "Failed to receive data: %s"
 msgstr "Gagal menerima data: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:951
+#: ../libmailwatch-core/mailwatch-net-conn.c:956
 #, c-format
 msgid "Canceling read: read too many bytes without a newline"
 msgstr "Membatalkan baca: baca terlalu banyak bita tanpa baris baru"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:960
-msgid "Buffer is not large enough to hold a full line (%"
-msgstr "Penyangga tidak cukup besar untuk menampung baris penuh (%"
+#: ../libmailwatch-core/mailwatch-net-conn.c:966
+#, c-format
+msgid "Buffer is not large enough to hold a full line (%s < %d)"
+msgstr "Ukuran memori penyangga kurang besar untuk menampung seluruh baris (%s < %d)"
 
-#: ../libmailwatch-core/mailwatch.c:126
-msgid "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."
+#: ../libmailwatch-core/mailwatch.c:123
+msgid ""
+"xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
+"likely a problem with your GLib install."
 msgstr "xfce4-mailwatch-plugin: Tak dapat menginisialisasi dukungan GThread.  Tampaknya ini masalah pada instalasi GLib anda."
 
-#: ../libmailwatch-core/mailwatch.c:341 ../libmailwatch-core/mailwatch.c:342
+#: ../libmailwatch-core/mailwatch.c:338 ../libmailwatch-core/mailwatch.c:339
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "Tak dapat menulis berkas konfigurasi '%s'"
 
-#: ../libmailwatch-core/mailwatch.c:406 ../libmailwatch-core/mailwatch.c:408
+#: ../libmailwatch-core/mailwatch.c:403 ../libmailwatch-core/mailwatch.c:405
 #, c-format
-msgid "Unable to set permissions on config file '%s'.  If this file contains passwords or other sensitive information, it may be readable by others on your system."
+msgid ""
+"Unable to set permissions on config file '%s'.  If this file contains "
+"passwords or other sensitive information, it may be readable by others on "
+"your system."
 msgstr "Tak dapat mengubah hak akses pada berkas konfigurasi '%s'.  Jika berkas ini berisi sandi lewat atau informasi sensitif lainnya, ada kemungkinan dapat terbaca oleh yang lain pada sistem anda."
 
-#: ../libmailwatch-core/mailwatch.c:628
+#: ../libmailwatch-core/mailwatch.c:625
 msgid "This mailbox type does not require any configuration settings."
 msgstr "Tipe kotak surat ini tidak memerlukan pengaturan konfigurasi lain."
 
-#: ../libmailwatch-core/mailwatch.c:655
+#: ../libmailwatch-core/mailwatch.c:652
 msgid "Mailbox _Name:"
 msgstr "Nama _Kotak Surat:"
 
-#: ../libmailwatch-core/mailwatch.c:673
+#: ../libmailwatch-core/mailwatch.c:670
 msgid "Mailwatch"
 msgstr "Pengawas Surat"
 
-#: ../libmailwatch-core/mailwatch.c:674
+#: ../libmailwatch-core/mailwatch.c:671
 msgid "Mailbox name required."
 msgstr "Nama kotak surat diperlukan."
 
-#: ../libmailwatch-core/mailwatch.c:675
+#: ../libmailwatch-core/mailwatch.c:672
 msgid "Please enter a name for the mailbox."
 msgstr "Silakan masukkan nama untuk kotak surat."
 
-#: ../libmailwatch-core/mailwatch.c:716
+#: ../libmailwatch-core/mailwatch.c:713
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "Sunting Kotak Surat: %s"
 
-#: ../libmailwatch-core/mailwatch.c:775
+#: ../libmailwatch-core/mailwatch.c:772
 msgid "Select Mailbox Type"
 msgstr "Pilih Tipe Kotak Surat"
 
-#: ../libmailwatch-core/mailwatch.c:785
+#: ../libmailwatch-core/mailwatch.c:782
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr "Pilih tipe kota surat. Keterangan tentang tipe akan tampak di bawah."
 
-#: ../libmailwatch-core/mailwatch.c:839
+#: ../libmailwatch-core/mailwatch.c:836
 msgid "Add New Mailbox"
 msgstr "Tambah Kotak Surat Baru"
 
-#: ../libmailwatch-core/mailwatch.c:899
+#: ../libmailwatch-core/mailwatch.c:896
 msgid "Remove Mailbox"
 msgstr "Hapus Kotak Surat"
 
-#: ../libmailwatch-core/mailwatch.c:900
+#: ../libmailwatch-core/mailwatch.c:897
 msgid "Are you sure?"
 msgstr "Anda yakin?"
 
-#: ../libmailwatch-core/mailwatch.c:901
+#: ../libmailwatch-core/mailwatch.c:898
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr "Menghapus kotak surat akan menghapus semua pengaturan, dan tak dapat dikembalikan."
 
-#: ../libmailwatch-core/mailwatch.c:966
+#: ../libmailwatch-core/mailwatch.c:963
 msgid "Mailboxes"
 msgstr "Kotak Surat"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:114
-#: ../panel-plugin/mailwatch-plugin-4.2.c:269
-#: ../panel-plugin/mailwatch-plugin.c:112
-#: ../panel-plugin/mailwatch-plugin.c:115
-#: ../panel-plugin/mailwatch-plugin.c:431
-#: ../panel-plugin/mailwatch-plugin.c:434
+#: ../panel-plugin/mailwatch-plugin.c:146
+#: ../panel-plugin/mailwatch-plugin.c:472
 msgid "No new mail"
 msgstr "Tak ada pesan baru"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:129
-#: ../panel-plugin/mailwatch-plugin.c:131
+#: ../panel-plugin/mailwatch-plugin.c:162
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
 msgstr[0] "Anda memiliki %d pesan baru:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:140
-#: ../panel-plugin/mailwatch-plugin.c:142
+#: ../panel-plugin/mailwatch-plugin.c:172
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "memberitahu berapa banyak pesan baru di tiap kotak surat|    %d di %s"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:251
-#: ../panel-plugin/mailwatch-plugin.c:413
+#: ../panel-plugin/mailwatch-plugin.c:455
 msgid "Xfce Mailwatch"
 msgstr "Pengawas Surat Xfce"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:252
-#: ../panel-plugin/mailwatch-plugin.c:414
+#: ../panel-plugin/mailwatch-plugin.c:456
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Applet pengawas surat tak dapat ditambah ke panel."
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:253
-#: ../panel-plugin/mailwatch-plugin.c:415
-msgid "It is possible that your version of GLib does not have threads support."
+#: ../panel-plugin/mailwatch-plugin.c:457
+msgid ""
+"It is possible that your version of GLib does not have threads support."
 msgstr "Ada kemungkinan versi GLib anda tidak memiliki dukungan ulir. "
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:476
-#: ../panel-plugin/mailwatch-plugin.c:638
+#: ../panel-plugin/mailwatch-plugin.c:692
 msgid "Mailwatch log"
 msgstr "Catatan pengawas surat"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:534
-#: ../panel-plugin/mailwatch-plugin.c:696
+#: ../panel-plugin/mailwatch-plugin.c:750
 msgid "Log _lines:"
 msgstr "Baris _catatan:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:548
-#: ../panel-plugin/mailwatch-plugin.c:710
+#: ../panel-plugin/mailwatch-plugin.c:764
 msgid "Show log _status in icon"
 msgstr "Tampilkan _status catatan pada ikon"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:594
-#: ../panel-plugin/mailwatch-plugin.c:754
+#: ../panel-plugin/mailwatch-plugin.c:827
 msgid "Select Icon"
 msgstr "Pilih Ikon"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:624
-#: ../panel-plugin/mailwatch-plugin-4.2.c:744
-#: ../panel-plugin/mailwatch-plugin.c:785
-#: ../panel-plugin/mailwatch-plugin.c:966
+#: ../panel-plugin/mailwatch-plugin.c:859
+#: ../panel-plugin/mailwatch-plugin.c:1134
 msgid "_Normal"
 msgstr "_Normal"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:649
-#: ../panel-plugin/mailwatch-plugin.c:811
+#: ../panel-plugin/mailwatch-plugin.c:864
 msgid "Ne_w mail"
 msgstr "Sura_t baru"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:676
-#: ../panel-plugin/mailwatch-plugin.c:898
-msgid "External Programs"
-msgstr "Program Eksternal"
+#: ../panel-plugin/mailwatch-plugin.c:913
+msgid "Failed to open web browser for online documentation"
+msgstr "Gagal membuka peramban web untuk menampilkan dokumentasi daring"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:688
-#: ../panel-plugin/mailwatch-plugin.c:910
-msgid "Run _on click:"
-msgstr "Jalankan _pada klik:"
+#: ../panel-plugin/mailwatch-plugin.c:961
+msgid "Online Documentation"
+msgstr "Dokumentasi Daring"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:705
-#: ../panel-plugin/mailwatch-plugin.c:927
-msgid "Run on new _messages:"
-msgstr "Jalankan pada pesan _baru:"
+#: ../panel-plugin/mailwatch-plugin.c:963
+msgid "Do you want to read the manual online?"
+msgstr "Apakah anda ingin menampilkan dokumentasi daring?"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:718
-#: ../panel-plugin/mailwatch-plugin.c:940
-msgid "Icons"
-msgstr "Ikon"
+#: ../panel-plugin/mailwatch-plugin.c:964
+msgid ""
+"You will be redirected to the documentation website where the help pages are"
+" maintained."
+msgstr "Halaman web akan diarahkan pada tautan dokumentasi."
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:764
-#: ../panel-plugin/mailwatch-plugin.c:986
-msgid "Ne_w Mail"
-msgstr "Sura_t Baru"
+#: ../panel-plugin/mailwatch-plugin.c:968
+msgid "_Read Online"
+msgstr "Dokumentasi Da_ring"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:772
-#: ../panel-plugin/mailwatch-plugin.c:877
-msgid "_View Log..."
-msgstr "_Tampilkan Catatan..."
+#: ../panel-plugin/mailwatch-plugin.c:979
+msgid "_Always go directly to the online documentation"
+msgstr "Selalu _arahkan pada dokumentasi daring"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:885
-#: ../panel-plugin/mailwatch-plugin.c:858
-#: ../panel-plugin/mailwatch.desktop.in.in.h:2
+#: ../panel-plugin/mailwatch-plugin.c:1018
+#: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "Pengawas Surat"
 
-#: ../panel-plugin/mailwatch-plugin.c:829
-#, c-format
-msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
-msgstr "Bantuan tak tersedia karena 'xfhelp4' tak dapat dijalankan: %s"
+#: ../panel-plugin/mailwatch-plugin.c:1036
+msgid "_View Log..."
+msgstr "_Tampilkan Catatan..."
 
-#: ../panel-plugin/mailwatch-plugin.c:831
-msgid "Help Unavailable"
-msgstr "Bantuan Tak Tersedia"
+#: ../panel-plugin/mailwatch-plugin.c:1060
+msgid "External Programs"
+msgstr "Program Eksternal"
 
-#: ../panel-plugin/mailwatch-plugin.c:832
-msgid "Failed to run xfhelp4"
-msgstr "Gagal menjalankan xfhelp4"
+#. External programs - Labels.
+#: ../panel-plugin/mailwatch-plugin.c:1066
+msgid "Run _on click:"
+msgstr "Jalankan _pada klik:"
 
-#: ../panel-plugin/mailwatch-plugin.c:1054
+#: ../panel-plugin/mailwatch-plugin.c:1072
+msgid "Run on first new _message:"
+msgstr "Jalankan pada pesan baru perta_ma"
+
+#: ../panel-plugin/mailwatch-plugin.c:1079
+msgid "Run on _each change of new message count:"
+msgstr "Jalankan pada setiap pesan baru:"
+
+#. Icons.
+#: ../panel-plugin/mailwatch-plugin.c:1112
+msgid "Icons"
+msgstr "Ikon"
+
+#: ../panel-plugin/mailwatch-plugin.c:1151
+msgid "Ne_w Mail"
+msgstr "Sura_t Baru"
+
+#: ../panel-plugin/mailwatch-plugin.c:1213
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Plugin Pengawas Surat Xfce4"
 
-#: ../panel-plugin/mailwatch-plugin.c:1056
+#: ../panel-plugin/mailwatch-plugin.c:1216
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "Applet pemeriksa surat kaya fitur untuk Panel Xfce"
 
-#: ../panel-plugin/mailwatch-plugin.c:1057
+#: ../panel-plugin/mailwatch-plugin.c:1218
 msgid ""
+"Copyright (c) 2013 Ján Sučan\n"
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
-msgstr ""
-"Copyright (c) 2005-2008 Brian Tarricone\n"
-"Copyright (c) 2005 Pasi Orovuo"
+msgstr "Hak Cipta (c) 2013 Ján Sučan\nHak Cipta (c) 2005-2008 Brian Tarricone\nHak Cipta (c) 2005 Pasi Orovuo"
 
-#: ../panel-plugin/mailwatch-plugin.c:1063
-msgid "Maintainer, Original Author"
-msgstr "Pengelola, Penulis Asli"
-
-#: ../panel-plugin/mailwatch-plugin.c:1065
-msgid "Developer"
-msgstr "Pengembang"
-
-#: ../panel-plugin/mailwatch-plugin.c:1145
+#: ../panel-plugin/mailwatch-plugin.c:1288
 msgid "Update Now"
 msgstr "Mutakhirkan Sekarang"
 
-#: ../panel-plugin/mailwatch.desktop.in.in.h:1
+#: ../panel-plugin/mailwatch.desktop.in.h:2
 msgid "Check mail from multiple mailboxes"
 msgstr "Cek surat dari banyak kotak surat"
-
-#~ msgid "Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."
-#~ msgstr "Tak dapat mengubah soket ke mode non-blok. Jika usaha menghubungi macet, panel mungkin macet ketika ditutup."
-
-#~ msgid "Unable to return socket to blocking mode.  Data may not be retreived correctly."
-#~ msgstr "Tak dapat mengembalikan soket ke mode blok. Data mungkin tak diterima secara benar."
-
-#~ msgid "The IMAP server returned a response we weren't quite expecting.  This might be OK, or this plugin might need to be modified to support your mail server if the new message counts are incorrect."
-#~ msgstr "Server IMAP membalas dengan pesan yang tidak kami harapkan. Ini mungkin baik-baik saja, atau plugin ini memerlukan modifikasi agar mendukung server surat anda jika hitungan pesan baru tidak tepat."
-
-#~ msgid "XfceMailwatch: TLS handshake failed: %s"
-#~ msgstr "XfceMailwatch: jabat tangan TLS gagal: %s"
-
-#~ msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
-#~ msgstr "XfceMailwatch: jabat tangan TLS gagal: tak dikompilasi dengan dukungan SSL."
-
-#~ msgid "A secure connection was requested, but gnutls was not initialised"
-#~ msgstr "Koneksi aman diminta, tapi gnutls tak dapat diinisialisasi"
