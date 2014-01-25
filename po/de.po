@@ -7,13 +7,14 @@
 # Enrico Tröger <enrico.troeger@uvena.de>, 2008
 # Fabian Nowak <timystery@arcor.de>, 2005,2008
 # hjudt <h.judt@gmx.at>, 2013
+# to_ba, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-01 00:31+0200\n"
-"PO-Revision-Date: 2013-10-02 14:28+0000\n"
-"Last-Translator: hjudt <h.judt@gmx.at>\n"
+"POT-Creation-Date: 2013-12-21 06:31+0100\n"
+"PO-Revision-Date: 2014-01-25 16:17+0000\n"
+"Last-Translator: to_ba\n"
 "Language-Team: German (http://www.transifex.com/projects/p/xfce/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,7 +115,7 @@ msgstr "Laden der Ordnerliste fehlgeschlagen"
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1290
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1500
 msgid "Please wait..."
-msgstr "Bitte warten…"
+msgstr "Bitte warten …"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1397
 msgid "Error"
@@ -186,11 +187,11 @@ msgstr "_Mailserver:"
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1765
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:905
 msgid "_Advanced..."
-msgstr "_Erweitert…"
+msgstr "_Erweitert …"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1772
 msgid "New mail _folders..."
-msgstr "Ordner _für neue E-Mails…"
+msgstr "Ordner _für neue E-Mails …"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1961
 msgid "Remote IMAP Mailbox"
@@ -429,121 +430,138 @@ msgstr "Das Entfernen eines Postfachs löscht alle Einstellungen und kann nicht 
 msgid "Mailboxes"
 msgstr "Postfächer:"
 
-#: ../panel-plugin/mailwatch-plugin.c:114
-#: ../panel-plugin/mailwatch-plugin.c:433
+#: ../panel-plugin/mailwatch-plugin.c:146
+#: ../panel-plugin/mailwatch-plugin.c:472
 msgid "No new mail"
 msgstr "Keine neuen Nachrichten"
 
-#: ../panel-plugin/mailwatch-plugin.c:130
+#: ../panel-plugin/mailwatch-plugin.c:162
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
 msgstr[0] "Sie haben %d neue Nachricht:"
 msgstr[1] "Sie haben %d neue Nachrichten:"
 
-#: ../panel-plugin/mailwatch-plugin.c:141
+#: ../panel-plugin/mailwatch-plugin.c:172
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "%d in %s"
 
-#: ../panel-plugin/mailwatch-plugin.c:416
+#: ../panel-plugin/mailwatch-plugin.c:455
 msgid "Xfce Mailwatch"
 msgstr "Xfce-E-Mail-Überwachung"
 
-#: ../panel-plugin/mailwatch-plugin.c:417
+#: ../panel-plugin/mailwatch-plugin.c:456
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Die E-Mail-Überwachung kann nicht zur Leiste hinzugefügt werden."
 
-#: ../panel-plugin/mailwatch-plugin.c:418
+#: ../panel-plugin/mailwatch-plugin.c:457
 msgid ""
 "It is possible that your version of GLib does not have threads support."
 msgstr "Es ist möglich, dass Ihre Glib-Version Threads nicht unterstützt."
 
-#: ../panel-plugin/mailwatch-plugin.c:644
+#: ../panel-plugin/mailwatch-plugin.c:692
 msgid "Mailwatch log"
 msgstr "Logdatei der E-Mail-Überwachung"
 
-#: ../panel-plugin/mailwatch-plugin.c:702
+#: ../panel-plugin/mailwatch-plugin.c:750
 msgid "Log _lines:"
 msgstr "Logzei_len:"
 
-#: ../panel-plugin/mailwatch-plugin.c:716
+#: ../panel-plugin/mailwatch-plugin.c:764
 msgid "Show log _status in icon"
 msgstr "Log_status im Symbol anzeigen"
 
-#: ../panel-plugin/mailwatch-plugin.c:763
+#: ../panel-plugin/mailwatch-plugin.c:827
 msgid "Select Icon"
 msgstr "Symbol auswählen"
 
-#: ../panel-plugin/mailwatch-plugin.c:795
-#: ../panel-plugin/mailwatch-plugin.c:965
+#: ../panel-plugin/mailwatch-plugin.c:859
+#: ../panel-plugin/mailwatch-plugin.c:1134
 msgid "_Normal"
 msgstr "_Normal"
 
-#: ../panel-plugin/mailwatch-plugin.c:800
+#: ../panel-plugin/mailwatch-plugin.c:864
 msgid "Ne_w mail"
 msgstr "_Neue Nachrichten"
 
-#: ../panel-plugin/mailwatch-plugin.c:835
-#, c-format
-msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
-msgstr "Die Hilfe ist nicht verfügbar, da »xfhelp4« nicht ausgeführt werden konnte: %s"
+#: ../panel-plugin/mailwatch-plugin.c:913
+msgid "Failed to open web browser for online documentation"
+msgstr "Das Öffnen der online Dokumentation im Internet-Browser ist fehlgeschlagen"
 
-#: ../panel-plugin/mailwatch-plugin.c:837
-msgid "Help Unavailable"
-msgstr "Hilfe nicht verfügbar"
+#: ../panel-plugin/mailwatch-plugin.c:961
+msgid "Online Documentation"
+msgstr "Online-Dokumentation"
 
-#: ../panel-plugin/mailwatch-plugin.c:838
-msgid "Failed to run xfhelp4"
-msgstr "Konnte xfhelp4 nicht ausführen"
+#: ../panel-plugin/mailwatch-plugin.c:963
+msgid "Do you want to read the manual online?"
+msgstr "Wollen Sie die Bedienungsanleitung online lesen?"
 
-#: ../panel-plugin/mailwatch-plugin.c:866
+#: ../panel-plugin/mailwatch-plugin.c:964
+msgid ""
+"You will be redirected to the documentation website where the help pages are"
+" maintained."
+msgstr ""
+
+#: ../panel-plugin/mailwatch-plugin.c:968
+msgid "_Read Online"
+msgstr "_Online lesen"
+
+#: ../panel-plugin/mailwatch-plugin.c:979
+msgid "_Always go directly to the online documentation"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-plugin.c:1018
 #: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "E-Mail-Überwachung"
 
-#: ../panel-plugin/mailwatch-plugin.c:884
+#: ../panel-plugin/mailwatch-plugin.c:1036
 msgid "_View Log..."
-msgstr "_Logdatei betrachten..."
+msgstr "_Protokoll betrachten …"
 
-#: ../panel-plugin/mailwatch-plugin.c:907
+#: ../panel-plugin/mailwatch-plugin.c:1060
 msgid "External Programs"
 msgstr "Externe Programme"
 
 #. External programs - Labels.
-#: ../panel-plugin/mailwatch-plugin.c:913
+#: ../panel-plugin/mailwatch-plugin.c:1066
 msgid "Run _on click:"
 msgstr "_Ausführen bei Klick:"
 
-#: ../panel-plugin/mailwatch-plugin.c:919
-msgid "Run on new _messages:"
-msgstr "Ausführen bei _neuen Nachrichten:"
+#: ../panel-plugin/mailwatch-plugin.c:1072
+msgid "Run on first new _message:"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-plugin.c:1079
+msgid "Run on _each change of new message count:"
+msgstr ""
 
 #. Icons.
-#: ../panel-plugin/mailwatch-plugin.c:943
+#: ../panel-plugin/mailwatch-plugin.c:1112
 msgid "Icons"
 msgstr "Symbole"
 
-#: ../panel-plugin/mailwatch-plugin.c:982
+#: ../panel-plugin/mailwatch-plugin.c:1151
 msgid "Ne_w Mail"
 msgstr "_Neue Nachrichten"
 
-#: ../panel-plugin/mailwatch-plugin.c:1044
+#: ../panel-plugin/mailwatch-plugin.c:1213
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Xfce4-E-Mail-Überwachung"
 
-#: ../panel-plugin/mailwatch-plugin.c:1047
+#: ../panel-plugin/mailwatch-plugin.c:1216
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "Ein funktionsreiches Plugin zur E-Mail-Überwachung für die Xfce-Leiste"
 
-#: ../panel-plugin/mailwatch-plugin.c:1049
+#: ../panel-plugin/mailwatch-plugin.c:1218
 msgid ""
 "Copyright (c) 2013 Ján Sučan\n"
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 msgstr "Copyright (c) 2013 Ján Sučan\nCopyright (c) 2005-2008 Brian Tarricone\nCopyright (c) 2005 Pasi Orovuo"
 
-#: ../panel-plugin/mailwatch-plugin.c:1124
+#: ../panel-plugin/mailwatch-plugin.c:1288
 msgid "Update Now"
 msgstr "Aktualisieren"
 
