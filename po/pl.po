@@ -4,13 +4,13 @@
 # 
 # Translators:
 #  <piotr.sokol@10g.pl>, 2009
-# Piotr Strębski <strebski@o2.pl>, 2013
+# Piotr Strębski <strebski@o2.pl>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-16 00:31+0200\n"
-"PO-Revision-Date: 2013-10-24 08:20+0000\n"
+"POT-Creation-Date: 2013-12-21 06:31+0100\n"
+"PO-Revision-Date: 2014-01-29 14:31+0000\n"
 "Last-Translator: Piotr Strębski <strebski@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/xfce/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -427,12 +427,12 @@ msgstr "Wraz ze skrzynką pocztową zostaną usunięte wszystkie jej ustawienia 
 msgid "Mailboxes"
 msgstr "Skrzynki pocztowe"
 
-#: ../panel-plugin/mailwatch-plugin.c:145
-#: ../panel-plugin/mailwatch-plugin.c:464
+#: ../panel-plugin/mailwatch-plugin.c:146
+#: ../panel-plugin/mailwatch-plugin.c:472
 msgid "No new mail"
 msgstr "Brak nowej poczty"
 
-#: ../panel-plugin/mailwatch-plugin.c:161
+#: ../panel-plugin/mailwatch-plugin.c:162
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
@@ -445,117 +445,121 @@ msgstr[2] "Odebrano %d nowych wiadomości:"
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "%d w skrzynce pocztowej %s"
 
-#: ../panel-plugin/mailwatch-plugin.c:447
+#: ../panel-plugin/mailwatch-plugin.c:455
 msgid "Xfce Mailwatch"
 msgstr "Sprawdzanie poczty dla środowiska Xfce"
 
-#: ../panel-plugin/mailwatch-plugin.c:448
+#: ../panel-plugin/mailwatch-plugin.c:456
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Nie można dodać do panelu elementu „Powiadamiania o poczcie”."
 
-#: ../panel-plugin/mailwatch-plugin.c:449
+#: ../panel-plugin/mailwatch-plugin.c:457
 msgid ""
 "It is possible that your version of GLib does not have threads support."
 msgstr "Możliwe, że zainstalowana wersja GLib nie obsługuje wątków."
 
-#: ../panel-plugin/mailwatch-plugin.c:678
+#: ../panel-plugin/mailwatch-plugin.c:692
 msgid "Mailwatch log"
 msgstr "Dziennik"
 
-#: ../panel-plugin/mailwatch-plugin.c:736
+#: ../panel-plugin/mailwatch-plugin.c:750
 msgid "Log _lines:"
 msgstr "Ilość _wierszy:"
 
-#: ../panel-plugin/mailwatch-plugin.c:750
+#: ../panel-plugin/mailwatch-plugin.c:764
 msgid "Show log _status in icon"
 msgstr "Wyświetlanie _statusu dziennika w ikonie"
 
-#: ../panel-plugin/mailwatch-plugin.c:797
+#: ../panel-plugin/mailwatch-plugin.c:827
 msgid "Select Icon"
 msgstr "Wybór pliku"
 
-#: ../panel-plugin/mailwatch-plugin.c:829
-#: ../panel-plugin/mailwatch-plugin.c:1087
+#: ../panel-plugin/mailwatch-plugin.c:859
+#: ../panel-plugin/mailwatch-plugin.c:1134
 msgid "_Normal"
 msgstr "_Zwykła"
 
-#: ../panel-plugin/mailwatch-plugin.c:834
+#: ../panel-plugin/mailwatch-plugin.c:864
 msgid "Ne_w mail"
 msgstr "Nowa _poczta"
 
-#: ../panel-plugin/mailwatch-plugin.c:883
+#: ../panel-plugin/mailwatch-plugin.c:913
 msgid "Failed to open web browser for online documentation"
 msgstr "Błąd przy otwieraniu przeglądarki internetowej celem uzyskania dokumentacji znajdującej się w sieci"
 
-#: ../panel-plugin/mailwatch-plugin.c:931
+#: ../panel-plugin/mailwatch-plugin.c:961
 msgid "Online Documentation"
 msgstr "Dokumentacja w sieci"
 
-#: ../panel-plugin/mailwatch-plugin.c:933
+#: ../panel-plugin/mailwatch-plugin.c:963
 msgid "Do you want to read the manual online?"
 msgstr "Czy chcesz przeczytać podręcznik znajdujący się w sieci?"
 
-#: ../panel-plugin/mailwatch-plugin.c:934
+#: ../panel-plugin/mailwatch-plugin.c:964
 msgid ""
 "You will be redirected to the documentation website where the help pages are"
 " maintained."
 msgstr "Zostaniesz przekierowany do strony internetowej z dokumentacją, gdzie znajdują się strony pomocowe."
 
-#: ../panel-plugin/mailwatch-plugin.c:938
+#: ../panel-plugin/mailwatch-plugin.c:968
 msgid "_Read Online"
 msgstr "P_rzeczytaj w sieci"
 
-#: ../panel-plugin/mailwatch-plugin.c:949
+#: ../panel-plugin/mailwatch-plugin.c:979
 msgid "_Always go directly to the online documentation"
 msgstr "Z_awsze przechodź bezpośrednio do dokumentacji znajdującej się w sieci"
 
-#: ../panel-plugin/mailwatch-plugin.c:988
+#: ../panel-plugin/mailwatch-plugin.c:1018
 #: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "Powiadamianie o poczcie"
 
-#: ../panel-plugin/mailwatch-plugin.c:1006
+#: ../panel-plugin/mailwatch-plugin.c:1036
 msgid "_View Log..."
 msgstr "_Dziennik..."
 
-#: ../panel-plugin/mailwatch-plugin.c:1029
+#: ../panel-plugin/mailwatch-plugin.c:1060
 msgid "External Programs"
 msgstr "Uruchamianie"
 
 #. External programs - Labels.
-#: ../panel-plugin/mailwatch-plugin.c:1035
+#: ../panel-plugin/mailwatch-plugin.c:1066
 msgid "Run _on click:"
 msgstr "Po _kliknięciu ikony:"
 
-#: ../panel-plugin/mailwatch-plugin.c:1041
-msgid "Run on new _messages:"
-msgstr "Po nadejściu nowej _poczty:"
+#: ../panel-plugin/mailwatch-plugin.c:1072
+msgid "Run on first new _message:"
+msgstr "Urucho_m po nadejściu pierwszej nowej wiadomości:"
+
+#: ../panel-plugin/mailwatch-plugin.c:1079
+msgid "Run on _each change of new message count:"
+msgstr "Uruchom po każd_ej zmianie liczby nowych wiadomości:"
 
 #. Icons.
-#: ../panel-plugin/mailwatch-plugin.c:1065
+#: ../panel-plugin/mailwatch-plugin.c:1112
 msgid "Icons"
 msgstr "Ikony"
 
-#: ../panel-plugin/mailwatch-plugin.c:1104
+#: ../panel-plugin/mailwatch-plugin.c:1151
 msgid "Ne_w Mail"
 msgstr "_Nowa poczta"
 
-#: ../panel-plugin/mailwatch-plugin.c:1166
+#: ../panel-plugin/mailwatch-plugin.c:1213
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Wtyczka sprawdzania poczty Xfce4"
 
-#: ../panel-plugin/mailwatch-plugin.c:1169
+#: ../panel-plugin/mailwatch-plugin.c:1216
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "Bogaty w możliwości aplet sprawdzania poczty dla panelu Xfce"
 
-#: ../panel-plugin/mailwatch-plugin.c:1171
+#: ../panel-plugin/mailwatch-plugin.c:1218
 msgid ""
 "Copyright (c) 2013 Ján Sučan\n"
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 msgstr "Prawa autorskie (c) 2013 Ján Sučan\nPrawa autorskie (c) 2005-2008 Brian Tarricone\nPrawa autorskie (c) 2005 Pasi Orovuo"
 
-#: ../panel-plugin/mailwatch-plugin.c:1241
+#: ../panel-plugin/mailwatch-plugin.c:1288
 msgid "Update Now"
 msgstr "Odśwież"
 
