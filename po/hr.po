@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# schizo <eveskovic@gmail.com>, 2014
 # Ivica  Kolić <ikoli@yahoo.com>, 2013
 # luka_m, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-16 00:31+0200\n"
-"PO-Revision-Date: 2013-10-16 19:36+0000\n"
-"Last-Translator: luka_m\n"
+"POT-Creation-Date: 2013-12-21 06:31+0100\n"
+"PO-Revision-Date: 2014-02-16 10:02+0000\n"
+"Last-Translator: schizo <eveskovic@gmail.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/projects/p/xfce/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,7 +76,7 @@ msgstr "Provjeri za _nove poruke svakih"
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:606
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:930
 msgid "minute(s)."
-msgstr "min."
+msgstr "minuta(e)."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:669
 msgid "Remote GMail Mailbox"
@@ -103,7 +104,7 @@ msgstr "Neuspješna autentifikacija. Možda ste unijeli pogrešno korisničko im
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:434
 msgid "STARTTLS security was requested, but this server does not support it."
-msgstr "Zatraženo je korištenje STARTTLS sigurnosti, no ovaj ju server ne podržava."
+msgstr "Zatraženo je korištenje STARTTLS sigurnosti, ali ovaj server je ne podržava."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1145
 msgid "Failed to get folder list"
@@ -170,7 +171,7 @@ msgstr "Mape"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1660
 msgid "IMAP server _directory:"
-msgstr "IMAP poslužiteljeva _mapa"
+msgstr "IMAP poslužiteljeva _mapa:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1690
 msgid "IMAP Server"
@@ -239,7 +240,7 @@ msgstr "Maildir dodatak može motriti lokalni spremnik u maildir stilu u potrazi
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:372
 msgid "Mbox _Filename:"
-msgstr "Mbox ime _datoteke:"
+msgstr "Mbox _ime datoteke:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:378
 msgid "Select mbox file"
@@ -427,12 +428,12 @@ msgstr "Brisanje će poštanskog sandučića poništiti sve postavke te je nepov
 msgid "Mailboxes"
 msgstr "Poštanski sandučići"
 
-#: ../panel-plugin/mailwatch-plugin.c:145
-#: ../panel-plugin/mailwatch-plugin.c:464
+#: ../panel-plugin/mailwatch-plugin.c:146
+#: ../panel-plugin/mailwatch-plugin.c:472
 msgid "No new mail"
 msgstr "Nema nove pošte"
 
-#: ../panel-plugin/mailwatch-plugin.c:161
+#: ../panel-plugin/mailwatch-plugin.c:162
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
@@ -445,117 +446,121 @@ msgstr[2] "Imate %d novih poruka:"
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "govori koliko je novih poruka u svakom sandučiću | %d in %s"
 
-#: ../panel-plugin/mailwatch-plugin.c:447
+#: ../panel-plugin/mailwatch-plugin.c:455
 msgid "Xfce Mailwatch"
 msgstr "Xfce Mailwatch"
 
-#: ../panel-plugin/mailwatch-plugin.c:448
+#: ../panel-plugin/mailwatch-plugin.c:456
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Dodavanje Mailwatcha na ploču nije moguće."
 
-#: ../panel-plugin/mailwatch-plugin.c:449
+#: ../panel-plugin/mailwatch-plugin.c:457
 msgid ""
 "It is possible that your version of GLib does not have threads support."
 msgstr "Moguće je da Vaša verzija GLiba nema podršku za višenitnost. "
 
-#: ../panel-plugin/mailwatch-plugin.c:678
+#: ../panel-plugin/mailwatch-plugin.c:692
 msgid "Mailwatch log"
 msgstr "Zapisnik Mailwatcha"
 
-#: ../panel-plugin/mailwatch-plugin.c:736
-msgid "Log _lines:"
-msgstr "_Linije u zapisniku:"
-
 #: ../panel-plugin/mailwatch-plugin.c:750
-msgid "Show log _status in icon"
-msgstr "Prikaži status zapisnika u ikoni"
+msgid "Log _lines:"
+msgstr "Linije u _zapisniku:"
 
-#: ../panel-plugin/mailwatch-plugin.c:797
+#: ../panel-plugin/mailwatch-plugin.c:764
+msgid "Show log _status in icon"
+msgstr "Prikaži status _zapisnika u ikoni"
+
+#: ../panel-plugin/mailwatch-plugin.c:827
 msgid "Select Icon"
 msgstr "Odaberi ikonu"
 
-#: ../panel-plugin/mailwatch-plugin.c:829
-#: ../panel-plugin/mailwatch-plugin.c:1087
+#: ../panel-plugin/mailwatch-plugin.c:859
+#: ../panel-plugin/mailwatch-plugin.c:1134
 msgid "_Normal"
 msgstr "_Normalni"
 
-#: ../panel-plugin/mailwatch-plugin.c:834
+#: ../panel-plugin/mailwatch-plugin.c:864
 msgid "Ne_w mail"
 msgstr "No_va pošta"
 
-#: ../panel-plugin/mailwatch-plugin.c:883
+#: ../panel-plugin/mailwatch-plugin.c:913
 msgid "Failed to open web browser for online documentation"
 msgstr "Neuspješno otvaranje web preglednika za mrežnu dokumentaciju "
 
-#: ../panel-plugin/mailwatch-plugin.c:931
+#: ../panel-plugin/mailwatch-plugin.c:961
 msgid "Online Documentation"
 msgstr "Mrežna dokumentacija"
 
-#: ../panel-plugin/mailwatch-plugin.c:933
+#: ../panel-plugin/mailwatch-plugin.c:963
 msgid "Do you want to read the manual online?"
-msgstr "Želite li čitati pomoć na mreži?"
+msgstr "Želite li čitati priručnik na mreži?"
 
-#: ../panel-plugin/mailwatch-plugin.c:934
+#: ../panel-plugin/mailwatch-plugin.c:964
 msgid ""
 "You will be redirected to the documentation website where the help pages are"
 " maintained."
 msgstr "Bit ćete preusmjereni na stranicu s dokumentacijom, gdje se održavaju materijali za pomoć."
 
-#: ../panel-plugin/mailwatch-plugin.c:938
+#: ../panel-plugin/mailwatch-plugin.c:968
 msgid "_Read Online"
-msgstr "Čitaj na _mreži"
+msgstr "_Čitaj na mreži"
 
-#: ../panel-plugin/mailwatch-plugin.c:949
+#: ../panel-plugin/mailwatch-plugin.c:979
 msgid "_Always go directly to the online documentation"
 msgstr "_Uvijek idi izravno na mrežnu dokumentaciju"
 
-#: ../panel-plugin/mailwatch-plugin.c:988
+#: ../panel-plugin/mailwatch-plugin.c:1018
 #: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "Motritelj pošte"
 
-#: ../panel-plugin/mailwatch-plugin.c:1006
+#: ../panel-plugin/mailwatch-plugin.c:1036
 msgid "_View Log..."
 msgstr "_Pregledaj zapisnik..."
 
-#: ../panel-plugin/mailwatch-plugin.c:1029
+#: ../panel-plugin/mailwatch-plugin.c:1060
 msgid "External Programs"
 msgstr "Vanjski programi"
 
 #. External programs - Labels.
-#: ../panel-plugin/mailwatch-plugin.c:1035
+#: ../panel-plugin/mailwatch-plugin.c:1066
 msgid "Run _on click:"
 msgstr "Pokreni _klikom:"
 
-#: ../panel-plugin/mailwatch-plugin.c:1041
-msgid "Run on new _messages:"
-msgstr "Pokreni na _nove poruke:"
+#: ../panel-plugin/mailwatch-plugin.c:1072
+msgid "Run on first new _message:"
+msgstr "Pokreni pri prvoj novoj _poruci:"
+
+#: ../panel-plugin/mailwatch-plugin.c:1079
+msgid "Run on _each change of new message count:"
+msgstr "Pokreni pri _svakoj promjeni broja novih poruka:"
 
 #. Icons.
-#: ../panel-plugin/mailwatch-plugin.c:1065
+#: ../panel-plugin/mailwatch-plugin.c:1112
 msgid "Icons"
 msgstr "Ikone"
 
-#: ../panel-plugin/mailwatch-plugin.c:1104
+#: ../panel-plugin/mailwatch-plugin.c:1151
 msgid "Ne_w Mail"
 msgstr "No_va pošta"
 
-#: ../panel-plugin/mailwatch-plugin.c:1166
+#: ../panel-plugin/mailwatch-plugin.c:1213
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "Xfce4 Mailwatch dodatak"
+msgstr "Xfce4 Mailwatch priključak"
 
-#: ../panel-plugin/mailwatch-plugin.c:1169
+#: ../panel-plugin/mailwatch-plugin.c:1216
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr "Alat šarolikih mogućnosti koji provjerava mailove, za Xfce ploče."
+msgstr "Alat šarolikih mogućnosti koji provjerava mailove za Xfce ploču"
 
-#: ../panel-plugin/mailwatch-plugin.c:1171
+#: ../panel-plugin/mailwatch-plugin.c:1218
 msgid ""
 "Copyright (c) 2013 Ján Sučan\n"
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
-msgstr "Copyright (c) 2013 Ján Sučan\nCopyright (c) 2005-2008 Brian Tarricone\nCopyright (c) 2005 Pasi Orovuo"
+msgstr "Autorska prava (c) 2013 Ján Sučan\n Autorska prava (c) 2005-2008 Brian Tarricone\nAutorska prava (c) 2005 Pasi Orovuo"
 
-#: ../panel-plugin/mailwatch-plugin.c:1241
+#: ../panel-plugin/mailwatch-plugin.c:1288
 msgid "Update Now"
 msgstr "Ažuriraj sada"
 
