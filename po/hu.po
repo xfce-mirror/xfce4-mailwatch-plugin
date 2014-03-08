@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Nucleo <nucleo@indamail.hu>, 2013
+# Nucleo <nucleo@indamail.hu>, 2013-2014
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2006,2009
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-01 00:31+0200\n"
-"PO-Revision-Date: 2013-10-04 01:11+0000\n"
+"POT-Creation-Date: 2013-12-21 06:31+0100\n"
+"PO-Revision-Date: 2014-03-08 19:04+0000\n"
 "Last-Translator: Nucleo <nucleo@indamail.hu>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/xfce/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -427,121 +427,138 @@ msgstr "A postafiók eltávolítása véglegesen törli a beállításokat."
 msgid "Mailboxes"
 msgstr "Postafiókok"
 
-#: ../panel-plugin/mailwatch-plugin.c:114
-#: ../panel-plugin/mailwatch-plugin.c:433
+#: ../panel-plugin/mailwatch-plugin.c:146
+#: ../panel-plugin/mailwatch-plugin.c:472
 msgid "No new mail"
 msgstr "Nincs új levél"
 
-#: ../panel-plugin/mailwatch-plugin.c:130
+#: ../panel-plugin/mailwatch-plugin.c:162
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
 msgstr[0] "%d új üzenete van:"
 msgstr[1] "%d új üzenete van:"
 
-#: ../panel-plugin/mailwatch-plugin.c:141
+#: ../panel-plugin/mailwatch-plugin.c:172
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "%d ebben: %s"
 
-#: ../panel-plugin/mailwatch-plugin.c:416
+#: ../panel-plugin/mailwatch-plugin.c:455
 msgid "Xfce Mailwatch"
 msgstr "Xfce levélfigyelő"
 
-#: ../panel-plugin/mailwatch-plugin.c:417
+#: ../panel-plugin/mailwatch-plugin.c:456
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "A levélfigyelő kisalkalmazás nem adható a panelhez."
 
-#: ../panel-plugin/mailwatch-plugin.c:418
+#: ../panel-plugin/mailwatch-plugin.c:457
 msgid ""
 "It is possible that your version of GLib does not have threads support."
 msgstr "Lehetséges, hogy a Glib használt verziója nem rendelkezik a szálak támogatásával."
 
-#: ../panel-plugin/mailwatch-plugin.c:644
+#: ../panel-plugin/mailwatch-plugin.c:692
 msgid "Mailwatch log"
 msgstr "Levélfigyelő naplója"
 
-#: ../panel-plugin/mailwatch-plugin.c:702
+#: ../panel-plugin/mailwatch-plugin.c:750
 msgid "Log _lines:"
 msgstr "_Naplósorok:"
 
-#: ../panel-plugin/mailwatch-plugin.c:716
+#: ../panel-plugin/mailwatch-plugin.c:764
 msgid "Show log _status in icon"
 msgstr "A _naplóállapot megjelenítése az ikonon"
 
-#: ../panel-plugin/mailwatch-plugin.c:763
+#: ../panel-plugin/mailwatch-plugin.c:827
 msgid "Select Icon"
 msgstr "Válasszon ikont"
 
-#: ../panel-plugin/mailwatch-plugin.c:795
-#: ../panel-plugin/mailwatch-plugin.c:965
+#: ../panel-plugin/mailwatch-plugin.c:859
+#: ../panel-plugin/mailwatch-plugin.c:1134
 msgid "_Normal"
 msgstr "_Normál"
 
-#: ../panel-plugin/mailwatch-plugin.c:800
+#: ../panel-plugin/mailwatch-plugin.c:864
 msgid "Ne_w mail"
 msgstr "Új le_vél"
 
-#: ../panel-plugin/mailwatch-plugin.c:835
-#, c-format
-msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
-msgstr "A súgó nem érhető el, mivel az xfhelp4 program nem futtatható: %s"
+#: ../panel-plugin/mailwatch-plugin.c:913
+msgid "Failed to open web browser for online documentation"
+msgstr "Az online dokumentáció megtekintéséhez a webböngésző megnyitása meghiúsult."
 
-#: ../panel-plugin/mailwatch-plugin.c:837
-msgid "Help Unavailable"
-msgstr "A súgó nem érhető el"
+#: ../panel-plugin/mailwatch-plugin.c:961
+msgid "Online Documentation"
+msgstr "Online dokumentáció"
 
-#: ../panel-plugin/mailwatch-plugin.c:838
-msgid "Failed to run xfhelp4"
-msgstr "Az xfhelp4 futtatása meghiúsult"
+#: ../panel-plugin/mailwatch-plugin.c:963
+msgid "Do you want to read the manual online?"
+msgstr "Szeretné a kézikönyvet online olvasni?"
 
-#: ../panel-plugin/mailwatch-plugin.c:866
+#: ../panel-plugin/mailwatch-plugin.c:964
+msgid ""
+"You will be redirected to the documentation website where the help pages are"
+" maintained."
+msgstr "Át lesz irányítva a dokumentációs weboldalra, ahol a súgó oldalak találhatók."
+
+#: ../panel-plugin/mailwatch-plugin.c:968
+msgid "_Read Online"
+msgstr "_Online olvasás"
+
+#: ../panel-plugin/mailwatch-plugin.c:979
+msgid "_Always go directly to the online documentation"
+msgstr "_Mindig közvetlenül az online dokumentációra menjen"
+
+#: ../panel-plugin/mailwatch-plugin.c:1018
 #: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "Levélfigyelő"
 
-#: ../panel-plugin/mailwatch-plugin.c:884
+#: ../panel-plugin/mailwatch-plugin.c:1036
 msgid "_View Log..."
 msgstr "_Napló megjelenítése…"
 
-#: ../panel-plugin/mailwatch-plugin.c:907
+#: ../panel-plugin/mailwatch-plugin.c:1060
 msgid "External Programs"
 msgstr "Külső programok"
 
 #. External programs - Labels.
-#: ../panel-plugin/mailwatch-plugin.c:913
+#: ../panel-plugin/mailwatch-plugin.c:1066
 msgid "Run _on click:"
 msgstr "Futtatás _kattintásra:"
 
-#: ../panel-plugin/mailwatch-plugin.c:919
-msgid "Run on new _messages:"
-msgstr "_Futtatás új üzenet érkezésekor:"
+#: ../panel-plugin/mailwatch-plugin.c:1072
+msgid "Run on first new _message:"
+msgstr "Futtatás az első új üze_netnél:"
+
+#: ../panel-plugin/mailwatch-plugin.c:1079
+msgid "Run on _each change of new message count:"
+msgstr ""
 
 #. Icons.
-#: ../panel-plugin/mailwatch-plugin.c:943
+#: ../panel-plugin/mailwatch-plugin.c:1112
 msgid "Icons"
 msgstr "Ikonok"
 
-#: ../panel-plugin/mailwatch-plugin.c:982
+#: ../panel-plugin/mailwatch-plugin.c:1151
 msgid "Ne_w Mail"
 msgstr "Ú_j levél"
 
-#: ../panel-plugin/mailwatch-plugin.c:1044
+#: ../panel-plugin/mailwatch-plugin.c:1213
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Xfce 4 levélfigyelő bővítmény"
 
-#: ../panel-plugin/mailwatch-plugin.c:1047
+#: ../panel-plugin/mailwatch-plugin.c:1216
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "Funckiógazdag levélellenőrző kisalkalmazás az Xfce panelhez"
 
-#: ../panel-plugin/mailwatch-plugin.c:1049
+#: ../panel-plugin/mailwatch-plugin.c:1218
 msgid ""
 "Copyright (c) 2013 Ján Sučan\n"
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 msgstr "Copyright (c) 2013 Ján Sučan\nCopyright (c) 2005-2008 Brian Tarricone\nCopyright (c) 2005 Pasi Orovuo"
 
-#: ../panel-plugin/mailwatch-plugin.c:1124
+#: ../panel-plugin/mailwatch-plugin.c:1288
 msgid "Update Now"
 msgstr "Frissítés most"
 
