@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-21 06:31+0100\n"
-"PO-Revision-Date: 2014-03-15 08:53+0000\n"
+"PO-Revision-Date: 2014-03-16 02:11+0000\n"
 "Last-Translator: abuyop <abuyop@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/projects/p/xfce/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "Jabat tangan TLS gagal: %s"
 msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
-msgstr ""
+msgstr "Kod respon HTTP %d yang diterima. Berkemungkinan sebabnya nama pengguna dan kata laluan GMail anda tidak betul."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:262
 #, c-format
@@ -38,7 +38,7 @@ msgid ""
 "Received HTTP response code %d, which should be 200.  There may be a problem"
 " with GMail's servers, or they have incompatibly changed their "
 "authentication method or location of the new messages feed."
-msgstr ""
+msgstr "Kod respon HTTP %d yang diterima. sepatutnya 200. Mungkin terdapat masalah dengan pelayan GMail, atau terdapat ketidakserasian yang mengubah kaedah pengesahihan atau lokasi bagi suapan mesej baharu."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:395
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:736
@@ -358,7 +358,7 @@ msgstr "Penimbal tidak mencukupi untuk mengandungi satu baris penuh (%s < %d)"
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
-msgstr ""
+msgstr "xfce4-mailwatch-plugin: Tidak boleh awalkan sokongan GThread. Ia berkemungkinan masalah dengan pemasangan GLib anda."
 
 #: ../libmailwatch-core/mailwatch.c:338 ../libmailwatch-core/mailwatch.c:339
 #, c-format
