@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-21 06:31+0100\n"
-"PO-Revision-Date: 2014-03-22 11:16+0000\n"
+"PO-Revision-Date: 2014-03-22 11:42+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitoschido@ubuntu.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/xfce/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -374,7 +374,7 @@ msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
 "passwords or other sensitive information, it may be readable by others on "
 "your system."
-msgstr "No se pudieron establecer los permisos para el fichero de configuración '%s'. Si este fichero contiene contraseñas u otra información sensible puede que sea leído por otros en su sistema."
+msgstr "No se pudieron establecer los permisos para el archivo de configuración «%s». Si este archivo contiene contraseñas u otra información sensible, puede que otros usuarios del sistema la lean."
 
 #: ../libmailwatch-core/mailwatch.c:625
 msgid "This mailbox type does not require any configuration settings."
@@ -399,7 +399,7 @@ msgstr "Por favor, introduzca un nombre para el buzón."
 #: ../libmailwatch-core/mailwatch.c:713
 #, c-format
 msgid "Edit Mailbox: %s"
-msgstr "Editar Buzón: %s"
+msgstr "Editar buzón: %s"
 
 #: ../libmailwatch-core/mailwatch.c:772
 msgid "Select Mailbox Type"
