@@ -4,14 +4,14 @@
 # 
 # Translators:
 # mitakpa, 2013
-# cri <cri.penta@gmail.com>, 2013
+# cri <cri.penta@gmail.com>, 2013-2014
 # Fabio Riga <usul@aruba.it>, 2007
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-21 06:31+0100\n"
-"PO-Revision-Date: 2013-12-22 16:46+0000\n"
+"PO-Revision-Date: 2014-04-05 17:45+0000\n"
 "Last-Translator: cri <cri.penta@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/xfce/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -443,7 +443,7 @@ msgstr[1] "Ci sono %d nuovi messaggi:"
 #: ../panel-plugin/mailwatch-plugin.c:172
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "tells how many new messages in each mailbox|    %d in %s"
+msgstr "%d in %s"
 
 #: ../panel-plugin/mailwatch-plugin.c:455
 msgid "Xfce Mailwatch"
