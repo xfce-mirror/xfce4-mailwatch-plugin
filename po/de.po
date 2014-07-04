@@ -6,16 +6,16 @@
 # Bernhard Walle <bernhard.walle@gmx.de>, 2005
 # Enrico Tröger <enrico.troeger@uvena.de>, 2008
 # Fabian Nowak <timystery@arcor.de>, 2005,2008
-# hjudt <h.judt@gmx.at>, 2013
-# to_ba, 2014
+# Harald Judt <h.judt@gmx.at>, 2013
+# Tobias Bannert, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-21 06:31+0100\n"
-"PO-Revision-Date: 2014-01-25 16:17+0000\n"
-"Last-Translator: to_ba\n"
-"Language-Team: German (http://www.transifex.com/projects/p/xfce/language/de/)\n"
+"PO-Revision-Date: 2014-07-04 10:16+0000\n"
+"Last-Translator: Tobias Bannert\n"
+"Language-Team: German (http://www.transifex.com/projects/p/xfce-panel-plugins/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -34,7 +34,7 @@ msgstr "TLS-Verbindungsaufbau fehlgeschlagen: %s"
 msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
-msgstr "HTTP-Antwort %d erhalten. Wahrscheinlich ist Ihr GoogleMail Passwort oder Benutzername inkorrekt."
+msgstr "HTTP-Antwort %d erhalten. Wahrscheinlich ist Ihr Passwort oder Benutzername von GMail nicht richtig."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:262
 #, c-format
@@ -42,7 +42,7 @@ msgid ""
 "Received HTTP response code %d, which should be 200.  There may be a problem"
 " with GMail's servers, or they have incompatibly changed their "
 "authentication method or location of the new messages feed."
-msgstr "HTTP-Antwort %d erhalten, welche eigentlich 200 sein sollte. Wahrscheinlich gibt es Probleme mit den GoogleMail Servern (Änderung des Loginvorgangs, Verschiebung der Seite mit den Informationen über neue Nachrichten)."
+msgstr "HTTP-Antwort %d erhalten, welche eigentlich 200 sein sollte. Wahrscheinlich gibt es Probleme mit den GMail-Servern (Änderung des Anmeldevorgangs, Verschiebung der Seite mit den Informationen über neue Nachrichten)."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:395
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:736
@@ -51,7 +51,7 @@ msgstr "HTTP-Antwort %d erhalten, welche eigentlich 200 sein sollte. Wahrscheinl
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:488
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:549
 msgid "Previous thread hasn't exited yet, not checking mail this time."
-msgstr "Der vorherige Thread ist noch nicht beendet, prüfe diesmal keine E-Mail."
+msgstr "Die vorherige Diskussion ist noch nicht beendet, diesmal nicht auf E-Mails prüfen."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:536
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1724
@@ -69,7 +69,7 @@ msgstr "_Passwort:"
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1783
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:916
 msgid "Check for _new messages every"
-msgstr "Prüfung nach _neuen Nachrichten im Intervall:"
+msgstr "Auf _neue Nachrichten prüfen alle:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:592
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1797
@@ -82,19 +82,19 @@ msgstr "Minute(n)."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:669
 msgid "Remote GMail Mailbox"
-msgstr "Entferntes GoogleMail-Postfach"
+msgstr "Entferntes GMail-Postfach"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:670
 msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
-msgstr "Das GoogleMail Plugin kann sich mit Google verbinden und über eine sichere Verbindung die Anzahl der neuen Nachrichten herausfinden."
+msgstr "Die GMail-Erweiterung kann sich mit Google verbinden und über eine sichere Verbindung die Anzahl der neuen Nachrichten herausfinden."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:287
 msgid ""
 "Secure IMAP is not available, and the IMAP server does not support plaintext"
 " logins."
-msgstr "IMAP über eine verschlüsselte Verbindung ist nicht möglich, und der Server unterstützt keine Klartext-Logins."
+msgstr "IMAP über eine verschlüsselte Verbindung ist nicht möglich, und der Server unterstützt keine Klartextanmeldungen."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:338
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:371
