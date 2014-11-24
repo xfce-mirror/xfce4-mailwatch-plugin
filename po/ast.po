@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Tornes Llume <l.lumex03.tornes@gmail.com>, 2014
+# Ḷḷumex03 <tornes@opmbx.org>, 2014
+# Ḷḷumex03 <tornes@opmbx.org>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-21 06:31+0100\n"
-"PO-Revision-Date: 2014-04-14 00:49+0000\n"
-"Last-Translator: Tornes Llume <l.lumex03.tornes@gmail.com>\n"
-"Language-Team: Asturian (http://www.transifex.com/projects/p/xfce/language/ast/)\n"
+"PO-Revision-Date: 2014-11-24 16:31+0000\n"
+"Last-Translator: Ḷḷumex03 <tornes@opmbx.org>\n"
+"Language-Team: Asturian (http://www.transifex.com/projects/p/xfce-panel-plugins/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -497,7 +498,7 @@ msgstr "¿Quies lleer el manual en llinia?"
 msgid ""
 "You will be redirected to the documentation website where the help pages are"
 " maintained."
-msgstr "Redireicionarásete al sitiu de la documentación u les páxines d'aida tan calteníes."
+msgstr "Redireicionarásete al sitiu de la documentación u les páxines d'ayuda tán calteníes."
 
 #: ../panel-plugin/mailwatch-plugin.c:968
 msgid "_Read Online"
