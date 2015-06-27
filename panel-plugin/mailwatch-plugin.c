@@ -1,6 +1,5 @@
 /*
  *  xfce4-mailwatch-plugin - a mail notification applet for the xfce4 panel
- *  Copyright (c) 2013 Ján Sučan <sucan@runbox.com>
  *  Copyright (c) 2005-2008 Brian Tarricone <bjt23@cornell.edu>
  *  Copyright (c) 2005 Jasper Huijsmans <jasper@xfce.org>
  *
@@ -1216,8 +1215,7 @@ mailwatch_show_about(XfcePanelPlugin *plugin,
 {
     GdkPixbuf *icon;
 
-    const gchar *auth[] = { "Ján Sučan sucan@runbox.com Maintainer",
-                            "Brian J. Tarricone bjt23@cornell.edu Maintainer, Original Author",
+    const gchar *auth[] = { "Brian J. Tarricone bjt23@cornell.edu Maintainer, Original Author",
                             "Pasi Orovuo pasi.ov@gmail.com Developer",
                             NULL };
 
@@ -1230,8 +1228,7 @@ mailwatch_show_about(XfcePanelPlugin *plugin,
                           "version", VERSION,
                           "comments", _("A featureful mail-checker applet for the Xfce Panel"),
                           "website", WEBSITE,
-                          "copyright", _("Copyright (c) 2013 Ján Sučan\n"
-                                         "Copyright (c) 2005-2008 Brian Tarricone\n"
+                          "copyright", _("Copyright (c) 2005-2008 Brian Tarricone\n"
                                          "Copyright (c) 2005 Pasi Orovuo"),
                           "authors", auth,
                           NULL);
