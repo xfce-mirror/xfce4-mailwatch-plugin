@@ -7,6 +7,7 @@
 # Adolfo Jayme Barrientos, 2014
 # Adolfo Jayme Barrientos, 2014
 # gabrieltandil <gabriel.tandil@gmail.com>, 2015
+# gabrieltandil <gabriel.tandil@gmail.com>, 2015
 # mc <correomc2000-ing@yahoo.es>, 2013
 # Pablo Roberto Francisco Lezaeta Reyes <prflr88@gmail.com>, 2013-2014
 msgid ""
@@ -14,9 +15,9 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2015-07-06 11:12+0000\n"
-"Last-Translator: gabrieltandil <gabriel.tandil@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/xfce-panel-plugins/language/es/)\n"
+"PO-Revision-Date: 2015-07-08 16:48+0000\n"
+"Last-Translator: Manolo Díaz <diaz.manolo@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/p/xfce-panel-plugins/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -446,7 +447,7 @@ msgstr[1] "Tiene %d mensajes nuevos:"
 #: ../panel-plugin/mailwatch-plugin.c:182
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "    %d de %s"
+msgstr "Informa de cuántos mensajes nuevos hay en cada buzón|    %d de %s"
 
 #: ../panel-plugin/mailwatch-plugin.c:469
 msgid "Xfce Mailwatch"
@@ -510,7 +511,7 @@ msgstr "_Leer en línea"
 
 #: ../panel-plugin/mailwatch-plugin.c:993
 msgid "_Always go directly to the online documentation"
-msgstr "_Siempre redireccionar a la documentación en línea"
+msgstr "_Siempre ir directamente a la documentación en línea"
 
 #: ../panel-plugin/mailwatch-plugin.c:1032
 #: ../panel-plugin/mailwatch.desktop.in.h:1
