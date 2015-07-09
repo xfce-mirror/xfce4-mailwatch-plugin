@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2015-07-08 16:48+0000\n"
+"PO-Revision-Date: 2015-07-09 07:54+0000\n"
 "Last-Translator: Manolo Díaz <diaz.manolo@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/p/xfce-panel-plugins/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -203,7 +203,7 @@ msgstr "Buzón IMAP remoto"
 msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
-msgstr "El complemento de IMAP se puede conectar a un servidor de correo remoto que soporte el protocolo IMAP, usando opcionalmente SSL para proteger la conexión."
+msgstr "El complemento de IMAP se puede conectar a un servidor de correo remoto compatible con el protocolo IMAP, usando opcionalmente SSL para proteger la conexión."
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
@@ -301,7 +301,7 @@ msgstr "Buzón POP3 remoto"
 msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
-msgstr "El complemento de POP3 se puede conectar a un servidor de correo remoto que soporte el protocolo POP3, usando opcionalmente SSL para proteger la conexión."
+msgstr "El complemento de POP3 se puede conectar a un servidor de correo remoto compatible con el protocolo POP3, usando opcionalmente SSL para proteger la conexión."
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
@@ -328,7 +328,7 @@ msgstr "No se pudo conectar con el servidor «%s»: %s"
 #: ../libmailwatch-core/mailwatch-net-conn.c:642
 #, c-format
 msgid "Not compiled with SSL/TLS support"
-msgstr "No se compiló con soporte SSL/TLS"
+msgstr "No se compiló compatible con SSL/TLS"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:698
 #, c-format
@@ -364,7 +364,7 @@ msgstr "El búfer no es lo suficientemente grande como para contener una línea 
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
-msgstr "Complemento visor de correo de Xfce: Imposible iniciar soporte GThread. Esto es posiblemente un problema de la instalación de GLib."
+msgstr "Complemento visor de correo de Xfce: Imposible iniciar compatibilidad con GThread. Esto es posiblemente un problema de la instalación de GLib."
 
 #: ../libmailwatch-core/mailwatch.c:337 ../libmailwatch-core/mailwatch.c:338
 #, c-format
@@ -447,7 +447,7 @@ msgstr[1] "Tiene %d mensajes nuevos:"
 #: ../panel-plugin/mailwatch-plugin.c:182
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "Informa de cuántos mensajes nuevos hay en cada buzón|    %d de %s"
+msgstr "Informa de cuántos mensajes nuevos hay en cada buzón|    %d en %s"
 
 #: ../panel-plugin/mailwatch-plugin.c:469
 msgid "Xfce Mailwatch"
@@ -460,7 +460,7 @@ msgstr "La miniaplicación «mailwatch» no se puede añadir al panel."
 #: ../panel-plugin/mailwatch-plugin.c:471
 msgid ""
 "It is possible that your version of GLib does not have threads support."
-msgstr "Es posible que su versión de GLib no tenga soporte para hilos."
+msgstr "Es posible que su versión de GLib sea incompatible con el uso de hilos."
 
 #: ../panel-plugin/mailwatch-plugin.c:706
 msgid "Mailwatch log"
@@ -503,7 +503,7 @@ msgstr "¿Quiere leer el manual en línea?"
 msgid ""
 "You will be redirected to the documentation website where the help pages are"
 " maintained."
-msgstr "Será redireccionado a la página de la documentación donde estas páginas de ayuda son mantenida"
+msgstr "Será dirigido a la página de la documentación donde estas páginas de ayuda son mantenidas."
 
 #: ../panel-plugin/mailwatch-plugin.c:982
 msgid "_Read Online"
