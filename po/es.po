@@ -8,6 +8,7 @@
 # Adolfo Jayme Barrientos, 2014
 # gabrieltandil <gabriel.tandil@gmail.com>, 2015
 # gabrieltandil <gabriel.tandil@gmail.com>, 2015
+# Manolo Díaz <diaz.manolo@gmail.com>, 2015
 # mc <correomc2000-ing@yahoo.es>, 2013
 # Pablo Roberto Francisco Lezaeta Reyes <prflr88@gmail.com>, 2013-2014
 msgid ""
@@ -15,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2015-10-05 21:43+0000\n"
+"PO-Revision-Date: 2015-10-18 12:44+0000\n"
 "Last-Translator: Manolo Díaz <diaz.manolo@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfce-panel-plugins/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -108,7 +109,7 @@ msgstr "Falló la autenticación. Quizá su nombre de usuario o contraseña son 
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
-msgstr "Se ha solicitado el uso de seguridad STARTTLS, pero este servidor no lo soporta."
+msgstr "Se ha solicitado el uso de seguridad STARTTLS, pero este servidor no la ofrece."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1144
 msgid "Failed to get folder list"
