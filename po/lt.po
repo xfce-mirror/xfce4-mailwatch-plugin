@@ -4,13 +4,13 @@
 # 
 # Translators:
 # Algimantas Margevičius <margevicius.algimantas@gmail.com>, 2012
-# Moo, 2015
+# Moo, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2015-10-05 21:22+0000\n"
+"PO-Revision-Date: 2016-01-12 22:55+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/xfce/xfce-panel-plugins/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -503,7 +503,7 @@ msgstr "Jūs būsite nukreipti į dokumentacijos svetainę, kurioje yra prižiū
 
 #: ../panel-plugin/mailwatch-plugin.c:982
 msgid "_Read Online"
-msgstr "_Skaityti Internete"
+msgstr "_Skaityti internete"
 
 #: ../panel-plugin/mailwatch-plugin.c:993
 msgid "_Always go directly to the online documentation"
