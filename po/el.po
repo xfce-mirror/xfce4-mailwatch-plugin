@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2016-02-05 11:42+0000\n"
+"PO-Revision-Date: 2016-02-06 18:08+0000\n"
 "Last-Translator: Apostolos Papadimitriu <apostolos.papadimitriu@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/xfce/xfce-panel-plugins/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -355,7 +355,7 @@ msgstr "Ακύρωση ανάγνωσης: αναγνώστηκαν υπερβο
 #: ../libmailwatch-core/mailwatch-net-conn.c:965
 #, c-format
 msgid "Buffer is not large enough to hold a full line (%s < %d)"
-msgstr ""
+msgstr "Η ενδιάμεση μνήμη δεν είναι αρκετά μεγάλη για μια πλήρη γραμμή (%s < %d)"
 
 #: ../libmailwatch-core/mailwatch.c:122
 msgid ""
@@ -508,7 +508,7 @@ msgstr "_Διαβάστε στο Διαδίκτυο"
 
 #: ../panel-plugin/mailwatch-plugin.c:993
 msgid "_Always go directly to the online documentation"
-msgstr ""
+msgstr "_Πάντα ανακατεύθυνση στην διαδικτυακή τεκμηρίωση"
 
 #: ../panel-plugin/mailwatch-plugin.c:1032
 #: ../panel-plugin/mailwatch.desktop.in.h:1
@@ -530,11 +530,11 @@ msgstr "Εκτέλεση στ_ο κλικ:"
 
 #: ../panel-plugin/mailwatch-plugin.c:1086
 msgid "Run on first new _message:"
-msgstr ""
+msgstr "Εκτέλεση στο πρώτο νέο _μήνυμα:"
 
 #: ../panel-plugin/mailwatch-plugin.c:1093
 msgid "Run on _each change of new message count:"
-msgstr ""
+msgstr "Εκτέλεση σε _κάθε αλλαγή της καταμέτρησης νέων μηνυμάτων:"
 
 #. Icons.
 #: ../panel-plugin/mailwatch-plugin.c:1126
