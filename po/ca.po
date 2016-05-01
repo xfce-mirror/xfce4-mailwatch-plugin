@@ -5,13 +5,14 @@
 # Translators:
 # Davidmp <medipas@gmail.com>, 2016
 # Pau Rul·lan Ferragut <paurullan@bulma.net> 2005, 2006
+# Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2016-03-31 15:25+0000\n"
-"Last-Translator: Davidmp <medipas@gmail.com>\n"
+"PO-Revision-Date: 2016-05-01 15:58+0000\n"
+"Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-panel-plugins/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -112,7 +113,7 @@ msgstr "No s'ha obtingut la llista de carpetes"
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1289
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1499
 msgid "Please wait..."
-msgstr "Espereu…"
+msgstr "Espereu..."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1396
 msgid "Error"
@@ -127,7 +128,7 @@ msgid ""
 "The folder list cannot be retrieved until a server, username, and probably "
 "password are set.  Also be sure to check any security settings in the "
 "Advanced dialog."
-msgstr "La llista de carpetes no es poden obtenir fins que s'informi el servidor, l'usuari i probablement la clau.  Assegureu-vos de fixar les opcions de seguretat a la finestra d'opcions avançades."
+msgstr "La llista de les carpetes no es pot obtenir fins que s'estableixi el servidor, l'usuari i probablement la contrasenya. Assegureu-vos de revisar també les opcions de seguretat al diàleg d'opcions avançades."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
@@ -179,16 +180,16 @@ msgstr "Servidor IMAP"
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1703
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:843
 msgid "_Mail server:"
-msgstr "Servidor de _correu;"
+msgstr "Servidor de _correu:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1764
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:904
 msgid "_Advanced..."
-msgstr "_Avançat…"
+msgstr "_Avançat..."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1771
 msgid "New mail _folders..."
-msgstr "_Carpetes noves de correu…"
+msgstr "_Carpetes noves de correu..."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1960
 msgid "Remote IMAP Mailbox"
@@ -229,13 +230,13 @@ msgstr "_Interval:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:450
 msgid "Local Maildir Spool"
-msgstr "Cua local de carpetes «maildir»"
+msgstr "Gestió de cues local Maildir"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:451
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
-msgstr "El connector de carpetes de correu monitora el correu de les cues locals de tipus «maildir»."
+msgstr "El connector Maildir pot observar la gestió de cues de correus local de tipus «maildir». "
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Mbox _Filename:"
@@ -247,16 +248,16 @@ msgstr "Seleccioneu el fitxer Mbox"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
 msgid "Local Mbox spool"
-msgstr "Cua local Mbox"
+msgstr "Gestió de cues local Mbox"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr "El connector Mbox monitoritza el correu de les cues locals de tipus «mbox». "
+msgstr "El connector Mbox pot observar la gestió de cues de correus local de tipus «mbox». "
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
 msgid "Malformed line %s in %s ignored."
-msgstr "Línia %s errònia, s'ignora %s"
+msgstr "Línia %s errònia, s'ignora %s."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:581
 msgid ""
@@ -270,7 +271,7 @@ msgstr "Carpeta local de correu MH"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:684
 msgid "MH plugin watches local MH folders for new mail"
-msgstr "El connector MH monitoritza el correu a les carpetes locals MH"
+msgstr "El connector MH observa el correu a les carpetes locals MH"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:746
 msgid "Advanced POP3 Options"
@@ -313,7 +314,7 @@ msgstr "Operació interrompuda"
 #: ../libmailwatch-core/mailwatch-net-conn.c:498
 #, c-format
 msgid "Could not find host \"%s\": %s"
-msgstr "No s'ha pogut trobar la màquina «%s»; %s"
+msgstr "No s'ha pogut trobar l'amfitrió «%s»; %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:582
 #, c-format
@@ -348,7 +349,7 @@ msgstr "Ha fallat la recepció de dades: %s"
 #: ../libmailwatch-core/mailwatch-net-conn.c:955
 #, c-format
 msgid "Canceling read: read too many bytes without a newline"
-msgstr "Lectura canceŀlada: S'han llegit massa bytes sense cap línia nova"
+msgstr "Lectura cancel·lada: S'han llegit massa bytes sense cap línia nova"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:965
 #, c-format
@@ -359,7 +360,7 @@ msgstr "La memòria intermèdia no és prou gran perquè hi càpiga tota una lí
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
-msgstr "xfce4-mailwatch-plugin: No es pot inicialitzar el suport per GThread. Pot ser degut a problemes amb la vostra instaŀlació de GLib."
+msgstr "xfce4-mailwatch-plugin: No es pot inicialitzar el suport per GThread. Pot ser degut a problemes amb la vostra instal·lació de GLib."
 
 #: ../libmailwatch-core/mailwatch.c:337 ../libmailwatch-core/mailwatch.c:338
 #, c-format
@@ -372,7 +373,7 @@ msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
 "passwords or other sensitive information, it may be readable by others on "
 "your system."
-msgstr "No es poden ajustar els permisos del fitxer de configuració «%s». Si aquest fitxer te alguna clau o altra informació important podrà ser llegir per altres usuaris del sistema."
+msgstr "No es poden ajustar els permisos del fitxer de configuració «%s». Si aquest fitxer conté alguna clau o alguna altra informació important podrà ser llegida pels altres usuaris del sistema."
 
 #: ../libmailwatch-core/mailwatch.c:624
 msgid "This mailbox type does not require any configuration settings."
@@ -421,7 +422,7 @@ msgstr "N'esteu segur?"
 
 #: ../libmailwatch-core/mailwatch.c:897
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
-msgstr "Si es suprimeixen les bústies tots els paràmetres es perdran. Aquests paràmetres no es poden recuperar."
+msgstr "Si se suprimeixen les bústies tots els paràmetres es perdran. Aquests paràmetres no es poden recuperar."
 
 #: ../libmailwatch-core/mailwatch.c:962
 msgid "Mailboxes"
@@ -430,7 +431,7 @@ msgstr "Bústies"
 #: ../panel-plugin/mailwatch-plugin.c:151
 #: ../panel-plugin/mailwatch-plugin.c:486
 msgid "No new mail"
-msgstr "No hi han nous correus"
+msgstr "No hi ha cap correu nou"
 
 #: ../panel-plugin/mailwatch-plugin.c:172
 #, c-format
@@ -515,7 +516,7 @@ msgstr "Monitor de correu"
 
 #: ../panel-plugin/mailwatch-plugin.c:1050
 msgid "_View Log..."
-msgstr "_Veu el registre…"
+msgstr "_Visualitza el registre..."
 
 #: ../panel-plugin/mailwatch-plugin.c:1074
 msgid "External Programs"
