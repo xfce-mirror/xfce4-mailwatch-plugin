@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2016-05-01 15:58+0000\n"
+"PO-Revision-Date: 2016-05-01 20:28+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-panel-plugins/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -199,7 +199,7 @@ msgstr "Bústia de correu IMAP"
 msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
-msgstr "El connector IMAP es pot connectar a un servidor de correu remot de tipus IMAP, opcionalment emprant SSL per protegir la connexió."
+msgstr "El connector IMAP es pot connectar a un servidor de correu remot que admeti el protocol IMAP, de manera opcional mitjançant SSL per a la protecció de l'enllaç."
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
@@ -297,7 +297,7 @@ msgstr "Bústia remota de POP3"
 msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
-msgstr "El connector de POP3 no s'ha pogut connectar a un servidor de correu que permeti l'ús del protocol POP3, opcionalment s'usa SSL per protegir la connexió."
+msgstr "El connector POP3 es pot connectar a un servidor de correu remot que admeti el protocol POP3, de manera opcional mitjançant SSL per a la protecció de l'enllaç."
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
@@ -451,7 +451,7 @@ msgstr "Monitor de correu de Xfce"
 
 #: ../panel-plugin/mailwatch-plugin.c:470
 msgid "The mailwatch applet cannot be added to the panel."
-msgstr "No es pot afegir el monitor de correu al quadre."
+msgstr "No es pot afegir el monitor de correu al plafó."
 
 #: ../panel-plugin/mailwatch-plugin.c:471
 msgid ""
@@ -550,7 +550,7 @@ msgstr "Connector del monitor de correu de Xfce4"
 
 #: ../panel-plugin/mailwatch-plugin.c:1229
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr "Una miniaplicació plena de funcionalitats per comprovar el correu pel quadre de Xfce"
+msgstr "Una miniaplicació plena de funcionalitats per comprovar el correu per al plafó de Xfce"
 
 #: ../panel-plugin/mailwatch-plugin.c:1231
 msgid ""
