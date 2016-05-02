@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2016-05-02 13:07+0000\n"
+"PO-Revision-Date: 2016-05-02 20:47+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-panel-plugins/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -216,7 +216,7 @@ msgstr "«%s» No és un directori. És realment «%s» una carpeta de correu v�
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:335
 msgid "Maildir _Path:"
-msgstr "_Camí a la carpeta de correu:"
+msgstr "_Camí a Maildir:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:340
 msgid "Select Maildir Folder"
@@ -329,7 +329,7 @@ msgstr "No s'ha compilat amb les opcions per SSL/TLS"
 #: ../libmailwatch-core/mailwatch-net-conn.c:698
 #, c-format
 msgid "Failed to send encrypted data: %s"
-msgstr "Ha fallat l'enviament xifrat de dades: %s"
+msgstr "Ha fallat l'enviament xifrat de les dades: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:731
 #, c-format
@@ -451,7 +451,7 @@ msgstr "Monitor de correu de Xfce"
 
 #: ../panel-plugin/mailwatch-plugin.c:470
 msgid "The mailwatch applet cannot be added to the panel."
-msgstr "No es pot afegir el monitor de correu al plafó."
+msgstr "No es pot afegir la miniaplicació mailwatch al plafó."
 
 #: ../panel-plugin/mailwatch-plugin.c:471
 msgid ""
