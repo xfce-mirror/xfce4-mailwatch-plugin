@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2016-05-02 20:47+0000\n"
+"PO-Revision-Date: 2016-05-03 11:13+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-panel-plugins/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -163,7 +163,7 @@ msgstr "Utilitza SSL/TLS mitjançant STARTTLS"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1621
 msgid "Use non-standard IMAP _port:"
-msgstr "Utilitza un _port no habitual d'IMAP:"
+msgstr "Utilitza un _port IMAP no estàndard:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1651
 msgid "Folders"
@@ -263,7 +263,7 @@ msgstr "Línia %s errònia, s'ignora %s."
 msgid ""
 "The configuration of this plugin is read from\n"
 "the default mh maildir profile file ~/.mh_profile"
-msgstr "La configuració d'aquest connector es llegeix del\nperfil per defecte d'MH «~/.mh_profile»."
+msgstr "La configuració d'aquest connector es llegeix del\nperfil predeterminat de MH «~/.mh_profile»."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:683
 msgid "Local MH mail folder"
