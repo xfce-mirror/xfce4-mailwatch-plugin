@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2016-05-03 11:13+0000\n"
+"PO-Revision-Date: 2016-06-20 15:48+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-panel-plugins/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -193,7 +193,7 @@ msgstr "_Carpetes noves de correu..."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1960
 msgid "Remote IMAP Mailbox"
-msgstr "Bústia de correu IMAP"
+msgstr "Bústia remota de correu IMAP"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1961
 msgid ""
@@ -385,7 +385,7 @@ msgstr "_Nom de la bústia:"
 
 #: ../libmailwatch-core/mailwatch.c:669
 msgid "Mailwatch"
-msgstr "Monitor de correu"
+msgstr "Avís de correu"
 
 #: ../libmailwatch-core/mailwatch.c:670
 msgid "Mailbox name required."
@@ -447,7 +447,7 @@ msgstr "%d a %s"
 
 #: ../panel-plugin/mailwatch-plugin.c:469
 msgid "Xfce Mailwatch"
-msgstr "Monitor de correu de Xfce"
+msgstr "Avís de correu de Xfce"
 
 #: ../panel-plugin/mailwatch-plugin.c:470
 msgid "The mailwatch applet cannot be added to the panel."
@@ -460,7 +460,7 @@ msgstr "Pot ser que la vostra versió de GLib no permeti fils."
 
 #: ../panel-plugin/mailwatch-plugin.c:706
 msgid "Mailwatch log"
-msgstr "Registre del monitor de correu"
+msgstr "Registre de l'avís de correu"
 
 #: ../panel-plugin/mailwatch-plugin.c:764
 msgid "Log _lines:"
@@ -512,7 +512,7 @@ msgstr "Vés sempre direct_ament a la documentació en línia"
 #: ../panel-plugin/mailwatch-plugin.c:1032
 #: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
-msgstr "Monitor de correu"
+msgstr "Avís de correu"
 
 #: ../panel-plugin/mailwatch-plugin.c:1050
 msgid "_View Log..."
@@ -525,15 +525,15 @@ msgstr "Programes externs"
 #. External programs - Labels.
 #: ../panel-plugin/mailwatch-plugin.c:1080
 msgid "Run _on click:"
-msgstr "Executa _al fer clic:"
+msgstr "Executa _en fer clic:"
 
 #: ../panel-plugin/mailwatch-plugin.c:1086
 msgid "Run on first new _message:"
-msgstr "Executa quan hi hagi _missatges nous:"
+msgstr "Executa amb el primer _missatge nou:"
 
 #: ../panel-plugin/mailwatch-plugin.c:1093
 msgid "Run on _each change of new message count:"
-msgstr "Executa quan hi hagi un canvi al compt_e de missatges:"
+msgstr "Executa amb cada canvi del compt_e de missatges nous:"
 
 #. Icons.
 #: ../panel-plugin/mailwatch-plugin.c:1126
@@ -546,7 +546,7 @@ msgstr "_Correu nou"
 
 #: ../panel-plugin/mailwatch-plugin.c:1226
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "Connector del monitor de correu de Xfce4"
+msgstr "Connector d'avís de correu de Xfce4"
 
 #: ../panel-plugin/mailwatch-plugin.c:1229
 msgid "A featureful mail-checker applet for the Xfce Panel"
@@ -564,4 +564,4 @@ msgstr "Actualitza ara"
 
 #: ../panel-plugin/mailwatch.desktop.in.h:2
 msgid "Check mail from multiple mailboxes"
-msgstr "Comprova el correu de múltiples bústies"
+msgstr "Comprova el correu de múltiples bústies de correu"
