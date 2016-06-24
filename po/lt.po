@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2016-04-29 18:34+0000\n"
+"PO-Revision-Date: 2016-06-24 12:49+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/xfce/xfce-panel-plugins/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -348,7 +348,7 @@ msgstr "Nepavyko gauti duomenų:%s"
 #: ../libmailwatch-core/mailwatch-net-conn.c:955
 #, c-format
 msgid "Canceling read: read too many bytes without a newline"
-msgstr "Atšaukimas skaitymas: perdaug bitų be naujos eilutės"
+msgstr "Atšaukiamas skaitymas: per daug bitų be naujos eilutės"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:965
 #, c-format
@@ -525,7 +525,7 @@ msgstr "Išorinės programos"
 #. External programs - Labels.
 #: ../panel-plugin/mailwatch-plugin.c:1080
 msgid "Run _on click:"
-msgstr "Vykdyti _paspaudus:"
+msgstr "Vykdyti _spustelėjus:"
 
 #: ../panel-plugin/mailwatch-plugin.c:1086
 msgid "Run on first new _message:"
