@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2016-06-24 12:49+0000\n"
+"PO-Revision-Date: 2016-09-16 20:00+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/xfce/xfce-panel-plugins/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -274,7 +274,7 @@ msgstr "MH įskiepis stebi vietinius MH aplankus ar nėra naujų laiškų"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:746
 msgid "Advanced POP3 Options"
-msgstr "Papildomos POP3 parinktys"
+msgstr "Išplėstinės POP3 parinktys"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:768
 msgid "Use SSL/TLS via STLS"
