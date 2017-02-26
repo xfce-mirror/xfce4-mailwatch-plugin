@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Allan Nordhøy <epost@anotheragency.no>, 2015
-# Harald <haarektrans@gmail.com>, 2014
+# Allan Nordhøy <epost@anotheragency.no>, 2015,2017
+# Harald H. <haarektrans@gmail.com>, 2014
 # Terje Uriansrud <ter@operamail.com>, 2008
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2015-10-28 21:22+0000\n"
+"PO-Revision-Date: 2017-02-26 20:50+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/xfce/xfce-panel-plugins/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -398,7 +398,7 @@ msgstr "Vennligst skriv inn et navn på epostboksen."
 #: ../libmailwatch-core/mailwatch.c:712
 #, c-format
 msgid "Edit Mailbox: %s"
-msgstr "Rediger epostboks: %s"
+msgstr "Endre e-postboks: %s"
 
 #: ../libmailwatch-core/mailwatch.c:771
 msgid "Select Mailbox Type"
