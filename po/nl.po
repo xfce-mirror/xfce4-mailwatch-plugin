@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Pjotr <pjotrvertaalt@gmail.com>, 2013,2015
+# Pjotr <pjotrvertaalt@gmail.com>, 2013,2015,2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2015-10-07 14:02+0000\n"
+"PO-Revision-Date: 2017-06-10 10:56+0000\n"
 "Last-Translator: Pjotr <pjotrvertaalt@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/xfce/xfce-panel-plugins/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -84,7 +84,7 @@ msgstr "GMail postbus-op-afstand"
 msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
-msgstr "De GMail-invoegtoepassing kan verbinden met Googles e-maildienst en veilig het aantal van de nieuwe berichten ophalen."
+msgstr "Het GMail-invoegsel kan verbinden met Googles e-maildienst en veilig het aantal van de nieuwe berichten ophalen."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
 msgid ""
@@ -197,7 +197,7 @@ msgstr "IMAP Postbus-Op-Afstand"
 msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
-msgstr "De IMAP-invoegtoepassing kan verbinden met een mailserver-op-afstand, die het IMAP-protocol ondersteunt, desgewenst met gebruik van SSL voor koppelingsbescherming."
+msgstr "Het IMAP-invoegsel kan verbinden met een mailserver-op-afstand, die het IMAP-protocol ondersteunt, desgewenst met gebruik van SSL voor koppelingsbescherming."
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
@@ -234,7 +234,7 @@ msgstr "Plaatselijke Maildir-spoel"
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
-msgstr "De Maildir-invoegtoepassing kan een plaatselijke postspoel (maildir-stijl) bewaken op nieuwe berichten."
+msgstr "Het Maildir-invoegsel kan een plaatselijke postspoel (maildir-stijl) bewaken inzake nieuwe berichten."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Mbox _Filename:"
@@ -250,7 +250,7 @@ msgstr "Plaatselijke Mbox-spoel"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr "Mbox-invoegtoepassing bewaakt een plaatselijke postspoel (mbox-type) op nieuwe berichten."
+msgstr "Mbox-invoegsel bewaakt een plaatselijke postspoel (mbox-type) inzake nieuwe berichten."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
@@ -261,7 +261,7 @@ msgstr "Misvormde regel %s in %s genegeerd."
 msgid ""
 "The configuration of this plugin is read from\n"
 "the default mh maildir profile file ~/.mh_profile"
-msgstr "De configuratie van deze invoegtoepassing wordt gelezen\nvanuit het standaard-profielbestand voor mh maildir,\nnamelijk ~/.mh_profile"
+msgstr "De configuratie van dit invoegsel wordt gelezen\nvanuit het standaard-profielbestand voor mh maildir,\nnamelijk ~/.mh_profile"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:683
 msgid "Local MH mail folder"
@@ -269,7 +269,7 @@ msgstr "Plaatselijke MH-postmap"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:684
 msgid "MH plugin watches local MH folders for new mail"
-msgstr "MH-invoegtoepassing bewaakt plaatselijke MH-mappen op nieuwe post"
+msgstr "MH-invoegsel bewaakt plaatselijke MH-mappen inzake nieuwe post"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:746
 msgid "Advanced POP3 Options"
@@ -295,7 +295,7 @@ msgstr "POP3 postbus-op-afstand"
 msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
-msgstr "De POP3-invoegtoepassing kan verbinden met een mailserver-op-afstand die het POP3-protocol ondersteunt, desgewenst met gebruik van SSL voor koppelingsbescherming."
+msgstr "Het POP3-invoegsel kan verbinden met een mailserver-op-afstand die het POP3-protocol ondersteunt, desgewenst met gebruik van SSL voor koppelingsbescherming."
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
@@ -358,7 +358,7 @@ msgstr "Buffer is niet groot genoeg om een volledige regel te bevatten (%s < %d)
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
-msgstr "xfce4-mailwatch-invoegtoepassing: kon geen GThread-ondersteuning initialiseren. Dit komt waarschijnlijk door een probleem met uw GLib-installatie."
+msgstr "xfce4-mailwatch-invoegsel: kon geen GThread-ondersteuning initialiseren. Dit komt waarschijnlijk door een probleem met uw GLib-installatie."
 
 #: ../libmailwatch-core/mailwatch.c:337 ../libmailwatch-core/mailwatch.c:338
 #, c-format
@@ -544,7 +544,7 @@ msgstr "Nieu_we post"
 
 #: ../panel-plugin/mailwatch-plugin.c:1226
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "Xfce4 Postbewaker-invoegtoepassing"
+msgstr "Xfce4 Postbewaker-invoegsel"
 
 #: ../panel-plugin/mailwatch-plugin.c:1229
 msgid "A featureful mail-checker applet for the Xfce Panel"
