@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2017-04-13 14:25+0000\n"
+"PO-Revision-Date: 2017-06-17 23:31+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/xfce/xfce-panel-plugins/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -170,7 +170,7 @@ msgstr "Aplankai"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1659
 msgid "IMAP server _directory:"
-msgstr "IMAP serverio _aplankas:"
+msgstr "IMAP serverio _katalogas:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1689
 msgid "IMAP Server"
@@ -211,7 +211,7 @@ msgstr "Nepavyko gauti %s failo būsenos: %s"
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:102
 #, c-format
 msgid "%s is not a directory. Is %s really a valid maildir?"
-msgstr "%s ne aplankas. %s tinkamas pašto aplankas?"
+msgstr "%s nėra katalogas. Ar %s tikrai yra tinkamas pašto katalogas?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:335
 msgid "Maildir _Path:"
