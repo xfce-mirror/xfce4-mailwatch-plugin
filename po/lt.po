@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2017-06-17 23:31+0000\n"
+"PO-Revision-Date: 2017-07-02 20:17+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/xfce/xfce-panel-plugins/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -184,7 +184,7 @@ msgstr "Pašto _serveris:"
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1764
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:904
 msgid "_Advanced..."
-msgstr "_Sudėtingesni..."
+msgstr "_Išplėstiniai..."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1771
 msgid "New mail _folders..."
@@ -239,7 +239,7 @@ msgstr "„MailDir“ įskiepis gali stebėti ar nėra naujų laiškų vietiniam
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Mbox _Filename:"
-msgstr "Pašto dėžutės _failo vardas:"
+msgstr "Pašto dėžutės _failo pavadinimas:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:377
 msgid "Select mbox file"
