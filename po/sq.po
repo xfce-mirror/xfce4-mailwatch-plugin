@@ -1,20 +1,21 @@
-# Albanian translation for xfce4-mailwatch-plugin.
-# Copyright (C) 2005-2006 Brian Tarricone, Pasi Orovuo.
-# This file is distributed under the same license as the xfce4-mailwatch-plugin package.
-# Besnik Bleta <besnik@programeshqip.org>, 2007-2008.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-15 22:43-0700\n"
-"PO-Revision-Date: 2008-11-04 23:26+0200\n"
-"Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
-"Language-Team: Albanian <translation-team-sq@lists.sourceforge.net>\n"
+"POT-Creation-Date: 2015-07-05 18:31+0200\n"
+"PO-Revision-Date: 2017-07-25 11:28+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"Language-Team: Albanian (http://www.transifex.com/xfce/xfce-panel-plugins/language/sq/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.1\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: sq\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:204
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:399
@@ -28,21 +29,15 @@ msgstr "Duarshtrëngimi TLS dështoi: %s"
 msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
-msgstr ""
-"U mor kod përgjigjeje HTTP %d. Shkaku më i mundshëm për këtë është fakti që "
-"emri juaj i përdoruesit apo fjalëkalimi GMail nuk është i saktë."
+msgstr "U mor kod përgjigjeje HTTP %d. Shkaku më i mundshëm për këtë është fakti që emri juaj i përdoruesit apo fjalëkalimi GMail nuk është i saktë."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
 #, c-format
 msgid ""
-"Received HTTP response code %d, which should be 200.  There may be a problem "
-"with GMail's servers, or they have incompatibly changed their authentication "
-"method or location of the new messages feed."
-msgstr ""
-"U mor kod përgjigjeje HTTP %d, i cli do të duhej të ishte 200.  Mund të ketë "
-"ndonjë problem me shërbyesat GMail, ose mund të kenë ndryshuar në mënyrë  të "
-"papërputhshme metodën e tyre të mirëfilltësimit ose vendin e prurjes për "
-"mesazhe të rinj."
+"Received HTTP response code %d, which should be 200.  There may be a problem"
+" with GMail's servers, or they have incompatibly changed their "
+"authentication method or location of the new messages feed."
+msgstr "U mor kod përgjigjeje HTTP %d, i cli do të duhej të ishte 200.  Mund të ketë ndonjë problem me shërbyesat GMail, ose mund të kenë ndryshuar në mënyrë  të papërputhshme metodën e tyre të mirëfilltësimit ose vendin e prurjes për mesazhe të rinj."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:735
@@ -51,32 +46,30 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:487
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:548
 msgid "Previous thread hasn't exited yet, not checking mail this time."
-msgstr ""
-"Instanca e mëparshme nuk është mbyllur akoma, nuk po kontrollohet postë këtë "
-"herë."
+msgstr "Instanca e mëparshme nuk është mbyllur akoma, nuk po kontrollohet postë këtë herë."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1723
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:863
 msgid "_Username:"
 msgstr "_Emër përdoruesi:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:555
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1768
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1743
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:883
 msgid "_Password:"
 msgstr "_Fjalëkalim:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:576
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1807
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1782
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:915
 msgid "Check for _new messages every"
 msgstr "Kontrollo për mesazhe të _rinj çdo"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:591
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1821
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1796
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:374
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:411
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:412
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:605
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:929
 msgid "minute(s)."
@@ -90,26 +83,21 @@ msgstr "Kuti postare GMail e largët"
 msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
-msgstr ""
-"Shtojca GMail mund të lidhet te shërbimi Google i postës dhe të marrë në "
-"mënyrë të sigurtë numrin e mesazheve të rinj."
+msgstr "Shtojca GMail mund të lidhet te shërbimi Google i postës dhe të marrë në mënyrë të sigurtë numrin e mesazheve të rinj."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
 msgid ""
-"Secure IMAP is not available, and the IMAP server does not support plaintext "
-"logins."
-msgstr ""
-"IMAP i sigurt nuk është i passhëm, dhe shërbyesi IMAP nuk mbulon hryje në të "
-"përmes teksti të thjeshtë."
+"Secure IMAP is not available, and the IMAP server does not support plaintext"
+" logins."
+msgstr "IMAP i sigurt nuk është i passhëm, dhe shërbyesi IMAP nuk mbulon hryje në të përmes teksti të thjeshtë."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:337
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:370
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:242
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
-msgid "Authentication failed.  Perhaps your username or password is incorrect?"
-msgstr ""
-"Mirëfilltësimi dështoi. Ndoshta emri juaj i përdoruesit apo fjalëkalimi "
-"është i pasaktë?"
+msgid ""
+"Authentication failed.  Perhaps your username or password is incorrect?"
+msgstr "Mirëfilltësimi dështoi. Ndoshta emri juaj i përdoruesit apo fjalëkalimi është i pasaktë?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
@@ -120,7 +108,7 @@ msgid "Failed to get folder list"
 msgstr "Dështoi në pasjen e listës së dosjeve"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1289
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1524
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1499
 msgid "Please wait..."
 msgstr "Ju lutem prisni..."
 
@@ -137,11 +125,7 @@ msgid ""
 "The folder list cannot be retrieved until a server, username, and probably "
 "password are set.  Also be sure to check any security settings in the "
 "Advanced dialog."
-msgstr ""
-"Nuk mund të kihet lista e dosjeve për sa kohë që nuk është caktuar një "
-"shërbyes, emër përdoruesi, dhe ka mundësi edhe një fjalëkalim.  Gjithashtu "
-"sigurohuni se keni kontrolluar çfarëdo rregullimi sigurie te dialogu Të "
-"mëtejshëm."
+msgstr "Nuk mund të kihet lista e dosjeve për sa kohë që nuk është caktuar një shërbyes, emër përdoruesi, dhe ka mundësi edhe një fjalëkalim.  Gjithashtu sigurohuni se keni kontrolluar çfarëdo rregullimi sigurie te dialogu Të mëtejshëm."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
@@ -151,71 +135,68 @@ msgstr "Caktoni Dosje Poste të Re"
 msgid "New Mail Folders"
 msgstr "Dosje Poste të Re"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1608
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1583
 msgid "Advanced IMAP Options"
 msgstr "Mundësi të Mëtejshme IMAP"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1619
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1594
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:757
 msgid "Connection"
 msgstr "Ndërlidhje"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1628
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1603
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:766
 msgid "Use unsecured connection"
 msgstr "Përdor lidhje të pasigurtë"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1629
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1604
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:767
 msgid "Use SSL/TLS on alternate port"
 msgstr "Përdor SSL/TSL në portë alternative"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1630
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1605
 msgid "Use SSL/TLS via STARTTLS"
 msgstr "Përdor SSL/TLS përmes STARTTLS"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1646
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1621
 msgid "Use non-standard IMAP _port:"
 msgstr "Përdor _portë IMAP jo standarde:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1676
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1651
 msgid "Folders"
 msgstr "Dosje"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1684
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1659
 msgid "IMAP server _directory:"
 msgstr "_Drejtori shërbyesi IMAP:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1714
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1689
 msgid "IMAP Server"
 msgstr "Shërbyes IMAP"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1728
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1703
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:843
 msgid "_Mail server:"
 msgstr "Shërbyes _poste:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1789
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1764
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:904
 msgid "_Advanced..."
 msgstr "_Të mëtejshme..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1796
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1771
 msgid "New mail _folders..."
 msgstr "_Dosje poste të re..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1985
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1960
 msgid "Remote IMAP Mailbox"
 msgstr "Kuti postare IMAP e largët"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1986
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1961
 msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
-msgstr ""
-"Shtojca IMAP mund të lidhet me një shërbyes të largët poste që mbulon "
-"protokollin IMAP, duke pasur mundësinë edhe të lidhet duke përdorur SSL për "
-"mbrojtje lidhjeje."
+msgstr "Shtojca IMAP mund të lidhet me një shërbyes të largët poste që mbulon protokollin IMAP, duke pasur mundësinë edhe të lidhet duke përdorur SSL për mbrojtje lidhjeje."
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
@@ -228,8 +209,7 @@ msgstr "Dështoi në pasjen e gjendjes së kartelës %s: %s"
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:102
 #, c-format
 msgid "%s is not a directory. Is %s really a valid maildir?"
-msgstr ""
-"%s nuk është drejtori. A është %s vërtet një drejtori e vlefshme poste?"
+msgstr "%s nuk është drejtori. A është %s vërtet një drejtori e vlefshme poste?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:335
 msgid "Maildir _Path:"
@@ -240,7 +220,7 @@ msgid "Select Maildir Folder"
 msgstr "Përzgjidhni Dosje Maildir"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:358
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:394
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:395
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:590
 msgid "_Interval:"
 msgstr "_Interval:"
@@ -253,27 +233,23 @@ msgstr "Mbështjellë Vendore Maildir"
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
-msgstr ""
-"Shtojca Maildir mund të vëzhgojë për mesazhe të reja te një mbështjellë "
-"vendore poste të llojit maildir. "
+msgstr "Shtojca Maildir mund të vëzhgojë për mesazhe të reja te një mbështjellë vendore poste të llojit maildir. "
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:370
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Mbox _Filename:"
 msgstr "_Emër kartele mbox:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:376
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:377
 msgid "Select mbox file"
 msgstr "Përzgjidhni kartelë mbox"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:475
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
 msgid "Local Mbox spool"
 msgstr "Mbështjellë Vendore Mbox"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr ""
-"Shtojca Mbox vëzhgon për mesazhe të reja te një mbështjellë vendore poste të "
-"llojit mbox."
+msgstr "Shtojca Mbox vëzhgon për mesazhe të reja te një mbështjellë vendore poste të llojit mbox."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
@@ -284,9 +260,7 @@ msgstr "U shpërfill rresht i keqformuar %s te %s."
 msgid ""
 "The configuration of this plugin is read from\n"
 "the default mh maildir profile file ~/.mh_profile"
-msgstr ""
-"Formësimi i kësaj shtojce lexohet prej\n"
-"kartelës parazgjedhje të profilit maildir mh ~/.mh_profile"
+msgstr "Formësimi i kësaj shtojce lexohet prej\nkartelës parazgjedhje të profilit maildir mh ~/.mh_profile"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:683
 msgid "Local MH mail folder"
@@ -320,18 +294,16 @@ msgstr "Kuti postare POP3 e largët"
 msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
-msgstr ""
-"Shtojca POP3 mund të lidhet me një shërbyes të largët që mbulon protokollin "
-"POP3, mundësisht duke përdorur SSL-në për mbrojtje lidhjeje."
+msgstr "Shtojca POP3 mund të lidhet me një shërbyes të largët që mbulon protokollin POP3, mundësisht duke përdorur SSL-në për mbrojtje lidhjeje."
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
 #: ../libmailwatch-core/mailwatch-net-conn.c:349
-#: ../libmailwatch-core/mailwatch-net-conn.c:694
-#: ../libmailwatch-core/mailwatch-net-conn.c:727
-#: ../libmailwatch-core/mailwatch-net-conn.c:783
-#: ../libmailwatch-core/mailwatch-net-conn.c:816
-#: ../libmailwatch-core/mailwatch-net-conn.c:846
+#: ../libmailwatch-core/mailwatch-net-conn.c:691
+#: ../libmailwatch-core/mailwatch-net-conn.c:724
+#: ../libmailwatch-core/mailwatch-net-conn.c:787
+#: ../libmailwatch-core/mailwatch-net-conn.c:820
+#: ../libmailwatch-core/mailwatch-net-conn.c:850
 #, c-format
 msgid "Operation aborted"
 msgstr "Veprimi u ndërpre"
@@ -346,267 +318,247 @@ msgstr "Nuk gjeti dot strehën \"%s\": %s"
 msgid "Failed to connect to server \"%s\": %s"
 msgstr "Dështoi të lidhet me shërbyesin \"%s\": %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:645
+#: ../libmailwatch-core/mailwatch-net-conn.c:642
 #, c-format
 msgid "Not compiled with SSL/TLS support"
 msgstr "Nuk është përpiluar me mbulim për SSL/TLS"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:701
+#: ../libmailwatch-core/mailwatch-net-conn.c:698
 #, c-format
 msgid "Failed to send encrypted data: %s"
 msgstr "Dështoi në dërgim të dhënash të koduara: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:734
+#: ../libmailwatch-core/mailwatch-net-conn.c:731
 #, c-format
 msgid "Failed to send data: %s"
 msgstr "Dështoi në dërgim dhënash: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:823
+#: ../libmailwatch-core/mailwatch-net-conn.c:827
 #, c-format
 msgid "Failed to receive encrypted data: %s"
 msgstr "Dështoi në marrje të dhënash të koduara: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:853
+#: ../libmailwatch-core/mailwatch-net-conn.c:857
 #, c-format
 msgid "Failed to receive data: %s"
 msgstr "Dështoi në marrje të dhënash: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:951
+#: ../libmailwatch-core/mailwatch-net-conn.c:955
 #, c-format
 msgid "Canceling read: read too many bytes without a newline"
 msgstr "Po anulohet leximi: u lexuan shumë bajte pa fillim rreshti të ri"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:960
-#, fuzzy
-msgid "Buffer is not large enough to hold a full line (%"
-msgstr "Shtytëza nuk është aq e madhe sa të mbajë një rresht të tërë (%d < %d)"
+#: ../libmailwatch-core/mailwatch-net-conn.c:965
+#, c-format
+msgid "Buffer is not large enough to hold a full line (%s < %d)"
+msgstr ""
 
-#: ../libmailwatch-core/mailwatch.c:126
+#: ../libmailwatch-core/mailwatch.c:122
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
-msgstr ""
-"xfce4-mailwatch-plugin: I pazoti të gatisë mbulimin për GThread.  Ka të "
-"ngjarë që ky të jetë problem i instalimit tuaj të GLib-it."
+msgstr "xfce4-mailwatch-plugin: I pazoti të gatisë mbulimin për GThread.  Ka të ngjarë që ky të jetë problem i instalimit tuaj të GLib-it."
 
-#: ../libmailwatch-core/mailwatch.c:341 ../libmailwatch-core/mailwatch.c:342
+#: ../libmailwatch-core/mailwatch.c:337 ../libmailwatch-core/mailwatch.c:338
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "I pazoti të shkruajë kartelë formësimi '%s'"
 
-#: ../libmailwatch-core/mailwatch.c:406 ../libmailwatch-core/mailwatch.c:408
+#: ../libmailwatch-core/mailwatch.c:402 ../libmailwatch-core/mailwatch.c:404
 #, c-format
 msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
 "passwords or other sensitive information, it may be readable by others on "
 "your system."
-msgstr ""
-"I pazoti të caktojë lejet mbi kartelën e formësimit '%s'.  Nëse kjo kartelë "
-"përmban fjalëkalime apo të tjera të dhëna të rezervuara, mund të jetë e "
-"lexueshme nga të tjerët në sistemin tuaj."
+msgstr "I pazoti të caktojë lejet mbi kartelën e formësimit '%s'.  Nëse kjo kartelë përmban fjalëkalime apo të tjera të dhëna të rezervuara, mund të jetë e lexueshme nga të tjerët në sistemin tuaj."
 
-#: ../libmailwatch-core/mailwatch.c:628
+#: ../libmailwatch-core/mailwatch.c:624
 msgid "This mailbox type does not require any configuration settings."
 msgstr "Ky tip kutie postare nuk lyp ndonjë rregullim formësimi."
 
-#: ../libmailwatch-core/mailwatch.c:655
+#: ../libmailwatch-core/mailwatch.c:651
 msgid "Mailbox _Name:"
 msgstr "_Emër Kutie Postare:"
 
-#: ../libmailwatch-core/mailwatch.c:673
+#: ../libmailwatch-core/mailwatch.c:669
 msgid "Mailwatch"
 msgstr "Mailwatch"
 
-#: ../libmailwatch-core/mailwatch.c:674
+#: ../libmailwatch-core/mailwatch.c:670
 msgid "Mailbox name required."
 msgstr "Lypset emër kutie postare."
 
-#: ../libmailwatch-core/mailwatch.c:675
+#: ../libmailwatch-core/mailwatch.c:671
 msgid "Please enter a name for the mailbox."
 msgstr "Ju lutem jepni emër për kutinë postare."
 
-#: ../libmailwatch-core/mailwatch.c:716
+#: ../libmailwatch-core/mailwatch.c:712
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "Përpunoni Kutinë Postare: %s"
 
-#: ../libmailwatch-core/mailwatch.c:775
+#: ../libmailwatch-core/mailwatch.c:771
 msgid "Select Mailbox Type"
 msgstr "Përzgjidhni Tip Kutie Postare"
 
-#: ../libmailwatch-core/mailwatch.c:785
+#: ../libmailwatch-core/mailwatch.c:781
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr "Përzgjidhni tip kutie postare. Më poshtë jepet një përshkrim i tipit."
 
-#: ../libmailwatch-core/mailwatch.c:839
+#: ../libmailwatch-core/mailwatch.c:835
 msgid "Add New Mailbox"
 msgstr "Shto Kuti të Re Postare"
 
-#: ../libmailwatch-core/mailwatch.c:899
+#: ../libmailwatch-core/mailwatch.c:895
 msgid "Remove Mailbox"
 msgstr "Hiq Kuti Postare"
 
-#: ../libmailwatch-core/mailwatch.c:900
+#: ../libmailwatch-core/mailwatch.c:896
 msgid "Are you sure?"
 msgstr "Jeni i sigurt?"
 
-#: ../libmailwatch-core/mailwatch.c:901
+#: ../libmailwatch-core/mailwatch.c:897
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
-msgstr ""
-"Heqja e një kutie postare do të hedhë tej tërë rregullimet për të, dhe kjo "
-"nuk mund të zhbëhet."
+msgstr "Heqja e një kutie postare do të hedhë tej tërë rregullimet për të, dhe kjo nuk mund të zhbëhet."
 
-#: ../libmailwatch-core/mailwatch.c:966
+#: ../libmailwatch-core/mailwatch.c:962
 msgid "Mailboxes"
 msgstr "Kuti Postare"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:114
-#: ../panel-plugin/mailwatch-plugin-4.2.c:269
-#: ../panel-plugin/mailwatch-plugin.c:112
-#: ../panel-plugin/mailwatch-plugin.c:115
-#: ../panel-plugin/mailwatch-plugin.c:431
-#: ../panel-plugin/mailwatch-plugin.c:434
+#: ../panel-plugin/mailwatch-plugin.c:151
+#: ../panel-plugin/mailwatch-plugin.c:486
 msgid "No new mail"
 msgstr "Pa postë të re"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:129
-#: ../panel-plugin/mailwatch-plugin.c:131
+#: ../panel-plugin/mailwatch-plugin.c:172
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
 msgstr[0] "Keni %d mesazh të ri:"
 msgstr[1] "Keni %d mesazhe të rinj:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:140
-#: ../panel-plugin/mailwatch-plugin.c:142
+#: ../panel-plugin/mailwatch-plugin.c:182
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "tregon sa mesazhe të rinj në secilën kuti poste|    %d te %s"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:251
-#: ../panel-plugin/mailwatch-plugin.c:413
+#: ../panel-plugin/mailwatch-plugin.c:469
 msgid "Xfce Mailwatch"
 msgstr "Xfce Mailwatch"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:252
-#: ../panel-plugin/mailwatch-plugin.c:414
+#: ../panel-plugin/mailwatch-plugin.c:470
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Zbatimthi mailwatch nuk mund të shtohet te paneli."
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:253
-#: ../panel-plugin/mailwatch-plugin.c:415
-msgid "It is possible that your version of GLib does not have threads support."
+#: ../panel-plugin/mailwatch-plugin.c:471
+msgid ""
+"It is possible that your version of GLib does not have threads support."
 msgstr "Ka të ngjarë që versioni juaj i GLib-it nuk mbulon rrjedha."
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:476
-#: ../panel-plugin/mailwatch-plugin.c:638
+#: ../panel-plugin/mailwatch-plugin.c:706
 msgid "Mailwatch log"
 msgstr "Regjistër Mailwatch"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:534
-#: ../panel-plugin/mailwatch-plugin.c:696
+#: ../panel-plugin/mailwatch-plugin.c:764
 msgid "Log _lines:"
 msgstr "_Rreshta regjistri:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:548
-#: ../panel-plugin/mailwatch-plugin.c:710
+#: ../panel-plugin/mailwatch-plugin.c:778
 msgid "Show log _status in icon"
 msgstr "Shfaq _gjendje regjistri si ikonë"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:594
-#: ../panel-plugin/mailwatch-plugin.c:754
+#: ../panel-plugin/mailwatch-plugin.c:841
 msgid "Select Icon"
 msgstr "Përzgjidhni Ikonë"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:624
-#: ../panel-plugin/mailwatch-plugin-4.2.c:744
-#: ../panel-plugin/mailwatch-plugin.c:785
-#: ../panel-plugin/mailwatch-plugin.c:966
+#: ../panel-plugin/mailwatch-plugin.c:873
+#: ../panel-plugin/mailwatch-plugin.c:1148
 msgid "_Normal"
 msgstr "_Normale"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:649
-#: ../panel-plugin/mailwatch-plugin.c:811
+#: ../panel-plugin/mailwatch-plugin.c:878
 msgid "Ne_w mail"
 msgstr "Postë e _re"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:676
-#: ../panel-plugin/mailwatch-plugin.c:898
-msgid "External Programs"
-msgstr "Programe të Jashtme"
-
-#: ../panel-plugin/mailwatch-plugin-4.2.c:688
-#: ../panel-plugin/mailwatch-plugin.c:910
-msgid "Run _on click:"
-msgstr "Xhiro _kur klikohet:"
-
-#: ../panel-plugin/mailwatch-plugin-4.2.c:705
 #: ../panel-plugin/mailwatch-plugin.c:927
-msgid "Run on new _messages:"
-msgstr "Me _mesazhe të rinj xhiro:"
+msgid "Failed to open web browser for online documentation"
+msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:718
-#: ../panel-plugin/mailwatch-plugin.c:940
-msgid "Icons"
-msgstr "Ikona"
+#: ../panel-plugin/mailwatch-plugin.c:975
+msgid "Online Documentation"
+msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:764
-#: ../panel-plugin/mailwatch-plugin.c:986
-msgid "Ne_w Mail"
-msgstr "Postë e _Re"
+#: ../panel-plugin/mailwatch-plugin.c:977
+msgid "Do you want to read the manual online?"
+msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:772
-#: ../panel-plugin/mailwatch-plugin.c:877
-msgid "_View Log..."
-msgstr "_Shihni Regjistrim..."
+#: ../panel-plugin/mailwatch-plugin.c:978
+msgid ""
+"You will be redirected to the documentation website where the help pages are"
+" maintained."
+msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:885
-#: ../panel-plugin/mailwatch-plugin.c:858
-#: ../panel-plugin/mailwatch.desktop.in.in.h:2
+#: ../panel-plugin/mailwatch-plugin.c:982
+msgid "_Read Online"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-plugin.c:993
+msgid "_Always go directly to the online documentation"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-plugin.c:1032
+#: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "Vëzhgues Poste"
 
-#: ../panel-plugin/mailwatch-plugin.c:829
-#, c-format
-msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
-msgstr "Ndihma nuk është e passhme ngaqë nuk xhiroi dot 'xfhelp4': %s"
+#: ../panel-plugin/mailwatch-plugin.c:1050
+msgid "_View Log..."
+msgstr "_Shihni Regjistrim..."
 
-#: ../panel-plugin/mailwatch-plugin.c:831
-msgid "Help Unavailable"
-msgstr "Nuk ka Ndihmë të passhme"
+#: ../panel-plugin/mailwatch-plugin.c:1074
+msgid "External Programs"
+msgstr "Programe të Jashtme"
 
-#: ../panel-plugin/mailwatch-plugin.c:832
-msgid "Failed to run xfhelp4"
-msgstr "Dështoi në xhirimin e xfhelp4-s"
+#. External programs - Labels.
+#: ../panel-plugin/mailwatch-plugin.c:1080
+msgid "Run _on click:"
+msgstr "Xhiro _kur klikohet:"
 
-#: ../panel-plugin/mailwatch-plugin.c:1054
+#: ../panel-plugin/mailwatch-plugin.c:1086
+msgid "Run on first new _message:"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-plugin.c:1093
+msgid "Run on _each change of new message count:"
+msgstr ""
+
+#. Icons.
+#: ../panel-plugin/mailwatch-plugin.c:1126
+msgid "Icons"
+msgstr "Ikona"
+
+#: ../panel-plugin/mailwatch-plugin.c:1165
+msgid "Ne_w Mail"
+msgstr "Postë e _Re"
+
+#: ../panel-plugin/mailwatch-plugin.c:1226
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Shtojcë Xfce4 Mailwatch"
 
-#: ../panel-plugin/mailwatch-plugin.c:1056
+#: ../panel-plugin/mailwatch-plugin.c:1229
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "Zbatimth plot me funksione kontrolli poste  për Panelin e Xfce-së"
 
-#: ../panel-plugin/mailwatch-plugin.c:1057
+#: ../panel-plugin/mailwatch-plugin.c:1231
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
-msgstr ""
-"Të Drejta Kopjimi (c) 2005-2008 Brian Tarricone\n"
-"Të Drejta Kopjimi (c) 2005 Pasi Orovuo"
+msgstr "Të Drejta Kopjimi (c) 2005-2008 Brian Tarricone\nTë Drejta Kopjimi (c) 2005 Pasi Orovuo"
 
-#: ../panel-plugin/mailwatch-plugin.c:1063
-msgid "Maintainer, Original Author"
-msgstr "Mirëmbajtësi, Autori Origjinal"
-
-#: ../panel-plugin/mailwatch-plugin.c:1065
-msgid "Developer"
-msgstr "Zhvillues"
-
-#: ../panel-plugin/mailwatch-plugin.c:1145
+#: ../panel-plugin/mailwatch-plugin.c:1304
 msgid "Update Now"
 msgstr "Përditësoje Tani"
 
-#: ../panel-plugin/mailwatch.desktop.in.in.h:1
+#: ../panel-plugin/mailwatch.desktop.in.h:2
 msgid "Check mail from multiple mailboxes"
 msgstr "Kontrollo për postë prej shumë kutish postare"
