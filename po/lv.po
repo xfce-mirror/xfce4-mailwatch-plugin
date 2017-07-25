@@ -1,23 +1,23 @@
-# Latvian translations for xfce4-mailwatch-plugin package.
-# Copyright (C) 2007 THE xfc4-mailwatch-plugin'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfc4-mailwatch-plugin package.
-#
-# Rihards Prieditis <rprieditis@inbox.lv>, 2007.
-# Rihards Prieditis <rprieditis@gmail.com>, 2009.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Rihards Priedītis <rprieditis@gmail.com>, 2009
+# Rihards Prieditis <rprieditis@inbox.lv>, 2007
 msgid ""
 msgstr ""
-"Project-Id-Version: Pxfce 4-mailwatch-plugin\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-15 22:43-0700\n"
-"PO-Revision-Date: 2009-09-18 22:16+0100\n"
-"Last-Translator: Rihards Prieditis <rprieditis@gmail.com>\n"
-"Language-Team: Latvian <translation-team-lv@lists.sourceforge.net>\n"
+"POT-Creation-Date: 2015-07-05 18:31+0200\n"
+"PO-Revision-Date: 2017-07-25 11:28+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"Language-Team: Latvian (http://www.transifex.com/xfce/xfce-panel-plugins/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.0\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
-"2);\n"
+"Language: lv\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:204
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:399
@@ -31,20 +31,15 @@ msgstr "TLS rokasspiediens neizdevās: %s"
 msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
-msgstr ""
-"Saņemts HTTP atbildes kods %d. Visdrīzāk Jūs Gmail lietotāja vārds vai "
-"parole ir nepareizi."
+msgstr "Saņemts HTTP atbildes kods %d. Visdrīzāk Jūs Gmail lietotāja vārds vai parole ir nepareizi."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
 #, c-format
 msgid ""
-"Received HTTP response code %d, which should be 200.  There may be a problem "
-"with GMail's servers, or they have incompatibly changed their authentication "
-"method or location of the new messages feed."
-msgstr ""
-"Saņemts HTTP atbildes kods %d, kuram jābūt 200. Iespējams ir problēma ar "
-"GMail serveriem, vai nesaderīgi izmainījuši auterizācijas metodi, vai jaunu "
-"ziņu atrašanās vietu."
+"Received HTTP response code %d, which should be 200.  There may be a problem"
+" with GMail's servers, or they have incompatibly changed their "
+"authentication method or location of the new messages feed."
+msgstr "Saņemts HTTP atbildes kods %d, kuram jābūt 200. Iespējams ir problēma ar GMail serveriem, vai nesaderīgi izmainījuši auterizācijas metodi, vai jaunu ziņu atrašanās vietu."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:735
@@ -53,31 +48,30 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:487
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:548
 msgid "Previous thread hasn't exited yet, not checking mail this time."
-msgstr ""
-"Iepriekšējais process vēl  nav aizvēries, netiks veikta pasta pārbaude."
+msgstr "Iepriekšējais process vēl  nav aizvēries, netiks veikta pasta pārbaude."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1723
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:863
 msgid "_Username:"
 msgstr "_Lietotāja vārds:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:555
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1768
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1743
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:883
 msgid "_Password:"
 msgstr "_Parole:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:576
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1807
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1782
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:915
 msgid "Check for _new messages every"
 msgstr "Pārbaudīt jaunas _ziņas katras"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:591
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1821
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1796
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:374
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:411
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:412
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:605
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:929
 msgid "minute(s)."
@@ -91,23 +85,20 @@ msgstr "Attālinātā GMail pastkastīte"
 msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
-msgstr ""
-"GMail spraudnis nevar savienoties ar Google pasta pakalpojumiem un droši "
-"saņemt jauno ziņu skaitu."
+msgstr "GMail spraudnis nevar savienoties ar Google pasta pakalpojumiem un droši saņemt jauno ziņu skaitu."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
 msgid ""
-"Secure IMAP is not available, and the IMAP server does not support plaintext "
-"logins."
-msgstr ""
-"Drošais IMAP nav pieejams un IMAP serveris neatbalsta vienkārša teksta "
-"pieteikšanos."
+"Secure IMAP is not available, and the IMAP server does not support plaintext"
+" logins."
+msgstr "Drošais IMAP nav pieejams un IMAP serveris neatbalsta vienkārša teksta pieteikšanos."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:337
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:370
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:242
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
-msgid "Authentication failed.  Perhaps your username or password is incorrect?"
+msgid ""
+"Authentication failed.  Perhaps your username or password is incorrect?"
 msgstr "Autorizācija neizdevās. Varbūt lietotāja vārds vai parole nav pareiza?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
@@ -119,7 +110,7 @@ msgid "Failed to get folder list"
 msgstr "Neizdevās iegūt mapes sarakstu"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1289
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1524
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1499
 msgid "Please wait..."
 msgstr "Lūdzu uzgaidiet..."
 
@@ -136,9 +127,7 @@ msgid ""
 "The folder list cannot be retrieved until a server, username, and probably "
 "password are set.  Also be sure to check any security settings in the "
 "Advanced dialog."
-msgstr ""
-"Mapju sarakstu nevar iegūt līdz serveris, lietotāja vārds un, iespējams, "
-"parole ir uzstādīti. Un pārbaudiet drošības uzstādījumus."
+msgstr "Mapju sarakstu nevar iegūt līdz serveris, lietotāja vārds un, iespējams, parole ir uzstādīti. Un pārbaudiet drošības uzstādījumus."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
@@ -148,70 +137,68 @@ msgstr "Uzstādīt jaunas pasta mapes"
 msgid "New Mail Folders"
 msgstr "Jaunas pasta mapes"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1608
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1583
 msgid "Advanced IMAP Options"
 msgstr "Paplašinātie IMAP uzstādījumi"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1619
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1594
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:757
 msgid "Connection"
 msgstr "Savienojumi"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1628
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1603
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:766
 msgid "Use unsecured connection"
 msgstr "Izmantot nedrošu savienojumu"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1629
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1604
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:767
 msgid "Use SSL/TLS on alternate port"
 msgstr "Izmantot SSL/TLS uz alternatīvā porta"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1630
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1605
 msgid "Use SSL/TLS via STARTTLS"
 msgstr "Izmantot SSL/TLS caur STARTTLS"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1646
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1621
 msgid "Use non-standard IMAP _port:"
 msgstr "Izmantot ne-standarta IMAP _portu:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1676
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1651
 msgid "Folders"
 msgstr "Mapes"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1684
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1659
 msgid "IMAP server _directory:"
 msgstr "IMAP servera _direktorija:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1714
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1689
 msgid "IMAP Server"
 msgstr "IMAP serveris"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1728
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1703
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:843
 msgid "_Mail server:"
 msgstr "_Pasta serveris:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1789
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1764
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:904
 msgid "_Advanced..."
 msgstr "_Paplašināti..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1796
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1771
 msgid "New mail _folders..."
 msgstr "Jaunas pasta _mapes..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1985
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1960
 msgid "Remote IMAP Mailbox"
 msgstr "Attālināta IMAP paskastīte"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1986
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1961
 msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
-msgstr ""
-"IMAP spraudnis nevar savienoties ar attālināto pasta serveri, kurš "
-"atbalstītu IMAP protokolu, papildus izmantojot SSL, sasaistes aizsardzībai."
+msgstr "IMAP spraudnis nevar savienoties ar attālināto pasta serveri, kurš atbalstītu IMAP protokolu, papildus izmantojot SSL, sasaistes aizsardzībai."
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
@@ -235,7 +222,7 @@ msgid "Select Maildir Folder"
 msgstr "Norādiet Maildir mapi"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:358
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:394
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:395
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:590
 msgid "_Interval:"
 msgstr "Intervāls:"
@@ -248,26 +235,23 @@ msgstr "Vietējā Maildir ierinda"
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
-msgstr ""
-"Maildir spraudnis var novērot jaunās ziņas vietējā maildir-stila pasta "
-"ierindā."
+msgstr "Maildir spraudnis var novērot jaunās ziņas vietējā maildir-stila pasta ierindā."
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:370
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Mbox _Filename:"
 msgstr "Mbox _faila nosaukums"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:376
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:377
 msgid "Select mbox file"
 msgstr "Norādiet mbox failu"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:475
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
 msgid "Local Mbox spool"
 msgstr "Vietējā Mbox ierinda"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr ""
-"Mbox spraudnis var novērot jaunās ziņas vietējā mbox-tipa pasta ierindā."
+msgstr "Mbox spraudnis var novērot jaunās ziņas vietējā mbox-tipa pasta ierindā."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
@@ -278,9 +262,7 @@ msgstr "Nepareizi formēta līnija %s iekš %s tiks ignorēta."
 msgid ""
 "The configuration of this plugin is read from\n"
 "the default mh maildir profile file ~/.mh_profile"
-msgstr ""
-"Šī spraudņa konfigurācija tiek lasīta no\n"
-"noklusētās mh maildir profila faila ~/.mh_profile"
+msgstr "Šī spraudņa konfigurācija tiek lasīta no\nnoklusētās mh maildir profila faila ~/.mh_profile"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:683
 msgid "Local MH mail folder"
@@ -314,18 +296,16 @@ msgstr "Attālinātā POP3 pastkastīte"
 msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
-msgstr ""
-"POP3 spraudnis nevar savienoties ar attālināto pasta serveri, kurš "
-"atbalstītu POP3 protokolu, papildus izmantojot SSL, sasaistes aizsardzībai."
+msgstr "POP3 spraudnis nevar savienoties ar attālināto pasta serveri, kurš atbalstītu POP3 protokolu, papildus izmantojot SSL, sasaistes aizsardzībai."
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
 #: ../libmailwatch-core/mailwatch-net-conn.c:349
-#: ../libmailwatch-core/mailwatch-net-conn.c:694
-#: ../libmailwatch-core/mailwatch-net-conn.c:727
-#: ../libmailwatch-core/mailwatch-net-conn.c:783
-#: ../libmailwatch-core/mailwatch-net-conn.c:816
-#: ../libmailwatch-core/mailwatch-net-conn.c:846
+#: ../libmailwatch-core/mailwatch-net-conn.c:691
+#: ../libmailwatch-core/mailwatch-net-conn.c:724
+#: ../libmailwatch-core/mailwatch-net-conn.c:787
+#: ../libmailwatch-core/mailwatch-net-conn.c:820
+#: ../libmailwatch-core/mailwatch-net-conn.c:850
 #, c-format
 msgid "Operation aborted"
 msgstr "Operācija atcelta"
@@ -335,310 +315,253 @@ msgstr "Operācija atcelta"
 msgid "Could not find host \"%s\": %s"
 msgstr "Nevar atrast resursdatoru \"%s\": %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:582, c-format
+#: ../libmailwatch-core/mailwatch-net-conn.c:582
+#, c-format
 msgid "Failed to connect to server \"%s\": %s"
 msgstr "Neizdevās savienoties ar serveri \"%s\": %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:645
+#: ../libmailwatch-core/mailwatch-net-conn.c:642
 #, c-format
 msgid "Not compiled with SSL/TLS support"
 msgstr "Nav kompilēts ar SSL/TLS atbalstu"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:701, c-format
+#: ../libmailwatch-core/mailwatch-net-conn.c:698
+#, c-format
 msgid "Failed to send encrypted data: %s"
 msgstr "Neizdevās nosūtīt šifrētus datus: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:734, c-format
+#: ../libmailwatch-core/mailwatch-net-conn.c:731
+#, c-format
 msgid "Failed to send data: %s"
 msgstr "Neizdevās nosūtīt datus: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:823
+#: ../libmailwatch-core/mailwatch-net-conn.c:827
 #, c-format
 msgid "Failed to receive encrypted data: %s"
 msgstr "Neizdevās saņemt šifrētus datus: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:853, c-format
+#: ../libmailwatch-core/mailwatch-net-conn.c:857
+#, c-format
 msgid "Failed to receive data: %s"
 msgstr "Neizdevās saņemt datus: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:951
+#: ../libmailwatch-core/mailwatch-net-conn.c:955
 #, c-format
 msgid "Canceling read: read too many bytes without a newline"
+msgstr "Lasīšanas atcelšana: tika nolasīti pārāk daudz baiti, bez jaunas rindas"
+
+#: ../libmailwatch-core/mailwatch-net-conn.c:965
+#, c-format
+msgid "Buffer is not large enough to hold a full line (%s < %d)"
 msgstr ""
-"Lasīšanas atcelšana: tika nolasīti pārāk daudz baiti, bez jaunas rindas"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:960
-msgid "Buffer is not large enough to hold a full line (%"
-msgstr "Buferis nav pietiekami liels, lai saturēti pilnu rindu (%"
-
-#: ../libmailwatch-core/mailwatch.c:126
+#: ../libmailwatch-core/mailwatch.c:122
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
-msgstr ""
-"xfce4-mailwatch-plugin: Neizdevās inicializēt GThread atbalstu. Liekas, ka "
-"problēma ir ar sistēmā instalēto GLib."
+msgstr "xfce4-mailwatch-plugin: Neizdevās inicializēt GThread atbalstu. Liekas, ka problēma ir ar sistēmā instalēto GLib."
 
-#: ../libmailwatch-core/mailwatch.c:341 ../libmailwatch-core/mailwatch.c:342
+#: ../libmailwatch-core/mailwatch.c:337 ../libmailwatch-core/mailwatch.c:338
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "Neizdevās rakstīt konfigurācijas failā '%s' "
 
-#: ../libmailwatch-core/mailwatch.c:406 ../libmailwatch-core/mailwatch.c:408
+#: ../libmailwatch-core/mailwatch.c:402 ../libmailwatch-core/mailwatch.c:404
 #, c-format
 msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
 "passwords or other sensitive information, it may be readable by others on "
 "your system."
-msgstr ""
-"Neizdevās uzstādīt atļaujas konfigurācijas failam '%s'. Ja fails satur "
-"paroles, vai citu sensitīvu informāciju, to var lasīt arī citi lietotāji."
+msgstr "Neizdevās uzstādīt atļaujas konfigurācijas failam '%s'. Ja fails satur paroles, vai citu sensitīvu informāciju, to var lasīt arī citi lietotāji."
 
-#: ../libmailwatch-core/mailwatch.c:628
+#: ../libmailwatch-core/mailwatch.c:624
 msgid "This mailbox type does not require any configuration settings."
 msgstr "Šīs pastkastītes tips neprasa nekādu papildus konfigurāciju."
 
-#: ../libmailwatch-core/mailwatch.c:655
+#: ../libmailwatch-core/mailwatch.c:651
 msgid "Mailbox _Name:"
 msgstr "Pastkastītes _nosaukums:"
 
-#: ../libmailwatch-core/mailwatch.c:673
+#: ../libmailwatch-core/mailwatch.c:669
 msgid "Mailwatch"
 msgstr "Pasta uzraugs"
 
-#: ../libmailwatch-core/mailwatch.c:674
+#: ../libmailwatch-core/mailwatch.c:670
 msgid "Mailbox name required."
 msgstr "Pastkastītes nosaukums ir nepieciešams."
 
-#: ../libmailwatch-core/mailwatch.c:675
+#: ../libmailwatch-core/mailwatch.c:671
 msgid "Please enter a name for the mailbox."
 msgstr "Lūdzu ievadiet pastkastītes nosaukumu."
 
-#: ../libmailwatch-core/mailwatch.c:716
+#: ../libmailwatch-core/mailwatch.c:712
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "Rediģēt pastkastīti: %s"
 
-#: ../libmailwatch-core/mailwatch.c:775
+#: ../libmailwatch-core/mailwatch.c:771
 msgid "Select Mailbox Type"
 msgstr "Norādiet pastkastītes tipu"
 
-#: ../libmailwatch-core/mailwatch.c:785
+#: ../libmailwatch-core/mailwatch.c:781
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr "Norādiet pastkastītes tipu. Tipa apraksts parādīsies apakšā."
 
-#: ../libmailwatch-core/mailwatch.c:839
+#: ../libmailwatch-core/mailwatch.c:835
 msgid "Add New Mailbox"
 msgstr "Pievienot jaunu pastkastīti"
 
-#: ../libmailwatch-core/mailwatch.c:899
+#: ../libmailwatch-core/mailwatch.c:895
 msgid "Remove Mailbox"
 msgstr "Noņemt pastkastīti"
 
-#: ../libmailwatch-core/mailwatch.c:900
+#: ../libmailwatch-core/mailwatch.c:896
 msgid "Are you sure?"
 msgstr "Esat drošs?"
 
-#: ../libmailwatch-core/mailwatch.c:901
+#: ../libmailwatch-core/mailwatch.c:897
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
-msgstr ""
-"Noņemot pastkastīti visi lietotāja uzstādījumi tiks noņemti, atgriezt tos "
-"nevarēs."
+msgstr "Noņemot pastkastīti visi lietotāja uzstādījumi tiks noņemti, atgriezt tos nevarēs."
 
-#: ../libmailwatch-core/mailwatch.c:966
+#: ../libmailwatch-core/mailwatch.c:962
 msgid "Mailboxes"
 msgstr "Pastkastītes"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:114
-#: ../panel-plugin/mailwatch-plugin-4.2.c:269
-#: ../panel-plugin/mailwatch-plugin.c:112
-#: ../panel-plugin/mailwatch-plugin.c:115
-#: ../panel-plugin/mailwatch-plugin.c:431
-#: ../panel-plugin/mailwatch-plugin.c:434
+#: ../panel-plugin/mailwatch-plugin.c:151
+#: ../panel-plugin/mailwatch-plugin.c:486
 msgid "No new mail"
 msgstr "Nav jauna pasta"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:129
-#: ../panel-plugin/mailwatch-plugin.c:131, c-format
+#: ../panel-plugin/mailwatch-plugin.c:172
+#, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
 msgstr[0] "Jums ir %d jaunas ziņas:"
 msgstr[1] "Jums ir %d jaunas ziņas:"
 msgstr[2] "Jums ir %d jaunas ziņas:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:140
-#: ../panel-plugin/mailwatch-plugin.c:142
+#: ../panel-plugin/mailwatch-plugin.c:182
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "%d iekš %s"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:251
-#: ../panel-plugin/mailwatch-plugin.c:413
+#: ../panel-plugin/mailwatch-plugin.c:469
 msgid "Xfce Mailwatch"
 msgstr "Xfce pasta uzraugs"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:252
-#: ../panel-plugin/mailwatch-plugin.c:414
+#: ../panel-plugin/mailwatch-plugin.c:470
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Pasta uzrauga sīklietotne nav pievienojama panelim."
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:253
-#: ../panel-plugin/mailwatch-plugin.c:415
-msgid "It is possible that your version of GLib does not have threads support."
+#: ../panel-plugin/mailwatch-plugin.c:471
+msgid ""
+"It is possible that your version of GLib does not have threads support."
 msgstr "Ir iespējams, ka jūsu GLib versijai nav pavedienu atbalsta."
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:476
-#: ../panel-plugin/mailwatch-plugin.c:638
+#: ../panel-plugin/mailwatch-plugin.c:706
 msgid "Mailwatch log"
 msgstr "Pasta uzrauga žurnāls"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:534
-#: ../panel-plugin/mailwatch-plugin.c:696
+#: ../panel-plugin/mailwatch-plugin.c:764
 msgid "Log _lines:"
 msgstr "Žurnāla _līnijas:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:548
-#: ../panel-plugin/mailwatch-plugin.c:710
+#: ../panel-plugin/mailwatch-plugin.c:778
 msgid "Show log _status in icon"
 msgstr "Rādi žurnāla _statusu ikonā"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:594
-#: ../panel-plugin/mailwatch-plugin.c:754
+#: ../panel-plugin/mailwatch-plugin.c:841
 msgid "Select Icon"
 msgstr "Norādiet ikonu"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:624
-#: ../panel-plugin/mailwatch-plugin-4.2.c:744
-#: ../panel-plugin/mailwatch-plugin.c:785
-#: ../panel-plugin/mailwatch-plugin.c:966
+#: ../panel-plugin/mailwatch-plugin.c:873
+#: ../panel-plugin/mailwatch-plugin.c:1148
 msgid "_Normal"
 msgstr "_Parasts"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:649
-#: ../panel-plugin/mailwatch-plugin.c:811
+#: ../panel-plugin/mailwatch-plugin.c:878
 msgid "Ne_w mail"
 msgstr "Jau_ns pasts"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:676
-#: ../panel-plugin/mailwatch-plugin.c:898
-msgid "External Programs"
-msgstr "Ārēja programmas"
-
-#: ../panel-plugin/mailwatch-plugin-4.2.c:688
-#: ../panel-plugin/mailwatch-plugin.c:910
-msgid "Run _on click:"
-msgstr "Palaist u_z klikšķi:"
-
-#: ../panel-plugin/mailwatch-plugin-4.2.c:705
 #: ../panel-plugin/mailwatch-plugin.c:927
-msgid "Run on new _messages:"
-msgstr "Pa_laist uz jaunu ziņu:"
+msgid "Failed to open web browser for online documentation"
+msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:718
-#: ../panel-plugin/mailwatch-plugin.c:940
-msgid "Icons"
-msgstr "Ikonas"
+#: ../panel-plugin/mailwatch-plugin.c:975
+msgid "Online Documentation"
+msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:764
-#: ../panel-plugin/mailwatch-plugin.c:986
-msgid "Ne_w Mail"
-msgstr "Ja_uns pasts"
+#: ../panel-plugin/mailwatch-plugin.c:977
+msgid "Do you want to read the manual online?"
+msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:772
-#: ../panel-plugin/mailwatch-plugin.c:877
-msgid "_View Log..."
-msgstr "_Skatīt žurnālu..."
+#: ../panel-plugin/mailwatch-plugin.c:978
+msgid ""
+"You will be redirected to the documentation website where the help pages are"
+" maintained."
+msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:885
-#: ../panel-plugin/mailwatch-plugin.c:858
-#: ../panel-plugin/mailwatch.desktop.in.in.h:2
+#: ../panel-plugin/mailwatch-plugin.c:982
+msgid "_Read Online"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-plugin.c:993
+msgid "_Always go directly to the online documentation"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-plugin.c:1032
+#: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "Pasta uzraugs"
 
-#: ../panel-plugin/mailwatch-plugin.c:829
-#, c-format
-msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
-msgstr "Palīdzība nav pieejama, jo 'xfhelp4' nav izpildāms: %s"
+#: ../panel-plugin/mailwatch-plugin.c:1050
+msgid "_View Log..."
+msgstr "_Skatīt žurnālu..."
 
-#: ../panel-plugin/mailwatch-plugin.c:831
-msgid "Help Unavailable"
-msgstr "Palīdzība nav pieejama"
+#: ../panel-plugin/mailwatch-plugin.c:1074
+msgid "External Programs"
+msgstr "Ārēja programmas"
 
-#: ../panel-plugin/mailwatch-plugin.c:832
-msgid "Failed to run xfhelp4"
-msgstr "Neizdevās palaist xfhelp4"
+#. External programs - Labels.
+#: ../panel-plugin/mailwatch-plugin.c:1080
+msgid "Run _on click:"
+msgstr "Palaist u_z klikšķi:"
 
-#: ../panel-plugin/mailwatch-plugin.c:1054
+#: ../panel-plugin/mailwatch-plugin.c:1086
+msgid "Run on first new _message:"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-plugin.c:1093
+msgid "Run on _each change of new message count:"
+msgstr ""
+
+#. Icons.
+#: ../panel-plugin/mailwatch-plugin.c:1126
+msgid "Icons"
+msgstr "Ikonas"
+
+#: ../panel-plugin/mailwatch-plugin.c:1165
+msgid "Ne_w Mail"
+msgstr "Ja_uns pasts"
+
+#: ../panel-plugin/mailwatch-plugin.c:1226
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Xfce pasta uzraugs"
 
-#: ../panel-plugin/mailwatch-plugin.c:1056
+#: ../panel-plugin/mailwatch-plugin.c:1229
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "Daudz iespēju pasta pārbaudītāja sīklietotne priekš Xfce paneļa"
 
-#: ../panel-plugin/mailwatch-plugin.c:1057
+#: ../panel-plugin/mailwatch-plugin.c:1231
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
-msgstr ""
-"Autortiesības (c) 2005-2008 Brian Tarricone\n"
-"Autortiesības (c) 2005 Pasi Orovuo"
+msgstr "Autortiesības (c) 2005-2008 Brian Tarricone\nAutortiesības (c) 2005 Pasi Orovuo"
 
-#: ../panel-plugin/mailwatch-plugin.c:1063
-msgid "Maintainer, Original Author"
-msgstr "Uzturētājs, sākotnējais autors"
-
-#: ../panel-plugin/mailwatch-plugin.c:1065
-msgid "Developer"
-msgstr "Izstrādātājs"
-
-#: ../panel-plugin/mailwatch-plugin.c:1145
+#: ../panel-plugin/mailwatch-plugin.c:1304
 msgid "Update Now"
 msgstr "Atjaunināt tagad"
 
-#: ../panel-plugin/mailwatch.desktop.in.in.h:1
+#: ../panel-plugin/mailwatch.desktop.in.h:2
 msgid "Check mail from multiple mailboxes"
 msgstr "Pārbaudīt pastu vairākās pastkastītēs"
-
-#~ msgid ""
-#~ "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
-#~ "the panel may hang on close."
-#~ msgstr ""
-#~ "Nevarēju uzstādit ligzdu uz nebloķējošo režīmu. Ja saveinojuma mēģinājums "
-#~ "uzkaras, tad panelis var uzkārties uz aizvēršanu."
-
-#~ msgid ""
-#~ "Unable to return socket to blocking mode.  Data may not be retreived "
-#~ "correctly."
-#~ msgstr ""
-#~ "Neizdevās atgriezt ligzdu uz bloķējošo režīmu. Dati var tikt saņemti "
-#~ "nepareizi."
-
-#~ msgid ""
-#~ "The IMAP server returned a response we weren't quite expecting.  This "
-#~ "might be OK, or this plugin might need to be modified to support your "
-#~ "mail server if the new message counts are incorrect."
-#~ msgstr ""
-#~ "IMAP atgrieza negaidīt atbildi. Viss var būt labi, bet ja spraudnis ziņo "
-#~ "nepareizu ziņu skaitu, iespējams spraudnis ir jāmaina, lai atbalstītu Jūs "
-#~ "pasta serveri."
-
-#~ msgid "XfceMailwatch: TLS handshake failed: %s"
-#~ msgstr "XfcePastauzraugs: TLS rokasspiediens neizdevās: %s"
-
-#~ msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
-#~ msgstr ""
-#~ "XfcePastauzraugs: TLS rokasspiediens neizdevās: nav kompilēts ar SSL "
-#~ "atbalstu."
-
-#~ msgid "A secure connection was requested, but gnutls was not initialised"
-#~ msgstr "Drošs savienojums tika pieprasīts, bet gnutls netika inicializēts"
-
-#~ msgid "You have 1 new message:"
-#~ msgstr "Jums ir 1 jauna ziņa:"
-
-#~ msgid "You have %d new messages:"
-#~ msgstr "Jums ir %d jaunas ziņas:"
-
-#~ msgid "Edit Properties"
-#~ msgstr "Rediģēt Rekvizītus"
