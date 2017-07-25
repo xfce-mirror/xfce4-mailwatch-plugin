@@ -1,20 +1,22 @@
-# Translation of xfce4-mailwatch-plugin into Finnish.
-# Copyright (C) 2005-2010 Brian Tarricone, Pasi Orovuo.
-# This file is distributed under the same license as the xfce4-mailwatch-plugin package.
-# Pasi Orovuo <pasi@xfce.org>, 2005.
-# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2005-2008, 2010.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Jari Rahkonen <inactive+jari@transifex.com>, 2010
+# Pasi Orovuo <pasi@xfce.org>, 2005
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-mailwatch-plugin 1.0.1svn\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-15 22:43-0700\n"
-"PO-Revision-Date: 2010-04-06 21:22+0300\n"
-"Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
-"Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
+"POT-Creation-Date: 2015-07-05 18:31+0200\n"
+"PO-Revision-Date: 2017-07-25 11:28+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"Language-Team: Finnish (http://www.transifex.com/xfce/xfce-panel-plugins/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:204
@@ -29,20 +31,15 @@ msgstr "TLS-kättely epäonnistui: %s"
 msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
-msgstr ""
-"Vastaanotettiin HTTP-vastauskoodi %d. Todennäköisesti tämä tarkoittaa sitä, "
-"että GMail ei hyväksy käyttäjänimeäsi tai salasanaasi."
+msgstr "Vastaanotettiin HTTP-vastauskoodi %d. Todennäköisesti tämä tarkoittaa sitä, että GMail ei hyväksy käyttäjänimeäsi tai salasanaasi."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
 #, c-format
 msgid ""
-"Received HTTP response code %d, which should be 200.  There may be a problem "
-"with GMail's servers, or they have incompatibly changed their authentication "
-"method or location of the new messages feed."
-msgstr ""
-"Vastaanotettiin HTTP-vastauskoodi %d, kun odotettiin koodia 200. Tämä voi "
-"johtua esimerkiksi palvelinviasta, tai Google on mahdollisesti muuttanut "
-"palvelun todennustapaa tai uudet viestit -syötteen sijaintia."
+"Received HTTP response code %d, which should be 200.  There may be a problem"
+" with GMail's servers, or they have incompatibly changed their "
+"authentication method or location of the new messages feed."
+msgstr "Vastaanotettiin HTTP-vastauskoodi %d, kun odotettiin koodia 200. Tämä voi johtua esimerkiksi palvelinviasta, tai Google on mahdollisesti muuttanut palvelun todennustapaa tai uudet viestit -syötteen sijaintia."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:735
@@ -54,27 +51,27 @@ msgid "Previous thread hasn't exited yet, not checking mail this time."
 msgstr "Edellinen säie on yhä toiminnassa, ei tarkisteta postia."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1723
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:863
 msgid "_Username:"
 msgstr "_Käyttäjätunnus:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:555
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1768
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1743
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:883
 msgid "_Password:"
 msgstr "_Salasana:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:576
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1807
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1782
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:915
 msgid "Check for _new messages every"
 msgstr "_Tarkista uudet postit"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:591
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1821
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1796
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:374
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:411
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:412
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:605
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:929
 msgid "minute(s)."
@@ -88,23 +85,20 @@ msgstr "GMail-etäpostilaatikko"
 msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
-msgstr ""
-"GMail-liitännäinen osaa yhdistää Googlen postipalveluun ja noutaa uusien "
-"viestien määrän turvallisesti."
+msgstr "GMail-liitännäinen osaa yhdistää Googlen postipalveluun ja noutaa uusien viestien määrän turvallisesti."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
 msgid ""
-"Secure IMAP is not available, and the IMAP server does not support plaintext "
-"logins."
-msgstr ""
-"Salattua IMAP-yhteyttä ei ole saatavilla, ja tämä IMAP-palvelin ei tue "
-"salaamattomia kirjautumisia."
+"Secure IMAP is not available, and the IMAP server does not support plaintext"
+" logins."
+msgstr "Salattua IMAP-yhteyttä ei ole saatavilla, ja tämä IMAP-palvelin ei tue salaamattomia kirjautumisia."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:337
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:370
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:242
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
-msgid "Authentication failed.  Perhaps your username or password is incorrect?"
+msgid ""
+"Authentication failed.  Perhaps your username or password is incorrect?"
 msgstr "Kirjautuminen epäonnistui. Tarkista käyttäjätunnuksesi ja salasanasi."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
@@ -116,7 +110,7 @@ msgid "Failed to get folder list"
 msgstr "Kansiolistan nouto epäonnistui"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1289
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1524
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1499
 msgid "Please wait..."
 msgstr "Odota..."
 
@@ -133,10 +127,7 @@ msgid ""
 "The folder list cannot be retrieved until a server, username, and probably "
 "password are set.  Also be sure to check any security settings in the "
 "Advanced dialog."
-msgstr ""
-"Kansiolistaa ei voi noutaa ennen palvelimen, käyttäjätunnuksen ja "
-"todennäköisesti myös salasanan asettamista. Tarkista myös lisäasetukset-"
-"dialogissa olevat tietoturva-asetukset."
+msgstr "Kansiolistaa ei voi noutaa ennen palvelimen, käyttäjätunnuksen ja todennäköisesti myös salasanan asettamista. Tarkista myös lisäasetukset-dialogissa olevat tietoturva-asetukset."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
@@ -146,70 +137,68 @@ msgstr "Aseta uuden postin kansiot"
 msgid "New Mail Folders"
 msgstr "Uuden postin kansiot"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1608
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1583
 msgid "Advanced IMAP Options"
 msgstr "IMAP-lisäasetukset"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1619
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1594
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:757
 msgid "Connection"
 msgstr "Yhteys"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1628
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1603
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:766
 msgid "Use unsecured connection"
 msgstr "Käytä turvaamatonta yhteyttä"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1629
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1604
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:767
 msgid "Use SSL/TLS on alternate port"
 msgstr "Käytä vaihtoehtoisia SSL/TLS-portteja"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1630
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1605
 msgid "Use SSL/TLS via STARTTLS"
 msgstr "Käytä STARTTLS-käytäntöä SSL/TLS-yhteyksissä"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1646
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1621
 msgid "Use non-standard IMAP _port:"
 msgstr "Käytä standardista poikkeavaa IMAP-_porttia:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1676
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1651
 msgid "Folders"
 msgstr "Kansiot"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1684
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1659
 msgid "IMAP server _directory:"
 msgstr "IMAP-palvelimen _kansio:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1714
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1689
 msgid "IMAP Server"
 msgstr "IMAP-palvelin"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1728
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1703
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:843
 msgid "_Mail server:"
 msgstr "_Postipalvelin:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1789
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1764
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:904
 msgid "_Advanced..."
 msgstr "_Lisäasetukset..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1796
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1771
 msgid "New mail _folders..."
 msgstr "Uuden postin _kansiot..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1985
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1960
 msgid "Remote IMAP Mailbox"
 msgstr "IMAP-etäpostilaatikko"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1986
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1961
 msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
-msgstr ""
-"IMAP-liitännäinen voi yhdistää IMAP-protokollaa tukevaan etäpostipalvelimeen "
-"käyttäen halutessasi SSL-protokollaa yhteyden suojaamiseen."
+msgstr "IMAP-liitännäinen voi yhdistää IMAP-protokollaa tukevaan etäpostipalvelimeen käyttäen halutessasi SSL-protokollaa yhteyden suojaamiseen."
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
@@ -233,7 +222,7 @@ msgid "Select Maildir Folder"
 msgstr "Valitse Maildir-kansio"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:358
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:394
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:395
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:590
 msgid "_Interval:"
 msgstr "Tarkistus_väli:"
@@ -246,27 +235,23 @@ msgstr "Paikallinen Maildir-jono"
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
-msgstr ""
-"Maildir-liitännäinen voi vahtia paikallista maildir-tyyppistä postijonoa "
-"uusien viestien varalta."
+msgstr "Maildir-liitännäinen voi vahtia paikallista maildir-tyyppistä postijonoa uusien viestien varalta."
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:370
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Mbox _Filename:"
 msgstr "Mbox-tiedoston _nimi:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:376
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:377
 msgid "Select mbox file"
 msgstr "Valitse mbox-tiedosto"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:475
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
 msgid "Local Mbox spool"
 msgstr "Paikallinen Mbox-jono"
 
-#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
+#: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr ""
-"Mbox-liitännäinen vahtii paikallista mbox-tyyppistä postijonoa uusien "
-"viestien varalta"
+msgstr "Mbox-liitännäinen vahtii paikallista mbox-tyyppistä postijonoa uusien viestien varalta"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
@@ -277,9 +262,7 @@ msgstr "Virheellinen rivi %s syötteessä %s ohitettiin."
 msgid ""
 "The configuration of this plugin is read from\n"
 "the default mh maildir profile file ~/.mh_profile"
-msgstr ""
-"Liitännäisen asetukset luetaan oletusarvoisesta\n"
-"mh-maildir -profiilitiedostosta ~/.mh_profile"
+msgstr "Liitännäisen asetukset luetaan oletusarvoisesta\nmh-maildir -profiilitiedostosta ~/.mh_profile"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:683
 msgid "Local MH mail folder"
@@ -313,18 +296,16 @@ msgstr "POP3-etäpostilaatikko"
 msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
-msgstr ""
-"POP3-liitännäinen voi yhdistää POP3-protokollaa tukevaan etäpostipalvelimeen "
-"käyttäen halutessasi SSL-protokollaa yhteyden suojaamiseen."
+msgstr "POP3-liitännäinen voi yhdistää POP3-protokollaa tukevaan etäpostipalvelimeen käyttäen halutessasi SSL-protokollaa yhteyden suojaamiseen."
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
 #: ../libmailwatch-core/mailwatch-net-conn.c:349
-#: ../libmailwatch-core/mailwatch-net-conn.c:694
-#: ../libmailwatch-core/mailwatch-net-conn.c:727
-#: ../libmailwatch-core/mailwatch-net-conn.c:783
-#: ../libmailwatch-core/mailwatch-net-conn.c:816
-#: ../libmailwatch-core/mailwatch-net-conn.c:846
+#: ../libmailwatch-core/mailwatch-net-conn.c:691
+#: ../libmailwatch-core/mailwatch-net-conn.c:724
+#: ../libmailwatch-core/mailwatch-net-conn.c:787
+#: ../libmailwatch-core/mailwatch-net-conn.c:820
+#: ../libmailwatch-core/mailwatch-net-conn.c:850
 #, c-format
 msgid "Operation aborted"
 msgstr "Toiminto peruutettu"
@@ -339,266 +320,247 @@ msgstr "Isäntäkonetta \"%s\" ei löydy: %s"
 msgid "Failed to connect to server \"%s\": %s"
 msgstr "Palvelimeen \"%s\" ei voi yhdistää: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:645
+#: ../libmailwatch-core/mailwatch-net-conn.c:642
 #, c-format
 msgid "Not compiled with SSL/TLS support"
 msgstr "SSL/TLS-tuki jätetty pois kääntäessä"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:701
+#: ../libmailwatch-core/mailwatch-net-conn.c:698
 #, c-format
 msgid "Failed to send encrypted data: %s"
 msgstr "Salatun tiedon lähetys epäonnistui: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:734
+#: ../libmailwatch-core/mailwatch-net-conn.c:731
 #, c-format
 msgid "Failed to send data: %s"
 msgstr "Tiedon lähetys epäonnistui: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:823
+#: ../libmailwatch-core/mailwatch-net-conn.c:827
 #, c-format
 msgid "Failed to receive encrypted data: %s"
 msgstr "Salatun tiedon vastaanotto epäonnistui: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:853
+#: ../libmailwatch-core/mailwatch-net-conn.c:857
 #, c-format
 msgid "Failed to receive data: %s"
 msgstr "Tiedon vastaanotto epäonnistui: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:951
+#: ../libmailwatch-core/mailwatch-net-conn.c:955
 #, c-format
 msgid "Canceling read: read too many bytes without a newline"
 msgstr "Luku peruutettu: Liian monta tavua ilman rivinvaihtoa"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:960
-msgid "Buffer is not large enough to hold a full line (%"
-msgstr "Välimuisti ei riitä täydelle riville (%"
+#: ../libmailwatch-core/mailwatch-net-conn.c:965
+#, c-format
+msgid "Buffer is not large enough to hold a full line (%s < %d)"
+msgstr ""
 
-#: ../libmailwatch-core/mailwatch.c:126
+#: ../libmailwatch-core/mailwatch.c:122
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
-msgstr ""
-"xfce4-mailwatch-plugin: GThread-tukea ei voi alustaa. Tämä johtuu "
-"luultavasti ongelmasta GLib-asennuksessasi."
+msgstr "xfce4-mailwatch-plugin: GThread-tukea ei voi alustaa. Tämä johtuu luultavasti ongelmasta GLib-asennuksessasi."
 
-#: ../libmailwatch-core/mailwatch.c:341 ../libmailwatch-core/mailwatch.c:342
+#: ../libmailwatch-core/mailwatch.c:337 ../libmailwatch-core/mailwatch.c:338
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "Asetustiedostoa \"%s\" ei voi kirjoittaa"
 
-#: ../libmailwatch-core/mailwatch.c:406 ../libmailwatch-core/mailwatch.c:408
+#: ../libmailwatch-core/mailwatch.c:402 ../libmailwatch-core/mailwatch.c:404
 #, c-format
 msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
 "passwords or other sensitive information, it may be readable by others on "
 "your system."
-msgstr ""
-"Asetustiedoston \"%s\" oikeuksia ei voi asettaa. Jos tiedosto sisältää "
-"salasanoja tai muuta arkaluonteista tietoa, se voi olla muiden järjestelmäsi "
-"käyttäjien luettavissa."
+msgstr "Asetustiedoston \"%s\" oikeuksia ei voi asettaa. Jos tiedosto sisältää salasanoja tai muuta arkaluonteista tietoa, se voi olla muiden järjestelmäsi käyttäjien luettavissa."
 
-#: ../libmailwatch-core/mailwatch.c:628
+#: ../libmailwatch-core/mailwatch.c:624
 msgid "This mailbox type does not require any configuration settings."
 msgstr "Tämä postilaatikkotyyppi ei edellytä asetuksien säätämistä."
 
-#: ../libmailwatch-core/mailwatch.c:655
+#: ../libmailwatch-core/mailwatch.c:651
 msgid "Mailbox _Name:"
 msgstr "Postilaatikon _nimi:"
 
-#: ../libmailwatch-core/mailwatch.c:673
+#: ../libmailwatch-core/mailwatch.c:669
 msgid "Mailwatch"
 msgstr "Postivahti"
 
-#: ../libmailwatch-core/mailwatch.c:674
+#: ../libmailwatch-core/mailwatch.c:670
 msgid "Mailbox name required."
 msgstr "Postilaatikon nimi vaaditaan."
 
-#: ../libmailwatch-core/mailwatch.c:675
+#: ../libmailwatch-core/mailwatch.c:671
 msgid "Please enter a name for the mailbox."
 msgstr "Syötä nimi postilaatikolle."
 
-#: ../libmailwatch-core/mailwatch.c:716
+#: ../libmailwatch-core/mailwatch.c:712
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "Muokkaa postilaatikkoa: %s"
 
-#: ../libmailwatch-core/mailwatch.c:775
+#: ../libmailwatch-core/mailwatch.c:771
 msgid "Select Mailbox Type"
 msgstr "Valitse postilaatikon tyyppi"
 
-#: ../libmailwatch-core/mailwatch.c:785
+#: ../libmailwatch-core/mailwatch.c:781
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr "Valitse postilaatikon tyyppi. Tyypin kuvaus ilmestyy alapuolelle."
 
-#: ../libmailwatch-core/mailwatch.c:839
+#: ../libmailwatch-core/mailwatch.c:835
 msgid "Add New Mailbox"
 msgstr "Lisää uusi postilaatikko"
 
-#: ../libmailwatch-core/mailwatch.c:899
+#: ../libmailwatch-core/mailwatch.c:895
 msgid "Remove Mailbox"
 msgstr "Poista postilaatikko"
 
-#: ../libmailwatch-core/mailwatch.c:900
+#: ../libmailwatch-core/mailwatch.c:896
 msgid "Are you sure?"
 msgstr "Oletko varma?"
 
-#: ../libmailwatch-core/mailwatch.c:901
+#: ../libmailwatch-core/mailwatch.c:897
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
-msgstr ""
-"Postilaatikon poistaminen kadottaa kaikki asetukset peruuttamattomasti."
+msgstr "Postilaatikon poistaminen kadottaa kaikki asetukset peruuttamattomasti."
 
-#: ../libmailwatch-core/mailwatch.c:966
+#: ../libmailwatch-core/mailwatch.c:962
 msgid "Mailboxes"
 msgstr "Postilaatikot"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:114
-#: ../panel-plugin/mailwatch-plugin-4.2.c:269
-#: ../panel-plugin/mailwatch-plugin.c:112
-#: ../panel-plugin/mailwatch-plugin.c:115
-#: ../panel-plugin/mailwatch-plugin.c:431
-#: ../panel-plugin/mailwatch-plugin.c:434
+#: ../panel-plugin/mailwatch-plugin.c:151
+#: ../panel-plugin/mailwatch-plugin.c:486
 msgid "No new mail"
 msgstr "Ei uusia posteja"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:129
-#: ../panel-plugin/mailwatch-plugin.c:131
+#: ../panel-plugin/mailwatch-plugin.c:172
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
 msgstr[0] "Sinulle on %d uusi posti:"
 msgstr[1] "Sinulle on %d uutta postia:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:140
-#: ../panel-plugin/mailwatch-plugin.c:142
+#: ../panel-plugin/mailwatch-plugin.c:182
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "    %d tilillä %s"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:251
-#: ../panel-plugin/mailwatch-plugin.c:413
+#: ../panel-plugin/mailwatch-plugin.c:469
 msgid "Xfce Mailwatch"
 msgstr "Xfce-postivahti"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:252
-#: ../panel-plugin/mailwatch-plugin.c:414
+#: ../panel-plugin/mailwatch-plugin.c:470
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Postivahtisovelmaa ei voi lisätä paneeliin"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:253
-#: ../panel-plugin/mailwatch-plugin.c:415
-msgid "It is possible that your version of GLib does not have threads support."
+#: ../panel-plugin/mailwatch-plugin.c:471
+msgid ""
+"It is possible that your version of GLib does not have threads support."
 msgstr "Voi olla, että GLib-versiosi ei tue säikeitä."
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:476
-#: ../panel-plugin/mailwatch-plugin.c:638
+#: ../panel-plugin/mailwatch-plugin.c:706
 msgid "Mailwatch log"
 msgstr "Mailwatch-loki"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:534
-#: ../panel-plugin/mailwatch-plugin.c:696
+#: ../panel-plugin/mailwatch-plugin.c:764
 msgid "Log _lines:"
 msgstr "Loki_rivejä:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:548
-#: ../panel-plugin/mailwatch-plugin.c:710
+#: ../panel-plugin/mailwatch-plugin.c:778
 msgid "Show log _status in icon"
 msgstr "_Näytä lokin tila paneelin kuvakkeessa"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:594
-#: ../panel-plugin/mailwatch-plugin.c:754
+#: ../panel-plugin/mailwatch-plugin.c:841
 msgid "Select Icon"
 msgstr "Valitse kuvake"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:624
-#: ../panel-plugin/mailwatch-plugin-4.2.c:744
-#: ../panel-plugin/mailwatch-plugin.c:785
-#: ../panel-plugin/mailwatch-plugin.c:966
+#: ../panel-plugin/mailwatch-plugin.c:873
+#: ../panel-plugin/mailwatch-plugin.c:1148
 msgid "_Normal"
 msgstr "_Tavanomainen"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:649
-#: ../panel-plugin/mailwatch-plugin.c:811
+#: ../panel-plugin/mailwatch-plugin.c:878
 msgid "Ne_w mail"
 msgstr "_Uutta postia"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:676
-#: ../panel-plugin/mailwatch-plugin.c:898
-msgid "External Programs"
-msgstr "Ulkoiset sovellukset"
-
-#: ../panel-plugin/mailwatch-plugin-4.2.c:688
-#: ../panel-plugin/mailwatch-plugin.c:910
-msgid "Run _on click:"
-msgstr "Suorita _napsautettaessa:"
-
-#: ../panel-plugin/mailwatch-plugin-4.2.c:705
 #: ../panel-plugin/mailwatch-plugin.c:927
-msgid "Run on new _messages:"
-msgstr "Suorita, kun uusia _viestejä:"
+msgid "Failed to open web browser for online documentation"
+msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:718
-#: ../panel-plugin/mailwatch-plugin.c:940
-msgid "Icons"
-msgstr "Kuvakkeet"
+#: ../panel-plugin/mailwatch-plugin.c:975
+msgid "Online Documentation"
+msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:764
-#: ../panel-plugin/mailwatch-plugin.c:986
-msgid "Ne_w Mail"
-msgstr "_Uutta postia"
+#: ../panel-plugin/mailwatch-plugin.c:977
+msgid "Do you want to read the manual online?"
+msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:772
-#: ../panel-plugin/mailwatch-plugin.c:877
-msgid "_View Log..."
-msgstr "_Näytä loki..."
+#: ../panel-plugin/mailwatch-plugin.c:978
+msgid ""
+"You will be redirected to the documentation website where the help pages are"
+" maintained."
+msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:885
-#: ../panel-plugin/mailwatch-plugin.c:858
-#: ../panel-plugin/mailwatch.desktop.in.in.h:2
+#: ../panel-plugin/mailwatch-plugin.c:982
+msgid "_Read Online"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-plugin.c:993
+msgid "_Always go directly to the online documentation"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-plugin.c:1032
+#: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "Postivahti"
 
-#: ../panel-plugin/mailwatch-plugin.c:829
-#, c-format
-msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
+#: ../panel-plugin/mailwatch-plugin.c:1050
+msgid "_View Log..."
+msgstr "_Näytä loki..."
+
+#: ../panel-plugin/mailwatch-plugin.c:1074
+msgid "External Programs"
+msgstr "Ulkoiset sovellukset"
+
+#. External programs - Labels.
+#: ../panel-plugin/mailwatch-plugin.c:1080
+msgid "Run _on click:"
+msgstr "Suorita _napsautettaessa:"
+
+#: ../panel-plugin/mailwatch-plugin.c:1086
+msgid "Run on first new _message:"
 msgstr ""
-"Ohjeita ei ole saatavilla, koska komentoa \"xfhelp4\" ei voi suorittaa: %s"
 
-#: ../panel-plugin/mailwatch-plugin.c:831
-msgid "Help Unavailable"
-msgstr "Ohjeita ei saatavilla"
+#: ../panel-plugin/mailwatch-plugin.c:1093
+msgid "Run on _each change of new message count:"
+msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:832
-msgid "Failed to run xfhelp4"
-msgstr "Xfhelp4:n suorittaminen epäonnistui"
+#. Icons.
+#: ../panel-plugin/mailwatch-plugin.c:1126
+msgid "Icons"
+msgstr "Kuvakkeet"
 
-#: ../panel-plugin/mailwatch-plugin.c:1054
+#: ../panel-plugin/mailwatch-plugin.c:1165
+msgid "Ne_w Mail"
+msgstr "_Uutta postia"
+
+#: ../panel-plugin/mailwatch-plugin.c:1226
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Xfce-Postivahtiliitännäinen"
 
-#: ../panel-plugin/mailwatch-plugin.c:1056
+#: ../panel-plugin/mailwatch-plugin.c:1229
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "Monipuolinen sähköpostintarkistaja Xfce:n paneeliin"
 
-#: ../panel-plugin/mailwatch-plugin.c:1057
+#: ../panel-plugin/mailwatch-plugin.c:1231
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
-msgstr ""
-"Tekijänoikeus (c) 2005-2008 Brian Tarricone\n"
-"Tekijänoikeus (c) 2005 Pasi Orovuo"
+msgstr "Tekijänoikeus (c) 2005-2008 Brian Tarricone\nTekijänoikeus (c) 2005 Pasi Orovuo"
 
-#: ../panel-plugin/mailwatch-plugin.c:1063
-msgid "Maintainer, Original Author"
-msgstr "Ylläpitäjä, projektin alkuunpanija"
-
-#: ../panel-plugin/mailwatch-plugin.c:1065
-msgid "Developer"
-msgstr "Kehittäjä"
-
-#: ../panel-plugin/mailwatch-plugin.c:1145
+#: ../panel-plugin/mailwatch-plugin.c:1304
 msgid "Update Now"
 msgstr "Päivitä nyt"
 
-#: ../panel-plugin/mailwatch.desktop.in.in.h:1
+#: ../panel-plugin/mailwatch.desktop.in.h:2
 msgid "Check mail from multiple mailboxes"
 msgstr "Tarkista posti useista postilaatikoista"
