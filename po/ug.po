@@ -1,20 +1,20 @@
-# Uyghur translation for xfce4-mailwatch-plugin.
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Gheyret Kenji <gheyret@gmail.com>, YEAR.
-#
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-mailwatch-plugin\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-24 03:06+0000\n"
-"PO-Revision-Date: 2011-11-09 16:10+0900\n"
-"Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
-"Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
-"Language: \n"
+"POT-Creation-Date: 2015-07-05 18:31+0200\n"
+"PO-Revision-Date: 2017-07-25 11:28+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"Language-Team: Uighur (http://www.transifex.com/xfce/xfce-panel-plugins/language/ug/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ug\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:204
@@ -34,9 +34,9 @@ msgstr "HTTP جاۋاب نومۇرى %d. سىزنىڭ GMail دىكى ئىشلە�
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
 #, c-format
 msgid ""
-"Received HTTP response code %d, which should be 200.  There may be a problem "
-"with GMail's servers, or they have incompatibly changed their authentication "
-"method or location of the new messages feed."
+"Received HTTP response code %d, which should be 200.  There may be a problem"
+" with GMail's servers, or they have incompatibly changed their "
+"authentication method or location of the new messages feed."
 msgstr "HTTP جاۋاب نومۇرى 200 بولۇشى كېرەك ئىدى،  بىراق %d  جاۋاب كەلدى. GMail مۇلازىمېتىرىدا مەسىلە باردەك قىلىدۇ. ئۇلار دەلىللەش ئۇسۇلىنى ئۆزگەرتكەن ياكى يېڭى خەتلەرنى ئوقۇش ئورنىنى ئۆزگەرتكەن بولۇشى ئېھتىمالغا بەكمۇ يېقىن."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
@@ -49,25 +49,25 @@ msgid "Previous thread hasn't exited yet, not checking mail this time."
 msgstr "ئالدىنقى قېتىملىق مەشغۇلات تېخى ئاخىرلاشمىغانلىقى ئۈچۈن، بۇ قېتىم يېڭى خەتلەر بارمۇ يوق تەكشۈرمەيدۇ."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1723
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:863
 msgid "_Username:"
 msgstr "ئىشلەتكۈچى ئاتى:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:555
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1768
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1743
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:883
 msgid "_Password:"
 msgstr "ئىم(_P):"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:576
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1807
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1782
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:915
 msgid "Check for _new messages every"
 msgstr "يېڭى خەتنى تەكشۈر(_N)"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:591
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1821
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1796
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:374
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:412
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:605
@@ -87,15 +87,16 @@ msgstr "GMail قىستۇرمىسى Google نىڭ ئېلخەت مۇلازىمېت
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
 msgid ""
-"Secure IMAP is not available, and the IMAP server does not support plaintext "
-"logins."
+"Secure IMAP is not available, and the IMAP server does not support plaintext"
+" logins."
 msgstr "بىخەتەر  IMAP  نى ئىشلەتكىلى بولمايدۇ. IMAP مۇلازىمېتىرىغا ئادەتتىكىدەك كىرىشكە بولمايدۇ."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:337
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:370
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:242
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:284
-msgid "Authentication failed.  Perhaps your username or password is incorrect?"
+msgid ""
+"Authentication failed.  Perhaps your username or password is incorrect?"
 msgstr "كىملىك دەلىللەش مەغلۇپ بولدى. ئىشلەتكۈچى ئاتى ياكى ئىم خاتا ئەمەستۇ؟"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
@@ -107,7 +108,7 @@ msgid "Failed to get folder list"
 msgstr "مۇندەرىجە تىزىملىكىنى ئوقۇش مەغلۇپ بولدى"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1289
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1524
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1499
 msgid "Please wait..."
 msgstr "كۈتۈڭ..."
 
@@ -134,64 +135,64 @@ msgstr "يېڭى ئېلخەت مۇندەرىجىسىنى بېكىتىش"
 msgid "New Mail Folders"
 msgstr "يېڭى ئېلخەت مۇندەرىجىسى"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1608
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1583
 msgid "Advanced IMAP Options"
 msgstr "ئالىي  IMAP تاللانمىلىرى"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1619
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1594
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:757
 msgid "Connection"
 msgstr "باغلىنىش"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1628
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1603
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:766
 msgid "Use unsecured connection"
 msgstr "بىخەتەر بولمىغان باغلىنىش ئىشلەت"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1629
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1604
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:767
 msgid "Use SSL/TLS on alternate port"
 msgstr "SSL/TLS نى باشقا ئېغىزدا ئىشلەت"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1630
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1605
 msgid "Use SSL/TLS via STARTTLS"
 msgstr "STARTTLS ئارقىلىق SSL/TLS نى ئىشلەت"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1646
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1621
 msgid "Use non-standard IMAP _port:"
 msgstr "ئۆلچەمسىز IMAP ئېغىزىنى ئىشلەت(_P):"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1676
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1651
 msgid "Folders"
 msgstr "مۇندەرىجىلەر"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1684
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1659
 msgid "IMAP server _directory:"
 msgstr "IMAP مۇلازىمېتىر مۇندەرىجىسى(_D):"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1714
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1689
 msgid "IMAP Server"
 msgstr "IMAP مۇلازىمېتىر"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1728
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1703
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:843
 msgid "_Mail server:"
 msgstr "ئېلخەت مۇلازىمېتىرى(_M):"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1789
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1764
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:904
 msgid "_Advanced..."
 msgstr "ئالىي تەڭشەك(_A)..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1796
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1771
 msgid "New mail _folders..."
 msgstr "يېڭى ئېلخەت مۇندەرىجىسى(_F)..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1985
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1960
 msgid "Remote IMAP Mailbox"
 msgstr "يىراقتىكى IMAP ئېلخەت ساندۇقى"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1986
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1961
 msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
@@ -259,8 +260,7 @@ msgstr "%2$s دىكى غەلىتە %1$s تاشلىۋېتىلدى."
 msgid ""
 "The configuration of this plugin is read from\n"
 "the default mh maildir profile file ~/.mh_profile"
-msgstr "بۇ قىستۇرمىنىڭ تەڭشەكلىرى  MH ئېلخەت مۇندەرىجىسىنىڭ \n"
-"profile ھۆججىتى  ~/.mh_profile دىن ئوقۇلىدۇ."
+msgstr "بۇ قىستۇرمىنىڭ تەڭشەكلىرى  MH ئېلخەت مۇندەرىجىسىنىڭ \nprofile ھۆججىتى  ~/.mh_profile دىن ئوقۇلىدۇ."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:683
 msgid "Local MH mail folder"
@@ -299,11 +299,11 @@ msgstr "POP3 قىستۇرمىسى POP3 كېلىشىمىنى ئىشلىتىدىغ
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
 #: ../libmailwatch-core/mailwatch-net-conn.c:349
-#: ../libmailwatch-core/mailwatch-net-conn.c:694
-#: ../libmailwatch-core/mailwatch-net-conn.c:727
-#: ../libmailwatch-core/mailwatch-net-conn.c:783
-#: ../libmailwatch-core/mailwatch-net-conn.c:816
-#: ../libmailwatch-core/mailwatch-net-conn.c:846
+#: ../libmailwatch-core/mailwatch-net-conn.c:691
+#: ../libmailwatch-core/mailwatch-net-conn.c:724
+#: ../libmailwatch-core/mailwatch-net-conn.c:787
+#: ../libmailwatch-core/mailwatch-net-conn.c:820
+#: ../libmailwatch-core/mailwatch-net-conn.c:850
 #, c-format
 msgid "Operation aborted"
 msgstr "مەشغۇلات توختىتىلدى"
@@ -318,52 +318,53 @@ msgstr "كومپيۇتېر \"%s\" تېپىلمىدى: %s"
 msgid "Failed to connect to server \"%s\": %s"
 msgstr "مۇلازىمېتىر \"%s\" ئۇلىنىش مەغلۇپ بولدى: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:645
+#: ../libmailwatch-core/mailwatch-net-conn.c:642
 #, c-format
 msgid "Not compiled with SSL/TLS support"
 msgstr "SSL/TLS ئىشلەتكىلى بولىدىغان قىلىپ يۇغۇرۇلمىغان"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:701
+#: ../libmailwatch-core/mailwatch-net-conn.c:698
 #, c-format
 msgid "Failed to send encrypted data: %s"
 msgstr "شىفىرلانغان سانلىق ئاساسلارنى ئەۋەتىش مەغلۇپ بولدى: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:734
+#: ../libmailwatch-core/mailwatch-net-conn.c:731
 #, c-format
 msgid "Failed to send data: %s"
 msgstr "سانلىق ئاساسلارنى ئەۋەتىش مەغلۇپ بولدى: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:823
+#: ../libmailwatch-core/mailwatch-net-conn.c:827
 #, c-format
 msgid "Failed to receive encrypted data: %s"
 msgstr "شىفىرلانغان سانلىق ئاساسلارنى قوبۇل قىلىش مەغلۇپ بولدى: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:853
+#: ../libmailwatch-core/mailwatch-net-conn.c:857
 #, c-format
 msgid "Failed to receive data: %s"
 msgstr "سانلىق ئاساسلارنى قوبۇل قىلىش مەغلۇپ بولدى: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:951
+#: ../libmailwatch-core/mailwatch-net-conn.c:955
 #, c-format
 msgid "Canceling read: read too many bytes without a newline"
 msgstr "توختىتىلىۋاتىدۇ: قار ئايرىش بەلگىسى يوق بەكمۇ جىق بايتلارنى ئوقۇدى"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:960
-msgid "Buffer is not large enough to hold a full line (%"
-msgstr "يىغلەك قۇرنى تولۇق سىغدۇرغۇدەك چوڭلۇقتا ئەمەس (%"
+#: ../libmailwatch-core/mailwatch-net-conn.c:965
+#, c-format
+msgid "Buffer is not large enough to hold a full line (%s < %d)"
+msgstr ""
 
-#: ../libmailwatch-core/mailwatch.c:126
+#: ../libmailwatch-core/mailwatch.c:122
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
 msgstr "xfce4-mailwatch-plugin: ھازىر GThread قوللاشنى دەسلەپلەشتۈرگىلى بولمىدى. ئورنىتىلغان GLib دا مەسىلە باردەك قىلىدۇ."
 
-#: ../libmailwatch-core/mailwatch.c:341 ../libmailwatch-core/mailwatch.c:342
+#: ../libmailwatch-core/mailwatch.c:337 ../libmailwatch-core/mailwatch.c:338
 #, c-format
 msgid "Unable to write config file '%s'"
 msgstr "سەپلىمە ھۆججەت ‹%s› نىڭغا يازغىلى بولمىدى"
 
-#: ../libmailwatch-core/mailwatch.c:406 ../libmailwatch-core/mailwatch.c:408
+#: ../libmailwatch-core/mailwatch.c:402 ../libmailwatch-core/mailwatch.c:404
 #, c-format
 msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
@@ -371,204 +372,192 @@ msgid ""
 "your system."
 msgstr "سەپلىمە ھۆججەت ‹%s› نىڭ ئىمتىيازلىرىنى بەلگىلىگىلى بولمىدى،  ھۆججەت تەركىبىدە ئىم قاتارلىق مۇھىم ئۇچۇرلار بار بولسا، مۇشۇ سىستېمىدىكى باشقا ئىشلەتكۈچىلەر كۆرۈۋېلىشى مۇمكىن."
 
-#: ../libmailwatch-core/mailwatch.c:628
+#: ../libmailwatch-core/mailwatch.c:624
 msgid "This mailbox type does not require any configuration settings."
 msgstr "بۇ تىپتىكى خەت ساندۇقىغا ھېچقانداق سەپلىمە كېرەك ئەمەس."
 
-#: ../libmailwatch-core/mailwatch.c:655
+#: ../libmailwatch-core/mailwatch.c:651
 msgid "Mailbox _Name:"
 msgstr "ئېلخەت ساندۇقىنىڭ ئاتى(_N):"
 
-#: ../libmailwatch-core/mailwatch.c:673
+#: ../libmailwatch-core/mailwatch.c:669
 msgid "Mailwatch"
 msgstr "ئېلخەت كۆزەتكۈ"
 
-#: ../libmailwatch-core/mailwatch.c:674
+#: ../libmailwatch-core/mailwatch.c:670
 msgid "Mailbox name required."
 msgstr "ئېلخەت ساندۇقىنىڭ ئاتى زۆرۈر."
 
-#: ../libmailwatch-core/mailwatch.c:675
+#: ../libmailwatch-core/mailwatch.c:671
 msgid "Please enter a name for the mailbox."
 msgstr "ئېلخەت ساندۇقىنىڭ ئاتىنى كىرگۈزۈڭ."
 
-#: ../libmailwatch-core/mailwatch.c:716
+#: ../libmailwatch-core/mailwatch.c:712
 #, c-format
 msgid "Edit Mailbox: %s"
 msgstr "ئېلخەت ساندۇقىنى تەھرىرلە: %s"
 
-#: ../libmailwatch-core/mailwatch.c:775
+#: ../libmailwatch-core/mailwatch.c:771
 msgid "Select Mailbox Type"
 msgstr "ئېلخەت ساندۇقى تىپىنى تاللا"
 
-#: ../libmailwatch-core/mailwatch.c:785
+#: ../libmailwatch-core/mailwatch.c:781
 msgid "Select a mailbox type.  A description of the type will appear below."
 msgstr "تىپىنى تاللاڭ، چۈشەندۈرۈشى ئاستىدا كۆرۈنىدۇ."
 
-#: ../libmailwatch-core/mailwatch.c:839
+#: ../libmailwatch-core/mailwatch.c:835
 msgid "Add New Mailbox"
 msgstr "يېڭىدىن ئېلخەت ساندۇقى قوش"
 
-#: ../libmailwatch-core/mailwatch.c:899
+#: ../libmailwatch-core/mailwatch.c:895
 msgid "Remove Mailbox"
 msgstr "ئېلخەت ساندۇقىنى ئۆچۈر"
 
-#: ../libmailwatch-core/mailwatch.c:900
+#: ../libmailwatch-core/mailwatch.c:896
 msgid "Are you sure?"
 msgstr "راستمۇ؟"
 
-#: ../libmailwatch-core/mailwatch.c:901
+#: ../libmailwatch-core/mailwatch.c:897
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
 msgstr "ئېلخەت ساندۇقى ئۆچۈرۈلسە، ھەممە تەڭشەك يوقىلىدۇ، ئەسلىگە كەلتۈرگىلى بولمايدۇ."
 
-#: ../libmailwatch-core/mailwatch.c:966
+#: ../libmailwatch-core/mailwatch.c:962
 msgid "Mailboxes"
 msgstr "ئېلخەت ساندۇقى"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:114
-#: ../panel-plugin/mailwatch-plugin-4.2.c:269
-#: ../panel-plugin/mailwatch-plugin.c:112
-#: ../panel-plugin/mailwatch-plugin.c:115
-#: ../panel-plugin/mailwatch-plugin.c:431
-#: ../panel-plugin/mailwatch-plugin.c:434
+#: ../panel-plugin/mailwatch-plugin.c:151
+#: ../panel-plugin/mailwatch-plugin.c:486
 msgid "No new mail"
 msgstr "يېڭى ئېلخەت يوق"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:129
-#: ../panel-plugin/mailwatch-plugin.c:131
+#: ../panel-plugin/mailwatch-plugin.c:172
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
 msgstr[0] "%d پارچە يېڭى ئېلخەت بار:"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:140
-#: ../panel-plugin/mailwatch-plugin.c:142
+#: ../panel-plugin/mailwatch-plugin.c:182
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "%2$s نىڭدا %1$d پارچە"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:251
-#: ../panel-plugin/mailwatch-plugin.c:413
+#: ../panel-plugin/mailwatch-plugin.c:469
 msgid "Xfce Mailwatch"
 msgstr "Xfce ئېلخەت كۆزەتكۈ"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:252
-#: ../panel-plugin/mailwatch-plugin.c:414
+#: ../panel-plugin/mailwatch-plugin.c:470
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "ئېلخەت كۆزەتكۈنى كۆزنەككە قوشقىلى بولمىدى."
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:253
-#: ../panel-plugin/mailwatch-plugin.c:415
-msgid "It is possible that your version of GLib does not have threads support."
+#: ../panel-plugin/mailwatch-plugin.c:471
+msgid ""
+"It is possible that your version of GLib does not have threads support."
 msgstr "سىستېمىڭىزدىكى  GLib نەشرى thread نى قوللىمايدىكەن."
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:476
-#: ../panel-plugin/mailwatch-plugin.c:638
+#: ../panel-plugin/mailwatch-plugin.c:706
 msgid "Mailwatch log"
 msgstr "ئېلخەت كۆزەتكۈ خاتىرىسى(log)"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:534
-#: ../panel-plugin/mailwatch-plugin.c:696
+#: ../panel-plugin/mailwatch-plugin.c:764
 msgid "Log _lines:"
 msgstr "خاتىرەنىڭ قۇر سانى(_L):"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:548
-#: ../panel-plugin/mailwatch-plugin.c:710
+#: ../panel-plugin/mailwatch-plugin.c:778
 msgid "Show log _status in icon"
 msgstr "خاتىرە ھالىتىنى سىنبەلگىدە كۆرسەت(_S)"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:594
-#: ../panel-plugin/mailwatch-plugin.c:754
+#: ../panel-plugin/mailwatch-plugin.c:841
 msgid "Select Icon"
 msgstr "سىنبەلگە تاللاش"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:624
-#: ../panel-plugin/mailwatch-plugin-4.2.c:744
-#: ../panel-plugin/mailwatch-plugin.c:785
-#: ../panel-plugin/mailwatch-plugin.c:966
+#: ../panel-plugin/mailwatch-plugin.c:873
+#: ../panel-plugin/mailwatch-plugin.c:1148
 msgid "_Normal"
 msgstr "نورمال(_N)"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:649
-#: ../panel-plugin/mailwatch-plugin.c:811
+#: ../panel-plugin/mailwatch-plugin.c:878
 msgid "Ne_w mail"
 msgstr "يېڭى ئېلخەت(_W)"
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:676
-#: ../panel-plugin/mailwatch-plugin.c:898
-msgid "External Programs"
-msgstr "سىرتقى پروگراممىلار"
-
-#: ../panel-plugin/mailwatch-plugin-4.2.c:688
-#: ../panel-plugin/mailwatch-plugin.c:910
-msgid "Run _on click:"
-msgstr "چەكسىلا ئىجرا بولسۇن(_O):"
-
-#: ../panel-plugin/mailwatch-plugin-4.2.c:705
 #: ../panel-plugin/mailwatch-plugin.c:927
-msgid "Run on new _messages:"
-msgstr "يېڭى خەت كەلگەندە ئىجرا بولسۇن(_M):"
+msgid "Failed to open web browser for online documentation"
+msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:718
-#: ../panel-plugin/mailwatch-plugin.c:940
-msgid "Icons"
-msgstr "سىنبەلگىلەر"
+#: ../panel-plugin/mailwatch-plugin.c:975
+msgid "Online Documentation"
+msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:764
-#: ../panel-plugin/mailwatch-plugin.c:986
-msgid "Ne_w Mail"
-msgstr "يېڭى ئېلخەت(_W)"
+#: ../panel-plugin/mailwatch-plugin.c:977
+msgid "Do you want to read the manual online?"
+msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:772
-#: ../panel-plugin/mailwatch-plugin.c:877
-msgid "_View Log..."
-msgstr "خاتىرە كۆر(_V)..."
+#: ../panel-plugin/mailwatch-plugin.c:978
+msgid ""
+"You will be redirected to the documentation website where the help pages are"
+" maintained."
+msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin-4.2.c:885
-#: ../panel-plugin/mailwatch-plugin.c:858
-#: ../panel-plugin/mailwatch.desktop.in.in.h:2
+#: ../panel-plugin/mailwatch-plugin.c:982
+msgid "_Read Online"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-plugin.c:993
+msgid "_Always go directly to the online documentation"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-plugin.c:1032
+#: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "ئېلخەت كۆزەتكۈ"
 
-#: ../panel-plugin/mailwatch-plugin.c:829
-#, c-format
-msgid "Help is unavailable because 'xfhelp4' could not be run: %s"
-msgstr "\"xfhelp4\" ئىجرا قىلغىلى بولمىغاچقا ياردەمنى كۆرگىلى بولمايدۇ: %s"
+#: ../panel-plugin/mailwatch-plugin.c:1050
+msgid "_View Log..."
+msgstr "خاتىرە كۆر(_V)..."
 
-#: ../panel-plugin/mailwatch-plugin.c:831
-msgid "Help Unavailable"
-msgstr "ياردەمنى ئىشلەتكىلى بولمايدۇ"
+#: ../panel-plugin/mailwatch-plugin.c:1074
+msgid "External Programs"
+msgstr "سىرتقى پروگراممىلار"
 
-#: ../panel-plugin/mailwatch-plugin.c:832
-msgid "Failed to run xfhelp4"
-msgstr "xfhelp4 نى ئىجرا قىلىش مەغلۇپ بولدى"
+#. External programs - Labels.
+#: ../panel-plugin/mailwatch-plugin.c:1080
+msgid "Run _on click:"
+msgstr "چەكسىلا ئىجرا بولسۇن(_O):"
 
-#: ../panel-plugin/mailwatch-plugin.c:1054
+#: ../panel-plugin/mailwatch-plugin.c:1086
+msgid "Run on first new _message:"
+msgstr ""
+
+#: ../panel-plugin/mailwatch-plugin.c:1093
+msgid "Run on _each change of new message count:"
+msgstr ""
+
+#. Icons.
+#: ../panel-plugin/mailwatch-plugin.c:1126
+msgid "Icons"
+msgstr "سىنبەلگىلەر"
+
+#: ../panel-plugin/mailwatch-plugin.c:1165
+msgid "Ne_w Mail"
+msgstr "يېڭى ئېلخەت(_W)"
+
+#: ../panel-plugin/mailwatch-plugin.c:1226
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Xfce ئېلخەت كۆزەتكۈ قىستۇرمىسى"
 
-#: ../panel-plugin/mailwatch-plugin.c:1056
+#: ../panel-plugin/mailwatch-plugin.c:1229
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "Xfce كۆزنەكتە ئىشلەيدىغان كۆپ ئىقتىدارلىق ئېلخەت كۆزىتىش قوللانچىقى"
 
-#: ../panel-plugin/mailwatch-plugin.c:1057
+#: ../panel-plugin/mailwatch-plugin.c:1231
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
-msgstr "نەشر ھوقۇقى (c) 2005-2008 Brian Tarricone غا تەۋە\n"
-"نەشر ھوقۇقى  (c) 2005 Pasi Orovuo غا تەۋە"
+msgstr "نەشر ھوقۇقى (c) 2005-2008 Brian Tarricone غا تەۋە\nنەشر ھوقۇقى  (c) 2005 Pasi Orovuo غا تەۋە"
 
-#: ../panel-plugin/mailwatch-plugin.c:1063
-msgid "Maintainer, Original Author"
-msgstr "مەسئۇل ، ئەسلى ئاپتور"
-
-#: ../panel-plugin/mailwatch-plugin.c:1065
-msgid "Developer"
-msgstr "ئىجادىيەتچى"
-
-#: ../panel-plugin/mailwatch-plugin.c:1145
+#: ../panel-plugin/mailwatch-plugin.c:1304
 msgid "Update Now"
 msgstr "ھازىر يېڭىلا"
 
-#: ../panel-plugin/mailwatch.desktop.in.in.h:1
+#: ../panel-plugin/mailwatch.desktop.in.h:2
 msgid "Check mail from multiple mailboxes"
 msgstr "ھەر خىل خەت ساندۇقلىرىغا كەلگەن يېڭى ئېلخەتلەرنى كۆزىتىدۇ"
