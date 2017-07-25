@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2017-07-25 11:28+0000\n"
+"PO-Revision-Date: 2017-07-25 19:44+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/xfce/xfce-panel-plugins/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -271,7 +271,7 @@ msgstr "Lokal MH epostmappe"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:684
 msgid "MH plugin watches local MH folders for new mail"
-msgstr "MH plugin overvåker lokale MH mapper etter nye epost."
+msgstr "MH-programtillegg overvåker lokale MH mapper etter ny e-post."
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:746
 msgid "Advanced POP3 Options"
@@ -360,7 +360,7 @@ msgstr "Bufferen er ikke stor nok til å holde en komplett linje (%s < %d)"
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
-msgstr "xfce-mailwatch-plugin: Klarte ikke initialisere GThread støtte.  Dette ersannsynlig et problem med GLib installasjonen din."
+msgstr "xfce-mailwatch-programtillegg: Klarte ikke initialisere GThread-støtte.  Dette er sannsynlig et problem med GLib-installasjonen din."
 
 #: ../libmailwatch-core/mailwatch.c:337 ../libmailwatch-core/mailwatch.c:338
 #, c-format
