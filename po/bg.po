@@ -5,13 +5,13 @@
 # Translators:
 # Kiril Kirilov <cybercop_montana@abv.bg>, 2013
 # Kiril Kirilov <cybercop_montana@abv.bg>, 2013,2015
-# Lyubomir Vasilev, 2015
+# Любомир Василев, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2015-10-06 16:41+0000\n"
+"PO-Revision-Date: 2017-07-25 11:28+0000\n"
 "Last-Translator: Kiril Kirilov <cybercop_montana@abv.bg>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/xfce/xfce-panel-plugins/language/bg/)\n"
 "MIME-Version: 1.0\n"
