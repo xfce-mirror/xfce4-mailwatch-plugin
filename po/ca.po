@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2017-07-25 11:28+0000\n"
+"PO-Revision-Date: 2017-07-26 00:22+0000\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-panel-plugins/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -557,7 +557,7 @@ msgstr "Una miniaplicació plena de funcionalitats per comprovar el correu per a
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
-msgstr "Copyright (c) 2005-2008 Brian Tarricone\nCopyright (c) 2005 Pasi Orovuo"
+msgstr "Drets d'autor (c) 2005-2008 Brian Tarricone\nDrets d'autor (c) 2005 Pasi Orovuo"
 
 #: ../panel-plugin/mailwatch-plugin.c:1304
 msgid "Update Now"
