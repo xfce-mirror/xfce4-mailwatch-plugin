@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2017-07-25 11:28+0000\n"
+"PO-Revision-Date: 2017-09-13 21:49+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-panel-plugins/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -130,7 +130,7 @@ msgid ""
 "The folder list cannot be retrieved until a server, username, and probably "
 "password are set.  Also be sure to check any security settings in the "
 "Advanced dialog."
-msgstr "Mappelisten kan ikke hentes før en server, brugernavn og muligvis adgangskode er angivet. Kontrollér også sikkerhedsindstillingerne under menupunktet avanceret."
+msgstr "Mappelisten kan ikke hentes før en server, brugernavn og muligvis adgangskode er angivet. Kontrollér også sikkerhedsindstillingerne i dialogen avanceret."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
@@ -157,15 +157,15 @@ msgstr "Brug usikret forbindelse"
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1604
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:767
 msgid "Use SSL/TLS on alternate port"
-msgstr "Benyt SSL/TLS på en alternativ port"
+msgstr "Brug SSL/TLS på en alternativ port"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1605
 msgid "Use SSL/TLS via STARTTLS"
-msgstr "Benyt SSL/TLS via STARTTLS"
+msgstr "Brug SSL/TLS via STARTTLS"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1621
 msgid "Use non-standard IMAP _port:"
-msgstr "Benyt ikke-standard IMAP_port:"
+msgstr "Brug ikke-standard IMAP_port:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1651
 msgid "Folders"
@@ -445,7 +445,7 @@ msgstr[1] "Du har %d nye meddelelser:"
 #: ../panel-plugin/mailwatch-plugin.c:182
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "    %d i %s"
+msgstr "tells how many new messages in each mailbox|    %d i %s"
 
 #: ../panel-plugin/mailwatch-plugin.c:469
 msgid "Xfce Mailwatch"
@@ -487,7 +487,7 @@ msgstr "N_y post"
 
 #: ../panel-plugin/mailwatch-plugin.c:927
 msgid "Failed to open web browser for online documentation"
-msgstr "Kunne ikke åbne webbrowser til vises af online-dokumentation"
+msgstr "Kunne ikke åbne webbrowser til visning af online-dokumentation"
 
 #: ../panel-plugin/mailwatch-plugin.c:975
 msgid "Online Documentation"
