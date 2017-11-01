@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2017-09-30 14:41+0000\n"
+"PO-Revision-Date: 2017-11-01 17:32+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-panel-plugins/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -27,14 +27,14 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:308
 #, c-format
 msgid "TLS handshake failed: %s"
-msgstr "TLS-forhandling mislykkedes: %s"
+msgstr "TLS-håndtryk mislykkedes: %s"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:255
 #, c-format
 msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
-msgstr "Modtog HTTP-reaktionskode %d. Den mest sandsynlige grund til at det sker er hvis dit Gmail-brugernavn eller adgangskode er forkert."
+msgstr "Modtog HTTP-svarkode %d. Den mest sandsynlige grund til at det sker er hvis dit Gmail-brugernavn eller adgangskode er forkert."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
 #, c-format
@@ -42,7 +42,7 @@ msgid ""
 "Received HTTP response code %d, which should be 200.  There may be a problem"
 " with GMail's servers, or they have incompatibly changed their "
 "authentication method or location of the new messages feed."
-msgstr "Modtog HTTP reaktionskode %d, som skulle være 200.  Der er muligvis et problem med Gmail's servere, eller de har på en uforenelig måde ændret deres godkendelsesmetode eller placering af deres beskedstrøm."
+msgstr "Modtog HTTP-svarkode %d, som skulle være 200.  Der er muligvis et problem med Gmail's servere, eller de har ændret deres godkendelsesmetode på en ikke kompatibel måde eller placering af deres nye beskedstrøm."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:735
@@ -88,7 +88,7 @@ msgstr "Ekstern Gmail-postkasse"
 msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
-msgstr "Gmail-pluginet kan forbinde til Google's posttjeneste og sikkert hente antallet af nye beskeder."
+msgstr "Gmail-pluginet kan oprette forbindelse til Google's posttjeneste og sikkert hente antallet af nye beskeder."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
 msgid ""
@@ -142,7 +142,7 @@ msgstr "Nye postmapper"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1583
 msgid "Advanced IMAP Options"
-msgstr "Avanceret IMAP-valgmuligheder"
+msgstr "Avanceret valgmuligheder for IMAP"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1594
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:757
@@ -201,7 +201,7 @@ msgstr "Ekstern IMAP-postkasse"
 msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
-msgstr "IMAP-udvidelsen kan forbinde til en ekstern postserver der understøtter IMAP-protokollen, og kan derudover bruge SSL til opkoblingssikkerhed."
+msgstr "IMAP-pluginet kan oprette forbindelse til en ekstern postserver der understøtter IMAP-protokollen, og valgfrit bruge SSL til opkoblingssikkerhed."
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
@@ -238,7 +238,7 @@ msgstr "Lokal Maildir-kø"
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
-msgstr "Maildir udvidelsen kan overvåge en lokal maildir-type-mailkø for nye meddelelser."
+msgstr "Maildir-plugin kan overvåge en lokal maildir-type-mailkø for nye meddelelser."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Mbox _Filename:"
@@ -254,7 +254,7 @@ msgstr "Lokal mboxkø"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr "Mbox-udvidelsen overvåger en lokal mbox-type-postkø for nye beskeder."
+msgstr "Mbox-plugin overvåger en lokal mbox-type-postkø for nye beskeder."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
@@ -265,7 +265,7 @@ msgstr "Misdannet linje %s i %s ignoreret."
 msgid ""
 "The configuration of this plugin is read from\n"
 "the default mh maildir profile file ~/.mh_profile"
-msgstr "Indstillingen af denne udvidelse er indlæst fra\nstandard mh maildir profil filen ~/.mh_profil"
+msgstr "Konfigurationen af pluginet er indlæst fra\nstandard mh maildir-profilfilen ~/.mh_profil"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:683
 msgid "Local MH mail folder"
@@ -273,11 +273,11 @@ msgstr "Lokal MH-postmappe"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:684
 msgid "MH plugin watches local MH folders for new mail"
-msgstr "MH-udvidelse overvåger lokale MH mapper for ny post"
+msgstr "MH-plugin overvåger lokale MH mapper for ny post"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:746
 msgid "Advanced POP3 Options"
-msgstr "Avanceret POP3-indstillinger"
+msgstr "Avanceret valgmuligheder for POP3"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:768
 msgid "Use SSL/TLS via STLS"
@@ -299,7 +299,7 @@ msgstr "Ekstern POP3-postkasse"
 msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
-msgstr "POP3-udvidelsen kan forbinde til en ekstern mailserver der understøtter POP3-protokollen, og kan derudover bruge SSL for opkoblingssikkerhed."
+msgstr "POP3-pluginet kan oprette forbindelse til en ekstern postserver der understøtter POP3-protokollen, og valgfrit bruge SSL til opkoblingssikkerhed."
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
@@ -321,7 +321,7 @@ msgstr "Kunne ikke finde vært \"%s\": %s"
 #: ../libmailwatch-core/mailwatch-net-conn.c:582
 #, c-format
 msgid "Failed to connect to server \"%s\": %s"
-msgstr "Kunne ikke forbinde til server \"%s\": %s"
+msgstr "Kunne ikke oprette forbindelse til server \"%s\": %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:642
 #, c-format
@@ -367,7 +367,7 @@ msgstr "xfce4-mailwatch-plugin: Ikke i stand til at starte GThreadunderstøttels
 #: ../libmailwatch-core/mailwatch.c:337 ../libmailwatch-core/mailwatch.c:338
 #, c-format
 msgid "Unable to write config file '%s'"
-msgstr "Kunne ikke indstille konfigurationsfil '%s'"
+msgstr "Kan ikke skrive konfigurationsfilen '%s'"
 
 #: ../libmailwatch-core/mailwatch.c:402 ../libmailwatch-core/mailwatch.c:404
 #, c-format
@@ -375,7 +375,7 @@ msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
 "passwords or other sensitive information, it may be readable by others on "
 "your system."
-msgstr "Kunne ikke angive tilladelser på konfigurationsfilen '%s'.  Hvis denne fil indeholder adgangskoder eller andre følsomme oplysninger, kan de være læsbare for andre på dit system."
+msgstr "Kan ikke angive tilladelser på konfigurationsfilen '%s'.  Hvis denne fil indeholder adgangskoder eller andre følsomme oplysninger, kan de være læsbare for andre på dit system."
 
 #: ../libmailwatch-core/mailwatch.c:624
 msgid "This mailbox type does not require any configuration settings."
@@ -548,7 +548,7 @@ msgstr "N_y post"
 
 #: ../panel-plugin/mailwatch-plugin.c:1226
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "Xfce4 Mailwatch program"
+msgstr "Xfce4 Mailwatch-plugin"
 
 #: ../panel-plugin/mailwatch-plugin.c:1229
 msgid "A featureful mail-checker applet for the Xfce Panel"
