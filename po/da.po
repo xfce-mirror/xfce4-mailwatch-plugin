@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2017-11-01 17:32+0000\n"
+"PO-Revision-Date: 2017-11-01 18:23+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-panel-plugins/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -69,7 +69,7 @@ msgstr "_Adgangskode:"
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1782
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:915
 msgid "Check for _new messages every"
-msgstr "Kontrollér for _nye meddelelser hver"
+msgstr "Tjek for _nye meddelelser hver"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:591
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1796
@@ -566,4 +566,4 @@ msgstr "Opdatér nu"
 
 #: ../panel-plugin/mailwatch.desktop.in.h:2
 msgid "Check mail from multiple mailboxes"
-msgstr "Kontrollér post fra flere postkasser"
+msgstr "Tjek post fra flere postkasser"
