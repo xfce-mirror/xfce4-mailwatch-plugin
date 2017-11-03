@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2017-11-03 11:57+0000\n"
+"PO-Revision-Date: 2017-11-03 18:06+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-panel-plugins/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgid ""
 "Received HTTP response code %d, which should be 200.  There may be a problem"
 " with GMail's servers, or they have incompatibly changed their "
 "authentication method or location of the new messages feed."
-msgstr "Modtog HTTP-svarkode %d, som skulle være 200.  Der er muligvis et problem med Gmail's servere, eller de har ændret deres godkendelsesmetode på en ikke kompatibel måde eller placering af deres nye beskedstrøm."
+msgstr "Modtog HTTP-svarkode %d, som skulle være 200.  Der er muligvis et problem med Gmail's servere, eller de har ændret deres godkendelsesmetode på en ikke kompatibel måde eller placering af deres nye meddelelsesstrøm."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:735
@@ -88,7 +88,7 @@ msgstr "Ekstern Gmail-postkasse"
 msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
-msgstr "Gmail-pluginet kan oprette forbindelse til Google's posttjeneste og sikkert hente antallet af nye beskeder."
+msgstr "Gmail-pluginet kan oprette forbindelse til Google's posttjeneste og sikkert hente antallet af nye meddelelser."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
 msgid ""
@@ -400,7 +400,7 @@ msgstr "Indtast venligst et navn til postkassen."
 #: ../libmailwatch-core/mailwatch.c:712
 #, c-format
 msgid "Edit Mailbox: %s"
-msgstr "Redigér postkasse: %s"
+msgstr "Rediger postkasse: %s"
 
 #: ../libmailwatch-core/mailwatch.c:771
 msgid "Select Mailbox Type"
