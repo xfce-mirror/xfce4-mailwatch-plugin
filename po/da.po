@@ -4,16 +4,18 @@
 # 
 # Translators:
 # Aputsiak Niels Janussen (Skjalden) <aj@isit.gl>, 2015
+# Aputsiak Niels Janussen (Skjalden) <aj@isit.gl>, 2015
 # Chris Darnell <chris@cedeel.com>, 2013
 # Lars Jensen <lars@jink.dk>, 2008
 # Morten Juhl-Johansen Zölde-Fejér <morten@writtenandread.net>, 2016
+# scootergrisen, 2017
 # scootergrisen, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2017-11-03 18:06+0000\n"
+"PO-Revision-Date: 2017-11-27 21:37+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-panel-plugins/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +44,7 @@ msgid ""
 "Received HTTP response code %d, which should be 200.  There may be a problem"
 " with GMail's servers, or they have incompatibly changed their "
 "authentication method or location of the new messages feed."
-msgstr "Modtog HTTP-svarkode %d, som skulle være 200.  Der er muligvis et problem med Gmail's servere, eller de har ændret deres godkendelsesmetode på en ikke kompatibel måde eller placering af deres nye meddelelsesstrøm."
+msgstr "Modtog HTTP-svarkode %d, som skulle være 200. Der er muligvis et problem med Gmail's servere, eller de har ændret deres godkendelsesmetode på en ikke kompatibel måde eller placering af deres nye meddelelsesstrøm."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:735
@@ -375,7 +377,7 @@ msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
 "passwords or other sensitive information, it may be readable by others on "
 "your system."
-msgstr "Kan ikke angive tilladelser på konfigurationsfilen '%s'.  Hvis filen indeholder adgangskoder eller andre følsomme informationer, så kan de læses af andre på dit system."
+msgstr "Kan ikke angive tilladelser på konfigurationsfilen '%s'. Hvis filen indeholder adgangskoder eller andre følsomme informationer, så kan de læses af andre på dit system."
 
 #: ../libmailwatch-core/mailwatch.c:624
 msgid "This mailbox type does not require any configuration settings."
@@ -562,7 +564,7 @@ msgstr "Ophavsret (c) 2005-2008 Brian Tarricone\nOphavsret (c) 2005 Pasi Orovuo"
 
 #: ../panel-plugin/mailwatch-plugin.c:1304
 msgid "Update Now"
-msgstr "Opdatér nu"
+msgstr "Opdater nu"
 
 #: ../panel-plugin/mailwatch.desktop.in.h:2
 msgid "Check mail from multiple mailboxes"
