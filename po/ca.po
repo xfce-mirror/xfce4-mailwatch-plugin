@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2017-12-31 12:53+0000\n"
+"PO-Revision-Date: 2017-12-31 18:15+0000\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-panel-plugins/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -109,7 +109,7 @@ msgstr "S'ha demanat seguretat STARTTLS però el servidor no ho permet."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1144
 msgid "Failed to get folder list"
-msgstr "No s'ha obtingut la llista de carpetes"
+msgstr "Ha fallat l'obtenció de la llista de carpetes"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1289
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1499
@@ -208,7 +208,7 @@ msgstr "El connector IMAP es pot connectar a un servidor de correu remot que adm
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:403
 #, c-format
 msgid "Failed to get status of file %s: %s"
-msgstr "No s'ha pogut obtenir l'estat del fitxer «%s»: %s"
+msgstr "Ha fallat l'obtenció de l'estat del fitxer «%s»: %s"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:102
 #, c-format
@@ -340,12 +340,12 @@ msgstr "Ha fallat l'enviament de dades: %s"
 #: ../libmailwatch-core/mailwatch-net-conn.c:827
 #, c-format
 msgid "Failed to receive encrypted data: %s"
-msgstr "Ha fallat la recepció xifrada de dades: %s"
+msgstr "Ha fallat la recepció xifrada de les dades: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:857
 #, c-format
 msgid "Failed to receive data: %s"
-msgstr "Ha fallat la recepció de dades: %s"
+msgstr "Ha fallat la recepció de les dades: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:955
 #, c-format
@@ -486,7 +486,7 @@ msgstr "_Correu nou"
 
 #: ../panel-plugin/mailwatch-plugin.c:927
 msgid "Failed to open web browser for online documentation"
-msgstr "Ha fallat obrir el navegador web per a la documentació en línia"
+msgstr "Ha fallat l'obriment del navegador web per a la documentació en línia"
 
 #: ../panel-plugin/mailwatch-plugin.c:975
 msgid "Online Documentation"
