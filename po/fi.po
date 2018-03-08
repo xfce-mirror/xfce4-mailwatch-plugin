@@ -5,14 +5,15 @@
 # Translators:
 # Ammuu5, 2018
 # Jari Rahkonen <inactive+jari@transifex.com>, 2010
+# Pasi Lallinaho <pasi@shimmerproject.org>, 2018
 # Pasi Orovuo <pasi@xfce.org>, 2005
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2018-01-07 00:46+0000\n"
-"Last-Translator: Ammuu5\n"
+"PO-Revision-Date: 2018-03-08 13:49+0000\n"
+"Last-Translator: Pasi Lallinaho <pasi@shimmerproject.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/xfce/xfce-panel-plugins/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -354,7 +355,7 @@ msgstr "Luku peruutettu: Liian monta tavua ilman rivinvaihtoa"
 #: ../libmailwatch-core/mailwatch-net-conn.c:965
 #, c-format
 msgid "Buffer is not large enough to hold a full line (%s < %d)"
-msgstr ""
+msgstr "Välimuisti ei riitä täydelle riville (%s < %d)"
 
 #: ../libmailwatch-core/mailwatch.c:122
 msgid ""
@@ -485,7 +486,7 @@ msgstr "_Uutta postia"
 
 #: ../panel-plugin/mailwatch-plugin.c:927
 msgid "Failed to open web browser for online documentation"
-msgstr ""
+msgstr "Verkkoselaimen avaaminen online-dokumentaatiota varten epäonnistui"
 
 #: ../panel-plugin/mailwatch-plugin.c:975
 msgid "Online Documentation"
@@ -529,11 +530,11 @@ msgstr "Suorita _napsautettaessa:"
 
 #: ../panel-plugin/mailwatch-plugin.c:1086
 msgid "Run on first new _message:"
-msgstr ""
+msgstr "Aja ensimmäisen uuden _viestin jälkeen:"
 
 #: ../panel-plugin/mailwatch-plugin.c:1093
 msgid "Run on _each change of new message count:"
-msgstr ""
+msgstr "Aja _jokaisella uusien viestien määrän muutoksella:"
 
 #. Icons.
 #: ../panel-plugin/mailwatch-plugin.c:1126
