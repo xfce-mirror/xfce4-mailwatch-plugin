@@ -5,6 +5,7 @@
 # Translators:
 # Alessandro B, 2013
 # Cristian Marchi <cri.penta@gmail.com>, 2013-2014
+# Emanuele Petriglia <inbox@emanuelepetriglia.me>, 2018
 # Fabio Riga <usul@aruba.it>, 2007
 # oblo <oblomov78@hotmail.com>, 2015
 msgid ""
@@ -12,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2018-07-11 15:08+0000\n"
+"PO-Revision-Date: 2018-07-14 07:58+0000\n"
 "Last-Translator: Emanuele Petriglia <inbox@emanuelepetriglia.me>\n"
 "Language-Team: Italian (http://www.transifex.com/xfce/xfce-panel-plugins/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -87,7 +88,7 @@ msgstr "Casella GMail remota"
 msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
-msgstr "L'estensione GMail può connettersi al servizio di posta di Google e recuperare in sicurezza il numero di nuovi messaggi."
+msgstr "Il componente aggiuntivo GMail può connettersi al servizio di posta di Google e recuperare in sicurezza il numero di nuovi messaggi."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
 msgid ""
@@ -105,7 +106,7 @@ msgstr "Autenticazione non riuscita. Nome utente e password inseriti sono corret
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
-msgstr "È stato richiesta la sicurezza STARTTLS, ma questo server non la supporta."
+msgstr "È stata richiesta la sicurezza STARTTLS, ma questo server non la supporta."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1144
 msgid "Failed to get folder list"
@@ -114,7 +115,7 @@ msgstr "Impossibile ottenere l'elenco delle cartelle"
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1289
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1499
 msgid "Please wait..."
-msgstr "Attendere..."
+msgstr "Attendere…"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1396
 msgid "Error"
@@ -129,15 +130,15 @@ msgid ""
 "The folder list cannot be retrieved until a server, username, and probably "
 "password are set.  Also be sure to check any security settings in the "
 "Advanced dialog."
-msgstr "L'elenco delle cartelle non può essere recuperato se non vengono pirma impostati un server, un nome utente e probabilmente una password.  Controllare inoltre le impostazioni di sicurezza nella finestra delle impostazioni avanzate."
+msgstr "L'elenco delle cartelle non può essere recuperato se non vengono prima impostati un server, un nome utente e probabilmente una password.  Controllare inoltre le impostazioni di sicurezza nella finestra delle impostazioni avanzate."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
 msgid "Set New Mail Folders"
-msgstr "Imposta le cartelle di nuova posta"
+msgstr "Imposta le cartelle di nuova in arrivo"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1417
 msgid "New Mail Folders"
-msgstr "Cartelle di nuova posta"
+msgstr "Cartelle di posta in arrivo"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1583
 msgid "Advanced IMAP Options"
@@ -186,11 +187,11 @@ msgstr "_Server di posta:"
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1764
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:904
 msgid "_Advanced..."
-msgstr "_Avanzate..."
+msgstr "_Avanzate…"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1771
 msgid "New mail _folders..."
-msgstr "_Cartelle di nuova posta..."
+msgstr "_Cartelle di posta in arrivo…"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1960
 msgid "Remote IMAP Mailbox"
@@ -200,7 +201,7 @@ msgstr "Casella IMAP remota"
 msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
-msgstr "L'estensione IMAP può connettersi a un server di posta remoto che supporta il protocollo IMAP, usando eventualmente SSL per la protezione del collegamento."
+msgstr "Il componente aggiuntivo IMAP può connettersi a un server di posta remoto che supporta il protocollo IMAP, usando eventualmente SSL per la protezione del collegamento."
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
@@ -208,12 +209,12 @@ msgstr "L'estensione IMAP può connettersi a un server di posta remoto che suppo
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:403
 #, c-format
 msgid "Failed to get status of file %s: %s"
-msgstr "Impossibile ottenere lo stato del file «%s»: %s"
+msgstr "Impossibile ottenere lo stato del file %s: %s"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:102
 #, c-format
 msgid "%s is not a directory. Is %s really a valid maildir?"
-msgstr "«%s» non è una cartella. «%s» è una maildir valida?"
+msgstr "%s non è una cartella. %s è una maildir valida?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:335
 msgid "Maildir _Path:"
@@ -237,7 +238,7 @@ msgstr "Spola Maildir locale"
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
-msgstr "L'estensione Maildir può controllare la presenza di nuovi messaggi in una spola di posta locale in stile maildir."
+msgstr "Il componente aggiuntivo Maildir può controllare la presenza di nuovi messaggi in una spola di posta locale in stile maildir."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Mbox _Filename:"
@@ -253,7 +254,7 @@ msgstr "Spola mbox locale"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr "L'estensione Mbox controlla la presenza di nuovi messaggi in una spola locale di tipo mbox."
+msgstr "Il componente aggiuntivo Mbox controlla la presenza di nuovi messaggi in una spola locale di tipo mbox."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
@@ -272,7 +273,7 @@ msgstr "Cartella di posta locale MH"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:684
 msgid "MH plugin watches local MH folders for new mail"
-msgstr "L'estensione MH controlla la presenza di nuova posta nelle cartelle MH locali"
+msgstr "Il componente aggiuntivo MH controlla la presenza di nuova posta nelle cartelle MH locali"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:746
 msgid "Advanced POP3 Options"
@@ -280,7 +281,7 @@ msgstr "Opzioni POP3 avanzate"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:768
 msgid "Use SSL/TLS via STLS"
-msgstr "Usa SSL/TSL attraverso STSL"
+msgstr "Usa SSL/TSL attraverso STLS"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:784
 msgid "Use non-standard POP3 _port:"
@@ -298,7 +299,7 @@ msgstr "Casella POP3 remota"
 msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
-msgstr "L'estensione POP3 può connettersi a un server di posta remoto che supporta il protocollo POP3, usando eventualmente SSL per la protezione del collegamento."
+msgstr "Il componente aggiuntivo POP3 può connettersi a un server di posta remoto che supporta il protocollo POP3, usando eventualmente SSL per la protezione del collegamento."
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
@@ -310,7 +311,7 @@ msgstr "L'estensione POP3 può connettersi a un server di posta remoto che suppo
 #: ../libmailwatch-core/mailwatch-net-conn.c:850
 #, c-format
 msgid "Operation aborted"
-msgstr "Operazione annullata"
+msgstr "Operazione interrotta"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:498
 #, c-format
@@ -320,7 +321,7 @@ msgstr "Impossibile trovare l'host \"%s\": %s"
 #: ../libmailwatch-core/mailwatch-net-conn.c:582
 #, c-format
 msgid "Failed to connect to server \"%s\": %s"
-msgstr "Connessione al server \"%s\" non riuscita: %s"
+msgstr "Impossibile connettersi al server \"%s\": %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:642
 #, c-format
@@ -330,22 +331,22 @@ msgstr "Compilato senza supporto per SSL/TLS"
 #: ../libmailwatch-core/mailwatch-net-conn.c:698
 #, c-format
 msgid "Failed to send encrypted data: %s"
-msgstr "Invio dei dati cifrati non riuscito: %s"
+msgstr "Impossibile inviare dati crittografati: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:731
 #, c-format
 msgid "Failed to send data: %s"
-msgstr "Invio dei dati non riuscito: %s"
+msgstr "Impossibile inviare dati: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:827
 #, c-format
 msgid "Failed to receive encrypted data: %s"
-msgstr "Ricezione dei dati cifrati non riuscita: %s"
+msgstr "Impossibile ricevere dati crittografati: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:857
 #, c-format
 msgid "Failed to receive data: %s"
-msgstr "Ricezione dei dati non riuscita: %s"
+msgstr "Impossibile ricevere dati: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:955
 #, c-format
@@ -366,7 +367,7 @@ msgstr "xfce4-mailwatch-plugin: impossibile inizializzare il supporto GThread.  
 #: ../libmailwatch-core/mailwatch.c:337 ../libmailwatch-core/mailwatch.c:338
 #, c-format
 msgid "Unable to write config file '%s'"
-msgstr "Impossibile scrivere nel file di configurazione «%s»"
+msgstr "Impossibile scrivere nel file di configurazione '%s'"
 
 #: ../libmailwatch-core/mailwatch.c:402 ../libmailwatch-core/mailwatch.c:404
 #, c-format
@@ -374,7 +375,7 @@ msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
 "passwords or other sensitive information, it may be readable by others on "
 "your system."
-msgstr "Impossibile impostare i permessi del file di configurazione «%s».  Se il file contiene password o altre informazioni sensibili, queste potrebbero essere lette da altri utenti del sistema."
+msgstr "Impossibile impostare i permessi del file di configurazione '%s'.  Se il file contiene password o altre informazioni sensibili, queste potrebbero essere lette da altri utenti del sistema."
 
 #: ../libmailwatch-core/mailwatch.c:624
 msgid "This mailbox type does not require any configuration settings."
@@ -423,7 +424,7 @@ msgstr "Procedere?"
 
 #: ../libmailwatch-core/mailwatch.c:897
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
-msgstr "La rimozione della casella scarterà tutte le impostazioni ed è irreversibile."
+msgstr "La rimozione della casella rimuoverà tutte le impostazioni ed è irreversibile."
 
 #: ../libmailwatch-core/mailwatch.c:962
 msgid "Mailboxes"
@@ -452,12 +453,12 @@ msgstr "Guardaposta di Xfce"
 
 #: ../panel-plugin/mailwatch-plugin.c:470
 msgid "The mailwatch applet cannot be added to the panel."
-msgstr "Impossibile aggiungere l'estensione guardaposta al pannello."
+msgstr "Impossibile aggiungere l'applet del guardaposta al pannello."
 
 #: ../panel-plugin/mailwatch-plugin.c:471
 msgid ""
 "It is possible that your version of GLib does not have threads support."
-msgstr "La versione installata di Glib potrebbe non supportare il thread."
+msgstr "La versione installata di Glib potrebbe non avere il supporto dei thread."
 
 #: ../panel-plugin/mailwatch-plugin.c:706
 msgid "Mailwatch log"
@@ -517,7 +518,7 @@ msgstr "Guardaposta"
 
 #: ../panel-plugin/mailwatch-plugin.c:1050
 msgid "_View Log..."
-msgstr "_Mostra registro..."
+msgstr "_Mostra registro…"
 
 #: ../panel-plugin/mailwatch-plugin.c:1074
 msgid "External Programs"
@@ -547,7 +548,7 @@ msgstr "Nuova _posta"
 
 #: ../panel-plugin/mailwatch-plugin.c:1226
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "Guardaposta di Xfce4"
+msgstr "Componente aggiunto guardaposta di Xfce4"
 
 #: ../panel-plugin/mailwatch-plugin.c:1229
 msgid "A featureful mail-checker applet for the Xfce Panel"
