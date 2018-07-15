@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2018-07-14 07:58+0000\n"
+"PO-Revision-Date: 2018-07-15 10:50+0000\n"
 "Last-Translator: Emanuele Petriglia <inbox@emanuelepetriglia.me>\n"
 "Language-Team: Italian (http://www.transifex.com/xfce/xfce-panel-plugins/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -558,7 +558,7 @@ msgstr "Un programma ricco di funzionalità per controllare la posta dal pannell
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
-msgstr "Copyright (c) 2005-2008 Brian Tarricone\nCopyright (c) 2005 Pasi Orovuo"
+msgstr "Copyright © 2005-2008 Brian Tarricone\nCopyright © 2005 Pasi Orovuo"
 
 #: ../panel-plugin/mailwatch-plugin.c:1304
 msgid "Update Now"
