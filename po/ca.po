@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2018-10-21 08:16+0000\n"
+"PO-Revision-Date: 2018-10-21 18:32+0000\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-panel-plugins/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -423,7 +423,7 @@ msgstr "N'esteu segur?"
 
 #: ../libmailwatch-core/mailwatch.c:897
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
-msgstr "Si se suprimeix una bústia de correu es perdran tots els ajusts, i no es pot desfer."
+msgstr "Si se suprimeix una bústia de correu, es perdran tots els ajusts, i no es pot desfer."
 
 #: ../libmailwatch-core/mailwatch.c:962
 msgid "Mailboxes"
