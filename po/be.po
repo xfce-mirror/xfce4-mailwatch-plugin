@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006
-# Zmicer Turok <zmicerturok@gmail.com>, 2018
+# Zmicer Turok <zmicerturok@gmail.com>, 2018-2019
 # Zmicer Turok <zmicerturok@gmail.com >, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2018-06-23 18:26+0000\n"
+"PO-Revision-Date: 2019-01-15 09:00+0000\n"
 "Last-Translator: Zmicer Turok <zmicerturok@gmail.com>\n"
 "Language-Team: Belarusian (http://www.transifex.com/xfce/xfce-panel-plugins/language/be/)\n"
 "MIME-Version: 1.0\n"
@@ -309,7 +309,7 @@ msgstr "Убудова POP3 можа злучацца з адлеглым паш
 #: ../libmailwatch-core/mailwatch-net-conn.c:850
 #, c-format
 msgid "Operation aborted"
-msgstr "Аперацыя скасавана"
+msgstr "Аперацыя скасаваная"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:498
 #, c-format
@@ -360,7 +360,7 @@ msgstr "Памеру буфера недастаткова для ўсяго р�
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
-msgstr "xfce4-mailwatch-plugin: не атрымалася ўключыць падтрымку Gthread. Хутчэй за ўсё,  Glib была няправільна ўсталявана."
+msgstr "xfce4-mailwatch-plugin: не атрымалася ўключыць падтрымку Gthread. Хутчэй за ўсё,  Glib была няправільна ўсталяваная."
 
 #: ../libmailwatch-core/mailwatch.c:337 ../libmailwatch-core/mailwatch.c:338
 #, c-format
