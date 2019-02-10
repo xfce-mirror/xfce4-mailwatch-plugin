@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Nuno Miguel <nunis@netcabo.pt>, 2007-2009
-# Nuno Miguel <nunomgue@gmail.com>, 2013,2015
+# Nuno Miguel <nunomgue@gmail.com>, 2013,2015,2019
 # Sérgio Marques <smarquespt@gmail.com>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2017-09-19 18:06+0000\n"
+"PO-Revision-Date: 2019-02-10 12:51+0000\n"
 "Last-Translator: Nuno Miguel <nunomgue@gmail.com>\n"
 "Language-Team: Portuguese (http://www.transifex.com/xfce/xfce-panel-plugins/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "Falha na negociação TLS: %s"
 msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
-msgstr "Recebido o código HTTP %d. O motivo mais provável o código é que o seu nome de utilizador e/ou senha do GMail estão incorretos."
+msgstr "Recebido o código HTTP %d. O motivo mais provável é que o seu nome de utilizador e/ou senha do GMail estão incorretos."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
 #, c-format
@@ -49,7 +49,7 @@ msgstr "Recebido o código HTTP %d, que deveria ser 200. Pode haver um problema 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:487
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:548
 msgid "Previous thread hasn't exited yet, not checking mail this time."
-msgstr "O processo anterior ainda não terminou e o correio não verificado."
+msgstr "O processo anterior ainda não terminou, correio não verificado."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1723
@@ -86,7 +86,7 @@ msgstr "Caixa de correio remota GMail"
 msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
-msgstr "O \"plugin\" GMail pode ligar ao serviço de correio da Google e obter de forma segura o número de mensagens novas."
+msgstr "O plugin GMail pode ligar ao serviço de correio da Google e obter de forma segura o número de mensagens novas."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:286
 msgid ""
@@ -104,7 +104,7 @@ msgstr "Falha ao autenticar. Nome de utilizador ou senha incorrectos?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
-msgstr "Solicitada a segurança STARTTLS mas este servidor não a suporta."
+msgstr "Solicitada a segurança STARTTLS, mas este servidor não a suporta."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1144
 msgid "Failed to get folder list"
@@ -199,7 +199,7 @@ msgstr "Caixa de correio remota IMAP"
 msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
-msgstr "O \"plugin\" IMAP pode ligar a um servidor de correio remoto que suporte o protocolo IMAP utilizando, opcionalmente, SSL para proteger a ligação."
+msgstr "O plugin IMAP pode ligar a um servidor de correio remoto que suporte o protocolo IMAP utilizando, opcionalmente SSL para proteger a ligação."
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
@@ -236,7 +236,7 @@ msgstr "Spool Maildir local"
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
-msgstr "O \"plugin\" Maildir pode vigiar as novas mensagens numa caixa de correio estilo maildir."
+msgstr "O plugin Maildir pode vigiar as novas mensagens numa caixa de correio estilo maildir."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Mbox _Filename:"
@@ -252,7 +252,7 @@ msgstr "Spool Mbox local"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr "O \"plugin\" Mbox pode vigiar as novas mensagens numa caixa de correio estilo mailboxr."
+msgstr "O plugin Mbox pode vigiar as novas mensagens numa caixa de correio estilo mailbox."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
@@ -271,7 +271,7 @@ msgstr "Pasta de correio local MH"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:684
 msgid "MH plugin watches local MH folders for new mail"
-msgstr "O \"plugin\" MH vigia o novo correio em pastas locais MH"
+msgstr "O plugin MH vigia o novo correio em pastas locais MH"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:746
 msgid "Advanced POP3 Options"
@@ -297,7 +297,7 @@ msgstr "Caixa de correio remota POP3"
 msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
-msgstr "O \"plugin\" POP3 pode ligar a um servidor de correio remoto que suporte o protocolo POP3 utilizando, opcionalmente, SSL para proteger a ligação."
+msgstr "O plugin POP3 pode ligar a um servidor de correio remoto que suporte o protocolo POP3 utilizando, opcionalmente SSL para proteger a ligação."
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
@@ -360,7 +360,7 @@ msgstr "Memória não suficiente para tratar a linha toda (%s < %d)"
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
-msgstr "xfce4-mailwatch-plugin: incapaz de iniciar o suporte GThread. Provavelmente, existe um problema com a sua instalação GLib."
+msgstr "xfce4-mailwatch-plugin: incapaz de iniciar o suporte GThread. Pode existir um problema com a sua instalação GLib."
 
 #: ../libmailwatch-core/mailwatch.c:337 ../libmailwatch-core/mailwatch.c:338
 #, c-format
@@ -546,11 +546,11 @@ msgstr "N_ovo correio"
 
 #: ../panel-plugin/mailwatch-plugin.c:1226
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "\"Plugin\" Mailwatch Xfce4"
+msgstr "Plugin Mailwatch Xfce4"
 
 #: ../panel-plugin/mailwatch-plugin.c:1229
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr "Uma \"applet\" para o painel Xfce, utilizado para verificar a caixa do correio"
+msgstr "Uma applet para o painel Xfce, utilizado para verificar a caixa do correio"
 
 #: ../panel-plugin/mailwatch-plugin.c:1231
 msgid ""
