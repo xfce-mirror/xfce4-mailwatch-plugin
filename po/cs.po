@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:204
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:399
@@ -438,6 +438,7 @@ msgid_plural "You have %d new messages:"
 msgstr[0] "Máte %d novou zpávu:"
 msgstr[1] "Máte %d nové zprávy:"
 msgstr[2] "Máte %d nových zpráv:"
+msgstr[3] "Máte %d nových zpráv:"
 
 #: ../panel-plugin/mailwatch-plugin.c:182
 #, c-format
