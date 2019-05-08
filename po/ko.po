@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Seong-ho Cho <darkcircle.0426@gmail.com>, 2013-2015
-# Sungjin Kang <potopro@gmail.com>, 2013
+# Thomas Sungjin Kang <potopro@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
