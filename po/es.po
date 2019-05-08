@@ -5,7 +5,7 @@
 # Translators:
 # Abel Martín <abel.martin.ruiz@gmail.com>, 2008
 # Adolfo Jayme Barrientos, 2014
-# Adolfo Jayme Barrientos, 2014
+# Fito JB, 2014
 # gabrieltandil <gabriel.tandil@gmail.com>, 2015
 # gabrieltandil <gabriel.tandil@gmail.com>, 2015
 # Manolo Díaz <diaz.manolo@gmail.com>, 2015
