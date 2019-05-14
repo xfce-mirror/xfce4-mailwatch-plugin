@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2019-05-10 11:27+0000\n"
+"PO-Revision-Date: 2019-05-14 10:46+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic (http://www.transifex.com/xfce/xfce-panel-plugins/language/is/)\n"
 "MIME-Version: 1.0\n"
@@ -230,7 +230,7 @@ msgstr "_Tíðni:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:450
 msgid "Local Maildir Spool"
-msgstr ""
+msgstr "Staðvært Maildir-pósthólf á tölvunni"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:451
 msgid ""
@@ -248,7 +248,7 @@ msgstr "Veldu mbox skrá"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
 msgid "Local Mbox spool"
-msgstr ""
+msgstr "Staðvært Mbox-pósthólf á tölvunni"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
@@ -267,7 +267,7 @@ msgstr ""
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:683
 msgid "Local MH mail folder"
-msgstr ""
+msgstr "Staðvær MH-póstmappa á tölvunni"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:684
 msgid "MH plugin watches local MH folders for new mail"
