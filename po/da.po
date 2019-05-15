@@ -9,13 +9,13 @@
 # Lars Jensen <lars@jink.dk>, 2008
 # Morten Juhl-Johansen Zölde-Fejér <morten@writtenandread.net>, 2016
 # scootergrisen, 2017
-# scootergrisen, 2017
+# scootergrisen, 2017,2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2017-11-27 21:37+0000\n"
+"PO-Revision-Date: 2019-05-15 18:01+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-panel-plugins/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -410,7 +410,7 @@ msgstr "Vælg postkassetype"
 
 #: ../libmailwatch-core/mailwatch.c:781
 msgid "Select a mailbox type.  A description of the type will appear below."
-msgstr "Vælg en postkassetype. En beskrivelse af typen vil fremkomme herunder."
+msgstr "Vælg en postkassetype. En beskrivelse af typen vises herunder."
 
 #: ../libmailwatch-core/mailwatch.c:835
 msgid "Add New Mailbox"
@@ -455,7 +455,7 @@ msgstr "Xfce postovervågning"
 
 #: ../panel-plugin/mailwatch-plugin.c:470
 msgid "The mailwatch applet cannot be added to the panel."
-msgstr "Postovervågning-panelprogrammet kan ikke tilføjes panelet."
+msgstr "Postovervågning-appletten kan ikke tilføjes panelet."
 
 #: ../panel-plugin/mailwatch-plugin.c:471
 msgid ""
@@ -489,11 +489,11 @@ msgstr "N_y post"
 
 #: ../panel-plugin/mailwatch-plugin.c:927
 msgid "Failed to open web browser for online documentation"
-msgstr "Kunne ikke åbne webbrowser til visning af online-dokumentation"
+msgstr "Kunne ikke åbne webbrowser til visning af onlinedokumentation"
 
 #: ../panel-plugin/mailwatch-plugin.c:975
 msgid "Online Documentation"
-msgstr "Online-dokumentation"
+msgstr "Onlinedokumentation"
 
 #: ../panel-plugin/mailwatch-plugin.c:977
 msgid "Do you want to read the manual online?"
@@ -503,7 +503,7 @@ msgstr "Vil du læse manualen online?"
 msgid ""
 "You will be redirected to the documentation website where the help pages are"
 " maintained."
-msgstr "Du vil blive viderestillet til dokumentations-webstedet, hvor hjælpesiderne bliver vedligeholdt."
+msgstr "Du viderestilles til dokumentationswebstedet, hvor hjælpesiderne vedligeholdes."
 
 #: ../panel-plugin/mailwatch-plugin.c:982
 msgid "_Read Online"
@@ -511,7 +511,7 @@ msgstr "_Læs online"
 
 #: ../panel-plugin/mailwatch-plugin.c:993
 msgid "_Always go directly to the online documentation"
-msgstr "Gå _altid direkte til online-dokumentationen"
+msgstr "Gå _altid direkte til onlinedokumentationen"
 
 #: ../panel-plugin/mailwatch-plugin.c:1032
 #: ../panel-plugin/mailwatch.desktop.in.h:1
