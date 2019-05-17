@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2019-05-15 23:25+0000\n"
+"PO-Revision-Date: 2019-05-17 11:50+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-panel-plugins/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -117,7 +117,7 @@ msgstr "Kunne ikke hente mappeliste"
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1289
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1499
 msgid "Please wait..."
-msgstr "Vent venligst..."
+msgstr "Vent venligst ..."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1396
 msgid "Error"
@@ -189,11 +189,11 @@ msgstr "_Postserver:"
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1764
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:904
 msgid "_Advanced..."
-msgstr "_Avanceret..."
+msgstr "_Avanceret ..."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1771
 msgid "New mail _folders..."
-msgstr "Nye post_mapper..."
+msgstr "Nye post_mapper ..."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1960
 msgid "Remote IMAP Mailbox"
@@ -520,7 +520,7 @@ msgstr "Postovervåger"
 
 #: ../panel-plugin/mailwatch-plugin.c:1050
 msgid "_View Log..."
-msgstr "_Vis log..."
+msgstr "_Vis log ..."
 
 #: ../panel-plugin/mailwatch-plugin.c:1074
 msgid "External Programs"
