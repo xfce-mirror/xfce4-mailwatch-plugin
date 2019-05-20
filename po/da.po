@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2019-05-17 11:50+0000\n"
+"PO-Revision-Date: 2019-05-20 12:19+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-panel-plugins/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -244,19 +244,19 @@ msgstr "Postmappe-pluginet kan holde øje med nye meddelelser for en lokal mailk
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Mbox _Filename:"
-msgstr "Postboks_filnavn:"
+msgstr "Filnavn for mbox:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:377
 msgid "Select mbox file"
-msgstr "Vælg postboks"
+msgstr "Vælg mbox-fil"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
 msgid "Local Mbox spool"
-msgstr "Lokal kø for postboks"
+msgstr "Lokal kø for mbox"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr "Postboks-plugin holder øje med nye meddelelser for en lokal postkø af postboks-typen."
+msgstr "Mbox-plugin holder øje med nye meddelelser for en lokal postkø af mbox-typen."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
@@ -385,7 +385,7 @@ msgstr "Denne postkassetype kræver ikke nogen konfigurationsindstillinger."
 
 #: ../libmailwatch-core/mailwatch.c:651
 msgid "Mailbox _Name:"
-msgstr "Postkasse_navn:"
+msgstr "_Navn på postkasse:"
 
 #: ../libmailwatch-core/mailwatch.c:669
 msgid "Mailwatch"
@@ -393,7 +393,7 @@ msgstr "Postovervågning"
 
 #: ../libmailwatch-core/mailwatch.c:670
 msgid "Mailbox name required."
-msgstr "Postkassenavn påkrævet."
+msgstr "Navn på postkasse er påkrævet."
 
 #: ../libmailwatch-core/mailwatch.c:671
 msgid "Please enter a name for the mailbox."
@@ -447,7 +447,7 @@ msgstr[1] "Du har %d nye meddelelser:"
 #: ../panel-plugin/mailwatch-plugin.c:182
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "fortæller hvor mange nye meddelelser der er i hver postboks|    %d i %s"
+msgstr "fortæller hvor mange nye meddelelser der er i hver postkasse|    %d i %s"
 
 #: ../panel-plugin/mailwatch-plugin.c:469
 msgid "Xfce Mailwatch"
