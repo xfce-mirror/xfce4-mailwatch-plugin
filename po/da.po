@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2019-05-20 12:19+0000\n"
+"PO-Revision-Date: 2019-05-21 20:15+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-panel-plugins/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -410,7 +410,7 @@ msgstr "Vælg postkassetype"
 
 #: ../libmailwatch-core/mailwatch.c:781
 msgid "Select a mailbox type.  A description of the type will appear below."
-msgstr "Vælg en postkassetype. En beskrivelse af typen vises herunder."
+msgstr "Vælg en postkassetype. En beskrivelse af typen vises nedenfor."
 
 #: ../libmailwatch-core/mailwatch.c:835
 msgid "Add New Mailbox"
