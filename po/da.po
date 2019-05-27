@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2019-05-26 16:01+0000\n"
+"PO-Revision-Date: 2019-05-27 11:46+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-panel-plugins/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -451,7 +451,7 @@ msgstr "fortæller hvor mange nye meddelelser der er i hver postkasse|    %d i %
 
 #: ../panel-plugin/mailwatch-plugin.c:469
 msgid "Xfce Mailwatch"
-msgstr "Xfce-postovervågning"
+msgstr "Xfce postovervågning"
 
 #: ../panel-plugin/mailwatch-plugin.c:470
 msgid "The mailwatch applet cannot be added to the panel."
