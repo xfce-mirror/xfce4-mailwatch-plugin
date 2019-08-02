@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Daniel Muñiz Fontoira <dani@damufo.com>, 2018
+# Daniel Muñiz Fontoira <dani@damufo.com>, 2018-2019
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2008-2009
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2018-08-03 12:07+0000\n"
+"PO-Revision-Date: 2019-08-02 08:54+0000\n"
 "Last-Translator: Daniel Muñiz Fontoira <dani@damufo.com>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/xfce-panel-plugins/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -91,7 +91,7 @@ msgstr "O engadido de GMail pode conectarse ó servizo de correo de Google e rec
 msgid ""
 "Secure IMAP is not available, and the IMAP server does not support plaintext"
 " logins."
-msgstr "Non está dispoñible IMAP seguro, e o servidor IMAP non soporta conexións en texto plano."
+msgstr "Non está dispoñible IMAP seguro, e o servidor IMAP non admite conexións en texto simple."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:337
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:370
@@ -103,7 +103,7 @@ msgstr "Produciuse un erro na autenticación. Quizais o nome de usuario ou o con
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:433
 msgid "STARTTLS security was requested, but this server does not support it."
-msgstr "Solicitouse seguridade STARTTLS, pero este servidor non a soporta."
+msgstr "Solicitouse seguridade STARTTLS, pero este servidor non a admite."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1144
 msgid "Failed to get folder list"
@@ -198,7 +198,7 @@ msgstr "Caixa de correo IMAP remota"
 msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
-msgstr "O engadido de IMAP pódese conectar a un servidor de correo remoto que soporte o protocolo IMAP, usando ademais SSL para a protección da conexión."
+msgstr "O engadido de IMAP pode conectarse a un servidor de correo remoto que admita o protocolo IMAP, usando ademais SSL para a protección da conexión."
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:93
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:95
@@ -235,7 +235,7 @@ msgstr "Spool Maildir local"
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
-msgstr "O engadido de Maildir pode buscar novas mensaxes nunha cola de correo local de estilo maildir."
+msgstr "O engadido de Maildir pode fai seguimento de novas mensaxes nunha cola de correo local de estilo maildir"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Mbox _Filename:"
@@ -251,7 +251,7 @@ msgstr "Spool Mbox local"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr "O engadido de Mbox busca novas mensaxes nunha cola de correo local de tipo mbox."
+msgstr "O engadido de Mbox fai seguimento de novas mensaxes nunha cola de correo local de tipo mbox."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
@@ -270,7 +270,7 @@ msgstr "Cartafol de correo MH local"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:684
 msgid "MH plugin watches local MH folders for new mail"
-msgstr "O engadido MH explora cartafoles MH locais en busca de novo correo"
+msgstr "O engadido MH fai seguimento en cartafoles MH locais en busca de novo correo"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:746
 msgid "Advanced POP3 Options"
@@ -296,7 +296,7 @@ msgstr "Caixa de correo POP3 remota"
 msgid ""
 "The POP3 plugin can connect to a remote mail server that supports the POP3 "
 "protocol, optionally using SSL for link protection."
-msgstr "O engadido de POP3 pódese conectar a un servidor de correo remoto que soporte o protocolo POP3, usando ademais SSL para a protección da conexión."
+msgstr "O engadido de POP3 pode conectarse a un servidor de correo remoto que admita o protocolo POP3, usando ademais SSL para a protección da conexión."
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:222
 #: ../libmailwatch-core/mailwatch-net-conn.c:267
@@ -323,7 +323,7 @@ msgstr "Produciuse un erro ó conectar co servidor \"%s\": %s"
 #: ../libmailwatch-core/mailwatch-net-conn.c:642
 #, c-format
 msgid "Not compiled with SSL/TLS support"
-msgstr "Non compilado con soporte para SSL/TLS"
+msgstr "Non compilado con compatibilidade para SSL/TLS"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:698
 #, c-format
@@ -359,7 +359,7 @@ msgstr "O búfer non é o suficientemente grande como para acoller unha liña co
 msgid ""
 "xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is "
 "likely a problem with your GLib install."
-msgstr "xfce4-mailwatch-plugin: Non foi posible iniciar o soporte de GThread.  Isto probablemente é un problema ca instalación de GLib."
+msgstr "xfce4-mailwatch-plugin: Non se puido inicializar a compatibilidade de GThread.\nÉ probábel que sexa un problema coa instalación de GLib."
 
 #: ../libmailwatch-core/mailwatch.c:337 ../libmailwatch-core/mailwatch.c:338
 #, c-format
@@ -384,7 +384,7 @@ msgstr "_Nome da caixa de correo:"
 
 #: ../libmailwatch-core/mailwatch.c:669
 msgid "Mailwatch"
-msgstr "Comprobación de correo"
+msgstr "Avisador de correo"
 
 #: ../libmailwatch-core/mailwatch.c:670
 msgid "Mailbox name required."
@@ -446,20 +446,20 @@ msgstr "    %d en %s"
 
 #: ../panel-plugin/mailwatch-plugin.c:469
 msgid "Xfce Mailwatch"
-msgstr "Comprobación de correo de Xfce"
+msgstr "Avisador de correo do Xfce"
 
 #: ../panel-plugin/mailwatch-plugin.c:470
 msgid "The mailwatch applet cannot be added to the panel."
-msgstr "Non se puido engadir o engadido de comprobación de correo ao panel."
+msgstr "Non se puido engadir o miniaplicativo «Avisador de correo» ao panel."
 
 #: ../panel-plugin/mailwatch-plugin.c:471
 msgid ""
 "It is possible that your version of GLib does not have threads support."
-msgstr "É posible que a súa versión de GLib non soporte os fíos."
+msgstr "É posíbel que a súa versión de GLib non admita fíos."
 
 #: ../panel-plugin/mailwatch-plugin.c:706
 msgid "Mailwatch log"
-msgstr "Rexistro de Mailwatch"
+msgstr "Rexistro do avisador de correo"
 
 #: ../panel-plugin/mailwatch-plugin.c:764
 msgid "Log _lines:"
@@ -511,7 +511,7 @@ msgstr "_Ir sempre directo á documentación en liña"
 #: ../panel-plugin/mailwatch-plugin.c:1032
 #: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
-msgstr "Comprobador de correo"
+msgstr "Avisador de correo"
 
 #: ../panel-plugin/mailwatch-plugin.c:1050
 msgid "_View Log..."
@@ -545,11 +545,11 @@ msgstr "No_vas mensaxes"
 
 #: ../panel-plugin/mailwatch-plugin.c:1226
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "Engadido de comprobación de correo de Xfce4"
+msgstr "Engadido Avisador de correo de Xfce4"
 
 #: ../panel-plugin/mailwatch-plugin.c:1229
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr "Unha miniaplicación de comprobación de novas mensaxes con moitas funcionalidades para o panel de Xfce"
+msgstr "Un miniaplicativo que fai seguimento de novas mensaxes con moitas funcionalidades para o panel de Xfce"
 
 #: ../panel-plugin/mailwatch-plugin.c:1231
 msgid ""
