@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2019-08-15 09:33+0000\n"
+"PO-Revision-Date: 2019-08-21 14:36+0000\n"
 "Last-Translator: Daniel Muñiz Fontoira <dani@damufo.com>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/xfce-panel-plugins/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -450,7 +450,7 @@ msgstr "Avisador de correo do Xfce"
 
 #: ../panel-plugin/mailwatch-plugin.c:470
 msgid "The mailwatch applet cannot be added to the panel."
-msgstr "Non se puido engadir o miniaplicativo «Avisador de correo» ao panel."
+msgstr "Non se puido engadir a miniaplicación «Avisador de correo» ao panel."
 
 #: ../panel-plugin/mailwatch-plugin.c:471
 msgid ""
@@ -467,7 +467,7 @@ msgstr "_Liñas de rexistro:"
 
 #: ../panel-plugin/mailwatch-plugin.c:778
 msgid "Show log _status in icon"
-msgstr "Mostrar o _estado do rexistro na icona"
+msgstr "Amosar o _estado do rexistro na icona"
 
 #: ../panel-plugin/mailwatch-plugin.c:841
 msgid "Select Icon"
@@ -549,7 +549,7 @@ msgstr "Engadido Avisador de correo de Xfce4"
 
 #: ../panel-plugin/mailwatch-plugin.c:1229
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr "Un miniaplicativo que fai seguimento de novas mensaxes con moitas funcionalidades para o panel de Xfce"
+msgstr "Unha miniaplicación que fai seguimento de novas mensaxes de correo electrónico con moitas funcionalidades para o panel do Xfce"
 
 #: ../panel-plugin/mailwatch-plugin.c:1231
 msgid ""
