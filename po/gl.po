@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2019-08-21 14:36+0000\n"
+"PO-Revision-Date: 2019-08-30 08:36+0000\n"
 "Last-Translator: Daniel Muñiz Fontoira <dani@damufo.com>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/xfce-panel-plugins/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -211,7 +211,7 @@ msgstr "Non se puido obter o estado do ficheiro %s: %s"
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:102
 #, c-format
 msgid "%s is not a directory. Is %s really a valid maildir?"
-msgstr "%s non é un directorio. É %s un maildir válido?"
+msgstr "%s non é un directorio. É %s realmente un cartafol de correo correcto?"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:335
 msgid "Maildir _Path:"
