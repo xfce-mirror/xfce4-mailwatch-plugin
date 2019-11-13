@@ -31,12 +31,12 @@ cleartext passwords across unsecured networks is not recommended. This plugin
 should work with any Xfce version from 4.8.0 onwards.
 
 See the Mailwatch website for more information and the latest release:
-http://goodies.xfce.org/projects/panel-plugins/xfce4-mailwatch-plugin
+https://docs.xfce.org/panel-plugins/xfce4-mailwatch-plugin
 
 Please use the Xfce general discussion list if you have problems:
 https://mail.xfce.org/mailman/listinfo/xfce
-Development discussion (if any) takes place on the goodies-dev list:
-https://mail.xfce.org/mailman/listinfo/goodies-dev
+Development discussion (if any) takes place on the xfce-dev list:
+https://mail.xfce.org/mailman/listinfo/xfce-dev
 
 The Xfce4 Mailwatch Plugin was written by Brian Tarricone, Pasi Orovuo
 and Ján Sučan.
