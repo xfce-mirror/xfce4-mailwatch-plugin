@@ -341,12 +341,7 @@ mbox_interval_changed_cb( GtkWidget *spinner, XfceMailwatchMboxMailbox *mbox ) {
     if( val == mbox->interval )
         return;
 
-    if( g_atomic_int_get( &mbox->running ) ) {
-        /* probably shouldn't do this so frequently */
-        if( mbox->check_id )
-            g_source_remove( mbox->check_id );
-        mbox->check_id = g_timeout_add( mbox->interval * 1000, mbox_check_mail_timeout, mbox );
-    }
+    g_assert( !g_atomic_int_get( &mbox->running ) );
     mbox->interval = val;
 }
     

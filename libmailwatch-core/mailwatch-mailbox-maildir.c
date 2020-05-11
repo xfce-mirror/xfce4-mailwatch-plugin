@@ -300,13 +300,7 @@ maildir_interval_changed_cb( GtkWidget *spinner, XfceMailwatchMaildirMailbox *ma
 
     maildir->interval = value;
 
-    if( g_atomic_int_get( &maildir->running ) ) {
-        if( maildir->check_id )
-            g_source_remove( maildir->check_id );
-        maildir->check_id = g_timeout_add( maildir->interval * 1000,
-                                           maildir_check_mail_timeout,
-                                           maildir );
-    }
+    g_assert( !g_atomic_int_get( &maildir->running ) );
 
     DBG( "<<--" );
 }
