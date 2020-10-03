@@ -6,3 +6,4 @@ _Comment=Check mail from multiple mailboxes
 Icon=xfce-mail
 X-XFCE-Module=mailwatch
 X-XFCE-Internal=false
+X-XFCE-API=2.0
