@@ -20,7 +20,7 @@
 #define __MAILWATCH_MAILBOX_H__
 
 #include <glib.h>
-#include <gtk/gtkcontainer.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
