@@ -10,12 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
 "PO-Revision-Date: 2017-09-23 19:02+0000\n"
 "Last-Translator: Xfce Bot <transifex@xfce.org>\n"
-"Language-Team: Uighur (http://www.transifex.com/xfce/xfce-panel-plugins/language/ug/)\n"
+"Language-Team: Uyghur (http://www.transifex.com/xfce/xfce-panel-plugins/language/ug/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ug\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:204
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:399
@@ -434,7 +434,8 @@ msgstr "يېڭى ئېلخەت يوق"
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
-msgstr[0] "%d پارچە يېڭى ئېلخەت بار:"
+msgstr[0] ""
+msgstr[1] "%d پارچە يېڭى ئېلخەت بار:"
 
 #: ../panel-plugin/mailwatch-plugin.c:182
 #, c-format
