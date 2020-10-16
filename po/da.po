@@ -9,13 +9,13 @@
 # Lars Jensen <lars@jink.dk>, 2008
 # Morten Juhl-Johansen Zölde-Fejér <morten@writtenandread.net>, 2016
 # scootergrisen, 2017
-# scootergrisen, 2017,2019
+# scootergrisen, 2017,2019-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-05 18:31+0200\n"
-"PO-Revision-Date: 2019-06-17 21:59+0000\n"
+"PO-Revision-Date: 2020-08-03 16:44+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-panel-plugins/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -507,11 +507,11 @@ msgstr "Du viderestilles til dokumentationswebstedet, hvor hjælpesiderne vedlig
 
 #: ../panel-plugin/mailwatch-plugin.c:982
 msgid "_Read Online"
-msgstr "_Læs online"
+msgstr "Læs _online"
 
 #: ../panel-plugin/mailwatch-plugin.c:993
 msgid "_Always go directly to the online documentation"
-msgstr "Gå _altid direkte til onlinedokumentationen"
+msgstr "Gå altid _direkte til onlinedokumentationen"
 
 #: ../panel-plugin/mailwatch-plugin.c:1032
 #: ../panel-plugin/mailwatch.desktop.in.h:1
