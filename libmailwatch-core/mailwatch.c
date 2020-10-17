@@ -49,6 +49,14 @@
 
 #define BORDER          8
 
+#if GLIB_CHECK_VERSION (2, 32, 0)
+#define _mailwatch_lock(mailwatch)   g_mutex_lock(&((mailwatch)->mailboxes_mx))
+#define _mailwatch_unlock(mailwatch) g_mutex_unlock(&((mailwatch)->mailboxes_mx))
+#else
+#define _mailwatch_lock(mailwatch)   g_mutex_lock((mailwatch)->mailboxes_mx)
+#define _mailwatch_unlock(mailwatch) g_mutex_unlock((mailwatch)->mailboxes_mx)
+#endif
+
 typedef struct
 {
     XfceMailwatchMailbox *mailbox;
@@ -63,7 +71,11 @@ struct _XfceMailwatch
     GList *mailbox_types;  /* XfceMailwatchMailboxType * */
     GList *mailboxes;      /* XfceMailwatchMailboxData * */
     
+#if GLIB_CHECK_VERSION (2, 32, 0)
+    GMutex mailboxes_mx;
+#else
     GMutex *mailboxes_mx;
+#endif
     
     GList *xm_callbacks[XFCE_MAILWATCH_NUM_SIGNALS];
     GList *xm_data[XFCE_MAILWATCH_NUM_SIGNALS];
@@ -116,6 +128,7 @@ xfce_mailwatch_new(void)
     
     xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
+#if !GLIB_CHECK_VERSION (2, 32, 0)
     if(!g_thread_supported()) {
         g_thread_init(NULL);
         if(!g_thread_supported()) {
@@ -123,10 +136,15 @@ xfce_mailwatch_new(void)
             return NULL;
         }
     }
+#endif
     
     mailwatch = g_new0(XfceMailwatch, 1);
     mailwatch->mailbox_types = mailwatch_load_mailbox_types();
+#if GLIB_CHECK_VERSION (2, 32, 0)
+    g_mutex_init(&mailwatch->mailboxes_mx);
+#else
     mailwatch->mailboxes_mx = g_mutex_new();
+#endif
     
     return mailwatch;
 }
@@ -139,7 +157,7 @@ xfce_mailwatch_destroy(XfceMailwatch *mailwatch)
     g_return_if_fail(mailwatch);
     
     /* lock it, bitch! */
-    g_mutex_lock(mailwatch->mailboxes_mx);
+    _mailwatch_lock(mailwatch);
     
     /* just clear out the mailbox list.  we have to call free_mailbox_func for
      * each mailbox outside the mailboxes_mx lock so we don't cause deadlocks */
@@ -147,7 +165,7 @@ xfce_mailwatch_destroy(XfceMailwatch *mailwatch)
     mailwatch->mailboxes = NULL;
     
     /* we are SO done. */
-    g_mutex_unlock(mailwatch->mailboxes_mx);
+    _mailwatch_unlock(mailwatch);
     
     for(l = stuff_to_free; l; l = l->next) {
         XfceMailwatchMailboxData *mdata = l->data;
@@ -160,7 +178,11 @@ xfce_mailwatch_destroy(XfceMailwatch *mailwatch)
         g_list_free(stuff_to_free);
     
     /* really.  SO SO done. */
+#if GLIB_CHECK_VERSION (2, 32, 0)
+    g_mutex_clear(&mailwatch->mailboxes_mx);
+#else
     g_mutex_free(mailwatch->mailboxes_mx);
+#endif
     
     g_list_free(mailwatch->mailbox_types);
     g_free(mailwatch->config_file);
@@ -177,7 +199,7 @@ xfce_mailwatch_set_config_file(XfceMailwatch *mailwatch, const gchar *filename)
     mailwatch->config_file = g_strdup(filename);
 }
 
-G_CONST_RETURN gchar *
+const gchar *
 xfce_mailwatch_get_config_file(XfceMailwatch *mailwatch)
 {
     g_return_val_if_fail(mailwatch, NULL);
@@ -220,7 +242,7 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch)
     
     /* lock mutex - doesn't matter yet, but once we start creating mailboxes,
      * it will. */
-    g_mutex_lock(mailwatch->mailboxes_mx);
+    _mailwatch_lock(mailwatch);
     
     for(i = 0; i < nmailboxes; i++) {
         const gchar *mailbox_id, *mailbox_name;
@@ -300,7 +322,7 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch)
     }
     
     /* we're done, unlock mutex */
-    g_mutex_unlock(mailwatch->mailboxes_mx);
+    _mailwatch_unlock(mailwatch);
     
     xfce_rc_close(rcfile);
     
@@ -419,7 +441,7 @@ xfce_mailwatch_get_new_messages(XfceMailwatch *mailwatch)
     
     /* we don't want to be trying to access the mailbox list while they might
      * be in the process of being destroyed. */
-    g_mutex_lock(mailwatch->mailboxes_mx);
+    _mailwatch_lock(mailwatch);
     
     for(l = mailwatch->mailboxes; l; l = l->next) {
         XfceMailwatchMailboxData *mdata = l->data;
@@ -427,7 +449,7 @@ xfce_mailwatch_get_new_messages(XfceMailwatch *mailwatch)
     }
     
     /* and we're done, unlock */
-    g_mutex_unlock(mailwatch->mailboxes_mx);
+    _mailwatch_unlock(mailwatch);
     
     return num_new_messages;
 }
@@ -446,7 +468,7 @@ xfce_mailwatch_get_new_message_breakdown(XfceMailwatch *mailwatch,
     g_return_if_fail(mailbox_names && new_message_counts);
     
     /* fire! */
-    g_mutex_lock(mailwatch->mailboxes_mx);
+    _mailwatch_lock(mailwatch);
     
     *mailbox_names = g_new0(gchar *, g_list_length(mailwatch->mailboxes)+1);
     *new_message_counts = g_new0(guint, g_list_length(mailwatch->mailboxes)+1);
@@ -459,7 +481,7 @@ xfce_mailwatch_get_new_message_breakdown(XfceMailwatch *mailwatch,
     }
     
     /* direct hit, captain */
-    g_mutex_unlock(mailwatch->mailboxes_mx);
+    _mailwatch_unlock(mailwatch);
 }
 
 void
@@ -468,7 +490,7 @@ xfce_mailwatch_force_update(XfceMailwatch *mailwatch)
     GList *l;
     
     /* CLEAR! */
-    g_mutex_lock(mailwatch->mailboxes_mx);
+    _mailwatch_lock(mailwatch);
     
     for(l = mailwatch->mailboxes; l; l = l->next) {
         XfceMailwatchMailboxData *mdata = l->data;
@@ -476,7 +498,7 @@ xfce_mailwatch_force_update(XfceMailwatch *mailwatch)
     }
     
     /* mmm, ten thousand volts */
-    g_mutex_unlock(mailwatch->mailboxes_mx);
+    _mailwatch_unlock(mailwatch);
 }
 
 static gboolean
@@ -512,7 +534,7 @@ xfce_mailwatch_signal_new_messages(XfceMailwatch *mailwatch,
     
     /* we don't want to be trying to access the mailbox list while they might
      * be in the process of being destroyed. */
-    g_mutex_lock(mailwatch->mailboxes_mx);
+    _mailwatch_lock(mailwatch);
     
     for(l = mailwatch->mailboxes; l; l = l->next) {
         XfceMailwatchMailboxData *mdata = l->data;
@@ -527,7 +549,7 @@ xfce_mailwatch_signal_new_messages(XfceMailwatch *mailwatch,
     }
     
     /* and we're done, unlock */
-    g_mutex_unlock(mailwatch->mailboxes_mx);
+    _mailwatch_unlock(mailwatch);
     
     if(do_signal)
         g_idle_add(mailwatch_signal_new_messages_idled, mailwatch);
@@ -586,7 +608,7 @@ xfce_mailwatch_log_message(XfceMailwatch *mailwatch,
     
     if(mailbox) {
         /* locked on, captain */
-        g_mutex_lock(mailwatch->mailboxes_mx);
+        _mailwatch_lock(mailwatch);
         
         for(l = mailwatch->mailboxes; l; l = l->next) {
             XfceMailwatchMailboxData *mdata = l->data;
@@ -598,7 +620,7 @@ xfce_mailwatch_log_message(XfceMailwatch *mailwatch,
         }
         
         /* and we're done, unlock */
-        g_mutex_unlock(mailwatch->mailboxes_mx);
+        _mailwatch_unlock(mailwatch);
     }
 
     g_idle_add( xfce_mailwatch_signal_log_message, entry );
@@ -618,7 +640,7 @@ config_run_addedit_window(const gchar *title, GtkWindow *parent,
     cfg_box = mailbox->type->get_setup_page_func(mailbox);
     if(!cfg_box) {
         /* Even the mailboxes that don't have configurable settings need a name */
-        cfg_box = GTK_CONTAINER(gtk_hbox_new(FALSE, BORDER/2));
+        cfg_box = GTK_CONTAINER(gtk_box_new(GTK_ORIENTATION_HORIZONTAL, BORDER/2));
         gtk_widget_show(GTK_WIDGET(cfg_box));
         
         lbl = gtk_label_new(_("This mailbox type does not require any configuration settings."));
@@ -629,22 +651,26 @@ config_run_addedit_window(const gchar *title, GtkWindow *parent,
     if(!mailbox_name) {
         /* add window */
         dlg = gtk_dialog_new_with_buttons(title, parent,
-                GTK_DIALOG_MODAL, GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                GTK_STOCK_OK, GTK_RESPONSE_ACCEPT, NULL);
+                                          GTK_DIALOG_DESTROY_WITH_PARENT,
+                                          _("_Cancel"), GTK_RESPONSE_CANCEL,
+                                          _("_OK"), GTK_RESPONSE_ACCEPT,
+                                          NULL);
     } else {
         /* edit window */
         dlg = gtk_dialog_new_with_buttons(title, parent,
-                GTK_DIALOG_MODAL, GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT,
+                                          GTK_DIALOG_DESTROY_WITH_PARENT,
+                                          _("_Close"), GTK_RESPONSE_ACCEPT,
                 NULL);
     }
     gtk_dialog_set_default_response(GTK_DIALOG(dlg), GTK_RESPONSE_ACCEPT);
     
-    topvbox = gtk_vbox_new(FALSE, BORDER/2);
+    topvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, BORDER/2);
     gtk_container_set_border_width(GTK_CONTAINER(topvbox), BORDER);
     gtk_widget_show(topvbox);
-    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dlg))), topvbox, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dlg))),
+                       topvbox, TRUE, TRUE, 0);
     
-    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, BORDER/2);
     gtk_widget_show(hbox);
     gtk_box_pack_start(GTK_BOX(topvbox), hbox, FALSE, FALSE, 0);
     
@@ -667,9 +693,10 @@ config_run_addedit_window(const gchar *title, GtkWindow *parent,
             *new_mailbox_name = gtk_editable_get_chars(GTK_EDITABLE(entry), 0, -1);
             if(!*new_mailbox_name || !**new_mailbox_name) {
                 xfce_message_dialog(GTK_WINDOW(dlg), _("Mailwatch"),
-                        GTK_STOCK_DIALOG_ERROR, _("Mailbox name required."),
+                                    "dialog-error", _("Mailbox name required."),
                         _("Please enter a name for the mailbox."),
-                        GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
+                                    _("_Close"), GTK_RESPONSE_ACCEPT,
+                                    NULL);
                 if(*new_mailbox_name) {
                     g_free(*new_mailbox_name);
                     *new_mailbox_name = NULL;
@@ -747,7 +774,6 @@ config_ask_combo_changed_cb(GtkComboBox *cb, gpointer user_data)
     XfceMailwatch *mailwatch = user_data;
     gint active_index = gtk_combo_box_get_active(cb);
     XfceMailwatchMailboxType *mbox_type;
-    GtkRequisition req;
     
     if(active_index >= (gint)g_list_length(mailwatch->mailbox_types))
         return;
@@ -756,8 +782,6 @@ config_ask_combo_changed_cb(GtkComboBox *cb, gpointer user_data)
     
     gtk_label_set_text(GTK_LABEL(mailwatch->mbox_types_lbl),
             _(mbox_type->description));
-    gtk_widget_set_size_request(mailwatch->mbox_types_lbl, -1, -1);
-    gtk_widget_size_request(mailwatch->mbox_types_lbl, &req);
 }
     
 
@@ -769,18 +793,21 @@ config_ask_new_mailbox_type(XfceMailwatch *mailwatch, GtkWindow *parent)
     GList *l;
     
     dlg = gtk_dialog_new_with_buttons(_("Select Mailbox Type"), parent,
-            GTK_DIALOG_MODAL, GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-            GTK_STOCK_OK, GTK_RESPONSE_ACCEPT, NULL);
+                                      GTK_DIALOG_DESTROY_WITH_PARENT,
+                                      _("_Cancel"), GTK_RESPONSE_CANCEL,
+                                      _("_OK"), GTK_RESPONSE_ACCEPT,
+                                      NULL);
     gtk_dialog_set_default_response(GTK_DIALOG(dlg), GTK_RESPONSE_ACCEPT);
+    gtk_window_set_default_size(GTK_WINDOW(dlg), 0, -1 );
     
-    topvbox = gtk_vbox_new(FALSE, BORDER/2);
+    topvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, BORDER/2);
     gtk_container_set_border_width(GTK_CONTAINER(topvbox), BORDER);
     gtk_widget_show(topvbox);
-    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dlg))), topvbox, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dlg))),
+                       topvbox, TRUE, TRUE, 0);
     
     lbl = gtk_label_new(_("Select a mailbox type.  A description of the type will appear below."));
-    gtk_label_set_line_wrap(GTK_LABEL(lbl), TRUE);
-    gtk_misc_set_alignment(GTK_MISC(lbl), 0.0, 0.5);
+    gtk_label_set_xalign(GTK_LABEL(lbl), 0.0);
     gtk_widget_show(lbl);
     gtk_box_pack_start(GTK_BOX(topvbox), lbl, FALSE, FALSE, 0);
     
@@ -801,7 +828,7 @@ config_ask_new_mailbox_type(XfceMailwatch *mailwatch, GtkWindow *parent)
     } else
         mailwatch->mbox_types_lbl = lbl = gtk_label_new("");
     gtk_label_set_line_wrap(GTK_LABEL(lbl), TRUE);
-    gtk_misc_set_alignment(GTK_MISC(lbl), 0.5, 0.0);
+    gtk_label_set_yalign(GTK_LABEL(lbl), 0.0);
     gtk_widget_show(lbl);
     gtk_box_pack_start(GTK_BOX(topvbox), lbl, TRUE, TRUE, 0);
     
@@ -840,7 +867,7 @@ config_add_btn_clicked_cb(GtkWidget *w, XfceMailwatch *mailwatch)
         GtkTreeIter itr;
         
         /* to serve and protect */
-        g_mutex_lock(mailwatch->mailboxes_mx);
+        _mailwatch_lock(mailwatch);
         
         mdata->mailbox = new_mailbox;
         mdata->mailbox_name = new_mailbox_name;
@@ -850,7 +877,7 @@ config_add_btn_clicked_cb(GtkWidget *w, XfceMailwatch *mailwatch)
                 mdata, (GCompareFunc)config_compare_mailbox_data);
         
         /* tcetorp dna evres ot */
-        g_mutex_unlock(mailwatch->mailboxes_mx);
+        _mailwatch_unlock(mailwatch);
         
         mailbox_type->set_activated_func(new_mailbox, TRUE);
         
@@ -892,18 +919,20 @@ config_remove_btn_clicked_cb(GtkWidget *w, XfceMailwatch *mailwatch)
     mailbox = mailbox_data->mailbox;
     
     parent = GTK_WINDOW(gtk_widget_get_toplevel(mailwatch->config_treeview));
-    resp = xfce_message_dialog(parent, _("Remove Mailbox"),
-            GTK_STOCK_DIALOG_QUESTION, _("Are you sure?"),
-            _("Removing a mailbox will discard all settings, and cannot be undone."),
-            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, GTK_STOCK_REMOVE,
-            GTK_RESPONSE_ACCEPT, NULL);
+    resp = xfce_message_dialog(parent, _("Remove Mailbox"), "dialog-question",
+                               _("Are you sure?"),
+                               _("Removing a mailbox will discard all settings, "
+                               "and cannot be undone."),
+                               _("Cancel"), GTK_RESPONSE_CANCEL,
+                               _("Remove"), GTK_RESPONSE_ACCEPT,
+                               NULL);
     if(resp != GTK_RESPONSE_ACCEPT)
         return;
     
     gtk_list_store_remove(GTK_LIST_STORE(model), &itr);
     
     /* batter up! */
-    g_mutex_lock(mailwatch->mailboxes_mx);
+    _mailwatch_lock(mailwatch);
     
     for(l = mailwatch->mailboxes; l; l = l->next) {
         XfceMailwatchMailboxData *mdata = l->data;
@@ -917,7 +946,7 @@ config_remove_btn_clicked_cb(GtkWidget *w, XfceMailwatch *mailwatch)
     }
     
     /* you're out! */
-    g_mutex_unlock(mailwatch->mailboxes_mx);
+    _mailwatch_unlock(mailwatch);
     
     mailbox->type->free_mailbox_func(mailbox);
     
@@ -962,7 +991,7 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
     frame = xfce_gtk_frame_box_new(_("Mailboxes"), &frame_bin);
     gtk_widget_show(frame);
     
-    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, BORDER/2);
     gtk_widget_show(hbox);
     gtk_container_add(GTK_CONTAINER(frame_bin), hbox);
     
@@ -975,7 +1004,7 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
     gtk_box_pack_start(GTK_BOX(hbox), sw, TRUE, TRUE, 0);
     
     /* time to make the doughnuts */
-    g_mutex_lock(mailwatch->mailboxes_mx);
+    _mailwatch_lock(mailwatch);
     
     ls = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_POINTER);
     for(l = mailwatch->mailboxes; l; l = l->next) {
@@ -989,7 +1018,7 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
     }
     
     /* yum.  they're done. */
-    g_mutex_unlock(mailwatch->mailboxes_mx);
+    _mailwatch_unlock(mailwatch);
     
     mailwatch->config_treeview = treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(ls));
     gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(treeview), FALSE);
@@ -1009,17 +1038,23 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
     gtk_tree_selection_set_mode(sel, GTK_SELECTION_SINGLE);
     gtk_tree_selection_unselect_all(sel);
     
-    vbox = gtk_vbox_new(FALSE, BORDER/2);
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, BORDER/2);
     gtk_widget_show(vbox);
     gtk_box_pack_start(GTK_BOX(hbox), vbox, FALSE, FALSE, 0);
     
-    btn = gtk_button_new_from_stock(GTK_STOCK_ADD);
+    btn = gtk_button_new_with_mnemonic(_("_Add"));
+    gtk_button_set_image(GTK_BUTTON(btn),
+                         gtk_image_new_from_icon_name("list-add",
+                                                      GTK_ICON_SIZE_BUTTON));
     gtk_widget_show(btn);
     gtk_box_pack_start(GTK_BOX(vbox), btn, FALSE, FALSE, 0);
     g_signal_connect(G_OBJECT(btn), "clicked",
             G_CALLBACK(config_add_btn_clicked_cb), mailwatch);
     
-    btn = gtk_button_new_from_stock(GTK_STOCK_REMOVE);
+    btn = gtk_button_new_with_mnemonic(_("_Remove"));
+    gtk_button_set_image(GTK_BUTTON(btn),
+                         gtk_image_new_from_icon_name("list-remove",
+                                                      GTK_ICON_SIZE_BUTTON));
     gtk_widget_set_sensitive(btn, FALSE);
     gtk_widget_show(btn);
     gtk_box_pack_start(GTK_BOX(vbox), btn, FALSE, FALSE, 0);
@@ -1028,7 +1063,10 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
     g_signal_connect(G_OBJECT(btn), "clicked",
             G_CALLBACK(config_remove_btn_clicked_cb), mailwatch);
 
-    btn = gtk_button_new_from_stock(GTK_STOCK_EDIT);
+    btn = gtk_button_new_with_mnemonic(_("_Edit"));
+    gtk_button_set_image(GTK_BUTTON(btn),
+                         gtk_image_new_from_icon_name("document-edit",
+                                                      GTK_ICON_SIZE_BUTTON));
     gtk_widget_set_sensitive(btn, FALSE);
     gtk_widget_show(btn);
     gtk_box_pack_start(GTK_BOX(vbox), btn, FALSE, FALSE, 0);

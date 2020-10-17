@@ -24,7 +24,11 @@
 
 #include "mailwatch-common.h"
 
+#if GLIB_CHECK_VERSION (2, 32, 0)
+static GMutex big_happy_mailwatch_mx;
+#else
 static GStaticMutex big_happy_mailwatch_mx = G_STATIC_MUTEX_INIT;
+#endif
 
 GQuark
 xfce_mailwatch_get_error_quark(void)
@@ -40,10 +44,18 @@ xfce_mailwatch_get_error_quark(void)
 void
 xfce_mailwatch_threads_enter(void)
 {
+#if GLIB_CHECK_VERSION (2, 32, 0)
+    g_mutex_lock(&big_happy_mailwatch_mx);
+#else
     g_static_mutex_lock(&big_happy_mailwatch_mx);
+#endif
 }
 
 void xfce_mailwatch_threads_leave(void)
 {
+#if GLIB_CHECK_VERSION (2, 32, 0)
+    g_mutex_unlock(&big_happy_mailwatch_mx);
+#else
     g_static_mutex_unlock(&big_happy_mailwatch_mx);
+#endif
 }
