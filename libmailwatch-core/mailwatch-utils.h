@@ -19,8 +19,6 @@
 #ifndef __MAILWATCH_UTILS_H__
 #define __MAILWATCH_UTILS_H__
 
-#include <gtk/gtk.h>
-
 G_BEGIN_DECLS
 
 typedef enum
@@ -29,9 +27,6 @@ typedef enum
     AUTH_SSL_PORT,
     AUTH_STARTTLS
 } XfceMailwatchAuthType;
-
-GtkWidget *xfce_mailwatch_custom_button_new(const gchar *text,
-                                            const gchar *icon);
 
 gchar *xfce_mailwatch_cram_md5(const gchar *username,
                                const gchar *password,
