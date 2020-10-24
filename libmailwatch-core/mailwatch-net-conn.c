@@ -122,6 +122,9 @@ typedef enum
 
 #ifdef HAVE_SSL_SUPPORT
 
+#define GNUTLS_CA_FILE           "ca.pem"
+
+#if GCRYPT_VERSION_NUMBER < 0x010600
 /* missing from 1.2.0? */
 #ifndef _GCRY_PTH_SOCKADDR
 #define _GCRY_PTH_SOCKADDR  struct sockaddr
@@ -130,8 +133,6 @@ typedef enum
 #define _GCRY_PTH_SOCKLEN_T socklen_t
 #endif
 
-#define GNUTLS_CA_FILE           "ca.pem"
-    
 /* stuff to support 'gthreads' with gcrypt */
 static int my_g_mutex_init(void **priv);
 static int my_g_mutex_destroy(void **priv);
@@ -194,6 +195,7 @@ my_g_mutex_unlock(void **priv)
     g_mutex_unlock(*gmx);
     return 0;
 }
+#endif
 
 #endif  /* defined(HAVE_SSL_SUPPORT) */
 
@@ -364,7 +366,9 @@ xfce_mailwatch_net_conn_init(void)
 
     if(!__inited) {
 #ifdef HAVE_SSL_SUPPORT
+#if GCRYPT_VERSION_NUMBER < 0x010600
         gcry_control(GCRYCTL_SET_THREAD_CBS, &gcry_threads_gthread);
+#endif
         gnutls_global_init();
 #endif
         __inited = TRUE;
