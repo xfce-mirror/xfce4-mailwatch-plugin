@@ -710,6 +710,9 @@ mailwatch_view_log_clicked_cb(GtkWidget *widget,
                                                   GTK_DIALOG_DESTROY_WITH_PARENT,
                                                   NULL, NULL);
     gtk_window_set_default_size(GTK_WINDOW(mwp->log_dialog), 480, 240 );
+#if LIBXFCE4UI_CHECK_VERSION (4, 15, 1)
+    xfce_titled_dialog_create_action_area(XFCE_TITLED_DIALOG(mwp->log_dialog));
+#endif
     gtk_button_box_set_layout(GTK_BUTTON_BOX(exo_gtk_dialog_get_action_area(GTK_DIALOG(mwp->log_dialog))),
                               GTK_BUTTONBOX_EDGE);
     g_signal_connect(G_OBJECT(mwp->log_dialog), "response",
@@ -765,14 +768,24 @@ mailwatch_view_log_clicked_cb(GtkWidget *widget,
                          gtk_image_new_from_icon_name("edit-clear",
                                                       GTK_ICON_SIZE_BUTTON));
     gtk_widget_show( button );
+#if LIBXFCE4UI_CHECK_VERSION (4, 15, 1)
+    xfce_titled_dialog_add_action_widget(XFCE_TITLED_DIALOG(mwp->log_dialog), button,
+                                         XFCE_MAILWATCH_RESPONSE_CLEAR);
+#else
     gtk_dialog_add_action_widget(GTK_DIALOG(mwp->log_dialog), button,
                                  XFCE_MAILWATCH_RESPONSE_CLEAR);
-    
+#endif
+
     button = gtk_button_new_with_mnemonic(_("_Close"));
     gtk_widget_show( button );
+#if LIBXFCE4UI_CHECK_VERSION (4, 15, 1)
+    xfce_titled_dialog_add_action_widget(XFCE_TITLED_DIALOG(mwp->log_dialog), button,
+                                         GTK_RESPONSE_ACCEPT);
+#else
     gtk_dialog_add_action_widget(GTK_DIALOG(mwp->log_dialog), button,
                                  GTK_RESPONSE_ACCEPT);
-    
+#endif
+
     gtk_widget_show(mwp->log_dialog);
 }
 
@@ -1013,6 +1026,9 @@ mailwatch_create_options(XfcePanelPlugin     *plugin,
     dlg = xfce_titled_dialog_new_with_buttons(_("Mail Watcher"), 
                 GTK_WINDOW(gtk_widget_get_toplevel(GTK_WIDGET(plugin))),
                 GTK_DIALOG_DESTROY_WITH_PARENT, NULL);
+#if LIBXFCE4UI_CHECK_VERSION (4, 15, 1)
+    xfce_titled_dialog_create_action_area(XFCE_TITLED_DIALOG(dlg));
+#endif
     gtk_button_box_set_layout(GTK_BUTTON_BOX(exo_gtk_dialog_get_action_area(GTK_DIALOG(dlg))),
                               GTK_BUTTONBOX_EDGE);
     g_signal_connect(G_OBJECT(dlg), "response",
@@ -1027,10 +1043,14 @@ mailwatch_create_options(XfcePanelPlugin     *plugin,
     
     g_signal_connect(G_OBJECT(btn), "clicked",
                      G_CALLBACK(mailwatch_help_clicked_cb), mwp);
-    
+
     btn = gtk_button_new_with_mnemonic(_("_Close"));
+#if LIBXFCE4UI_CHECK_VERSION (4, 15, 1)
+    xfce_titled_dialog_add_action_widget(XFCE_TITLED_DIALOG(dlg), btn, GTK_RESPONSE_ACCEPT);
+#else
     gtk_dialog_add_action_widget(GTK_DIALOG(dlg), btn, GTK_RESPONSE_ACCEPT);
-                     
+#endif
+
     topvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, BORDER);
     gtk_container_set_border_width(GTK_CONTAINER(topvbox), BORDER - 2);
     gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dlg))),
