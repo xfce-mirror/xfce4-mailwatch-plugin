@@ -71,24 +71,12 @@
 #define IMAP_PORT_S              "143"
 #define IMAPS_PORT_S             "993"
 
-#if GLIB_CHECK_VERSION (2, 32, 0)
-#define _mailbox_lock(mailbox)   g_mutex_lock(&((mailbox)->config_mx))
-#define _mailbox_unlock(mailbox) g_mutex_unlock(&((mailbox)->config_mx))
-#else
-#define _mailbox_lock(mailbox)   g_mutex_lock((mailbox)->config_mx)
-#define _mailbox_unlock(mailbox) g_mutex_unlock((mailbox)->config_mx)
-#endif
-
 typedef struct
 {
     XfceMailwatchMailbox mailbox;
     XfceMailwatch *mailwatch;
     
-#if GLIB_CHECK_VERSION (2, 32, 0)
     GMutex config_mx;
-#else
-    GMutex *config_mx;
-#endif
     
     guint timeout;
     gchar *host;
@@ -655,10 +643,10 @@ imap_check_mail_th(gpointer user_data)
         return NULL;
     }
 
-    _mailbox_lock(imailbox);
+    g_mutex_lock(&(imailbox->config_mx));
     
     if(!imailbox->host || !imailbox->username || !imailbox->password) {
-        _mailbox_unlock(imailbox);
+        g_mutex_unlock(&(imailbox->config_mx));
         g_atomic_pointer_set(&imailbox->th, NULL);
         return NULL;
     }
@@ -674,7 +662,7 @@ imap_check_mail_th(gpointer user_data)
     for(l = imailbox->mailboxes_to_check; l; l = l->next)
         mailboxes_to_check = g_list_prepend(mailboxes_to_check, g_strdup(l->data));
     
-    _mailbox_unlock(imailbox);
+    g_mutex_unlock(&(imailbox->config_mx));
     
     /* escape stuff */
     imap_escape_string(username, BUFSIZE);
@@ -719,11 +707,7 @@ imap_mailbox_new(XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type)
     imailbox->timeout = XFCE_MAILWATCH_DEFAULT_TIMEOUT;
     imailbox->use_standard_port = TRUE;
 
-#if GLIB_CHECK_VERSION (2, 32, 0)
     g_mutex_init(&imailbox->config_mx);
-#else
-    imailbox->config_mx = g_mutex_new();
-#endif
 
     /* this is a bit of a hack; should really fetch the folder list and
      * try to find the inbox, as the inbox might not be named "INBOX" */
@@ -747,11 +731,7 @@ imap_check_mail_timeout(gpointer data)
                                    _("Previous thread hasn't exited yet, not checking mail this time."));
         return TRUE;
     }
-#if GLIB_CHECK_VERSION (2, 32, 0)
     th = g_thread_try_new(NULL, imap_check_mail_th, imailbox, NULL);
-#else
-    th = g_thread_create(imap_check_mail_th, imailbox, FALSE, NULL);
-#endif
     g_atomic_pointer_set(&imailbox->th, th);
 
     return TRUE;
@@ -809,7 +789,7 @@ imap_host_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
     
     str = gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1);
     
-    _mailbox_lock(imailbox);
+    g_mutex_lock(&(imailbox->config_mx));
     
     g_free(imailbox->host);
     if(!str || !*str) {
@@ -818,7 +798,7 @@ imap_host_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
     } else
         imailbox->host = str;
     
-    _mailbox_unlock(imailbox);
+    g_mutex_unlock(&(imailbox->config_mx));
     
     return FALSE;
 }
@@ -832,7 +812,7 @@ imap_username_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
     
     str = gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1);
     
-    _mailbox_lock(imailbox);
+    g_mutex_lock(&(imailbox->config_mx));
     
     g_free(imailbox->username);
     if(!str || !*str) {
@@ -841,7 +821,7 @@ imap_username_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
     } else
         imailbox->username = str;
     
-    _mailbox_unlock(imailbox);
+    g_mutex_unlock(&(imailbox->config_mx));
     
     return FALSE;
 }
@@ -855,7 +835,7 @@ imap_password_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
     
     str = gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1);
     
-    _mailbox_lock(imailbox);
+    g_mutex_lock(&(imailbox->config_mx));
     
     g_free(imailbox->password);
     if(!str || !*str) {
@@ -864,7 +844,7 @@ imap_password_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
     } else
         imailbox->password = str;
     
-    _mailbox_unlock(imailbox);
+    g_mutex_unlock(&(imailbox->config_mx));
     
     return FALSE;
 }
@@ -1113,7 +1093,7 @@ imap_populate_folder_tree_nodes(gpointer user_data)
     if(!imailbox->folder_tree_dialog)
         return FALSE;
     
-    _mailbox_lock(imailbox);
+    g_mutex_lock(&(imailbox->config_mx));
     
     /* make a deep copy of the mailbox list */
     mailboxes_to_check = g_hash_table_new_full(g_str_hash, g_str_equal,
@@ -1121,7 +1101,7 @@ imap_populate_folder_tree_nodes(gpointer user_data)
     for(l = imailbox->mailboxes_to_check; l; l = l->next)
         g_hash_table_insert(mailboxes_to_check, g_strdup(l->data), GINT_TO_POINTER(1));
     
-    _mailbox_unlock(imailbox);
+    g_mutex_unlock(&(imailbox->config_mx));
     
     gtk_tree_store_clear(imailbox->ts);
     g_object_set(G_OBJECT(imailbox->render), "foreground-set", FALSE,
@@ -1220,10 +1200,10 @@ imap_populate_folder_tree_th(gpointer data)
         return NULL;
     }
     
-    _mailbox_lock(imailbox);
+    g_mutex_lock(&(imailbox->config_mx));
     
     if(!imailbox->host || !imailbox->username || !imailbox->password) {
-        _mailbox_unlock(imailbox);
+        g_mutex_unlock(&(imailbox->config_mx));
         g_idle_add(imap_folder_tree_th_join, imailbox);
         g_atomic_pointer_set(&imailbox->folder_tree_th, NULL);
         return NULL;
@@ -1236,7 +1216,7 @@ imap_populate_folder_tree_th(gpointer data)
     if(!imailbox->use_standard_port)
         nonstandard_port = imailbox->nonstandard_port;
     
-    _mailbox_unlock(imailbox);
+    g_mutex_unlock(&(imailbox->config_mx));
     
     imap_escape_string(username, BUFSIZE);
     imap_escape_string(password, BUFSIZE);
@@ -1307,11 +1287,7 @@ imap_config_refresh_btn_clicked_cb(GtkWidget *w, gpointer user_data)
                 "style-set", TRUE, NULL);
 
     g_atomic_int_set(&imailbox->folder_tree_running, TRUE);
-#if GLIB_CHECK_VERSION (2, 32, 0)
     th = g_thread_try_new(NULL, imap_populate_folder_tree_th, imailbox, NULL);
-#else
-    th = g_thread_create(imap_populate_folder_tree_th, imailbox, FALSE, NULL);
-#endif
     g_atomic_pointer_set(&imailbox->folder_tree_th, th);
 }
 
@@ -1343,7 +1319,7 @@ imap_config_treeview_btnpress_cb(GtkWidget *w, GdkEventButton *evt,
                 gtk_tree_store_set(imailbox->ts, &itr,
                         IMAP_FOLDERS_WATCHING, !watching, -1);
                 
-                _mailbox_lock(imailbox);
+                g_mutex_lock(&(imailbox->config_mx));
                 if(watching) {
                     GList *l;
                     for(l = imailbox->mailboxes_to_check; l; l = l->next) {
@@ -1362,7 +1338,7 @@ imap_config_treeview_btnpress_cb(GtkWidget *w, GdkEventButton *evt,
                                     folder_path);
                     DBG("IMAP: adding %s to the new mail folder list (not saved yet)", folder_path);
                 }
-                _mailbox_unlock(imailbox);
+                g_mutex_unlock(&(imailbox->config_mx));
             } else
                 g_free(folder_path);
             
@@ -1528,11 +1504,7 @@ imap_config_newmailfolders_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     gtk_widget_set_sensitive(btn, FALSE);
 
     g_atomic_int_set(&imailbox->folder_tree_running, TRUE);
-#if GLIB_CHECK_VERSION (2, 32, 0)
     th = g_thread_try_new(NULL, imap_populate_folder_tree_th, imailbox, NULL);
-#else
-    th = g_thread_create(imap_populate_folder_tree_th, imailbox, FALSE, NULL);
-#endif
     g_atomic_pointer_set(&imailbox->folder_tree_th, th);
     
     gtk_dialog_run(GTK_DIALOG(dlg));
@@ -1545,12 +1517,12 @@ imap_config_nonstandard_chk_cb(GtkToggleButton *tb, gpointer user_data)
     XfceMailwatchIMAPMailbox *imailbox = user_data;
     GtkWidget *entry = g_object_get_data(G_OBJECT(tb), "xfmw-entry");
     
-    _mailbox_lock(imailbox);
+    g_mutex_lock(&(imailbox->config_mx));
     
     imailbox->use_standard_port = !gtk_toggle_button_get_active(tb);
     gtk_widget_set_sensitive(entry, !imailbox->use_standard_port);
     
-    _mailbox_unlock(imailbox);
+    g_mutex_unlock(&(imailbox->config_mx));
 }
 
 static gboolean
@@ -1559,11 +1531,11 @@ imap_config_nonstandard_focusout_cb(GtkWidget *w, GdkEventFocus *evt,
 {
     XfceMailwatchIMAPMailbox *imailbox = user_data;
     
-    _mailbox_lock(imailbox);
+    g_mutex_lock(&(imailbox->config_mx));
     
     imailbox->nonstandard_port = atoi(gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1));
     
-    _mailbox_unlock(imailbox);
+    g_mutex_unlock(&(imailbox->config_mx));
     
     return FALSE;
 }
@@ -1574,7 +1546,7 @@ imap_config_security_combo_changed_cb(GtkWidget *w, gpointer user_data)
     XfceMailwatchIMAPMailbox *imailbox = user_data;
     GtkWidget *entry = g_object_get_data(G_OBJECT(w), "xfmw-entry");
     
-    _mailbox_lock(imailbox);
+    g_mutex_lock(&(imailbox->config_mx));
     
     imailbox->auth_type = gtk_combo_box_get_active(GTK_COMBO_BOX(w));
     
@@ -1585,7 +1557,7 @@ imap_config_security_combo_changed_cb(GtkWidget *w, gpointer user_data)
             gtk_entry_set_text(GTK_ENTRY(entry), IMAP_PORT_S);
     }
     
-    _mailbox_unlock(imailbox);
+    g_mutex_unlock(&(imailbox->config_mx));
 }
 
 static gboolean
@@ -1594,12 +1566,12 @@ imap_config_serverdir_focusout_cb(GtkWidget *w, GdkEventFocus *evt,
 {
     XfceMailwatchIMAPMailbox *imailbox = user_data;
     
-    _mailbox_lock(imailbox);
+    g_mutex_lock(&(imailbox->config_mx));
     
     g_free(imailbox->server_directory);
     imailbox->server_directory = gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1);
     
-    _mailbox_unlock(imailbox);
+    g_mutex_unlock(&(imailbox->config_mx));
     
     return FALSE;
 }
@@ -1695,10 +1667,10 @@ imap_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     
     entry = gtk_entry_new();
     gtk_entry_set_activates_default(GTK_ENTRY(entry), TRUE);
-    _mailbox_lock(imailbox);
+    g_mutex_lock(&(imailbox->config_mx));
     if(imailbox->server_directory)
         gtk_entry_set_text(GTK_ENTRY(entry), imailbox->server_directory);
-    _mailbox_unlock(imailbox);
+    g_mutex_unlock(&(imailbox->config_mx));
     gtk_widget_show(entry);
     gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
     g_signal_connect(G_OBJECT(entry), "focus-out-event",
@@ -1844,7 +1816,7 @@ imap_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
     GList *l;
     gint n_newmail_boxes = 0;
     
-    _mailbox_lock(imailbox);
+    g_mutex_lock(&(imailbox->config_mx));
     
     for(l = params; l; l = l->next) {
         XfceMailwatchParam *param = l->data;
@@ -1895,7 +1867,7 @@ imap_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
             imailbox->mailboxes_to_check = inbox_l;
     }
 
-    _mailbox_unlock(imailbox);
+    g_mutex_unlock(&(imailbox->config_mx));
 }
 
 static GList *
@@ -1906,7 +1878,7 @@ imap_save_param_list(XfceMailwatchMailbox *mailbox)
     XfceMailwatchParam *param;
     guint i;
     
-    _mailbox_lock(imailbox);
+    g_mutex_lock(&(imailbox->config_mx));
     param = g_new(XfceMailwatchParam, 1);
     param->key = g_strdup("host");
     param->value = g_strdup(imailbox->host);
@@ -1963,7 +1935,7 @@ imap_save_param_list(XfceMailwatchMailbox *mailbox)
             param->value);
     }
     
-    _mailbox_unlock(imailbox);
+    g_mutex_unlock(&(imailbox->config_mx));
     
     return g_list_reverse(params);
 }
@@ -1982,11 +1954,7 @@ imap_mailbox_free(XfceMailwatchMailbox *mailbox)
     while(g_atomic_pointer_get(&imailbox->th))
         g_thread_yield();
     
-#if GLIB_CHECK_VERSION (2, 32, 0)
     g_mutex_clear(&imailbox->config_mx);
-#else
-    g_mutex_free(imailbox->config_mx);
-#endif
     
     g_free(imailbox->host);
     g_free(imailbox->username);

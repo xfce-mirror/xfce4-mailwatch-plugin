@@ -49,14 +49,6 @@
 
 #define BORDER          8
 
-#if GLIB_CHECK_VERSION (2, 32, 0)
-#define _mailwatch_lock(mailwatch)   g_mutex_lock(&((mailwatch)->mailboxes_mx))
-#define _mailwatch_unlock(mailwatch) g_mutex_unlock(&((mailwatch)->mailboxes_mx))
-#else
-#define _mailwatch_lock(mailwatch)   g_mutex_lock((mailwatch)->mailboxes_mx)
-#define _mailwatch_unlock(mailwatch) g_mutex_unlock((mailwatch)->mailboxes_mx)
-#endif
-
 typedef struct
 {
     XfceMailwatchMailbox *mailbox;
@@ -71,11 +63,7 @@ struct _XfceMailwatch
     GList *mailbox_types;  /* XfceMailwatchMailboxType * */
     GList *mailboxes;      /* XfceMailwatchMailboxData * */
     
-#if GLIB_CHECK_VERSION (2, 32, 0)
     GMutex mailboxes_mx;
-#else
-    GMutex *mailboxes_mx;
-#endif
     
     GList *xm_callbacks[XFCE_MAILWATCH_NUM_SIGNALS];
     GList *xm_data[XFCE_MAILWATCH_NUM_SIGNALS];
@@ -128,23 +116,9 @@ xfce_mailwatch_new(void)
     
     xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
-#if !GLIB_CHECK_VERSION (2, 32, 0)
-    if(!g_thread_supported()) {
-        g_thread_init(NULL);
-        if(!g_thread_supported()) {
-            g_critical(_("xfce4-mailwatch-plugin: Unable to initialise GThread support.  This is likely a problem with your GLib install."));
-            return NULL;
-        }
-    }
-#endif
-    
     mailwatch = g_new0(XfceMailwatch, 1);
     mailwatch->mailbox_types = mailwatch_load_mailbox_types();
-#if GLIB_CHECK_VERSION (2, 32, 0)
     g_mutex_init(&mailwatch->mailboxes_mx);
-#else
-    mailwatch->mailboxes_mx = g_mutex_new();
-#endif
     
     return mailwatch;
 }
@@ -157,7 +131,7 @@ xfce_mailwatch_destroy(XfceMailwatch *mailwatch)
     g_return_if_fail(mailwatch);
     
     /* lock it, bitch! */
-    _mailwatch_lock(mailwatch);
+    g_mutex_lock(&(mailwatch->mailboxes_mx));
     
     /* just clear out the mailbox list.  we have to call free_mailbox_func for
      * each mailbox outside the mailboxes_mx lock so we don't cause deadlocks */
@@ -165,7 +139,7 @@ xfce_mailwatch_destroy(XfceMailwatch *mailwatch)
     mailwatch->mailboxes = NULL;
     
     /* we are SO done. */
-    _mailwatch_unlock(mailwatch);
+    g_mutex_unlock(&(mailwatch->mailboxes_mx));
     
     for(l = stuff_to_free; l; l = l->next) {
         XfceMailwatchMailboxData *mdata = l->data;
@@ -178,11 +152,7 @@ xfce_mailwatch_destroy(XfceMailwatch *mailwatch)
         g_list_free(stuff_to_free);
     
     /* really.  SO SO done. */
-#if GLIB_CHECK_VERSION (2, 32, 0)
     g_mutex_clear(&mailwatch->mailboxes_mx);
-#else
-    g_mutex_free(mailwatch->mailboxes_mx);
-#endif
     
     g_list_free(mailwatch->mailbox_types);
     g_free(mailwatch->config_file);
@@ -242,7 +212,7 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch)
     
     /* lock mutex - doesn't matter yet, but once we start creating mailboxes,
      * it will. */
-    _mailwatch_lock(mailwatch);
+    g_mutex_lock(&(mailwatch->mailboxes_mx));
     
     for(i = 0; i < nmailboxes; i++) {
         const gchar *mailbox_id, *mailbox_name;
@@ -322,7 +292,7 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch)
     }
     
     /* we're done, unlock mutex */
-    _mailwatch_unlock(mailwatch);
+    g_mutex_unlock(&(mailwatch->mailboxes_mx));
     
     xfce_rc_close(rcfile);
     
@@ -441,7 +411,7 @@ xfce_mailwatch_get_new_messages(XfceMailwatch *mailwatch)
     
     /* we don't want to be trying to access the mailbox list while they might
      * be in the process of being destroyed. */
-    _mailwatch_lock(mailwatch);
+    g_mutex_lock(&(mailwatch->mailboxes_mx));
     
     for(l = mailwatch->mailboxes; l; l = l->next) {
         XfceMailwatchMailboxData *mdata = l->data;
@@ -449,7 +419,7 @@ xfce_mailwatch_get_new_messages(XfceMailwatch *mailwatch)
     }
     
     /* and we're done, unlock */
-    _mailwatch_unlock(mailwatch);
+    g_mutex_unlock(&(mailwatch->mailboxes_mx));
     
     return num_new_messages;
 }
@@ -468,7 +438,7 @@ xfce_mailwatch_get_new_message_breakdown(XfceMailwatch *mailwatch,
     g_return_if_fail(mailbox_names && new_message_counts);
     
     /* fire! */
-    _mailwatch_lock(mailwatch);
+    g_mutex_lock(&(mailwatch->mailboxes_mx));
     
     *mailbox_names = g_new0(gchar *, g_list_length(mailwatch->mailboxes)+1);
     *new_message_counts = g_new0(guint, g_list_length(mailwatch->mailboxes)+1);
@@ -481,7 +451,7 @@ xfce_mailwatch_get_new_message_breakdown(XfceMailwatch *mailwatch,
     }
     
     /* direct hit, captain */
-    _mailwatch_unlock(mailwatch);
+    g_mutex_unlock(&(mailwatch->mailboxes_mx));
 }
 
 void
@@ -490,7 +460,7 @@ xfce_mailwatch_force_update(XfceMailwatch *mailwatch)
     GList *l;
     
     /* CLEAR! */
-    _mailwatch_lock(mailwatch);
+    g_mutex_lock(&(mailwatch->mailboxes_mx));
     
     for(l = mailwatch->mailboxes; l; l = l->next) {
         XfceMailwatchMailboxData *mdata = l->data;
@@ -498,7 +468,7 @@ xfce_mailwatch_force_update(XfceMailwatch *mailwatch)
     }
     
     /* mmm, ten thousand volts */
-    _mailwatch_unlock(mailwatch);
+    g_mutex_unlock(&(mailwatch->mailboxes_mx));
 }
 
 static gboolean
@@ -534,7 +504,7 @@ xfce_mailwatch_signal_new_messages(XfceMailwatch *mailwatch,
     
     /* we don't want to be trying to access the mailbox list while they might
      * be in the process of being destroyed. */
-    _mailwatch_lock(mailwatch);
+    g_mutex_lock(&(mailwatch->mailboxes_mx));
     
     for(l = mailwatch->mailboxes; l; l = l->next) {
         XfceMailwatchMailboxData *mdata = l->data;
@@ -549,7 +519,7 @@ xfce_mailwatch_signal_new_messages(XfceMailwatch *mailwatch,
     }
     
     /* and we're done, unlock */
-    _mailwatch_unlock(mailwatch);
+    g_mutex_unlock(&(mailwatch->mailboxes_mx));
     
     if(do_signal)
         g_idle_add(mailwatch_signal_new_messages_idled, mailwatch);
@@ -608,7 +578,7 @@ xfce_mailwatch_log_message(XfceMailwatch *mailwatch,
     
     if(mailbox) {
         /* locked on, captain */
-        _mailwatch_lock(mailwatch);
+        g_mutex_lock(&(mailwatch->mailboxes_mx));
         
         for(l = mailwatch->mailboxes; l; l = l->next) {
             XfceMailwatchMailboxData *mdata = l->data;
@@ -620,7 +590,7 @@ xfce_mailwatch_log_message(XfceMailwatch *mailwatch,
         }
         
         /* and we're done, unlock */
-        _mailwatch_unlock(mailwatch);
+        g_mutex_unlock(&(mailwatch->mailboxes_mx));
     }
 
     g_idle_add( xfce_mailwatch_signal_log_message, entry );
@@ -867,7 +837,7 @@ config_add_btn_clicked_cb(GtkWidget *w, XfceMailwatch *mailwatch)
         GtkTreeIter itr;
         
         /* to serve and protect */
-        _mailwatch_lock(mailwatch);
+        g_mutex_lock(&(mailwatch->mailboxes_mx));
         
         mdata->mailbox = new_mailbox;
         mdata->mailbox_name = new_mailbox_name;
@@ -877,7 +847,7 @@ config_add_btn_clicked_cb(GtkWidget *w, XfceMailwatch *mailwatch)
                 mdata, (GCompareFunc)config_compare_mailbox_data);
         
         /* tcetorp dna evres ot */
-        _mailwatch_unlock(mailwatch);
+        g_mutex_unlock(&(mailwatch->mailboxes_mx));
         
         mailbox_type->set_activated_func(new_mailbox, TRUE);
         
@@ -932,7 +902,7 @@ config_remove_btn_clicked_cb(GtkWidget *w, XfceMailwatch *mailwatch)
     gtk_list_store_remove(GTK_LIST_STORE(model), &itr);
     
     /* batter up! */
-    _mailwatch_lock(mailwatch);
+    g_mutex_lock(&(mailwatch->mailboxes_mx));
     
     for(l = mailwatch->mailboxes; l; l = l->next) {
         XfceMailwatchMailboxData *mdata = l->data;
@@ -946,7 +916,7 @@ config_remove_btn_clicked_cb(GtkWidget *w, XfceMailwatch *mailwatch)
     }
     
     /* you're out! */
-    _mailwatch_unlock(mailwatch);
+    g_mutex_unlock(&(mailwatch->mailboxes_mx));
     
     mailbox->type->free_mailbox_func(mailbox);
     
@@ -1004,7 +974,7 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
     gtk_box_pack_start(GTK_BOX(hbox), sw, TRUE, TRUE, 0);
     
     /* time to make the doughnuts */
-    _mailwatch_lock(mailwatch);
+    g_mutex_lock(&(mailwatch->mailboxes_mx));
     
     ls = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_POINTER);
     for(l = mailwatch->mailboxes; l; l = l->next) {
@@ -1018,7 +988,7 @@ xfce_mailwatch_get_configuration_page(XfceMailwatch *mailwatch)
     }
     
     /* yum.  they're done. */
-    _mailwatch_unlock(mailwatch);
+    g_mutex_unlock(&(mailwatch->mailboxes_mx));
     
     mailwatch->config_treeview = treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(ls));
     gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(treeview), FALSE);

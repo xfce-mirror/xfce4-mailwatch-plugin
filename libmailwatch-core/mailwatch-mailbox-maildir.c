@@ -55,14 +55,6 @@
 #define XFCE_MAILWATCH_MAILDIR_MAILBOX( p ) ( (XfceMailwatchMaildirMailbox *) p )
 #define BORDER                              ( 8 )
 
-#if GLIB_CHECK_VERSION (2, 32, 0)
-#define _mailbox_lock(mailbox)   g_mutex_lock(&((mailbox)->mutex))
-#define _mailbox_unlock(mailbox) g_mutex_unlock(&((mailbox)->mutex))
-#else
-#define _mailbox_lock(mailbox)   g_mutex_lock((mailbox)->mutex)
-#define _mailbox_unlock(mailbox) g_mutex_unlock((mailbox)->mutex)
-#endif
-
 typedef struct {
     XfceMailwatchMailbox    xfce_mailwatch_mailbox;
 
@@ -74,11 +66,7 @@ typedef struct {
     guint                   interval;
     guint                   last_update;
 
-#if GLIB_CHECK_VERSION (2, 32, 0)
     GMutex                   mutex;
-#else
-    GMutex                  *mutex;
-#endif
     gboolean                running;
     gpointer                thread;  /* (GThread *) */
     guint                   check_id;
@@ -92,7 +80,7 @@ maildir_check_mail( XfceMailwatchMaildirMailbox *maildir )
 
     DBG( "-->>" );
     
-    _mailbox_lock( maildir );
+    g_mutex_lock(&(maildir->mutex));
     if ( !maildir->path || !*(maildir->path) ) {
         goto out;
     }
@@ -154,7 +142,7 @@ maildir_check_mail( XfceMailwatchMaildirMailbox *maildir )
     }
 
 out:
-    _mailbox_unlock( maildir );
+    g_mutex_unlock(&(maildir->mutex));
     if ( path ) {
         g_free( path );
     }
@@ -192,11 +180,7 @@ maildir_check_mail_timeout( gpointer data )
         return TRUE;
     }
 
-#if GLIB_CHECK_VERSION (2, 32, 0)
     th = g_thread_try_new( NULL, maildir_main_thread, maildir, NULL );
-#else
-    th = g_thread_create( maildir_main_thread, maildir, FALSE, NULL );
-#endif
     g_atomic_pointer_set( &maildir->thread, th );
 
     return TRUE;
@@ -214,11 +198,7 @@ maildir_new( XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type )
     maildir->mailwatch      = mailwatch;
     maildir->path           = NULL;
     maildir->interval       = XFCE_MAILWATCH_DEFAULT_TIMEOUT;
-#if GLIB_CHECK_VERSION (2, 32, 0)
     g_mutex_init( &maildir->mutex );
-#else
-    maildir->mutex          = g_mutex_new();
-#endif
     
     return ( (XfceMailwatchMailbox *) maildir );
 }
@@ -232,7 +212,7 @@ maildir_save_param_list( XfceMailwatchMailbox *mailbox )
 
     DBG( "-->>" );
 
-    _mailbox_lock( maildir );
+    g_mutex_lock(&(maildir->mutex));
     
     param           = g_new( XfceMailwatchParam, 1 );
     param->key      = g_strdup( "path" );
@@ -249,7 +229,7 @@ maildir_save_param_list( XfceMailwatchMailbox *mailbox )
     param->value    = g_strdup_printf( "%u", maildir->interval );
     settings        = g_list_append( settings, param );
 
-    _mailbox_unlock( maildir );
+    g_mutex_unlock(&(maildir->mutex));
 
     DBG( "<<--" );
 
@@ -264,7 +244,7 @@ maildir_restore_param_list( XfceMailwatchMailbox *mailbox, GList *params )
 
     DBG( "-->>" );
 
-    _mailbox_lock( maildir );
+    g_mutex_lock(&(maildir->mutex));
     
     for ( li = g_list_first( params ); li != NULL; li = g_list_next( li ) ) {
         XfceMailwatchParam  *param = (XfceMailwatchParam *) li->data;
@@ -283,7 +263,7 @@ maildir_restore_param_list( XfceMailwatchMailbox *mailbox, GList *params )
         }
     }
 
-    _mailbox_unlock( maildir );
+    g_mutex_unlock(&(maildir->mutex));
 
     DBG( "<<--" );
 }
@@ -297,14 +277,14 @@ maildir_folder_set_cb( GtkWidget *button,
     DBG( "-->>" );
 
     folder = gtk_file_chooser_get_filename( GTK_FILE_CHOOSER( button ) );
-    _mailbox_lock( maildir );
+    g_mutex_lock(&(maildir->mutex));
     g_free( maildir->path );
     if( folder ) {
         maildir->path = folder;
     } else {
         maildir->path = g_strdup( "" );
     }
-    _mailbox_unlock( maildir );
+    g_mutex_unlock(&(maildir->mutex));
 
     DBG( "<<--" );
 }
@@ -359,11 +339,11 @@ maildir_get_setup_page( XfceMailwatchMailbox *mailbox )
 
     button = gtk_file_chooser_button_new( _("Select Maildir Folder"),
                                           GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER );
-    _mailbox_lock( maildir );
+    g_mutex_lock(&(maildir->mutex));
     if ( maildir->path ) {
         gtk_file_chooser_set_filename( GTK_FILE_CHOOSER( button ), maildir->path );
     }
-    _mailbox_unlock( maildir );
+    g_mutex_unlock(&(maildir->mutex));
     gtk_widget_show( button );
     gtk_box_pack_start( GTK_BOX( hbox ), button, TRUE, TRUE, 0 );
     g_signal_connect( G_OBJECT( button ), "file-set",
@@ -457,11 +437,7 @@ maildir_free( XfceMailwatchMailbox *mailbox )
     while( g_atomic_pointer_get( &maildir->thread ) )
         g_thread_yield();
 
-#if GLIB_CHECK_VERSION (2, 32, 0)
     g_mutex_clear( &maildir->mutex );
-#else
-    g_mutex_free( maildir->mutex );
-#endif
 
     if ( maildir->path ) {
         g_free( maildir->path );
