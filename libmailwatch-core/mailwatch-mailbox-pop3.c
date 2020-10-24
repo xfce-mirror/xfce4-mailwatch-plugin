@@ -55,23 +55,11 @@
 
 #define XFCE_MAILWATCH_POP3_MAILBOX(ptr) ((XfceMailwatchPOP3Mailbox *)ptr)
 
-#if GLIB_CHECK_VERSION (2, 32, 0)
-#define _mailbox_lock(mailbox)   g_mutex_lock(&((mailbox)->config_mx))
-#define _mailbox_unlock(mailbox) g_mutex_unlock(&((mailbox)->config_mx))
-#else
-#define _mailbox_lock(mailbox)   g_mutex_lock((mailbox)->config_mx)
-#define _mailbox_unlock(mailbox) g_mutex_unlock((mailbox)->config_mx)
-#endif
-
 typedef struct
 {
     XfceMailwatchMailbox mailbox;
     
-#if GLIB_CHECK_VERSION (2, 32, 0)
     GMutex config_mx;
-#else
-    GMutex *config_mx;
-#endif
     
     guint timeout;
     gchar *host;
@@ -488,10 +476,10 @@ pop3_check_mail_th(gpointer user_data)
         return NULL;
     }
     
-    _mailbox_lock(pmailbox);
+    g_mutex_lock(&(pmailbox->config_mx));
     
     if(!pmailbox->host || !pmailbox->username || !pmailbox->password) {
-        _mailbox_unlock(pmailbox);
+        g_mutex_unlock(&(pmailbox->config_mx));
         g_atomic_pointer_set(&pmailbox->th, NULL);
         return NULL;
     }
@@ -503,7 +491,7 @@ pop3_check_mail_th(gpointer user_data)
     if(!pmailbox->use_standard_port)
         nonstandard_port = pmailbox->nonstandard_port;
     
-    _mailbox_unlock(pmailbox);
+    g_mutex_unlock(&(pmailbox->config_mx));
     
     pmailbox->net_conn = xfce_mailwatch_net_conn_new(host, NULL);
     xfce_mailwatch_net_conn_set_should_continue_func(pmailbox->net_conn,
@@ -540,11 +528,7 @@ pop3_mailbox_new(XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type)
     pmailbox->mailwatch = mailwatch;
     pmailbox->timeout = XFCE_MAILWATCH_DEFAULT_TIMEOUT;
     pmailbox->use_standard_port = TRUE;
-#if GLIB_CHECK_VERSION (2, 32, 0)
     g_mutex_init(&pmailbox->config_mx);
-#else
-    pmailbox->config_mx = g_mutex_new();
-#endif
 
     xfce_mailwatch_net_conn_init();
     
@@ -565,11 +549,7 @@ pop3_check_mail_timeout(gpointer data)
         return TRUE;
     }
 
-#if GLIB_CHECK_VERSION (2, 32, 0)
     new_th = g_thread_try_new(NULL, pop3_check_mail_th, pmailbox, NULL);
-#else
-    new_th = g_thread_create(pop3_check_mail_th, pmailbox, FALSE, NULL);
-#endif
     g_atomic_pointer_set(&pmailbox->th, new_th);
 
     return TRUE;
@@ -627,7 +607,7 @@ pop3_host_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
     
     str = gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1);
     
-    _mailbox_lock(pmailbox);
+    g_mutex_lock(&(pmailbox->config_mx));
     
     g_free(pmailbox->host);
     if(!str || !*str) {
@@ -636,7 +616,7 @@ pop3_host_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
     } else
         pmailbox->host = str;
     
-    _mailbox_unlock(pmailbox);
+    g_mutex_unlock(&(pmailbox->config_mx));
     
     return FALSE;
 }
@@ -650,7 +630,7 @@ pop3_username_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
     
     str = gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1);
     
-    _mailbox_lock(pmailbox);
+    g_mutex_lock(&(pmailbox->config_mx));
     
     g_free(pmailbox->username);
     if(!str || !*str) {
@@ -659,7 +639,7 @@ pop3_username_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
     } else
         pmailbox->username = str;
     
-    _mailbox_unlock(pmailbox);
+    g_mutex_unlock(&(pmailbox->config_mx));
     
     return FALSE;
 }
@@ -673,7 +653,7 @@ pop3_password_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
     
     str = gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1);
     
-    _mailbox_lock(pmailbox);
+    g_mutex_lock(&(pmailbox->config_mx));
     
     g_free(pmailbox->password);
     if(!str || !*str) {
@@ -682,7 +662,7 @@ pop3_password_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
     } else
         pmailbox->password = str;
     
-    _mailbox_unlock(pmailbox);
+    g_mutex_unlock(&(pmailbox->config_mx));
     
     return FALSE;
 }
@@ -713,12 +693,12 @@ pop3_config_nonstandard_chk_cb(GtkToggleButton *tb, gpointer user_data)
     XfceMailwatchPOP3Mailbox *pmailbox = user_data;
     GtkWidget *entry = g_object_get_data(G_OBJECT(tb), "xfmw-entry");
     
-    _mailbox_lock(pmailbox);
+    g_mutex_lock(&(pmailbox->config_mx));
     
     pmailbox->use_standard_port = !gtk_toggle_button_get_active(tb);
     gtk_widget_set_sensitive(entry, !pmailbox->use_standard_port);
     
-    _mailbox_unlock(pmailbox);
+    g_mutex_unlock(&(pmailbox->config_mx));
 }
 
 static gboolean
@@ -727,11 +707,11 @@ pop3_config_nonstandard_focusout_cb(GtkWidget *w, GdkEventFocus *evt,
 {
     XfceMailwatchPOP3Mailbox *pmailbox = user_data;
     
-    _mailbox_lock(pmailbox);
+    g_mutex_lock(&(pmailbox->config_mx));
     
     pmailbox->nonstandard_port = atoi(gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1));
     
-    _mailbox_unlock(pmailbox);
+    g_mutex_unlock(&(pmailbox->config_mx));
     
     return FALSE;
 }
@@ -742,7 +722,7 @@ pop3_config_security_combo_changed_cb(GtkWidget *w, gpointer user_data)
     XfceMailwatchPOP3Mailbox *pmailbox = user_data;
     GtkWidget *entry = g_object_get_data(G_OBJECT(w), "xfmw-entry");
     
-    _mailbox_lock(pmailbox);
+    g_mutex_lock(&(pmailbox->config_mx));
     
     pmailbox->auth_type = gtk_combo_box_get_active(GTK_COMBO_BOX(w));
     
@@ -753,7 +733,7 @@ pop3_config_security_combo_changed_cb(GtkWidget *w, gpointer user_data)
             gtk_entry_set_text(GTK_ENTRY(entry), POP3_PORT_S);
     }
     
-    _mailbox_unlock(pmailbox);
+    g_mutex_unlock(&(pmailbox->config_mx));
 }
 
 static void
@@ -963,7 +943,7 @@ pop3_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
     XfceMailwatchPOP3Mailbox *pmailbox = XFCE_MAILWATCH_POP3_MAILBOX(mailbox);
     GList *l;
     
-    _mailbox_lock(pmailbox);
+    g_mutex_lock(&(pmailbox->config_mx));
     
     for(l = params; l; l = l->next) {
         XfceMailwatchParam *param = l->data;
@@ -984,7 +964,7 @@ pop3_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
             pmailbox->timeout = atoi(param->value);
     }
     
-    _mailbox_unlock(pmailbox);
+    g_mutex_unlock(&(pmailbox->config_mx));
 }
 
 static GList *
@@ -994,7 +974,7 @@ pop3_save_param_list(XfceMailwatchMailbox *mailbox)
     GList *params = NULL;
     XfceMailwatchParam *param;
     
-    _mailbox_lock(pmailbox);
+    g_mutex_lock(&(pmailbox->config_mx));
     
     param = g_new(XfceMailwatchParam, 1);
     param->key = g_strdup("host");
@@ -1033,7 +1013,7 @@ pop3_save_param_list(XfceMailwatchMailbox *mailbox)
     param->value = g_strdup_printf("%d", pmailbox->timeout);
     params = g_list_prepend(params, param);
     
-    _mailbox_unlock(pmailbox);
+    g_mutex_unlock(&(pmailbox->config_mx));
     
     return g_list_reverse(params);
 }
@@ -1047,11 +1027,7 @@ pop3_mailbox_free(XfceMailwatchMailbox *mailbox)
     while(g_atomic_pointer_get(&pmailbox->th))
         g_thread_yield();
     
-#if GLIB_CHECK_VERSION (2, 32, 0)
     g_mutex_clear(&pmailbox->config_mx);
-#else
-    g_mutex_free(pmailbox->config_mx);
-#endif
     
     g_free(pmailbox->host);
     g_free(pmailbox->username);
