@@ -561,16 +561,14 @@ xfce_mailwatch_log_message(XfceMailwatch *mailwatch,
     XfceMailwatchLogEntry   *entry = NULL;
     va_list                 args;
     GList *l;
-    GTimeVal                gt;
-    
+
     g_return_if_fail( mailwatch &&
             level < XFCE_MAILWATCH_N_LOG_LEVELS && fmt );
     
     entry = g_new0( XfceMailwatchLogEntry, 1 );
     entry->mailwatch        = mailwatch;
     entry->level            = level;
-    g_get_current_time(&gt);
-    entry->timestamp        = (time_t)gt.tv_sec;
+    entry->timestamp        = (time_t)(g_get_real_time() / 1000000);
 
     va_start( args, fmt );
     entry->message          = g_strdup_vprintf( fmt, args );
