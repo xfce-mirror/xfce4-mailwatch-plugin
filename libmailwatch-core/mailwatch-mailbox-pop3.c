@@ -59,7 +59,7 @@ typedef struct
 {
     XfceMailwatchMailbox mailbox;
     
-    GMutex *config_mx;
+    GMutex config_mx;
     
     guint timeout;
     gchar *host;
@@ -190,7 +190,7 @@ pop3_send_login_info(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *username,
     /* see if CRAM-MD5 is supported */
     g_strlcpy(buf, "CAPA\r\n", BUFSIZE);
     bout = pop3_send(pmailbox, buf);
-    if(bout != strlen(buf))
+    if(bout != (gint)strlen(buf))
         return FALSE;
 
     bin = pop3_recv_command(pmailbox, buf, BUFSIZE, TRUE);
@@ -203,7 +203,7 @@ pop3_send_login_info(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *username,
         /* server supports CRAM-MD5 */
         g_strlcpy(buf, "AUTH CRAM-MD5\r\n", BUFSIZE);
         bout = pop3_send(pmailbox, buf);
-        if(bout != strlen(buf))
+        if(bout != (gint)strlen(buf))
             return FALSE;
 
         bin = pop3_recv(pmailbox, buf, BUFSIZE);
@@ -229,7 +229,7 @@ pop3_send_login_info(XfceMailwatchPOP3Mailbox *pmailbox, const gchar *username,
             g_strlcat(buf, "\r\n", BUFSIZE);
             g_free(response_base64);
             bout = pop3_send(pmailbox, buf);
-            if(bout != strlen(buf))
+            if(bout != (gint)strlen(buf))
                 return FALSE;
 
             bin = pop3_recv_command(pmailbox, buf, BUFSIZE, FALSE);
@@ -476,10 +476,10 @@ pop3_check_mail_th(gpointer user_data)
         return NULL;
     }
     
-    g_mutex_lock(pmailbox->config_mx);
+    g_mutex_lock(&(pmailbox->config_mx));
     
     if(!pmailbox->host || !pmailbox->username || !pmailbox->password) {
-        g_mutex_unlock(pmailbox->config_mx);
+        g_mutex_unlock(&(pmailbox->config_mx));
         g_atomic_pointer_set(&pmailbox->th, NULL);
         return NULL;
     }
@@ -491,7 +491,7 @@ pop3_check_mail_th(gpointer user_data)
     if(!pmailbox->use_standard_port)
         nonstandard_port = pmailbox->nonstandard_port;
     
-    g_mutex_unlock(pmailbox->config_mx);
+    g_mutex_unlock(&(pmailbox->config_mx));
     
     pmailbox->net_conn = xfce_mailwatch_net_conn_new(host, NULL);
     xfce_mailwatch_net_conn_set_should_continue_func(pmailbox->net_conn,
@@ -528,7 +528,7 @@ pop3_mailbox_new(XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type)
     pmailbox->mailwatch = mailwatch;
     pmailbox->timeout = XFCE_MAILWATCH_DEFAULT_TIMEOUT;
     pmailbox->use_standard_port = TRUE;
-    pmailbox->config_mx = g_mutex_new();
+    g_mutex_init(&pmailbox->config_mx);
 
     xfce_mailwatch_net_conn_init();
     
@@ -549,7 +549,7 @@ pop3_check_mail_timeout(gpointer data)
         return TRUE;
     }
 
-    new_th = g_thread_create(pop3_check_mail_th, pmailbox, FALSE, NULL);
+    new_th = g_thread_try_new(NULL, pop3_check_mail_th, pmailbox, NULL);
     g_atomic_pointer_set(&pmailbox->th, new_th);
 
     return TRUE;
@@ -607,7 +607,7 @@ pop3_host_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
     
     str = gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1);
     
-    g_mutex_lock(pmailbox->config_mx);
+    g_mutex_lock(&(pmailbox->config_mx));
     
     g_free(pmailbox->host);
     if(!str || !*str) {
@@ -616,7 +616,7 @@ pop3_host_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
     } else
         pmailbox->host = str;
     
-    g_mutex_unlock(pmailbox->config_mx);
+    g_mutex_unlock(&(pmailbox->config_mx));
     
     return FALSE;
 }
@@ -630,7 +630,7 @@ pop3_username_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
     
     str = gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1);
     
-    g_mutex_lock(pmailbox->config_mx);
+    g_mutex_lock(&(pmailbox->config_mx));
     
     g_free(pmailbox->username);
     if(!str || !*str) {
@@ -639,7 +639,7 @@ pop3_username_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
     } else
         pmailbox->username = str;
     
-    g_mutex_unlock(pmailbox->config_mx);
+    g_mutex_unlock(&(pmailbox->config_mx));
     
     return FALSE;
 }
@@ -653,7 +653,7 @@ pop3_password_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
     
     str = gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1);
     
-    g_mutex_lock(pmailbox->config_mx);
+    g_mutex_lock(&(pmailbox->config_mx));
     
     g_free(pmailbox->password);
     if(!str || !*str) {
@@ -662,7 +662,7 @@ pop3_password_entry_focus_out_cb(GtkWidget *w, GdkEventFocus *evt,
     } else
         pmailbox->password = str;
     
-    g_mutex_unlock(pmailbox->config_mx);
+    g_mutex_unlock(&(pmailbox->config_mx));
     
     return FALSE;
 }
@@ -693,12 +693,12 @@ pop3_config_nonstandard_chk_cb(GtkToggleButton *tb, gpointer user_data)
     XfceMailwatchPOP3Mailbox *pmailbox = user_data;
     GtkWidget *entry = g_object_get_data(G_OBJECT(tb), "xfmw-entry");
     
-    g_mutex_lock(pmailbox->config_mx);
+    g_mutex_lock(&(pmailbox->config_mx));
     
     pmailbox->use_standard_port = !gtk_toggle_button_get_active(tb);
     gtk_widget_set_sensitive(entry, !pmailbox->use_standard_port);
     
-    g_mutex_unlock(pmailbox->config_mx);
+    g_mutex_unlock(&(pmailbox->config_mx));
 }
 
 static gboolean
@@ -707,11 +707,11 @@ pop3_config_nonstandard_focusout_cb(GtkWidget *w, GdkEventFocus *evt,
 {
     XfceMailwatchPOP3Mailbox *pmailbox = user_data;
     
-    g_mutex_lock(pmailbox->config_mx);
+    g_mutex_lock(&(pmailbox->config_mx));
     
     pmailbox->nonstandard_port = atoi(gtk_editable_get_chars(GTK_EDITABLE(w), 0, -1));
     
-    g_mutex_unlock(pmailbox->config_mx);
+    g_mutex_unlock(&(pmailbox->config_mx));
     
     return FALSE;
 }
@@ -722,7 +722,7 @@ pop3_config_security_combo_changed_cb(GtkWidget *w, gpointer user_data)
     XfceMailwatchPOP3Mailbox *pmailbox = user_data;
     GtkWidget *entry = g_object_get_data(G_OBJECT(w), "xfmw-entry");
     
-    g_mutex_lock(pmailbox->config_mx);
+    g_mutex_lock(&(pmailbox->config_mx));
     
     pmailbox->auth_type = gtk_combo_box_get_active(GTK_COMBO_BOX(w));
     
@@ -733,7 +733,7 @@ pop3_config_security_combo_changed_cb(GtkWidget *w, gpointer user_data)
             gtk_entry_set_text(GTK_ENTRY(entry), POP3_PORT_S);
     }
     
-    g_mutex_unlock(pmailbox->config_mx);
+    g_mutex_unlock(&(pmailbox->config_mx));
 }
 
 static void
@@ -745,27 +745,29 @@ pop3_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     
     dlg = gtk_dialog_new_with_buttons(_("Advanced POP3 Options"),
             GTK_WINDOW(gtk_widget_get_toplevel(w)),
-            GTK_DIALOG_DESTROY_WITH_PARENT|GTK_DIALOG_NO_SEPARATOR,
-            GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
+            GTK_DIALOG_DESTROY_WITH_PARENT,
+                                        _("_Close"), GTK_RESPONSE_ACCEPT,
+                                        NULL);
     gtk_dialog_set_default_response(GTK_DIALOG(dlg), GTK_RESPONSE_ACCEPT);
     
-    topvbox = gtk_vbox_new(FALSE, BORDER/2);
+    topvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, BORDER/2);
     gtk_container_set_border_width(GTK_CONTAINER(topvbox), BORDER/2);
     gtk_widget_show(topvbox);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), topvbox, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dlg))),
+                       topvbox, TRUE, TRUE, 0);
     
     frame = xfce_gtk_frame_box_new(_("Connection"), &frame_bin);
     gtk_widget_show(frame);
     gtk_box_pack_start(GTK_BOX(topvbox), frame, FALSE, FALSE, 0);
     
-    vbox = gtk_vbox_new(FALSE, BORDER/2);
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, BORDER/2);
     gtk_widget_show(vbox);
     gtk_container_add(GTK_CONTAINER(frame_bin), vbox);
     
-    combo = gtk_combo_box_new_text();
-    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use unsecured connection"));
-    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use SSL/TLS on alternate port"));
-    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Use SSL/TLS via STLS"));
+    combo = gtk_combo_box_text_new();
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), _("Use unsecured connection"));
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), _("Use SSL/TLS on alternate port"));
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), _("Use SSL/TLS via STLS"));
 #ifdef HAVE_SSL_SUPPORT
     gtk_combo_box_set_active(GTK_COMBO_BOX(combo), pmailbox->auth_type);
 #else
@@ -777,7 +779,7 @@ pop3_config_advanced_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     g_signal_connect(G_OBJECT(combo), "changed",
             G_CALLBACK(pop3_config_security_combo_changed_cb), pmailbox);
     
-    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, BORDER/2);
     gtk_widget_show(hbox);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
     
@@ -823,7 +825,7 @@ pop3_get_setup_page(XfceMailwatchMailbox *mailbox)
               *sbtn;
     GtkSizeGroup *sg;
     
-    topvbox = gtk_vbox_new(FALSE, BORDER/2);
+    topvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, BORDER/2);
     gtk_widget_show(topvbox);
     
     frame = xfce_gtk_frame_box_new(_("POP3 Server"), &frame_bin);
@@ -832,16 +834,16 @@ pop3_get_setup_page(XfceMailwatchMailbox *mailbox)
     
     sg = gtk_size_group_new(GTK_SIZE_GROUP_HORIZONTAL);
     
-    vbox = gtk_vbox_new(FALSE, BORDER/2);
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, BORDER/2);
     gtk_widget_show(vbox);
     gtk_container_add(GTK_CONTAINER(frame_bin), vbox);
     
-    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, BORDER/2);
     gtk_widget_show(hbox);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
     
     lbl = gtk_label_new_with_mnemonic(_("_Mail server:"));
-    gtk_misc_set_alignment(GTK_MISC(lbl), 0.0, 0.5);
+    gtk_label_set_xalign(GTK_LABEL(lbl), 0.0);
     gtk_widget_show(lbl);
     gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
     gtk_size_group_add_widget(sg, lbl);
@@ -856,12 +858,12 @@ pop3_get_setup_page(XfceMailwatchMailbox *mailbox)
             G_CALLBACK(pop3_host_entry_focus_out_cb), pmailbox);
     gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), entry);
     
-    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, BORDER/2);
     gtk_widget_show(hbox);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
     
     lbl = gtk_label_new_with_mnemonic(_("_Username:"));
-    gtk_misc_set_alignment(GTK_MISC(lbl), 0.0, 0.5);
+    gtk_label_set_xalign(GTK_LABEL(lbl), 0.0);
     gtk_widget_show(lbl);
     gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
     gtk_size_group_add_widget(sg, lbl);
@@ -876,13 +878,13 @@ pop3_get_setup_page(XfceMailwatchMailbox *mailbox)
             G_CALLBACK(pop3_username_entry_focus_out_cb), pmailbox);
     gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), entry);
     
-    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, BORDER/2);
     gtk_widget_show(hbox);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
     
     lbl = gtk_label_new_with_mnemonic(_("_Password:"));
     gtk_entry_set_activates_default(GTK_ENTRY(entry), TRUE);
-    gtk_misc_set_alignment(GTK_MISC(lbl), 0.0, 0.5);
+    gtk_label_set_xalign(GTK_LABEL(lbl), 0.0);
     gtk_widget_show(lbl);
     gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
     gtk_size_group_add_widget(sg, lbl);
@@ -897,18 +899,20 @@ pop3_get_setup_page(XfceMailwatchMailbox *mailbox)
             G_CALLBACK(pop3_password_entry_focus_out_cb), pmailbox);
     gtk_label_set_mnemonic_widget(GTK_LABEL(lbl), entry);
     
-    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, BORDER/2);
     gtk_widget_show(hbox);
     gtk_box_pack_start(GTK_BOX(topvbox), hbox, FALSE, FALSE, 0);
     
-    btn = xfce_mailwatch_custom_button_new(_("_Advanced..."),
-            GTK_STOCK_PREFERENCES);
+    btn = gtk_button_new_with_mnemonic(_("_Advanced..."));
+    gtk_button_set_image(GTK_BUTTON(btn),
+                         gtk_image_new_from_icon_name("preferences-other",
+                                                      GTK_ICON_SIZE_BUTTON));
     gtk_widget_show(btn);
     gtk_box_pack_start(GTK_BOX(hbox), btn, FALSE, FALSE, 0);
     g_signal_connect(G_OBJECT(btn), "clicked",
             G_CALLBACK(pop3_config_advanced_btn_clicked_cb), pmailbox);
     
-    hbox = gtk_hbox_new(FALSE, BORDER/2);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, BORDER/2);
     gtk_widget_show(hbox);
     gtk_box_pack_start(GTK_BOX(topvbox), hbox, FALSE, FALSE, 0);
     
@@ -939,7 +943,7 @@ pop3_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
     XfceMailwatchPOP3Mailbox *pmailbox = XFCE_MAILWATCH_POP3_MAILBOX(mailbox);
     GList *l;
     
-    g_mutex_lock(pmailbox->config_mx);
+    g_mutex_lock(&(pmailbox->config_mx));
     
     for(l = params; l; l = l->next) {
         XfceMailwatchParam *param = l->data;
@@ -960,7 +964,7 @@ pop3_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
             pmailbox->timeout = atoi(param->value);
     }
     
-    g_mutex_unlock(pmailbox->config_mx);
+    g_mutex_unlock(&(pmailbox->config_mx));
 }
 
 static GList *
@@ -970,7 +974,7 @@ pop3_save_param_list(XfceMailwatchMailbox *mailbox)
     GList *params = NULL;
     XfceMailwatchParam *param;
     
-    g_mutex_lock(pmailbox->config_mx);
+    g_mutex_lock(&(pmailbox->config_mx));
     
     param = g_new(XfceMailwatchParam, 1);
     param->key = g_strdup("host");
@@ -1009,7 +1013,7 @@ pop3_save_param_list(XfceMailwatchMailbox *mailbox)
     param->value = g_strdup_printf("%d", pmailbox->timeout);
     params = g_list_prepend(params, param);
     
-    g_mutex_unlock(pmailbox->config_mx);
+    g_mutex_unlock(&(pmailbox->config_mx));
     
     return g_list_reverse(params);
 }
@@ -1023,7 +1027,7 @@ pop3_mailbox_free(XfceMailwatchMailbox *mailbox)
     while(g_atomic_pointer_get(&pmailbox->th))
         g_thread_yield();
     
-    g_mutex_free(pmailbox->config_mx);
+    g_mutex_clear(&pmailbox->config_mx);
     
     g_free(pmailbox->host);
     g_free(pmailbox->username);

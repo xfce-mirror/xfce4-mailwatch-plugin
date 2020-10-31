@@ -64,7 +64,7 @@ void xfce_mailwatch_destroy            (XfceMailwatch *mailwatch);
 
 void xfce_mailwatch_set_config_file    (XfceMailwatch *mailwatch,
                                         const gchar *filename);
-G_CONST_RETURN gchar *xfce_mailwatch_get_config_file
+const gchar *xfce_mailwatch_get_config_file
                                        (XfceMailwatch *mailwatch);
 
 gboolean xfce_mailwatch_load_config    (XfceMailwatch *mailwatch);

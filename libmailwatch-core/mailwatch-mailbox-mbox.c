@@ -68,7 +68,7 @@ typedef struct {
     gint                    running;
     gpointer                thread;  /* (GThread *) */
     guint                   check_id;
-    GMutex                  *settings_mutex;
+    GMutex                   settings_mutex;
 } XfceMailwatchMboxMailbox;
 
 static void
@@ -78,13 +78,13 @@ mbox_check_mail( XfceMailwatchMboxMailbox *mbox )
     struct stat     st;
     guint           num_new = 0;
 
-    g_mutex_lock( mbox->settings_mutex );
+    g_mutex_lock(&(mbox->settings_mutex));
     if ( !mbox->fn ) {
-        g_mutex_unlock( mbox->settings_mutex );
+        g_mutex_unlock(&(mbox->settings_mutex));
         return;
     }
     mailbox = g_strdup( mbox->fn );
-    g_mutex_unlock( mbox->settings_mutex );
+    g_mutex_unlock(&(mbox->settings_mutex));
 
     /* For some reason g_stat() doesn't update
      * ctime */
@@ -226,7 +226,7 @@ mbox_check_mail_timeout( gpointer data )
         return TRUE;
     }
 
-    th = g_thread_create( mbox_check_mail_thread, mbox, FALSE, NULL );
+    th = g_thread_try_new( NULL, mbox_check_mail_thread, mbox, NULL );
     g_atomic_pointer_set( &mbox->thread, th );
 
     return TRUE;
@@ -241,7 +241,7 @@ mbox_new( XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type )
 
     mbox->mailwatch     = mailwatch;
 
-    mbox->settings_mutex = g_mutex_new();
+    g_mutex_init( &mbox->settings_mutex );
     mbox->interval = XFCE_MAILWATCH_DEFAULT_TIMEOUT;
 
     return ( (XfceMailwatchMailbox *) mbox );
@@ -254,7 +254,7 @@ mbox_save_settings( XfceMailwatchMailbox *mailbox )
     XfceMailwatchParam          *param;
     GList                       *settings = NULL;
 
-    g_mutex_lock( mbox->settings_mutex );
+    g_mutex_lock(&(mbox->settings_mutex));
     
     param = g_new( XfceMailwatchParam, 1 );
     param->key      = g_strdup( "filename" );
@@ -276,7 +276,7 @@ mbox_save_settings( XfceMailwatchMailbox *mailbox )
     param->value    = g_strdup_printf( "%u", mbox->interval );
     settings = g_list_append( settings, param );
 
-    g_mutex_unlock( mbox->settings_mutex );
+    g_mutex_unlock(&(mbox->settings_mutex));
 
     return ( settings );
 }
@@ -287,7 +287,7 @@ mbox_restore_settings( XfceMailwatchMailbox *mailbox, GList *settings )
     XfceMailwatchMboxMailbox    *mbox = XFCE_MAILWATCH_MBOX_MAILBOX( mailbox );
     GList                       *li;
 
-    g_mutex_lock( mbox->settings_mutex );
+    g_mutex_lock(&(mbox->settings_mutex));
     
     for ( li = g_list_first( settings ); li != NULL; li = g_list_next( li ) ) {
         XfceMailwatchParam      *p = (XfceMailwatchParam *) li->data;
@@ -309,7 +309,7 @@ mbox_restore_settings( XfceMailwatchMailbox *mailbox, GList *settings )
         }
     }
 
-    g_mutex_unlock( mbox->settings_mutex );
+    g_mutex_unlock(&(mbox->settings_mutex));
 }
 
 static void
@@ -320,7 +320,7 @@ mbox_file_set_cb( GtkWidget *button,
 
     text = gtk_file_chooser_get_filename( GTK_FILE_CHOOSER( button ) );
 
-    g_mutex_lock( mbox->settings_mutex );
+    g_mutex_lock(&(mbox->settings_mutex));
     if ( mbox->fn ) {
         g_free( mbox->fn );
     }
@@ -331,7 +331,7 @@ mbox_file_set_cb( GtkWidget *button,
     else {
         mbox->fn = g_strdup( "" );
     }
-    g_mutex_unlock( mbox->settings_mutex );
+    g_mutex_unlock(&(mbox->settings_mutex));
 }
 
 static void
@@ -359,10 +359,10 @@ mbox_get_setup_page( XfceMailwatchMailbox *mailbox )
     GtkWidget                   *button, *spinner;
     GtkSizeGroup                *sg;
 
-    vbox = gtk_vbox_new( FALSE, BORDER / 2 );
+    vbox = gtk_box_new( GTK_ORIENTATION_VERTICAL, BORDER / 2 );
     gtk_widget_show( vbox );
     
-    hbox = gtk_hbox_new( FALSE, BORDER );
+    hbox = gtk_box_new( GTK_ORIENTATION_HORIZONTAL, BORDER );
     gtk_widget_show( hbox );
     gtk_box_pack_start( GTK_BOX( vbox ), hbox, FALSE, FALSE, 0 );
 
@@ -376,11 +376,11 @@ mbox_get_setup_page( XfceMailwatchMailbox *mailbox )
 
     button = gtk_file_chooser_button_new( _("Select mbox file"),
                                           GTK_FILE_CHOOSER_ACTION_OPEN );
-    g_mutex_lock( mbox->settings_mutex );
+    g_mutex_lock(&(mbox->settings_mutex));
     if ( mbox->fn ) {
         gtk_file_chooser_set_filename( GTK_FILE_CHOOSER( button ), mbox->fn );
     }
-    g_mutex_unlock( mbox->settings_mutex );
+    g_mutex_unlock(&(mbox->settings_mutex));
     gtk_widget_show( button );
     gtk_box_pack_start( GTK_BOX( hbox ), button, TRUE, TRUE, 0 );
     g_signal_connect( G_OBJECT( button ), "file-set",
@@ -388,13 +388,13 @@ mbox_get_setup_page( XfceMailwatchMailbox *mailbox )
 
     gtk_label_set_mnemonic_widget( GTK_LABEL( label ), button );
 
-    hbox = gtk_hbox_new( FALSE, BORDER );
+    hbox = gtk_box_new( GTK_ORIENTATION_HORIZONTAL, BORDER );
     gtk_widget_show( hbox );
     gtk_box_pack_start( GTK_BOX( vbox ), hbox, FALSE, FALSE, 0 );
 
     label = gtk_label_new_with_mnemonic( _( "_Interval:" ) );
     gtk_widget_show( label );
-    gtk_misc_set_alignment( GTK_MISC( label ), 1, 0.5 );
+    gtk_label_set_xalign( GTK_LABEL( label ), 1.0 );
     gtk_box_pack_start( GTK_BOX( hbox ), label, FALSE, FALSE, 0 );
 
     gtk_size_group_add_widget( GTK_SIZE_GROUP( sg ), label );
@@ -463,7 +463,7 @@ mbox_free( XfceMailwatchMailbox *mailbox )
     while( g_atomic_pointer_get( &mbox->thread ) )
         g_thread_yield();
     
-    g_mutex_free( mbox->settings_mutex );
+    g_mutex_clear( &mbox->settings_mutex );
 
     if ( mbox->fn ) {
         g_free( mbox->fn );
