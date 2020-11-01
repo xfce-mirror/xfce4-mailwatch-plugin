@@ -25,10 +25,10 @@ Random list of features:
     overlay icon to inform the user of errors at a glance.
   * Custom button icons.
 
-gnutls 1.2.0 or greater and libgcrypt, version 1.2.0 or greater, are optional,
-but required for SSL/TLS support. GMail requires this support. Sending
-cleartext passwords across unsecured networks is not recommended. This plugin
-should work with any Xfce version from 4.8.0 onwards.
+gnutls 1.2.0 or greater is optional, but required for SSL/TLS support. GMail
+requires this support. Sending cleartext passwords across unsecured networks
+is not recommended. This plugin should work with any Xfce version from 4.8.0
+onwards.
 
 See the Mailwatch website for more information and the latest release:
 https://docs.xfce.org/panel-plugins/xfce4-mailwatch-plugin
