@@ -61,7 +61,6 @@
 #include <libxfce4util/libxfce4util.h>
 
 #ifdef HAVE_SSL_SUPPORT
-#include <gcrypt.h>
 #include <gnutls/gnutls.h>
 #endif
 
@@ -121,87 +120,8 @@ typedef enum
 
 
 #ifdef HAVE_SSL_SUPPORT
-
 #define GNUTLS_CA_FILE           "ca.pem"
 
-#if GCRYPT_VERSION_NUMBER < 0x010600
-/* missing from 1.2.0? */
-#ifndef _GCRY_PTH_SOCKADDR
-#define _GCRY_PTH_SOCKADDR  struct sockaddr
-#endif
-#ifndef _GCRY_PTH_SOCKLEN_T
-#define _GCRY_PTH_SOCKLEN_T socklen_t
-#endif
-
-/* stuff to support 'gthreads' with gcrypt */
-static int my_g_mutex_init(void **priv);
-static int my_g_mutex_destroy(void **priv);
-static int my_g_mutex_lock(void **priv);
-static int my_g_mutex_unlock(void **priv);
-static struct gcry_thread_cbs gcry_threads_gthread = {
-    GCRY_THREAD_OPTION_USER,
-    NULL,
-    my_g_mutex_init,
-    my_g_mutex_destroy,
-    my_g_mutex_lock,
-    my_g_mutex_unlock,
-    read,
-    write,
-    (ssize_t (*)(int, fd_set *, fd_set *, fd_set *, struct timeval *))select,
-    (ssize_t (*)(pid_t, int *, int))waitpid,
-    accept,
-    (int (*)(int, _GCRY_PTH_SOCKADDR *, _GCRY_PTH_SOCKLEN_T))connect,
-    (int (*)(int, const struct msghdr *, int))sendmsg,
-    (int (*)(int, struct msghdr *, int))recvmsg
-};
-
-/*
- * gthread -> gcrypt support wrappers
- */
-static int
-my_g_mutex_init(void **priv)
-{
-    GMutex **gmx = (GMutex **)priv;
-    
-    *gmx = g_mutex_new();
-    if(!*gmx)
-        return -1;
-    return 0;
-}
-
-static int
-my_g_mutex_destroy(void **priv)
-{
-    GMutex **gmx = (GMutex **)priv;
-    
-    g_mutex_free(*gmx);
-    return 0;
-}
-
-static int
-my_g_mutex_lock(void **priv)
-{
-    GMutex **gmx = (GMutex **)priv;
-    
-    g_mutex_lock(*gmx);
-    return 0;
-}
-
-static int
-my_g_mutex_unlock(void **priv)
-{
-    GMutex **gmx = (GMutex **)priv;
-    
-    g_mutex_unlock(*gmx);
-    return 0;
-}
-#endif
-
-#endif  /* defined(HAVE_SSL_SUPPORT) */
-
-
-
-#ifdef HAVE_SSL_SUPPORT
 static gboolean
 xfce_mailwatch_net_conn_tls_handshake(XfceMailwatchNetConn *net_conn,
                                       GError **error)
@@ -366,9 +286,6 @@ xfce_mailwatch_net_conn_init(void)
 
     if(!__inited) {
 #ifdef HAVE_SSL_SUPPORT
-#if GCRYPT_VERSION_NUMBER < 0x010600
-        gcry_control(GCRYCTL_SET_THREAD_CBS, &gcry_threads_gthread);
-#endif
         gnutls_global_init();
 #endif
         __inited = TRUE;
