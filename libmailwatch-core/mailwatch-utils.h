@@ -19,6 +19,8 @@
 #ifndef __MAILWATCH_UTILS_H__
 #define __MAILWATCH_UTILS_H__
 
+#include <glib.h>
+
 G_BEGIN_DECLS
 
 typedef enum
@@ -31,13 +33,6 @@ typedef enum
 gchar *xfce_mailwatch_cram_md5(const gchar *username,
                                const gchar *password,
                                const gchar *challenge_base64);
-
-gint xfce_mailwatch_base64_encode(const guint8 *data,
-                                  gsize size,
-                                  gchar **str);
-gint xfce_mailwatch_base64_decode(const gchar *str,
-                                  guint8 *data,
-                                  gsize size);
 
 G_END_DECLS
 
