@@ -40,8 +40,7 @@ libmailwatch_la_LIBADD = \
 
 if HAVE_SSL_SUPPORT
 libmailwatch_la_LIBADD += \
-	$(GNUTLS_LIBS) \
-	$(LIBGCRYPT_LIBS)
+	$(GNUTLS_LIBS)
 endif
 
 #

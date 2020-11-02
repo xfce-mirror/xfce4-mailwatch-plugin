@@ -37,6 +37,5 @@ libmailwatch_core_la_SOURCES += \
 	mailwatch-mailbox-gmail.c
 
 libmailwatch_core_la_CFLAGS += \
-	$(GNUTLS_CFLAGS) \
-	$(LIBGCRYPT_CFLAGS)
+	$(GNUTLS_CFLAGS)
 endif
