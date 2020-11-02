@@ -1435,7 +1435,15 @@ imap_config_newmailfolders_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(ts));
     gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(treeview), FALSE);
     gtk_widget_add_events(treeview, GDK_BUTTON_PRESS);
-    
+
+    /* Add watching column */
+    render = gtk_cell_renderer_toggle_new();
+    col = gtk_tree_view_column_new_with_attributes("watching", render,
+                                                   "active", IMAP_FOLDERS_WATCHING,
+                                                   NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW(treeview), col);
+
+    /* Add name column */
     col = gtk_tree_view_column_new();
     gtk_tree_view_column_set_title(col, "mailbox-name");
     gtk_tree_view_column_set_expand(col, TRUE);
@@ -1469,13 +1477,7 @@ imap_config_newmailfolders_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     
     gtk_tree_view_append_column(GTK_TREE_VIEW(treeview), col);
     gtk_tree_view_set_expander_column(GTK_TREE_VIEW(treeview), col);
-    
-    render = gtk_cell_renderer_toggle_new();
-    col = gtk_tree_view_column_new_with_attributes("watching", render,
-                                                   "active", IMAP_FOLDERS_WATCHING,
-                                                   NULL);
-    gtk_tree_view_append_column(GTK_TREE_VIEW(treeview), col);
-    
+
     gtk_widget_show(treeview);
     gtk_container_add(GTK_CONTAINER(sw), treeview);
     g_signal_connect(G_OBJECT(treeview), "button-press-event",
