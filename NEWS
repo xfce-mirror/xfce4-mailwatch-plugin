@@ -1,3 +1,28 @@
+1.3.0
+======
+- GTK 3 Port
+- Remove Libgcrypt dependency
+- Move "watching" column to the left to avoid overlapping with scrollbar
+- Add support for XfceTitledDialog new API
+- Fix cast to pointer
+- Replace deprecated GTimeVal
+- Update URLs from goodies.x.o to docs.x.o (Bug #16167)
+- Added support for multi-row/column panels in xfce4-panel > 4.9
+- Fix running command on each change of the count
+- Fix running an empty command
+- Do not run command when new message count is 0
+- Add SSL support CFLAGS and LDFLAGS conditionally
+- Translation Updates:
+  Albanian, Arabic, Asturian, Basque, Belarusian, Bulgarian, Catalan,
+  Chinese (China), Chinese (Taiwan), Croatian, Czech, Danish, Dutch,
+  English (Australia), English (United Kingdom), Finnish, French,
+  Galician, German, Greek, Hebrew, Hungarian, Icelandic, Indonesian,
+  Interlingue, Italian, Japanese, Korean, Latvian, Lithuanian, Malay,
+  Norwegian Bokmål, Occitan (post 1500), Polish, Portuguese,
+  Portuguese (Brazil), Russian, Serbian, Slovak, Slovenian, Spanish,
+  Swedish, Thai, Turkish, Ukrainian, Urdu, Urdu (Pakistan), Uyghur,
+  Vietnamese
+
 1.2.0 (24 Oct 2013)
 ===================
 
