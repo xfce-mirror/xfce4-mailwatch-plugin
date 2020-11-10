@@ -127,7 +127,30 @@ mailwatch_set_default_config(XfceMailwatchPlugin *mwp)
     mwp->log_lines = 200;
     mwp->show_log_status = TRUE;
 }
-        
+
+static inline void
+mailwatch_update_size(XfceMailwatchPlugin *mwp)
+{
+    mailwatch_set_size(mwp->plugin,
+                       xfce_panel_plugin_get_size(mwp->plugin),
+                       mwp);
+}
+
+static void
+mailwatch_set_log_status(XfceMailwatchPlugin   *mwp,
+                         XfceMailwatchLogLevel  log_status)
+{
+    mwp->log_status = log_status;
+    mailwatch_update_size(mwp);
+}
+
+static void
+mailwatch_update(XfceMailwatchPlugin *mwp)
+{
+    mailwatch_set_log_status(mwp, 0);
+    xfce_mailwatch_force_update(mwp->mailwatch);
+}
+
 static void
 mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch,
                                   gpointer       new_message_count,
@@ -139,9 +162,7 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch,
     if (new_messages == 0 && mwp->newmail_icon_visible) {
         mwp->newmail_icon_visible = FALSE;
         mwp->new_messages = 0;
-        mailwatch_set_size(mwp->plugin,
-                           xfce_panel_plugin_get_size(mwp->plugin),
-                           mwp);
+        mailwatch_update_size(mwp);
         gtk_widget_set_tooltip_text(mwp->button, _("No new mail"));
         gtk_widget_trigger_tooltip_query(mwp->button);
         /* Run command on any change of count of new messages. */
@@ -152,9 +173,7 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch,
     } else if (new_messages > 0) {
         if (!mwp->newmail_icon_visible) {
             mwp->newmail_icon_visible = TRUE;
-            mailwatch_set_size(mwp->plugin,
-                               xfce_panel_plugin_get_size(mwp->plugin),
-                               mwp);
+            mailwatch_update_size(mwp);
         }
         if (new_messages != mwp->new_messages) {
             GString *ttip_str = g_string_sized_new(64);
@@ -233,7 +252,7 @@ mailwatch_button_release_cb(GtkWidget      *w,
                 break;
         
             case MOUSE_BUTTON_MIDDLE:
-                xfce_mailwatch_force_update(mwp->mailwatch);
+                mailwatch_update(mwp);
                 break;
         }
     }
@@ -273,10 +292,7 @@ mailwatch_log_message_cb(XfceMailwatch *mailwatch,
     g_free(new_message);
     
     if (entry->level > mwp->log_status) {
-        mwp->log_status = entry->level;
-        mailwatch_set_size(mwp->plugin,
-                           xfce_panel_plugin_get_size(mwp->plugin),
-                           mwp);
+        mailwatch_set_log_status(mwp, entry->level);
     }
     
     while (gtk_tree_model_iter_n_children(GTK_TREE_MODEL(mwp->loglist), NULL) > (gint)mwp->log_lines) {
@@ -567,8 +583,8 @@ mailwatch_read_config(XfcePanelPlugin     *plugin,
     }
     
     if(reload_icon)
-        mailwatch_set_size(plugin, xfce_panel_plugin_get_size(plugin), mwp);
-    
+        mailwatch_update_size(mwp);
+
     mwp->log_lines = xfce_rc_read_int_entry(rc, "log_lines", DEFAULT_LOG_LINES);
     
     mwp->show_log_status = xfce_rc_read_bool_entry(rc, "show_log_status", TRUE);
@@ -683,9 +699,7 @@ mailwatch_log_status_toggled_cb(GtkToggleButton *tb,
     mwp->show_log_status = gtk_toggle_button_get_active(tb);
     
     xfce_mailwatch_get_new_messages(mwp->mailwatch);
-    mailwatch_set_size(mwp->plugin,
-                       xfce_panel_plugin_get_size(mwp->plugin),
-                       mwp);
+    mailwatch_update_size(mwp);
 }
 
 static void
@@ -700,10 +714,7 @@ mailwatch_view_log_clicked_cb(GtkWidget *widget,
         return;
     }
 
-    mwp->log_status = 0;
-    mailwatch_set_size(mwp->plugin,
-                       xfce_panel_plugin_get_size(mwp->plugin),
-                       mwp);
+    mailwatch_set_log_status(mwp, 0);
 
     mwp->log_dialog = gtk_dialog_new_with_buttons(_( "Mailwatch log" ),
                                                   GTK_WINDOW(gtk_widget_get_toplevel(widget)),
@@ -875,9 +886,8 @@ mailwatch_iconbtn_clicked_cb(GtkWidget           *w,
 
             g_free(*icon_path);
             *icon_path = filename;
-            mailwatch_set_size(mwp->plugin, 
-                               xfce_panel_plugin_get_size(mwp->plugin), mwp);
-            
+            mailwatch_update_size(mwp);
+
             gtk_container_remove(GTK_CONTAINER(w), gtk_bin_get_child(GTK_BIN(w)));
             
             vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, BORDER / 2);
@@ -1229,7 +1239,7 @@ mailwatch_update_now_clicked_cb(GtkMenuItem *mi,
                                 gpointer     user_data)
 {
     XfceMailwatchPlugin *mwp = user_data;
-    xfce_mailwatch_force_update(mwp->mailwatch);
+    mailwatch_update(mwp);
 }
 
 static void
@@ -1265,7 +1275,7 @@ mailwatch_handle_sigusr2(gint     signal_,
                          gpointer user_data)
 {
     XfceMailwatchPlugin *mwp = user_data;
-    xfce_mailwatch_force_update(mwp->mailwatch);
+    mailwatch_update(mwp);
 }
 
 static void
