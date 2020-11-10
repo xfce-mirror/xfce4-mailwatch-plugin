@@ -1279,10 +1279,23 @@ mailwatch_handle_sigusr2(gint     signal_,
 }
 
 static void
+mailwatch_add_menu_item(XfcePanelPlugin *plugin,
+                        const gchar     *label,
+                        GCallback        callback,
+                        gpointer         user_data)
+{
+    GtkWidget *menu_item;
+
+    menu_item = gtk_menu_item_new_with_label(label);
+    gtk_widget_show(menu_item);
+    g_signal_connect(G_OBJECT(menu_item), "activate", callback, user_data);
+    xfce_panel_plugin_menu_insert_item(plugin, GTK_MENU_ITEM(menu_item));
+}
+
+static void
 mailwatch_construct(XfcePanelPlugin *plugin)
 {
     XfceMailwatchPlugin *mwp;
-    GtkWidget *mi;
     struct sigaction sa = {
         .sa_handler = SIG_IGN,
 #ifdef SA_RESTART
@@ -1332,11 +1345,10 @@ mailwatch_construct(XfcePanelPlugin *plugin)
     
     xfce_panel_plugin_set_small (plugin, TRUE);
 
-    mi = gtk_menu_item_new_with_label(_("Update Now"));
-    gtk_widget_show(mi);
-    g_signal_connect(G_OBJECT(mi), "activate",
-                     G_CALLBACK(mailwatch_update_now_clicked_cb), mwp);
-    xfce_panel_plugin_menu_insert_item(plugin, GTK_MENU_ITEM(mi));
+    mailwatch_add_menu_item(plugin, _("Update Now"),
+                            G_CALLBACK(mailwatch_update_now_clicked_cb), mwp);
+    mailwatch_add_menu_item(plugin, _("View Log..."),
+                            G_CALLBACK(mailwatch_view_log_clicked_cb), mwp);
 
     xfce_mailwatch_force_update(mwp->mailwatch);
 }
