@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-31 12:49+0100\n"
-"PO-Revision-Date: 2020-12-15 09:19+0000\n"
+"PO-Revision-Date: 2020-12-16 18:47+0000\n"
 "Last-Translator: beriain\n"
 "Language-Team: Basque (http://www.transifex.com/xfce/xfce-panel-plugins/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -79,7 +79,7 @@ msgstr "minutu."
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:668
 msgid "Remote GMail Mailbox"
-msgstr "Urruneko GMail postakutxa"
+msgstr "Urruneko GMail postontzia"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:669
 msgid ""
@@ -207,7 +207,7 @@ msgstr "Posta _karpeta berriak..."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1968
 msgid "Remote IMAP Mailbox"
-msgstr "Urruneko IMAP postakutxa"
+msgstr "Urruneko IMAP postontzia"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1969
 msgid ""
@@ -305,7 +305,7 @@ msgstr "POP3 Zerbitzaria"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1041
 msgid "Remote POP3 Mailbox"
-msgstr "Urruneko POP3 Postakutxa"
+msgstr "Urruneko POP3 postontzia"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:1042
 msgid ""
@@ -385,7 +385,7 @@ msgstr "Ezin dira '%s' konfigurazio fitxategiaren baimenak ezarri.  Fitxategi ho
 
 #: ../libmailwatch-core/mailwatch.c:614
 msgid "This mailbox type does not require any configuration settings."
-msgstr "Postakutxa mota honek ez du konfigurazio ezarpenik behar."
+msgstr "Postontzi mota honek ez du konfigurazio ezarpenik behar."
 
 #: ../libmailwatch-core/mailwatch.c:623 ../libmailwatch-core/mailwatch.c:765
 #: ../panel-plugin/mailwatch-plugin.c:837
@@ -400,7 +400,7 @@ msgstr "_Ados"
 
 #: ../libmailwatch-core/mailwatch.c:645
 msgid "Mailbox _Name:"
-msgstr "Postakutxa _Izena:"
+msgstr "Postontziaren _izena:"
 
 #: ../libmailwatch-core/mailwatch.c:663
 msgid "Mailwatch"
@@ -408,32 +408,32 @@ msgstr "Posta arakatzailea"
 
 #: ../libmailwatch-core/mailwatch.c:664
 msgid "Mailbox name required."
-msgstr "Postakutxa izena beharrezkoa da."
+msgstr "Postontziaren izena beharrezkoa da."
 
 #: ../libmailwatch-core/mailwatch.c:665
 msgid "Please enter a name for the mailbox."
-msgstr "Mesedez idatzi postakutxarentzat izen bat."
+msgstr "Mesedez idatzi postontziarentzat izen bat."
 
 #: ../libmailwatch-core/mailwatch.c:707
 #, c-format
 msgid "Edit Mailbox: %s"
-msgstr "Editatu postakutxa: %s"
+msgstr "Editatu postontzia: %s"
 
 #: ../libmailwatch-core/mailwatch.c:763
 msgid "Select Mailbox Type"
-msgstr "Hautatu postakutxa mota"
+msgstr "Hautatu postontzi mota"
 
 #: ../libmailwatch-core/mailwatch.c:777
 msgid "Select a mailbox type.  A description of the type will appear below."
-msgstr "Postakutxa mota hautatu.  Moten deskribapen bat beherago agertu beharko litzateke."
+msgstr "Postontzi mota hautatu.  Moten deskribapen bat beherago agertu beharko litzateke."
 
 #: ../libmailwatch-core/mailwatch.c:830
 msgid "Add New Mailbox"
-msgstr "Postakutxa Berria gehitu"
+msgstr "Postontzi berria gehitu"
 
 #: ../libmailwatch-core/mailwatch.c:890
 msgid "Remove Mailbox"
-msgstr "Postakutxa Ezabatu"
+msgstr "Postontzia ezabatu"
 
 #: ../libmailwatch-core/mailwatch.c:891
 msgid "Are you sure?"
@@ -441,7 +441,7 @@ msgstr "Ziur al zaude?"
 
 #: ../libmailwatch-core/mailwatch.c:892
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
-msgstr "Postakutxa bat ezabatzeak ezarpen guztiak ezabatzen ditu, eta ezin da desegin."
+msgstr "Postontzi bat ezabatzeak ezarpen guztiak ezabatzen ditu, eta ezin da desegin."
 
 #: ../libmailwatch-core/mailwatch.c:894
 msgid "Cancel"
@@ -453,7 +453,7 @@ msgstr "Kendu"
 
 #: ../libmailwatch-core/mailwatch.c:959
 msgid "Mailboxes"
-msgstr "Postakutxak"
+msgstr "Postontziak"
 
 #: ../libmailwatch-core/mailwatch.c:1013
 msgid "_Add"
@@ -476,13 +476,13 @@ msgstr "Ez dago posta berririk"
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
-msgstr[0] "mezu berri %d duzu:"
+msgstr[0] "Mezu berri %d duzu:"
 msgstr[1] "%d mezu berri dituzu:"
 
 #: ../panel-plugin/mailwatch-plugin.c:176
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "esan zenbat mezu beri daude postakutxa bakoitzean|    %d %s-etan"
+msgstr "Postontzi bakoitzean zenbat mezu berri dagoen adierazten du|    %d %s(e)n"
 
 #: ../panel-plugin/mailwatch-plugin.c:471
 msgid "Xfce Mailwatch"
@@ -616,4 +616,4 @@ msgstr "Eguneratu orain"
 
 #: ../panel-plugin/mailwatch.desktop.in.h:2
 msgid "Check mail from multiple mailboxes"
-msgstr "Postakutxa anitzetako posta arakatu"
+msgstr "Postontzi anitzetako posta arakatu"
