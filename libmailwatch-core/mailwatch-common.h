@@ -31,10 +31,10 @@ enum
     XFCE_MAILWATCH_ERROR_ABORTED,
 };
 
-GQuark xfce_mailwatch_get_error_quark();
+GQuark xfce_mailwatch_get_error_quark(void);
 
-void xfce_mailwatch_threads_enter();
-void xfce_mailwatch_threads_leave();
+void xfce_mailwatch_threads_enter(void);
+void xfce_mailwatch_threads_leave(void);
 
 G_END_DECLS
 
