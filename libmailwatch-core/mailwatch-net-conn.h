@@ -29,7 +29,7 @@ typedef gboolean (*XMNCShouldContinueFunc)(XfceMailwatchNetConn *net_conn,
                                            gpointer user_data);
 
 
-void xfce_mailwatch_net_conn_init();
+void xfce_mailwatch_net_conn_init(void);
 
 XfceMailwatchNetConn *xfce_mailwatch_net_conn_new(const gchar *hostname,
                                                   const gchar *service);

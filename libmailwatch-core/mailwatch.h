@@ -59,7 +59,7 @@ typedef struct {
     gchar                   *message;
 } XfceMailwatchLogEntry;
 
-XfceMailwatch *xfce_mailwatch_new      ();
+XfceMailwatch *xfce_mailwatch_new      (void);
 void xfce_mailwatch_destroy            (XfceMailwatch *mailwatch);
 
 void xfce_mailwatch_set_config_file    (XfceMailwatch *mailwatch,
