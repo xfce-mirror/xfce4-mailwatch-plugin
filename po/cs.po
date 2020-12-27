@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-31 12:49+0100\n"
-"PO-Revision-Date: 2020-11-01 09:09+0000\n"
+"POT-Creation-Date: 2020-12-26 12:48+0100\n"
+"PO-Revision-Date: 2020-12-27 01:42+0000\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/xfce/xfce-panel-plugins/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -25,14 +25,14 @@ msgstr ""
 msgid "TLS handshake failed: %s"
 msgstr "Připojení pomocí TLS selhalo: %s"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:255
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:256
 #, c-format
 msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
 msgstr "Byla přijata odpověď protokolu HTTP s kódem %d. Obvyklý důvod tohoto chování spočívá v nesprávném zadání uživatelského jména nebo heslo."
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:262
 #, c-format
 msgid ""
 "Received HTTP response code %d, which should be 200.  There may be a problem"
@@ -40,7 +40,7 @@ msgid ""
 "authentication method or location of the new messages feed."
 msgstr "Byla přijata odpověď protokolu HTTP s kódem %d, který by měl mít hodnotu 200. Problém může být na straně serverů GMail nebo byla změněna metoda ověření nebo umístění novým zpráv."
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:395
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:731
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:179
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:225
@@ -49,26 +49,26 @@ msgstr "Byla přijata odpověď protokolu HTTP s kódem %d, který by měl mít 
 msgid "Previous thread hasn't exited yet, not checking mail this time."
 msgstr "Předchozí vlákno dosud neexistovalo, pošta se nyní nezkontroluje."
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1728
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:536
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1730
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:865
 msgid "_Username:"
 msgstr "_Uživatelské jméno:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:555
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:556
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1750
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:885
 msgid "_Password:"
 msgstr "_Heslo:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:576
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1791
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:577
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1793
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:919
 msgid "Check for _new messages every"
 msgstr "Zjišťovat nové zprávy každých"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:591
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1805
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:592
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1807
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:374
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:412
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:605
@@ -76,11 +76,11 @@ msgstr "Zjišťovat nové zprávy každých"
 msgid "minute(s)."
 msgstr "minut."
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:668
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:669
 msgid "Remote GMail Mailbox"
 msgstr "Vzdálená poštovní schránka GMail"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:669
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:670
 msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
@@ -109,7 +109,7 @@ msgid "Failed to get folder list"
 msgstr "Získání seznamu složky se nezdařilo."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1284
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1503
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1505
 msgid "Please wait..."
 msgstr "Prosím čekejte..."
 
@@ -130,12 +130,12 @@ msgstr "Seznam služeb nebude ze serveru stažen, dokud nenastavíte název serv
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1396
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1589
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1591
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:749
 #: ../libmailwatch-core/mailwatch.c:630 ../libmailwatch-core/mailwatch.c:666
-#: ../panel-plugin/mailwatch-plugin.c:474
-#: ../panel-plugin/mailwatch-plugin.c:779
-#: ../panel-plugin/mailwatch-plugin.c:1047
+#: ../panel-plugin/mailwatch-plugin.c:490
+#: ../panel-plugin/mailwatch-plugin.c:790
+#: ../panel-plugin/mailwatch-plugin.c:1057
 msgid "_Close"
 msgstr "_Zavřít"
 
@@ -147,68 +147,68 @@ msgstr "Nastavit složky nové elektronické pošty"
 msgid "New Mail Folders"
 msgstr "Nastavit složky elektronické pošty"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1492
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1494
 msgid "_Refresh"
 msgstr "_Obnovit"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1586
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1588
 msgid "Advanced IMAP Options"
 msgstr "Pokročilé nastavení protokolu IMAP"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1599
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1601
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:759
 msgid "Connection"
 msgstr "Připojení"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1608
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1610
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:768
 msgid "Use unsecured connection"
 msgstr "Použít nezabezpečené připojení"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1609
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1611
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:769
 msgid "Use SSL/TLS on alternate port"
 msgstr "Použít SSL/TLS na alternativním portu"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1610
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1612
 msgid "Use SSL/TLS via STARTTLS"
 msgstr "Použít SSL/TLS přes STARTTLS"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1626
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1628
 msgid "Use non-standard IMAP _port:"
 msgstr "Použít nestandardní _port pro protokol IMAP:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1656
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1658
 msgid "Folders"
 msgstr "Složky"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1664
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1666
 msgid "IMAP server _directory:"
 msgstr "A_dresář serveru IMAP:"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1694
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1696
 msgid "IMAP Server"
 msgstr "Server IMAP"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1708
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1710
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:845
 msgid "_Mail server:"
 msgstr "Poštovní s_erver"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1769
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1771
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:906
 msgid "_Advanced..."
 msgstr "_Upřesnit..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1778
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1780
 msgid "New mail _folders..."
 msgstr "N_ové složky elektronické pošty..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1968
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1970
 msgid "Remote IMAP Mailbox"
 msgstr "Vzdálená schránka IMAP"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1969
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1971
 msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
@@ -312,59 +312,59 @@ msgid ""
 "protocol, optionally using SSL for link protection."
 msgstr "Zásuvný modul POP3 se může připojit ke vzdálenému serveru s podporou POP3, volitelně s zabezpečením SSL."
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:224
-#: ../libmailwatch-core/mailwatch-net-conn.c:269
-#: ../libmailwatch-core/mailwatch-net-conn.c:351
-#: ../libmailwatch-core/mailwatch-net-conn.c:695
-#: ../libmailwatch-core/mailwatch-net-conn.c:728
-#: ../libmailwatch-core/mailwatch-net-conn.c:791
-#: ../libmailwatch-core/mailwatch-net-conn.c:824
-#: ../libmailwatch-core/mailwatch-net-conn.c:854
+#: ../libmailwatch-core/mailwatch-net-conn.c:144
+#: ../libmailwatch-core/mailwatch-net-conn.c:189
+#: ../libmailwatch-core/mailwatch-net-conn.c:271
+#: ../libmailwatch-core/mailwatch-net-conn.c:612
+#: ../libmailwatch-core/mailwatch-net-conn.c:645
+#: ../libmailwatch-core/mailwatch-net-conn.c:708
+#: ../libmailwatch-core/mailwatch-net-conn.c:741
+#: ../libmailwatch-core/mailwatch-net-conn.c:771
 #, c-format
 msgid "Operation aborted"
 msgstr "Operace zrušena"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:502
+#: ../libmailwatch-core/mailwatch-net-conn.c:419
 #, c-format
 msgid "Could not find host \"%s\": %s"
 msgstr "Nelze najít server \"%s\": %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:586
+#: ../libmailwatch-core/mailwatch-net-conn.c:503
 #, c-format
 msgid "Failed to connect to server \"%s\": %s"
 msgstr "Připojení k serveru \"%s\" se nezdařilo: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:646
+#: ../libmailwatch-core/mailwatch-net-conn.c:563
 #, c-format
 msgid "Not compiled with SSL/TLS support"
 msgstr "Nezkompilováno s podporou protokolu SSL/TLS"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:702
+#: ../libmailwatch-core/mailwatch-net-conn.c:619
 #, c-format
 msgid "Failed to send encrypted data: %s"
 msgstr "Odeslání šifrovaných dat se nezdařilo: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:735
+#: ../libmailwatch-core/mailwatch-net-conn.c:652
 #, c-format
 msgid "Failed to send data: %s"
 msgstr "Odeslání dat se nezdařilo: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:831
+#: ../libmailwatch-core/mailwatch-net-conn.c:748
 #, c-format
 msgid "Failed to receive encrypted data: %s"
 msgstr "Přijem šifrovaných dat se nezdařil: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:861
+#: ../libmailwatch-core/mailwatch-net-conn.c:778
 #, c-format
 msgid "Failed to receive data: %s"
 msgstr "Přijem dat se nezdařil: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:959
+#: ../libmailwatch-core/mailwatch-net-conn.c:876
 #, c-format
 msgid "Canceling read: read too many bytes without a newline"
 msgstr "Čtení se přerušilo: bylo přečteno příliš mnoho bajtů bez ukončení znakem pro novou řádku"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:969
+#: ../libmailwatch-core/mailwatch-net-conn.c:886
 #, c-format
 msgid "Buffer is not large enough to hold a full line (%s < %d)"
 msgstr "Buffer není dostatečně velký, aby mohl obsahovat celý řádek (%s < %d)"
@@ -387,13 +387,13 @@ msgid "This mailbox type does not require any configuration settings."
 msgstr "Tato schránka nevyžaduje žádná další nastavení."
 
 #: ../libmailwatch-core/mailwatch.c:623 ../libmailwatch-core/mailwatch.c:765
-#: ../panel-plugin/mailwatch-plugin.c:837
-#: ../panel-plugin/mailwatch-plugin.c:977
+#: ../panel-plugin/mailwatch-plugin.c:848
+#: ../panel-plugin/mailwatch-plugin.c:987
 msgid "_Cancel"
 msgstr "_Zrušit"
 
 #: ../libmailwatch-core/mailwatch.c:624 ../libmailwatch-core/mailwatch.c:766
-#: ../panel-plugin/mailwatch-plugin.c:838
+#: ../panel-plugin/mailwatch-plugin.c:849
 msgid "_OK"
 msgstr "_OK"
 
@@ -466,12 +466,12 @@ msgstr "_Odebrat"
 msgid "_Edit"
 msgstr "_Upravit"
 
-#: ../panel-plugin/mailwatch-plugin.c:145
-#: ../panel-plugin/mailwatch-plugin.c:489
+#: ../panel-plugin/mailwatch-plugin.c:166
+#: ../panel-plugin/mailwatch-plugin.c:505
 msgid "No new mail"
 msgstr "Žádné nové zprávy"
 
-#: ../panel-plugin/mailwatch-plugin.c:166
+#: ../panel-plugin/mailwatch-plugin.c:185
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
@@ -480,140 +480,144 @@ msgstr[1] "Máte %d nové zprávy:"
 msgstr[2] "Máte %d nových zpráv:"
 msgstr[3] "Máte %d nových zpráv:"
 
-#: ../panel-plugin/mailwatch-plugin.c:176
+#: ../panel-plugin/mailwatch-plugin.c:195
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "informuje, kolik nových zpráv se nachází v každé schránce|    %d in %s"
 
-#: ../panel-plugin/mailwatch-plugin.c:471
+#: ../panel-plugin/mailwatch-plugin.c:487
 msgid "Xfce Mailwatch"
 msgstr "Xfce Mailwatch"
 
-#: ../panel-plugin/mailwatch-plugin.c:472
+#: ../panel-plugin/mailwatch-plugin.c:488
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Applet mailwatch nemohl být přidán na panel."
 
-#: ../panel-plugin/mailwatch-plugin.c:473
+#: ../panel-plugin/mailwatch-plugin.c:489
 msgid ""
 "It is possible that your version of GLib does not have threads support."
 msgstr "Je možné, že Vaše verze Glib nemá podporu vláken."
 
-#: ../panel-plugin/mailwatch-plugin.c:708
+#: ../panel-plugin/mailwatch-plugin.c:719
 msgid "Mailwatch log"
 msgstr "Protokol aplikace mailwatch"
 
-#: ../panel-plugin/mailwatch-plugin.c:766
+#: ../panel-plugin/mailwatch-plugin.c:777
 msgid "C_lear"
 msgstr "_Vymazat"
 
-#: ../panel-plugin/mailwatch-plugin.c:835
+#: ../panel-plugin/mailwatch-plugin.c:846
 msgid "Select Icon"
 msgstr "Vybrat ikonu"
 
-#: ../panel-plugin/mailwatch-plugin.c:867
-#: ../panel-plugin/mailwatch-plugin.c:1134
+#: ../panel-plugin/mailwatch-plugin.c:878
+#: ../panel-plugin/mailwatch-plugin.c:1144
 msgid "_Normal"
 msgstr "_Běžný"
 
-#: ../panel-plugin/mailwatch-plugin.c:872
+#: ../panel-plugin/mailwatch-plugin.c:883
 msgid "Ne_w mail"
 msgstr "No_vá pošta"
 
-#: ../panel-plugin/mailwatch-plugin.c:925
+#: ../panel-plugin/mailwatch-plugin.c:935
 msgid "Failed to open web browser for online documentation"
 msgstr "Nepodařilo se otevřít webový prohlížeč pro zobrazení online dokumentace"
 
-#: ../panel-plugin/mailwatch-plugin.c:973
+#: ../panel-plugin/mailwatch-plugin.c:983
 msgid "Online Documentation"
 msgstr "Online dokumentace"
 
-#: ../panel-plugin/mailwatch-plugin.c:974
+#: ../panel-plugin/mailwatch-plugin.c:984
 msgid "Do you want to read the manual online?"
 msgstr "Chcete si přečíst online příručku?"
 
-#: ../panel-plugin/mailwatch-plugin.c:975
+#: ../panel-plugin/mailwatch-plugin.c:985
 msgid ""
 "You will be redirected to the documentation website where the help pages are"
 " maintained."
 msgstr "Budete přesměrováni na webovou stránku dokumentace, kde se udržují stránky nápovědy."
 
-#: ../panel-plugin/mailwatch-plugin.c:978
+#: ../panel-plugin/mailwatch-plugin.c:988
 msgid "_Read Online"
 msgstr "Číst _online"
 
-#: ../panel-plugin/mailwatch-plugin.c:988
+#: ../panel-plugin/mailwatch-plugin.c:998
 msgid "_Always go directly to the online documentation"
 msgstr "_Vždy automaticky přejít na online dokumentaci"
 
-#: ../panel-plugin/mailwatch-plugin.c:1026
+#: ../panel-plugin/mailwatch-plugin.c:1036
 #: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "Sledování pošty"
 
-#: ../panel-plugin/mailwatch-plugin.c:1040
+#: ../panel-plugin/mailwatch-plugin.c:1050
 msgid "_Help"
 msgstr "_Nápověda"
 
 #. External programs.
-#: ../panel-plugin/mailwatch-plugin.c:1064
+#: ../panel-plugin/mailwatch-plugin.c:1074
 msgid "External Programs"
 msgstr "Externí programy"
 
-#: ../panel-plugin/mailwatch-plugin.c:1072
+#: ../panel-plugin/mailwatch-plugin.c:1082
 msgid "Run _on click:"
 msgstr "Spustit při _kliknutí:"
 
-#: ../panel-plugin/mailwatch-plugin.c:1085
+#: ../panel-plugin/mailwatch-plugin.c:1095
 msgid "Run on first new _message:"
 msgstr "Spustit při první _nové zprávě:"
 
-#: ../panel-plugin/mailwatch-plugin.c:1098
+#: ../panel-plugin/mailwatch-plugin.c:1108
 msgid "Run on _each change of new message count:"
 msgstr "Spustit při _každé změně počtu zpráv:"
 
 #. Icons.
-#: ../panel-plugin/mailwatch-plugin.c:1112
+#: ../panel-plugin/mailwatch-plugin.c:1122
 msgid "Icons"
 msgstr "Ikony"
 
-#: ../panel-plugin/mailwatch-plugin.c:1151
+#: ../panel-plugin/mailwatch-plugin.c:1161
 msgid "Ne_w Mail"
 msgstr "No_vá pošta"
 
 #. Log
-#: ../panel-plugin/mailwatch-plugin.c:1158
+#: ../panel-plugin/mailwatch-plugin.c:1168
 msgid "Log"
 msgstr "Protokol"
 
-#: ../panel-plugin/mailwatch-plugin.c:1167
+#: ../panel-plugin/mailwatch-plugin.c:1177
 msgid "Log _lines:"
 msgstr "Řá_dky protokolu:"
 
-#: ../panel-plugin/mailwatch-plugin.c:1179
+#: ../panel-plugin/mailwatch-plugin.c:1189
 msgid "_View Log..."
 msgstr "_Zobrazit protokol..."
 
-#: ../panel-plugin/mailwatch-plugin.c:1188
+#: ../panel-plugin/mailwatch-plugin.c:1198
 msgid "Show log _status in icon"
 msgstr "Zobrazit _stav protokolu jako ikonu"
 
-#: ../panel-plugin/mailwatch-plugin.c:1249
+#: ../panel-plugin/mailwatch-plugin.c:1259
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Zásuvný modul Xfce4 Mailwatch"
 
-#: ../panel-plugin/mailwatch-plugin.c:1252
+#: ../panel-plugin/mailwatch-plugin.c:1262
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "Applet pro panel Xfce s mnoha funkcemi kontrolující elektronickou poštu"
 
-#: ../panel-plugin/mailwatch-plugin.c:1254
+#: ../panel-plugin/mailwatch-plugin.c:1264
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 msgstr "Copyright (c) 2005-2008 Brian Tarricone\nCopyright (c) 2005 Pasi Orovuo"
 
-#: ../panel-plugin/mailwatch-plugin.c:1325
+#: ../panel-plugin/mailwatch-plugin.c:1348
 msgid "Update Now"
 msgstr "Aktualizovat nyní"
+
+#: ../panel-plugin/mailwatch-plugin.c:1350
+msgid "View Log..."
+msgstr "Zobrazit protokol..."
 
 #: ../panel-plugin/mailwatch.desktop.in.h:2
 msgid "Check mail from multiple mailboxes"
