@@ -46,6 +46,7 @@
 #endif
 
 #include <gtk/gtk.h>
+#include <gio/gio.h>
 
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4ui/libxfce4ui.h>
@@ -64,12 +65,14 @@ typedef struct {
     time_t                  mtime;
 
     guint                   interval;
+    gboolean                monitor;
     guint                   last_update;
 
     GMutex                   mutex;
     gboolean                running;
     gpointer                thread;  /* (GThread *) */
     guint                   check_id;
+    GFileMonitor            *file_monitor;
 } XfceMailwatchMaildirMailbox;
 
 static void
@@ -104,7 +107,7 @@ maildir_check_mail( XfceMailwatchMaildirMailbox *maildir )
         goto out;
     }
 
-    if ( st.st_mtime > maildir->mtime ) {
+    if ( ( st.st_mtime > maildir->mtime ) || maildir->monitor ) {
         GDir        *dir;
         GError      *error = NULL;
 
@@ -186,6 +189,96 @@ maildir_check_mail_timeout( gpointer data )
     return TRUE;
 }
 
+static void
+maildir_maybe_add_timeout( gpointer data )
+{
+    XfceMailwatchMaildirMailbox *maildir = XFCE_MAILWATCH_MAILDIR_MAILBOX( data );
+
+    if ( !maildir->monitor )
+        maildir->check_id = g_timeout_add( maildir->interval * 1000,
+                                           maildir_check_mail_timeout,
+                                           maildir );
+}
+
+static void
+maildir_maybe_remove_timeout( gpointer data )
+{
+    XfceMailwatchMaildirMailbox *maildir = XFCE_MAILWATCH_MAILDIR_MAILBOX( data );
+
+    if ( maildir->check_id ) {
+        g_source_remove( maildir->check_id );
+        maildir->check_id = 0;
+    }
+}
+
+static void
+maildir_file_monitor_on_changed( GFileMonitor *mon,
+        GFile *file, GFile *other_file,
+        GFileMonitorEvent event_type,
+        gpointer data )
+{
+    XfceMailwatchMaildirMailbox *maildir = XFCE_MAILWATCH_MAILDIR_MAILBOX( data );
+
+    switch (event_type)
+    {
+        case G_FILE_MONITOR_EVENT_CHANGED:
+        case G_FILE_MONITOR_EVENT_CREATED:
+        case G_FILE_MONITOR_EVENT_DELETED:
+            if( !g_atomic_pointer_get( &maildir->thread ) ) {
+                g_assert( maildir->check_id == 0 );
+                maildir_check_mail_timeout( maildir );
+            }
+            break;
+        default:
+            /* Silence gcc -Wswitch */
+            break;
+    }
+}
+
+static void
+maildir_maybe_start_monitor( gpointer data )
+{
+    XfceMailwatchMaildirMailbox *maildir = XFCE_MAILWATCH_MAILDIR_MAILBOX( data );
+    if ( maildir->monitor ) {
+        GFile           *file;
+        GError          *error = NULL;
+
+        if ( !maildir->path )
+            return;
+
+        file = g_file_new_build_filename( maildir->path, "new", NULL );
+        maildir->file_monitor = g_file_monitor(
+                file, G_FILE_MONITOR_NONE, NULL, &error);
+        g_object_unref( file );
+
+        if ( error != NULL ) {
+            g_assert( maildir->file_monitor == NULL );
+            xfce_mailwatch_log_message( maildir->mailwatch,
+                                        XFCE_MAILWATCH_MAILBOX( maildir ),
+                                        XFCE_MAILWATCH_LOG_ERROR,
+                                        _( "Failed to create monitor over directory %s: %s" ),
+                                        maildir->path, g_strerror( errno ) );
+            return;
+        }
+
+        g_signal_connect( G_OBJECT( maildir->file_monitor ), "changed",
+                G_CALLBACK( maildir_file_monitor_on_changed ), maildir );
+
+        maildir_check_mail_timeout( maildir );
+    }
+}
+
+static void
+maildir_maybe_stop_monitor( gpointer data )
+{
+    XfceMailwatchMaildirMailbox *maildir = XFCE_MAILWATCH_MAILDIR_MAILBOX( data );
+
+    if ( maildir->file_monitor != NULL ) {
+        g_object_unref( maildir->file_monitor );
+        maildir->file_monitor = NULL;
+    }
+}
+
 static XfceMailwatchMailbox *
 maildir_new( XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type )
 {
@@ -198,6 +291,7 @@ maildir_new( XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type )
     maildir->mailwatch      = mailwatch;
     maildir->path           = NULL;
     maildir->interval       = XFCE_MAILWATCH_DEFAULT_TIMEOUT;
+    maildir->monitor        = FALSE;
     g_mutex_init( &maildir->mutex );
     
     return ( (XfceMailwatchMailbox *) maildir );
@@ -227,6 +321,11 @@ maildir_save_param_list( XfceMailwatchMailbox *mailbox )
     param           = g_new( XfceMailwatchParam, 1 );
     param->key      = g_strdup( "interval" );
     param->value    = g_strdup_printf( "%u", maildir->interval );
+    settings        = g_list_append( settings, param );
+
+    param           = g_new( XfceMailwatchParam, 1 );
+    param->key      = g_strdup( "monitor" );
+    param->value    = g_strdup( maildir->monitor ? "1" : "0" );
     settings        = g_list_append( settings, param );
 
     g_mutex_unlock(&(maildir->mutex));
@@ -260,6 +359,9 @@ maildir_restore_param_list( XfceMailwatchMailbox *mailbox, GList *params )
         }
         else if ( !strcmp( param->key, "interval" ) ) {
             maildir->interval = (guint) atol( param->value );
+        }
+        else if ( !strcmp( param->key, "monitor" ) ) {
+            maildir->monitor = *( param->value ) == '0' ? FALSE : TRUE;
         }
     }
 
@@ -305,6 +407,22 @@ maildir_interval_changed_cb( GtkWidget *spinner, XfceMailwatchMaildirMailbox *ma
     DBG( "<<--" );
 }
 
+static void
+maildir_monitor_changed_cb( GtkToggleButton *tb,
+        XfceMailwatchMaildirMailbox *maildir )
+{
+    gboolean enabled = gtk_toggle_button_get_active( tb );
+    GtkWidget *spinner = g_object_get_data( G_OBJECT(tb), "xfmw-spinner" );
+
+    if ( enabled == maildir->monitor )
+        return;
+
+    g_assert( !g_atomic_int_get( &maildir->running ) );
+    maildir->monitor = enabled;
+
+    gtk_widget_set_sensitive( spinner, !enabled );
+}
+
 static GtkContainer *
 maildir_get_setup_page( XfceMailwatchMailbox *mailbox )
 {
@@ -313,6 +431,7 @@ maildir_get_setup_page( XfceMailwatchMailbox *mailbox )
     GtkWidget                   *label;
     GtkWidget                   *button;
     GtkWidget                   *spin;
+    GtkWidget                   *chk;
     GtkSizeGroup                *sg;
 
     DBG( "-->>" );
@@ -359,6 +478,8 @@ maildir_get_setup_page( XfceMailwatchMailbox *mailbox )
     gtk_spin_button_set_numeric( GTK_SPIN_BUTTON( spin ), TRUE );
     gtk_spin_button_set_wrap( GTK_SPIN_BUTTON( spin ), FALSE );
     gtk_spin_button_set_value( GTK_SPIN_BUTTON( spin ), maildir->interval / 60 );
+    if ( maildir->monitor )
+        gtk_widget_set_sensitive( spin, FALSE );
     gtk_widget_show( spin );
     gtk_box_pack_start( GTK_BOX( hbox ), spin, FALSE, FALSE, 0 );
     g_signal_connect( G_OBJECT( spin ), "value-changed",
@@ -369,6 +490,19 @@ maildir_get_setup_page( XfceMailwatchMailbox *mailbox )
     gtk_widget_show( label );
     gtk_box_pack_start( GTK_BOX( hbox ), label, FALSE, FALSE, 0 );
     
+    hbox = gtk_box_new( GTK_ORIENTATION_HORIZONTAL, BORDER );
+    gtk_widget_show( hbox );
+    gtk_box_pack_start( GTK_BOX( vbox ), hbox, FALSE, FALSE, 0 );
+
+    chk = gtk_check_button_new_with_mnemonic( _( "_Monitor mailbox in real-time" ) );
+    gtk_toggle_button_set_active( GTK_TOGGLE_BUTTON( chk ), maildir->monitor );
+    gtk_widget_show( chk );
+    gtk_box_pack_start( GTK_BOX( hbox ), chk, FALSE, FALSE, 0 );
+    g_signal_connect( G_OBJECT( chk ), "toggled",
+            G_CALLBACK( maildir_monitor_changed_cb ), maildir );
+
+    g_object_set_data( G_OBJECT(chk), "xfmw-spinner", spin );
+
     DBG( "<<--" );
     
     return ( GTK_CONTAINER( vbox ) );
@@ -383,17 +517,14 @@ maildir_force_update_cb( XfceMailwatchMailbox *mailbox ) {
         gboolean restart = FALSE;
 
         if( maildir->check_id ) {
-            g_source_remove( maildir->check_id );
+            maildir_maybe_remove_timeout( maildir );
             restart = TRUE;
         }
 
         maildir_check_mail_timeout( maildir );
 
-        if( restart ) {
-            maildir->check_id = g_timeout_add( maildir->interval * 1000,
-                                               maildir_check_mail_timeout,
-                                               maildir );
-        }
+        if( restart )
+            maildir_maybe_add_timeout( maildir );
     }
     DBG( "<<--" );
 }
@@ -410,11 +541,12 @@ maildir_set_activated( XfceMailwatchMailbox *mailbox, gboolean activated )
 
     if( activated ) {
         g_atomic_int_set( &maildir->running, TRUE );
-        maildir->check_id = g_timeout_add( maildir->interval * 1000, maildir_check_mail_timeout, maildir );
+        maildir_maybe_add_timeout( maildir );
+        maildir_maybe_start_monitor( maildir );
     } else {
         g_atomic_int_set( &maildir->running, FALSE );
-        g_source_remove( maildir->check_id );
-        maildir->check_id = 0;
+        maildir_maybe_remove_timeout( maildir );
+        maildir_maybe_stop_monitor( maildir );
     }
 
     DBG( "<<--" );
