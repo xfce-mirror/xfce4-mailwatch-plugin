@@ -4,15 +4,15 @@
 # 
 # Translators:
 # Masato HASHIMOTO <cabezon.hashimoto@gmail.com>, 2013
-# Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2008,2016
+# Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2008,2016,2020
 # UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-31 12:49+0100\n"
-"PO-Revision-Date: 2020-11-03 13:22+0000\n"
-"Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
+"POT-Creation-Date: 2020-12-26 12:48+0100\n"
+"PO-Revision-Date: 2020-12-26 14:05+0000\n"
+"Last-Translator: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/xfce/xfce-panel-plugins/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,14 +27,14 @@ msgstr ""
 msgid "TLS handshake failed: %s"
 msgstr "TLS ハンドシェイクに失敗しました: %s"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:255
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:256
 #, c-format
 msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
 msgstr "HTTP 応答コード %d を受信しました。あなたの GMail ユーザー名またはパスワードが誤っていることが原因と思われます。"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:261
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:262
 #, c-format
 msgid ""
 "Received HTTP response code %d, which should be 200.  There may be a problem"
@@ -42,7 +42,7 @@ msgid ""
 "authentication method or location of the new messages feed."
 msgstr "HTTP 応答コードが 200 になるはずですが、%d を受信しました。GMail サーバーに問題がある、認証方式を互換性のないものに変更している、あるいは新着メッセージを受信する場所を変更している可能性があります。"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:394
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:395
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:731
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:179
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:225
@@ -51,26 +51,26 @@ msgstr "HTTP 応答コードが 200 になるはずですが、%d を受信し�
 msgid "Previous thread hasn't exited yet, not checking mail this time."
 msgstr "以前のスレッドがまだ終了されていないため、今回はメールをチェックしません。"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:535
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1728
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:536
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1730
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:865
 msgid "_Username:"
 msgstr "ユーザー名(_U):"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:555
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1748
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:556
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1750
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:885
 msgid "_Password:"
 msgstr "パスワード(_P):"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:576
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1791
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:577
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1793
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:919
 msgid "Check for _new messages every"
 msgstr "新着メッセージを(_N)"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:591
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1805
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:592
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1807
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:374
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:412
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:605
@@ -78,11 +78,11 @@ msgstr "新着メッセージを(_N)"
 msgid "minute(s)."
 msgstr "分毎に確認する"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:668
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:669
 msgid "Remote GMail Mailbox"
 msgstr "リモート GMail メールボックス"
 
-#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:669
+#: ../libmailwatch-core/mailwatch-mailbox-gmail.c:670
 msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
@@ -111,7 +111,7 @@ msgid "Failed to get folder list"
 msgstr "フォルダーリストの取得に失敗しました"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1284
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1503
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1505
 msgid "Please wait..."
 msgstr "お待ち下さい..."
 
@@ -132,12 +132,12 @@ msgstr "サーバー、ユーザー名、それとおそらくパスワードが
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1396
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1589
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1591
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:749
 #: ../libmailwatch-core/mailwatch.c:630 ../libmailwatch-core/mailwatch.c:666
-#: ../panel-plugin/mailwatch-plugin.c:474
-#: ../panel-plugin/mailwatch-plugin.c:779
-#: ../panel-plugin/mailwatch-plugin.c:1047
+#: ../panel-plugin/mailwatch-plugin.c:490
+#: ../panel-plugin/mailwatch-plugin.c:790
+#: ../panel-plugin/mailwatch-plugin.c:1057
 msgid "_Close"
 msgstr "閉じる(_C)"
 
@@ -149,68 +149,68 @@ msgstr "新規メールフォルダーをセットする"
 msgid "New Mail Folders"
 msgstr "新規メールフォルダー"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1492
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1494
 msgid "_Refresh"
 msgstr "更新(_R)"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1586
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1588
 msgid "Advanced IMAP Options"
 msgstr "高度な IMAP オプション"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1599
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1601
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:759
 msgid "Connection"
 msgstr "接続"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1608
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1610
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:768
 msgid "Use unsecured connection"
 msgstr "安全ではない接続を利用する"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1609
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1611
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:769
 msgid "Use SSL/TLS on alternate port"
 msgstr "別のポートで SSL/TLS を利用する"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1610
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1612
 msgid "Use SSL/TLS via STARTTLS"
 msgstr "STARTTLS 経由で SSL/TLS を利用する"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1626
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1628
 msgid "Use non-standard IMAP _port:"
 msgstr "非標準の IMAP ポートを利用する(_P):"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1656
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1658
 msgid "Folders"
 msgstr "フォルダー"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1664
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1666
 msgid "IMAP server _directory:"
 msgstr "IMAP サーバーフォルダー(_D):"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1694
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1696
 msgid "IMAP Server"
 msgstr "IMAP サーバー"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1708
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1710
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:845
 msgid "_Mail server:"
 msgstr "メールサーバー(_M):"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1769
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1771
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:906
 msgid "_Advanced..."
 msgstr "高度な設定(_A)..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1778
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1780
 msgid "New mail _folders..."
 msgstr "新規メールフォルダー(_F)..."
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1968
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1970
 msgid "Remote IMAP Mailbox"
 msgstr "リモート IMAP メールボックス"
 
-#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1969
+#: ../libmailwatch-core/mailwatch-mailbox-imap.c:1971
 msgid ""
 "The IMAP plugin can connect to a remote mail server that supports the IMAP "
 "protocol, optionally using SSL for link protection."
@@ -314,59 +314,59 @@ msgid ""
 "protocol, optionally using SSL for link protection."
 msgstr "POP3 プラグインは、POP3 プロトコルに対応しているリモートメールサーバーに接続します。リンクを保護するため任意で SSL を利用します。"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:224
-#: ../libmailwatch-core/mailwatch-net-conn.c:269
-#: ../libmailwatch-core/mailwatch-net-conn.c:351
-#: ../libmailwatch-core/mailwatch-net-conn.c:695
-#: ../libmailwatch-core/mailwatch-net-conn.c:728
-#: ../libmailwatch-core/mailwatch-net-conn.c:791
-#: ../libmailwatch-core/mailwatch-net-conn.c:824
-#: ../libmailwatch-core/mailwatch-net-conn.c:854
+#: ../libmailwatch-core/mailwatch-net-conn.c:144
+#: ../libmailwatch-core/mailwatch-net-conn.c:189
+#: ../libmailwatch-core/mailwatch-net-conn.c:271
+#: ../libmailwatch-core/mailwatch-net-conn.c:612
+#: ../libmailwatch-core/mailwatch-net-conn.c:645
+#: ../libmailwatch-core/mailwatch-net-conn.c:708
+#: ../libmailwatch-core/mailwatch-net-conn.c:741
+#: ../libmailwatch-core/mailwatch-net-conn.c:771
 #, c-format
 msgid "Operation aborted"
 msgstr "操作が中止されました"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:502
+#: ../libmailwatch-core/mailwatch-net-conn.c:419
 #, c-format
 msgid "Could not find host \"%s\": %s"
 msgstr "ホスト \"%s\" を見つけることができませんでした: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:586
+#: ../libmailwatch-core/mailwatch-net-conn.c:503
 #, c-format
 msgid "Failed to connect to server \"%s\": %s"
 msgstr "サーバー \"%s\" への接続に失敗しました: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:646
+#: ../libmailwatch-core/mailwatch-net-conn.c:563
 #, c-format
 msgid "Not compiled with SSL/TLS support"
 msgstr "SSL/TLS サポートでコンパイルされていません"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:702
+#: ../libmailwatch-core/mailwatch-net-conn.c:619
 #, c-format
 msgid "Failed to send encrypted data: %s"
 msgstr "暗号化されたデータの送信に失敗しました: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:735
+#: ../libmailwatch-core/mailwatch-net-conn.c:652
 #, c-format
 msgid "Failed to send data: %s"
 msgstr "データの送信に失敗しました: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:831
+#: ../libmailwatch-core/mailwatch-net-conn.c:748
 #, c-format
 msgid "Failed to receive encrypted data: %s"
 msgstr "暗号化されたデータの受信に失敗しました: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:861
+#: ../libmailwatch-core/mailwatch-net-conn.c:778
 #, c-format
 msgid "Failed to receive data: %s"
 msgstr "データの受信に失敗しました: %s"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:959
+#: ../libmailwatch-core/mailwatch-net-conn.c:876
 #, c-format
 msgid "Canceling read: read too many bytes without a newline"
 msgstr "読込みをキャンセル中: 改行のない多すぎるサイズを読み込みました"
 
-#: ../libmailwatch-core/mailwatch-net-conn.c:969
+#: ../libmailwatch-core/mailwatch-net-conn.c:886
 #, c-format
 msgid "Buffer is not large enough to hold a full line (%s < %d)"
 msgstr "バッファーはすべての行を保持できるほど大きくありません (%s < %d)"
@@ -389,13 +389,13 @@ msgid "This mailbox type does not require any configuration settings."
 msgstr "このタイプのメールボックスはいずれの設定も必要ありません。"
 
 #: ../libmailwatch-core/mailwatch.c:623 ../libmailwatch-core/mailwatch.c:765
-#: ../panel-plugin/mailwatch-plugin.c:837
-#: ../panel-plugin/mailwatch-plugin.c:977
+#: ../panel-plugin/mailwatch-plugin.c:848
+#: ../panel-plugin/mailwatch-plugin.c:987
 msgid "_Cancel"
 msgstr "キャンセル(_C)"
 
 #: ../libmailwatch-core/mailwatch.c:624 ../libmailwatch-core/mailwatch.c:766
-#: ../panel-plugin/mailwatch-plugin.c:838
+#: ../panel-plugin/mailwatch-plugin.c:849
 msgid "_OK"
 msgstr "_OK"
 
@@ -468,151 +468,155 @@ msgstr "削除(_R)"
 msgid "_Edit"
 msgstr "編集(_E)"
 
-#: ../panel-plugin/mailwatch-plugin.c:145
-#: ../panel-plugin/mailwatch-plugin.c:489
+#: ../panel-plugin/mailwatch-plugin.c:166
+#: ../panel-plugin/mailwatch-plugin.c:505
 msgid "No new mail"
 msgstr "新着メールはありません"
 
-#: ../panel-plugin/mailwatch-plugin.c:166
+#: ../panel-plugin/mailwatch-plugin.c:185
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
 msgstr[0] "%d 件の新着メッセージがあります:"
 
-#: ../panel-plugin/mailwatch-plugin.c:176
+#: ../panel-plugin/mailwatch-plugin.c:195
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr " %2$s に %1$d 通"
 
-#: ../panel-plugin/mailwatch-plugin.c:471
+#: ../panel-plugin/mailwatch-plugin.c:487
 msgid "Xfce Mailwatch"
 msgstr "Xfce メールウォッチ"
 
-#: ../panel-plugin/mailwatch-plugin.c:472
+#: ../panel-plugin/mailwatch-plugin.c:488
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "このメールウォッチアプレットはパネルに追加できません。"
 
-#: ../panel-plugin/mailwatch-plugin.c:473
+#: ../panel-plugin/mailwatch-plugin.c:489
 msgid ""
 "It is possible that your version of GLib does not have threads support."
 msgstr "あなたの環境の GLib のバージョンはスレッドをサポートしていないためできません。"
 
-#: ../panel-plugin/mailwatch-plugin.c:708
+#: ../panel-plugin/mailwatch-plugin.c:719
 msgid "Mailwatch log"
 msgstr "メールウォッチログ"
 
-#: ../panel-plugin/mailwatch-plugin.c:766
+#: ../panel-plugin/mailwatch-plugin.c:777
 msgid "C_lear"
 msgstr "クリア(_L)"
 
-#: ../panel-plugin/mailwatch-plugin.c:835
+#: ../panel-plugin/mailwatch-plugin.c:846
 msgid "Select Icon"
 msgstr "アイコンを選択して下さい"
 
-#: ../panel-plugin/mailwatch-plugin.c:867
-#: ../panel-plugin/mailwatch-plugin.c:1134
+#: ../panel-plugin/mailwatch-plugin.c:878
+#: ../panel-plugin/mailwatch-plugin.c:1144
 msgid "_Normal"
 msgstr "通常(_N)"
 
-#: ../panel-plugin/mailwatch-plugin.c:872
+#: ../panel-plugin/mailwatch-plugin.c:883
 msgid "Ne_w mail"
 msgstr "新着メール(_W)"
 
-#: ../panel-plugin/mailwatch-plugin.c:925
+#: ../panel-plugin/mailwatch-plugin.c:935
 msgid "Failed to open web browser for online documentation"
 msgstr "オンラインドキュメントのためにウェブブラウザー開くことに失敗しました"
 
-#: ../panel-plugin/mailwatch-plugin.c:973
+#: ../panel-plugin/mailwatch-plugin.c:983
 msgid "Online Documentation"
 msgstr "オンラインドキュメント"
 
-#: ../panel-plugin/mailwatch-plugin.c:974
+#: ../panel-plugin/mailwatch-plugin.c:984
 msgid "Do you want to read the manual online?"
 msgstr "オンラインでマニュアルを閲覧しますか?"
 
-#: ../panel-plugin/mailwatch-plugin.c:975
+#: ../panel-plugin/mailwatch-plugin.c:985
 msgid ""
 "You will be redirected to the documentation website where the help pages are"
 " maintained."
 msgstr "ヘルプページがメンテナンスされている場合ドキュメントウェブサイトにリダイレクトされます。"
 
-#: ../panel-plugin/mailwatch-plugin.c:978
+#: ../panel-plugin/mailwatch-plugin.c:988
 msgid "_Read Online"
 msgstr "オンラインで読む(_R)"
 
-#: ../panel-plugin/mailwatch-plugin.c:988
+#: ../panel-plugin/mailwatch-plugin.c:998
 msgid "_Always go directly to the online documentation"
 msgstr "常にオンラインドキュメントを閲覧する(_A)"
 
-#: ../panel-plugin/mailwatch-plugin.c:1026
+#: ../panel-plugin/mailwatch-plugin.c:1036
 #: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "メールウォッチャー"
 
-#: ../panel-plugin/mailwatch-plugin.c:1040
+#: ../panel-plugin/mailwatch-plugin.c:1050
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
 #. External programs.
-#: ../panel-plugin/mailwatch-plugin.c:1064
+#: ../panel-plugin/mailwatch-plugin.c:1074
 msgid "External Programs"
 msgstr "外部プログラム"
 
-#: ../panel-plugin/mailwatch-plugin.c:1072
+#: ../panel-plugin/mailwatch-plugin.c:1082
 msgid "Run _on click:"
 msgstr "クリックで実行(_O):"
 
-#: ../panel-plugin/mailwatch-plugin.c:1085
+#: ../panel-plugin/mailwatch-plugin.c:1095
 msgid "Run on first new _message:"
 msgstr "最初の新着メッセージが届いた時に実行(_M):"
 
-#: ../panel-plugin/mailwatch-plugin.c:1098
+#: ../panel-plugin/mailwatch-plugin.c:1108
 msgid "Run on _each change of new message count:"
 msgstr "新着メッセージ数が更新される度に実行(_E):"
 
 #. Icons.
-#: ../panel-plugin/mailwatch-plugin.c:1112
+#: ../panel-plugin/mailwatch-plugin.c:1122
 msgid "Icons"
 msgstr "アイコン"
 
-#: ../panel-plugin/mailwatch-plugin.c:1151
+#: ../panel-plugin/mailwatch-plugin.c:1161
 msgid "Ne_w Mail"
 msgstr "新着メール(_W)"
 
 #. Log
-#: ../panel-plugin/mailwatch-plugin.c:1158
+#: ../panel-plugin/mailwatch-plugin.c:1168
 msgid "Log"
 msgstr "ログ"
 
-#: ../panel-plugin/mailwatch-plugin.c:1167
+#: ../panel-plugin/mailwatch-plugin.c:1177
 msgid "Log _lines:"
 msgstr "ログの行数(_L):"
 
-#: ../panel-plugin/mailwatch-plugin.c:1179
+#: ../panel-plugin/mailwatch-plugin.c:1189
 msgid "_View Log..."
 msgstr "ログを表示(_V)..."
 
-#: ../panel-plugin/mailwatch-plugin.c:1188
+#: ../panel-plugin/mailwatch-plugin.c:1198
 msgid "Show log _status in icon"
 msgstr "アイコンでログステータスを表示(_S)"
 
-#: ../panel-plugin/mailwatch-plugin.c:1249
+#: ../panel-plugin/mailwatch-plugin.c:1259
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Xfce メールウォッチプラグイン"
 
-#: ../panel-plugin/mailwatch-plugin.c:1252
+#: ../panel-plugin/mailwatch-plugin.c:1262
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "Xfce パネル向け多機能メールチェッカーアプレット"
 
-#: ../panel-plugin/mailwatch-plugin.c:1254
+#: ../panel-plugin/mailwatch-plugin.c:1264
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 msgstr "Copyright (c) 2005-2008 Brian Tarricone\nCopyright (c) 2005 Pasi Orovuo"
 
-#: ../panel-plugin/mailwatch-plugin.c:1325
+#: ../panel-plugin/mailwatch-plugin.c:1348
 msgid "Update Now"
 msgstr "今すぐチェックする"
+
+#: ../panel-plugin/mailwatch-plugin.c:1350
+msgid "View Log..."
+msgstr "ログを表示…"
 
 #: ../panel-plugin/mailwatch.desktop.in.h:2
 msgid "Check mail from multiple mailboxes"
