@@ -7,13 +7,14 @@
 # Maxim Dziumanenko <dziumanenko@gmail.com>, 2006
 # Yarema aka Knedlyk <yupadmin@gmail.com>, 2013,2015
 # zubr139, 2013
+# Андрій Мізик <andmizyk@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-26 12:48+0100\n"
-"PO-Revision-Date: 2020-12-26 11:48+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2021-01-28 15:07+0000\n"
+"Last-Translator: Андрій Мізик <andmizyk@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/xfce/xfce-panel-plugins/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -152,7 +153,7 @@ msgstr "Теки нової пошти"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1494
 msgid "_Refresh"
-msgstr ""
+msgstr "О_новити"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1588
 msgid "Advanced IMAP Options"
@@ -393,12 +394,12 @@ msgstr "Цей тип поштової скриньки не вимагає па
 #: ../panel-plugin/mailwatch-plugin.c:848
 #: ../panel-plugin/mailwatch-plugin.c:987
 msgid "_Cancel"
-msgstr ""
+msgstr "_Скасувати"
 
 #: ../libmailwatch-core/mailwatch.c:624 ../libmailwatch-core/mailwatch.c:766
 #: ../panel-plugin/mailwatch-plugin.c:849
 msgid "_OK"
-msgstr ""
+msgstr "_Гаразд"
 
 #: ../libmailwatch-core/mailwatch.c:645
 msgid "Mailbox _Name:"
@@ -459,7 +460,7 @@ msgstr "Поштові скриньки"
 
 #: ../libmailwatch-core/mailwatch.c:1013
 msgid "_Add"
-msgstr ""
+msgstr "_Додати"
 
 #: ../libmailwatch-core/mailwatch.c:1022
 msgid "_Remove"
@@ -467,7 +468,7 @@ msgstr "_Видалити"
 
 #: ../libmailwatch-core/mailwatch.c:1034
 msgid "_Edit"
-msgstr ""
+msgstr "_Змінити"
 
 #: ../panel-plugin/mailwatch-plugin.c:166
 #: ../panel-plugin/mailwatch-plugin.c:505
@@ -507,7 +508,7 @@ msgstr "Журнал перевірки пошти"
 
 #: ../panel-plugin/mailwatch-plugin.c:777
 msgid "C_lear"
-msgstr ""
+msgstr "_Очистити"
 
 #: ../panel-plugin/mailwatch-plugin.c:846
 msgid "Select Icon"
@@ -586,7 +587,7 @@ msgstr "_Нова пошта"
 #. Log
 #: ../panel-plugin/mailwatch-plugin.c:1168
 msgid "Log"
-msgstr ""
+msgstr "Журнал"
 
 #: ../panel-plugin/mailwatch-plugin.c:1177
 msgid "Log _lines:"
@@ -620,7 +621,7 @@ msgstr "Оновити зараз"
 
 #: ../panel-plugin/mailwatch-plugin.c:1350
 msgid "View Log..."
-msgstr ""
+msgstr "Переглянути журнал..."
 
 #: ../panel-plugin/mailwatch.desktop.in.h:2
 msgid "Check mail from multiple mailboxes"
