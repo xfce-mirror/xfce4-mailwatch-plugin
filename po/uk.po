@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-26 12:48+0100\n"
-"PO-Revision-Date: 2021-01-28 15:07+0000\n"
+"PO-Revision-Date: 2021-01-29 13:04+0000\n"
 "Last-Translator: Андрій Мізик <andmizyk@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/xfce/xfce-panel-plugins/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -448,7 +448,7 @@ msgstr "Видалення поштової скриньки призведе д
 
 #: ../libmailwatch-core/mailwatch.c:894
 msgid "Cancel"
-msgstr "Відмінити"
+msgstr "Скасувати"
 
 #: ../libmailwatch-core/mailwatch.c:895
 msgid "Remove"
@@ -495,7 +495,7 @@ msgstr "Перевірка пошти Xfce"
 
 #: ../panel-plugin/mailwatch-plugin.c:488
 msgid "The mailwatch applet cannot be added to the panel."
-msgstr "Аплет перевірки пошти не можна додати до панелі."
+msgstr "Аплет для перевірки пошти не можливо додати до панелі."
 
 #: ../panel-plugin/mailwatch-plugin.c:489
 msgid ""
@@ -603,7 +603,7 @@ msgstr "Показувати _статус журналу у значку"
 
 #: ../panel-plugin/mailwatch-plugin.c:1259
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "Плагін для перевірки пошти Xfce4"
+msgstr "Втулка для перевірки пошти в Xfce4"
 
 #: ../panel-plugin/mailwatch-plugin.c:1262
 msgid "A featureful mail-checker applet for the Xfce Panel"
