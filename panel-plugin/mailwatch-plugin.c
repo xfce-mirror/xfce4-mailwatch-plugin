@@ -260,6 +260,16 @@ mailwatch_button_release_cb(GtkWidget      *w,
     return FALSE;
 }
 
+/* silent -Wformat-y2k warning when using %c or %x (see man strftime.3) */
+static size_t
+mailwatch_strftime(char            *s,
+                   size_t           max,
+                   const char      *fmt,
+                   const struct tm *tm)
+{
+    return strftime(s, max, fmt, tm);
+}
+
 static void
 mailwatch_log_message_cb(XfceMailwatch *mailwatch,
                          gpointer       arg,
@@ -272,7 +282,7 @@ mailwatch_log_message_cb(XfceMailwatch *mailwatch,
     gchar time_str[256] = "", *new_message = NULL;
     
     if (localtime_r(&entry->timestamp, &ltm))
-        strftime(time_str, 256, "%x %T:", &ltm);
+        mailwatch_strftime(time_str, 256, "%x %T:", &ltm);
     
     if (entry->level >= XFCE_MAILWATCH_N_LOG_LEVELS)
         entry->level = XFCE_MAILWATCH_N_LOG_LEVELS - 1;
