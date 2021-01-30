@@ -261,7 +261,7 @@ mailwatch_button_release_cb(GtkWidget      *w,
 }
 
 /* silent -Wformat-y2k warning when using %c or %x (see man strftime.3) */
-static size_t
+static inline size_t
 mailwatch_strftime(char            *s,
                    size_t           max,
                    const char      *fmt,
