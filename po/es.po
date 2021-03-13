@@ -13,13 +13,14 @@
 # 629cf3e396111bb8c5fb6664e2dbc91d, 2015
 # mc <correomc2000-ing@yahoo.es>, 2013
 # prflr88 <prflr88@gmail.com>, 2013-2014
+# Toni Estévez <toni.estevez@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-26 12:48+0100\n"
-"PO-Revision-Date: 2020-12-28 15:11+0000\n"
-"Last-Translator: Casper casper\n"
+"PO-Revision-Date: 2021-03-13 10:30+0000\n"
+"Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfce-panel-plugins/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +33,7 @@ msgstr ""
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:308
 #, c-format
 msgid "TLS handshake failed: %s"
-msgstr "No se pudo realizar la negociación TLS: %s"
+msgstr "No se ha podido realizar la negociación TLS: %s"
 
 #: ../libmailwatch-core/mailwatch-mailbox-gmail.c:256
 #, c-format
@@ -115,7 +116,7 @@ msgstr "Se ha solicitado el uso de seguridad STARTTLS, pero este servidor no la 
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1139
 msgid "Failed to get folder list"
-msgstr "No se pudo obtener la lista de carpetas"
+msgstr "No se ha podido obtener la lista de carpetas"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1284
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1505
@@ -229,7 +230,7 @@ msgstr "El complemento de IMAP se puede conectar a un servidor de correo remoto 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:403
 #, c-format
 msgid "Failed to get status of file %s: %s"
-msgstr "No se pudo obtener el estado del archivo %s: %s"
+msgstr "No se ha podido obtener el estado del archivo %s: %s"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:102
 #, c-format
@@ -341,7 +342,7 @@ msgstr "No se puedo encontrar el equipo «%s»: %s"
 #: ../libmailwatch-core/mailwatch-net-conn.c:503
 #, c-format
 msgid "Failed to connect to server \"%s\": %s"
-msgstr "No se pudo conectar con el servidor «%s»: %s"
+msgstr "No se ha podido conectar con el servidor «%s»: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:563
 #, c-format
@@ -351,22 +352,22 @@ msgstr "No se compiló compatible con SSL/TLS"
 #: ../libmailwatch-core/mailwatch-net-conn.c:619
 #, c-format
 msgid "Failed to send encrypted data: %s"
-msgstr "No se pudieron enviar los datos cifrados: %s"
+msgstr "No se han podido enviar los datos cifrados: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:652
 #, c-format
 msgid "Failed to send data: %s"
-msgstr "No se pudieron enviar los datos: %s"
+msgstr "No se han podido enviar los datos: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:748
 #, c-format
 msgid "Failed to receive encrypted data: %s"
-msgstr "No se pudo recibir datos cifrados: %s"
+msgstr "No se ha podido recibir datos cifrados: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:778
 #, c-format
 msgid "Failed to receive data: %s"
-msgstr "No se pudo recibir datos: %s"
+msgstr "No se ha podido recibir datos: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:876
 #, c-format
@@ -381,7 +382,7 @@ msgstr "El búfer no es lo suficientemente grande como para contener una línea 
 #: ../libmailwatch-core/mailwatch.c:329 ../libmailwatch-core/mailwatch.c:330
 #, c-format
 msgid "Unable to write config file '%s'"
-msgstr "No se pudo escribir el archivo de configuración «%s»"
+msgstr "No se ha podido escribir el archivo de configuración «%s»"
 
 #: ../libmailwatch-core/mailwatch.c:394 ../libmailwatch-core/mailwatch.c:396
 #, c-format
@@ -389,7 +390,7 @@ msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
 "passwords or other sensitive information, it may be readable by others on "
 "your system."
-msgstr "No se pudieron establecer los permisos para el archivo de configuración «%s». Si este archivo contiene contraseñas u otra información sensible, puede que otros usuarios del sistema la lean."
+msgstr "No se han podido establecer los permisos para el archivo de configuración «%s». Si este archivo contiene contraseñas u otra información sensible, puede que otros usuarios del sistema la lean."
 
 #: ../libmailwatch-core/mailwatch.c:614
 msgid "This mailbox type does not require any configuration settings."
@@ -528,7 +529,7 @@ msgstr "Nue_vo correo"
 
 #: ../panel-plugin/mailwatch-plugin.c:935
 msgid "Failed to open web browser for online documentation"
-msgstr "No se pudo abrir el navegador web para la documentación en línea"
+msgstr "No se ha podido abrir el navegador web para la documentación en línea"
 
 #: ../panel-plugin/mailwatch-plugin.c:983
 msgid "Online Documentation"
