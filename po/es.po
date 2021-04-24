@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-26 12:48+0100\n"
-"PO-Revision-Date: 2021-03-13 10:30+0000\n"
+"PO-Revision-Date: 2021-04-24 08:07+0000\n"
 "Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfce-panel-plugins/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -617,7 +617,7 @@ msgstr "Una miniaplicación con multitud de funcionalidades que avisa de nuevos 
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
-msgstr "Derechos de autor (c) 2005-2008 Brian Tarricone\nDerechos de autor (c) 2005 Pasi Orovuo"
+msgstr "Copyright (c) 2005-2008 Brian Tarricone\nCopyright (c) 2005 Pasi Orovuo"
 
 #: ../panel-plugin/mailwatch-plugin.c:1348
 msgid "Update Now"
