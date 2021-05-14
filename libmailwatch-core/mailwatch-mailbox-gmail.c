@@ -505,14 +505,7 @@ gmail_config_timeout_spinbutton_changed_cb(GtkSpinButton *sb,
 
     gmailbox->timeout = value;
 
-    if(g_atomic_int_get(&gmailbox->running)) {
-        /* probably shouldn't do this so frequently */
-        if(gmailbox->check_id)
-            g_source_remove(gmailbox->check_id);
-        gmailbox->check_id = g_timeout_add(gmailbox->timeout * 1000,
-                                           gmail_check_mail_timeout,
-                                           gmailbox);
-    }
+    g_assert(!g_atomic_int_get(&gmailbox->running));
 
     return FALSE;
 }
