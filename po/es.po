@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-26 12:48+0100\n"
-"PO-Revision-Date: 2021-05-21 20:16+0000\n"
+"PO-Revision-Date: 2021-05-22 07:57+0000\n"
 "Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfce-panel-plugins/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -121,7 +121,7 @@ msgstr "Imposible obtener la lista de carpetas"
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1284
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1505
 msgid "Please wait..."
-msgstr "Espere…"
+msgstr "Espere..."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1390
 msgid "Error"
@@ -136,7 +136,7 @@ msgid ""
 "The folder list cannot be retrieved until a server, username, and probably "
 "password are set.  Also be sure to check any security settings in the "
 "Advanced dialog."
-msgstr "No se puede recuperar la lista de carpetas hasta que se configure un servidor, un nombre de usuario y, probablemente, una contraseña. Compruebe también la configuración de seguridad en el diálogo de opciones avanzadas."
+msgstr "No se puede recuperar la lista de carpetas hasta que se configure un servidor, un nombre de usuario y, posiblemente, una contraseña. Compruebe también la configuración de seguridad en el diálogo de opciones avanzadas."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1396
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1403
@@ -186,7 +186,7 @@ msgstr "Usar SSL/TLS mediante STARTTLS"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1628
 msgid "Use non-standard IMAP _port:"
-msgstr "Usar un _puerto no estándar para IMAP:"
+msgstr "_Usar un puerto no estándar para IMAP:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1658
 msgid "Folders"
@@ -208,11 +208,11 @@ msgstr "_Servidor de correo:"
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1771
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:906
 msgid "_Advanced..."
-msgstr "_Opciones avanzadas…"
+msgstr "_Opciones avanzadas..."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1780
 msgid "New mail _folders..."
-msgstr "Carpetas de correo _nuevas…"
+msgstr "Carpetas de correo _nuevas..."
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1970
 msgid "Remote IMAP Mailbox"
@@ -259,11 +259,11 @@ msgstr "Cola local Maildir"
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
-msgstr "El conector para Maildir puede vigilar una cola de correo local de tipo Maildir para detectar mensajes nuevos."
+msgstr "El conector para Maildir vigila una cola de correo local de tipo Maildir para detectar mensajes nuevos."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Mbox _Filename:"
-msgstr "Nombre del _archivo Mbox:"
+msgstr "_Nombre del archivo Mbox:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:377
 msgid "Select mbox file"
@@ -271,11 +271,11 @@ msgstr "Seleccione el archivo Mbox"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
 msgid "Local Mbox spool"
-msgstr "Spool local Mbox"
+msgstr "Cola local Mbox"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr "El complemento para Mbox vigila una cola de correo local de tipo Mbox en busca de mensajes nuevos."
+msgstr "El complemento para Mbox vigila una cola de correo local de tipo Mbox para detectar mensajes nuevos."
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
@@ -306,7 +306,7 @@ msgstr "Usar SSL/TLS mediante STLS"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:786
 msgid "Use non-standard POP3 _port:"
-msgstr "Usar un _puerto no estándar para POP3"
+msgstr "_Usar un puerto no estándar para POP3:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:831
 msgid "POP3 Server"
@@ -337,7 +337,7 @@ msgstr "Operación cancelada"
 #: ../libmailwatch-core/mailwatch-net-conn.c:419
 #, c-format
 msgid "Could not find host \"%s\": %s"
-msgstr "No se puedo encontrar el equipo «%s»: %s"
+msgstr "No se ha podido encontrar el equipo «%s»: %s"
 
 #: ../libmailwatch-core/mailwatch-net-conn.c:503
 #, c-format
@@ -446,7 +446,7 @@ msgstr "Eliminar el buzón"
 
 #: ../libmailwatch-core/mailwatch.c:891
 msgid "Are you sure?"
-msgstr "¿Está seguro?"
+msgstr "¿Seguro?"
 
 #: ../libmailwatch-core/mailwatch.c:892
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
@@ -470,11 +470,11 @@ msgstr "_Añadir"
 
 #: ../libmailwatch-core/mailwatch.c:1022
 msgid "_Remove"
-msgstr "Eli_minar"
+msgstr "_Eliminar"
 
 #: ../libmailwatch-core/mailwatch.c:1034
 msgid "_Edit"
-msgstr "_Editar"
+msgstr "E_ditar"
 
 #: ../panel-plugin/mailwatch-plugin.c:166
 #: ../panel-plugin/mailwatch-plugin.c:505
@@ -525,7 +525,7 @@ msgstr "_Normal"
 
 #: ../panel-plugin/mailwatch-plugin.c:883
 msgid "Ne_w mail"
-msgstr "_Correo nuevo"
+msgstr "C_orreo nuevo"
 
 #: ../panel-plugin/mailwatch-plugin.c:935
 msgid "Failed to open web browser for online documentation"
@@ -569,15 +569,15 @@ msgstr "Programas externos"
 
 #: ../panel-plugin/mailwatch-plugin.c:1082
 msgid "Run _on click:"
-msgstr "_Ejecutar al hacer clic:"
+msgstr "Ejecutar al _hacer clic:"
 
 #: ../panel-plugin/mailwatch-plugin.c:1095
 msgid "Run on first new _message:"
-msgstr "Ejecutar al recibir el primer _mensaje nuevo:"
+msgstr "Ejecutar tras el primer _mensaje nuevo:"
 
 #: ../panel-plugin/mailwatch-plugin.c:1108
 msgid "Run on _each change of new message count:"
-msgstr "Ejecutar en cada cambio del _recuento de mensajes nuevos:"
+msgstr "Ejecutar al cambiar el _recuento de mensajes nuevos:"
 
 #. Icons.
 #: ../panel-plugin/mailwatch-plugin.c:1122
@@ -586,7 +586,7 @@ msgstr "Iconos"
 
 #: ../panel-plugin/mailwatch-plugin.c:1161
 msgid "Ne_w Mail"
-msgstr "_Correo nuevo"
+msgstr "C_orreo nuevo"
 
 #. Log
 #: ../panel-plugin/mailwatch-plugin.c:1168
@@ -599,15 +599,15 @@ msgstr "_Líneas del registro:"
 
 #: ../panel-plugin/mailwatch-plugin.c:1189
 msgid "_View Log..."
-msgstr "_Ver el registro…"
+msgstr "_Ver el registro..."
 
 #: ../panel-plugin/mailwatch-plugin.c:1198
 msgid "Show log _status in icon"
-msgstr "Mostrar el e_stado del registro en el icono"
+msgstr "_Mostrar el estado del registro en el icono"
 
 #: ../panel-plugin/mailwatch-plugin.c:1259
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "Complememento de Xfce4 para la vigilancia del correo"
+msgstr "Vigilancia del correo de Xfce4"
 
 #: ../panel-plugin/mailwatch-plugin.c:1262
 msgid "A featureful mail-checker applet for the Xfce Panel"
@@ -617,7 +617,7 @@ msgstr "Una miniaplicación para comprobar el correo con muchas funciones para e
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
-msgstr "Copyright (c) 2005-2008 Brian Tarricone\nCopyright (c) 2005 Pasi Orovuo"
+msgstr "Copyright (c) Brian Tarricone, 2005-2008 \nCopyright (c) Pasi Orovuo, 2005"
 
 #: ../panel-plugin/mailwatch-plugin.c:1348
 msgid "Update Now"
