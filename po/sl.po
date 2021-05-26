@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-26 12:48+0100\n"
-"PO-Revision-Date: 2021-02-22 11:49+0000\n"
+"PO-Revision-Date: 2021-05-26 07:45+0000\n"
 "Last-Translator: Arnold Marko <arnold.marko@gmail.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/xfce/xfce-panel-plugins/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -491,7 +491,7 @@ msgstr "Xfce Opazovanje pošte"
 
 #: ../panel-plugin/mailwatch-plugin.c:488
 msgid "The mailwatch applet cannot be added to the panel."
-msgstr "Aplikacije za opazovanje pošte ni mogoče dodati pultu"
+msgstr "Aplikacije za opazovanje pošte ni mogoče dodati na pano."
 
 #: ../panel-plugin/mailwatch-plugin.c:489
 msgid ""
@@ -603,7 +603,7 @@ msgstr "Xfce4 vtičnik za opazovanje pošte"
 
 #: ../panel-plugin/mailwatch-plugin.c:1262
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr "Funkcionalni opazovalec pošte za Xfce pult"
+msgstr "Funkcionalni opazovalec pošte za Xfce pano"
 
 #: ../panel-plugin/mailwatch-plugin.c:1264
 msgid ""
