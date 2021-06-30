@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Theppitak Karoonboonyanan <theppitak@gmail.com>, 2014-2015
+# Theppitak Karoonboonyanan <theppitak@gmail.com>, 2014-2015,2021
 # Theppitak Karoonboonyanan <theppitak@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-26 12:48+0100\n"
-"PO-Revision-Date: 2020-12-26 11:48+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2021-06-30 04:26+0000\n"
+"Last-Translator: Theppitak Karoonboonyanan <theppitak@gmail.com>\n"
 "Language-Team: Thai (http://www.transifex.com/xfce/xfce-panel-plugins/language/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -150,7 +150,7 @@ msgstr "โฟลเดอร์เมลใหม่"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1494
 msgid "_Refresh"
-msgstr ""
+msgstr "_อ่านใหม่"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1588
 msgid "Advanced IMAP Options"
@@ -391,12 +391,12 @@ msgstr "กล่องเมลชนิดนี้ไม่ต้องตั
 #: ../panel-plugin/mailwatch-plugin.c:848
 #: ../panel-plugin/mailwatch-plugin.c:987
 msgid "_Cancel"
-msgstr ""
+msgstr "_ยกเลิก"
 
 #: ../libmailwatch-core/mailwatch.c:624 ../libmailwatch-core/mailwatch.c:766
 #: ../panel-plugin/mailwatch-plugin.c:849
 msgid "_OK"
-msgstr ""
+msgstr "_ตกลง"
 
 #: ../libmailwatch-core/mailwatch.c:645
 msgid "Mailbox _Name:"
@@ -457,15 +457,15 @@ msgstr "กล่องเมล"
 
 #: ../libmailwatch-core/mailwatch.c:1013
 msgid "_Add"
-msgstr ""
+msgstr "เ_พิ่ม"
 
 #: ../libmailwatch-core/mailwatch.c:1022
 msgid "_Remove"
-msgstr "ตัด_ออก"
+msgstr "ลบ_ออก"
 
 #: ../libmailwatch-core/mailwatch.c:1034
 msgid "_Edit"
-msgstr ""
+msgstr "แ_ก้ไข"
 
 #: ../panel-plugin/mailwatch-plugin.c:166
 #: ../panel-plugin/mailwatch-plugin.c:505
@@ -502,7 +502,7 @@ msgstr "ปูมปลั๊กอินเฝ้าดูเมล"
 
 #: ../panel-plugin/mailwatch-plugin.c:777
 msgid "C_lear"
-msgstr ""
+msgstr "_ล้าง"
 
 #: ../panel-plugin/mailwatch-plugin.c:846
 msgid "Select Icon"
@@ -581,7 +581,7 @@ msgstr "เมลใ_หม่"
 #. Log
 #: ../panel-plugin/mailwatch-plugin.c:1168
 msgid "Log"
-msgstr ""
+msgstr "ปูม"
 
 #: ../panel-plugin/mailwatch-plugin.c:1177
 msgid "Log _lines:"
@@ -615,7 +615,7 @@ msgstr "ปรับข้อมูลเดี๋ยวนี้"
 
 #: ../panel-plugin/mailwatch-plugin.c:1350
 msgid "View Log..."
-msgstr ""
+msgstr "ดูปูม..."
 
 #: ../panel-plugin/mailwatch.desktop.in.h:2
 msgid "Check mail from multiple mailboxes"
