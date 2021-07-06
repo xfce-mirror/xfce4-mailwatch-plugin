@@ -3,6 +3,3 @@
 * For the threaded code, use joinable threads rather than waiting on
   thread pointers. Though the upside of the current approach is that
   we could process gtk events in that loop if we wanted.
-
-* gio/thunar-vfs file monitoring support for the local mail spool
-  options.
