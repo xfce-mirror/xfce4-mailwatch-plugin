@@ -27,4 +27,5 @@ DISTCLEANFILES = \
 	intltool-extract \
 	intltool-merge \
 	intltool-update \
-	intltool-update-tmp
+	intltool-update-tmp \
+	po/.intltool-merge-cache.lock
