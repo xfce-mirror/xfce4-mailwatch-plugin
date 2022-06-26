@@ -117,11 +117,11 @@ enum {
     LOGLIST_N_COLUMNS
 };
 
-static gboolean mailwatch_set_size     (XfcePanelPlugin     *plugin,
-                                        gint                 wsize,
-                                        XfceMailwatchPlugin *mwp);
-static gchar   *mailwatch_normal_icon  (XfceMailwatchPlugin *mwp);
-static gchar   *mailwatch_new_mail_icon(XfceMailwatchPlugin *mwp);
+static gboolean     mailwatch_set_size         (XfcePanelPlugin     *plugin,
+                                            gint                 wsize,
+                                            XfceMailwatchPlugin *mwp);
+static const gchar *mailwatch_get_normal_icon  (XfceMailwatchPlugin *mwp);
+static const gchar *mailwatch_get_new_mail_icon(XfceMailwatchPlugin *mwp);
 
 static void
 mailwatch_set_default_config(XfceMailwatchPlugin *mwp)
@@ -420,7 +420,7 @@ mailwatch_set_size(XfcePanelPlugin     *plugin,
     /* find and load the two main icons, preserving aspect ratio */
     itheme = gtk_icon_theme_get_for_screen(gtk_widget_get_screen(GTK_WIDGET(plugin)));
 
-    icon = mailwatch_normal_icon(mwp);
+    icon = mailwatch_get_normal_icon(mwp);
     if (!g_path_is_absolute(icon)) {
         info = gtk_icon_theme_lookup_icon(itheme, icon, isize, 0);
         if (info)
@@ -435,7 +435,7 @@ mailwatch_set_size(XfcePanelPlugin     *plugin,
         info = NULL;
     }
 
-    icon = mailwatch_new_mail_icon(mwp);
+    icon = mailwatch_get_new_mail_icon(mwp);
     if (!g_path_is_absolute(icon)) {
         info = gtk_icon_theme_lookup_icon(itheme, icon, isize, 0);
         if (info)
@@ -642,9 +642,9 @@ mailwatch_write_config(XfcePanelPlugin     *plugin,
     xfce_rc_write_entry(rc, "count_changed_command",
                         mwp->count_changed_command?mwp->count_changed_command:"");
     xfce_rc_write_entry(rc, "normal_icon",
-                        mailwatch_normal_icon(mwp));
+                        mailwatch_get_normal_icon(mwp));
     xfce_rc_write_entry(rc, "new_mail_icon",
-                        mailwatch_new_mail_icon(mwp));
+                        mailwatch_get_new_mail_icon(mwp));
     xfce_rc_write_int_entry(rc, "log_lines", mwp->log_lines);
     xfce_rc_write_bool_entry(rc, "show_log_status", mwp->show_log_status);
     xfce_rc_write_bool_entry(rc, "auto_open_online_doc", mwp->auto_open_online_doc);
@@ -865,11 +865,11 @@ mailwatch_iconbtn_clicked_cb(GtkWidget           *w,
     switch(icon_type) {
     case ICON_TYPE_NORMAL:
         exo_icon_chooser_dialog_set_icon (EXO_ICON_CHOOSER_DIALOG (chooser),
-                                          mailwatch_normal_icon(mwp));
+                                          mailwatch_get_normal_icon(mwp));
         break;
     case ICON_TYPE_NEW_MAIL:
         exo_icon_chooser_dialog_set_icon (EXO_ICON_CHOOSER_DIALOG (chooser),
-                                          mailwatch_new_mail_icon(mwp));
+                                          mailwatch_get_new_mail_icon(mwp));
         break;
     }
     
@@ -1302,24 +1302,26 @@ mailwatch_add_menu_item(XfcePanelPlugin *plugin,
     xfce_panel_plugin_menu_insert_item(plugin, GTK_MENU_ITEM(menu_item));
 }
 
-static gchar *
-mailwatch_normal_icon(XfceMailwatchPlugin *mwp)
+static const gchar *
+str_fallback_if_empty (const char *str,
+                       const char *fallback)
 {
-  gchar *icon = mwp->normal_icon;
-
-  if (icon != NULL)
-    return icon[0] == '\0' ? DEFAULT_NORMAL_ICON : icon;
-  return DEFAULT_NORMAL_ICON;
+  if (str != NULL && *str != '\0')
+    return str;
+  else
+    return fallback;
 }
 
-static gchar *
-mailwatch_new_mail_icon(XfceMailwatchPlugin *mwp)
+static const gchar *
+mailwatch_get_normal_icon(XfceMailwatchPlugin *mwp)
 {
-  gchar *icon = mwp->new_mail_icon;
+  return str_fallback_if_empty (mwp->normal_icon, DEFAULT_NORMAL_ICON);
+}
 
-  if (icon != NULL)
-    return icon[0] == '\0' ? DEFAULT_NEW_MAIL_ICON : icon;
-  return DEFAULT_NEW_MAIL_ICON;
+static const gchar *
+mailwatch_get_new_mail_icon(XfceMailwatchPlugin *mwp)
+{
+  return str_fallback_if_empty (mwp->new_mail_icon, DEFAULT_NEW_MAIL_ICON);
 }
 
 static void
