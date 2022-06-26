@@ -1303,25 +1303,25 @@ mailwatch_add_menu_item(XfcePanelPlugin *plugin,
 }
 
 static const gchar *
-str_fallback_if_empty (const char *str,
-                       const char *fallback)
+str_fallback_if_empty(const char *str,
+                      const char *fallback)
 {
-  if (str != NULL && *str != '\0')
-    return str;
-  else
-    return fallback;
+    if (str != NULL && *str != '\0')
+        return str;
+    else
+        return fallback;
 }
 
 static const gchar *
 mailwatch_get_normal_icon(XfceMailwatchPlugin *mwp)
 {
-  return str_fallback_if_empty (mwp->normal_icon, DEFAULT_NORMAL_ICON);
+    return str_fallback_if_empty(mwp->normal_icon, DEFAULT_NORMAL_ICON);
 }
 
 static const gchar *
 mailwatch_get_new_mail_icon(XfceMailwatchPlugin *mwp)
 {
-  return str_fallback_if_empty (mwp->new_mail_icon, DEFAULT_NEW_MAIL_ICON);
+    return str_fallback_if_empty(mwp->new_mail_icon, DEFAULT_NEW_MAIL_ICON);
 }
 
 static void
