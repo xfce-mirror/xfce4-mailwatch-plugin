@@ -117,9 +117,11 @@ enum {
     LOGLIST_N_COLUMNS
 };
 
-static gboolean mailwatch_set_size(XfcePanelPlugin     *plugin,
-                                   gint                 wsize,
-                                   XfceMailwatchPlugin *mwp);
+static gboolean     mailwatch_set_size         (XfcePanelPlugin     *plugin,
+                                            gint                 wsize,
+                                            XfceMailwatchPlugin *mwp);
+static const gchar *mailwatch_get_normal_icon  (XfceMailwatchPlugin *mwp);
+static const gchar *mailwatch_get_new_mail_icon(XfceMailwatchPlugin *mwp);
 
 static void
 mailwatch_set_default_config(XfceMailwatchPlugin *mwp)
@@ -418,7 +420,7 @@ mailwatch_set_size(XfcePanelPlugin     *plugin,
     /* find and load the two main icons, preserving aspect ratio */
     itheme = gtk_icon_theme_get_for_screen(gtk_widget_get_screen(GTK_WIDGET(plugin)));
 
-    icon = mwp->normal_icon ? mwp->normal_icon : DEFAULT_NORMAL_ICON;
+    icon = mailwatch_get_normal_icon(mwp);
     if (!g_path_is_absolute(icon)) {
         info = gtk_icon_theme_lookup_icon(itheme, icon, isize, 0);
         if (info)
@@ -433,7 +435,7 @@ mailwatch_set_size(XfcePanelPlugin     *plugin,
         info = NULL;
     }
 
-    icon = mwp->new_mail_icon ? mwp->new_mail_icon : DEFAULT_NEW_MAIL_ICON;
+    icon = mailwatch_get_new_mail_icon(mwp);
     if (!g_path_is_absolute(icon)) {
         info = gtk_icon_theme_lookup_icon(itheme, icon, isize, 0);
         if (info)
@@ -640,9 +642,9 @@ mailwatch_write_config(XfcePanelPlugin     *plugin,
     xfce_rc_write_entry(rc, "count_changed_command",
                         mwp->count_changed_command?mwp->count_changed_command:"");
     xfce_rc_write_entry(rc, "normal_icon",
-                        mwp->normal_icon?mwp->normal_icon:DEFAULT_NORMAL_ICON);
+                        mailwatch_get_normal_icon(mwp));
     xfce_rc_write_entry(rc, "new_mail_icon",
-                        mwp->new_mail_icon?mwp->new_mail_icon:DEFAULT_NEW_MAIL_ICON);
+                        mailwatch_get_new_mail_icon(mwp));
     xfce_rc_write_int_entry(rc, "log_lines", mwp->log_lines);
     xfce_rc_write_bool_entry(rc, "show_log_status", mwp->show_log_status);
     xfce_rc_write_bool_entry(rc, "auto_open_online_doc", mwp->auto_open_online_doc);
@@ -863,13 +865,11 @@ mailwatch_iconbtn_clicked_cb(GtkWidget           *w,
     switch(icon_type) {
     case ICON_TYPE_NORMAL:
         exo_icon_chooser_dialog_set_icon (EXO_ICON_CHOOSER_DIALOG (chooser),
-                                          exo_str_is_empty (mwp->normal_icon) ? 
-                                          DEFAULT_NORMAL_ICON : mwp->normal_icon);
+                                          mailwatch_get_normal_icon(mwp));
         break;
     case ICON_TYPE_NEW_MAIL:
         exo_icon_chooser_dialog_set_icon (EXO_ICON_CHOOSER_DIALOG (chooser),
-                                          exo_str_is_empty (mwp->new_mail_icon) ?
-                                          DEFAULT_NEW_MAIL_ICON : mwp->new_mail_icon);
+                                          mailwatch_get_new_mail_icon(mwp));
         break;
     }
     
@@ -1300,6 +1300,28 @@ mailwatch_add_menu_item(XfcePanelPlugin *plugin,
     gtk_widget_show(menu_item);
     g_signal_connect(G_OBJECT(menu_item), "activate", callback, user_data);
     xfce_panel_plugin_menu_insert_item(plugin, GTK_MENU_ITEM(menu_item));
+}
+
+static const gchar *
+str_fallback_if_empty (const char *str,
+                       const char *fallback)
+{
+  if (str != NULL && *str != '\0')
+    return str;
+  else
+    return fallback;
+}
+
+static const gchar *
+mailwatch_get_normal_icon(XfceMailwatchPlugin *mwp)
+{
+  return str_fallback_if_empty (mwp->normal_icon, DEFAULT_NORMAL_ICON);
+}
+
+static const gchar *
+mailwatch_get_new_mail_icon(XfceMailwatchPlugin *mwp)
+{
+  return str_fallback_if_empty (mwp->new_mail_icon, DEFAULT_NEW_MAIL_ICON);
 }
 
 static void
