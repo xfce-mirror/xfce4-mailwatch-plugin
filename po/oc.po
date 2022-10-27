@@ -151,7 +151,7 @@ msgstr "Novèls dorsièrs de corrièr"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1494
 msgid "_Refresh"
-msgstr ""
+msgstr "_Actualizar"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1588
 msgid "Advanced IMAP Options"
@@ -450,7 +450,7 @@ msgstr "Anullar"
 
 #: ../libmailwatch-core/mailwatch.c:895
 msgid "Remove"
-msgstr ""
+msgstr "Levar"
 
 #: ../libmailwatch-core/mailwatch.c:959
 msgid "Mailboxes"
@@ -458,7 +458,7 @@ msgstr "Bóstias de letras"
 
 #: ../libmailwatch-core/mailwatch.c:1013
 msgid "_Add"
-msgstr ""
+msgstr "_Apondre"
 
 #: ../libmailwatch-core/mailwatch.c:1022
 msgid "_Remove"
@@ -466,7 +466,7 @@ msgstr "Sup_rimir"
 
 #: ../libmailwatch-core/mailwatch.c:1034
 msgid "_Edit"
-msgstr ""
+msgstr "_Modificar"
 
 #: ../panel-plugin/mailwatch-plugin.c:166
 #: ../panel-plugin/mailwatch-plugin.c:505
@@ -617,7 +617,7 @@ msgstr "Metre a jorn ara"
 
 #: ../panel-plugin/mailwatch-plugin.c:1350
 msgid "View Log..."
-msgstr ""
+msgstr "Veire l’istoric..."
 
 #: ../panel-plugin/mailwatch.desktop.in.h:2
 msgid "Check mail from multiple mailboxes"
