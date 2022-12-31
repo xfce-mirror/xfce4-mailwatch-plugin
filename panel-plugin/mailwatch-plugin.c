@@ -1256,16 +1256,12 @@ static void
 mailwatch_show_about(XfcePanelPlugin *plugin,
                      gpointer         user_data)
 {
-    GdkPixbuf *icon;
-
     const gchar *auth[] = { "Brian J. Tarricone bjt23@cornell.edu Maintainer, Original Author",
                             "Pasi Orovuo pasi.ov@gmail.com Developer",
                             NULL };
 
-    icon = xfce_panel_pixbuf_from_source("xfce-mail", NULL, 32);
-
     gtk_show_about_dialog(NULL,
-                          "logo", icon,
+                          "logo-icon-name", "xfce-mail",
                           "program-name", _("Xfce4 Mailwatch Plugin"),
                           "license", xfce_get_license_text (XFCE_LICENSE_TEXT_GPL),
                           "version", VERSION,
@@ -1275,9 +1271,6 @@ mailwatch_show_about(XfcePanelPlugin *plugin,
                                          "Copyright (c) 2005 Pasi Orovuo"),
                           "authors", auth,
                           NULL);
-
-    if(icon)
-        g_object_unref(G_OBJECT(icon));
 }
 
 static void
