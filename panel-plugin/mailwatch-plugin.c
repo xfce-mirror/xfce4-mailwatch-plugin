@@ -57,6 +57,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <gtk/gtk.h>
+#include <cairo-gobject.h>
 
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4ui/libxfce4ui.h>
@@ -111,7 +112,7 @@ enum {
 };
 
 enum {
-    LOGLIST_COLUMN_PIXBUF = 0,
+    LOGLIST_COLUMN_SURFACE = 0,
     LOGLIST_COLUMN_TIME,
     LOGLIST_COLUMN_MESSAGE,
     LOGLIST_N_COLUMNS
@@ -282,6 +283,8 @@ mailwatch_log_message_cb(XfceMailwatch *mailwatch,
     GtkTreeIter             iter;
     struct tm ltm;
     gchar time_str[256] = "", *new_message = NULL;
+    cairo_surface_t *surface;
+    gint scale_factor = gtk_widget_get_scale_factor(GTK_WIDGET(mwp->plugin));
     
     if (localtime_r(&entry->timestamp, &ltm))
         mailwatch_strftime(time_str, 256, "%x %T:", &ltm);
@@ -295,12 +298,14 @@ mailwatch_log_message_cb(XfceMailwatch *mailwatch,
     }
 
     gtk_list_store_append(mwp->loglist, &iter);
+    surface = gdk_cairo_surface_create_from_pixbuf(mwp->pix_log[entry->level], scale_factor, NULL);
     gtk_list_store_set(mwp->loglist, &iter,
-                       LOGLIST_COLUMN_PIXBUF, mwp->pix_log[entry->level],
+                       LOGLIST_COLUMN_SURFACE, surface,
                        LOGLIST_COLUMN_TIME, time_str,
                        LOGLIST_COLUMN_MESSAGE, new_message ? new_message : entry->message,
                        -1);
     
+    cairo_surface_destroy(surface);
     g_free(new_message);
     
     if (entry->level > mwp->log_status) {
@@ -311,28 +316,6 @@ mailwatch_log_message_cb(XfceMailwatch *mailwatch,
         if (gtk_tree_model_iter_nth_child(GTK_TREE_MODEL(mwp->loglist), &iter, NULL, 0))
             gtk_list_store_remove(mwp->loglist, &iter);
     }
-}
-
-static GdkPixbuf *
-mailwatch_get_mini_icon(GtkWidget   *dummy,
-                        const gchar *icon_name,
-                        gint         size)
-{
-    GdkPixbuf *pix;
-    
-    pix = gtk_icon_theme_load_icon(gtk_icon_theme_get_default (), icon_name,
-                                   48, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
-    if (pix) {
-        if (size / 2 != gdk_pixbuf_get_width(pix)) {
-            GdkPixbuf *tmp = gdk_pixbuf_scale_simple(pix, size / 2,
-                                                      size / 2,
-                                                      GDK_INTERP_BILINEAR);
-            g_object_unref(G_OBJECT(pix));
-            pix = tmp;
-        }
-    }
-    
-    return pix;
 }
 
 static GdkPixbuf *
@@ -367,11 +350,13 @@ mailwatch_set_size(XfcePanelPlugin     *plugin,
                    gint                 wsize, 
                    XfceMailwatchPlugin *mwp)
 {
-    gint size, isize, img_width, img_height, width, height, i;
+    gint size, isize, misize, img_width, img_height, width, height, i;
     const gchar *icon;
     GdkPixbuf *pb;
     GtkIconTheme *itheme;
     GtkIconInfo *info = NULL;
+    cairo_surface_t *surface;
+    gint scale_factor = gtk_widget_get_scale_factor(GTK_WIDGET(plugin));
 
     GtkBorder button_padding;
     gint xthickness;
@@ -401,9 +386,9 @@ mailwatch_set_size(XfcePanelPlugin     *plugin,
     
     if(xfce_panel_plugin_get_orientation(plugin) == GTK_ORIENTATION_HORIZONTAL) {
         img_width = -1;
-        img_height = isize;
+        img_height = isize * scale_factor;
     } else {
-        img_width = isize;
+        img_width = isize * scale_factor;
         img_height = -1;
     }
 
@@ -422,7 +407,7 @@ mailwatch_set_size(XfcePanelPlugin     *plugin,
 
     icon = mailwatch_get_normal_icon(mwp);
     if (!g_path_is_absolute(icon)) {
-        info = gtk_icon_theme_lookup_icon(itheme, icon, isize, 0);
+        info = gtk_icon_theme_lookup_icon_for_scale(itheme, icon, isize, scale_factor, 0);
         if (info)
             icon = gtk_icon_info_get_filename(info);
     }
@@ -437,7 +422,7 @@ mailwatch_set_size(XfcePanelPlugin     *plugin,
 
     icon = mailwatch_get_new_mail_icon(mwp);
     if (!g_path_is_absolute(icon)) {
-        info = gtk_icon_theme_lookup_icon(itheme, icon, isize, 0);
+        info = gtk_icon_theme_lookup_icon_for_scale(itheme, icon, isize, scale_factor, 0);
         if (info)
             icon = gtk_icon_info_get_filename(info);
     }
@@ -464,20 +449,26 @@ mailwatch_set_size(XfcePanelPlugin     *plugin,
     /* load log mini-icons.  use the smallest dimension of the smaller
      * main icon as a base for the mini icons to ensure they aren't too
      * large in the smaller dimension */
+    misize = MIN(width, height) / 2 / scale_factor;
     mwp->pix_log[XFCE_MAILWATCH_LOG_INFO] =
-            mailwatch_get_mini_icon(GTK_WIDGET(plugin), "dialog-info",
-                                    width < height ? width : height);
+        gtk_icon_theme_load_icon_for_scale(itheme, "dialog-info", misize, scale_factor,
+                                           GTK_ICON_LOOKUP_GENERIC_FALLBACK | GTK_ICON_LOOKUP_FORCE_SIZE,
+                                           NULL);
     mwp->pix_log[XFCE_MAILWATCH_LOG_WARNING] =
-            mailwatch_get_mini_icon(GTK_WIDGET(plugin), "dialog-warning",
-                                    width < height ? width : height);
+        gtk_icon_theme_load_icon_for_scale(itheme, "dialog-warning", misize, scale_factor,
+                                           GTK_ICON_LOOKUP_GENERIC_FALLBACK | GTK_ICON_LOOKUP_FORCE_SIZE,
+                                           NULL);
     mwp->pix_log[XFCE_MAILWATCH_LOG_ERROR] = 
-            mailwatch_get_mini_icon(GTK_WIDGET(plugin), "dialog-error",
-                                    width < height ? width : height);
+        gtk_icon_theme_load_icon_for_scale(itheme, "dialog-error", misize, scale_factor,
+                                           GTK_ICON_LOOKUP_GENERIC_FALLBACK | GTK_ICON_LOOKUP_FORCE_SIZE,
+                                           NULL);
     
     pb = mailwatch_build_icon(mwp, mwp->newmail_icon_visible);
-    width = gdk_pixbuf_get_width(pb);
-    height = gdk_pixbuf_get_height(pb);
-    gtk_image_set_from_pixbuf(GTK_IMAGE(mwp->image), pb);
+    width = gdk_pixbuf_get_width(pb) / scale_factor;
+    height = gdk_pixbuf_get_height(pb) / scale_factor;
+    surface = gdk_cairo_surface_create_from_pixbuf(pb, scale_factor, NULL);
+    gtk_image_set_from_surface(GTK_IMAGE(mwp->image), surface);
+    cairo_surface_destroy(surface);
     g_object_unref(G_OBJECT(pb));
 
     width += wsize - isize;
@@ -524,7 +515,7 @@ mailwatch_create(XfcePanelPlugin *plugin)
 
     mwp->log_dialog = NULL;
     mwp->loglist = gtk_list_store_new(LOGLIST_N_COLUMNS,
-                                      GDK_TYPE_PIXBUF,
+                                      CAIRO_GOBJECT_TYPE_SURFACE,
                                       G_TYPE_STRING,
                                       G_TYPE_STRING );
     
@@ -764,7 +755,7 @@ mailwatch_view_log_clicked_cb(GtkWidget *widget,
                                                  -1,
                                                  "Level",
                                                  gtk_cell_renderer_pixbuf_new(),
-                                                 "pixbuf", LOGLIST_COLUMN_PIXBUF,
+                                                 "surface", LOGLIST_COLUMN_SURFACE,
                                                  NULL );
     gtk_tree_view_insert_column_with_attributes(GTK_TREE_VIEW(treeview), -1,
                                                 "Timestamp",
@@ -880,6 +871,8 @@ mailwatch_iconbtn_clicked_cb(GtkWidget           *w,
             GtkWidget *label = NULL;
             GdkPixbuf **icon_pix = NULL;
             gchar **icon_path = NULL;
+            cairo_surface_t *surface;
+            gint scale_factor = gtk_widget_get_scale_factor(GTK_WIDGET(mwp->plugin));
 
             switch(icon_type) {
             case ICON_TYPE_NORMAL:
@@ -904,7 +897,9 @@ mailwatch_iconbtn_clicked_cb(GtkWidget           *w,
             gtk_widget_show(vbox);
             gtk_container_add(GTK_CONTAINER(w), vbox);
             
-            image = gtk_image_new_from_pixbuf(*icon_pix);
+            surface = gdk_cairo_surface_create_from_pixbuf(*icon_pix, scale_factor, NULL);
+            image = gtk_image_new_from_surface(surface);
+            cairo_surface_destroy(surface);
             gtk_widget_show(image);
             gtk_box_pack_start(GTK_BOX(vbox), image, TRUE, TRUE, 0);
             
@@ -1040,6 +1035,8 @@ mailwatch_create_options(XfcePanelPlugin     *plugin,
               *btn, *vbox, *img, *sbtn, *chk;
     GtkContainer *cfg_page;
     GtkSizeGroup *sg;
+    cairo_surface_t *surface;
+    gint scale_factor = gtk_widget_get_scale_factor(GTK_WIDGET(plugin));
     
     xfce_panel_plugin_block_menu(plugin);
     
@@ -1148,7 +1145,9 @@ mailwatch_create_options(XfcePanelPlugin     *plugin,
     vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, BORDER/2);
     gtk_container_add(GTK_CONTAINER(btn), vbox);
     
-    img = gtk_image_new_from_pixbuf(mwp->pix_normal);
+    surface = gdk_cairo_surface_create_from_pixbuf(mwp->pix_normal, scale_factor, NULL);
+    img = gtk_image_new_from_surface(surface);
+    cairo_surface_destroy(surface);
     gtk_box_pack_start(GTK_BOX(vbox), img, TRUE, TRUE, 0);
     
     lbl = gtk_label_new_with_mnemonic(_("_Normal"));
@@ -1165,7 +1164,9 @@ mailwatch_create_options(XfcePanelPlugin     *plugin,
     vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, BORDER/2);
     gtk_container_add(GTK_CONTAINER(btn), vbox);
     
-    img = gtk_image_new_from_pixbuf(mwp->pix_newmail);
+    surface = gdk_cairo_surface_create_from_pixbuf(mwp->pix_newmail, scale_factor, NULL);
+    img = gtk_image_new_from_surface(surface);
+    cairo_surface_destroy(surface);
     gtk_box_pack_start(GTK_BOX(vbox), img, TRUE, TRUE, 0);
     
     lbl = gtk_label_new_with_mnemonic(_("Ne_w Mail"));
