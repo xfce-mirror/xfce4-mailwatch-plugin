@@ -1318,6 +1318,31 @@ mailwatch_get_new_mail_icon(XfceMailwatchPlugin *mwp)
     return str_fallback_if_empty(mwp->new_mail_icon, DEFAULT_NEW_MAIL_ICON);
 }
 
+/**************************************************************/
+// call: xfce4-panel --plugin-event=mailwatch-X:refresh:bool:true
+//    where mailwatch-X is the mailwatch widget id (e.g. mailwatch-7)
+static gboolean mailwatch_remote_event (XfcePanelPlugin     *plugin,
+                                        const gchar         *name,
+                                        const GValue        *value,
+                                        XfceMailwatchPlugin *mwp)
+{
+    g_return_val_if_fail (value == NULL || G_IS_VALUE (value), FALSE);
+
+    if (g_strcmp0 (name, "refresh") == 0) 
+    {
+        if (value != NULL
+                  && G_VALUE_HOLDS_BOOLEAN (value)
+                  && g_value_get_boolean (value)) 
+        {
+            /* update the plugin */
+            mailwatch_update(mwp);
+        }
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
 static void
 mailwatch_construct(XfcePanelPlugin *plugin)
 {
@@ -1361,6 +1386,8 @@ mailwatch_construct(XfcePanelPlugin *plugin)
     xfce_panel_plugin_menu_show_configure(plugin);
     g_signal_connect(plugin, "configure-plugin",
                      G_CALLBACK(mailwatch_create_options), mwp);
+    
+    g_signal_connect (plugin, "remote-event", G_CALLBACK (mailwatch_remote_event), mwp);
     
     xfce_panel_plugin_menu_show_about(plugin);
     g_signal_connect(plugin, "about",
