@@ -678,13 +678,7 @@ pop3_config_timeout_spinbutton_changed_cb(GtkSpinButton *sb,
         return;
     
     pmailbox->timeout = value;
-    if(g_atomic_int_get(&pmailbox->running)) {
-        if(pmailbox->check_id)
-            g_source_remove(pmailbox->check_id);
-        pmailbox->check_id = g_timeout_add(pmailbox->timeout * 1000,
-                                           pop3_check_mail_timeout,
-                                           pmailbox);
-    }
+    g_assert(!g_atomic_int_get(&pmailbox->running));
 }
 
 static void

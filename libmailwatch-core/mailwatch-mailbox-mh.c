@@ -555,13 +555,7 @@ mh_timeout_changed_cb( GtkWidget *spinner, XfceMailwatchMHMailbox *mh )
 
     mh->timeout = value;
 
-    if( g_atomic_int_get( &mh->running ) ) {
-        if( mh->check_id )
-            g_source_remove( mh->check_id );
-        mh->check_id = g_timeout_add( mh->timeout * 1000,
-                                      mh_check_mail_timeout,
-                                      mh );
-    }
+    g_assert( !g_atomic_int_get( &mh->running ) );
 }
 
 static GtkContainer *

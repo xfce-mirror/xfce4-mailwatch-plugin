@@ -861,14 +861,7 @@ imap_config_timeout_spinbutton_changed_cb(GtkSpinButton *sb,
 
     imailbox->timeout = value;
 
-    if(g_atomic_int_get(&imailbox->running)) {
-        /* probably shouldn't do this so frequently */
-        if(imailbox->check_id)
-            g_source_remove(imailbox->check_id);
-        imailbox->check_id = g_timeout_add(imailbox->timeout * 1000,
-                                           imap_check_mail_timeout,
-                                           imailbox);
-    }
+    g_assert(!g_atomic_int_get(&imailbox->running));
 }
 
 static GNode *
