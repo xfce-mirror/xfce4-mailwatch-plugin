@@ -3,17 +3,18 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Andrei Stepanov, 2023
 # Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006
-# AlexanderFilev <avfill@outlook.com>, 2020
+# AlexanderFilev, 2020
 # ivmazurenko <ivmazurenko@yandex.ru>, 2021
 # Sergey Alyoshin <alyoshin.s@gmail.com>, 2013-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-26 12:48+0100\n"
-"PO-Revision-Date: 2021-01-04 21:08+0000\n"
-"Last-Translator: ivmazurenko <ivmazurenko@yandex.ru>\n"
+"POT-Creation-Date: 2022-11-28 15:07+0100\n"
+"PO-Revision-Date: 2013-07-03 19:03+0000\n"
+"Last-Translator: Andrei Stepanov, 2023\n"
 "Language-Team: Russian (http://www.transifex.com/xfce/xfce-panel-plugins/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -136,9 +137,9 @@ msgstr "Список папок не может быть получен до т�
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1591
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:749
 #: ../libmailwatch-core/mailwatch.c:630 ../libmailwatch-core/mailwatch.c:666
-#: ../panel-plugin/mailwatch-plugin.c:490
-#: ../panel-plugin/mailwatch-plugin.c:790
-#: ../panel-plugin/mailwatch-plugin.c:1057
+#: ../panel-plugin/mailwatch-plugin.c:502
+#: ../panel-plugin/mailwatch-plugin.c:802
+#: ../panel-plugin/mailwatch-plugin.c:1067
 msgid "_Close"
 msgstr "_Закрыть"
 
@@ -390,13 +391,13 @@ msgid "This mailbox type does not require any configuration settings."
 msgstr "Этот тип почтового ящика не требует дополнительных настроек."
 
 #: ../libmailwatch-core/mailwatch.c:623 ../libmailwatch-core/mailwatch.c:765
-#: ../panel-plugin/mailwatch-plugin.c:848
-#: ../panel-plugin/mailwatch-plugin.c:987
+#: ../panel-plugin/mailwatch-plugin.c:860
+#: ../panel-plugin/mailwatch-plugin.c:997
 msgid "_Cancel"
 msgstr "О_тменить"
 
 #: ../libmailwatch-core/mailwatch.c:624 ../libmailwatch-core/mailwatch.c:766
-#: ../panel-plugin/mailwatch-plugin.c:849
+#: ../panel-plugin/mailwatch-plugin.c:861
 msgid "_OK"
 msgstr "_OK"
 
@@ -447,7 +448,7 @@ msgstr "Удаляя почтовый ящик, вы удалите все ег�
 
 #: ../libmailwatch-core/mailwatch.c:894
 msgid "Cancel"
-msgstr "Отменить"
+msgstr "Отмена"
 
 #: ../libmailwatch-core/mailwatch.c:895
 msgid "Remove"
@@ -469,12 +470,12 @@ msgstr "Удалить"
 msgid "_Edit"
 msgstr "_Править"
 
-#: ../panel-plugin/mailwatch-plugin.c:166
-#: ../panel-plugin/mailwatch-plugin.c:505
+#: ../panel-plugin/mailwatch-plugin.c:168
+#: ../panel-plugin/mailwatch-plugin.c:517
 msgid "No new mail"
 msgstr "Нет новых писем"
 
-#: ../panel-plugin/mailwatch-plugin.c:185
+#: ../panel-plugin/mailwatch-plugin.c:187
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
@@ -483,142 +484,142 @@ msgstr[1] "У вас %d новых письма:"
 msgstr[2] "У вас %d новых писем:"
 msgstr[3] "У вас %d новых писем:"
 
-#: ../panel-plugin/mailwatch-plugin.c:195
+#: ../panel-plugin/mailwatch-plugin.c:197
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "\t%d в %s"
 
-#: ../panel-plugin/mailwatch-plugin.c:487
+#: ../panel-plugin/mailwatch-plugin.c:499
 msgid "Xfce Mailwatch"
 msgstr "Проверка почты Xfce"
 
-#: ../panel-plugin/mailwatch-plugin.c:488
+#: ../panel-plugin/mailwatch-plugin.c:500
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Не удалось добавить апплет проверки почты на панель."
 
-#: ../panel-plugin/mailwatch-plugin.c:489
+#: ../panel-plugin/mailwatch-plugin.c:501
 msgid ""
 "It is possible that your version of GLib does not have threads support."
 msgstr "Возможно, что ваша библиотека GLib не поддерживает потоки."
 
-#: ../panel-plugin/mailwatch-plugin.c:719
+#: ../panel-plugin/mailwatch-plugin.c:731
 msgid "Mailwatch log"
 msgstr "Журнал проверки почты"
 
-#: ../panel-plugin/mailwatch-plugin.c:777
+#: ../panel-plugin/mailwatch-plugin.c:789
 msgid "C_lear"
 msgstr "О_чистить"
 
-#: ../panel-plugin/mailwatch-plugin.c:846
+#: ../panel-plugin/mailwatch-plugin.c:858
 msgid "Select Icon"
 msgstr "Выберите значок"
 
-#: ../panel-plugin/mailwatch-plugin.c:878
-#: ../panel-plugin/mailwatch-plugin.c:1144
+#: ../panel-plugin/mailwatch-plugin.c:888
+#: ../panel-plugin/mailwatch-plugin.c:1154
 msgid "_Normal"
 msgstr "О_бычный"
 
-#: ../panel-plugin/mailwatch-plugin.c:883
+#: ../panel-plugin/mailwatch-plugin.c:893
 msgid "Ne_w mail"
 msgstr "Но_вая почта"
 
-#: ../panel-plugin/mailwatch-plugin.c:935
+#: ../panel-plugin/mailwatch-plugin.c:945
 msgid "Failed to open web browser for online documentation"
 msgstr "Не удалось открыть веб-браузер для он-лайн документации"
 
-#: ../panel-plugin/mailwatch-plugin.c:983
+#: ../panel-plugin/mailwatch-plugin.c:993
 msgid "Online Documentation"
 msgstr "Он-лайн документация"
 
-#: ../panel-plugin/mailwatch-plugin.c:984
+#: ../panel-plugin/mailwatch-plugin.c:994
 msgid "Do you want to read the manual online?"
 msgstr "Хотите прочитать руководство он-лайн?"
 
-#: ../panel-plugin/mailwatch-plugin.c:985
+#: ../panel-plugin/mailwatch-plugin.c:995
 msgid ""
 "You will be redirected to the documentation website where the help pages are"
 " maintained."
 msgstr "Вы будете перенаправлены на веб-сайт документации, где расположены страницы помощи."
 
-#: ../panel-plugin/mailwatch-plugin.c:988
+#: ../panel-plugin/mailwatch-plugin.c:998
 msgid "_Read Online"
 msgstr "_Читать он-лайн"
 
-#: ../panel-plugin/mailwatch-plugin.c:998
+#: ../panel-plugin/mailwatch-plugin.c:1008
 msgid "_Always go directly to the online documentation"
 msgstr "Всегда переходить к он-лайн документации"
 
-#: ../panel-plugin/mailwatch-plugin.c:1036
+#: ../panel-plugin/mailwatch-plugin.c:1046
 #: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "Проверка почты"
 
-#: ../panel-plugin/mailwatch-plugin.c:1050
+#: ../panel-plugin/mailwatch-plugin.c:1060
 msgid "_Help"
 msgstr "_Справка"
 
 #. External programs.
-#: ../panel-plugin/mailwatch-plugin.c:1074
+#: ../panel-plugin/mailwatch-plugin.c:1084
 msgid "External Programs"
 msgstr "Внешние программы"
 
-#: ../panel-plugin/mailwatch-plugin.c:1082
+#: ../panel-plugin/mailwatch-plugin.c:1092
 msgid "Run _on click:"
 msgstr "Выполнять при щелчке _мышью:"
 
-#: ../panel-plugin/mailwatch-plugin.c:1095
+#: ../panel-plugin/mailwatch-plugin.c:1105
 msgid "Run on first new _message:"
 msgstr "Выполнять при _первом новом сообщении:"
 
-#: ../panel-plugin/mailwatch-plugin.c:1108
+#: ../panel-plugin/mailwatch-plugin.c:1118
 msgid "Run on _each change of new message count:"
 msgstr "Выполнять при _новых сообщениях:"
 
 #. Icons.
-#: ../panel-plugin/mailwatch-plugin.c:1122
+#: ../panel-plugin/mailwatch-plugin.c:1132
 msgid "Icons"
 msgstr "Значки"
 
-#: ../panel-plugin/mailwatch-plugin.c:1161
+#: ../panel-plugin/mailwatch-plugin.c:1171
 msgid "Ne_w Mail"
 msgstr "Но_вая почта"
 
 #. Log
-#: ../panel-plugin/mailwatch-plugin.c:1168
+#: ../panel-plugin/mailwatch-plugin.c:1178
 msgid "Log"
 msgstr "Журнал"
 
-#: ../panel-plugin/mailwatch-plugin.c:1177
+#: ../panel-plugin/mailwatch-plugin.c:1187
 msgid "Log _lines:"
 msgstr "Строк в журнале:"
 
-#: ../panel-plugin/mailwatch-plugin.c:1189
+#: ../panel-plugin/mailwatch-plugin.c:1199
 msgid "_View Log..."
 msgstr "_Журнал..."
 
-#: ../panel-plugin/mailwatch-plugin.c:1198
+#: ../panel-plugin/mailwatch-plugin.c:1208
 msgid "Show log _status in icon"
 msgstr "Показывать статус журнала на значке"
 
-#: ../panel-plugin/mailwatch-plugin.c:1259
+#: ../panel-plugin/mailwatch-plugin.c:1269
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Проверка почты Xfce"
 
-#: ../panel-plugin/mailwatch-plugin.c:1262
+#: ../panel-plugin/mailwatch-plugin.c:1272
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "Полезный апплет проверки почты для панели Xfce"
 
-#: ../panel-plugin/mailwatch-plugin.c:1264
+#: ../panel-plugin/mailwatch-plugin.c:1274
 msgid ""
 "Copyright (c) 2005-2008 Brian Tarricone\n"
 "Copyright (c) 2005 Pasi Orovuo"
 msgstr "Copyright © 2005—2008 Brian Tarricone\nCopyright © 2005 Pasi Orovuo"
 
-#: ../panel-plugin/mailwatch-plugin.c:1348
+#: ../panel-plugin/mailwatch-plugin.c:1380
 msgid "Update Now"
 msgstr "Обновить"
 
-#: ../panel-plugin/mailwatch-plugin.c:1350
+#: ../panel-plugin/mailwatch-plugin.c:1382
 msgid "View Log..."
 msgstr "Журнал..."
 
