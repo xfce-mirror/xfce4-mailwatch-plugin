@@ -16,6 +16,7 @@ m4_define([mailwatch_version], [mailwatch_version_major().mailwatch_version_mino
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
+AC_COPYRIGHT([Copyright (c) 2005-2023 The Xfce development team. All rights reserved.])
 AC_INIT([xfce4-mailwatch-plugin], [mailwatch_version], [https://gitlab.xfce.org/panel-plugins/xfce4-mailwatch-plugin/])
 AC_PREREQ([2.50])
 AC_REVISION([mailwatch_version_build])
