@@ -12,10 +12,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-28 15:07+0100\n"
+"POT-Creation-Date: 2023-04-19 01:17+0200\n"
 "PO-Revision-Date: 2013-07-03 19:03+0000\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>, 2022\n"
-"Language-Team: Turkish (http://www.transifex.com/xfce/xfce-panel-plugins/language/tr/)\n"
+"Language-Team: Turkish (http://app.transifex.com/xfce/xfce-panel-plugins/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -137,9 +137,9 @@ msgstr "Klasör listesi, sunucu, kullanıcı adı ve parola belirlenene dek alı
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1591
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:749
 #: ../libmailwatch-core/mailwatch.c:630 ../libmailwatch-core/mailwatch.c:666
-#: ../panel-plugin/mailwatch-plugin.c:502
-#: ../panel-plugin/mailwatch-plugin.c:802
-#: ../panel-plugin/mailwatch-plugin.c:1067
+#: ../panel-plugin/mailwatch-plugin.c:493
+#: ../panel-plugin/mailwatch-plugin.c:793
+#: ../panel-plugin/mailwatch-plugin.c:1064
 msgid "_Close"
 msgstr "_Kapat"
 
@@ -391,13 +391,13 @@ msgid "This mailbox type does not require any configuration settings."
 msgstr "Bu posta kutusu türü herhangi bir yapılandırmaya gereksinmemektedir."
 
 #: ../libmailwatch-core/mailwatch.c:623 ../libmailwatch-core/mailwatch.c:765
-#: ../panel-plugin/mailwatch-plugin.c:860
-#: ../panel-plugin/mailwatch-plugin.c:997
+#: ../panel-plugin/mailwatch-plugin.c:851
+#: ../panel-plugin/mailwatch-plugin.c:992
 msgid "_Cancel"
 msgstr "_İptal Et"
 
 #: ../libmailwatch-core/mailwatch.c:624 ../libmailwatch-core/mailwatch.c:766
-#: ../panel-plugin/mailwatch-plugin.c:861
+#: ../panel-plugin/mailwatch-plugin.c:852
 msgid "_OK"
 msgstr "_Tamam"
 
@@ -470,154 +470,148 @@ msgstr "_Kaldır"
 msgid "_Edit"
 msgstr "_Düzenle"
 
-#: ../panel-plugin/mailwatch-plugin.c:168
-#: ../panel-plugin/mailwatch-plugin.c:517
+#: ../panel-plugin/mailwatch-plugin.c:169
+#: ../panel-plugin/mailwatch-plugin.c:508
 msgid "No new mail"
 msgstr "Yeni e-posta yok"
 
-#: ../panel-plugin/mailwatch-plugin.c:187
+#: ../panel-plugin/mailwatch-plugin.c:188
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
 msgstr[0] "%d yeni iletiniz var:"
 msgstr[1] "%d yeni iletiniz var:"
 
-#: ../panel-plugin/mailwatch-plugin.c:197
+#: ../panel-plugin/mailwatch-plugin.c:198
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "her posta kutusunda kaç tane e-posta olduğunu gösterir %d tane %s üzerinde"
 
-#: ../panel-plugin/mailwatch-plugin.c:499
+#: ../panel-plugin/mailwatch-plugin.c:490
 msgid "Xfce Mailwatch"
 msgstr "Xfce Mailwatch"
 
-#: ../panel-plugin/mailwatch-plugin.c:500
+#: ../panel-plugin/mailwatch-plugin.c:491
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Mailwatch eklentisi panele eklenemedi."
 
-#: ../panel-plugin/mailwatch-plugin.c:501
+#: ../panel-plugin/mailwatch-plugin.c:492
 msgid ""
 "It is possible that your version of GLib does not have threads support."
 msgstr "GLib sürümünüzün thread desteği olmaması nedeniyle bu hatayı alıyor olabilirsiniz."
 
-#: ../panel-plugin/mailwatch-plugin.c:731
+#: ../panel-plugin/mailwatch-plugin.c:722
 msgid "Mailwatch log"
 msgstr "Mailwatch günlükleri"
 
-#: ../panel-plugin/mailwatch-plugin.c:789
+#: ../panel-plugin/mailwatch-plugin.c:780
 msgid "C_lear"
 msgstr "_Temizle"
 
-#: ../panel-plugin/mailwatch-plugin.c:858
+#: ../panel-plugin/mailwatch-plugin.c:849
 msgid "Select Icon"
 msgstr "Simge Seç"
 
-#: ../panel-plugin/mailwatch-plugin.c:888
-#: ../panel-plugin/mailwatch-plugin.c:1154
+#: ../panel-plugin/mailwatch-plugin.c:881
+#: ../panel-plugin/mailwatch-plugin.c:1153
 msgid "_Normal"
 msgstr "_Olağan"
 
-#: ../panel-plugin/mailwatch-plugin.c:893
+#: ../panel-plugin/mailwatch-plugin.c:886
 msgid "Ne_w mail"
 msgstr "Yeni _Posta"
 
-#: ../panel-plugin/mailwatch-plugin.c:945
+#: ../panel-plugin/mailwatch-plugin.c:940
 msgid "Failed to open web browser for online documentation"
 msgstr "Çevrim içi belgelendirmeler için web tarayıcısı açılamadı"
 
-#: ../panel-plugin/mailwatch-plugin.c:993
+#: ../panel-plugin/mailwatch-plugin.c:988
 msgid "Online Documentation"
 msgstr "Çevrim İçi Belgelendirme"
 
-#: ../panel-plugin/mailwatch-plugin.c:994
+#: ../panel-plugin/mailwatch-plugin.c:989
 msgid "Do you want to read the manual online?"
 msgstr "Kılavuzu çevrim içi okumak ister misiniz?"
 
-#: ../panel-plugin/mailwatch-plugin.c:995
+#: ../panel-plugin/mailwatch-plugin.c:990
 msgid ""
 "You will be redirected to the documentation website where the help pages are"
 " maintained."
 msgstr "Yardım sayfalarının sağlandığı web adresine yönlendirileceksiniz."
 
-#: ../panel-plugin/mailwatch-plugin.c:998
+#: ../panel-plugin/mailwatch-plugin.c:993
 msgid "_Read Online"
 msgstr "Çevrim İçi _Oku"
 
-#: ../panel-plugin/mailwatch-plugin.c:1008
+#: ../panel-plugin/mailwatch-plugin.c:1003
 msgid "_Always go directly to the online documentation"
 msgstr "_Her zaman doğrudan çevrim içi belgelendirmeye git"
 
-#: ../panel-plugin/mailwatch-plugin.c:1046
+#: ../panel-plugin/mailwatch-plugin.c:1043
 #: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "E-Posta İzleyici"
 
-#: ../panel-plugin/mailwatch-plugin.c:1060
+#: ../panel-plugin/mailwatch-plugin.c:1057
 msgid "_Help"
 msgstr "_Yardım"
 
 #. External programs.
-#: ../panel-plugin/mailwatch-plugin.c:1084
+#: ../panel-plugin/mailwatch-plugin.c:1081
 msgid "External Programs"
 msgstr "Dış Uygulamalar"
 
-#: ../panel-plugin/mailwatch-plugin.c:1092
+#: ../panel-plugin/mailwatch-plugin.c:1089
 msgid "Run _on click:"
 msgstr "Tıklandığında _çalıştır:"
 
-#: ../panel-plugin/mailwatch-plugin.c:1105
+#: ../panel-plugin/mailwatch-plugin.c:1102
 msgid "Run on first new _message:"
 msgstr "İlk yeni _iletide çalıştır:"
 
-#: ../panel-plugin/mailwatch-plugin.c:1118
+#: ../panel-plugin/mailwatch-plugin.c:1115
 msgid "Run on _each change of new message count:"
 msgstr "Her yeni ileti sayısı değiştiğinde _çalıştır:"
 
 #. Icons.
-#: ../panel-plugin/mailwatch-plugin.c:1132
+#: ../panel-plugin/mailwatch-plugin.c:1129
 msgid "Icons"
 msgstr "Simgeler"
 
-#: ../panel-plugin/mailwatch-plugin.c:1171
+#: ../panel-plugin/mailwatch-plugin.c:1172
 msgid "Ne_w Mail"
 msgstr "Y_eni Posta"
 
 #. Log
-#: ../panel-plugin/mailwatch-plugin.c:1178
+#: ../panel-plugin/mailwatch-plugin.c:1179
 msgid "Log"
 msgstr "Günlük"
 
-#: ../panel-plugin/mailwatch-plugin.c:1187
+#: ../panel-plugin/mailwatch-plugin.c:1188
 msgid "Log _lines:"
 msgstr "Günlük satır_ları:"
 
-#: ../panel-plugin/mailwatch-plugin.c:1199
+#: ../panel-plugin/mailwatch-plugin.c:1200
 msgid "_View Log..."
 msgstr "_Günlükleri Görüntüle..."
 
-#: ../panel-plugin/mailwatch-plugin.c:1208
+#: ../panel-plugin/mailwatch-plugin.c:1209
 msgid "Show log _status in icon"
 msgstr "Simgede kayıt durumunu gö_ster"
 
-#: ../panel-plugin/mailwatch-plugin.c:1269
+#: ../panel-plugin/mailwatch-plugin.c:1266
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Xfce4 Mailwatch Eklentisi"
 
-#: ../panel-plugin/mailwatch-plugin.c:1272
+#: ../panel-plugin/mailwatch-plugin.c:1269
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "Xfce Paneli için birçok özellikli e-posta denetleyicisi"
 
-#: ../panel-plugin/mailwatch-plugin.c:1274
-msgid ""
-"Copyright (c) 2005-2008 Brian Tarricone\n"
-"Copyright (c) 2005 Pasi Orovuo"
-msgstr "Telif Hakkı (c) 2005-2008 Brian Tarricone\nTelif Hakkı (c) 2005 Pasi Orovuo"
-
-#: ../panel-plugin/mailwatch-plugin.c:1380
+#: ../panel-plugin/mailwatch-plugin.c:1400
 msgid "Update Now"
 msgstr "Şimdi Güncelle"
 
-#: ../panel-plugin/mailwatch-plugin.c:1382
+#: ../panel-plugin/mailwatch-plugin.c:1402
 msgid "View Log..."
 msgstr "Günlüğü Gör..."
 
