@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-26 12:48+0100\n"
-"PO-Revision-Date: 2020-12-26 11:48+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
-"Language-Team: Latvian (http://www.transifex.com/xfce/xfce-panel-plugins/language/lv/)\n"
+"POT-Creation-Date: 2023-04-19 01:17+0200\n"
+"PO-Revision-Date: 2013-07-03 19:03+0000\n"
+"Last-Translator: Rihards Priedītis <rprieditis@gmail.com>, 2009\n"
+"Language-Team: Latvian (http://app.transifex.com/xfce/xfce-panel-plugins/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -134,9 +134,9 @@ msgstr "Mapju sarakstu nevar iegūt līdz serveris, lietotāja vārds un, iespē
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1591
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:749
 #: ../libmailwatch-core/mailwatch.c:630 ../libmailwatch-core/mailwatch.c:666
-#: ../panel-plugin/mailwatch-plugin.c:490
-#: ../panel-plugin/mailwatch-plugin.c:790
-#: ../panel-plugin/mailwatch-plugin.c:1057
+#: ../panel-plugin/mailwatch-plugin.c:493
+#: ../panel-plugin/mailwatch-plugin.c:793
+#: ../panel-plugin/mailwatch-plugin.c:1064
 msgid "_Close"
 msgstr ""
 
@@ -388,13 +388,13 @@ msgid "This mailbox type does not require any configuration settings."
 msgstr "Šīs pastkastītes tips neprasa nekādu papildus konfigurāciju."
 
 #: ../libmailwatch-core/mailwatch.c:623 ../libmailwatch-core/mailwatch.c:765
-#: ../panel-plugin/mailwatch-plugin.c:848
-#: ../panel-plugin/mailwatch-plugin.c:987
+#: ../panel-plugin/mailwatch-plugin.c:851
+#: ../panel-plugin/mailwatch-plugin.c:992
 msgid "_Cancel"
 msgstr ""
 
 #: ../libmailwatch-core/mailwatch.c:624 ../libmailwatch-core/mailwatch.c:766
-#: ../panel-plugin/mailwatch-plugin.c:849
+#: ../panel-plugin/mailwatch-plugin.c:852
 msgid "_OK"
 msgstr ""
 
@@ -467,12 +467,12 @@ msgstr "_Noņemt"
 msgid "_Edit"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:166
-#: ../panel-plugin/mailwatch-plugin.c:505
+#: ../panel-plugin/mailwatch-plugin.c:169
+#: ../panel-plugin/mailwatch-plugin.c:508
 msgid "No new mail"
 msgstr "Nav jauna pasta"
 
-#: ../panel-plugin/mailwatch-plugin.c:185
+#: ../panel-plugin/mailwatch-plugin.c:188
 #, c-format
 msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
@@ -480,142 +480,136 @@ msgstr[0] "Jums ir %d jaunas ziņas:"
 msgstr[1] "Jums ir %d jaunas ziņas:"
 msgstr[2] "Jums ir %d jaunas ziņas:"
 
-#: ../panel-plugin/mailwatch-plugin.c:195
+#: ../panel-plugin/mailwatch-plugin.c:198
 #, c-format
 msgid "tells how many new messages in each mailbox|    %d in %s"
 msgstr "%d iekš %s"
 
-#: ../panel-plugin/mailwatch-plugin.c:487
+#: ../panel-plugin/mailwatch-plugin.c:490
 msgid "Xfce Mailwatch"
 msgstr "Xfce pasta uzraugs"
 
-#: ../panel-plugin/mailwatch-plugin.c:488
+#: ../panel-plugin/mailwatch-plugin.c:491
 msgid "The mailwatch applet cannot be added to the panel."
 msgstr "Pasta uzrauga sīklietotne nav pievienojama panelim."
 
-#: ../panel-plugin/mailwatch-plugin.c:489
+#: ../panel-plugin/mailwatch-plugin.c:492
 msgid ""
 "It is possible that your version of GLib does not have threads support."
 msgstr "Ir iespējams, ka jūsu GLib versijai nav pavedienu atbalsta."
 
-#: ../panel-plugin/mailwatch-plugin.c:719
+#: ../panel-plugin/mailwatch-plugin.c:722
 msgid "Mailwatch log"
 msgstr "Pasta uzrauga žurnāls"
 
-#: ../panel-plugin/mailwatch-plugin.c:777
+#: ../panel-plugin/mailwatch-plugin.c:780
 msgid "C_lear"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:846
+#: ../panel-plugin/mailwatch-plugin.c:849
 msgid "Select Icon"
 msgstr "Norādiet ikonu"
 
-#: ../panel-plugin/mailwatch-plugin.c:878
-#: ../panel-plugin/mailwatch-plugin.c:1144
+#: ../panel-plugin/mailwatch-plugin.c:881
+#: ../panel-plugin/mailwatch-plugin.c:1153
 msgid "_Normal"
 msgstr "_Parasts"
 
-#: ../panel-plugin/mailwatch-plugin.c:883
+#: ../panel-plugin/mailwatch-plugin.c:886
 msgid "Ne_w mail"
 msgstr "Jau_ns pasts"
 
-#: ../panel-plugin/mailwatch-plugin.c:935
+#: ../panel-plugin/mailwatch-plugin.c:940
 msgid "Failed to open web browser for online documentation"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:983
+#: ../panel-plugin/mailwatch-plugin.c:988
 msgid "Online Documentation"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:984
+#: ../panel-plugin/mailwatch-plugin.c:989
 msgid "Do you want to read the manual online?"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:985
+#: ../panel-plugin/mailwatch-plugin.c:990
 msgid ""
 "You will be redirected to the documentation website where the help pages are"
 " maintained."
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:988
+#: ../panel-plugin/mailwatch-plugin.c:993
 msgid "_Read Online"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:998
+#: ../panel-plugin/mailwatch-plugin.c:1003
 msgid "_Always go directly to the online documentation"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:1036
+#: ../panel-plugin/mailwatch-plugin.c:1043
 #: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "Pasta uzraugs"
 
-#: ../panel-plugin/mailwatch-plugin.c:1050
+#: ../panel-plugin/mailwatch-plugin.c:1057
 msgid "_Help"
 msgstr ""
 
 #. External programs.
-#: ../panel-plugin/mailwatch-plugin.c:1074
+#: ../panel-plugin/mailwatch-plugin.c:1081
 msgid "External Programs"
 msgstr "Ārēja programmas"
 
-#: ../panel-plugin/mailwatch-plugin.c:1082
+#: ../panel-plugin/mailwatch-plugin.c:1089
 msgid "Run _on click:"
 msgstr "Palaist u_z klikšķi:"
 
-#: ../panel-plugin/mailwatch-plugin.c:1095
+#: ../panel-plugin/mailwatch-plugin.c:1102
 msgid "Run on first new _message:"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:1108
+#: ../panel-plugin/mailwatch-plugin.c:1115
 msgid "Run on _each change of new message count:"
 msgstr ""
 
 #. Icons.
-#: ../panel-plugin/mailwatch-plugin.c:1122
+#: ../panel-plugin/mailwatch-plugin.c:1129
 msgid "Icons"
 msgstr "Ikonas"
 
-#: ../panel-plugin/mailwatch-plugin.c:1161
+#: ../panel-plugin/mailwatch-plugin.c:1172
 msgid "Ne_w Mail"
 msgstr "Ja_uns pasts"
 
 #. Log
-#: ../panel-plugin/mailwatch-plugin.c:1168
+#: ../panel-plugin/mailwatch-plugin.c:1179
 msgid "Log"
 msgstr ""
 
-#: ../panel-plugin/mailwatch-plugin.c:1177
+#: ../panel-plugin/mailwatch-plugin.c:1188
 msgid "Log _lines:"
 msgstr "Žurnāla _līnijas:"
 
-#: ../panel-plugin/mailwatch-plugin.c:1189
+#: ../panel-plugin/mailwatch-plugin.c:1200
 msgid "_View Log..."
 msgstr "_Skatīt žurnālu..."
 
-#: ../panel-plugin/mailwatch-plugin.c:1198
+#: ../panel-plugin/mailwatch-plugin.c:1209
 msgid "Show log _status in icon"
 msgstr "Rādi žurnāla _statusu ikonā"
 
-#: ../panel-plugin/mailwatch-plugin.c:1259
+#: ../panel-plugin/mailwatch-plugin.c:1266
 msgid "Xfce4 Mailwatch Plugin"
 msgstr "Xfce pasta uzraugs"
 
-#: ../panel-plugin/mailwatch-plugin.c:1262
+#: ../panel-plugin/mailwatch-plugin.c:1269
 msgid "A featureful mail-checker applet for the Xfce Panel"
 msgstr "Daudz iespēju pasta pārbaudītāja sīklietotne priekš Xfce paneļa"
 
-#: ../panel-plugin/mailwatch-plugin.c:1264
-msgid ""
-"Copyright (c) 2005-2008 Brian Tarricone\n"
-"Copyright (c) 2005 Pasi Orovuo"
-msgstr "Autortiesības (c) 2005-2008 Brian Tarricone\nAutortiesības (c) 2005 Pasi Orovuo"
-
-#: ../panel-plugin/mailwatch-plugin.c:1348
+#: ../panel-plugin/mailwatch-plugin.c:1400
 msgid "Update Now"
 msgstr "Atjaunināt tagad"
 
-#: ../panel-plugin/mailwatch-plugin.c:1350
+#: ../panel-plugin/mailwatch-plugin.c:1402
 msgid "View Log..."
 msgstr ""
 
