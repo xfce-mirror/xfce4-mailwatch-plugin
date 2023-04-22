@@ -37,6 +37,10 @@
 #include <unistd.h>
 #endif
 
+#ifdef HAVE_UTIME_H
+#include <utime.h>
+#endif
+
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>
 #endif
@@ -64,6 +68,7 @@ typedef struct {
     size_t                  size;
     guint                   new_messages;
     guint                   interval;
+    gboolean                reset_atime;
     
     gint                    running;
     gpointer                thread;  /* (GThread *) */
@@ -180,6 +185,19 @@ mbox_check_mail( XfceMailwatchMboxMailbox *mbox )
             }
         }
         g_io_channel_unref( ioc );
+
+        if ( mbox->reset_atime ) {
+            struct utimbuf timbuf;
+            timbuf.actime = st.st_atime;
+            timbuf.modtime = st.st_mtime;
+            if ( utime( mailbox, &timbuf ) < 0 ) {
+                xfce_mailwatch_log_message( mbox->mailwatch,
+                                            XFCE_MAILWATCH_MAILBOX( mbox ),
+                                            XFCE_MAILWATCH_LOG_ERROR,
+                                            _( "Failed to restore access time of file %s: %s" ),
+                                            mailbox, g_strerror( errno ) );
+            }
+        }
         
         if ( st.st_size > (guint)mbox->size && num_new <= mbox->new_messages ) {
             /* Assume mailbox opened and some headers added by client */
@@ -243,6 +261,7 @@ mbox_new( XfceMailwatch *mailwatch, XfceMailwatchMailboxType *type )
 
     g_mutex_init( &mbox->settings_mutex );
     mbox->interval = XFCE_MAILWATCH_DEFAULT_TIMEOUT;
+    mbox->reset_atime = FALSE;
 
     return ( (XfceMailwatchMailbox *) mbox );
 }
@@ -276,6 +295,11 @@ mbox_save_settings( XfceMailwatchMailbox *mailbox )
     param->value    = g_strdup_printf( "%u", mbox->interval );
     settings = g_list_append( settings, param );
 
+    param = g_new( XfceMailwatchParam, 1 );
+    param->key      = g_strdup( "reset_atime" );
+    param->value    = g_strdup( mbox->reset_atime ? "1" : "0" );
+    settings = g_list_append( settings, param );
+
     g_mutex_unlock(&(mbox->settings_mutex));
 
     return ( settings );
@@ -306,6 +330,9 @@ mbox_restore_settings( XfceMailwatchMailbox *mailbox, GList *settings )
         }
         else if ( !strcmp( p->key, "interval" ) ) {
             mbox->interval = (guint) atol( p->value );
+        }
+        else if ( !strcmp( p->key, "reset_atime" ) ) {
+            mbox->reset_atime = *( p->value ) == '0' ? FALSE : TRUE;
         }
     }
 
@@ -350,13 +377,22 @@ mbox_interval_changed_cb( GtkWidget *spinner, XfceMailwatchMboxMailbox *mbox ) {
     mbox->interval = val;
 }
     
+static void
+mbox_reset_atime_changed_cb( GtkToggleButton *tb,
+        XfceMailwatchMboxMailbox *mbox )
+{
+    g_mutex_lock(&(mbox->settings_mutex));
+    mbox->reset_atime = gtk_toggle_button_get_active( tb );
+    g_mutex_unlock(&(mbox->settings_mutex));
+}
+
 static GtkContainer *
 mbox_get_setup_page( XfceMailwatchMailbox *mailbox )
 {
     XfceMailwatchMboxMailbox    *mbox = XFCE_MAILWATCH_MBOX_MAILBOX( mailbox );
     GtkWidget                   *vbox, *hbox;
     GtkWidget                   *label;
-    GtkWidget                   *button, *spinner;
+    GtkWidget                   *button, *spinner, *chk;
     GtkSizeGroup                *sg;
 
     vbox = gtk_box_new( GTK_ORIENTATION_VERTICAL, BORDER / 2 );
@@ -412,6 +448,18 @@ mbox_get_setup_page( XfceMailwatchMailbox *mailbox )
     label = gtk_label_new( _( "minute(s)." ) );
     gtk_widget_show( label );
     gtk_box_pack_start( GTK_BOX( hbox ), label, FALSE, FALSE, 0 );
+
+    hbox = gtk_box_new( GTK_ORIENTATION_HORIZONTAL, BORDER );
+    gtk_widget_show( hbox );
+    gtk_box_pack_start( GTK_BOX( vbox ), hbox, FALSE, FALSE, 0 );
+
+    chk = gtk_check_button_new_with_mnemonic( _( "_Reset file access time after reading" ) );
+    gtk_toggle_button_set_active( GTK_TOGGLE_BUTTON( chk ),
+            mbox->reset_atime );
+    gtk_widget_show( chk );
+    gtk_box_pack_start( GTK_BOX( hbox ), chk, FALSE, FALSE, 0 );
+    g_signal_connect( G_OBJECT( chk ), "toggled",
+            G_CALLBACK( mbox_reset_atime_changed_cb ), mbox );
 
     return ( GTK_CONTAINER( vbox ) );
 }
