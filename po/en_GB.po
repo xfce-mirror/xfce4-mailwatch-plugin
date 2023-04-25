@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Andi Chandler <andi@gowling.com>, 2023
 # Jeff Bailes <thepizzaking@gmail.com>, 2007
 msgid ""
 msgstr ""
@@ -10,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-19 01:17+0200\n"
 "PO-Revision-Date: 2013-07-03 19:03+0000\n"
-"Last-Translator: Jeff Bailes <thepizzaking@gmail.com>, 2007\n"
+"Last-Translator: Andi Chandler <andi@gowling.com>, 2023\n"
 "Language-Team: English (United Kingdom) (http://app.transifex.com/xfce/xfce-panel-plugins/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -149,7 +150,7 @@ msgstr "New Mail Folders"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1494
 msgid "_Refresh"
-msgstr ""
+msgstr "_Refresh"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1588
 msgid "Advanced IMAP Options"
@@ -367,7 +368,7 @@ msgstr "Cancelling read: read too many bytes without a newline"
 #: ../libmailwatch-core/mailwatch-net-conn.c:886
 #, c-format
 msgid "Buffer is not large enough to hold a full line (%s < %d)"
-msgstr ""
+msgstr "Buffer is not large enough to hold a full line (%s < %d)"
 
 #: ../libmailwatch-core/mailwatch.c:329 ../libmailwatch-core/mailwatch.c:330
 #, c-format
@@ -395,7 +396,7 @@ msgstr "_Cancel"
 #: ../libmailwatch-core/mailwatch.c:624 ../libmailwatch-core/mailwatch.c:766
 #: ../panel-plugin/mailwatch-plugin.c:852
 msgid "_OK"
-msgstr ""
+msgstr "_OK"
 
 #: ../libmailwatch-core/mailwatch.c:645
 msgid "Mailbox _Name:"
@@ -448,7 +449,7 @@ msgstr "Cancel"
 
 #: ../libmailwatch-core/mailwatch.c:895
 msgid "Remove"
-msgstr ""
+msgstr "Remove"
 
 #: ../libmailwatch-core/mailwatch.c:959
 msgid "Mailboxes"
@@ -456,7 +457,7 @@ msgstr "Mailboxes"
 
 #: ../libmailwatch-core/mailwatch.c:1013
 msgid "_Add"
-msgstr ""
+msgstr "_Add"
 
 #: ../libmailwatch-core/mailwatch.c:1022
 msgid "_Remove"
@@ -464,7 +465,7 @@ msgstr "_Remove"
 
 #: ../libmailwatch-core/mailwatch.c:1034
 msgid "_Edit"
-msgstr ""
+msgstr "_Edit"
 
 #: ../panel-plugin/mailwatch-plugin.c:169
 #: ../panel-plugin/mailwatch-plugin.c:508
@@ -502,7 +503,7 @@ msgstr "Mailwatch log"
 
 #: ../panel-plugin/mailwatch-plugin.c:780
 msgid "C_lear"
-msgstr ""
+msgstr "C_lear"
 
 #: ../panel-plugin/mailwatch-plugin.c:849
 msgid "Select Icon"
@@ -519,29 +520,29 @@ msgstr "Ne_w mail"
 
 #: ../panel-plugin/mailwatch-plugin.c:940
 msgid "Failed to open web browser for online documentation"
-msgstr ""
+msgstr "Failed to open web browser for online documentation"
 
 #: ../panel-plugin/mailwatch-plugin.c:988
 msgid "Online Documentation"
-msgstr ""
+msgstr "Online Documentation"
 
 #: ../panel-plugin/mailwatch-plugin.c:989
 msgid "Do you want to read the manual online?"
-msgstr ""
+msgstr "Do you want to read the manual online?"
 
 #: ../panel-plugin/mailwatch-plugin.c:990
 msgid ""
 "You will be redirected to the documentation website where the help pages are"
 " maintained."
-msgstr ""
+msgstr "You will be redirected to the documentation website where the help pages are maintained."
 
 #: ../panel-plugin/mailwatch-plugin.c:993
 msgid "_Read Online"
-msgstr ""
+msgstr "_Read Online"
 
 #: ../panel-plugin/mailwatch-plugin.c:1003
 msgid "_Always go directly to the online documentation"
-msgstr ""
+msgstr "_Always go directly to the online documentation"
 
 #: ../panel-plugin/mailwatch-plugin.c:1043
 #: ../panel-plugin/mailwatch.desktop.in.h:1
@@ -563,11 +564,11 @@ msgstr "Run _on click:"
 
 #: ../panel-plugin/mailwatch-plugin.c:1102
 msgid "Run on first new _message:"
-msgstr ""
+msgstr "Run on first new _message:"
 
 #: ../panel-plugin/mailwatch-plugin.c:1115
 msgid "Run on _each change of new message count:"
-msgstr ""
+msgstr "Run on _each change of new message count:"
 
 #. Icons.
 #: ../panel-plugin/mailwatch-plugin.c:1129
@@ -581,7 +582,7 @@ msgstr "Ne_w Mail"
 #. Log
 #: ../panel-plugin/mailwatch-plugin.c:1179
 msgid "Log"
-msgstr ""
+msgstr "Log"
 
 #: ../panel-plugin/mailwatch-plugin.c:1188
 msgid "Log _lines:"
@@ -609,7 +610,7 @@ msgstr "Update Now"
 
 #: ../panel-plugin/mailwatch-plugin.c:1402
 msgid "View Log..."
-msgstr ""
+msgstr "View Log..."
 
 #: ../panel-plugin/mailwatch.desktop.in.h:2
 msgid "Check mail from multiple mailboxes"
