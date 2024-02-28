@@ -298,7 +298,7 @@ msgstr "Opzioni POP3 avanzate"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:770
 msgid "Use SSL/TLS via STLS"
-msgstr "Usa SSL/TSL attraverso STLS"
+msgstr "Usa SSL/TLS attraverso STLS"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:786
 msgid "Use non-standard POP3 _port:"
