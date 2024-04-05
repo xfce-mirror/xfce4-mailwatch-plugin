@@ -48,7 +48,8 @@ endif
 #
 desktopdir = $(datadir)/xfce4/panel/plugins
 desktop_DATA = mailwatch.desktop
-@INTLTOOL_DESKTOP_RULE@
+$(desktop_DATA): $(desktop_DATA).in Makefile
+	$(AM_V_GEN)$(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 EXTRA_DIST = \
 	mailwatch.desktop.in
