@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-30 00:53+0200\n"
+"POT-Creation-Date: 2024-04-06 00:52+0200\n"
 "PO-Revision-Date: 2013-07-03 19:03+0000\n"
 "Last-Translator: Emanuele Petriglia <transifex@emanuelepetriglia.com>, 2020,2024\n"
 "Language-Team: Italian (http://app.transifex.com/xfce/xfce-panel-plugins/language/it/)\n"
@@ -485,11 +485,6 @@ msgstr[0] "C'è %d nuovo messaggi:"
 msgstr[1] "Ci sono %d nuovi messaggi:"
 msgstr[2] "Ci sono %d nuovi messaggi:"
 
-#: ../panel-plugin/mailwatch-plugin.c:198
-#, c-format
-msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "%d in %s"
-
 #: ../panel-plugin/mailwatch-plugin.c:490
 msgid "Xfce Mailwatch"
 msgstr "Guardaposta di Xfce"
@@ -551,7 +546,6 @@ msgid "_Always go directly to the online documentation"
 msgstr "_Vai sempre alla documentazione online"
 
 #: ../panel-plugin/mailwatch-plugin.c:1043
-#: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "Guardaposta"
 
@@ -617,7 +611,3 @@ msgstr "Aggiorna ora"
 #: ../panel-plugin/mailwatch-plugin.c:1402
 msgid "View Log..."
 msgstr "Visualizza registro…"
-
-#: ../panel-plugin/mailwatch.desktop.in.h:2
-msgid "Check mail from multiple mailboxes"
-msgstr "Controlla la posta da diverse caselle"
