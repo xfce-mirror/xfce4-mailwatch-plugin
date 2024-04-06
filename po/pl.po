@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Marek Adamski, 2024
 # Marek Adamski, 2020
 #  <piotr.sokol@10g.pl>, 2009
 # Piotr Strębski <strebski@gmail.com>, 2013-2015
@@ -10,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-19 01:17+0200\n"
+"POT-Creation-Date: 2024-04-06 00:52+0200\n"
 "PO-Revision-Date: 2013-07-03 19:03+0000\n"
-"Last-Translator: Marek Adamski, 2020\n"
+"Last-Translator: Marek Adamski, 2024\n"
 "Language-Team: Polish (http://app.transifex.com/xfce/xfce-panel-plugins/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -155,7 +156,7 @@ msgstr "Odś_wież"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1588
 msgid "Advanced IMAP Options"
-msgstr "Ustawienia zaawansowane"
+msgstr " Ustawienia zaawansowane IMAP"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1601
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:759
@@ -186,11 +187,11 @@ msgstr "Katalogi"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1666
 msgid "IMAP server _directory:"
-msgstr "_Katalog serwera poczty:"
+msgstr "_Katalog serwera IMAP:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1696
 msgid "IMAP Server"
-msgstr "Serwer IMAPI"
+msgstr "Serwer IMAP"
 
 #: ../libmailwatch-core/mailwatch-mailbox-imap.c:1710
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:845
@@ -227,7 +228,7 @@ msgstr "Nie udało się uzyskać stanu pliku „%s”: %s"
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:102
 #, c-format
 msgid "%s is not a directory. Is %s really a valid maildir?"
-msgstr "„%s” nie jest katalogiem. Proszę upewnić się, czy „%s” jest poprawnym katalogiem maildir."
+msgstr "„%s” nie jest katalogiem. Proszę upewnić się, czy „%s” jest poprawnym katalogiem Maildir."
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:335
 msgid "Maildir _Path:"
@@ -235,7 +236,7 @@ msgstr "Ś_cieżka Maildir:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:340
 msgid "Select Maildir Folder"
-msgstr "Wybór katalogu"
+msgstr "Wybór katalogu Maildir"
 
 #: ../libmailwatch-core/mailwatch-mailbox-maildir.c:358
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:395
@@ -251,15 +252,15 @@ msgstr "Lokalny bufor Maildir"
 msgid ""
 "The Maildir plugin can watch a local maildir-style mail spool for new "
 "messages."
-msgstr "Poszukuje nowej poczty w lokalnym buforze maildir"
+msgstr "Poszukuje nowej poczty w lokalnym buforze Maildir"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:371
 msgid "Mbox _Filename:"
-msgstr "_Plik mbox:"
+msgstr "_Plik Mbox:"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:377
 msgid "Select mbox file"
-msgstr "Wybór pliku"
+msgstr "Wybór pliku Mbox"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:476
 msgid "Local Mbox spool"
@@ -267,7 +268,7 @@ msgstr "Lokalny bufor Mbox"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mbox.c:477
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr "Poszukuje nowej poczty w lokalnym buforze mbox"
+msgstr "Poszukuje nowej poczty w lokalnym buforze Mbox"
 
 #: ../libmailwatch-core/mailwatch-mailbox-mh.c:241
 #, c-format
@@ -290,7 +291,7 @@ msgstr "Poszukuje nowej poczty w lokalnych katalogach MH"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:746
 msgid "Advanced POP3 Options"
-msgstr "Ustawienia zaawansowane"
+msgstr "Ustawienia zaawansowane POP3"
 
 #: ../libmailwatch-core/mailwatch-mailbox-pop3.c:770
 msgid "Use SSL/TLS via STLS"
@@ -482,11 +483,6 @@ msgstr[1] "Odebrano %d nowe wiadomości:"
 msgstr[2] "Odebrano %d nowych wiadomości:"
 msgstr[3] "Odebrano %d nowych wiadomości:"
 
-#: ../panel-plugin/mailwatch-plugin.c:198
-#, c-format
-msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "%d w skrzynce pocztowej %s"
-
 #: ../panel-plugin/mailwatch-plugin.c:490
 msgid "Xfce Mailwatch"
 msgstr "Sprawdzanie poczty dla środowiska Xfce"
@@ -548,7 +544,6 @@ msgid "_Always go directly to the online documentation"
 msgstr "Z_awsze przechodź bezpośrednio do dokumentacji znajdującej się w sieci"
 
 #: ../panel-plugin/mailwatch-plugin.c:1043
-#: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "Powiadamianie o poczcie"
 
@@ -589,7 +584,7 @@ msgstr "Loguj"
 
 #: ../panel-plugin/mailwatch-plugin.c:1188
 msgid "Log _lines:"
-msgstr "Ilość _wierszy:"
+msgstr "Liczba _wierszy:"
 
 #: ../panel-plugin/mailwatch-plugin.c:1200
 msgid "_View Log..."
@@ -614,7 +609,3 @@ msgstr "Odśwież"
 #: ../panel-plugin/mailwatch-plugin.c:1402
 msgid "View Log..."
 msgstr "Dziennik..."
-
-#: ../panel-plugin/mailwatch.desktop.in.h:2
-msgid "Check mail from multiple mailboxes"
-msgstr "Powiadamia o nowej poczcie w wielu skrzynkach pocztowych"
