@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-19 01:17+0200\n"
+"POT-Creation-Date: 2024-04-06 00:52+0200\n"
 "PO-Revision-Date: 2013-07-03 19:03+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Uyghur (http://app.transifex.com/xfce/xfce-panel-plugins/language/ug/)\n"
@@ -477,11 +477,6 @@ msgid_plural "You have %d new messages:"
 msgstr[0] ""
 msgstr[1] "%d پارچە يېڭى ئېلخەت بار:"
 
-#: ../panel-plugin/mailwatch-plugin.c:198
-#, c-format
-msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "%2$s نىڭدا %1$d پارچە"
-
 #: ../panel-plugin/mailwatch-plugin.c:490
 msgid "Xfce Mailwatch"
 msgstr "Xfce ئېلخەت كۆزەتكۈ"
@@ -543,7 +538,6 @@ msgid "_Always go directly to the online documentation"
 msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin.c:1043
-#: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "ئېلخەت كۆزەتكۈ"
 
@@ -609,7 +603,3 @@ msgstr "ھازىر يېڭىلا"
 #: ../panel-plugin/mailwatch-plugin.c:1402
 msgid "View Log..."
 msgstr ""
-
-#: ../panel-plugin/mailwatch.desktop.in.h:2
-msgid "Check mail from multiple mailboxes"
-msgstr "ھەر خىل خەت ساندۇقلىرىغا كەلگەن يېڭى ئېلخەتلەرنى كۆزىتىدۇ"
