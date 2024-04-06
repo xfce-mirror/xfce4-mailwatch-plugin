@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-19 01:17+0200\n"
+"POT-Creation-Date: 2024-04-06 00:52+0200\n"
 "PO-Revision-Date: 2013-07-03 19:03+0000\n"
 "Last-Translator: Theppitak Karoonboonyanan <theppitak@gmail.com>, 2014-2015,2021\n"
 "Language-Team: Thai (http://app.transifex.com/xfce/xfce-panel-plugins/language/th/)\n"
@@ -478,11 +478,6 @@ msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
 msgstr[0] "คุณมีเมลใหม่ %d ฉบับ:"
 
-#: ../panel-plugin/mailwatch-plugin.c:198
-#, c-format
-msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "    %d ใน %s"
-
 #: ../panel-plugin/mailwatch-plugin.c:490
 msgid "Xfce Mailwatch"
 msgstr "ปลั๊กอินเฝ้าดูเมลของ Xfce"
@@ -544,7 +539,6 @@ msgid "_Always go directly to the online documentation"
 msgstr "ไปที่เอกสารออนไลน์โดยตรงเ_สมอ"
 
 #: ../panel-plugin/mailwatch-plugin.c:1043
-#: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "ปลั๊กอินเฝ้าดูเมล"
 
@@ -610,7 +604,3 @@ msgstr "ปรับข้อมูลเดี๋ยวนี้"
 #: ../panel-plugin/mailwatch-plugin.c:1402
 msgid "View Log..."
 msgstr "ดูปูม..."
-
-#: ../panel-plugin/mailwatch.desktop.in.h:2
-msgid "Check mail from multiple mailboxes"
-msgstr "ตรวจสอบเมลจากกล่องเมลหลายกล่อง"
