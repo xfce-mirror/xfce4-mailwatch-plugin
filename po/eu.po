@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-19 01:17+0200\n"
+"POT-Creation-Date: 2024-04-06 00:52+0200\n"
 "PO-Revision-Date: 2013-07-03 19:03+0000\n"
 "Last-Translator: beriain, 2020-2021\n"
 "Language-Team: Basque (http://app.transifex.com/xfce/xfce-panel-plugins/language/eu/)\n"
@@ -479,11 +479,6 @@ msgid_plural "You have %d new messages:"
 msgstr[0] "Mezu berri %d duzu:"
 msgstr[1] "%d mezu berri dituzu:"
 
-#: ../panel-plugin/mailwatch-plugin.c:198
-#, c-format
-msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "Postontzi bakoitzean zenbat mezu berri dagoen adierazten du|    %d %s(e)n"
-
 #: ../panel-plugin/mailwatch-plugin.c:490
 msgid "Xfce Mailwatch"
 msgstr "Xfce PostaArakatzailea"
@@ -545,7 +540,6 @@ msgid "_Always go directly to the online documentation"
 msgstr "_Beti joan zuzenean sareko dokumentaziora"
 
 #: ../panel-plugin/mailwatch-plugin.c:1043
-#: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "Posta arakatzailea"
 
@@ -611,7 +605,3 @@ msgstr "Eguneratu orain"
 #: ../panel-plugin/mailwatch-plugin.c:1402
 msgid "View Log..."
 msgstr "Erregistroa ikusi..."
-
-#: ../panel-plugin/mailwatch.desktop.in.h:2
-msgid "Check mail from multiple mailboxes"
-msgstr "Postontzi anitzetako posta arakatu"
