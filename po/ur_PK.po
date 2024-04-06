@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-19 01:17+0200\n"
+"POT-Creation-Date: 2024-04-06 00:52+0200\n"
 "PO-Revision-Date: 2013-07-03 19:03+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Urdu (Pakistan) (http://app.transifex.com/xfce/xfce-panel-plugins/language/ur_PK/)\n"
@@ -477,11 +477,6 @@ msgid_plural "You have %d new messages:"
 msgstr[0] "آپ کے پاس %d نیا پیغام ہے::"
 msgstr[1] "آپ کے پاس %d نئے پیغامات ہیں:"
 
-#: ../panel-plugin/mailwatch-plugin.c:198
-#, c-format
-msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "بتاتا ہے کہ ہر میل بکس میں کتنے نئے پیغامات ہیں|    %d میں %s"
-
 #: ../panel-plugin/mailwatch-plugin.c:490
 msgid "Xfce Mailwatch"
 msgstr "ایکسفس میل واچ"
@@ -543,7 +538,6 @@ msgid "_Always go directly to the online documentation"
 msgstr ""
 
 #: ../panel-plugin/mailwatch-plugin.c:1043
-#: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "میل واچر"
 
@@ -609,7 +603,3 @@ msgstr "ابھی اپڈیٹ کریں"
 #: ../panel-plugin/mailwatch-plugin.c:1402
 msgid "View Log..."
 msgstr ""
-
-#: ../panel-plugin/mailwatch.desktop.in.h:2
-msgid "Check mail from multiple mailboxes"
-msgstr "متعدد میل بکس کی میل چیک کریں"
