@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-19 01:17+0200\n"
+"POT-Creation-Date: 2024-04-06 00:52+0200\n"
 "PO-Revision-Date: 2013-07-03 19:03+0000\n"
 "Last-Translator: Zmicer Turok <zmicerturok@gmail.com >, 2018\n"
 "Language-Team: Belarusian (http://app.transifex.com/xfce/xfce-panel-plugins/language/be/)\n"
@@ -482,11 +482,6 @@ msgstr[1] "У вас %d новыя лісты:"
 msgstr[2] "У вас %d новых лістоў:"
 msgstr[3] "У вас %d новых лістоў:"
 
-#: ../panel-plugin/mailwatch-plugin.c:198
-#, c-format
-msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "апавяшчае колькі новых лістоў знаходзіцца ў вашай паштовай скрыні। %d  у %s"
-
 #: ../panel-plugin/mailwatch-plugin.c:490
 msgid "Xfce Mailwatch"
 msgstr "Праверка пошты Xfce"
@@ -548,7 +543,6 @@ msgid "_Always go directly to the online documentation"
 msgstr "_Заўсёды звяртацца да сеціўнай дакументацыі"
 
 #: ../panel-plugin/mailwatch-plugin.c:1043
-#: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "Праверка пошты"
 
@@ -614,7 +608,3 @@ msgstr "Абнавіць"
 #: ../panel-plugin/mailwatch-plugin.c:1402
 msgid "View Log..."
 msgstr "Прагляд журнала..."
-
-#: ../panel-plugin/mailwatch.desktop.in.h:2
-msgid "Check mail from multiple mailboxes"
-msgstr "Праверка пошты з некалькіх паштовых скрыняў"
