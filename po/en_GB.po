@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-19 01:17+0200\n"
+"POT-Creation-Date: 2024-04-06 00:52+0200\n"
 "PO-Revision-Date: 2013-07-03 19:03+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>, 2023\n"
 "Language-Team: English (United Kingdom) (http://app.transifex.com/xfce/xfce-panel-plugins/language/en_GB/)\n"
@@ -479,11 +479,6 @@ msgid_plural "You have %d new messages:"
 msgstr[0] "You have %d new message:"
 msgstr[1] "You have %d new messages:"
 
-#: ../panel-plugin/mailwatch-plugin.c:198
-#, c-format
-msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "%d in %s"
-
 #: ../panel-plugin/mailwatch-plugin.c:490
 msgid "Xfce Mailwatch"
 msgstr "Xfce Mailwatch"
@@ -545,7 +540,6 @@ msgid "_Always go directly to the online documentation"
 msgstr "_Always go directly to the online documentation"
 
 #: ../panel-plugin/mailwatch-plugin.c:1043
-#: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "Mail Watcher"
 
@@ -611,7 +605,3 @@ msgstr "Update Now"
 #: ../panel-plugin/mailwatch-plugin.c:1402
 msgid "View Log..."
 msgstr "View Log..."
-
-#: ../panel-plugin/mailwatch.desktop.in.h:2
-msgid "Check mail from multiple mailboxes"
-msgstr "Check mail from multiple mailboxes"
