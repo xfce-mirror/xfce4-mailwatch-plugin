@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-19 01:17+0200\n"
+"POT-Creation-Date: 2024-04-06 00:52+0200\n"
 "PO-Revision-Date: 2013-07-03 19:03+0000\n"
 "Last-Translator: abuyop <abuyop@gmail.com>, 2014-2015,2021\n"
 "Language-Team: Malay (http://app.transifex.com/xfce/xfce-panel-plugins/language/ms/)\n"
@@ -477,11 +477,6 @@ msgid "You have %d new message:"
 msgid_plural "You have %d new messages:"
 msgstr[0] "Anda mempunyai %d mesej baharu:"
 
-#: ../panel-plugin/mailwatch-plugin.c:198
-#, c-format
-msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "beritahu bagaimana mesej baharu di dalam setiap mailbox| %d dalam %s"
-
 #: ../panel-plugin/mailwatch-plugin.c:490
 msgid "Xfce Mailwatch"
 msgstr "Pantau Mel Xfce"
@@ -543,7 +538,6 @@ msgid "_Always go directly to the online documentation"
 msgstr "S_entiasa pergi terus ke dokumentasi atas-talian"
 
 #: ../panel-plugin/mailwatch-plugin.c:1043
-#: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "Pemantau Mel"
 
@@ -609,7 +603,3 @@ msgstr "Kemaskini Sekarang"
 #: ../panel-plugin/mailwatch-plugin.c:1402
 msgid "View Log..."
 msgstr "Lihat Log..."
-
-#: ../panel-plugin/mailwatch.desktop.in.h:2
-msgid "Check mail from multiple mailboxes"
-msgstr "Semak mel dari kotak mel berbilang"
