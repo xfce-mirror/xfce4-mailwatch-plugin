@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-30 00:53+0200\n"
+"POT-Creation-Date: 2024-04-06 00:52+0200\n"
 "PO-Revision-Date: 2013-07-03 19:03+0000\n"
 "Last-Translator: Ammuu5, 2018,2023\n"
 "Language-Team: Finnish (http://app.transifex.com/xfce/xfce-panel-plugins/language/fi/)\n"
@@ -482,11 +482,6 @@ msgid_plural "You have %d new messages:"
 msgstr[0] "Sinulle on %d uusi posti:"
 msgstr[1] "Sinulle on %d uutta postia:"
 
-#: ../panel-plugin/mailwatch-plugin.c:198
-#, c-format
-msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "    %d tilillä %s"
-
 #: ../panel-plugin/mailwatch-plugin.c:490
 msgid "Xfce Mailwatch"
 msgstr "Xfce-postivahti"
@@ -548,7 +543,6 @@ msgid "_Always go directly to the online documentation"
 msgstr "_Avaa aina ohjesivut verkosta"
 
 #: ../panel-plugin/mailwatch-plugin.c:1043
-#: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "Postivahti"
 
@@ -614,7 +608,3 @@ msgstr "Päivitä nyt"
 #: ../panel-plugin/mailwatch-plugin.c:1402
 msgid "View Log..."
 msgstr ""
-
-#: ../panel-plugin/mailwatch.desktop.in.h:2
-msgid "Check mail from multiple mailboxes"
-msgstr "Tarkista posti useista postilaatikoista"
