@@ -4,8 +4,8 @@
 # 
 # Translators:
 # Adriano Winter Bess <awbess@gmail.com>, 2005-2006
-# Andre Miranda <andre42m@gmail.com>, 2020
-# Andre Miranda <andre42m@gmail.com>, 2015
+# Andre Miranda <andre@andreldm.com>, 2020
+# Andre Miranda <andre@andreldm.com>, 2015
 # Enrico Nicoletto <enrico.BR@gmx.co.uk>, 2013
 # Fábio Nogueira <deb-user-ba@ubuntu.com>, 2007-2008
 # Michael Martins <michaelfm21@gmail.com>, 2017
@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-19 01:17+0200\n"
+"POT-Creation-Date: 2024-04-06 00:52+0200\n"
 "PO-Revision-Date: 2013-07-03 19:03+0000\n"
 "Last-Translator: The Cat, 2020\n"
 "Language-Team: Portuguese (Brazil) (http://app.transifex.com/xfce/xfce-panel-plugins/language/pt_BR/)\n"
@@ -487,11 +487,6 @@ msgstr[0] "Você tem %d nova mensagem:"
 msgstr[1] "Você tem %d novas mensagens:"
 msgstr[2] "Você tem %d novas mensagens:"
 
-#: ../panel-plugin/mailwatch-plugin.c:198
-#, c-format
-msgid "tells how many new messages in each mailbox|    %d in %s"
-msgstr "informa quantas mensagens novas existem em cada caixa de mensagem|    %d em %s"
-
 #: ../panel-plugin/mailwatch-plugin.c:490
 msgid "Xfce Mailwatch"
 msgstr "Monitor de mensagens do Xfce"
@@ -553,7 +548,6 @@ msgid "_Always go directly to the online documentation"
 msgstr "_Sempre ir direto para a documentação online"
 
 #: ../panel-plugin/mailwatch-plugin.c:1043
-#: ../panel-plugin/mailwatch.desktop.in.h:1
 msgid "Mail Watcher"
 msgstr "Monitor de mensagens"
 
@@ -619,7 +613,3 @@ msgstr "Atualizar agora"
 #: ../panel-plugin/mailwatch-plugin.c:1402
 msgid "View Log..."
 msgstr "Ver Log..."
-
-#: ../panel-plugin/mailwatch.desktop.in.h:2
-msgid "Check mail from multiple mailboxes"
-msgstr "Verificar mensagens de várias caixas de mensagens"
