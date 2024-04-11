@@ -1,3 +1,4 @@
+*~
 *.gmo
 *.la
 *.lo
@@ -22,7 +23,6 @@ ltmain.sh
 missing
 mkinstalldirs
 panel-plugin/*.desktop
-panel-plugin/*.desktop.in
 po/Makefile.in.in
 po/POTFILES
 stamp-*
