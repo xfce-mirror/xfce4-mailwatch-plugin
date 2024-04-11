@@ -1262,7 +1262,7 @@ mailwatch_show_about(XfcePanelPlugin *plugin,
                             NULL };
 
     gtk_show_about_dialog(NULL,
-                          "logo-icon-name", "xfce-mail",
+                          "logo-icon-name", "xfce-newmail",
                           "program-name", _("Xfce4 Mailwatch Plugin"),
                           "license", xfce_get_license_text (XFCE_LICENSE_TEXT_GPL),
                           "version", VERSION,
