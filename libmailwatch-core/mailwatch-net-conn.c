@@ -238,14 +238,14 @@ xfce_mailwatch_net_conn_get_connect_status(XfceMailwatchNetConn *net_conn,
 #ifdef ENABLE_IPV6_SUPPORT
                 case AF_INET6:
                 {
-                    struct sockaddr_in6 *addr_in6 = (struct sockaddr_in6 *)addr;
+                    struct sockaddr_in6 *addr_in6 = (struct sockaddr_in6 *)(gpointer)addr;
                     net_conn->actual_port = ntohs(addr_in6->sin6_port);
                     break;
                 }
 #endif
                 case AF_INET:
                 {
-                    struct sockaddr_in *addr_in = (struct sockaddr_in *)addr;
+                    struct sockaddr_in *addr_in = (struct sockaddr_in *)(gpointer)addr;
                     net_conn->actual_port = ntohs(addr_in->sin_port);
                     break;
                 }
@@ -945,4 +945,3 @@ xfce_mailwatch_net_conn_destroy(XfceMailwatchNetConn *net_conn)
 
     g_free(net_conn);
 }
-
