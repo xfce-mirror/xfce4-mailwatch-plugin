@@ -5,21 +5,15 @@ dnl
 dnl ***************************
 dnl *** Version information ***
 dnl ***************************
-m4_define([mailwatch_version_major], [1])
-m4_define([mailwatch_version_minor], [3])
-m4_define([mailwatch_version_micro], [1])
-m4_define([mailwatch_version_nano], []) dnl leave this empty to have no nano version
-m4_define([mailwatch_version_build], [@REVISION@])
-m4_define([mailwatch_version_tag], [git])
-m4_define([mailwatch_version], [mailwatch_version_major().mailwatch_version_minor().mailwatch_version_micro()ifelse(mailwatch_version_nano(), [], [], [.mailwatch_version_nano()])ifelse(mailwatch_version_tag(), [git], [mailwatch_version_tag()-mailwatch_version_build()], [mailwatch_version_tag()])])
+XDT_VERSION_INIT([1.3.1], [git])
 
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
 AC_COPYRIGHT([Copyright (c) 2005-2023 The Xfce development team. All rights reserved.])
-AC_INIT([xfce4-mailwatch-plugin], [mailwatch_version], [https://gitlab.xfce.org/panel-plugins/xfce4-mailwatch-plugin/])
-AC_PREREQ([2.50])
-AC_REVISION([mailwatch_version_build])
+AC_INIT([xfce4-mailwatch-plugin], [xdt_version], [https://gitlab.xfce.org/panel-plugins/xfce4-mailwatch-plugin/])
+AC_PREREQ([2.69])
+AC_REVISION([xdt_version_build])
 AC_USE_SYSTEM_EXTENSIONS()
 
 dnl ***************************
@@ -69,11 +63,6 @@ AC_SUBST([GETTEXT_PACKAGE])
 AM_GNU_GETTEXT([external])
 AM_GNU_GETTEXT_VERSION([0.19.8])
 
-dnl *******************************
-dnl *** Check for X11 installed ***
-dnl *******************************
-XDT_CHECK_LIBX11_REQUIRE()
-
 dnl ***********************************
 dnl *** Check for required packages ***
 dnl ***********************************
@@ -113,7 +102,7 @@ XDT_SUPPORTED_FLAGS([CFLAGS], [-fno-strict-aliasing])
 dnl ***********************************
 dnl *** Check for debugging support ***
 dnl ***********************************
-XDT_FEATURE_DEBUG()
+XDT_FEATURE_DEBUG([xdt_debug_default])
 
 dnl *********************************
 dnl *** Substitute platform flags ***
