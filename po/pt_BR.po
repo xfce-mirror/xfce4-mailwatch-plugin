@@ -8,7 +8,7 @@
 # Andre Miranda <andre@andreldm.com>, 2015
 # Enrico Nicoletto <enrico.BR@gmx.co.uk>, 2013
 # Fábio Nogueira <deb-user-ba@ubuntu.com>, 2007-2008
-# Michael Martins <michaelfm21@gmail.com>, 2017
+# Michael Martins, 2017
 # Og Maciel <ogmaciel@gnome.org>, 2007
 # Rafael Fontenelle <rffontenelle@gmail.com>, 2013
 # The Cat, 2020
