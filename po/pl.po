@@ -87,7 +87,7 @@ msgstr "Zdalna skrzynka pocztowa Gmail"
 msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
-msgstr "Łączy z usługą poczty Google i w bezpieczny sposób pobiera ilość nowych wiadomości"
+msgstr "Łączy z usługą poczty Google i w bezpieczny sposób pobiera liczbę nowych wiadomości"
 
 #: libmailwatch-core/mailwatch-mailbox-imap.c:282
 msgid ""
