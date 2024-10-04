@@ -573,7 +573,7 @@ msgstr "_Nowa poczta"
 #. Log
 #: panel-plugin/mailwatch-plugin.c:1179
 msgid "Log"
-msgstr "Loguj"
+msgstr "Rejestruj"
 
 #: panel-plugin/mailwatch-plugin.c:1188
 msgid "Log _lines:"
