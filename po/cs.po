@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the xfce-panel-plugins.xfce4-mailwatch-plugin package.
 # 
 # Translators:
-# Michal Várady <miko.vaji@gmail.com>, 2013-2015,2020
+# Michal Várady <miko.vaji@gmail.com>, 2013-2015,2020,2024
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2024-04-06 12:53+0200\n"
 "PO-Revision-Date: 2013-07-03 19:03+0000\n"
-"Last-Translator: Michal Várady <miko.vaji@gmail.com>, 2013-2015,2020\n"
+"Last-Translator: Michal Várady <miko.vaji@gmail.com>, 2013-2015,2020,2024\n"
 "Language-Team: Czech (http://app.transifex.com/xfce/xfce-panel-plugins/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -275,7 +275,7 @@ msgstr "Nesprávná formulace na řádku %s v %s bude ignorována."
 msgid ""
 "The configuration of this plugin is read from\n"
 "the default mh maildir profile file ~/.mh_profile"
-msgstr "Nastavení tohoto zásuvného modulu je čteno\nz výchozího souboru adresáře elektronické\npošty ~/.hm_profile"
+msgstr "Nastavení tohoto zásuvného modulu bude\npřečteno z výchozího souboru adresáře elektro-\nnické pošty ~/.hm_profile"
 
 #: libmailwatch-core/mailwatch-mailbox-mh.c:683
 msgid "Local MH mail folder"
@@ -501,7 +501,7 @@ msgstr "Vybrat ikonu"
 
 #: panel-plugin/mailwatch-plugin.c:881 panel-plugin/mailwatch-plugin.c:1153
 msgid "_Normal"
-msgstr "_Běžný"
+msgstr "_Běžná"
 
 #: panel-plugin/mailwatch-plugin.c:886
 msgid "Ne_w mail"
