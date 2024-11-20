@@ -87,7 +87,7 @@ msgstr "Zdalna skrzynka pocztowa Gmail"
 msgid ""
 "The GMail plugin can connect to Google's mail service and securely retrieve "
 "the number of new messages."
-msgstr "Łączy z usługą poczty Google i w bezpieczny sposób pobiera liczbę nowych wiadomości"
+msgstr "Wtyczka GMail umożliwia połączenie się z usługą pocztową Google i bezpieczne pobranie nowych wiadomości."
 
 #: libmailwatch-core/mailwatch-mailbox-imap.c:282
 msgid ""
@@ -101,7 +101,7 @@ msgstr "Bezpieczne połączenie IMAP nie jest dostępne, a serwer IMAP nie obsł
 #: libmailwatch-core/mailwatch-mailbox-pop3.c:284
 msgid ""
 "Authentication failed.  Perhaps your username or password is incorrect?"
-msgstr "Nie udało się uwierzytelnić. Proszę upewnić się, że nazwa użytkownika i hasło jest poprawne."
+msgstr "Uwierzytelnianie nie powiodło się. Być może nazwa użytkownika lub hasło są nieprawidłowe?"
 
 #: libmailwatch-core/mailwatch-mailbox-imap.c:429
 msgid "STARTTLS security was requested, but this server does not support it."
@@ -438,7 +438,7 @@ msgstr "Kontynuować?"
 
 #: libmailwatch-core/mailwatch.c:892
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
-msgstr "Wraz ze skrzynką pocztową zostaną usunięte wszystkie jej ustawienia i nie będą mogły zostać przywrócone."
+msgstr "Wraz ze skrzynką pocztową zostaną usunięte wszystkie jej ustawienia i nie będą mogły zostać przywrócone."
 
 #: libmailwatch-core/mailwatch.c:894
 msgid "Cancel"
