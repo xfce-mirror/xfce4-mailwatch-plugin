@@ -170,9 +170,9 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch,
         gtk_widget_trigger_tooltip_query(mwp->button);
         /* Run command on any change of count of new messages. */
         if (mwp->count_changed_command)
-            xfce_spawn_command_line_on_screen(gdk_screen_get_default(),
-                                              mwp->count_changed_command,
-                                              FALSE, FALSE, NULL);
+            xfce_spawn_command_line(gdk_screen_get_default(),
+                                    mwp->count_changed_command,
+                                    FALSE, FALSE, TRUE, NULL);
     } else if (new_messages > 0) {
         if (!mwp->newmail_icon_visible) {
             mwp->newmail_icon_visible = TRUE;
@@ -210,14 +210,14 @@ mailwatch_new_messages_changed_cb(XfceMailwatch *mailwatch,
             /* Run command when count of new messages changes from
              * zero to non-zero. */
             if (mwp->new_messages == 0 && mwp->new_messages_command)
-                xfce_spawn_command_line_on_screen(gdk_screen_get_default(),
-                                                  mwp->new_messages_command,
-                                                  FALSE, FALSE, NULL);
+                xfce_spawn_command_line(gdk_screen_get_default(),
+                                        mwp->new_messages_command,
+                                        FALSE, FALSE, TRUE, NULL);
             /* Run command on any change of count of new messages. */
             if (mwp->count_changed_command)
-                xfce_spawn_command_line_on_screen(gdk_screen_get_default(),
-                                                  mwp->count_changed_command,
-                                                  FALSE, FALSE, NULL);
+                xfce_spawn_command_line(gdk_screen_get_default(),
+                                        mwp->count_changed_command,
+                                        FALSE, FALSE, TRUE, NULL);
             /* Save the actual count of new messages.*/
             mwp->new_messages = new_messages;
         }
@@ -249,9 +249,9 @@ mailwatch_button_release_cb(GtkWidget      *w,
         switch (evt->button) {
             case MOUSE_BUTTON_LEFT:
                 if (mwp->click_command && *mwp->click_command)
-                    xfce_spawn_command_line_on_screen(gdk_screen_get_default(),
-                                                      mwp->click_command,
-                                                      FALSE, FALSE, NULL);
+                    xfce_spawn_command_line(gdk_screen_get_default(),
+                                            mwp->click_command,
+                                            FALSE, FALSE, TRUE, NULL);
                 break;
         
             case MOUSE_BUTTON_MIDDLE:
@@ -724,7 +724,7 @@ mailwatch_view_log_clicked_cb(GtkWidget *widget,
                                                   GTK_DIALOG_DESTROY_WITH_PARENT,
                                                   NULL, NULL);
     gtk_window_set_default_size(GTK_WINDOW(mwp->log_dialog), 480, 240 );
-#if LIBXFCE4UI_CHECK_VERSION (4, 15, 1)
+#if !LIBXFCE4UI_CHECK_VERSION (4, 19, 3)
     xfce_titled_dialog_create_action_area(XFCE_TITLED_DIALOG(mwp->log_dialog));
 #endif
     gtk_button_box_set_layout(GTK_BUTTON_BOX(exo_gtk_dialog_get_action_area(GTK_DIALOG(mwp->log_dialog))),
@@ -782,23 +782,13 @@ mailwatch_view_log_clicked_cb(GtkWidget *widget,
                          gtk_image_new_from_icon_name("edit-clear",
                                                       GTK_ICON_SIZE_BUTTON));
     gtk_widget_show( button );
-#if LIBXFCE4UI_CHECK_VERSION (4, 15, 1)
     xfce_titled_dialog_add_action_widget(XFCE_TITLED_DIALOG(mwp->log_dialog), button,
                                          XFCE_MAILWATCH_RESPONSE_CLEAR);
-#else
-    gtk_dialog_add_action_widget(GTK_DIALOG(mwp->log_dialog), button,
-                                 XFCE_MAILWATCH_RESPONSE_CLEAR);
-#endif
 
     button = gtk_button_new_with_mnemonic(_("_Close"));
     gtk_widget_show( button );
-#if LIBXFCE4UI_CHECK_VERSION (4, 15, 1)
     xfce_titled_dialog_add_action_widget(XFCE_TITLED_DIALOG(mwp->log_dialog), button,
                                          GTK_RESPONSE_ACCEPT);
-#else
-    gtk_dialog_add_action_widget(GTK_DIALOG(mwp->log_dialog), button,
-                                 GTK_RESPONSE_ACCEPT);
-#endif
 
     gtk_widget_show(mwp->log_dialog);
 }
@@ -931,11 +921,7 @@ mailwatch_help_show_uri(GdkScreen *screen,
     g_return_if_fail(GDK_IS_SCREEN(screen));
     g_return_if_fail(parent == NULL || GTK_IS_WINDOW(parent));
 
-#if GTK_CHECK_VERSION(3,22,0)
     if (!gtk_show_uri_on_window(parent, WEBSITE, gtk_get_current_event_time(), &error)) {
-#else
-    if (!gtk_show_uri(screen, WEBSITE, gtk_get_current_event_time(), &error)) {
-#endif
         xfce_dialog_show_error(parent, error,
                                _("Failed to open web browser for online documentation"));
         g_error_free(error);
@@ -993,13 +979,7 @@ mailwatch_help_clicked_cb(GtkWidget *w,
                                       _("_Read Online"), GTK_RESPONSE_YES,
                                       NULL);
 
-#if GTK_CHECK_VERSION(2, 22, 0)
     message_box = gtk_message_dialog_get_message_area (GTK_MESSAGE_DIALOG (dialog));
-#else
-    message_box = gtk_widget_get_parent (GTK_MESSAGE_DIALOG (dialog)->label);
-    g_return_if_fail (GTK_IS_VBOX (message_box));
-#endif
-
     button = gtk_check_button_new_with_mnemonic (_("_Always go directly to the online documentation"));
     gtk_box_pack_end (GTK_BOX (message_box), button, FALSE, TRUE, 0);
     g_signal_connect (G_OBJECT (button), "toggled",
@@ -1040,10 +1020,10 @@ mailwatch_create_options(XfcePanelPlugin     *plugin,
     
     xfce_panel_plugin_block_menu(plugin);
     
-    dlg = xfce_titled_dialog_new_with_buttons(_("Mail Watcher"), 
+    dlg = xfce_titled_dialog_new_with_mixed_buttons(_("Mail Watcher"), 
                 GTK_WINDOW(gtk_widget_get_toplevel(GTK_WIDGET(plugin))),
-                GTK_DIALOG_DESTROY_WITH_PARENT, NULL);
-#if LIBXFCE4UI_CHECK_VERSION (4, 15, 1)
+                GTK_DIALOG_DESTROY_WITH_PARENT, NULL, NULL);
+#if !LIBXFCE4UI_CHECK_VERSION (4, 19, 3)
     xfce_titled_dialog_create_action_area(XFCE_TITLED_DIALOG(dlg));
 #endif
     gtk_button_box_set_layout(GTK_BUTTON_BOX(exo_gtk_dialog_get_action_area(GTK_DIALOG(dlg))),
@@ -1062,11 +1042,7 @@ mailwatch_create_options(XfcePanelPlugin     *plugin,
                      G_CALLBACK(mailwatch_help_clicked_cb), mwp);
 
     btn = gtk_button_new_with_mnemonic(_("_Close"));
-#if LIBXFCE4UI_CHECK_VERSION (4, 15, 1)
     xfce_titled_dialog_add_action_widget(XFCE_TITLED_DIALOG(dlg), btn, GTK_RESPONSE_ACCEPT);
-#else
-    gtk_dialog_add_action_widget(GTK_DIALOG(dlg), btn, GTK_RESPONSE_ACCEPT);
-#endif
 
     topvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, BORDER);
     gtk_container_set_border_width(GTK_CONTAINER(topvbox), BORDER - 2);
