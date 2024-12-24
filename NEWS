@@ -1,3 +1,24 @@
+1.3.2 (2024-12-24)
+=====
+- Update copyright year
+- build: Bump dependency versions and fix deprecation warnings
+- I18n: Update po/LINGUAS list
+- build: Use XDT_VERSION_INIT and get rid of configure.ac.in
+- build: clang: Silence -Wcast-align
+- Fix missing plugin icon
+- Update `.gitignore`
+- I18n: Update po/LINGUAS list
+- build: Get rid of intltool
+- Translation Updates:
+  Albanian, Arabic, Basque, Belarusian, Bulgarian, Catalan, Chinese
+  (China), Chinese (Taiwan), Croatian, Czech, Danish, Dutch, English
+  (Australia), English (United Kingdom), Finnish, French, Galician,
+  German, Greek, Hebrew, Hungarian, Icelandic, Indonesian, Italian,
+  Japanese, Korean, Latvian, Lithuanian, Malay, Norwegian Bokmål,
+  Occitan (post 1500), Polish, Portuguese, Portuguese (Brazil),
+  Romanian, Russian, Serbian, Slovak, Slovenian, Spanish, Swedish,
+  Thai, Turkish, Ukrainian, Urdu, Urdu (Pakistan), Uyghur, Vietnamese
+
 1.3.1 (2023-04-20)
 =====
 - Update copyright year
