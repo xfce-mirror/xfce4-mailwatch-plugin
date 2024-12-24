@@ -10,7 +10,7 @@ XDT_VERSION_INIT([1.3.1], [git])
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
-AC_COPYRIGHT([Copyright (c) 2005-2023 The Xfce development team. All rights reserved.])
+AC_COPYRIGHT([Copyright (c) 2005-2024 The Xfce development team. All rights reserved.])
 AC_INIT([xfce4-mailwatch-plugin], [xdt_version], [https://gitlab.xfce.org/panel-plugins/xfce4-mailwatch-plugin/])
 AC_PREREQ([2.69])
 AC_REVISION([xdt_version_build])
