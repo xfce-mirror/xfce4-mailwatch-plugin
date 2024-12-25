@@ -719,7 +719,7 @@ mailwatch_view_log_clicked_cb(GtkWidget *widget,
 
     mailwatch_set_log_status(mwp, 0);
 
-    mwp->log_dialog = gtk_dialog_new_with_buttons(_( "Mailwatch log" ),
+    mwp->log_dialog = xfce_titled_dialog_new_with_mixed_buttons(_( "Mailwatch log" ),
                                                   GTK_WINDOW(gtk_widget_get_toplevel(widget)),
                                                   GTK_DIALOG_DESTROY_WITH_PARENT,
                                                   NULL, NULL);
