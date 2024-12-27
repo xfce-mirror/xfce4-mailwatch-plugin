@@ -386,12 +386,12 @@ msgstr "Dạng hộp thư này không yêu cầu bất kỳ thiết lập cấu 
 #: libmailwatch-core/mailwatch.c:623 libmailwatch-core/mailwatch.c:765
 #: panel-plugin/mailwatch-plugin.c:851 panel-plugin/mailwatch-plugin.c:992
 msgid "_Cancel"
-msgstr ""
+msgstr "Huỷ"
 
 #: libmailwatch-core/mailwatch.c:624 libmailwatch-core/mailwatch.c:766
 #: panel-plugin/mailwatch-plugin.c:852
 msgid "_OK"
-msgstr ""
+msgstr "_OK"
 
 #: libmailwatch-core/mailwatch.c:645
 msgid "Mailbox _Name:"
