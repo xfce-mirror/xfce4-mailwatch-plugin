@@ -393,7 +393,7 @@ msgstr "Ά_κυρο"
 #: libmailwatch-core/mailwatch.c:624 libmailwatch-core/mailwatch.c:766
 #: panel-plugin/mailwatch-plugin.c:852
 msgid "_OK"
-msgstr ""
+msgstr "_Εντάξει"
 
 #: libmailwatch-core/mailwatch.c:645
 msgid "Mailbox _Name:"
