@@ -444,7 +444,7 @@ msgstr ""
 
 #: libmailwatch-core/mailwatch.c:895
 msgid "Remove"
-msgstr ""
+msgstr "Gỡ bỏ"
 
 #: libmailwatch-core/mailwatch.c:959
 msgid "Mailboxes"
