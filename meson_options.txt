@@ -1,0 +1,13 @@
+option(
+  'gnutls',
+  type: 'feature',
+  value: 'auto',
+  description: 'gnutls support for secure IMAP/POP3 connections',
+)
+
+option(
+  'ipv6',
+  type: 'feature',
+  value: 'auto',
+  description: 'whether to support IPv6',
+)

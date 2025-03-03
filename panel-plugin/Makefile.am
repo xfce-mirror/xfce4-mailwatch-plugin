@@ -1,4 +1,5 @@
 AM_CPPFLAGS = \
+	-I${top_srcdir} \
 	-DG_LOG_DOMAIN=\"libmailwatch\" \
 	-DPACKAGE_LOCALE_DIR=\"$(localedir)\" \
 	$(PLATFORM_CPPFLAGS)
@@ -52,7 +53,9 @@ $(desktop_DATA): $(desktop_DATA).in Makefile
 	$(AM_V_GEN)$(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 EXTRA_DIST = \
-	mailwatch.desktop.in
+	mailwatch.desktop.in \
+	meson.build \
+	$(NULL)
 
 DISTCLEANFILES = \
 	$(desktop_DATA)
