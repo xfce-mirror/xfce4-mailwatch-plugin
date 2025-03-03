@@ -5,7 +5,9 @@ AM_CPPFLAGS = \
 
 # gmail is not always built
 EXTRA_DIST = \
-	mailwatch-mailbox-gmail.c
+	mailwatch-mailbox-gmail.c \
+	meson.build \
+	$(NULL)
 
 noinst_LTLIBRARIES = \
 	libmailwatch-core.la
