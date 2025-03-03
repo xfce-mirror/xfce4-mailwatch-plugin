@@ -19,6 +19,9 @@
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
+#ifdef HAVE_XFCE_REVISION_H
+#include "xfce-revision.h"
+#endif
 
 #include <stdio.h>
 
@@ -220,7 +223,7 @@ gmail_check_atom_feed(XfceMailwatchGMailMailbox *gmailbox,
                              "Authorization: Basic %s\r\n" \
                              "Connection: close\r\n" \
                              "\r\n",
-               GMAIL_ATOMURI, GMAIL_HOST, port, PACKAGE, VERSION, base64_creds);
+               GMAIL_ATOMURI, GMAIL_HOST, port, PACKAGE, VERSION_FULL, base64_creds);
     g_free(base64_creds);
     
     if(gmail_send(gmailbox, buf) != (gssize)strlen(buf)) {
