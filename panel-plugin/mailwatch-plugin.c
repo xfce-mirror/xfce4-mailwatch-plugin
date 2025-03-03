@@ -1247,7 +1247,7 @@ mailwatch_show_about(XfcePanelPlugin *plugin,
                           "version", VERSION_FULL,
                           "comments", _("A featureful mail-checker applet for the Xfce Panel"),
                           "website", PACKAGE_URL,
-                          "copyright", "Copyright \302\251 2005-2024 The Xfce development team",
+                          "copyright", "Copyright \302\251 2005-" COPYRIGHT_YEAR " The Xfce development team",
                           "authors", auth,
                           NULL);
 }
