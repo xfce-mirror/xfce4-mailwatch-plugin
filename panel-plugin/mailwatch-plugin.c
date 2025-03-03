@@ -49,6 +49,9 @@
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
+#ifdef HAVE_XFCE_REVISION_H
+#include "xfce-revision.h"
+#endif
 
 #ifdef HAVE_SIGNAL_H 
 #include <signal.h>
@@ -64,9 +67,9 @@
 #include <libxfce4panel/libxfce4panel.h>
 #include <exo/exo.h>
 
-#include "mailwatch.h"
-#include "mailwatch-mailbox.h"
-#include "mailwatch-utils.h"
+#include "libmailwatch-core/mailwatch.h"
+#include "libmailwatch-core/mailwatch-mailbox.h"
+#include "libmailwatch-core/mailwatch-utils.h"
 
 #define BORDER                             8
 #define DEFAULT_LOG_LINES                500
@@ -921,7 +924,7 @@ mailwatch_help_show_uri(GdkScreen *screen,
     g_return_if_fail(GDK_IS_SCREEN(screen));
     g_return_if_fail(parent == NULL || GTK_IS_WINDOW(parent));
 
-    if (!gtk_show_uri_on_window(parent, WEBSITE, gtk_get_current_event_time(), &error)) {
+    if (!gtk_show_uri_on_window(parent, PACKAGE_URL, gtk_get_current_event_time(), &error)) {
         xfce_dialog_show_error(parent, error,
                                _("Failed to open web browser for online documentation"));
         g_error_free(error);
@@ -1241,10 +1244,10 @@ mailwatch_show_about(XfcePanelPlugin *plugin,
                           "logo-icon-name", "xfce-newmail",
                           "program-name", _("Xfce4 Mailwatch Plugin"),
                           "license", xfce_get_license_text (XFCE_LICENSE_TEXT_GPL),
-                          "version", VERSION,
+                          "version", VERSION_FULL,
                           "comments", _("A featureful mail-checker applet for the Xfce Panel"),
-                          "website", WEBSITE,
-                          "copyright", "Copyright \302\251 2005-2024 The Xfce development team",
+                          "website", PACKAGE_URL,
+                          "copyright", "Copyright \302\251 2005-" COPYRIGHT_YEAR " The Xfce development team",
                           "authors", auth,
                           NULL);
 }
