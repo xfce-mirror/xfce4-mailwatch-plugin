@@ -65,7 +65,10 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4panel/libxfce4panel.h>
+
+#if !LIBXFCE4UI_CHECK_VERSION(4, 21, 0)
 #include <exo/exo.h>
+#endif
 
 #include "libmailwatch-core/mailwatch.h"
 #include "libmailwatch-core/mailwatch-mailbox.h"
@@ -730,8 +733,13 @@ mailwatch_view_log_clicked_cb(GtkWidget *widget,
 #if !LIBXFCE4UI_CHECK_VERSION (4, 19, 3)
     xfce_titled_dialog_create_action_area(XFCE_TITLED_DIALOG(mwp->log_dialog));
 #endif
+#if LIBXFCE4UI_CHECK_VERSION(4, 21, 0)
+    gtk_button_box_set_layout(GTK_BUTTON_BOX(xfce_gtk_dialog_get_action_area(GTK_DIALOG(mwp->log_dialog))),
+                              GTK_BUTTONBOX_EDGE);
+#else
     gtk_button_box_set_layout(GTK_BUTTON_BOX(exo_gtk_dialog_get_action_area(GTK_DIALOG(mwp->log_dialog))),
                               GTK_BUTTONBOX_EDGE);
+#endif
     g_signal_connect(G_OBJECT(mwp->log_dialog), "response",
                      G_CALLBACK(mailwatch_log_window_response_cb), mwp->loglist);
     g_signal_connect_swapped(G_OBJECT(mwp->log_dialog), "destroy",
@@ -839,26 +847,48 @@ mailwatch_iconbtn_clicked_cb(GtkWidget           *w,
     g_return_if_fail(icon_type == ICON_TYPE_NORMAL || icon_type == ICON_TYPE_NEW_MAIL);
     
     toplevel = gtk_widget_get_toplevel(w);
+#if LIBXFCE4UI_CHECK_VERSION(4, 21, 0)
+    chooser = xfce_icon_chooser_dialog_new (_("Select Icon"),
+                                            GTK_WINDOW(gtk_widget_get_toplevel(toplevel)),
+                                            _("_Cancel"), GTK_RESPONSE_CANCEL,
+                                            _("_OK"), GTK_RESPONSE_ACCEPT,
+                                            NULL);
+#else
     chooser = exo_icon_chooser_dialog_new (_("Select Icon"),
                                            GTK_WINDOW(gtk_widget_get_toplevel(toplevel)),
                                            _("_Cancel"), GTK_RESPONSE_CANCEL,
                                            _("_OK"), GTK_RESPONSE_ACCEPT,
                                            NULL);
+#endif
     gtk_dialog_set_default_response(GTK_DIALOG(chooser), GTK_RESPONSE_ACCEPT);
     /* Preselect actually used icon */
     switch(icon_type) {
     case ICON_TYPE_NORMAL:
+#if LIBXFCE4UI_CHECK_VERSION(4, 21, 0)
+        xfce_icon_chooser_dialog_set_icon (XFCE_ICON_CHOOSER_DIALOG (chooser),
+                                           mailwatch_get_normal_icon(mwp));
+#else
         exo_icon_chooser_dialog_set_icon (EXO_ICON_CHOOSER_DIALOG (chooser),
                                           mailwatch_get_normal_icon(mwp));
+#endif
         break;
     case ICON_TYPE_NEW_MAIL:
+#if LIBXFCE4UI_CHECK_VERSION(4, 21, 0)
+        xfce_icon_chooser_dialog_set_icon (XFCE_ICON_CHOOSER_DIALOG (chooser),
+                                           mailwatch_get_new_mail_icon(mwp));
+#else
         exo_icon_chooser_dialog_set_icon (EXO_ICON_CHOOSER_DIALOG (chooser),
                                           mailwatch_get_new_mail_icon(mwp));
+#endif
         break;
     }
     
     if(gtk_dialog_run(GTK_DIALOG(chooser)) == GTK_RESPONSE_ACCEPT) {
+#if LIBXFCE4UI_CHECK_VERSION(4, 21, 0)
+        gchar *filename = xfce_icon_chooser_dialog_get_icon(XFCE_ICON_CHOOSER_DIALOG(chooser));
+#else
         gchar *filename = exo_icon_chooser_dialog_get_icon(EXO_ICON_CHOOSER_DIALOG(chooser));
+#endif
         if(filename) {
             GtkWidget *image, *vbox;
             GtkWidget *label = NULL;
@@ -1029,8 +1059,13 @@ mailwatch_create_options(XfcePanelPlugin     *plugin,
 #if !LIBXFCE4UI_CHECK_VERSION (4, 19, 3)
     xfce_titled_dialog_create_action_area(XFCE_TITLED_DIALOG(dlg));
 #endif
+#if LIBXFCE4UI_CHECK_VERSION(4, 21, 0)
+    gtk_button_box_set_layout(GTK_BUTTON_BOX(xfce_gtk_dialog_get_action_area(GTK_DIALOG(dlg))),
+                              GTK_BUTTONBOX_EDGE);
+#else
     gtk_button_box_set_layout(GTK_BUTTON_BOX(exo_gtk_dialog_get_action_area(GTK_DIALOG(dlg))),
                               GTK_BUTTONBOX_EDGE);
+#endif
     g_signal_connect(G_OBJECT(dlg), "response",
                      G_CALLBACK(mailwatch_dialog_response), mwp);
 
@@ -1038,9 +1073,14 @@ mailwatch_create_options(XfcePanelPlugin     *plugin,
     gtk_window_set_icon_name(GTK_WINDOW(dlg), "xfce4-settings");
     
     btn = gtk_button_new_with_mnemonic(_("_Help"));
+#if LIBXFCE4UI_CHECK_VERSION(4, 21, 0)
+    gtk_box_pack_start(GTK_BOX(xfce_gtk_dialog_get_action_area(GTK_DIALOG(dlg))),
+                       btn, FALSE, FALSE, 0);
+#else
     gtk_box_pack_start(GTK_BOX(exo_gtk_dialog_get_action_area(GTK_DIALOG(dlg))),
                        btn, FALSE, FALSE, 0);
-    
+#endif
+
     g_signal_connect(G_OBJECT(btn), "clicked",
                      G_CALLBACK(mailwatch_help_clicked_cb), mwp);
 
