@@ -6,7 +6,7 @@ dnl ***************************
 dnl *** Version information ***
 dnl ***************************
 m4_define([copyright_year], [2025])
-XDT_VERSION_INIT([1.4.0])
+XDT_VERSION_INIT([1.4.0], [git])
 
 dnl ***************************
 dnl *** Initialize autoconf ***
