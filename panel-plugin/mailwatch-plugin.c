@@ -82,6 +82,7 @@ typedef struct
 {
     XfcePanelPlugin *plugin;
     XfceMailwatch   *mailwatch;
+    GtkWidget       *settings_dialog;
     
     GtkWidget       *button;
     GtkWidget       *image;
@@ -1033,7 +1034,6 @@ mailwatch_dialog_response(GtkWidget           *dlg,
                           XfceMailwatchPlugin *mwp)
 {
     gtk_widget_destroy(dlg);
-    xfce_panel_plugin_unblock_menu(mwp->plugin);
     mailwatch_write_config(mwp->plugin, mwp);
 }
 
@@ -1048,11 +1048,15 @@ mailwatch_create_options(XfcePanelPlugin     *plugin,
     cairo_surface_t *surface;
     gint scale_factor = gtk_widget_get_scale_factor(GTK_WIDGET(plugin));
     
-    xfce_panel_plugin_block_menu(plugin);
-    
-    dlg = xfce_titled_dialog_new_with_mixed_buttons(_("Mail Watcher"), 
+    if (mwp->settings_dialog != NULL) {
+        gtk_window_present(GTK_WINDOW(mwp->settings_dialog));
+        return;
+    }
+
+    mwp->settings_dialog = dlg = xfce_titled_dialog_new_with_mixed_buttons(_("Mail Watcher"),
                 GTK_WINDOW(gtk_widget_get_toplevel(GTK_WIDGET(plugin))),
                 GTK_DIALOG_DESTROY_WITH_PARENT, NULL, NULL);
+    g_object_add_weak_pointer(G_OBJECT(mwp->settings_dialog), (gpointer *)&mwp->settings_dialog);
 #if !LIBXFCE4UI_CHECK_VERSION (4, 19, 3)
     xfce_titled_dialog_create_action_area(XFCE_TITLED_DIALOG(dlg));
 #endif
