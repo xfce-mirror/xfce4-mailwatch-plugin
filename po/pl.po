@@ -480,7 +480,7 @@ msgstr[3] "Odebrano %d nowych wiadomości:"
 
 #: panel-plugin/mailwatch-plugin.c:494
 msgid "Xfce Mailwatch"
-msgstr "Sprawdzanie poczty dla Xfce"
+msgstr "Sprawdzanie poczty Xfce"
 
 #: panel-plugin/mailwatch-plugin.c:495
 msgid "The mailwatch applet cannot be added to the panel."
@@ -590,11 +590,11 @@ msgstr "Wyświetlanie _statusu dziennika w ikonie"
 
 #: panel-plugin/mailwatch-plugin.c:1286
 msgid "Xfce4 Mailwatch Plugin"
-msgstr "Wtyczka sprawdzania poczty Xfce4"
+msgstr "Wtyczka sprawdzania poczty Xfce"
 
 #: panel-plugin/mailwatch-plugin.c:1289
 msgid "A featureful mail-checker applet for the Xfce Panel"
-msgstr "Bogaty w możliwości aplet sprawdzania poczty dla panelu Xfce"
+msgstr "Funkcjonalny aplet panelu Xfce do sprawdzania poczty."
 
 #: panel-plugin/mailwatch-plugin.c:1420
 msgid "Update Now"
