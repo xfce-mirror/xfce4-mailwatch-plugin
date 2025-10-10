@@ -3,8 +3,9 @@
 # This file is distributed under the same license as the xfce-panel-plugins.xfce4-mailwatch-plugin package.
 # 
 # Translators:
-# Cédric Valmary <cvalmary@yahoo.fr>, 2014,2016
+# Cédric Valmary <cvalmary@yahoo.fr>, 2013-2014,2016
 # Cédric Valmary <cvalmary@yahoo.fr>, 2013
+# Quentin PAGÈS, 2022,2024
 # Quentin PAGÈS, 2022,2024
 msgid ""
 msgstr ""
@@ -32,7 +33,7 @@ msgstr "Fracàs del quichal de man TLS : %s"
 msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
-msgstr "Lo còde de la responsa HTTP recebut es %d. La rason la mai probabla es que lo nom d'utilizaire o lo senhal GMail siá incorrècte."
+msgstr "Lo còdi de la responsa HTTP recebut es %d. La rason la mai probabla es que lo nom d'utilizaire o lo senhal GMail siá incorrècte."
 
 #: libmailwatch-core/mailwatch-mailbox-gmail.c:262
 #, c-format
@@ -40,7 +41,7 @@ msgid ""
 "Received HTTP response code %d, which should be 200.  There may be a problem"
 " with GMail's servers, or they have incompatibly changed their "
 "authentication method or location of the new messages feed."
-msgstr "Lo còde de la responsa HTTP recebut es %d, e deuriá èsser 200. I pòt aver un problèma amb los servidors de GMail, o an cambiat d'un biais incompatible lo metòde d'autentificacion o l'emplaçament dels messatges novèls entrants."
+msgstr "Lo còdi de la responsa HTTP recebut es %d, e deuriá èsser 200. I pòt aver un problèma amb los servidors de GMail, o an cambiat d'un biais incompatible lo metòde d'autentificacion o l'emplaçament dels messatges novèls entrants."
 
 #: libmailwatch-core/mailwatch-mailbox-gmail.c:395
 #: libmailwatch-core/mailwatch-mailbox-imap.c:727
@@ -49,7 +50,7 @@ msgstr "Lo còde de la responsa HTTP recebut es %d, e deuriá èsser 200. I pòt
 #: libmailwatch-core/mailwatch-mailbox-mh.c:483
 #: libmailwatch-core/mailwatch-mailbox-pop3.c:544
 msgid "Previous thread hasn't exited yet, not checking mail this time."
-msgstr "Lo thread precedent es pas acabat, d'aqueste fach la verificacion es anullada."
+msgstr "Lo fil d’execucion precedent es pas acabat, d'aqueste fait la verificacion es anullada."
 
 #: libmailwatch-core/mailwatch-mailbox-gmail.c:536
 #: libmailwatch-core/mailwatch-mailbox-imap.c:1726
@@ -365,7 +366,7 @@ msgstr "Lectura anullada : lectura de tròp d'octets sens un saut de linha"
 #: libmailwatch-core/mailwatch-net-conn.c:882
 #, c-format
 msgid "Buffer is not large enough to hold a full line (%s < %d)"
-msgstr "Lo tampon es pas pro grand per conténer una linha completa (%s < %d)"
+msgstr "Lo tampon es pas pro grand per conténer una linha complèta (%s < %d)"
 
 #: libmailwatch-core/mailwatch.c:325 libmailwatch-core/mailwatch.c:326
 #, c-format
@@ -378,7 +379,7 @@ msgid ""
 "Unable to set permissions on config file '%s'.  If this file contains "
 "passwords or other sensitive information, it may be readable by others on "
 "your system."
-msgstr "Impossible de cambiar los dreches sul fichièr de configuracion'%s'. Se aqueste fichièr conten de senhals o d'informacions sensiblas, pòt èsser legit per d'autras personas sus vòstre sistèma."
+msgstr "Impossible de cambiar los dreits sul fichièr de configuracion'%s'. Se aqueste fichièr conten de senhals o d'informacions sensiblas, pòt èsser legit per d'autras personas sus vòstre sistèma."
 
 #: libmailwatch-core/mailwatch.c:610
 msgid "This mailbox type does not require any configuration settings."
@@ -434,7 +435,7 @@ msgstr "Suprimir una bóstia de letras"
 
 #: libmailwatch-core/mailwatch.c:887
 msgid "Are you sure?"
-msgstr "Sètz segur(a) ?"
+msgstr "O volètz vertadièrament ?"
 
 #: libmailwatch-core/mailwatch.c:888
 msgid "Removing a mailbox will discard all settings, and cannot be undone."
@@ -486,7 +487,7 @@ msgstr "L'applet de susvelhança del corrièr pòt pas èsser apondut al tablèu
 #: panel-plugin/mailwatch-plugin.c:496
 msgid ""
 "It is possible that your version of GLib does not have threads support."
-msgstr "Es possible que vòstra version de GLib aja pas lo supòrt dels threads."
+msgstr "Es possible que vòstra version de GLib aja pas lo supòrt dels fils d’execucion."
 
 #: panel-plugin/mailwatch-plugin.c:726
 msgid "Mailwatch log"
