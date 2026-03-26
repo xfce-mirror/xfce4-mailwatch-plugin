@@ -1244,7 +1244,8 @@ mailwatch_free(XfcePanelPlugin     *plugin,
 #ifdef HAVE_XFCE_POSIX_SIGNAL_HANDLER_INIT
     xfce_posix_signal_handler_restore_handler(SIGUSR2);
 #endif
-    
+    g_signal_handlers_disconnect_by_func(gtk_icon_theme_get_default(), mailwatch_update_size, mwp);
+
     xfce_mailwatch_destroy(mwp->mailwatch);
     
     g_free(mwp->normal_icon);
@@ -1414,6 +1415,8 @@ mailwatch_construct(XfcePanelPlugin *plugin)
 
     g_signal_connect(plugin, "size-changed",
                      G_CALLBACK(mailwatch_set_size), mwp);
+    g_signal_connect_swapped(gtk_icon_theme_get_default(), "changed",
+                             G_CALLBACK(mailwatch_update_size), mwp);
     
     xfce_panel_plugin_set_small (plugin, TRUE);
 
