@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the xfce-panel-plugins.xfce4-mailwatch-plugin package.
 # 
 # Translators:
-# Michal Várady <miko.vaji@gmail.com>, 2013-2015,2020,2024
+# Michal Várady <miko.vaji@gmail.com>, 2013-2015,2020,2024,2026
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2025-07-18 11:07+0200\n"
 "PO-Revision-Date: 2013-07-03 19:03+0000\n"
-"Last-Translator: Michal Várady <miko.vaji@gmail.com>, 2013-2015,2020,2024\n"
+"Last-Translator: Michal Várady <miko.vaji@gmail.com>, 2013-2015,2020,2024,2026\n"
 "Language-Team: Czech (http://app.transifex.com/xfce/xfce-panel-plugins/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +30,7 @@ msgstr "Připojení pomocí TLS selhalo: %s"
 msgid ""
 "Received HTTP response code %d.  The most likely reason for this is that "
 "your GMail username or password is incorrect."
-msgstr "Byla přijata odpověď protokolu HTTP s kódem %d. Obvyklý důvod tohoto chování spočívá v nesprávném zadání uživatelského jména nebo heslo."
+msgstr "Byla přijata odpověď protokolu HTTP s kódem %d. Obvyklý důvod tohoto chování spočívá v nesprávném zadání uživatelského jména nebo hesla."
 
 #: libmailwatch-core/mailwatch-mailbox-gmail.c:262
 #, c-format
@@ -47,7 +47,7 @@ msgstr "Byla přijata odpověď protokolu HTTP s kódem %d, který by měl mít 
 #: libmailwatch-core/mailwatch-mailbox-mh.c:483
 #: libmailwatch-core/mailwatch-mailbox-pop3.c:544
 msgid "Previous thread hasn't exited yet, not checking mail this time."
-msgstr "Předchozí vlákno dosud neexistovalo, pošta se nyní nezkontroluje."
+msgstr "Předchozí vlákno dosud neskončilo, pošta se nyní nezkontroluje."
 
 #: libmailwatch-core/mailwatch-mailbox-gmail.c:536
 #: libmailwatch-core/mailwatch-mailbox-imap.c:1726
@@ -65,7 +65,7 @@ msgstr "_Heslo:"
 #: libmailwatch-core/mailwatch-mailbox-imap.c:1789
 #: libmailwatch-core/mailwatch-mailbox-pop3.c:915
 msgid "Check for _new messages every"
-msgstr "Zjišťovat nové zprávy každých"
+msgstr "Zjišťovat _nové zprávy každých"
 
 #: libmailwatch-core/mailwatch-mailbox-gmail.c:592
 #: libmailwatch-core/mailwatch-mailbox-imap.c:1803
@@ -192,7 +192,7 @@ msgstr "Server IMAP"
 #: libmailwatch-core/mailwatch-mailbox-imap.c:1706
 #: libmailwatch-core/mailwatch-mailbox-pop3.c:841
 msgid "_Mail server:"
-msgstr "Poštovní s_erver"
+msgstr "Poštovní s_erver:"
 
 #: libmailwatch-core/mailwatch-mailbox-imap.c:1767
 #: libmailwatch-core/mailwatch-mailbox-pop3.c:902
@@ -252,7 +252,7 @@ msgstr "Zásuvný modul Maildir sleduje nově příchozí zprávy v místním ú
 
 #: libmailwatch-core/mailwatch-mailbox-mbox.c:367
 msgid "Mbox _Filename:"
-msgstr "Ná_zev souboru mbox"
+msgstr "Ná_zev souboru mbox:"
 
 #: libmailwatch-core/mailwatch-mailbox-mbox.c:373
 msgid "Select mbox file"
@@ -264,7 +264,7 @@ msgstr "Místní úložiště elektronické pošty typu Mbox"
 
 #: libmailwatch-core/mailwatch-mailbox-mbox.c:473
 msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-msgstr "Zásuvný modul leduje nově příchozí zprávy v úložišti elektronické pošty typu mbox."
+msgstr "Zásuvný modul Mbox sleduje nově příchozí zprávy v úložišti elektronické pošty typu mbox."
 
 #: libmailwatch-core/mailwatch-mailbox-mh.c:237
 #, c-format
@@ -275,7 +275,7 @@ msgstr "Nesprávná formulace na řádku %s v %s bude ignorována."
 msgid ""
 "The configuration of this plugin is read from\n"
 "the default mh maildir profile file ~/.mh_profile"
-msgstr "Nastavení tohoto zásuvného modulu bude\npřečteno z výchozího souboru adresáře elektro-\nnické pošty ~/.hm_profile"
+msgstr "Nastavení tohoto zásuvného modulu bude\npřečteno z výchozího souboru adresáře elektro-\nnické pošty ~/.mh_profile"
 
 #: libmailwatch-core/mailwatch-mailbox-mh.c:679
 msgid "Local MH mail folder"
@@ -295,7 +295,7 @@ msgstr "Použít SSL/TLS přes STLS"
 
 #: libmailwatch-core/mailwatch-mailbox-pop3.c:782
 msgid "Use non-standard POP3 _port:"
-msgstr "_Použít nestandardní port POP3_"
+msgstr "_Použít nestandardní port POP3:"
 
 #: libmailwatch-core/mailwatch-mailbox-pop3.c:827
 msgid "POP3 Server"
