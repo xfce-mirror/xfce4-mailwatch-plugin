@@ -296,6 +296,10 @@ gmail_check_atom_feed(XfceMailwatchGMailMailbox *gmailbox,
             buf[strlen(p)+strlen(buf1)] = 0;
             p = buf;
             q = strstr(p+1, "<");
+            if(!q) {
+                DBG("can't find </fullcount> closing tag");
+                break;
+            }
         }
         
         DBG("p=%p, q=%p", p, q);
@@ -320,10 +324,7 @@ gmail_check_atom_feed(XfceMailwatchGMailMailbox *gmailbox,
     
 cleanup:
     
-    if(gmailbox->net_conn) {
-        xfce_mailwatch_net_conn_destroy(gmailbox->net_conn);
-        gmailbox->net_conn = NULL;
-    }
+    g_clear_pointer(&gmailbox->net_conn, xfce_mailwatch_net_conn_destroy);
     
     return ret;
 #undef BUFSIZE
@@ -398,6 +399,8 @@ gmail_check_mail_timeout(gpointer data)
 
     th = g_thread_try_new(NULL, gmail_check_mail_th, gmailbox, NULL);
     g_atomic_pointer_set(&gmailbox->th, th);
+    if (th != NULL)
+        g_thread_unref(th);
 
     return TRUE;
 }
@@ -431,8 +434,7 @@ gmail_set_activated(XfceMailwatchMailbox *mailbox, gboolean activated)
                                            gmailbox);
     } else {
         g_atomic_int_set(&gmailbox->running, FALSE);
-        g_source_remove(gmailbox->check_id);
-        gmailbox->check_id = 0;
+        g_clear_handle_id(&gmailbox->check_id, g_source_remove);
     }
 }
 
@@ -607,11 +609,11 @@ gmail_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
     for(l = params; l; l = l->next) {
         XfceMailwatchParam *param = l->data;
         
-        if(!strcmp(param->key, "username"))
+        if(strcmp(param->key, "username") == 0)
             gmailbox->username = g_strdup(param->value);
-        else if(!strcmp(param->key, "password"))
+        else if(strcmp(param->key, "password") == 0)
             gmailbox->password = g_strdup(param->value);
-        else if(!strcmp(param->key, "timeout"))
+        else if(strcmp(param->key, "timeout") == 0)
             gmailbox->timeout = atoi(param->value);
     }
     

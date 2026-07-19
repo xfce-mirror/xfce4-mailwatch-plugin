@@ -72,7 +72,6 @@ mbox_check_mail( XfceMailwatchMboxMailbox *mbox )
 {
     gchar           *mailbox;
     struct stat     st;
-    guint           num_new = 0;
 
     g_mutex_lock(&(mbox->settings_mutex));
     if ( !mbox->fn ) {
@@ -101,8 +100,7 @@ mbox_check_mail( XfceMailwatchMboxMailbox *mbox )
         GIOChannel      *ioc;
         gsize           nl;
         GError          *error = NULL;
-
-        num_new = 0;
+        guint           num_new = 0;
 
         ioc = g_io_channel_new_file( mailbox, "r", &error );
         if ( !ioc ) {
@@ -119,8 +117,7 @@ mbox_check_mail( XfceMailwatchMboxMailbox *mbox )
                                         XFCE_MAILWATCH_MAILBOX( mbox ),
                                         XFCE_MAILWATCH_LOG_WARNING,
                                         error->message );
-            g_error_free( error );
-            error = NULL;
+            g_clear_error(&error);
         }
        
         if ( mbox->size && st.st_size > (guint)mbox->size ) {
@@ -224,6 +221,8 @@ mbox_check_mail_timeout( gpointer data )
 
     th = g_thread_try_new( NULL, mbox_check_mail_thread, mbox, NULL );
     g_atomic_pointer_set( &mbox->thread, th );
+    if (th != NULL)
+        g_thread_unref(th);
 
     return TRUE;
 }
@@ -288,19 +287,17 @@ mbox_restore_settings( XfceMailwatchMailbox *mailbox, GList *settings )
     for ( li = g_list_first( settings ); li != NULL; li = g_list_next( li ) ) {
         XfceMailwatchParam      *p = (XfceMailwatchParam *) li->data;
 
-        if ( !strcmp( p->key, "filename" ) ) {
-            if ( mbox->fn ) {
-                g_free( mbox->fn );
-            }
+        if ( strcmp( p->key, "filename" ) == 0 ) {
+            g_free( mbox->fn );
             mbox->fn = g_strdup( p->value );
         }
-        else if ( !strcmp( p->key, "ctime" ) ) {
+        else if ( strcmp( p->key, "ctime" ) == 0 ) {
             mbox->ctime = atol( p->value );
         }
-        else if ( !strcmp( p->key, "size" ) ) {
+        else if ( strcmp( p->key, "size" ) == 0 ) {
             mbox->size = (size_t) atol( p->value );
         }
-        else if ( !strcmp( p->key, "interval" ) ) {
+        else if ( strcmp( p->key, "interval" ) == 0 ) {
             mbox->interval = (guint) atol( p->value );
         }
     }
@@ -317,9 +314,7 @@ mbox_file_set_cb( GtkWidget *button,
     text = gtk_file_chooser_get_filename( GTK_FILE_CHOOSER( button ) );
 
     g_mutex_lock(&(mbox->settings_mutex));
-    if ( mbox->fn ) {
-        g_free( mbox->fn );
-    }
+    g_free( mbox->fn );
 
     if ( text ) {
         mbox->fn = text;
@@ -425,8 +420,7 @@ mbox_activate( XfceMailwatchMailbox *mailbox, gboolean activated )
         mbox->check_id = g_timeout_add( mbox->interval * 1000, mbox_check_mail_timeout, mbox );
     } else {
         g_atomic_int_set( &mbox->running, FALSE );
-        g_source_remove( mbox->check_id );
-        mbox->check_id = 0;
+        g_clear_handle_id(&mbox->check_id, g_source_remove);
     }
 }
 
@@ -461,9 +455,7 @@ mbox_free( XfceMailwatchMailbox *mailbox )
     
     g_mutex_clear( &mbox->settings_mutex );
 
-    if ( mbox->fn ) {
-        g_free( mbox->fn );
-    }
+    g_free( mbox->fn );
     g_free( mbox );
 }
 

@@ -108,9 +108,7 @@ maildir_check_mail( XfceMailwatchMaildirMailbox *maildir )
         
         if ( dir ) {
             int             count_new = 0;
-            const gchar     *entry;
-            
-            while ( ( entry = g_dir_read_name( dir ) ) ) {
+            while ( g_dir_read_name( dir ) != NULL ) {
                 count_new++;
 
                 /* only check every 25 entries */
@@ -139,9 +137,7 @@ maildir_check_mail( XfceMailwatchMaildirMailbox *maildir )
 
 out:
     g_mutex_unlock(&(maildir->mutex));
-    if ( path ) {
-        g_free( path );
-    }
+    g_free( path );
 
     DBG( "<<--" );
 }
@@ -178,6 +174,8 @@ maildir_check_mail_timeout( gpointer data )
 
     th = g_thread_try_new( NULL, maildir_main_thread, maildir, NULL );
     g_atomic_pointer_set( &maildir->thread, th );
+    if (th != NULL)
+        g_thread_unref(th);
 
     return TRUE;
 }
@@ -245,16 +243,14 @@ maildir_restore_param_list( XfceMailwatchMailbox *mailbox, GList *params )
     for ( li = g_list_first( params ); li != NULL; li = g_list_next( li ) ) {
         XfceMailwatchParam  *param = (XfceMailwatchParam *) li->data;
 
-        if ( !strcmp( param->key, "path" ) ) {
-            if ( maildir->path ) {
-                g_free( maildir->path );
-            }
+        if ( strcmp( param->key, "path" ) == 0 ) {
+            g_free( maildir->path );
             maildir->path = g_strdup( param->value );
         }
-        else if ( !strcmp( param->key, "mtime" ) ) {
+        else if ( strcmp( param->key, "mtime" ) == 0 ) {
             maildir->mtime = atol( param->value );
         }
-        else if ( !strcmp( param->key, "interval" ) ) {
+        else if ( strcmp( param->key, "interval" ) == 0 ) {
             maildir->interval = (guint) atol( param->value );
         }
     }
@@ -415,8 +411,7 @@ maildir_set_activated( XfceMailwatchMailbox *mailbox, gboolean activated )
         maildir->check_id = g_timeout_add( maildir->interval * 1000, maildir_check_mail_timeout, maildir );
     } else {
         g_atomic_int_set( &maildir->running, FALSE );
-        g_source_remove( maildir->check_id );
-        maildir->check_id = 0;
+        g_clear_handle_id(&maildir->check_id, g_source_remove);
     }
 
     DBG( "<<--" );
@@ -435,9 +430,7 @@ maildir_free( XfceMailwatchMailbox *mailbox )
 
     g_mutex_clear( &maildir->mutex );
 
-    if ( maildir->path ) {
-        g_free( maildir->path );
-    }
+    g_free( maildir->path );
     g_free( maildir );
 
     DBG( "<<--" );

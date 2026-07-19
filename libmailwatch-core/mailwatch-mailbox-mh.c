@@ -310,14 +310,8 @@ mh_read_config( XfceMailwatchMHMailbox *mh )
 
     DBG( "-->>" );
 
-    if ( mh->mh_sequences_fn ) {
-        g_free( mh->mh_sequences_fn );
-        mh->mh_sequences_fn = NULL;
-    }
-    if ( mh->unseen_sequence ) {
-        g_free( mh->unseen_sequence );
-        mh->unseen_sequence = NULL;
-    }
+    g_clear_pointer(&mh->mh_sequences_fn, g_free);
+    g_clear_pointer(&mh->unseen_sequence, g_free);
 
     if ( !mh->mh_profile_fn ) {
         mh->mh_profile_fn = mh_get_profile_filename();
@@ -356,12 +350,8 @@ mh_read_config( XfceMailwatchMHMailbox *mh )
             NULL );
 
     g_free( mh_path );
-    if ( mh_inbox ) {
-        g_free( mh_inbox );
-    }
-    if ( mh_sequences ) {
-        g_free( mh_sequences );
-    }
+    g_free( mh_inbox );
+    g_free( mh_sequences );
     mh_profile_free( profile );
 }
 
@@ -486,6 +476,8 @@ mh_check_mail_timeout(gpointer data)
 
     th = g_thread_try_new( NULL, mh_main_thread, mh, NULL );
     g_atomic_pointer_set( &mh->thread, th );
+    if (th != NULL)
+        g_thread_unref(th);
 
     return TRUE;
 }
@@ -516,7 +508,7 @@ mh_restore_param_list( XfceMailwatchMailbox *mailbox, GList *params )
     for ( li = g_list_first( params ); li != NULL; li = g_list_next( li ) ) {
         XfceMailwatchParam  *param = li->data;
         
-        if ( !strcmp( param->key, "timeout" ) ) {
+        if ( strcmp( param->key, "timeout" ) == 0 ) {
             mh->timeout = (guint) atol( param->value );
         }
     }
@@ -645,8 +637,7 @@ mh_set_activated_cb( XfceMailwatchMailbox *mailbox, gboolean activate )
         mh->check_id = g_timeout_add( mh->timeout * 1000, mh_check_mail_timeout, mh );
     } else {
         g_atomic_int_set( &mh->running, FALSE );
-        g_source_remove( mh->check_id );
-        mh->check_id = 0;
+        g_clear_handle_id(&mh->check_id, g_source_remove);
     }
 }
 
@@ -661,15 +652,9 @@ mh_free( XfceMailwatchMailbox *mailbox )
     while( g_atomic_pointer_get( &mh->thread ) )
         g_thread_yield();
 
-    if ( mh->mh_profile_fn ) {
-        g_free( mh->mh_profile_fn );
-    }
-    if ( mh->mh_sequences_fn ) {
-        g_free( mh->mh_sequences_fn );
-    }
-    if ( mh->unseen_sequence ) {
-        g_free( mh->unseen_sequence );
-    }
+    g_free( mh->mh_profile_fn );
+    g_free( mh->mh_sequences_fn );
+    g_free( mh->unseen_sequence );
 
     g_free( mh );
 }

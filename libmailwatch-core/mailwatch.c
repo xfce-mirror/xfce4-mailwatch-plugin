@@ -131,8 +131,7 @@ xfce_mailwatch_destroy(XfceMailwatch *mailwatch)
     
     /* just clear out the mailbox list.  we have to call free_mailbox_func for
      * each mailbox outside the mailboxes_mx lock so we don't cause deadlocks */
-    stuff_to_free = mailwatch->mailboxes;
-    mailwatch->mailboxes = NULL;
+    stuff_to_free = g_steal_pointer(&mailwatch->mailboxes);
     
     /* we are SO done. */
     g_mutex_unlock(&(mailwatch->mailboxes_mx));
@@ -237,7 +236,7 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch)
         
         for(l = mailwatch->mailbox_types; l; l = l->next) {
             XfceMailwatchMailboxType *mtype = l->data;
-            if(!strcmp(mtype->id, mailbox_id)) {
+            if(strcmp(mtype->id, mailbox_id) == 0) {
                 mailbox = mtype->new_mailbox_func(mailwatch, mtype);
                 if(!mailbox->type)
                     mailbox->type = mtype;
@@ -661,14 +660,10 @@ config_run_addedit_window(const gchar *title, GtkWindow *parent,
                         _("Please enter a name for the mailbox."),
                                     _("_Close"), GTK_RESPONSE_ACCEPT,
                                     NULL);
-                if(*new_mailbox_name) {
-                    g_free(*new_mailbox_name);
-                    *new_mailbox_name = NULL;
-                }
+                g_clear_pointer(new_mailbox_name, g_free);
             } else {
                 if(mailbox_name && !g_utf8_collate(mailbox_name, *new_mailbox_name)) {
-                    g_free(*new_mailbox_name);
-                    *new_mailbox_name = NULL;
+                    g_clear_pointer(new_mailbox_name, g_free);
                 }
                 ret = TRUE;
                 break;

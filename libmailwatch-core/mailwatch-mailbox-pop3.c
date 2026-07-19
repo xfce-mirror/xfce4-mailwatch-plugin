@@ -153,7 +153,7 @@ pop3_recv_command(XfceMailwatchPOP3Mailbox *pmailbox,
             return -1;
 
         if(multiline && got_ok) {
-            if(!strcmp(buf+tot, ".\n"))
+            if(strcmp(buf+tot, ".\n") == 0)
                 return tot + bin;
         } else if(!strncmp(buf+tot, "+OK", 3)) {
             if(!multiline)
@@ -457,7 +457,6 @@ pop3_check_mail_th(gpointer user_data)
 #define BUFSIZE 1024
     XfceMailwatchPOP3Mailbox *pmailbox = user_data;
     gchar host[BUFSIZE], username[BUFSIZE], password[BUFSIZE];
-    guint new_messages = 0;
     XfceMailwatchAuthType auth_type;
     gint nonstandard_port = -1;
 
@@ -496,7 +495,7 @@ pop3_check_mail_th(gpointer user_data)
     if(pop3_authenticate(pmailbox, host, username, password, auth_type,
                          nonstandard_port))
     {
-        new_messages = pop3_check_inbox(pmailbox);
+        guint new_messages = pop3_check_inbox(pmailbox);
         DBG("checked inbox, %d new messages", new_messages);
         
         xfce_mailwatch_signal_new_messages(pmailbox->mailwatch,
@@ -506,10 +505,7 @@ pop3_check_mail_th(gpointer user_data)
     if(xfce_mailwatch_net_conn_is_connected(pmailbox->net_conn))
         pop3_send(pmailbox, "QUIT\r\n");
     
-    if(pmailbox->net_conn) {
-        xfce_mailwatch_net_conn_destroy(pmailbox->net_conn);
-        pmailbox->net_conn = NULL;
-    }
+    g_clear_pointer(&pmailbox->net_conn, xfce_mailwatch_net_conn_destroy);
 
     g_atomic_pointer_set(&pmailbox->th, NULL);
     return NULL;
@@ -547,6 +543,8 @@ pop3_check_mail_timeout(gpointer data)
 
     new_th = g_thread_try_new(NULL, pop3_check_mail_th, pmailbox, NULL);
     g_atomic_pointer_set(&pmailbox->th, new_th);
+    if (new_th != NULL)
+        g_thread_unref(new_th);
 
     return TRUE;
 }
@@ -566,8 +564,7 @@ pop3_set_activated(XfceMailwatchMailbox *mailbox, gboolean activated)
                                            pmailbox);
     } else {
         g_atomic_int_set(&pmailbox->running, FALSE);
-        g_source_remove(pmailbox->check_id);
-        pmailbox->check_id = 0;
+        g_clear_handle_id(&pmailbox->check_id, g_source_remove);
     }
 }
 
@@ -944,19 +941,19 @@ pop3_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
     for(l = params; l; l = l->next) {
         XfceMailwatchParam *param = l->data;
         
-        if(!strcmp(param->key, "host"))
+        if(strcmp(param->key, "host") == 0)
             pmailbox->host = g_strdup(param->value);
-        else if(!strcmp(param->key, "username"))
+        else if(strcmp(param->key, "username") == 0)
             pmailbox->username = g_strdup(param->value);
-        else if(!strcmp(param->key, "password"))
+        else if(strcmp(param->key, "password") == 0)
             pmailbox->password = g_strdup(param->value);
-        else if(!strcmp(param->key, "auth_type"))
+        else if(strcmp(param->key, "auth_type") == 0)
             pmailbox->auth_type = atoi(param->value);
-        else if(!strcmp(param->key, "use_standard_port"))
+        else if(strcmp(param->key, "use_standard_port") == 0)
             pmailbox->use_standard_port = *(param->value) == '0' ? FALSE : TRUE;
-        else if(!strcmp(param->key, "nonstandard_port"))
+        else if(strcmp(param->key, "nonstandard_port") == 0)
             pmailbox->nonstandard_port = atoi(param->value);
-        else if(!strcmp(param->key, "timeout"))
+        else if(strcmp(param->key, "timeout") == 0)
             pmailbox->timeout = atoi(param->value);
     }
     
@@ -1006,7 +1003,7 @@ pop3_save_param_list(XfceMailwatchMailbox *mailbox)
     
     param = g_new(XfceMailwatchParam, 1);
     param->key = g_strdup("timeout");
-    param->value = g_strdup_printf("%d", pmailbox->timeout);
+    param->value = g_strdup_printf("%u", pmailbox->timeout);
     params = g_list_prepend(params, param);
     
     g_mutex_unlock(&(pmailbox->config_mx));

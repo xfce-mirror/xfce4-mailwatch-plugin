@@ -381,9 +381,9 @@ mailwatch_set_size(XfcePanelPlugin     *plugin,
      * try to be clever and use size steps */
     if (size <= 21)
         isize = 16;
-    else if (size >=22 && size <= 29)
+    else if (size <= 29)
         isize = 24;
-    else if (size >= 30 && size <= 40)
+    else if (size <= 40)
         isize = 32;
     else
         isize = size;
@@ -419,10 +419,7 @@ mailwatch_set_size(XfcePanelPlugin     *plugin,
     mwp->pix_normal = gdk_pixbuf_new_from_file_at_scale(icon, img_width,
                                                         img_height, TRUE,
                                                         NULL);
-    if (info) {
-        g_object_unref(G_OBJECT(info));
-        info = NULL;
-    }
+    g_clear_object(&info);
 
     icon = mailwatch_get_new_mail_icon(mwp);
     if (!g_path_is_absolute(icon)) {
@@ -434,10 +431,7 @@ mailwatch_set_size(XfcePanelPlugin     *plugin,
     mwp->pix_newmail = gdk_pixbuf_new_from_file_at_scale(icon, img_width,
                                                         img_height, TRUE,
                                                         NULL);
-    if (info) {
-        g_object_unref(G_OBJECT(info));
-        info = NULL;
-    }
+    g_clear_object(&info);
 
     /* find the smallest dimensions of the two icons */
     width = gdk_pixbuf_get_width(mwp->pix_normal);
