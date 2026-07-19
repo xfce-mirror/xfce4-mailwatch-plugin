@@ -729,6 +729,8 @@ imap_check_mail_timeout(gpointer data)
     }
     th = g_thread_try_new(NULL, imap_check_mail_th, imailbox, NULL);
     g_atomic_pointer_set(&imailbox->th, th);
+    if (th != NULL)
+        g_thread_unref(th);
 
     return TRUE;
 }
@@ -1283,6 +1285,8 @@ imap_config_refresh_btn_clicked_cb(GtkWidget *w, gpointer user_data)
     g_atomic_int_set(&imailbox->folder_tree_running, TRUE);
     th = g_thread_try_new(NULL, imap_populate_folder_tree_th, imailbox, NULL);
     g_atomic_pointer_set(&imailbox->folder_tree_th, th);
+    if (th != NULL)
+        g_thread_unref(th);
 }
 
 static gboolean

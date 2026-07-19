@@ -223,6 +223,8 @@ mbox_check_mail_timeout( gpointer data )
 
     th = g_thread_try_new( NULL, mbox_check_mail_thread, mbox, NULL );
     g_atomic_pointer_set( &mbox->thread, th );
+    if (th != NULL)
+        g_thread_unref(th);
 
     return TRUE;
 }

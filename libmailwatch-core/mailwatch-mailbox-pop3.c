@@ -544,6 +544,8 @@ pop3_check_mail_timeout(gpointer data)
 
     new_th = g_thread_try_new(NULL, pop3_check_mail_th, pmailbox, NULL);
     g_atomic_pointer_set(&pmailbox->th, new_th);
+    if (new_th != NULL)
+        g_thread_unref(new_th);
 
     return TRUE;
 }

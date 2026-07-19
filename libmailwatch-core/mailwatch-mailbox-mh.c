@@ -476,6 +476,8 @@ mh_check_mail_timeout(gpointer data)
 
     th = g_thread_try_new( NULL, mh_main_thread, mh, NULL );
     g_atomic_pointer_set( &mh->thread, th );
+    if (th != NULL)
+        g_thread_unref(th);
 
     return TRUE;
 }

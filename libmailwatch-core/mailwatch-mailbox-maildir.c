@@ -176,6 +176,8 @@ maildir_check_mail_timeout( gpointer data )
 
     th = g_thread_try_new( NULL, maildir_main_thread, maildir, NULL );
     g_atomic_pointer_set( &maildir->thread, th );
+    if (th != NULL)
+        g_thread_unref(th);
 
     return TRUE;
 }

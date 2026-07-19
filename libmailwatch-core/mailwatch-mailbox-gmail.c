@@ -395,6 +395,8 @@ gmail_check_mail_timeout(gpointer data)
 
     th = g_thread_try_new(NULL, gmail_check_mail_th, gmailbox, NULL);
     g_atomic_pointer_set(&gmailbox->th, th);
+    if (th != NULL)
+        g_thread_unref(th);
 
     return TRUE;
 }
