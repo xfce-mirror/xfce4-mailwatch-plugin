@@ -1002,7 +1002,7 @@ pop3_save_param_list(XfceMailwatchMailbox *mailbox)
     
     param = g_new(XfceMailwatchParam, 1);
     param->key = g_strdup("timeout");
-    param->value = g_strdup_printf("%d", pmailbox->timeout);
+    param->value = g_strdup_printf("%u", pmailbox->timeout);
     params = g_list_prepend(params, param);
     
     g_mutex_unlock(&(pmailbox->config_mx));

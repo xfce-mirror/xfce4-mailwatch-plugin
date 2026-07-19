@@ -261,7 +261,7 @@ imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox,
     TRACE("entering");
     
     /* check capabilities */
-    g_snprintf(buf, BUFSIZE, "%05d CAPABILITY\r\n", ++imailbox->imap_tag);
+    g_snprintf(buf, BUFSIZE, "%05u CAPABILITY\r\n", ++imailbox->imap_tag);
     bout = imap_send(imailbox, net_conn, buf);
     DBG("sent CAPABILITY (%d)", bout);
     if(bout != (gint)strlen(buf))
@@ -282,7 +282,7 @@ imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox,
 #ifdef HAVE_SSL_SUPPORT
     if(strstr(buf, "AUTH=CRAM-MD5")) {
         /* the server supports CRAM-MD5; prefer that over LOGIN */
-        g_snprintf(buf, BUFSIZE, "%05d AUTHENTICATE CRAM-MD5\r\n",
+        g_snprintf(buf, BUFSIZE, "%05u AUTHENTICATE CRAM-MD5\r\n",
                    ++imailbox->imap_tag);
         bout = imap_send(imailbox, net_conn, buf);
         if(bout != (gint)strlen(buf))
@@ -320,7 +320,7 @@ imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox,
             if(bin <= 0) {
                 if(bin < 0) {
                     gchar tmp[16];
-                    g_snprintf(tmp, sizeof(tmp), "%05d NO",
+                    g_snprintf(tmp, sizeof(tmp), "%05u NO",
                                imailbox->imap_tag - 1);
                     if(strstr(buf, tmp)) {
                         xfce_mailwatch_log_message(imailbox->mailwatch,
@@ -341,7 +341,7 @@ imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox,
 #endif
 
     /* no cram-md5 support, send the normal creds */
-    g_snprintf(buf, BUFSIZE, "%05d LOGIN \"%s\" \"%s\"\r\n",
+    g_snprintf(buf, BUFSIZE, "%05u LOGIN \"%s\" \"%s\"\r\n",
                ++imailbox->imap_tag, username, password);
     bout = imap_send(imailbox, net_conn, buf);
     DBG("sent login (%d)", bout);
@@ -354,7 +354,7 @@ imap_send_login_info(XfceMailwatchIMAPMailbox *imailbox,
     if(bin <= 0) {
         if(bin < 0) {
             gchar tmp[16];
-            g_snprintf(tmp, sizeof(tmp), "%05d NO", imailbox->imap_tag - 1);
+            g_snprintf(tmp, sizeof(tmp), "%05u NO", imailbox->imap_tag - 1);
             if(strstr(buf, tmp)) {
                 xfce_mailwatch_log_message(imailbox->mailwatch,
                                            XFCE_MAILWATCH_MAILBOX(imailbox),
@@ -409,7 +409,7 @@ imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox,
     
     TRACE("entering");
     
-    g_snprintf(buf, BUFSIZE, "%05d CAPABILITY\r\n", ++imailbox->imap_tag);
+    g_snprintf(buf, BUFSIZE, "%05u CAPABILITY\r\n", ++imailbox->imap_tag);
     if(imap_send(imailbox, net_conn, buf) != (gint)strlen(buf))
         return FALSE;
 
@@ -426,7 +426,7 @@ imap_do_starttls(XfceMailwatchIMAPMailbox *imailbox,
         return FALSE;
     }
     
-    g_snprintf(buf, BUFSIZE, "%05d STARTTLS\r\n", ++imailbox->imap_tag);
+    g_snprintf(buf, BUFSIZE, "%05u STARTTLS\r\n", ++imailbox->imap_tag);
     if(imap_send(imailbox, net_conn, buf) != (gint)strlen(buf))
         return FALSE;
     
@@ -546,7 +546,7 @@ imap_check_mailbox(XfceMailwatchIMAPMailbox *imailbox,
     TRACE("entering, folder %s", mailbox_name);
     
     /* ask the server to look at the mailbox */
-    g_snprintf(buf, sizeof(buf), "%05d STATUS %s (UNSEEN)\r\n",
+    g_snprintf(buf, sizeof(buf), "%05u STATUS %s (UNSEEN)\r\n",
                ++imailbox->imap_tag, mailbox_name);
 
     if(imap_send(imailbox, net_conn, buf) != (gint)strlen(buf))
@@ -907,7 +907,7 @@ imap_populate_folder_tree(XfceMailwatchIMAPMailbox *imailbox,
     
     TRACE("entering (%p, %s, %p)", imailbox, cur_folder, parent);
     
-    g_snprintf(buf, BUFSIZE, "%05d LIST \"%s\" \"%%\"\r\n",
+    g_snprintf(buf, BUFSIZE, "%05u LIST \"%s\" \"%%\"\r\n",
             ++imailbox->imap_tag, cur_folder);
     if(imap_send(imailbox, net_conn, buf) != (gint)strlen(buf))
         return FALSE;
@@ -1914,7 +1914,7 @@ imap_save_param_list(XfceMailwatchMailbox *mailbox)
     
     param = g_new(XfceMailwatchParam, 1);
     param->key = g_strdup("timeout");
-    param->value = g_strdup_printf("%d", imailbox->timeout);
+    param->value = g_strdup_printf("%u", imailbox->timeout);
     params = g_list_prepend(params, param);
     
     param = g_new(XfceMailwatchParam, 1);
@@ -1924,7 +1924,7 @@ imap_save_param_list(XfceMailwatchMailbox *mailbox)
     
     for(i = 0; i < g_list_length(imailbox->mailboxes_to_check); i++) {
         param = g_new(XfceMailwatchParam, 1);
-        param->key = g_strdup_printf("newmail_box_%d", i);
+        param->key = g_strdup_printf("newmail_box_%u", i);
         param->value = g_strdup(g_list_nth_data(imailbox->mailboxes_to_check, i));
         params = g_list_prepend(params, param);
         DBG("IMAP: sending back new mail folder param (%s, %s)", param->key,

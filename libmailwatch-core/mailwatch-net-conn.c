@@ -397,7 +397,7 @@ xfce_mailwatch_net_conn_get_addrinfo(XfceMailwatchNetConn *net_conn,
 
     /* allow setting nonstandard port */
     if(net_conn->port > 0)
-        g_snprintf(real_service, sizeof(real_service), "%d", net_conn->port);
+        g_snprintf(real_service, sizeof(real_service), "%u", net_conn->port);
     else
         g_strlcpy(real_service, net_conn->service, sizeof(real_service));
     
