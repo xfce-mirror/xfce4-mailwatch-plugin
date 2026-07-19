@@ -288,9 +288,7 @@ mbox_restore_settings( XfceMailwatchMailbox *mailbox, GList *settings )
         XfceMailwatchParam      *p = (XfceMailwatchParam *) li->data;
 
         if ( strcmp( p->key, "filename" ) == 0 ) {
-            if ( mbox->fn ) {
-                g_free( mbox->fn );
-            }
+            g_free( mbox->fn );
             mbox->fn = g_strdup( p->value );
         }
         else if ( strcmp( p->key, "ctime" ) == 0 ) {
@@ -316,9 +314,7 @@ mbox_file_set_cb( GtkWidget *button,
     text = gtk_file_chooser_get_filename( GTK_FILE_CHOOSER( button ) );
 
     g_mutex_lock(&(mbox->settings_mutex));
-    if ( mbox->fn ) {
-        g_free( mbox->fn );
-    }
+    g_free( mbox->fn );
 
     if ( text ) {
         mbox->fn = text;
@@ -459,9 +455,7 @@ mbox_free( XfceMailwatchMailbox *mailbox )
     
     g_mutex_clear( &mbox->settings_mutex );
 
-    if ( mbox->fn ) {
-        g_free( mbox->fn );
-    }
+    g_free( mbox->fn );
     g_free( mbox );
 }
 

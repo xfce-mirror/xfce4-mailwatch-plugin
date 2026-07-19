@@ -350,12 +350,8 @@ mh_read_config( XfceMailwatchMHMailbox *mh )
             NULL );
 
     g_free( mh_path );
-    if ( mh_inbox ) {
-        g_free( mh_inbox );
-    }
-    if ( mh_sequences ) {
-        g_free( mh_sequences );
-    }
+    g_free( mh_inbox );
+    g_free( mh_sequences );
     mh_profile_free( profile );
 }
 
@@ -654,15 +650,9 @@ mh_free( XfceMailwatchMailbox *mailbox )
     while( g_atomic_pointer_get( &mh->thread ) )
         g_thread_yield();
 
-    if ( mh->mh_profile_fn ) {
-        g_free( mh->mh_profile_fn );
-    }
-    if ( mh->mh_sequences_fn ) {
-        g_free( mh->mh_sequences_fn );
-    }
-    if ( mh->unseen_sequence ) {
-        g_free( mh->unseen_sequence );
-    }
+    g_free( mh->mh_profile_fn );
+    g_free( mh->mh_sequences_fn );
+    g_free( mh->unseen_sequence );
 
     g_free( mh );
 }

@@ -139,9 +139,7 @@ maildir_check_mail( XfceMailwatchMaildirMailbox *maildir )
 
 out:
     g_mutex_unlock(&(maildir->mutex));
-    if ( path ) {
-        g_free( path );
-    }
+    g_free( path );
 
     DBG( "<<--" );
 }
@@ -246,9 +244,7 @@ maildir_restore_param_list( XfceMailwatchMailbox *mailbox, GList *params )
         XfceMailwatchParam  *param = (XfceMailwatchParam *) li->data;
 
         if ( strcmp( param->key, "path" ) == 0 ) {
-            if ( maildir->path ) {
-                g_free( maildir->path );
-            }
+            g_free( maildir->path );
             maildir->path = g_strdup( param->value );
         }
         else if ( strcmp( param->key, "mtime" ) == 0 ) {
@@ -434,9 +430,7 @@ maildir_free( XfceMailwatchMailbox *mailbox )
 
     g_mutex_clear( &maildir->mutex );
 
-    if ( maildir->path ) {
-        g_free( maildir->path );
-    }
+    g_free( maildir->path );
     g_free( maildir );
 
     DBG( "<<--" );
