@@ -72,7 +72,6 @@ mbox_check_mail( XfceMailwatchMboxMailbox *mbox )
 {
     gchar           *mailbox;
     struct stat     st;
-    guint           num_new = 0;
 
     g_mutex_lock(&(mbox->settings_mutex));
     if ( !mbox->fn ) {
@@ -101,8 +100,7 @@ mbox_check_mail( XfceMailwatchMboxMailbox *mbox )
         GIOChannel      *ioc;
         gsize           nl;
         GError          *error = NULL;
-
-        num_new = 0;
+        guint           num_new = 0;
 
         ioc = g_io_channel_new_file( mailbox, "r", &error );
         if ( !ioc ) {

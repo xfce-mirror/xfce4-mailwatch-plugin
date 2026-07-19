@@ -457,7 +457,6 @@ pop3_check_mail_th(gpointer user_data)
 #define BUFSIZE 1024
     XfceMailwatchPOP3Mailbox *pmailbox = user_data;
     gchar host[BUFSIZE], username[BUFSIZE], password[BUFSIZE];
-    guint new_messages = 0;
     XfceMailwatchAuthType auth_type;
     gint nonstandard_port = -1;
 
@@ -496,7 +495,7 @@ pop3_check_mail_th(gpointer user_data)
     if(pop3_authenticate(pmailbox, host, username, password, auth_type,
                          nonstandard_port))
     {
-        new_messages = pop3_check_inbox(pmailbox);
+        guint new_messages = pop3_check_inbox(pmailbox);
         DBG("checked inbox, %d new messages", new_messages);
         
         xfce_mailwatch_signal_new_messages(pmailbox->mailwatch,
