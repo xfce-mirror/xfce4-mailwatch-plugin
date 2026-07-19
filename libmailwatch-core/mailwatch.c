@@ -131,8 +131,7 @@ xfce_mailwatch_destroy(XfceMailwatch *mailwatch)
     
     /* just clear out the mailbox list.  we have to call free_mailbox_func for
      * each mailbox outside the mailboxes_mx lock so we don't cause deadlocks */
-    stuff_to_free = mailwatch->mailboxes;
-    mailwatch->mailboxes = NULL;
+    stuff_to_free = g_steal_pointer(&mailwatch->mailboxes);
     
     /* we are SO done. */
     g_mutex_unlock(&(mailwatch->mailboxes_mx));
