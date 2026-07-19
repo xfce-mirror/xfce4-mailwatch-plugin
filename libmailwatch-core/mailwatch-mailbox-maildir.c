@@ -108,9 +108,7 @@ maildir_check_mail( XfceMailwatchMaildirMailbox *maildir )
         
         if ( dir ) {
             int             count_new = 0;
-            const gchar     *entry;
-            
-            while ( ( entry = g_dir_read_name( dir ) ) ) {
+            while ( g_dir_read_name( dir ) != NULL ) {
                 count_new++;
 
                 /* only check every 25 entries */
