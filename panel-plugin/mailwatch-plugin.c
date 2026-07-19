@@ -381,9 +381,9 @@ mailwatch_set_size(XfcePanelPlugin     *plugin,
      * try to be clever and use size steps */
     if (size <= 21)
         isize = 16;
-    else if (size >=22 && size <= 29)
+    else if (size <= 29)
         isize = 24;
-    else if (size >= 30 && size <= 40)
+    else if (size <= 40)
         isize = 32;
     else
         isize = size;
