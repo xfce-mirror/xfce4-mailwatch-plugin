@@ -237,7 +237,7 @@ xfce_mailwatch_load_config(XfceMailwatch *mailwatch)
         
         for(l = mailwatch->mailbox_types; l; l = l->next) {
             XfceMailwatchMailboxType *mtype = l->data;
-            if(!strcmp(mtype->id, mailbox_id)) {
+            if(strcmp(mtype->id, mailbox_id) == 0) {
                 mailbox = mtype->new_mailbox_func(mailwatch, mtype);
                 if(!mailbox->type)
                     mailbox->type = mtype;

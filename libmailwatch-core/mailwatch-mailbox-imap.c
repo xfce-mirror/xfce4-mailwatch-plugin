@@ -983,7 +983,7 @@ imap_populate_folder_tree(XfceMailwatchIMAPMailbox *imailbox,
         
         /* sometimes the first entry is just the name of the current folder
          * itself. */
-        if(!strcmp(p, cur_folder))
+        if(strcmp(p, cur_folder) == 0)
             continue;
         
         if(G_NODE_IS_ROOT(parent)) {
@@ -1317,7 +1317,7 @@ imap_config_treeview_btnpress_cb(GtkWidget *w, GdkEventButton *evt,
                 if(watching) {
                     GList *l;
                     for(l = imailbox->mailboxes_to_check; l; l = l->next) {
-                        if(!strcmp(folder_path, l->data)) {
+                        if(strcmp(folder_path, l->data) == 0) {
                             DBG("IMAP: removing %s from the new mail folder list (not saved yet)", (gchar *)l->data);
                             g_free(l->data);
                             imailbox->mailboxes_to_check =
@@ -1817,23 +1817,23 @@ imap_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
     for(l = params; l; l = l->next) {
         XfceMailwatchParam *param = l->data;
         
-        if(!strcmp(param->key, "host"))
+        if(strcmp(param->key, "host") == 0)
             imailbox->host = g_strdup(param->value);
-        else if(!strcmp(param->key, "username"))
+        else if(strcmp(param->key, "username") == 0)
             imailbox->username = g_strdup(param->value);
-        else if(!strcmp(param->key, "password"))
+        else if(strcmp(param->key, "password") == 0)
             imailbox->password = g_strdup(param->value);
-        else if(!strcmp(param->key, "auth_type"))
+        else if(strcmp(param->key, "auth_type") == 0)
             imailbox->auth_type = atoi(param->value);
-        else if(!strcmp(param->key, "server_directory"))
+        else if(strcmp(param->key, "server_directory") == 0)
             imailbox->server_directory = g_strdup(param->value);
-        else if(!strcmp(param->key, "use_standard_port"))
+        else if(strcmp(param->key, "use_standard_port") == 0)
             imailbox->use_standard_port = *(param->value) == '0' ? FALSE : TRUE;
-        else if(!strcmp(param->key, "nonstandard_port"))
+        else if(strcmp(param->key, "nonstandard_port") == 0)
             imailbox->nonstandard_port = atoi(param->value);
-        else if(!strcmp(param->key, "timeout"))
+        else if(strcmp(param->key, "timeout") == 0)
             imailbox->timeout = atoi(param->value);
-        else if(!strcmp(param->key, "n_newmail_boxes"))
+        else if(strcmp(param->key, "n_newmail_boxes") == 0)
             n_newmail_boxes = atoi(param->value);
     }
 

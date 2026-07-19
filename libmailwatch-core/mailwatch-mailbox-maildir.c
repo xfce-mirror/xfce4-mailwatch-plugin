@@ -245,16 +245,16 @@ maildir_restore_param_list( XfceMailwatchMailbox *mailbox, GList *params )
     for ( li = g_list_first( params ); li != NULL; li = g_list_next( li ) ) {
         XfceMailwatchParam  *param = (XfceMailwatchParam *) li->data;
 
-        if ( !strcmp( param->key, "path" ) ) {
+        if ( strcmp( param->key, "path" ) == 0 ) {
             if ( maildir->path ) {
                 g_free( maildir->path );
             }
             maildir->path = g_strdup( param->value );
         }
-        else if ( !strcmp( param->key, "mtime" ) ) {
+        else if ( strcmp( param->key, "mtime" ) == 0 ) {
             maildir->mtime = atol( param->value );
         }
-        else if ( !strcmp( param->key, "interval" ) ) {
+        else if ( strcmp( param->key, "interval" ) == 0 ) {
             maildir->interval = (guint) atol( param->value );
         }
     }

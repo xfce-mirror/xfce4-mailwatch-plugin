@@ -603,11 +603,11 @@ gmail_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
     for(l = params; l; l = l->next) {
         XfceMailwatchParam *param = l->data;
         
-        if(!strcmp(param->key, "username"))
+        if(strcmp(param->key, "username") == 0)
             gmailbox->username = g_strdup(param->value);
-        else if(!strcmp(param->key, "password"))
+        else if(strcmp(param->key, "password") == 0)
             gmailbox->password = g_strdup(param->value);
-        else if(!strcmp(param->key, "timeout"))
+        else if(strcmp(param->key, "timeout") == 0)
             gmailbox->timeout = atoi(param->value);
     }
     

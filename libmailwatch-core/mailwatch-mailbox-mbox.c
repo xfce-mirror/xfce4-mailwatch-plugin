@@ -287,19 +287,19 @@ mbox_restore_settings( XfceMailwatchMailbox *mailbox, GList *settings )
     for ( li = g_list_first( settings ); li != NULL; li = g_list_next( li ) ) {
         XfceMailwatchParam      *p = (XfceMailwatchParam *) li->data;
 
-        if ( !strcmp( p->key, "filename" ) ) {
+        if ( strcmp( p->key, "filename" ) == 0 ) {
             if ( mbox->fn ) {
                 g_free( mbox->fn );
             }
             mbox->fn = g_strdup( p->value );
         }
-        else if ( !strcmp( p->key, "ctime" ) ) {
+        else if ( strcmp( p->key, "ctime" ) == 0 ) {
             mbox->ctime = atol( p->value );
         }
-        else if ( !strcmp( p->key, "size" ) ) {
+        else if ( strcmp( p->key, "size" ) == 0 ) {
             mbox->size = (size_t) atol( p->value );
         }
-        else if ( !strcmp( p->key, "interval" ) ) {
+        else if ( strcmp( p->key, "interval" ) == 0 ) {
             mbox->interval = (guint) atol( p->value );
         }
     }

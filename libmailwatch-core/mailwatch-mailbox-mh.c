@@ -510,7 +510,7 @@ mh_restore_param_list( XfceMailwatchMailbox *mailbox, GList *params )
     for ( li = g_list_first( params ); li != NULL; li = g_list_next( li ) ) {
         XfceMailwatchParam  *param = li->data;
         
-        if ( !strcmp( param->key, "timeout" ) ) {
+        if ( strcmp( param->key, "timeout" ) == 0 ) {
             mh->timeout = (guint) atol( param->value );
         }
     }

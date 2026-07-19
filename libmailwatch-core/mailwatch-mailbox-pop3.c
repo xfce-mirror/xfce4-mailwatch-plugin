@@ -153,7 +153,7 @@ pop3_recv_command(XfceMailwatchPOP3Mailbox *pmailbox,
             return -1;
 
         if(multiline && got_ok) {
-            if(!strcmp(buf+tot, ".\n"))
+            if(strcmp(buf+tot, ".\n") == 0)
                 return tot + bin;
         } else if(!strncmp(buf+tot, "+OK", 3)) {
             if(!multiline)
@@ -940,19 +940,19 @@ pop3_restore_param_list(XfceMailwatchMailbox *mailbox, GList *params)
     for(l = params; l; l = l->next) {
         XfceMailwatchParam *param = l->data;
         
-        if(!strcmp(param->key, "host"))
+        if(strcmp(param->key, "host") == 0)
             pmailbox->host = g_strdup(param->value);
-        else if(!strcmp(param->key, "username"))
+        else if(strcmp(param->key, "username") == 0)
             pmailbox->username = g_strdup(param->value);
-        else if(!strcmp(param->key, "password"))
+        else if(strcmp(param->key, "password") == 0)
             pmailbox->password = g_strdup(param->value);
-        else if(!strcmp(param->key, "auth_type"))
+        else if(strcmp(param->key, "auth_type") == 0)
             pmailbox->auth_type = atoi(param->value);
-        else if(!strcmp(param->key, "use_standard_port"))
+        else if(strcmp(param->key, "use_standard_port") == 0)
             pmailbox->use_standard_port = *(param->value) == '0' ? FALSE : TRUE;
-        else if(!strcmp(param->key, "nonstandard_port"))
+        else if(strcmp(param->key, "nonstandard_port") == 0)
             pmailbox->nonstandard_port = atoi(param->value);
-        else if(!strcmp(param->key, "timeout"))
+        else if(strcmp(param->key, "timeout") == 0)
             pmailbox->timeout = atoi(param->value);
     }
     
