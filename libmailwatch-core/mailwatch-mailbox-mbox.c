@@ -119,8 +119,7 @@ mbox_check_mail( XfceMailwatchMboxMailbox *mbox )
                                         XFCE_MAILWATCH_MAILBOX( mbox ),
                                         XFCE_MAILWATCH_LOG_WARNING,
                                         error->message );
-            g_error_free( error );
-            error = NULL;
+            g_clear_error(&error);
         }
        
         if ( mbox->size && st.st_size > (guint)mbox->size ) {
@@ -425,8 +424,7 @@ mbox_activate( XfceMailwatchMailbox *mailbox, gboolean activated )
         mbox->check_id = g_timeout_add( mbox->interval * 1000, mbox_check_mail_timeout, mbox );
     } else {
         g_atomic_int_set( &mbox->running, FALSE );
-        g_source_remove( mbox->check_id );
-        mbox->check_id = 0;
+        g_clear_handle_id(&mbox->check_id, g_source_remove);
     }
 }
 

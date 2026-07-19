@@ -320,10 +320,7 @@ gmail_check_atom_feed(XfceMailwatchGMailMailbox *gmailbox,
     
 cleanup:
     
-    if(gmailbox->net_conn) {
-        xfce_mailwatch_net_conn_destroy(gmailbox->net_conn);
-        gmailbox->net_conn = NULL;
-    }
+    g_clear_pointer(&gmailbox->net_conn, xfce_mailwatch_net_conn_destroy);
     
     return ret;
 #undef BUFSIZE
@@ -431,8 +428,7 @@ gmail_set_activated(XfceMailwatchMailbox *mailbox, gboolean activated)
                                            gmailbox);
     } else {
         g_atomic_int_set(&gmailbox->running, FALSE);
-        g_source_remove(gmailbox->check_id);
-        gmailbox->check_id = 0;
+        g_clear_handle_id(&gmailbox->check_id, g_source_remove);
     }
 }
 

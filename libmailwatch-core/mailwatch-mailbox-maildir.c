@@ -415,8 +415,7 @@ maildir_set_activated( XfceMailwatchMailbox *mailbox, gboolean activated )
         maildir->check_id = g_timeout_add( maildir->interval * 1000, maildir_check_mail_timeout, maildir );
     } else {
         g_atomic_int_set( &maildir->running, FALSE );
-        g_source_remove( maildir->check_id );
-        maildir->check_id = 0;
+        g_clear_handle_id(&maildir->check_id, g_source_remove);
     }
 
     DBG( "<<--" );

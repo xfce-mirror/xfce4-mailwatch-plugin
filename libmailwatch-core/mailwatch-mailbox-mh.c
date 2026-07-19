@@ -310,14 +310,8 @@ mh_read_config( XfceMailwatchMHMailbox *mh )
 
     DBG( "-->>" );
 
-    if ( mh->mh_sequences_fn ) {
-        g_free( mh->mh_sequences_fn );
-        mh->mh_sequences_fn = NULL;
-    }
-    if ( mh->unseen_sequence ) {
-        g_free( mh->unseen_sequence );
-        mh->unseen_sequence = NULL;
-    }
+    g_clear_pointer(&mh->mh_sequences_fn, g_free);
+    g_clear_pointer(&mh->unseen_sequence, g_free);
 
     if ( !mh->mh_profile_fn ) {
         mh->mh_profile_fn = mh_get_profile_filename();
@@ -645,8 +639,7 @@ mh_set_activated_cb( XfceMailwatchMailbox *mailbox, gboolean activate )
         mh->check_id = g_timeout_add( mh->timeout * 1000, mh_check_mail_timeout, mh );
     } else {
         g_atomic_int_set( &mh->running, FALSE );
-        g_source_remove( mh->check_id );
-        mh->check_id = 0;
+        g_clear_handle_id(&mh->check_id, g_source_remove);
     }
 }
 

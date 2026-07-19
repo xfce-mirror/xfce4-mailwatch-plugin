@@ -661,14 +661,10 @@ config_run_addedit_window(const gchar *title, GtkWindow *parent,
                         _("Please enter a name for the mailbox."),
                                     _("_Close"), GTK_RESPONSE_ACCEPT,
                                     NULL);
-                if(*new_mailbox_name) {
-                    g_free(*new_mailbox_name);
-                    *new_mailbox_name = NULL;
-                }
+                g_clear_pointer(new_mailbox_name, g_free);
             } else {
                 if(mailbox_name && !g_utf8_collate(mailbox_name, *new_mailbox_name)) {
-                    g_free(*new_mailbox_name);
-                    *new_mailbox_name = NULL;
+                    g_clear_pointer(new_mailbox_name, g_free);
                 }
                 ret = TRUE;
                 break;

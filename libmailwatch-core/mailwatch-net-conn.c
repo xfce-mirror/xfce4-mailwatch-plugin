@@ -796,8 +796,7 @@ xfce_mailwatch_net_conn_recv_data(XfceMailwatchNetConn *net_conn,
         if(net_conn->buffer_len <= buf_len) {
             bin = net_conn->buffer_len;
             memcpy(buf, net_conn->buffer, bin);
-            g_free(net_conn->buffer);
-            net_conn->buffer = NULL;
+            g_clear_pointer(&net_conn->buffer, g_free);
             net_conn->buffer_len = 0;
 
             if(bin == (gint)buf_len)
@@ -917,8 +916,7 @@ xfce_mailwatch_net_conn_disconnect(XfceMailwatchNetConn *net_conn)
     }
 #endif
 
-    g_free(net_conn->buffer);
-    net_conn->buffer = NULL;
+    g_clear_pointer(&net_conn->buffer, g_free);
     net_conn->buffer_len = 0;
 
     shutdown(net_conn->fd, SHUT_RDWR);

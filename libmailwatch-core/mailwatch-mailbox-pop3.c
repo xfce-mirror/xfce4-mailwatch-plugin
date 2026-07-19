@@ -506,10 +506,7 @@ pop3_check_mail_th(gpointer user_data)
     if(xfce_mailwatch_net_conn_is_connected(pmailbox->net_conn))
         pop3_send(pmailbox, "QUIT\r\n");
     
-    if(pmailbox->net_conn) {
-        xfce_mailwatch_net_conn_destroy(pmailbox->net_conn);
-        pmailbox->net_conn = NULL;
-    }
+    g_clear_pointer(&pmailbox->net_conn, xfce_mailwatch_net_conn_destroy);
 
     g_atomic_pointer_set(&pmailbox->th, NULL);
     return NULL;
@@ -566,8 +563,7 @@ pop3_set_activated(XfceMailwatchMailbox *mailbox, gboolean activated)
                                            pmailbox);
     } else {
         g_atomic_int_set(&pmailbox->running, FALSE);
-        g_source_remove(pmailbox->check_id);
-        pmailbox->check_id = 0;
+        g_clear_handle_id(&pmailbox->check_id, g_source_remove);
     }
 }
 

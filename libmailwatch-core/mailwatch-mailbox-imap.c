@@ -748,8 +748,7 @@ imap_set_activated(XfceMailwatchMailbox *mailbox, gboolean activated)
                                            imailbox);
     } else {
         g_atomic_int_set(&imailbox->running, FALSE);
-        g_source_remove(imailbox->check_id);
-        imailbox->check_id = 0;
+        g_clear_handle_id(&imailbox->check_id, g_source_remove);
     }
 }
 
@@ -1106,8 +1105,7 @@ imap_populate_folder_tree_nodes(gpointer user_data)
     for(n = imailbox->folder_tree->children; n; n = n->next)
         imap_populate_folder_tree_nodes_rec(imailbox, mailboxes_to_check, n, NULL);
     
-    g_node_destroy(imailbox->folder_tree);
-    imailbox->folder_tree = NULL;
+    g_clear_pointer(&imailbox->folder_tree, g_node_destroy);
     
     g_hash_table_destroy(mailboxes_to_check);
     
