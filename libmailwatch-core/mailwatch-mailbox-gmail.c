@@ -296,6 +296,10 @@ gmail_check_atom_feed(XfceMailwatchGMailMailbox *gmailbox,
             buf[strlen(p)+strlen(buf1)] = 0;
             p = buf;
             q = strstr(p+1, "<");
+            if(!q) {
+                DBG("can't find </fullcount> closing tag");
+                break;
+            }
         }
         
         DBG("p=%p, q=%p", p, q);
