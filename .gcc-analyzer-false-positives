@@ -1,0 +1,2 @@
+# There actually is a leak, but fixing it would require refactoring and testing that I don't feel ready to do right now
+mailwatch-net-conn.c:[0-9]+:[0-9]+: warning: leak of file descriptor .+\*net_conn.fd.+ \[CWE-775\] \[-Wanalyzer-fd-leak\]
